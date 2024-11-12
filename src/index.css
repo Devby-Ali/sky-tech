@@ -1,0 +1,258 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.6;
+  font-size: 1.6rem;
+  direction: rtl;
+}
+
+*,
+*::after,
+*::before {
+  outline: none;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+
+i {
+  user-select: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Estedad Thin";
+    src: url("/fonts/Estedad/woff2/Estedad-Thin.woff2")
+      format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Estedad Light";
+    src: local("Estedad Light"),
+      url("/fonts/Estedad/woff2/Estedad-Light.woff2")
+        format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Estedad Medium";
+    src: local("Estedad Medium"),
+      url("/fonts/Estedad/woff2/Estedad-Medium.woff2")
+        format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Estedad Bold";
+    src: local("Estedad Bold"),
+      url("/fonts/Estedad/woff2/Estedad-Bold.woff2")
+        format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Mikhak-woff2-1";
+    src: url("/fonts/Mikhak/woff2/Mikhak-VF-FD.woff2")
+      format("woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Dirooz";
+    src: url("/fonts/Dirooz/Dirooz.woff2") format("woff2");
+    font-display: swap;
+  }
+}
+
+@layer components {
+  .overlay {
+    @apply lg:hidden invisible opacity-0 fixed inset-0 w-full h-full bg-black/40 z-20 transition-all backdrop-blur-[4px];
+  }
+
+  .overlay--visible {
+    @apply visible opacity-100;
+  }
+
+  .suggestion-articles__right::before {
+    content: "قدیمی تر";
+    position: absolute;
+    top: -2rem;
+    left: 2rem;
+    font-size: 1.8rem;
+    color: #adb5db;
+    font-weight: bold;
+    transform: rotate(180deg);
+  }
+
+  .suggestion-articles__left::before {
+    content: "جدید تر";
+    position: absolute;
+    top: -2rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    color: #adb5db;
+  }
+
+  .course-info__total-comment::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background-color: #e5e5e5;
+    left: -3rem;
+  }
+
+  .login-register::before {
+    content: "";
+    position: absolute;
+    top: -5rem;
+    width: 150%;
+    height: 380px;
+    background-color: #2bce56;
+    z-index: -1;
+    transform: rotate(-4deg);
+  }
+
+  .login-register::after {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 380px;
+    background-color: rgb(43, 206, 86, 0.6);
+    z-index: -9999;
+    transform: rotate(-4deg);
+  }
+
+  .breadcrumb {
+    display: flex;
+    height: 5.2rem;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 0.75rem;
+    background-color: #4888ff;
+  }
+
+  .breadcrumb__item:first-child {
+    padding-right: 1rem;
+    padding-left: 0.5rem;
+  }
+
+  .breadcrumb__item {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-shrink: 0;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 38px;
+  }
+
+  .breadcrumb__item::before {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    height: 4.3rem;
+    width: 5px;
+    transform: rotate(-35deg);
+    transform-origin: bottom;
+    background-color: #fff;
+  }
+
+  .breadcrumb__item::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 0;
+    height: 4.3rem;
+    width: 5px;
+    transform: rotate(35deg);
+    transform-origin: top;
+    background-color: #fff;
+  }
+
+  .button-primary {
+    background-color: #3772FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.3rem 4rem;
+    border-radius: 0.5rem;
+    border-top-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    gap: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .button-primary:hover {
+    background-color: transparent;
+    box-shadow: 0 0 14px 3px #3772FF inset;
+    color: #3772FF;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .ltr-text {
+    direction: ltr;
+    text-align: left;
+  }
+
+  .main-header__dropdown {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .main-header__item:hover .main-header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    top: 6.5rem;
+  }
+
+  .courses-top-bar__selection-list {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .courses-top-bar__selection:hover .courses-top-bar__selection-list {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .bg-landing {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url(/images/landing/background_landing.jfif) no-repeat
+        center center;
+  }
+
+  .active {
+    color: #3772ff;
+    background-color: rgb(134, 136, 0);
+  }
+  .courses-top-bar__icon--active {
+    color: var(--white-color);
+    background-color: #1e83f0;
+  }
+  .courses-top-bar__selection-item--active {
+    background-color: #ddd !important;
+  }
+
+  .courses__pagination-link--active {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+  }
+
+  .textDark {
+    color: #111827;
+  }
+}
