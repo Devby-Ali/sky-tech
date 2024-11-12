@@ -175,7 +175,7 @@ export default function CourseInfo() {
               {/* <!-- Description --> */}
               <div className="bg-white dark:bg-darkBox dark:text-white rounded-3xl p-7 mt-8">
                 <div className="flex items-center gap-x-2 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-9 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm "></span>
+                  <span className="absolute -right-8 sm:-right-[26px] block w-1 h-[34px] md:h-9.5 bg- rounded-r-full shadow-[]"></span>
                   <div className="hidden md:inline-block text-amber-400 w-9.5 h-9.5">
                   <HiOutlineDocumentText />
                   </div>
