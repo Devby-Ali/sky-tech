@@ -12,12 +12,23 @@ import { IoMenu } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 
 export default function Navbar() {
+
+  const [dark, setDark] = useState(false);
+
   const [allMenus, setAllMenus] = useState([]);
 
   const [navOpen, setNavOpen] = useState(false);
 
-  const navOpenHandler = () => {
-    setNavOpen(!navOpen);
+  const themeHandler = () => {
+    if (localStorage.theme === "dark") {
+      setDark(false);
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+    } else {
+      setDark(true);
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }  
   };
 
   const authContext = useContext(AuthContext);
@@ -30,6 +41,10 @@ export default function Navbar() {
         setAllMenus(menus);
       });
   }, []);
+
+  const navOpenHandler = () => {
+    setNavOpen(!navOpen);
+  };
 
   return (
     <>
@@ -44,7 +59,7 @@ export default function Navbar() {
 
               <ul className="flex gap-x-10">
                 <li className="main-header__item flex-center relative">
-                  <Link to={"/"} className="flex-center text-zinc-800">
+                  <Link to={"/"} className="flex-center text-da">
                     صفحه اصلی
                   </Link>
                 </li>
@@ -79,10 +94,10 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center">
-              <div className="flex-center w-16 h-16 bg-lightishBlue-500 text-white text-4xl rounded-lg toggle-theme cursor-pointer">
-                <IoSunnyOutline className="inline-block dark:hidden w-8 h-8" />
+              <div className="flex-center w-16 h-16 bg-lightishBlue-500 text-white text-4xl rounded-lg toggle-theme cursor-pointer" onClick={() => themeHandler()}>
+                <IoSunnyOutline className="hidden dark:inline-block w-8 h-8" />
 
-                <BsMoon className="hidden dark:inline-block w-8 h-8" />
+                <BsMoon className="inline-block dark:hidden w-8 h-8 " />
               </div>
               <Link
                 to="#"

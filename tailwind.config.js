@@ -5,6 +5,7 @@ module.exports = withMT({
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -21,6 +22,8 @@ module.exports = withMT({
           900: "#00123D",
           950: "#00091F",
         },
+        darkColor: "#111827",
+        darkBox: "#242a38"
       },
       boxShadow: {
         normal: "0px 1px 12px rgba(0, 0, 0, 0.07)",

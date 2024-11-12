@@ -13,6 +13,7 @@ import {
 } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { HiOutlineDocumentText } from "react-icons/hi2";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaChalkboardTeacher } from "react-icons/fa";
@@ -98,8 +99,8 @@ export default function CourseInfo() {
               },
             ]}
           />
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-14 rounded-3xl p-7 lg:p-0 bg-white dark:bg-[#242a38] lg:!bg-transparent border border-gray-100 dark:border-none lg:border-none">
-            <div className="flex flex-col justify-between order-2 lg:order-1 textDark dark:text-white">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-14 rounded-3xl p-7 lg:p-0 bg-white dark:bg-darkBox lg:!bg-transparent border border-gray-100 dark:border-none lg:border-none">
+            <div className="flex flex-col justify-between order-2 lg:order-1 text-darkColor dark:text-white">
               <div>
                 <h1 className="font-EstedadBold text-4xl sm:text-5xl mb-7">
                   {courseDetails.name}
@@ -138,71 +139,47 @@ export default function CourseInfo() {
             <div className="col-span-12 lg:col-span-8">
               {/* <!-- Course Box Info | Summary --> */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
-                <div className="flex flex-col md:flex-row text-center md:text-right items-center justify-center sm:justify-start gap-x-5 gap-y-5 bg-white dark:bg-[#242a38] pt-7 pb-6 sm:py-7 px-8 rounded-3xl text-[#111827] dark:text-white">
-                  <BsInfoCircle className="text-5xl text-lightishBlue-500" />
-                  <div className="space-y-2 sm:space-y-4">
-                    <span className="block font-EstedadBold text-2xl sm:text-3xl">
-                      وضعیت دوره
-                    </span>
-                    <span className="block text-2xl opacity-70">تکمیل شده</span>
-                  </div>
-                </div>
-                <div className="flex flex-col md:flex-row text-center md:text-right items-center justify-center sm:justify-start gap-x-5 gap-y-5 bg-white dark:bg-[#242a38] pt-7 pb-6 sm:py-7 px-8 rounded-3xl text-[#111827] dark:text-white">
-                  <BsClock className="text-5xl text-lightishBlue-500" />
-                  <div className="space-y-2 sm:space-y-4">
-                    <span className="block font-EstedadBold text-2xl sm:text-3xl">
-                      مدت زمان دوره
-                    </span>
-                    <span className="block text-2xl opacity-70">3 ساعت</span>
-                  </div>
-                </div>
-                <div className="flex flex-col md:flex-row text-center md:text-right items-center justify-center sm:justify-start gap-x-5 gap-y-5 bg-white dark:bg-[#242a38] pt-7 pb-6 sm:py-7 px-8 rounded-3xl text-[#111827] dark:text-white">
-                  <IoCalendarOutline className="text-5xl text-lightishBlue-500" />
-                  <div className="space-y-2 sm:space-y-4">
-                    <span className="block font-EstedadBold text-2xl sm:text-3xl">
-                      آخرین بروزرسانی
-                    </span>
-                    <span className="block text-2xl opacity-70">1400/12/22</span>
-                  </div>
-                </div>
-                <div className="flex flex-col md:flex-row text-center md:text-right items-center justify-center sm:justify-start gap-x-5 gap-y-5 bg-white dark:bg-[#242a38] pt-7 pb-6 sm:py-7 px-8 rounded-3xl text-[#111827] dark:text-white">
-                <PiUsersThree className="text-5xl text-lightishBlue-500" />
-                  <div className="space-y-2 sm:space-y-4">
-                    <span className="block font-EstedadBold text-2xl sm:text-3xl">
-                      روش پشتیبانی
-                    </span>
-                    <span className="block text-2xl opacity-70">آنلاین</span>
-                  </div>
-                </div>
-                <div className="flex flex-col md:flex-row text-center md:text-right items-center justify-center sm:justify-start gap-x-5 gap-y-5 bg-white dark:bg-[#242a38] pt-7 pb-6 sm:py-7 px-8 rounded-3xl text-[#111827] dark:text-white">
-                  <PiBriefcase className="text-5xl text-lightishBlue-500" />
-                  <div className="space-y-2 sm:space-y-4">
-                    <span className="block font-EstedadBold text-2xl sm:text-3xl">
-                      پیش نیاز
-                    </span>
-                    <span className="block text-2xl opacity-70">JS</span>
-                  </div>
-                </div>
-                <div className="flex flex-col md:flex-row text-center md:text-right items-center justify-center sm:justify-start gap-x-5 gap-y-5 bg-white dark:bg-[#242a38] pt-7 pb-6 sm:py-7 px-8 rounded-3xl text-[#111827] dark:text-white">
-                  <PiEye className="text-5xl text-lightishBlue-500" />
-                  <div className="space-y-2 sm:space-y-4">
-                    <span className="block font-EstedadBold text-2xl sm:text-3xl">
-                      نوع مشاهده
-                    </span>
-                    <span className="block text-2xl opacity-70">
-                      دانلودی/آنلاین
-                    </span>
-                  </div>
-                </div>
+                <CourseDetailBox
+                  icon={
+                    <BsInfoCircle />
+                  }
+                  title={"وضعیت دوره"}
+                  text={"تکمیل شده"}
+                />
+                <CourseDetailBox
+                  icon={<BsClock />}
+                  title={"مدت زمان دوره"}
+                  text={"3 ساعت"}
+                />
+                <CourseDetailBox
+                  icon={<IoCalendarOutline />}
+                  title={"آخرین بروزرسانی"}
+                  text={"1400/12/22"}
+                />
+                <CourseDetailBox
+                  icon={<PiUsersThree />}
+                  title={"روش پشتیبانی"}
+                  text={"آنلاین"}
+                />
+                <CourseDetailBox
+                  icon={<PiBriefcase />}
+                  title={"پیش نیاز"}
+                  text={"JS"}
+                />
+                <CourseDetailBox
+                  icon={ <PiEye />}
+                  title={"نوع مشاهده"}
+                  text={"آنلاین"}
+                />
               </div>
               {/* <!-- Description --> */}
-              <div className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5 mt-8">
-                <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
-                  <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm "></span>
-                  <svg className="hidden md:inline-block text-amber-400 w-9.5 h-9.5">
-                    <use href="#document-text-fill"></use>
-                  </svg>
-                  <div className="font-danaDemiBold text-xl md:text-2xl">
+              <div className="bg-white dark:bg-darkBox dark:text-white rounded-3xl p-7 mt-8">
+                <div className="flex items-center gap-x-2 mb-16 sm:mb-20 relative">
+                  <span className="absolute -right-9 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm "></span>
+                  <div className="hidden md:inline-block text-amber-400 w-9.5 h-9.5">
+                  <HiOutlineDocumentText />
+                  </div>
+                  <div className="font-EstedadBold text-3xl md:text-4xl">
                     توضیحات
                   </div>
                 </div>
@@ -507,7 +484,7 @@ export default function CourseInfo() {
                 </button>
               </div>
               {/* <!-- Headlines --> */}
-              <div className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5 mt-8">
+              <div className="bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 mt-8">
                 <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
                   <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm"></span>
                   <svg className="hidden md:inline-block text-sky-500 w-9.5 h-9.5">
@@ -981,7 +958,7 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
-              <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5 mt-8">
+              <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 mt-8">
                 <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
                   <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm"></span>
                   <svg className="hidden md:inline-block text-amber-400 w-9.5 h-9.5">
@@ -1092,7 +1069,7 @@ export default function CourseInfo() {
               </div>
               {/* <!-- Comments --> */}
               <div
-                className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5 mt-8"
+                className="bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 mt-8"
                 id="course-comments"
               >
                 {/* <!-- Comment Head --> */}
@@ -1121,7 +1098,7 @@ export default function CourseInfo() {
                 {/* <!-- Comment Alert --> */}
                 <div
                   id="comment-alert"
-                  className="bg-green-50 text-green-500 dark:bg-green-500/10 p-4.5 md:p-5 rounded-lg text-sm md:font-danaDemiBold mb-6"
+                  className="bg-green-50 text-green-500 dark:bg-green-500/10 p-7 md:p-5 rounded-lg text-sm md:font-danaDemiBold mb-6"
                 >
                   دانشجوی عزیز؛ سوالات مرتبط به پشتیبانی دوره در قسمت نظرات
                   تایید نخواهد شد، لطفا در بخش مشاهده آنلاین هر ویدیو سوالات خود
@@ -1129,7 +1106,7 @@ export default function CourseInfo() {
                 </div>
                 {/* <!-- Comment Form --> */}
                 <div id="comment-form">
-                  <div className="flex gap-x-3.5 mb-4.5 sm:mb-5">
+                  <div className="flex gap-x-3.5 mb-7 sm:mb-5">
                     <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
                       <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-dark rounded-full">
                         <svg className="w-5 sm:w-6 h-5 sm:h-6 text-slate-500">
@@ -1161,10 +1138,10 @@ export default function CourseInfo() {
                   <textarea
                     rows="6"
                     id="comment-textarea"
-                    className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-dark text-gray-900 dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-xl"
+                    className="w-full block p-7 md:p-4 bg-gray-100 dark:bg-dark text-gray-900 dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-xl"
                     placeholder="نظر خود را بنویسید ..."
                   ></textarea>
-                  <div className="flex gap-x-4 justify-end mt-4.5 sm:mt-6">
+                  <div className="flex gap-x-4 justify-end mt-7 sm:mt-6">
                     <button
                       className="flex-grow sm:grow-0 sm:w-36 button-lg button-primary button-outline"
                       id="comment-cancel-btn"
@@ -1180,11 +1157,11 @@ export default function CourseInfo() {
                   </div>
                 </div>
                 {/* <!-- Comment List --> */}
-                <div className="comments_wrap space-y-4.5 sm:space-y-5">
+                <div className="comments_wrap space-y-7 sm:space-y-5">
                   {/* <!-- Comments --> */}
                   <div
                     id="comment-56773"
-                    className="p-4.5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
@@ -1219,7 +1196,7 @@ export default function CourseInfo() {
                         data-author="Alirezzaa"
                         className="comment__reply-btn button-sm button-secondary button-outline only-icon"
                       >
-                        <svg className="w-4.5 h-4.5">
+                        <svg className="w-7 h-7">
                           <use href="#arrow-uturn-left"></use>
                         </svg>
                       </button>
@@ -1231,7 +1208,7 @@ export default function CourseInfo() {
                   </div>
                   <div
                     id="comment-56731"
-                    className="p-4.5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
@@ -1266,7 +1243,7 @@ export default function CourseInfo() {
                         data-author="arashk ashkani"
                         className="comment__reply-btn button-sm button-secondary button-outline only-icon"
                       >
-                        <svg className="w-4.5 h-4.5">
+                        <svg className="w-7 h-7">
                           <use href="#arrow-uturn-left"></use>
                         </svg>
                       </button>
@@ -1279,7 +1256,7 @@ export default function CourseInfo() {
                     <div className="mt-4 space-y-4">
                       <div
                         id="comment-56733"
-                        className="p-4.5 md:p-5 bg-gray-200 dark:bg-darker rounded-xl"
+                        className="p-7 md:p-5 bg-gray-200 dark:bg-darker rounded-xl"
                       >
                         <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-white/40 dark:border-white/10">
                           <div className="flex items-center gap-x-3.5">
@@ -1319,7 +1296,7 @@ export default function CourseInfo() {
                   </div>
                   <div
                     id="comment-56639"
-                    className="p-4.5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
@@ -1354,7 +1331,7 @@ export default function CourseInfo() {
                         data-author="zahra_0901"
                         className="comment__reply-btn button-sm button-secondary button-outline only-icon"
                       >
-                        <svg className="w-4.5 h-4.5">
+                        <svg className="w-7 h-7">
                           <use href="#arrow-uturn-left"></use>
                         </svg>
                       </button>
@@ -1369,7 +1346,7 @@ export default function CourseInfo() {
                   </div>
                   <div
                     id="comment-56446"
-                    className="p-4.5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
@@ -1404,7 +1381,7 @@ export default function CourseInfo() {
                         data-author="SIPAN"
                         className="comment__reply-btn button-sm button-secondary button-outline only-icon"
                       >
-                        <svg className="w-4.5 h-4.5">
+                        <svg className="w-7 h-7">
                           <use href="#arrow-uturn-left"></use>
                         </svg>
                       </button>
@@ -1416,7 +1393,7 @@ export default function CourseInfo() {
                   </div>
                   <div
                     id="comment-55916"
-                    className="p-4.5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
@@ -1451,7 +1428,7 @@ export default function CourseInfo() {
                         data-author="Ernesto"
                         className="comment__reply-btn button-sm button-secondary button-outline only-icon"
                       >
-                        <svg className="w-4.5 h-4.5">
+                        <svg className="w-7 h-7">
                           <use href="#arrow-uturn-left"></use>
                         </svg>
                       </button>
@@ -1480,7 +1457,7 @@ export default function CourseInfo() {
             </div>
             <aside className="col-span-12 lg:col-span-4 space-y-8">
               {/* <!-- Students & Rating & Progress --> */}
-              <div className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5 sm:p-5">
+              <div className="bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 sm:p-5">
                 <div className="flex gap-x-4">
                   <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-100 dark:bg-dark rounded-xl">
                     <svg className="w-10 h-10 md:w-11 md:h-11 text-green-500">
@@ -1514,7 +1491,7 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Course Teacher --> */}
-              <div className="bg-white dark:bg-darker rounded-2xl pt-6 px-4.5 pb-4.5 md:py-6 md:px-5 text-center">
+              <div className="bg-white dark:bg-darker rounded-2xl pt-6 px-7 pb-7 md:py-6 md:px-5 text-center">
                 <img
                   className="block mb-4 mx-auto object-cover rounded-full"
                   width="90"
@@ -1538,7 +1515,7 @@ export default function CourseInfo() {
                 <span className="font-danaDemiBold text-lg">
                   لینک کوتاه آموزش
                 </span>
-                <div className="flex items-center justify-between gap-x-3 p-4 mt-4.5 bg-sky-50 dark:bg-sky-500/10 text-sky-500 border border-dashed border-sky-500 rounded-lg">
+                <div className="flex items-center justify-between gap-x-3 p-4 mt-7 bg-sky-50 dark:bg-sky-500/10 text-sky-500 border border-dashed border-sky-500 rounded-lg">
                   <button>
                     <svg className="w-8 h-8">
                       <use href="#clipboard-document"></use>

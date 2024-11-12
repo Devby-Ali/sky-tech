@@ -1,18 +1,18 @@
 import React from "react";
 
-
-export default function CourseDetailBox({ title, text, icon }) {
+export default function CourseDetailBox({ icon, title, text }) {
   return (
-    <div className="grid grid-cols-4">
-      <div className="flex rounded-lg shadow-normal my-4 py-7 px-8">
-        <div className="flex-center text-4xl">
-          {icon}
-        </div>
-        <div className="flex flex-col mr-6 child:text-2xl child:text-zinc-500">
-          <span>{title}</span>
-          <span>{text}</span>
-        </div>
+    <div className="flex flex-col md:flex-row text-center md:text-right items-center justify-center sm:justify-start gap-x-5 xl:gap-x-7 gap-y-5 bg-white dark:bg-darkBox pt-7 pb-6 sm:py-7 px-8 rounded-3xl text-darkColor dark:text-white">
+      <div className="text-6xl text-lightishBlue-500">
+      {icon}
+      </div>
+      <div className="space-y-2 sm:space-y-4">
+        <span className="block font-EstedadBold text-2xl sm:text-3xl">
+        {title}
+        </span>
+        <span className="block text-2xl opacity-70">{text}</span>
       </div>
     </div>
   );
 }
+
