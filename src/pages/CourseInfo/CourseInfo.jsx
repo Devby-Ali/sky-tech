@@ -30,6 +30,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { PiPlayBold } from "react-icons/pi";
+import { FaRegObjectGroup } from "react-icons/fa";
 
 function Icon({ id, open }) {
   return (
@@ -168,12 +169,12 @@ export default function CourseInfo() {
                 />
               </div>
               {/* <!-- Description --> */}
-              <div className="bg-white dark:bg-darkBox dark:text-white rounded-3xl p-7 mt-12">
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 mt-12">
                 <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
                   <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                  <div className="hidden md:inline-block text-light-blue-600 text-6xl">
+                  <span className="hidden md:inline-block text-light-blue-700 dark:text-light-blue-500 text-6xl">
                     <HiOutlineDocumentText />
-                  </div>
+                  </span>
                   <div className="font-EstedadBold text-3xl md:text-4xl">
                     توضیحات
                   </div>
@@ -469,10 +470,10 @@ export default function CourseInfo() {
                 </Button>
               </div>
               {/* <!-- Headlines --> */}
-              <div className="bg-white dark:bg-darkBox dark:text-white rounded-3xl p-7 mt-12">
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 mt-12">
                 <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
                   <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                  <div className="hidden md:inline-block text-light-blue-600 text-7xl">
+                  <div className="hidden md:inline-block ml-1 text-light-blue-700 dark:text-light-blue-500 text-7xl">
                     <HiOutlineAcademicCap />
                   </div>
                   <div
@@ -612,16 +613,17 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
-              <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 mt-8">
-                <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
-                  <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm"></span>
-                  <svg className="hidden md:inline-block text-amber-400 w-9.5 h-9.5">
-                    <use href="#sparkles"></use>
-                  </svg>
-                  <div className="font-danaDemiBold text-xl md:text-2xl">
+              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7 sm:p-5 mt-8">
+                <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                  <span className="absolute -right-6 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                  <span className="text-light-blue-700 dark:text-light-blue-500 mx-2 text-[3.4rem]">
+                  <FaRegObjectGroup />
+                  </span>
+                  <div className="font-EstedadBold text-3xl md:text-4xl">
                     دوره های مرتبط
                   </div>
                 </div>
+
                 <div className="space-y-4 md:space-y-5">
                   <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
                     <div className="flex items-center gap-x-4 w-4/5">
