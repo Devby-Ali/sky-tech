@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/authContext";
+import Input from "../Form/Input";
 import { Link } from "react-router-dom";
 import { GoTriangleDown } from "react-icons/go";
 import { IoSunnyOutline } from "react-icons/io5";
@@ -10,9 +11,9 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { PiMagnifyingGlass } from "react-icons/pi";
 
 export default function Navbar() {
-
   const [dark, setDark] = useState(false);
 
   const [allMenus, setAllMenus] = useState([]);
@@ -28,7 +29,7 @@ export default function Navbar() {
       setDark(true);
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
-    }  
+    }
   };
 
   const authContext = useContext(AuthContext);
@@ -65,16 +66,21 @@ export default function Navbar() {
                 </li>
 
                 {allMenus.map((menu) => (
-                  <li key={menu._id} className="main-header__item flex-center relative">
-                    <Link to={menu.href} className="flex-center text-zinc-800 hover:text-lightishBlue-500">
+                  <li
+                    key={menu._id}
+                    className="main-header__item flex-center relative"
+                  >
+                    <Link
+                      to={menu.href}
+                      className="flex-center text-zinc-800 hover:text-lightishBlue-500"
+                    >
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>
                           <GoTriangleDown className="mt-1 mx-1" />
                           <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 bg-white transition-all duration-200 shadow-2xl rounded-lg py-4">
-                            {
-                              menu.submenus.map(submenu => (
-                                <li key={menu._id}>
+                            {menu.submenus.map((submenu) => (
+                              <li key={menu._id}>
                                 <Link
                                   to={submenu.href}
                                   className="block py-2 px-8 text-2xl text-zinc-600 transition-all duration-200 text-gray-800"
@@ -82,8 +88,7 @@ export default function Navbar() {
                                   {submenu.title}
                                 </Link>
                               </li>
-                              ))
-                            }
+                            ))}
                           </ul>
                         </>
                       )}
@@ -94,7 +99,10 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center">
-              <div className="flex-center w-16 h-16 bg-lightishBlue-500 text-white text-4xl rounded-lg toggle-theme cursor-pointer" onClick={() => themeHandler()}>
+              <div
+                className="flex-center w-16 h-16 bg-lightishBlue-500 text-white text-4xl rounded-lg toggle-theme cursor-pointer"
+                onClick={() => themeHandler()}
+              >
                 <IoSunnyOutline className="hidden dark:inline-block w-8 h-8" />
 
                 <BsMoon className="inline-block dark:hidden w-8 h-8 " />
@@ -129,34 +137,61 @@ export default function Navbar() {
       {/* Mobile Menu */}
 
       {/* <div className="flex lg:hidden fixed w-full z-30 items-center justify-between h-32 px-4 bg-gradient-to-tr from-purple-700/80 via-teal-800/80 to-lightishBlue-600/80 backdrop-blur-[4px]"> */}
-      <div className="flex items-center justify-between lg:hidden fixed mx-auto w-full h-32 z-30 px-4 lg:px-12 bg-gradient-to-tr from-purple-700/80 via-teal-800/80 to-lightishBlue-600/80 backdrop-blur-[4px]">
+      <div className="flex items-center justify-between lg:hidden fixed mx-auto w-full h-[8.5rem] z-30 px-6 lg:px-14 bg-white dark:bg-darkBox shadow-lg">
         <div
-          className="bg-gray-300/20 p-[10px] rounded-full"
+          className="bg-gray-300 dark:bg-white/10 text-gray-500 dark:text-white cursor-pointer text-5xl p-4 rounded-full"
           onClick={navOpenHandler}
         >
-          <IoMenu className="text-white text-5xl cursor-pointer" />
+          <IoMenu />
         </div>
 
         <div
-          className={`nav fixed flex-col top-0 bottom-0 w-[256px] min-h-screen pt-3 px-4 bg-teal-300 overflow-y-auto transition-all ${
-            navOpen ? "right-0" : "-right-[256px]"
+          className={`nav fixed flex-col top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all ${
+            navOpen ? "right-0" : "-right-[263px]"
           }`}
         >
-          <div className="flex items-center gap-x-14 h-20 justify-between mb-8 border-b border-b-gray-100 px-2 p-14 ">
+          <div className="flex items-center justify-between gap-x-14 h-20 mb-3 text-darkColor dark:text-white px-1 py-16">
             <Link
-            to={"/"}
+              to={"/"}
               onClick={navOpenHandler}
-              className="flex-center text-lightishBlue-500"
+              className="flex-center text-7xl text-lightishBlue-400"
             >
-              <SiMicrosoftacademic className="w-16 h-16" />
+              <SiMicrosoftacademic />
             </Link>
-            <div className="bg-gray-300/70 p-[10px] rounded-full">
-              <IoIosArrowForward
-                onClick={navOpenHandler}
-                className="text-gray-600 text-5xl"
-              />
+            <div className="flex items-center gap-x-6 text-4xl text-blue-gray-500 dark:text-white">
+              <div
+                className="flex-center p-5 rounded-full toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+                onClick={() => themeHandler()}
+              >
+                <IoSunnyOutline className="hidden dark:inline-block" />
+
+                <BsMoon className="inline-block dark:hidden" />
+              </div>
+              <div className="flex-center p-5 rounded-full cursor-pointer bg-blue-gray-50 dark:bg-darkBox" onClick={navOpenHandler}>
+                <IoIosArrowForward />
+              </div>
             </div>
           </div>
+          <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
+          <form action="https://" method="get">
+            <label className="relative py-5 mt-10 block bg-gray-100 text-gray-700 dark:bg-white/5 dark:text-white text-2xl rounded-tl-4xl rounded-br-4xl">
+              <input
+                className=" font-danaMedium bg-transparent pr-4 pl-12 w-72 h-full outline-none"
+                type="text"
+                placeholder="چیو میخوای یاد بگیری؟"
+                name="s"
+              />
+              <button
+                className="absolute left-4 top-0 bottom-0 my-auto text-gray-700 dark:text-white"
+                type="submit"
+                role="button"
+              >
+                <div className="text-4xl">
+                  <PiMagnifyingGlass />
+                </div>
+              </button>
+            </label>
+          </form>
 
           {/* <div className="flex text-xl items-center bg-orange-200/20 text-amber-200 mb-4 pr-2.5 rounded-md">
             <a onClick={navOpenHandler} className="flex items-center gap-x-2 text-gray-700">
@@ -164,38 +199,35 @@ export default function Navbar() {
             </a>
           </div> */}
 
-          <ul className="child-hover:text-amber-200 child:transition-all child:pr-2.5 space-y-12 mt-12">
-            {
-              allMenus.map((menu) => (
-                <li key={menu._id} className="flex items-center justify-between">
-                <Link
-                  to={menu.href}
-                  className="flex items-center gap-x-2 text-gray-700"
-                >
+          <ul className="child:transition-all child:pr-2.5 space-y-12 mt-12 text-darkColor dark:text-white ">
+            {allMenus.map((menu) => (
+              <li key={menu._id} className="flex items-center justify-between">
+                <Link to={menu.href} className="flex items-center gap-x-2">
                   {menu.title}
                 </Link>
-                <IoIosArrowBack className="text-gray-700 text-3xl" />
+                <IoIosArrowBack className="text-3xl" />
               </li>
-              ))
-            }
+            ))}
           </ul>
-
-          {/* <div className="flex flex-col items-start gap-y-6 text-orange-300 py-8 px-2.5 mt-8 border-t border-t-gray-100">
-
-          </div> */}
         </div>
 
         <div className="logo">
-          <Link to={"/"} className="flex-center text-lightishBlue-300">
-            <SiMicrosoftacademic className="w-16 h-16" />
+          <Link to={"/"} className="flex-center text-7xl text-lightishBlue-500">
+            <SiMicrosoftacademic />
           </Link>
         </div>
         <div className="flex gap-x-4">
-          <Link to="#" className="bg-gray-300/20 p-[10px] rounded-full">
-            <RiShoppingCartFill className="text-5xl text-white" />
+          <Link
+            to="#"
+            className="bg-gray-300 dark:bg-white/10 text-gray-500 dark:text-white cursor-pointer text-5xl p-4 rounded-full"
+          >
+            <RiShoppingCartFill />
           </Link>
-          <Link to={"#"} className="bg-gray-300/20 p-[10px] rounded-full">
-            <CgProfile className="text-5xl text-white" />
+          <Link
+            to={"#"}
+            className="bg-gray-300 dark:bg-white/10 text-gray-500 dark:text-white cursor-pointer text-5xl p-4 rounded-full"
+          >
+            <CgProfile />
           </Link>
         </div>
       </div>

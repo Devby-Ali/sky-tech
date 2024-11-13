@@ -32,36 +32,31 @@ i {
 @layer base {
   @font-face {
     font-family: "Estedad Thin";
-    src: url("/fonts/Estedad/woff2/Estedad-Thin.woff2")
-      format("woff2");
+    src: url("/fonts/Estedad/woff2/Estedad-Thin.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
     font-family: "Estedad Light";
     src: local("Estedad Light"),
-      url("/fonts/Estedad/woff2/Estedad-Light.woff2")
-        format("woff2");
+      url("/fonts/Estedad/woff2/Estedad-Light.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
     font-family: "Estedad Medium";
     src: local("Estedad Medium"),
-      url("/fonts/Estedad/woff2/Estedad-Medium.woff2")
-        format("woff2");
+      url("/fonts/Estedad/woff2/Estedad-Medium.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
     font-family: "Estedad Bold";
     src: local("Estedad Bold"),
-      url("/fonts/Estedad/woff2/Estedad-Bold.woff2")
-        format("woff2");
+      url("/fonts/Estedad/woff2/Estedad-Bold.woff2") format("woff2");
     font-display: swap;
   }
 
   @font-face {
     font-family: "Mikhak-woff2-1";
-    src: url("/fonts/Mikhak/woff2/Mikhak-VF-FD.woff2")
-      format("woff2");
+    src: url("/fonts/Mikhak/woff2/Mikhak-VF-FD.woff2") format("woff2");
     font-display: swap;
   }
   @font-face {
@@ -180,22 +175,25 @@ i {
   }
 
   .button-primary {
-    background-color: #3772FF;
+    background-color: #3772ff;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.3rem 4rem;
-    border-radius: 0.5rem;
-    border-top-left-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
+    padding: 1.3rem 3rem;
+    border-radius: 0.3rem;
+    border-top-left-radius: 2.5rem;
+    border-bottom-right-radius: 2.5rem;
     gap: 1rem;
     letter-spacing: -1px;
   }
 
   .button-primary:hover {
     background-color: transparent;
-    box-shadow: 0 0 14px 3px #3772FF inset;
-    color: #3772FF;
+    box-shadow: 0 0 14px 3px #3772ff inset;
+  }
+
+  .shadowLightBlue {
+    box-shadow: 3px 0 8px 1px #039be5;
   }
 }
 
@@ -231,8 +229,7 @@ i {
 
   .bg-landing {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url(/images/landing/background_landing.jfif) no-repeat
-        center center;
+      url(/images/landing/background_landing.jfif) no-repeat center center;
   }
 
   .active {

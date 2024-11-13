@@ -14,6 +14,7 @@ import {
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlineDocumentText } from "react-icons/hi2";
+import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaChalkboardTeacher } from "react-icons/fa";
@@ -27,25 +28,18 @@ import { BsInfoCircle } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import { IoCalendarOutline } from "react-icons/io5";
 import { MdOutlineLaptopChromebook } from "react-icons/md";
+import { GoTriangleDown } from "react-icons/go";
+import { PiPlayBold } from "react-icons/pi";
 
 function Icon({ id, open }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
+    <div
       className={`${
         id === open ? "rotate-180" : ""
-      } h-5 w-5 transition-transform`}
+      } text-5xl text-darkColor dark:text-white transition-all`}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-      />
-    </svg>
+      <GoTriangleDown />
+    </div>
   );
 }
 
@@ -118,14 +112,17 @@ export default function CourseInfo() {
                       شما دانشجوی دوره هستید
                     </p>
                   </div>
-                  <Button to={"/"} className="button-primary text-white">
+                  <Button
+                    to={"/"}
+                    className="button-primary text-white lg:w-80 hover:text-lightishBlue-600 dark:hover:text-lightishBlue-500"
+                  >
                     <MdOutlineLaptopChromebook className="text-4xl" />
                     مشاهده دوره
                   </Button>
                 </div>
               </div>
             </div>
-            <div className="course_intro_wrap order-1 w-full rounded-2xl overflow-hidden">
+            <div className="course_intro_wrap order-1 rounded-2xl overflow-hidden">
               <video
                 src=""
                 poster="/images/courses/js_project.png"
@@ -140,9 +137,7 @@ export default function CourseInfo() {
               {/* <!-- Course Box Info | Summary --> */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
                 <CourseDetailBox
-                  icon={
-                    <BsInfoCircle />
-                  }
+                  icon={<BsInfoCircle />}
                   title={"وضعیت دوره"}
                   text={"تکمیل شده"}
                 />
@@ -167,24 +162,24 @@ export default function CourseInfo() {
                   text={"JS"}
                 />
                 <CourseDetailBox
-                  icon={ <PiEye />}
+                  icon={<PiEye />}
                   title={"نوع مشاهده"}
                   text={"آنلاین"}
                 />
               </div>
               {/* <!-- Description --> */}
-              <div className="bg-white dark:bg-darkBox dark:text-white rounded-3xl p-7 mt-8">
-                <div className="flex items-center gap-x-2 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-8 sm:-right-[26px] block w-1 h-[34px] md:h-9.5 bg- rounded-r-full shadow-[]"></span>
-                  <div className="hidden md:inline-block text-amber-400 w-9.5 h-9.5">
-                  <HiOutlineDocumentText />
+              <div className="bg-white dark:bg-darkBox dark:text-white rounded-3xl p-7 mt-12">
+                <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                  <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                  <div className="hidden md:inline-block text-light-blue-600 text-6xl">
+                    <HiOutlineDocumentText />
                   </div>
                   <div className="font-EstedadBold text-3xl md:text-4xl">
                     توضیحات
                   </div>
                 </div>
                 <div className="relative overflow-hidden">
-                  <div className="course-content wp-content max-h-[800px]">
+                  <div className="course-content wp-content max-h-[800px] text-[1.6rem]/loose">
                     <meta charset="utf8" />
                     <p>
                       تا حالا به این فکر کردید چرا توسعه تکنولوژی در سال های
@@ -336,17 +331,6 @@ export default function CourseInfo() {
                     </ol>
                     <h2 id="h_4">چرا سبزلرن بهترین گزینه برای یادگیری هست؟</h2>
                     <p>
-                      <img
-                        decoding="async"
-                        loading="lazy"
-                        className="alignnone size-full wp-image-3778"
-                        src="https://sabzlearn.ir/wp-content/uploads/2024/01/%D9%88%DB%8C%DA%98%DA%AF%DB%8C-finish.webp"
-                        alt=""
-                        width="1920"
-                        height="1080"
-                      />
-                    </p>
-                    <p>
                       حتما برای شما هم پیش اومده که گاهی فرصت ها و پروژه های
                       بزرگ رو از دست میدید فقط به خاطر اینکه در ظاهر فکر میکنید
                       آمادگی کار در اون سطح رو ندارید و هنوز سرعت و تسلط لازم
@@ -471,490 +455,160 @@ export default function CourseInfo() {
                     </p>
                     <p>پس همه چی حله…</p>
                   </div>
-                  <div className="course-content-shadow absolute bottom-0 right-0 left-0 h-[160px] bg-gradient-to-t from-white dark:from-darker from-0% via-white/[55%] dark:via-darker/[55%] via-70% to-white/0 dark:to-darker/0 to-100%"></div>
+
+                  <div className="absolute bottom-0 right-0 left-0 h-44 bg-gradient-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-70% to-white/0 dark:to-darkBox/0 to-100%"></div>
                 </div>
-                <button
+                <Button
                   type="button"
-                  className="button-xl button-primary w-full sm:w-auto mx-auto mt-5"
+                  className="button-xl button-primary text-white hover:text-lightishBlue-600 dark:hover:text-lightishBlue-500 w-full sm:w-auto mx-auto mt-14"
                 >
                   <span>مشاهده بیشتر مطلب</span>
-                  <svg className="w-6 h-6">
-                    <use href="#chevron-down"></use>
-                  </svg>
-                </button>
+                  <div className="text-5xl">
+                    <GoTriangleDown />
+                  </div>
+                </Button>
               </div>
               {/* <!-- Headlines --> */}
-              <div className="bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 mt-8">
-                <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
-                  <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm"></span>
-                  <svg className="hidden md:inline-block text-sky-500 w-9.5 h-9.5">
-                    <use href="#academic-cap-fill"></use>
-                  </svg>
+              <div className="bg-white dark:bg-darkBox dark:text-white rounded-3xl p-7 mt-12">
+                <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                  <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                  <div className="hidden md:inline-block text-light-blue-600 text-7xl">
+                    <HiOutlineAcademicCap />
+                  </div>
                   <div
                     id="lessons"
-                    className="font-danaDemiBold text-xl md:text-2xl"
+                    className="font-EstedadBold text-3xl md:text-4xl"
                   >
                     سرفصل ها
                   </div>
                 </div>
                 <div className="space-y-4 md:space-y-5">
-                  <div className="topic">
-                    <div className="topic__head ">
-                      <span className="topic__title inline-block font-danaDemiBold lg:line-clamp-3 transition-colors">
+
+                  <Accordion
+                    open={open === 1}
+                    icon={<Icon id={1} open={open} />}
+                  >
+                    <AccordionHeader
+                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-[#c2c5ce]  dark:bg-[#333c4c]"
+                      onClick={() => handleOpen(1)}
+                    >
+                      <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
                         سرفصل ها
                       </span>
-                      <div className="flex items-center gap-x-2.5 shrink-0">
-                        <div className="topic__time direction-ltr hidden lg:flex items-center gap-x-1.5 font-nunito text-sm text-slate-500 dark:text-white child:transition-colors">
+                      <div className="flex items-center end gap-x-2.5 shrink-0">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-slate-500 dark:text-white child:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
                         </div>
-                        <svg className="w-6 h-6 transition-all">
-                          <use href="#chevron-down"></use>
-                        </svg>
                       </div>
-                    </div>
-                    <div className="topic__body">
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            1{" "}
+                    </AccordionHeader>
+                    <AccordionBody className="divide-y divide-gray-600 -mt-1">
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                            1
                           </div>
                           <a
-                            href="https://sabzlearn.ir/lesson/15-23838"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
+                            href=""
+                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
                           >
                             ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">08:26 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                          <span className="text-xl md:2xl">08:26 </span>
+                          <div className="text-3xl">
+                            <PiPlayBold />
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            2{" "}
+
+
+                    </AccordionBody>
+                  </Accordion>
+
+                  <Accordion
+                    open={open === 2}
+                    icon={<Icon id={2} open={open} />}
+                  >
+                    <AccordionHeader
+                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-[#c2c5ce]  dark:bg-[#333c4c]"
+                      onClick={() => handleOpen(2)}
+                    >
+                      <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
+                        سرفصل ها
+                      </span>
+                      <div className="flex items-center end gap-x-2.5 shrink-0">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-slate-500 dark:text-white child:transition-colors">
+                          <span>23 lesson</span>
+                          <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
+                          <span>3h 39m </span>
+                        </div>
+                      </div>
+                    </AccordionHeader>
+                    <AccordionBody className="divide-y divide-gray-600 -mt-1">
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                            1
                           </div>
                           <a
-                            href="https://sabzlearn.ir/lesson/15-23839"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
+                            href=""
+                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
                           >
-                            مفهوم پکیج منیجر و npm چیست و چه کاربردی دارند؟
+                            ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">10:09 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                          <span className="text-xl md:2xl">08:26 </span>
+                          <div className="text-3xl">
+                            <PiPlayBold />
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            3{" "}
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                            1
                           </div>
                           <a
-                            href="https://sabzlearn.ir/lesson/15-23840"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
+                            href=""
+                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
                           >
-                            نصب پیش نیازها (Nodejs و Gitbash)
+                            ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">10:52 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                          <span className="text-xl md:2xl">08:26 </span>
+                          <div className="text-3xl">
+                            <PiPlayBold />
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            4{" "}
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                            1
                           </div>
                           <a
-                            href="https://sabzlearn.ir/lesson/15-23841"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
+                            href=""
+                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
                           >
-                            مفهوم ماژول و برنامه نویسی ماژولار
+                            ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">25:38 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            5{" "}
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                          <span className="text-xl md:2xl">08:26 </span>
+                          <div className="text-3xl">
+                            <PiPlayBold />
                           </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23842"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            کار با کامند های مقدماتی ترمینال
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">11:08 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
                         </div>
                       </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            6{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23843"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            کار با npm init و فایل package.json
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">18:03 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            7{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23844"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            نحوه نصب پکیج های مورد نیاز پروژه با Npm
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">10:42 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            8{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23845"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            نحوه حذف پکیج های دلخواه با Npm
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">05:11 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            9{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23846"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            کاربرد فولدر node_modules و کامند npm i
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">11:09 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            10{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23847"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            مفهوم Semantic Version (نحوه ورژن بندی پکیج‌ها)
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">10:06 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            11{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23848"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            نصب نسخه دلخواه از هر پکیج
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">04:45 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            12{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23849"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            تفاوت dependency با devDependency
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">09:13 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            13{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23850"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            نصب پکیج ها به صورت local و global
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">06:11 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            14{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23851"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            فایل package-lock چیست؟ (کار با npm list --depth)
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">09:40 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            15{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23852"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            نحوه ست کردن Config های Npm
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">08:58 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            16{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23853"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            مفهوم Flag در کامند های Npm
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">08:49 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            17{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23854"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            جزئیات مستندات پکیج‌ها در Npm
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">10:39 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            18{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23855"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            کار با script های Npm
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">15:20 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            19{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23856"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            کار با کامند های Npm Update و نقش کاراکتر های ^ * ~
-                            در آن
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">07:52 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            20{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23857"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            توضیح مفهوم Npx و کاربرد های آن
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">05:57 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            21{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23858"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            مفهوم آسیب پذیری پکیج‌ها و کامند npm audit
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">06:15 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            22{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23859"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            استفاده از NPM به عنوان پکیج منیجر در پروژه واقعی
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">08:38 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-                        <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">
-                            23{" "}
-                          </div>
-                          <a
-                            href="https://sabzlearn.ir/lesson/15-23860"
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 "
-                          >
-                            سخن پایانی
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-1.5 mr-auto group-hover:text-green-500 child:transition-colors">
-                          <span className="text-sm md:text-base">06:10 </span>
-                          <svg className="w-7 h-7">
-                            <use href="#play-circle"></use>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+
+                    </AccordionBody>
+                  </Accordion>
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
