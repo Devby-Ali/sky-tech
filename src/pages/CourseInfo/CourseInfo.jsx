@@ -31,6 +31,7 @@ import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { PiPlayBold } from "react-icons/pi";
 import { FaRegObjectGroup } from "react-icons/fa";
+import { BiSolidLeftArrow } from "react-icons/bi";
 
 function Icon({ id, open }) {
   return (
@@ -484,20 +485,19 @@ export default function CourseInfo() {
                   </div>
                 </div>
                 <div className="space-y-4 md:space-y-5">
-
                   <Accordion
                     open={open === 1}
                     icon={<Icon id={1} open={open} />}
                   >
                     <AccordionHeader
-                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-[#c2c5ce]  dark:bg-[#333c4c]"
+                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-gray-200 dark:bg-[#333c4c]"
                       onClick={() => handleOpen(1)}
                     >
                       <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
                         سرفصل ها
                       </span>
                       <div className="flex items-center end gap-x-2.5 shrink-0">
-                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-slate-500 dark:text-white child:transition-colors">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white child:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
@@ -524,8 +524,6 @@ export default function CourseInfo() {
                           </div>
                         </div>
                       </div>
-
-
                     </AccordionBody>
                   </Accordion>
 
@@ -534,14 +532,14 @@ export default function CourseInfo() {
                     icon={<Icon id={2} open={open} />}
                   >
                     <AccordionHeader
-                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-[#c2c5ce]  dark:bg-[#333c4c]"
+                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-gray-200 dark:bg-[#333c4c]"
                       onClick={() => handleOpen(2)}
                     >
                       <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
                         سرفصل ها
                       </span>
                       <div className="flex items-center end gap-x-2.5 shrink-0">
-                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-slate-500 dark:text-white child:transition-colors">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white child:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
@@ -606,29 +604,27 @@ export default function CourseInfo() {
                           </div>
                         </div>
                       </div>
-
-
                     </AccordionBody>
                   </Accordion>
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
-              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7 sm:p-5 mt-8">
+              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 mt-12">
                 <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-6 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                  <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <span className="text-light-blue-700 dark:text-light-blue-500 mx-2 text-[3.4rem]">
-                  <FaRegObjectGroup />
+                    <FaRegObjectGroup />
                   </span>
                   <div className="font-EstedadBold text-3xl md:text-4xl">
                     دوره های مرتبط
                   </div>
                 </div>
 
-                <div className="space-y-4 md:space-y-5">
-                  <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                <div className="space-y-4 md:space-y-5 text-darkColor dark:text-white">
+                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
-                        className="w-24 rounded-md aspect-video"
+                        className="w-36 rounded-md aspect-video"
                         src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-29-1.webp"
                         alt="آموزش ۲۰ کتابخانه کاربردی ReactJS برای بازارکار"
                       />
@@ -640,19 +636,19 @@ export default function CourseInfo() {
                       </a>
                     </div>
                     <a
-                      className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm"
+                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
                       href="https://sabzlearn.ir/course/20-lib-reactjs/"
                     >
                       مشاهده
-                      <svg className="size-6 md:size-5">
-                        <use href="#arrow-left-circle-mini"></use>
-                      </svg>
+                      <div className="text-2xl mr-2">
+                        <BiSolidLeftArrow />
+                      </div>
                     </a>
                   </div>
-                  <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
-                        className="w-24 rounded-md aspect-video"
+                        className="w-36 rounded-md aspect-video"
                         src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-25-1.webp"
                         alt="آموزش git و github"
                       />
@@ -664,19 +660,19 @@ export default function CourseInfo() {
                       </a>
                     </div>
                     <a
-                      className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm"
+                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
                       href="https://sabzlearn.ir/course/git-github/"
                     >
                       مشاهده
-                      <svg className="size-6 md:size-5">
-                        <use href="#arrow-left-circle-mini"></use>
-                      </svg>
+                      <div className="text-2xl mr-2">
+                        <BiSolidLeftArrow />
+                      </div>
                     </a>
                   </div>
-                  <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
-                        className="w-24 rounded-md aspect-video"
+                        className="w-36 rounded-md aspect-video"
                         src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-2-1.webp"
                         alt="پروژه های خلاقانه با جاوااسکریپت"
                       />
@@ -688,19 +684,19 @@ export default function CourseInfo() {
                       </a>
                     </div>
                     <a
-                      className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm"
+                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
                       href="https://sabzlearn.ir/course/creative-projects-with-js/"
                     >
                       مشاهده
-                      <svg className="size-6 md:size-5">
-                        <use href="#arrow-left-circle-mini"></use>
-                      </svg>
+                      <div className="text-2xl mr-2">
+                        <BiSolidLeftArrow />
+                      </div>
                     </a>
                   </div>
-                  <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
-                        className="w-24 rounded-md aspect-video"
+                        className="w-36 rounded-md aspect-video"
                         src="https://sabzlearn.ir/wp-content/uploads/2023/12/Com_regex-1.webp"
                         alt="آموزش اصولی RegEX برای تمام برنامه نویسان"
                       />
@@ -712,13 +708,13 @@ export default function CourseInfo() {
                       </a>
                     </div>
                     <a
-                      className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm"
+                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
                       href="https://sabzlearn.ir/course/regex/"
                     >
                       مشاهده
-                      <svg className="size-6 md:size-5">
-                        <use href="#arrow-left-circle-mini"></use>
-                      </svg>
+                      <div className="text-2xl mr-2">
+                        <BiSolidLeftArrow />
+                      </div>
                     </a>
                   </div>
                 </div>
