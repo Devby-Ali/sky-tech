@@ -1,5 +1,5 @@
 import React from "react";
-import Topbar from "./../../Components/Topbar/Topbar";
+// import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
 import Footer from "./../../Components/Footer/Footer";
 import CourseBox from "../../Components/CourseBox/CourseBox";
@@ -12,10 +12,10 @@ import { FaSearch } from "react-icons/fa";
 export default function Category() {
   return (
     <>
-      <Topbar />
+      {/* <Topbar /> */}
       <Navbar />
 
-      <section className="my-16">
+      <section className="py-28">
         <div className="container">
           <div className="flex justify-between items-center p-9 shadow-normal">
             <div className="flex items-center">

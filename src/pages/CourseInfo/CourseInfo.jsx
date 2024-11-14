@@ -31,7 +31,7 @@ import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { PiPlayBold } from "react-icons/pi";
 import { FaRegObjectGroup } from "react-icons/fa";
-import { BiSolidLeftArrow } from "react-icons/bi";
+import { BiSolidLeftArrow, BiUser } from "react-icons/bi";
 import { PiChats } from "react-icons/pi";
 import { PiChatCenteredTextLight } from "react-icons/pi";
 import { BsExclamationTriangle } from "react-icons/bs";
@@ -50,6 +50,7 @@ function Icon({ id, open }) {
 
 export default function CourseInfo() {
   const [open, setOpen] = useState(0);
+  const [openTextArea, setOpenTextArea] = useState(false)
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   const [comments, setComments] = useState([]);
@@ -59,6 +60,11 @@ export default function CourseInfo() {
   const [courseDetails, setCourseDetails] = useState({});
 
   const { courseName } = useParams();
+
+  const textAreaHandler = () => {
+    setOpenTextArea(true)
+    console.log(openTextArea)
+  }
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/${courseName}`, {
@@ -728,8 +734,8 @@ export default function CourseInfo() {
                 id="course-comments"
               >
                 {/* <!-- Comment Head --> */}
-                <div className="flex items-start justify-between">
-                  <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                <div className="flex items-start justify-between mb-8">
+                  <div className="mt-2 sm:mt-0 flex items-center gap-x-3 relative">
                     <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                     <div className="hidden md:inline-block ml-1 text-light-blue-700 dark:text-light-blue-500 text-7xl">
                       <PiChats />
@@ -744,6 +750,7 @@ export default function CourseInfo() {
                     className="button-primary px-8 py-5"
                     type="button"
                     id="comment-create-btn"
+                    onClick={() => textAreaHandler()}
                   >
                     ایجاد نظر جدید
                     <div className="text-4xl">
@@ -754,14 +761,14 @@ export default function CourseInfo() {
                 {/* <!-- Comment Alert --> */}
                 <div
                   id="comment-alert"
-                  className="bg-light-blue-100 text-light-blue-600 dark:bg-light-blue-500/10 p-7 rounded-xl text-2xl/10 md:font-EstedadMedium mb-6"
+                  className={openTextArea ? "hidden" : " bg-light-blue-100 text-light-blue-600 dark:bg-light-blue-500/10 p-7 rounded-xl text-2xl/10 md:font-EstedadMedium mb-6"}
                 >
                   دانشجوی عزیز؛ سوالات مرتبط به پشتیبانی دوره در قسمت نظرات
                   تایید نخواهد شد، لطفا در بخش مشاهده آنلاین هر ویدیو سوالات خود
                   را مطرح کنید.
                 </div>
                 {/* <!-- Comment Form --> */}
-                <div className="mb-6" id="comment-form">
+                <div className={openTextArea ? "mb-14" : "hidden"} id="comment-form">
                   <div className="flex gap-x-4 mb-8 sm:mb-5">
                     <div className="flex-center p-2 border border-gray-100 dark:border-[#333c4c] rounded-full">
                       <div className="flex-center w-14 sm:w-16 h-14 sm:h-16 bg-gray-100 dark:bg-[#333c4c] rounded-full">
@@ -794,18 +801,18 @@ export default function CourseInfo() {
                   <textarea
                     rows="6"
                     id="comment-textarea"
-                    className="w-full block p-7 md:p-4 bg-gray-100 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm"
+                    className="w-full block p-7 md:p-4 bg-gray-100 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm sm:rounded-xl"
                     placeholder="نظر خود را بنویسید ..."
                   ></textarea>
                   <div className="flex gap-x-2 justify-end mt-2 sm:mt-6">
                     <button
-                      className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline rounded-br-[3rem] rounded-l-sm rounded-tr-sm"
+                      className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline rounded-br-[3rem] rounded-l-sm rounded-tr-sm sm:rounded-sm sm:rounded-tr-4xl"
                       id="comment-cancel-btn"
                     >
                       لغو
                     </button>
                     <button
-                      className="flex-grow sm:grow-0 sm:w-36 button-primary rounded-bl-2xl rounded-tl-sm rounded-r-sm"
+                      className="flex-grow sm:grow-0 sm:w-36 button-primary rounded-bl-2xl rounded-tl-sm rounded-r-sm sm:rounded-sm sm:rounded-bl-4xl"
                       id="comment-submit-btn"
                     >
                       ارسال
@@ -813,19 +820,19 @@ export default function CourseInfo() {
                   </div>
                 </div>
                 {/* <!-- Comment List --> */}
-                <div className="comments_wrap space-y-7 sm:space-y-5">
+                <div className="comments_wrap space-y-7 sm:space-y-6 child:bg-gray-100  dark:child:bg-[#333c4c]">
                   {/* <!-- Comments --> */}
                   <div
                     id="comment-56773"
-                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 rounded-xl"
                   >
-                    <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
+                    <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-gray-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
                         <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
                           <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <svg className="text-white w-3.5 h-3.5">
-                              <use href="#academic-cap-mini"></use>
-                            </svg>
+                            <div className="text-white w-3.5 h-3.5">
+                              <BiUser />
+                            </div>
                           </div>{" "}
                           <img
                             src="https://secure.gravatar.com/avatar/0e8b3bbc59c4595b93178ff16d30a499?s=96&amp;d=mm&amp;r=g"
@@ -857,22 +864,22 @@ export default function CourseInfo() {
                         </svg>
                       </button>
                     </div>
-                    <p className="font-danaLight text-sm sm:text-base break-words">
+                    <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
                       سلام ممنونم از دوره عالیتون🙏
                     </p>
                     {/* <!-- Replies --> */}
                   </div>
                   <div
                     id="comment-56731"
-                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
                         <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
                           <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <svg className="text-white w-3.5 h-3.5">
-                              <use href="#academic-cap-mini"></use>
-                            </svg>
+                            <div className="text-white w-3.5 h-3.5">
+                              <BiUser />
+                            </div>
                           </div>{" "}
                           <img
                             src="https://secure.gravatar.com/avatar/075d7991489af7b69b3f0a9cb5788578?s=96&amp;d=mm&amp;r=g"
@@ -904,7 +911,7 @@ export default function CourseInfo() {
                         </svg>
                       </button>
                     </div>
-                    <p className="font-danaLight text-sm sm:text-base break-words">
+                    <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
                       دوره خوب بود ولی کامل نبود متاسفانه. مباحث لینک کردن به
                       پروژه وجود نداشت
                     </p>
@@ -912,7 +919,7 @@ export default function CourseInfo() {
                     <div className="mt-4 space-y-4">
                       <div
                         id="comment-56733"
-                        className="p-7 md:p-5 bg-gray-200 dark:bg-darker rounded-xl"
+                        className="p-7 md:p-5 bg-gray-200 dark:bg-darkBox rounded-xl"
                       >
                         <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-white/40 dark:border-white/10">
                           <div className="flex items-center gap-x-3.5">
@@ -942,7 +949,7 @@ export default function CourseInfo() {
                             </div>
                           </div>
                         </div>
-                        <p className="font-danaLight text-sm sm:text-base break-words">
+                        <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
                           سلام آرش جان.
                           <br />
                           منظورتون از لینک کردن به پروژه چیه؟
@@ -952,15 +959,15 @@ export default function CourseInfo() {
                   </div>
                   <div
                     id="comment-56639"
-                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
                         <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
                           <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <svg className="text-white w-3.5 h-3.5">
-                              <use href="#academic-cap-mini"></use>
-                            </svg>
+                            <div className="text-white w-3.5 h-3.5">
+                              <BiUser />
+                            </div>
                           </div>{" "}
                           <img
                             src="https://secure.gravatar.com/avatar/1e8bfafceefcd1b044f93d534a53a54e?s=96&amp;d=mm&amp;r=g"
@@ -992,7 +999,7 @@ export default function CourseInfo() {
                         </svg>
                       </button>
                     </div>
-                    <p className="font-danaLight text-sm sm:text-base break-words">
+                    <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
                       باسلام خدمتت تیم فوق العاده سبزلرن و استاد سعیدی راد خیلی
                       خیلی عالی بود، واقعا آدم وقتی آموزش های سبزلرن رو آقای راد
                       رو میبینه از کیفیت آموزش لذت میبره ، تشکر فراوان بابت
@@ -1002,15 +1009,15 @@ export default function CourseInfo() {
                   </div>
                   <div
                     id="comment-56446"
-                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
                         <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
                           <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <svg className="text-white w-3.5 h-3.5">
-                              <use href="#academic-cap-mini"></use>
-                            </svg>
+                            <div className="text-white w-3.5 h-3.5">
+                              <BiUser />
+                            </div>
                           </div>{" "}
                           <img
                             src="https://secure.gravatar.com/avatar/455aae3d2289b28b1920851dbd250fb3?s=96&amp;d=mm&amp;r=g"
@@ -1042,22 +1049,22 @@ export default function CourseInfo() {
                         </svg>
                       </button>
                     </div>
-                    <p className="font-danaLight text-sm sm:text-base break-words">
+                    <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
                       بسیار عالی . کاربردی 👌
                     </p>
                     {/* <!-- Replies --> */}
                   </div>
                   <div
                     id="comment-55916"
-                    className="p-7 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
+                    className="p-7 md:p-5 rounded-xl"
                   >
                     <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
                       <div className="flex items-center gap-x-3.5">
                         <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
                           <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <svg className="text-white w-3.5 h-3.5">
-                              <use href="#academic-cap-mini"></use>
-                            </svg>
+                            <div className="text-white w-3.5 h-3.5">
+                              <BiUser />
+                            </div>
                           </div>{" "}
                           <img
                             src="https://secure.gravatar.com/avatar/cc035ba56af5b0140501f14aadc8116b?s=96&amp;d=mm&amp;r=g"
@@ -1089,7 +1096,7 @@ export default function CourseInfo() {
                         </svg>
                       </button>
                     </div>
-                    <p className="font-danaLight text-sm sm:text-base break-words">
+                    <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
                       مثل همیشه ،آقای سعیدی راد عالی هستی و پرطرفدار{" "}
                     </p>
                     {/* <!-- Replies --> */}
