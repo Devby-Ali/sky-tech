@@ -32,6 +32,9 @@ import { GoTriangleDown } from "react-icons/go";
 import { PiPlayBold } from "react-icons/pi";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
+import { PiChats } from "react-icons/pi";
+import { PiChatCenteredTextLight } from "react-icons/pi";
+import { BsExclamationTriangle } from "react-icons/bs";
 
 function Icon({ id, open }) {
   return (
@@ -170,9 +173,9 @@ export default function CourseInfo() {
                 />
               </div>
               {/* <!-- Description --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 mt-12">
-                <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+                <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <span className="hidden md:inline-block text-light-blue-700 dark:text-light-blue-500 text-6xl">
                     <HiOutlineDocumentText />
                   </span>
@@ -471,9 +474,9 @@ export default function CourseInfo() {
                 </Button>
               </div>
               {/* <!-- Headlines --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 mt-12">
-                <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+                <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <div className="hidden md:inline-block ml-1 text-light-blue-700 dark:text-light-blue-500 text-7xl">
                     <HiOutlineAcademicCap />
                   </div>
@@ -609,9 +612,9 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
-              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 mt-12">
-                <div className="mt-2 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-8 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-10 mt-12">
+                <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                  <span className="absolute -right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <span className="text-light-blue-700 dark:text-light-blue-500 mx-2 text-[3.4rem]">
                     <FaRegObjectGroup />
                   </span>
@@ -721,55 +724,56 @@ export default function CourseInfo() {
               </div>
               {/* <!-- Comments --> */}
               <div
-                className="bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 mt-8"
+                className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12"
                 id="course-comments"
               >
                 {/* <!-- Comment Head --> */}
-                <div className="flex items-center justify-between mb-6 sm:mb-7">
-                  <div className="flex items-center gap-x-3 relative">
-                    <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-red-500 rounded-r-sm "></span>
-                    <svg className="hidden md:inline-block text-red-500 w-9.5 h-9.5">
-                      <use href="#chat-bubble-left-right-fill"></use>
-                    </svg>
-                    <div className="font-danaDemiBold text-xl md:text-2xl">
+                <div className="flex items-start justify-between">
+                  <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                    <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                    <div className="hidden md:inline-block ml-1 text-light-blue-700 dark:text-light-blue-500 text-7xl">
+                      <PiChats />
+                    </div>
+                    <div className="font-EstedadBold text-3xl md:text-4xl">
                       نظرات
                     </div>
                   </div>
+
                   {/* <!-- New Comment Button --> */}
                   <button
-                    className="button-xs sm:button-sm button-primary"
+                    className="button-primary px-8 py-5"
                     type="button"
                     id="comment-create-btn"
                   >
                     ایجاد نظر جدید
-                    <svg className="w-5 h-5">
-                      <use href="#chat-bubble-bottom-center-text"></use>
-                    </svg>
+                    <div className="text-4xl">
+                    <PiChatCenteredTextLight />
+                    </div>
                   </button>
                 </div>
                 {/* <!-- Comment Alert --> */}
                 <div
                   id="comment-alert"
-                  className="bg-green-50 text-green-500 dark:bg-green-500/10 p-7 md:p-5 rounded-lg text-sm md:font-danaDemiBold mb-6"
+                  className="bg-light-blue-100 text-light-blue-600 dark:bg-light-blue-500/10 p-7 rounded-xl text-2xl/10 md:font-EstedadMedium mb-6"
                 >
                   دانشجوی عزیز؛ سوالات مرتبط به پشتیبانی دوره در قسمت نظرات
                   تایید نخواهد شد، لطفا در بخش مشاهده آنلاین هر ویدیو سوالات خود
                   را مطرح کنید.
                 </div>
                 {/* <!-- Comment Form --> */}
-                <div id="comment-form">
-                  <div className="flex gap-x-3.5 mb-7 sm:mb-5">
-                    <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
-                      <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-dark rounded-full">
-                        <svg className="w-5 sm:w-6 h-5 sm:h-6 text-slate-500">
-                          <use href="#user-mini"></use>
-                        </svg>
+                <div className="mb-6" id="comment-form">
+                  <div className="flex gap-x-4 mb-8 sm:mb-5">
+                    <div className="flex-center p-2 border border-gray-100 dark:border-[#333c4c] rounded-full">
+                      <div className="flex-center w-14 sm:w-16 h-14 sm:h-16 bg-gray-100 dark:bg-[#333c4c] rounded-full">
+                        <div className="text-4xl text-gray-300">
+                          <LiaUserSolid />
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <span className="font-danaMedium">Theotherali</span>
+                      <span className="font-EstedadMedium tracking-wider">Theotherali</span>
                       <span
-                        className="font-danaLight text-sm opacity-70"
+                        className="font-EstedadThin text-2xl opacity-70"
                         id="comment-to"
                       >
                         ثبت نظر جدید
@@ -778,11 +782,11 @@ export default function CourseInfo() {
                   </div>
                   <input type="hidden" value="" id="comment-id" />
                   <input type="hidden" value="" id="comment-is-reply" />
-                  <div className="flex items-center gap-x-1.5 md:gap-x-1 bg-red-500 text-white px-4 py-3 rounded-lg mb-3">
-                    <svg className="size-6 shrink-0">
-                      <use href="#exclamation-triangle"></use>
-                    </svg>
-                    <p className="text-sm md:font-danaMedium">
+                  <div className="flex items-center gap-x-3 bg-red-500/20 text-white px-6 py-5 rounded-xl mb-5">
+                    <div className="shrink-0 text-red-400">
+                    <BsExclamationTriangle className="w-10 h-10" />
+                    </div>
+                    <p className="text-[1.4rem]/10 text-red-100">
                       لطفا پرسش مربوط به هر درس یا ویدئو دوره را در صفحه همان
                       ویدئو مطرح کنید.
                     </p>
@@ -790,18 +794,18 @@ export default function CourseInfo() {
                   <textarea
                     rows="6"
                     id="comment-textarea"
-                    className="w-full block p-7 md:p-4 bg-gray-100 dark:bg-dark text-gray-900 dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-xl"
+                    className="w-full block p-7 md:p-4 bg-gray-100 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm"
                     placeholder="نظر خود را بنویسید ..."
                   ></textarea>
-                  <div className="flex gap-x-4 justify-end mt-7 sm:mt-6">
+                  <div className="flex gap-x-2 justify-end mt-2 sm:mt-6">
                     <button
-                      className="flex-grow sm:grow-0 sm:w-36 button-lg button-primary button-outline"
+                      className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline rounded-br-[3rem] rounded-l-sm rounded-tr-sm"
                       id="comment-cancel-btn"
                     >
                       لغو
                     </button>
                     <button
-                      className="flex-grow sm:grow-0 sm:w-36 button-lg button-primary"
+                      className="flex-grow sm:grow-0 sm:w-36 button-primary rounded-bl-2xl rounded-tl-sm rounded-r-sm"
                       id="comment-submit-btn"
                     >
                       ارسال
@@ -1157,7 +1161,7 @@ export default function CourseInfo() {
                 <p className="mt-2"></p>
                 <a
                   href="https://sabzlearn.ir/teacher/ce01010101it"
-                  className="button-primary button-lg button-outline mx-auto mt-4"
+                  className="button-primary button-outline mx-auto mt-4"
                 >
                   مشاهده پروفایل من
                 </a>
