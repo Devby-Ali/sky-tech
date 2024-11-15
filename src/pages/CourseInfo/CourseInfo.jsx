@@ -13,7 +13,11 @@ import {
 } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { HiOutlineDocumentText } from "react-icons/hi2";
+import {
+  HiMiniArrowUturnLeft,
+  HiOutlineArrowUturnLeft,
+  HiOutlineDocumentText,
+} from "react-icons/hi2";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
@@ -31,10 +35,11 @@ import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { PiPlayBold } from "react-icons/pi";
 import { FaRegObjectGroup } from "react-icons/fa";
-import { BiSolidLeftArrow, BiUser } from "react-icons/bi";
+import { BiSolidLeftArrow, BiUserCircle } from "react-icons/bi";
 import { PiChats } from "react-icons/pi";
 import { PiChatCenteredTextLight } from "react-icons/pi";
 import { BsExclamationTriangle } from "react-icons/bs";
+import { RiGraduationCapFill } from "react-icons/ri";
 
 function Icon({ id, open }) {
   return (
@@ -50,7 +55,7 @@ function Icon({ id, open }) {
 
 export default function CourseInfo() {
   const [open, setOpen] = useState(0);
-  const [openTextArea, setOpenTextArea] = useState(false)
+  const [openTextArea, setOpenTextArea] = useState(false);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   const [comments, setComments] = useState([]);
@@ -62,9 +67,9 @@ export default function CourseInfo() {
   const { courseName } = useParams();
 
   const textAreaHandler = () => {
-    setOpenTextArea(true)
-    console.log(openTextArea)
-  }
+    setOpenTextArea(true);
+    console.log(openTextArea);
+  };
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/${courseName}`, {
@@ -471,7 +476,7 @@ export default function CourseInfo() {
                 </div>
                 <Button
                   type="button"
-                  className="button-xl button-primary text-white hover:text-lightishBlue-600 dark:hover:text-lightishBlue-500 w-full sm:w-auto mx-auto mt-14"
+                  className="button-primary text-white w-full sm:w-auto mx-auto mt-14"
                 >
                   <span>مشاهده بیشتر مطلب</span>
                   <div className="text-5xl">
@@ -747,38 +752,47 @@ export default function CourseInfo() {
 
                   {/* <!-- New Comment Button --> */}
                   <button
-                    className="button-primary px-8 py-5"
+                    className="button-primary px-8 py-3 sm:py-4"
                     type="button"
                     id="comment-create-btn"
                     onClick={() => textAreaHandler()}
                   >
                     ایجاد نظر جدید
                     <div className="text-4xl">
-                    <PiChatCenteredTextLight />
+                      <PiChatCenteredTextLight />
                     </div>
                   </button>
                 </div>
                 {/* <!-- Comment Alert --> */}
                 <div
                   id="comment-alert"
-                  className={openTextArea ? "hidden" : " bg-light-blue-100 text-light-blue-600 dark:bg-light-blue-500/10 p-7 rounded-xl text-2xl/10 md:font-EstedadMedium mb-6"}
+                  className={
+                    openTextArea
+                      ? "hidden"
+                      : " bg-light-blue-100 text-light-blue-600 dark:bg-light-blue-500/10 p-7 rounded-xl text-2xl/10 md:font-EstedadMedium mb-6"
+                  }
                 >
                   دانشجوی عزیز؛ سوالات مرتبط به پشتیبانی دوره در قسمت نظرات
                   تایید نخواهد شد، لطفا در بخش مشاهده آنلاین هر ویدیو سوالات خود
                   را مطرح کنید.
                 </div>
                 {/* <!-- Comment Form --> */}
-                <div className={openTextArea ? "mb-14" : "hidden"} id="comment-form">
+                <div
+                  className={openTextArea ? "mb-14" : "hidden"}
+                  id="comment-form"
+                >
                   <div className="flex gap-x-4 mb-8 sm:mb-5">
                     <div className="flex-center p-2 border border-gray-100 dark:border-[#333c4c] rounded-full">
-                      <div className="flex-center w-14 sm:w-16 h-14 sm:h-16 bg-gray-100 dark:bg-[#333c4c] rounded-full">
+                      <div className="flex-center w-14 sm:w-16 h-14 sm:h-16 bg-gray-200 dark:bg-[#333c4c] rounded-full">
                         <div className="text-4xl text-gray-300">
                           <LiaUserSolid />
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="font-EstedadMedium tracking-wider">Theotherali</span>
+                    <div className="flex flex-col gap-3">
+                      <span className="font-EstedadMedium tracking-wider">
+                        Theotherali
+                      </span>
                       <span
                         className="font-EstedadThin text-2xl opacity-70"
                         id="comment-to"
@@ -791,7 +805,7 @@ export default function CourseInfo() {
                   <input type="hidden" value="" id="comment-is-reply" />
                   <div className="flex items-center gap-x-3 bg-red-500/20 text-white px-6 py-5 rounded-xl mb-5">
                     <div className="shrink-0 text-red-400">
-                    <BsExclamationTriangle className="w-10 h-10" />
+                      <BsExclamationTriangle className="w-10 h-10" />
                     </div>
                     <p className="text-[1.4rem]/10 text-red-100">
                       لطفا پرسش مربوط به هر درس یا ویدئو دوره را در صفحه همان
@@ -801,7 +815,7 @@ export default function CourseInfo() {
                   <textarea
                     rows="6"
                     id="comment-textarea"
-                    className="w-full block p-7 md:p-4 bg-gray-100 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm sm:rounded-xl"
+                    className="w-full block p-7 md:p-4 bg-gray-200 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm sm:rounded-xl"
                     placeholder="نظر خود را بنویسید ..."
                   ></textarea>
                   <div className="flex gap-x-2 justify-end mt-2 sm:mt-6">
@@ -820,48 +834,38 @@ export default function CourseInfo() {
                   </div>
                 </div>
                 {/* <!-- Comment List --> */}
-                <div className="comments_wrap space-y-7 sm:space-y-6 child:bg-gray-100  dark:child:bg-[#333c4c]">
+                <div className="comments_wrap space-y-7 sm:space-y-6 child:bg-gray-200  dark:child:bg-[#333c4c]">
                   {/* <!-- Comments --> */}
-                  <div
-                    id="comment-56773"
-                    className="p-7 md:p-5 rounded-xl"
-                  >
-                    <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-gray-200/60 dark:border-white/10">
-                      <div className="flex items-center gap-x-3.5">
-                        <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
-                          <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <div className="text-white w-3.5 h-3.5">
-                              <BiUser />
+                  <div id="comment-56773" className="p-8 md:p-5 rounded-xl">
+                    <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
+                      <div className="flex items-center gap-x-4">
+                        <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
+                          <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                            <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                              <RiGraduationCapFill />
                             </div>
-                          </div>{" "}
-                          <img
-                            src="https://secure.gravatar.com/avatar/0e8b3bbc59c4595b93178ff16d30a499?s=96&amp;d=mm&amp;r=g"
-                            className="w-12 h-12 block object-cover rounded-full"
-                          />
+                          </div>
+                          <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                            <BiUserCircle />
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-3">
                           <div className="flex items-center gap-x-1 ">
                             <span className="inline-block max-w-40 truncate">
                               Alirezzaa
                             </span>
-                            <strong className="font-danaDemiBold">
-                              | دانشجو
-                            </strong>
+                            <span className="font-EstedadThin">| دانشجو</span>
                           </div>
-                          <span className="font-danaLight text-sm opacity-70">
-                            1403/08/07
-                          </span>
+                          <span className="text-xl opacity-70">1403/08/07</span>
                         </div>
                       </div>
                       <button
                         type="button"
-                        data-pid="56773"
-                        data-author="Alirezzaa"
-                        className="comment__reply-btn button-sm button-secondary button-outline only-icon"
+                        className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
                       >
-                        <svg className="w-7 h-7">
-                          <use href="#arrow-uturn-left"></use>
-                        </svg>
+                        <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
+                          <HiOutlineArrowUturnLeft />
+                        </div>
                       </button>
                     </div>
                     <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
@@ -869,46 +873,36 @@ export default function CourseInfo() {
                     </p>
                     {/* <!-- Replies --> */}
                   </div>
-                  <div
-                    id="comment-56731"
-                    className="p-7 md:p-5 rounded-xl"
-                  >
-                    <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
-                      <div className="flex items-center gap-x-3.5">
-                        <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
-                          <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <div className="text-white w-3.5 h-3.5">
-                              <BiUser />
+                  <div id="comment-56731" className="p-8 md:p-5 rounded-xl">
+                    <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
+                      <div className="flex items-center gap-x-4">
+                        <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
+                          <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                            <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                              <RiGraduationCapFill />
                             </div>
-                          </div>{" "}
-                          <img
-                            src="https://secure.gravatar.com/avatar/075d7991489af7b69b3f0a9cb5788578?s=96&amp;d=mm&amp;r=g"
-                            className="w-12 h-12 block object-cover rounded-full"
-                          />
+                          </div>
+                          <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                            <BiUserCircle />
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-3">
                           <div className="flex items-center gap-x-1 ">
                             <span className="inline-block max-w-40 truncate">
                               arashk ashkani
                             </span>
-                            <strong className="font-danaDemiBold">
-                              | دانشجو
-                            </strong>
+                            <span className="font-EstedadThin">| دانشجو</span>
                           </div>
-                          <span className="font-danaLight text-sm opacity-70">
-                            1403/08/05
-                          </span>
+                          <span className="text-xl opacity-70">1403/08/05</span>
                         </div>
                       </div>
                       <button
                         type="button"
-                        data-pid="56731"
-                        data-author="arashk ashkani"
-                        className="comment__reply-btn button-sm button-secondary button-outline only-icon"
+                        className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
                       >
-                        <svg className="w-7 h-7">
-                          <use href="#arrow-uturn-left"></use>
-                        </svg>
+                        <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
+                          <HiOutlineArrowUturnLeft />
+                        </div>
                       </button>
                     </div>
                     <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
@@ -919,31 +913,30 @@ export default function CourseInfo() {
                     <div className="mt-4 space-y-4">
                       <div
                         id="comment-56733"
-                        className="p-7 md:p-5 bg-gray-200 dark:bg-darkBox rounded-xl"
+                        className="p-7 md:p-5 bg-gray-300 dark:bg-darkBox rounded-xl"
                       >
-                        <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-white/40 dark:border-white/10">
+                    <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-400/50 dark:border-white/10">
                           <div className="flex items-center gap-x-3.5">
-                            <div className="hidden border-sky-500 sm:flex-center w-15 h-15 border rounded-full relative">
-                              <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-sky-500 rounded-full">
-                                <svg className="text-white w-3.5 h-3.5">
-                                  <use href="#check-mini"></use>
-                                </svg>
-                              </div>{" "}
-                              <img
-                                src="https://secure.gravatar.com/avatar/50db59beddbfed36a1646dae99ca7b2d?s=96&amp;d=mm&amp;r=g"
-                                className="w-12 h-12 block object-cover rounded-full"
-                              />
+                            <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
+                              <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                                <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                                  <RiGraduationCapFill />
+                                </div>
+                              </div>
+                              <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                                <BiUserCircle />
+                              </div>
                             </div>
-                            <div className="flex flex-col gap-1">
-                              <div className="flex items-center gap-x-1 ">
+                            <div className="flex flex-col gap-3">
+                              <div className="flex items-center gap-x-1">
                                 <span className="inline-block max-w-40 truncate">
                                   محمدامین سعیدی راد
                                 </span>
-                                <strong className="font-danaDemiBold">
+                                <strong className="font-EstedadThin">
                                   | مدرس
                                 </strong>
                               </div>
-                              <span className="font-danaLight text-sm opacity-70">
+                              <span className="text-xl opacity-70">
                                 1403/08/05
                               </span>
                             </div>
@@ -957,46 +950,36 @@ export default function CourseInfo() {
                       </div>
                     </div>
                   </div>
-                  <div
-                    id="comment-56639"
-                    className="p-7 md:p-5 rounded-xl"
-                  >
-                    <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
-                      <div className="flex items-center gap-x-3.5">
-                        <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
-                          <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <div className="text-white w-3.5 h-3.5">
-                              <BiUser />
+                  <div id="comment-56639" className="p-8 md:p-5 rounded-xl">
+                    <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
+                      <div className="flex items-center gap-x-4">
+                        <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
+                          <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                            <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                              <RiGraduationCapFill />
                             </div>
-                          </div>{" "}
-                          <img
-                            src="https://secure.gravatar.com/avatar/1e8bfafceefcd1b044f93d534a53a54e?s=96&amp;d=mm&amp;r=g"
-                            className="w-12 h-12 block object-cover rounded-full"
-                          />
+                          </div>
+                          <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                            <BiUserCircle />
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-3">
                           <div className="flex items-center gap-x-1 ">
                             <span className="inline-block max-w-40 truncate">
                               zahra_0901
                             </span>
-                            <strong className="font-danaDemiBold">
-                              | دانشجو
-                            </strong>
+                            <span className="font-EstedadThin">| دانشجو</span>
                           </div>
-                          <span className="font-danaLight text-sm opacity-70">
-                            1403/07/26
-                          </span>
+                          <span className="text-xl opacity-70">1403/07/26</span>
                         </div>
                       </div>
                       <button
                         type="button"
-                        data-pid="56639"
-                        data-author="zahra_0901"
-                        className="comment__reply-btn button-sm button-secondary button-outline only-icon"
+                        className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
                       >
-                        <svg className="w-7 h-7">
-                          <use href="#arrow-uturn-left"></use>
-                        </svg>
+                        <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
+                          <HiOutlineArrowUturnLeft />
+                        </div>
                       </button>
                     </div>
                     <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
@@ -1007,46 +990,36 @@ export default function CourseInfo() {
                     </p>
                     {/* <!-- Replies --> */}
                   </div>
-                  <div
-                    id="comment-56446"
-                    className="p-7 md:p-5 rounded-xl"
-                  >
-                    <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
-                      <div className="flex items-center gap-x-3.5">
-                        <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
-                          <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <div className="text-white w-3.5 h-3.5">
-                              <BiUser />
+                  <div id="comment-56446" className="p-8 md:p-5 rounded-xl">
+                    <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
+                      <div className="flex items-center gap-x-4">
+                        <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
+                          <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                            <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                              <RiGraduationCapFill />
                             </div>
-                          </div>{" "}
-                          <img
-                            src="https://secure.gravatar.com/avatar/455aae3d2289b28b1920851dbd250fb3?s=96&amp;d=mm&amp;r=g"
-                            className="w-12 h-12 block object-cover rounded-full"
-                          />
+                          </div>
+                          <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                            <BiUserCircle />
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-3">
                           <div className="flex items-center gap-x-1 ">
                             <span className="inline-block max-w-40 truncate">
                               SIPAN
                             </span>
-                            <strong className="font-danaDemiBold">
-                              | دانشجو
-                            </strong>
+                            <span className="font-EstedadThin">| دانشجو</span>
                           </div>
-                          <span className="font-danaLight text-sm opacity-70">
-                            1403/07/11
-                          </span>
+                          <span className="text-xl opacity-70">1403/07/11</span>
                         </div>
                       </div>
                       <button
                         type="button"
-                        data-pid="56446"
-                        data-author="SIPAN"
-                        className="comment__reply-btn button-sm button-secondary button-outline only-icon"
+                        className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
                       >
-                        <svg className="w-7 h-7">
-                          <use href="#arrow-uturn-left"></use>
-                        </svg>
+                        <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
+                          <HiOutlineArrowUturnLeft />
+                        </div>
                       </button>
                     </div>
                     <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
@@ -1054,50 +1027,40 @@ export default function CourseInfo() {
                     </p>
                     {/* <!-- Replies --> */}
                   </div>
-                  <div
-                    id="comment-55916"
-                    className="p-7 md:p-5 rounded-xl"
-                  >
-                    <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-neutral-200/60 dark:border-white/10">
-                      <div className="flex items-center gap-x-3.5">
-                        <div className="hidden border-amber-400 sm:flex-center w-15 h-15 border rounded-full relative">
-                          <div className="absolute -top-0.5 -right-0.5 flex-center w-5 h-5 bg-amber-400 rounded-full">
-                            <div className="text-white w-3.5 h-3.5">
-                              <BiUser />
+                  <div id="comment-55916" className="p-8 md:p-5 rounded-xl">
+                    <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
+                      <div className="flex items-center gap-x-4">
+                        <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
+                          <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                            <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                              <RiGraduationCapFill />
                             </div>
-                          </div>{" "}
-                          <img
-                            src="https://secure.gravatar.com/avatar/cc035ba56af5b0140501f14aadc8116b?s=96&amp;d=mm&amp;r=g"
-                            className="w-12 h-12 block object-cover rounded-full"
-                          />
+                          </div>
+                          <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                            <BiUserCircle />
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-3">
                           <div className="flex items-center gap-x-1 ">
                             <span className="inline-block max-w-40 truncate">
                               Ernesto
                             </span>
-                            <strong className="font-danaDemiBold">
-                              | دانشجو
-                            </strong>
+                            <span className="font-EstedadThin">| دانشجو</span>
                           </div>
-                          <span className="font-danaLight text-sm opacity-70">
-                            1403/06/08
-                          </span>
+                          <span className="text-xl opacity-70">1403/06/08</span>
                         </div>
                       </div>
                       <button
                         type="button"
-                        data-pid="55916"
-                        data-author="Ernesto"
-                        className="comment__reply-btn button-sm button-secondary button-outline only-icon"
+                        className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
                       >
-                        <svg className="w-7 h-7">
-                          <use href="#arrow-uturn-left"></use>
-                        </svg>
+                        <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
+                          <HiOutlineArrowUturnLeft />
+                        </div>
                       </button>
                     </div>
                     <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
-                      مثل همیشه ،آقای سعیدی راد عالی هستی و پرطرفدار{" "}
+                      مثل همیشه ،آقای سعیدی راد عالی هستی و پرطرفدار
                     </p>
                     {/* <!-- Replies --> */}
                   </div>
@@ -1106,26 +1069,23 @@ export default function CourseInfo() {
                 <button
                   data-id="78"
                   type="button"
-                  className="show-more button-xl button-primary w-full sm:w-auto mt-5 mx-auto"
+                  className="button-primary w-full sm:w-auto mt-10 mx-auto"
                 >
                   مشاهده بیشتر
-                  <svg className="show-more__icon w-6 h-6">
-                    <use href="#chevron-down"></use>
-                  </svg>
-                  <svg className="show-more__loading hidden w-6 h-6 animate-spin animate-reverse">
-                    <use href="#refresh"></use>
-                  </svg>
+                  <div className="text-5xl">
+                    <GoTriangleDown />
+                  </div>
                 </button>
               </div>
             </div>
             <aside className="col-span-12 lg:col-span-4 space-y-8">
               {/* <!-- Students & Rating & Progress --> */}
-              <div className="bg-white dark:bg-darker rounded-2xl p-7 sm:p-5 sm:p-5">
+              <div className="bg-white dark:bg-darkBox rounded-2xl p-7 sm:p-5">
                 <div className="flex gap-x-4">
-                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-100 dark:bg-dark rounded-xl">
-                    <svg className="w-10 h-10 md:w-11 md:h-11 text-green-500">
-                      <use href="#user-group-mini"></use>
-                    </svg>
+                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
+                    <div className="text-6xl text-lightishBlue-500">
+                      <PiUsersThree />
+                    </div>
                     <div>
                       <span className="block font-bold text-sm md:text-base">
                         22848
@@ -1133,7 +1093,7 @@ export default function CourseInfo() {
                       <span className="block text-2xl opacity-70">دانشجو</span>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-100 dark:bg-dark rounded-xl">
+                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
                     <svg className="w-10 h-10 md:w-11 md:h-11 text-amber-500">
                       <use href="#star-mini"></use>
                     </svg>
@@ -1166,12 +1126,12 @@ export default function CourseInfo() {
                   محمدامین سعیدی راد | مدرس دوره
                 </span>
                 <p className="mt-2"></p>
-                <a
-                  href="https://sabzlearn.ir/teacher/ce01010101it"
-                  className="button-primary button-outline mx-auto mt-4"
+                <Button
+                  to="https://sabzlearn.ir/teacher/ce01010101it"
+                  className="button-primary mx-auto mt-4"
                 >
                   مشاهده پروفایل من
-                </a>
+                </Button>
               </div>
               {/* <!-- Course Short Link --> */}
               <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl p-5 text-center">
