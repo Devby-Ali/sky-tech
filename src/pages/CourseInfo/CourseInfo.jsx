@@ -12,22 +12,15 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import {
-  HiMiniArrowUturnLeft,
   HiOutlineArrowUturnLeft,
   HiOutlineDocumentText,
 } from "react-icons/hi2";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
-import { FaTelegramPlane } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { PiBriefcase } from "react-icons/pi";
+import { PiBriefcase, PiStarBold } from "react-icons/pi";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
-import { FaCommentAlt } from "react-icons/fa";
 import { PiEye } from "react-icons/pi";
-import { FaLink } from "react-icons/fa";
 import { BsInfoCircle } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import { IoCalendarOutline } from "react-icons/io5";
@@ -148,7 +141,7 @@ export default function CourseInfo() {
             </div>
           </section>
 
-          <section className="grid grid-cols-12 gap-6 sm:gap-7 mt-10 lg:mt-28">
+          <section className="grid grid-cols-12 gap-6 sm:gap-11 mt-10 lg:mt-28">
             <div className="col-span-12 lg:col-span-8">
               {/* <!-- Course Box Info | Summary --> */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
@@ -427,9 +420,9 @@ export default function CourseInfo() {
                     <p>
                       حتما میدونید که یاد گرفتن پیش نیازی که اشاره شد، در سبزلرن
                       کاملا رایگان هست دیگه ؟؟؟!{" "}
-                      <a href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
+                      <Button href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
                         این هم لینک دوره ش…
-                      </a>
+                      </Button>
                     </p>
                     <h2 id="h_7">وقتی این دوره رو دیدم قدم بعدیم چیه؟</h2>
                     <p>
@@ -1078,35 +1071,35 @@ export default function CourseInfo() {
                 </button>
               </div>
             </div>
-            <aside className="col-span-12 lg:col-span-4 space-y-8">
+            <aside className="col-span-12 lg:col-span-4 space-y-12">
               {/* <!-- Students & Rating & Progress --> */}
-              <div className="bg-white dark:bg-darkBox rounded-2xl p-7 sm:p-5">
-                <div className="flex gap-x-4">
-                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
-                    <div className="text-6xl text-lightishBlue-500">
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7">
+                <div className="flex gap-x-6">
+                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 flex-grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
+                    <div className="text-6xl md:text-7xl text-lightishBlue-500">
                       <PiUsersThree />
                     </div>
                     <div>
-                      <span className="block font-bold text-sm md:text-base">
+                      <span className="block font-bold text-xl md:text-2xl">
                         22848
                       </span>
                       <span className="block text-2xl opacity-70">دانشجو</span>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
-                    <svg className="w-10 h-10 md:w-11 md:h-11 text-amber-500">
-                      <use href="#star-mini"></use>
-                    </svg>
+                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 flex-grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
+                    <div className="text-5xl md:text-6xl text-amber-500">
+                      <PiStarBold />
+                    </div>
                     <div>
-                      <span className="block font-bold text-sm md:text-base">
+                      <span className="block font-bold text-xl md:text-2xl">
                         5.0
                       </span>
                       <span className="block text-2xl opacity-70">رضایت</span>
                     </div>
                   </div>
                 </div>
-                <div className="mt-3.5 sm:mt-5">
-                  <div className="flex items-center justify-between font-danaDemiBold text-sm sm:text-base mb-3">
+                <div className="mt-7 sm:mt-12">
+                  <div className="flex items-center justify-between font-EstedadMedium text-2xl sm:text-[1.6rem] mb-5">
                     <span>درصد تکمیل دوره</span>
                     <span>100%</span>
                   </div>
@@ -1114,27 +1107,27 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Course Teacher --> */}
-              <div className="bg-white dark:bg-darker rounded-2xl pt-6 px-7 pb-7 md:py-6 md:px-5 text-center">
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl pt-10 px-7 pb-12 text-center">
                 <img
-                  className="block mb-4 mx-auto object-cover rounded-full"
+                  className="block mb-6 mx-auto object-cover rounded-full"
                   width="90"
                   height="90"
                   src="https://secure.gravatar.com/avatar/50db59beddbfed36a1646dae99ca7b2d?s=96&amp;d=mm&amp;r=g"
                   alt="محمدامین سعیدی راد"
                 />
-                <span className="font-danaDemiBold text-lg mb-2">
+                <span className="block font-EstedadMedium text-2xl sm:text-3xl mb-8">
                   محمدامین سعیدی راد | مدرس دوره
                 </span>
                 <p className="mt-2"></p>
                 <Button
-                  to="https://sabzlearn.ir/teacher/ce01010101it"
-                  className="button-primary mx-auto mt-4"
+                  to="https://"
+                  className="button-primary mx-auto mt-4 w-72"
                 >
                   مشاهده پروفایل من
                 </Button>
               </div>
               {/* <!-- Course Short Link --> */}
-              <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl p-5 text-center">
+              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7 text-center">
                 <span className="font-danaDemiBold text-lg">
                   لینک کوتاه آموزش
                 </span>
@@ -1144,7 +1137,7 @@ export default function CourseInfo() {
                       <use href="#clipboard-document"></use>
                     </svg>
                   </button>
-                  <span className="font-danaMedium text-lg w-64 text-ltr text-left truncate">
+                  <span className="font-EstedadMedium text-lg w-64 text-ltr text-left truncate">
                     sabzlearn.ir/?p=78
                   </span>
                 </div>

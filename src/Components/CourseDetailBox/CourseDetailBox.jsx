@@ -7,7 +7,7 @@ export default function CourseDetailBox({ icon, title, text }) {
       {icon}
       </div>
       <div className="space-y-2 sm:space-y-4">
-        <span className="block font-EstedadBold text-2xl sm:text-3xl">
+        <span className="block font-EstedadBold text-2xl sm:text-[1.7rem]">
         {title}
         </span>
         <span className="block text-2xl opacity-70">{text}</span>

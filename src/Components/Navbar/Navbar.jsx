@@ -49,7 +49,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed hidden lg:flex top-7 right-0 left-0 z-50 justify-between items-center w-[98%] lg:w-[95%] h-32 mx-auto rounded-4xl bg-gradient-to-tr from-lightishBlue-400/80 via-teal-600/50 to-purple-500/80 backdrop-blur-[4px]">
+      <header className="fixed hidden lg:flex top-7 right-0 left-0 z-50 justify-between items-center w-[98%] lg:w-[95%] h-32 mx-auto rounded-4xl bg-gradient-to-tr from-lightishBlue-400/60 via-teal-600/40 to-purple-500/60 backdrop-blur-[4px]">
         <div className="container">
           <div className="flex items-center justify-between px-8 py-4">
             <div className="flex gap-x-10 xl:gap-x-14">
@@ -58,7 +58,7 @@ export default function Navbar() {
                 <span className="font-MikhakWoff2one text-5xl mr-2">Cyan</span>
               </Link>
 
-              <ul className="flex gap-x-10">
+              <ul className="flex gap-x-10 text-darkColor dark:text-white text-[1.7rem]">
                 <li className="main-header__item flex-center relative">
                   <Link to={"/"} className="flex-center text-da">
                     صفحه اصلی
@@ -72,18 +72,18 @@ export default function Navbar() {
                   >
                     <Link
                       to={menu.href}
-                      className="flex-center text-zinc-800 hover:text-lightishBlue-500"
+                      className="flex-center hover:text-light-blue-800 dark:hover:text-light-blue-400"
                     >
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>
                           <GoTriangleDown className="mt-1 mx-1" />
-                          <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 bg-white transition-all duration-200 shadow-2xl rounded-lg py-4">
+                          <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 bg-white dark:bg-darkBox text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-8 border-r-8 border-light-blue-700 dark:border-light-blue-400">
                             {menu.submenus.map((submenu) => (
                               <li key={menu._id}>
                                 <Link
                                   to={submenu.href}
-                                  className="block py-2 px-8 text-2xl text-zinc-600 transition-all duration-200 text-gray-800"
+                                  className="block py-2 px-8 text-[1.6rem] text-zinc-600 duration-200"
                                 >
                                   {submenu.title}
                                 </Link>

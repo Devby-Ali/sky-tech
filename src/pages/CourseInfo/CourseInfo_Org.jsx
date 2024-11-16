@@ -48,7 +48,7 @@ function Icon({ id, open }) {
   );
 }
 
-export default function CourseInfo() {
+export default function CourseInfo_Org() {
   const [open, setOpen] = useState(0);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
