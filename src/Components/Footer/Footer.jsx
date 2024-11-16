@@ -10,7 +10,7 @@ import { SlSocialInstagram } from "react-icons/sl";
 
 export default function Footer() {
   return (
-    <footer className="mt-40 sm:mt-60 bg-white dark:bg-darkBox py-10 md:pt-24 md:pb-10">
+    <footer className="mt-40 sm:mt-60 bg-white dark:bg-darkBox text-darkBox dark:text-white/70 py-10 md:pt-24 md:pb-10">
       <div className="container">
         <div className="pb-5 mb-5 sm:pb-8 sm:mb-8 border-b border-b-neutral-200 dark:border-b-dark">
           <div className="flex items-center justify-between">
@@ -19,10 +19,10 @@ export default function Footer() {
               <span className="font-MikhakWoff2one text-5xl sm:text-6xl font-bold mr-2">Cyan</span>
             </Link>
             <div className="flex gap-x-4 sm:gap-x-5">
-              <a href="https://" className="flex-center text-[1.9rem] bg-gray-600 dark:bg-white text-white dark:text-darkColor p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16" rel="nofollow">
+              <a href="https://" className="flex-center text-[2.1rem] text-darkColor bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16" rel="nofollow">
               <SlSocialInstagram />
               </a>
-              <a href="https://" className="flex-center text-4xl bg-gray-600 dark:bg-white text-white dark:text-darkColor p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16" rel="nofollow">
+              <a href="https://" className="flex-center text-5xl text-darkColor bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 child:mt-0.5 child:mr-0.5" rel="nofollow">
                 <LiaTelegram />
               </a>
             </div>
@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="flex items-center flex-wrap gap-y-4 gap-x-12 mt-14 sm:mt-8">
             <a
               href="tel:02191030926"
-              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem] text-darkColor dark:text-white"
+              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
                 <HiOutlinePhone />
@@ -39,7 +39,7 @@ export default function Footer() {
             </a>
             <a
               href="mailto:info@sabzlearn.ir"
-              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem] text-darkColor dark:text-white"
+              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
                 <HiOutlineEnvelope />
@@ -48,7 +48,7 @@ export default function Footer() {
             </a>
             <a
               href="https://t.me/sabzlearn_support"
-              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem] text-darkColor dark:text-white"
+              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
                 <LiaTelegram />
@@ -57,14 +57,14 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="flex items-start justify-between flex-wrap gap-5">
+        <div className="flex items-start justify-between flex-wrap gap-5 text-3xl/10">
           <div>
-            <span className="inline-block sm:text-2xl font-danaBold mb-3 sm:mb-4">
+            <span className="inline-block font-EstedadBold mb-3 sm:mb-4">
               درباره سبزلرن
             </span>
-            <p className="max-w-100 text-dark dark:text-neutral-300"></p>
+            <p className="max-w-100"></p>
             <div>
-              <p className="max-w-100 text-dark dark:text-neutral-300">
+              <p className="max-w-100">
                 شروع هرچیزی سخته، ولی وقتی مسیر درستی رو انتخاب کنی، با خیال
                 راحت و بدون استرس میتونی از مسیر لذت ببری. ما در سبزلرن، توی سفر
                 به دنیای برنامه نویسی کنارت هستیم تا باهم رشد کنیم و از نتیجه
@@ -74,10 +74,10 @@ export default function Footer() {
           </div>
           <div className="flex items-start gap-x-6 sm:gap-x-7">
             <div>
-              <span className="inline-block sm:text-2xl font-danaBold mb-3 sm:mb-4">
+              <span className="inline-block font-EstedadBold mb-3 sm:mb-4">
                 دوره های پرطرفدار
               </span>
-              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-dark dark:text-neutral-300">
+              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base">
                 <a href="https://sabzlearn.ir/course/python/">آموزش پایتون</a>
                 <a href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
                   آموزش جاوااسکریپت
@@ -91,10 +91,10 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <span className="inline-block sm:text-2xl font-danaBold mb-3 sm:mb-4">
+              <span className="inline-block font-EstedadBold mb-3 sm:mb-4">
                 دسترسی سریع
               </span>
-              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-dark dark:text-neutral-300">
+              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base">
                 <a href="https://sabzlearn.ir/terms-conditions/">
                   قوانین و مقررات
                 </a>
@@ -113,7 +113,7 @@ export default function Footer() {
             />
           </a>
         </div>
-        <div className="flex items-center justify-center text-center sm:text-right sm:justify-between flex-wrap gap-y-2 gap-x-4 mt-8 sm:mt-10 dark:text-neutral-300">
+        <div className="flex items-center justify-center text-center sm:text-right sm:justify-between flex-wrap gap-y-2 gap-x-4 mt-8 sm:mt-10">
           <span>کلیه حقوق مادی و معنوی سایت برای سبز لرن محفوظ است.</span>
           <span>ساخته شده با ❤️ در سبزلرن</span>
         </div>
