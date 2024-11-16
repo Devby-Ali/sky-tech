@@ -1,98 +1,122 @@
 import React from "react";
 import FooterItem from "../FooterItem/FooterItem";
+import { Link } from "react-router-dom";
+import { SiMicrosoftacademic } from "react-icons/si";
+import { HiOutlineEnvelope } from "react-icons/hi2";
+import { HiOutlinePhone } from "react-icons/hi2";
+import { LiaTelegram } from "react-icons/lia";
+import { SlSocialInstagram } from "react-icons/sl";
+
 
 export default function Footer() {
   return (
-    <footer className="mt-8">
+    <footer className="mt-40 sm:mt-60 bg-white dark:bg-darkBox py-10 md:pt-24 md:pb-10">
       <div className="container">
-        <div className="bg-slate-200 rounded-2xl py-16 px-14 relative mb-20">
-          <div className="grid grid-cols-3 gap-5">
-            <FooterItem title="درباره ما">
-              <p className="text-zinc-500">
-                وقتی تازه شروع به یادگیری برنامه نویسی کردم. یکی از مشکلاتی که
-                در فرآیند یادگیری داشتم، کمبود آموزش های خوب با پشتیبانی قابل
-                قبول بود که باعث شد اون موقع تصمیم بگیرم اگر روزی توانایی مالی و
-                فنی قابل قبولی داشتم یک وب سایت برای حل این مشکل راه اندازی کنم!
-                و خب امروز آکادمی آموزش برنامه نویسی سبزلرن به عنوان یک آکادمی
-                خصوصی فعالیت میکنه و این به این معنی هست که هر مدرسی اجازه تدریس
-                در اون رو نداره و باید از فیلترینگ های خاص آکادمی سبزلرن رد شه!
-                این به این معنی هست که ما برامون فن بیان و نحوه تعامل مدرس با
-                دانشجو بسیار مهمه! ما در آکادمی سبزلرن تضمین پشتیبانی خوب و با
-                کیفیت رو به شما میدیم . چرا که مدرسین وب سایت سبزلرن حتی برای
-                پشتیبانی دوره های رایگان شون هم هزینه دریافت میکنند و متعهد
-                هستند که هوای کاربر های عزیز رو داشته باشند !
-              </p>
-            </FooterItem>
-
-            <FooterItem title="آخرین مطالب">
-              <div className="flex flex-col">
-                <a href="#" className="block mb-4">
-                  نحوه نصب کتابخانه در پایتون | آموزش نصب کتابخانه پایتون
-                </a>
-                <a href="#" className="block mb-4">
-                  چگونه پایتون را آپدیت کنیم؟ | آموزش صفر تا صد آپدیت کردن
-                  پایتون
-                </a>
-                <a href="#" className="block mb-4">
-                  آموزش نصب پایتون ( Python ) در در مک، ویندوز و لینوکس | گام به
-                  گام و تصویری
-                </a>
-                <a href="#" className="block mb-4">
-                  بهترین فریم ورک های فرانت اند | 16 فریم ورک Front end بررسی
-                  معایب و مزایا
-                </a>
-                <a href="#" className="block mb-4">
-                  معرفی بهترین سایت آموزش جاوا اسکریپت [ تجربه محور ] + آموزش
-                  رایگان
-                </a>
+        <div className="pb-5 mb-5 sm:pb-8 sm:mb-8 border-b border-b-neutral-200 dark:border-b-dark">
+          <div className="flex items-center justify-between">
+            <Link to={"/"} className="flex-center text-light-blue-700">
+              <SiMicrosoftacademic className="w-16 sm:w-20 h-16 sm:h-20" />
+              <span className="font-MikhakWoff2one text-5xl sm:text-6xl font-bold mr-2">Cyan</span>
+            </Link>
+            <div className="flex gap-x-4 sm:gap-x-5">
+              <a href="https://" className="flex-center text-[1.9rem] bg-gray-600 dark:bg-white text-white dark:text-darkColor p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16" rel="nofollow">
+              <SlSocialInstagram />
+              </a>
+              <a href="https://" className="flex-center text-4xl bg-gray-600 dark:bg-white text-white dark:text-darkColor p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16" rel="nofollow">
+                <LiaTelegram />
+              </a>
+            </div>
+          </div>
+          <div className="flex items-center flex-wrap gap-y-4 gap-x-12 mt-14 sm:mt-8">
+            <a
+              href="tel:02191030926"
+              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem] text-darkColor dark:text-white"
+            >
+              <div className="text-3xl sm:text-4xl">
+                <HiOutlinePhone />
               </div>
-            </FooterItem>
-
-            <FooterItem title="دسترسی سریع">
-              <div className="row">
-                <div className="col-6">
-                  <a href="#" className="block mb-4">
-                    آموزش HTML
-                  </a>
-                </div>
-
-                <div className="col-6">
-                  <a href="#" className="block mb-4">
-                    آموزش CSS
-                  </a>
-                </div>
-
-                <div className="col-6">
-                  <a href="#" className="block mb-4">
-                    آموزش جاوا اسکریپت
-                  </a>
-                </div>
-                <div className="col-6">
-                  <a href="#" className="block mb-4">
-                    آموزش بوت استرپ
-                  </a>
-                </div>
-                <div className="col-6">
-                  <a href="#" className="block mb-4">
-                    آموزش ریکت
-                  </a>
-                </div>
-
-                <div className="col-6">
-                  <a href="#" className="block mb-4">
-                    آموزش پایتون
-                  </a>
-                </div>
+              02191030926
+            </a>
+            <a
+              href="mailto:info@sabzlearn.ir"
+              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem] text-darkColor dark:text-white"
+            >
+              <div className="text-3xl sm:text-4xl">
+                <HiOutlineEnvelope />
               </div>
-            </FooterItem>
+              info@sabzlearn.ir
+            </a>
+            <a
+              href="https://t.me/sabzlearn_support"
+              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem] text-darkColor dark:text-white"
+            >
+              <div className="text-3xl sm:text-4xl">
+                <LiaTelegram />
+              </div>
+              sabzlearn_support@
+            </a>
           </div>
         </div>
-      </div>
-
-      <div className="slex-center py-12 bg-slate-200">
-        <span className="text-slate-400 font-EstedadBold">
-          کلیه حقوق برای آکادمی آموزش برنامه نویسی سبز لرن محفوظ است.
-        </span>
+        <div className="flex items-start justify-between flex-wrap gap-5">
+          <div>
+            <span className="inline-block sm:text-2xl font-danaBold mb-3 sm:mb-4">
+              درباره سبزلرن
+            </span>
+            <p className="max-w-100 text-dark dark:text-neutral-300"></p>
+            <div>
+              <p className="max-w-100 text-dark dark:text-neutral-300">
+                شروع هرچیزی سخته، ولی وقتی مسیر درستی رو انتخاب کنی، با خیال
+                راحت و بدون استرس میتونی از مسیر لذت ببری. ما در سبزلرن، توی سفر
+                به دنیای برنامه نویسی کنارت هستیم تا باهم رشد کنیم و از نتیجه
+                زحمات مون لذت ببریم.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-x-6 sm:gap-x-7">
+            <div>
+              <span className="inline-block sm:text-2xl font-danaBold mb-3 sm:mb-4">
+                دوره های پرطرفدار
+              </span>
+              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-dark dark:text-neutral-300">
+                <a href="https://sabzlearn.ir/course/python/">آموزش پایتون</a>
+                <a href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
+                  آموزش جاوااسکریپت
+                </a>
+                <a href="https://sabzlearn.ir/course/html-tutorial/">
+                  آموزش Html
+                </a>
+                <a href="https://sabzlearn.ir/course/css-tutorial/">
+                  آموزش Css
+                </a>
+              </div>
+            </div>
+            <div>
+              <span className="inline-block sm:text-2xl font-danaBold mb-3 sm:mb-4">
+                دسترسی سریع
+              </span>
+              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-dark dark:text-neutral-300">
+                <a href="https://sabzlearn.ir/terms-conditions/">
+                  قوانین و مقررات
+                </a>
+                <a href="https://sabzlearn.ir/my-account/tickets/">
+                  ارسال تیکت
+                </a>
+                <a href="https://sabzlearn.ir/courses/">همه دوره ها</a>
+              </div>
+            </div>
+          </div>
+          <a href="https://trustseal.enamad.ir/?id=445206&amp;code=SgLtG6QTvIyffV2cjuiTe4sSPvMqsNSf">
+            <img
+              src="https://sabzlearn.ir/wp-content/themes/sabzlearn-theme/images/enamad.png"
+              className="w-36 sm:w-auto"
+              alt=""
+            />
+          </a>
+        </div>
+        <div className="flex items-center justify-center text-center sm:text-right sm:justify-between flex-wrap gap-y-2 gap-x-4 mt-8 sm:mt-10 dark:text-neutral-300">
+          <span>کلیه حقوق مادی و معنوی سایت برای سبز لرن محفوظ است.</span>
+          <span>ساخته شده با ❤️ در سبزلرن</span>
+        </div>
       </div>
     </footer>
   );
