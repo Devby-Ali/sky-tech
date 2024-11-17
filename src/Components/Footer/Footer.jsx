@@ -114,7 +114,7 @@ export default function Footer() {
           </a>
         </div>
         <div className="flex items-center justify-center text-center sm:text-right sm:justify-between flex-wrap gap-y-2 gap-x-4 mt-8 sm:mt-10">
-          <span>کلیه حقوق مادی و معنوی سایت برای سبز لرن محفوظ است.</span>
+          <span>کلیه حقوق مادی و معنوی سایت برای cyan-academy محفوظ است.</span>
           <span>ساخته شده با ❤️ در cyan-academy</span>
         </div>
       </div>

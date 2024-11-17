@@ -49,16 +49,16 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed hidden lg:flex top-7 right-0 left-0 z-50 justify-between items-center w-[98%] lg:w-[95%] h-32 mx-auto rounded-4xl bg-gradient-to-tr from-lightishBlue-400/60 via-teal-600/40 to-purple-500/60 backdrop-blur-[4px]">
-        <div className="container">
-          <div className="flex items-center justify-between px-8 py-4">
+      <header className="fixed hidden lg:flex top-7 right-0 left-0 z-50 justify-between items-center w-[98%] lg:w-[95%] h-32 2xl:h-36 mx-auto rounded-4xl bg-gradient-to-tr from-light-blue-700/50 via-darkBox/80 via-60% to-light-blue-700/50 backdrop-blur-[4px]">
+        <div className="w-full">
+          <div className="flex items-center justify-between px-12 xl:px-24 py-4">
             <div className="flex gap-x-10 xl:gap-x-14">
-              <Link to={"/"} className="flex-center text-lightishBlue-600">
+              <Link to={"/"} className="flex-center text-green-500">
                 <SiMicrosoftacademic className="w-16 h-16" />
                 <span className="font-MikhakWoff2one text-5xl mr-2">Cyan</span>
               </Link>
 
-              <ul className="flex gap-x-10 text-darkColor dark:text-white text-[1.7rem]">
+              <ul className="flex gap-x-10 text-white text-[1.7rem]">
                 <li className="main-header__item flex-center relative">
                   <Link to={"/"} className="flex-center text-da">
                     صفحه اصلی
@@ -72,7 +72,7 @@ export default function Navbar() {
                   >
                     <Link
                       to={menu.href}
-                      className="flex-center hover:text-light-blue-800 dark:hover:text-light-blue-400"
+                      className="flex-center hover:text-light-blue-400"
                     >
                       {menu.title}
                       {menu.submenus.length !== 0 && (
