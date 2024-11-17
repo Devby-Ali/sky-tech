@@ -43,7 +43,9 @@ module.exports = withMT({
         center: true,
         padding: {
           DEFAULT: "2rem",
-          lg: "1.5rem",
+          md: "3rem",
+          lg: "4rem",
+          xl: "10rem",
         },
       },
     },

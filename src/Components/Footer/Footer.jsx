@@ -10,9 +10,9 @@ import { SlSocialInstagram } from "react-icons/sl";
 
 export default function Footer() {
   return (
-    <footer className="mt-40 sm:mt-60 bg-white dark:bg-darkBox text-darkBox dark:text-white/70 py-10 md:pt-24 md:pb-10">
+    <footer className="mt-40 sm:mt-60 bg-white dark:bg-darkBox text-darkBox dark:text-white/70 py-10 md:pt-24 pb-12 sm:pb-16">
       <div className="container">
-        <div className="pb-5 mb-5 sm:pb-8 sm:mb-8 border-b border-b-neutral-200 dark:border-b-dark">
+        <div className="pb-8 mb-8 sm:pb-16 sm:mb-16 border-b border-b-gray-400">
           <div className="flex items-center justify-between">
             <Link to={"/"} className="flex-center text-light-blue-700">
               <SiMicrosoftacademic className="w-16 sm:w-20 h-16 sm:h-20" />
@@ -27,7 +27,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <div className="flex items-center flex-wrap gap-y-4 gap-x-12 mt-14 sm:mt-8">
+          <div className="flex items-center flex-wrap gap-y-8 gap-x-16 mt-16">
             <a
               href="tel:02191030926"
               className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
@@ -35,7 +35,7 @@ export default function Footer() {
               <div className="text-3xl sm:text-4xl">
                 <HiOutlinePhone />
               </div>
-              02191030926
+              0211234567
             </a>
             <a
               href="mailto:info@sabzlearn.ir"
@@ -44,7 +44,7 @@ export default function Footer() {
               <div className="text-3xl sm:text-4xl">
                 <HiOutlineEnvelope />
               </div>
-              info@sabzlearn.ir
+              info@cyan-academy.ir
             </a>
             <a
               href="https://t.me/sabzlearn_support"
@@ -53,18 +53,18 @@ export default function Footer() {
               <div className="text-3xl sm:text-4xl">
                 <LiaTelegram />
               </div>
-              sabzlearn_support@
+              cyan-academy_support@
             </a>
           </div>
         </div>
-        <div className="flex items-start justify-between flex-wrap gap-5 text-3xl/10">
+        <div className="flex items-start justify-between flex-wrap gap-5 sm:mb-14 text-3xl/10">
           <div>
-            <span className="inline-block font-EstedadBold mb-3 sm:mb-4">
-              درباره سبزلرن
+            <span className="inline-block sm:text-4xl font-EstedadBold mb-3 sm:mb-6">
+              درباره cyan-academy
             </span>
-            <p className="max-w-100"></p>
-            <div>
-              <p className="max-w-100">
+            <p className="max-w-[60rem]"></p>
+            <div className="md:w-[50rem] lg:w-auto">
+              <p className="max-w-[40rem] text-2xl sm:text-[1.65rem] leading-relaxed">
                 شروع هرچیزی سخته، ولی وقتی مسیر درستی رو انتخاب کنی، با خیال
                 راحت و بدون استرس میتونی از مسیر لذت ببری. ما در سبزلرن، توی سفر
                 به دنیای برنامه نویسی کنارت هستیم تا باهم رشد کنیم و از نتیجه
@@ -72,12 +72,12 @@ export default function Footer() {
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-x-6 sm:gap-x-7">
+          <div className="flex items-start gap-x-10 sm:gap-x-14 sm:mt-7">
             <div>
-              <span className="inline-block font-EstedadBold mb-3 sm:mb-4">
+              <span className="inline-block sm:text-4xl font-EstedadBold mb-6 sm:mb-8">
                 دوره های پرطرفدار
               </span>
-              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base">
+              <div className="flex flex-col items-start gap-y-5 sm:gap-y-8 text-2xl sm:text-[1.65rem  ]">
                 <a href="https://sabzlearn.ir/course/python/">آموزش پایتون</a>
                 <a href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
                   آموزش جاوااسکریپت
@@ -91,10 +91,10 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <span className="inline-block font-EstedadBold mb-3 sm:mb-4">
+              <span className="inline-block sm:text-4xl font-EstedadBold mb-6 sm:mb-8">
                 دسترسی سریع
               </span>
-              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base">
+              <div className="flex flex-col items-start gap-y-5 sm:gap-y-8 text-2xl sm:text-[1.65rem  ]">
                 <a href="https://sabzlearn.ir/terms-conditions/">
                   قوانین و مقررات
                 </a>
@@ -105,7 +105,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <a href="https://trustseal.enamad.ir/?id=445206&amp;code=SgLtG6QTvIyffV2cjuiTe4sSPvMqsNSf">
+          <a href="https://">
             <img
               src="https://sabzlearn.ir/wp-content/themes/sabzlearn-theme/images/enamad.png"
               className="w-36 sm:w-auto"
@@ -115,7 +115,7 @@ export default function Footer() {
         </div>
         <div className="flex items-center justify-center text-center sm:text-right sm:justify-between flex-wrap gap-y-2 gap-x-4 mt-8 sm:mt-10">
           <span>کلیه حقوق مادی و معنوی سایت برای سبز لرن محفوظ است.</span>
-          <span>ساخته شده با ❤️ در سبزلرن</span>
+          <span>ساخته شده با ❤️ در cyan-academy</span>
         </div>
       </div>
     </footer>
