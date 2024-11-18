@@ -4,8 +4,8 @@ import { IoIosArrowBack } from "react-icons/io";
 
 export default function SectionHeader({ title, desc, btnTitle, btnHref }) {
   return (
-    <div className="flex-center sm:justify-between flex-wrap flex-col mb-7 sm:mb-10 sm:flex-row gap-x-4 gap-y-7 text-darkColor dark:text-white">
-      <div className="space-y-2 sm:space-y-3 sm:self-start">
+    <div className="flex-center sm:justify-between flex-wrap flex-col mb-14 sm:mb-16 sm:flex-row gap-x-4 gap-y-7 text-darkColor dark:text-white">
+      <div className="space-y-2 sm:space-y-3 sm:self-start mb-6 sm:mb-0">
         <div className="flex-center sm:justify-start gap-x-2.5">
           {/* <span className="hidden sm:inline-block w-8 h-8 bg-cyan-600 rounded-full mt-3"></span> */}
           <span className="block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue ml-2 mt-3"></span>

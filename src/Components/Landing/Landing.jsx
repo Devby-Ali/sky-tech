@@ -6,7 +6,7 @@ import LandingCounter from "../LandingCounter/LandingCounter";
 
 export default function Landing() {
   return (
-    <section className="text-center pt-48 lg:pt-64 pb-24 text-darkColor dark:text-white">
+    <section className="text-center pt-48 lg:pt-64 pb-24 sm:mb-36 text-darkColor dark:text-white">
       <div className="container">
         <div className="lg:flex lg:flex-row-reverse gap-x-16 items-center">
           <div className="mb-14 sm:mb-20 lg:w-1/2">
