@@ -37,18 +37,18 @@ export default function Landing() {
             <div className="relative max-w-[700px] mt-16 sm:mt-24 lg:mt-16 xl:mt-20 mx-auto">
               <input
                 type="text"
-                className="w-full border rounded-3xl h-24 bg-transparent text-xl xs:text-3xl pr-10 outline-none"
+                className="w-full border-2 dark:border border-gray-500 rounded-3xl h-24 bg-transparent text-xl xs:text-3xl pr-10 outline-none"
                 placeholder="چه چیزی دوست داری یاد بگیری ..."
               />
               <button
-                className="absolute flex-center w-20 h-20 bg-cyan-500 border-none left-2 top-2 rounded-2xl"
+                className="absolute flex-center w-20 h-20 bg-light-blue-700/60 border-none left-2 top-2 rounded-2xl"
                 type="submit"
               >
-                <FaSearch className="text-5xl" />
+                <FaSearch className="text-5xl text-darkBox/80 dark:text-white" />
               </button>
             </div>
             <div className="hidden lg:flex justify-between items-center mt-20 2xl:mt-32">
-              <div className="flex-center flex-col text-white">
+              <div className="flex-center flex-col text-darkBox dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="80"
@@ -62,7 +62,7 @@ export default function Landing() {
                 <span className="text-xl mt-2">کاربر ثبت نام کردن</span>
               </div>
 
-              <div className="flex-center flex-col text-white">
+              <div className="flex-center flex-col text-darkBox dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="80"
@@ -80,7 +80,7 @@ export default function Landing() {
                 <span className="text-xl mt-2">دوره آموزشی داریم</span>
               </div>
 
-              <div className="flex-center flex-col text-white">
+              <div className="flex-center flex-col text-darkBox dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="80"
