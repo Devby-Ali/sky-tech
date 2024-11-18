@@ -3,7 +3,6 @@ import Typewriter from "typewriter-effect";
 import { FaSearch } from "react-icons/fa";
 import LandingCounter from "../LandingCounter/LandingCounter";
 
-// bg-landing bg-cover bg-fixed text-center pt-48 pb-24 text-white
 
 export default function Landing() {
   return (
@@ -13,7 +12,7 @@ export default function Landing() {
           <div className="mb-14 sm:mb-20 lg:w-1/2">
             <img src="/images/landing/landing-3.png" alt="" />
           </div>
-          <div className="lg:w-1/2">
+          <div className="relative lg:w-1/2">
             <h1 className="text-3xl sm:text-5xl lg:text-4xl sm:mb-16 lg:mb-10 font-bold">
               <Typewriter
                 onInit={(typeWriter) => {
@@ -110,6 +109,8 @@ export default function Landing() {
                 <span className="text-xl mt-2">دقیقه آموزش تولید کردیم</span>
               </div>
             </div>
+            <div className="hidden lg:block absolute -bottom-44 left-0 w-[250px] h-[250px] bg-light-blue-600 opacity-25 blur-[120px] rounded-full"></div>
+            <div className="hidden lg:block absolute -top-20 -right-17 w-[250px] h-[250px] bg-purple-600 opacity-25 blur-[120px] rounded-full"></div>
           </div>
         </div>
       </div>
