@@ -20,12 +20,12 @@ export default function CourseBox() {
         <a
           className="block w-full h-full rounded-3xl overflow-hidden"
           href=""
-          title="آموزش الگوریتم و ساختمان داده به زبان ساده"
+          title="آموزش کار با یوتیوب برای برنامه نویسان به زبان ساده"
         >
           <img
             className="block w-full h-full object-cover"
-            src="https://sabzlearn.ir/wp-content/uploads/2023/11/Course-thumbnail-Algorithm-1-768x432.webp"
-            alt="آموزش الگوریتم و ساختمان داده به زبان ساده"
+            src="/images/courses/youtuber.png"
+            alt="آموزش کار با یوتیوب برای برنامه نویسان به زبان ساده"
             onLoad={onImageLoaded}
             onError={onImageError}
           />
@@ -40,11 +40,11 @@ export default function CourseBox() {
         <div className="flex-grow px-6 py-6">
           {/* <!-- Course Title --> */}
           <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2 mb-5">
-            <a href="">آموزش الگوریتم و ساختمان داده به زبان ساده</a>
+            <a href="">آموزش کار با یوتیوب برای برنامه نویسان به زبان ساده</a>
           </h3>
           {/* <!-- Course Description --> */}
           <p className="text-2xl/10 line-clamp-2 opacity-70">
-            ساختمان داده و الگوریتم، یک مهارت ضروری برای ورود به دنیای برنامه
+            یوتیوب و استفاده ی تخصصی از آن، یک مهارت ضروری برای ورود به دنیای برنامه
             نویسیه که دیدگاه شما رو به مسائل مختلف…
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function CourseBox() {
               <div className="text-3xl">
                 <LiaUserSolid />
               </div>
-              <a href="https:/">رضا دولتی</a>
+              <a href="https:/">مسلم ترکمان</a>
             </div>
             {/* <!-- Rating --> */}
             <div className="flex items-center gap-x-2 text-amber-500">

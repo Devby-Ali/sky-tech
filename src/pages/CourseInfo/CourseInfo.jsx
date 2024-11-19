@@ -234,7 +234,7 @@ export default function CourseInfo() {
                       <li>&nbsp;بروزرسانی آسان تر و سریع تر کتابخانه ها</li>
                     </ol>
                     <p>
-                      از اونجایی که سبزلرن تصمیم گرفته در کنار دوره های جامع
+                      از اونجایی که اسکای لرن تصمیم گرفته در کنار دوره های جامع
                       خودش و برای جبران کوتاهی دانشجوها در انجام تمرینات منظم و
                       تحقیق و مطالعه برای توسعه مهارتشون، یک دوره جداگانه رایگان
                       برای آشنایی با <strong>NPM</strong>{" "}
@@ -338,7 +338,7 @@ export default function CourseInfo() {
                         های سراسر دنیا تبادل اطلاعات و تجربه داشته باشن.
                       </li>
                     </ol>
-                    <h2 id="h_4">چرا سبزلرن بهترین گزینه برای یادگیری هست؟</h2>
+                    <h2 id="h_4">چرا اسکای لرن بهترین گزینه برای یادگیری هست؟</h2>
                     <p>
                       حتما برای شما هم پیش اومده که گاهی فرصت ها و پروژه های
                       بزرگ رو از دست میدید فقط به خاطر اینکه در ظاهر فکر میکنید
@@ -348,7 +348,7 @@ export default function CourseInfo() {
                       فریم ورک ها، کتابخانه ها و …
                     </p>
                     <p>
-                      تفاوت سبزلرن در همین هست که علاوه بر دوره های آموزشی اصلی،
+                      تفاوت اسکای لرن در همین هست که علاوه بر دوره های آموزشی اصلی،
                       مجموعه ای از دوره های مکمل فوق العاده هم برای دانشجوهای
                       خودش تدارک میبینه ( اکثرا رایگان! ) تا مطمئن بشه فاصله شون
                       با تسلط کامل و کسب درآمدهای بالا فقط و فقط اراده و جدیت
@@ -418,9 +418,9 @@ export default function CourseInfo() {
                       مسلط نباشید، دیدن این دوره هم کمکی به شما نخواهد کرد.
                     </p>
                     <p>
-                      حتما میدونید که یاد گرفتن پیش نیازی که اشاره شد، در سبزلرن
+                      حتما میدونید که یاد گرفتن پیش نیازی که اشاره شد، در اسکای لرن
                       کاملا رایگان هست دیگه ؟؟؟!{" "}
-                      <Button href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
+                      <Button href="">
                         این هم لینک دوره ش…
                       </Button>
                     </p>
@@ -456,7 +456,7 @@ export default function CourseInfo() {
                       </li>
                     </ol>
                     <p>
-                      دو مورد اینها بر عهده شماست و دو مورد هم بر عهده سبزلرن.
+                      دو مورد اینها بر عهده شماست و دو مورد هم بر عهده اسکای لرن.
                       ما به شما قول میدیم این آموزش رو با بالاترین کیفیت و
                       موثرترین پشتیبانی در اختیار شما قرار بدیم. شما قول می دید
                       که با علاقه و پشتکار تمام تمرینات رو انجام بدید تا به
@@ -632,11 +632,11 @@ export default function CourseInfo() {
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
                         className="w-36 rounded-md aspect-video"
-                        src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-29-1.webp"
+                        src="/images/courses/jango.png"
                         alt="آموزش ۲۰ کتابخانه کاربردی ReactJS برای بازارکار"
                       />
                       <a
-                        href="https://sabzlearn.ir/course/20-lib-reactjs/"
+                        href=""
                         className="font-danaMedium line-clamp-2"
                       >
                         آموزش ۲۰ کتابخانه کاربردی ReactJS برای بازارکار
@@ -644,7 +644,7 @@ export default function CourseInfo() {
                     </div>
                     <a
                       className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href="https://sabzlearn.ir/course/20-lib-reactjs/"
+                      href=""
                     >
                       مشاهده
                       <div className="text-2xl mr-2">
@@ -656,11 +656,11 @@ export default function CourseInfo() {
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
                         className="w-36 rounded-md aspect-video"
-                        src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-25-1.webp"
+                        src="/images/courses/js_project.png"
                         alt="آموزش git و github"
                       />
                       <a
-                        href="https://sabzlearn.ir/course/git-github/"
+                        href=""
                         className="font-danaMedium line-clamp-2"
                       >
                         آموزش git و github
@@ -668,7 +668,7 @@ export default function CourseInfo() {
                     </div>
                     <a
                       className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href="https://sabzlearn.ir/course/git-github/"
+                      href=""
                     >
                       مشاهده
                       <div className="text-2xl mr-2">
@@ -680,11 +680,11 @@ export default function CourseInfo() {
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
                         className="w-36 rounded-md aspect-video"
-                        src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-2-1.webp"
+                        src="/images/courses/nodejs.png"
                         alt="پروژه های خلاقانه با جاوااسکریپت"
                       />
                       <a
-                        href="https://sabzlearn.ir/course/creative-projects-with-js/"
+                        href=""
                         className="font-danaMedium line-clamp-2"
                       >
                         پروژه های خلاقانه با جاوااسکریپت
@@ -692,7 +692,7 @@ export default function CourseInfo() {
                     </div>
                     <a
                       className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href="https://sabzlearn.ir/course/creative-projects-with-js/"
+                      href=""
                     >
                       مشاهده
                       <div className="text-2xl mr-2">
@@ -704,11 +704,11 @@ export default function CourseInfo() {
                     <div className="flex items-center gap-x-4 w-4/5">
                       <img
                         className="w-36 rounded-md aspect-video"
-                        src="https://sabzlearn.ir/wp-content/uploads/2023/12/Com_regex-1.webp"
+                        src="/images/courses/python.png"
                         alt="آموزش اصولی RegEX برای تمام برنامه نویسان"
                       />
                       <a
-                        href="https://sabzlearn.ir/course/regex/"
+                        href=""
                         className="font-danaMedium line-clamp-2"
                       >
                         آموزش اصولی RegEX برای تمام برنامه نویسان
@@ -716,7 +716,7 @@ export default function CourseInfo() {
                     </div>
                     <a
                       className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href="https://sabzlearn.ir/course/regex/"
+                      href=""
                     >
                       مشاهده
                       <div className="text-2xl mr-2">
@@ -976,8 +976,8 @@ export default function CourseInfo() {
                       </button>
                     </div>
                     <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
-                      باسلام خدمتت تیم فوق العاده سبزلرن و استاد سعیدی راد خیلی
-                      خیلی عالی بود، واقعا آدم وقتی آموزش های سبزلرن رو آقای راد
+                      باسلام خدمتت تیم فوق العاده اسکای لرن و استاد سعیدی راد خیلی
+                      خیلی عالی بود، واقعا آدم وقتی آموزش های اسکای لرن رو آقای راد
                       رو میبینه از کیفیت آموزش لذت میبره ، تشکر فراوان بابت
                       زحماتتون🌹🌹🌹🌹
                     </p>
@@ -1112,7 +1112,7 @@ export default function CourseInfo() {
                   className="block mb-6 mx-auto object-cover rounded-full"
                   width="90"
                   height="90"
-                  src="https://secure.gravatar.com/avatar/50db59beddbfed36a1646dae99ca7b2d?s=96&amp;d=mm&amp;r=g"
+                  src=""
                   alt="محمدامین سعیدی راد"
                 />
                 <span className="block font-EstedadMedium text-2xl sm:text-3xl mb-8">
@@ -1138,7 +1138,7 @@ export default function CourseInfo() {
                     </svg>
                   </button>
                   <span className="font-EstedadMedium text-lg w-64 text-ltr text-left truncate">
-                    sabzlearn.ir/?p=78
+                    skylearn.ir/?p=78
                   </span>
                 </div>
               </div>
