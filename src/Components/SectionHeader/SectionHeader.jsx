@@ -20,11 +20,10 @@ export default function SectionHeader({ title, desc, btnTitle, btnHref }) {
           <div className="courses-header__left">
             <Link
               to={`/${btnHref}`}
-              className="relative flex text-[1.7rem] md:text-3xl tracking-tighter text-light-blue-700 transition-all"
+              className="relative flex text-[1.7rem] md:text-3xl tracking-tighter text-light-blue-700 hover:text-purple-200 transition-all"
             >
-              <div className="flex flex-col font-EstedadBold gap-y-1 md:gap-y-1.5">
+              <div className="font-EstedadBold pb-2 pl-8 border-b border-b-light-blue-700 hover:border-b-pink-200">
                 {btnTitle}
-                <span className="inline-block h-[2px] w-40 md:w-44 bg-light-blue-700"></span>
               </div>
               <HiOutlineChevronLeft className="absolute -left-4 -bottom-[1.4rem] text-5xl" />
             </Link>
