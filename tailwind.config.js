@@ -45,7 +45,6 @@ module.exports = withMT({
           DEFAULT: "2rem",
           md: "3rem",
           lg: "4rem",
-          xl: "10rem",
         },
       },
     },
