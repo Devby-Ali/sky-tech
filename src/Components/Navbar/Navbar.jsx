@@ -6,7 +6,6 @@ import { GoTriangleDown } from "react-icons/go";
 import { IoSunnyOutline } from "react-icons/io5";
 import { BsMoon } from "react-icons/bs";
 import { RiShoppingCartFill } from "react-icons/ri";
-import { SiMicrosoftacademic } from "react-icons/si";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
@@ -49,16 +48,30 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed hidden lg:flex top-7 right-0 left-0 z-50 justify-between items-center w-[98%] lg:w-[95%] h-32 2xl:h-36 mx-auto rounded-4xl bg-gradient-to-tr from-light-blue-700/50 via-darkBox/80 via-60% to-light-blue-700/50 backdrop-blur-[4px]">
+      <header className="fixed hidden lg:flex top-7 right-0 left-0 z-50 justify-between items-center w-[98%] lg:w-[95%] h-32 2xl:h-36 mx-auto rounded-4xl bg-gradient-to-tr from-lightishBlue-400/50 via-darkBox/80 via-60% to-lightishBlue-400/50 backdrop-blur-[4px]">
         <div className="w-full">
           <div className="flex items-center justify-between px-12 xl:px-24 py-4">
-            <div className="flex gap-x-10 xl:gap-x-14">
-              <Link to={"/"} className="flex-center text-green-500">
-                <SiMicrosoftacademic className="w-16 h-16" />
-                <span className="font-MikhakWoff2one text-5xl mr-2">Cyan</span>
+            <div className="flex gap-x-14">
+              <Link to={"/"} className="text-light-blue-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="65"
+                  height="65"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z"></path>
+                  <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                  <path d="m9 11 3 3 3-3"></path>
+                </svg>
               </Link>
 
-              <ul className="flex gap-x-10 text-white text-[1.7rem]">
+              <ul className="flex gap-x-12 text-white text-[1.7rem]">
                 <li className="main-header__item flex-center relative">
                   <Link to={"/"} className="flex-center text-da">
                     صفحه اصلی
@@ -154,9 +167,24 @@ export default function Navbar() {
             <Link
               to={"/"}
               onClick={navOpenHandler}
-              className="flex-center text-7xl text-lightishBlue-400"
+              className="text-light-blue-600 dark:text-light-blue-500"
             >
-              <SiMicrosoftacademic />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="65"
+                height="65"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
+                viewBox="0 0 24 24"
+              >
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                <path d="m9 11 3 3 3-3"></path>
+              </svg>
             </Link>
             <div className="flex items-center gap-x-6 text-4xl text-blue-gray-500 dark:text-white">
               <div
@@ -167,7 +195,10 @@ export default function Navbar() {
 
                 <BsMoon className="inline-block dark:hidden" />
               </div>
-              <div className="flex-center p-5 rounded-full cursor-pointer bg-blue-gray-50 dark:bg-darkBox" onClick={navOpenHandler}>
+              <div
+                className="flex-center p-5 rounded-full cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+                onClick={navOpenHandler}
+              >
                 <IoIosArrowForward />
               </div>
             </div>
@@ -212,8 +243,23 @@ export default function Navbar() {
         </div>
 
         <div className="logo">
-          <Link to={"/"} className="flex-center text-7xl text-lightishBlue-500">
-            <SiMicrosoftacademic />
+          <Link to={"/"} className="text-light-blue-600 dark:text-light-blue-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="65"
+              height="65"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
+              viewBox="0 0 24 24"
+            >
+              <path stroke="none" d="M0 0h24v24H0z"></path>
+              <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+              <path d="m9 11 3 3 3-3"></path>
+            </svg>
           </Link>
         </div>
         <div className="flex gap-x-4">

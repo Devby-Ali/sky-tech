@@ -78,7 +78,7 @@ export default function Register() {
       {/* <Topbar /> */}
       <Navbar />
 
-      <section className="relative flex justify-center overflow-hidden mt-40">
+      <section className="relative flex justify-center overflow-hidden pt-40">
         <div className="flex flex-col items-center bg-gradient-to-tr from-lightishBlue-500/50 via-emerald-400/10 to-transparent backdrop-blur-[4px]  my-16 p-10 rounded-lg rounded-tl-4xl rounded-br-4xl w-[50rem] border-b-8 border-l-8 border-lightishBlue-500 shadow-lightishBlue-500 shadow-normal">
           <span className="block text-4xl text-zinc-600">ساخت حساب کاربری</span>
           <span className="block text-2xl text-zinc-500">
@@ -89,7 +89,7 @@ export default function Register() {
               قبلا ثبت‌نام کرده‌اید؟{" "}
             </span>
             <Button
-              className="bg-slate-400 text-white text-xl mr-3 rounded-md py-1 px-3 hover:bg-emerald-400"
+              className="bg-gray-400 text-white text-xl mr-3 rounded-md py-1 px-3 hover:bg-emerald-400"
               to="/login"
             >
               وارد شوید
