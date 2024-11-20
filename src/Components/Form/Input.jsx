@@ -50,8 +50,8 @@ export default function Input(props) {
       <input
         className={`${props.className} ${
           mainInput.isValid
-            ? "border-2 border-emerald-400"
-            : "border-2 border-red-500"
+            ? "text-green-500"
+            : "text-red-500"
         }`}
         type={props.type}
         placeholder={props.placeholder}

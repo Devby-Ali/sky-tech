@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Input from "../../Components/Form/Input";
-import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import Button from "../../Components/Form/Button";
 import {
@@ -12,15 +11,15 @@ import {
 import { useForm } from "../../hooks/useForm";
 import AuthContext from "../../context/authContext";
 // import Topbar from "../../Components/Topbar/Topbar";
-import { FaRegUser } from "react-icons/fa";
+import { HiOutlineUser } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
 import { FiUserPlus } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export default function Register() {
-
-  const authContext = useContext(AuthContext)
-  console.log(authContext)
+  const authContext = useContext(AuthContext);
+  console.log(authContext);
 
   const [formState, onInputHandler] = useForm(
     {
@@ -67,7 +66,7 @@ export default function Register() {
       .then((res) => res.json())
       .then((result) => {
         console.log(result.accessToken);
-        authContext.login(result.user, result.accessToken)
+        authContext.login(result.user, result.accessToken);
       });
 
     console.log("User Login");
@@ -76,114 +75,140 @@ export default function Register() {
   return (
     <>
       {/* <Topbar /> */}
-      <Navbar />
-
-      <section className="relative flex justify-center overflow-hidden pt-40">
-        <div className="flex flex-col items-center bg-gradient-to-tr from-lightishBlue-500/50 via-emerald-400/10 to-transparent backdrop-blur-[4px]  my-16 p-10 rounded-lg rounded-tl-4xl rounded-br-4xl w-[50rem] border-b-8 border-l-8 border-lightishBlue-500 shadow-lightishBlue-500 shadow-normal">
-          <span className="block text-4xl text-zinc-600">ساخت حساب کاربری</span>
-          <span className="block text-2xl text-zinc-500">
-            خوشحالیم قراره به جمع ما بپیوندی
-          </span>
-          <div className="bg-gray-100 my-6 rounded-md w-full flex-center py-6">
-            <span className="text-2xl text-zinc-500">
-              قبلا ثبت‌نام کرده‌اید؟{" "}
-            </span>
-            <Button
-              className="bg-gray-400 text-white text-xl mr-3 rounded-md py-1 px-3 hover:bg-emerald-400"
-              to="/login"
-            >
-              وارد شوید
-            </Button>
-          </div>
-          <form action="#" className="w-full">
-            <div className="relative">
-              <Input
-                id="name"
-                className="w-full py-3 px-4 shadow-normal my-2 rounded-md text-2xl outline-none"
-                type="text"
-                placeholder="نام مستعار"
-                validations={[
-                  requiredValidator(),
-                  minValidator(3),
-                  maxValidator(20),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <Input
-                id="username"
-                className="w-full py-3 px-4 shadow-normal my-2 rounded-md text-2xl outline-none"
-                type="text"
-                placeholder="نام کاربری"
-                validations={[
-                  requiredValidator(),
-                  minValidator(8),
-                  maxValidator(20),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <FaRegUser className="absolute left-6 top-7 text-4xl text-gray-300" />
+      {/* <Navbar /> */}
+      <section className="relative flex-center h-screen overflow-hidden">
+        <div className="container">
+          <div className="relative mx-auto flex flex-col items-center w-min">
+            <div className="flex items-center flex-col text-light-blue-600 font-MikhakWoff2one mb-12">
+              <Link
+                to={"/"}
+                className="text-7xl font-bold mb-4 tracking-tight"
+              >
+                اسکای لرن
+              </Link>
+              <span className="tracking-[0.5rem]">skylearn.com</span>
             </div>
-            <div className="relative">
-              <Input
-                id="email"
-                className="w-full py-3 px-4 shadow-normal my-2 rounded-md text-2xl outline-none"
-                type="email"
-                placeholder="آدرس ایمیل"
-                validations={[
-                  requiredValidator(),
-                  maxValidator(25),
-                  emailValidator(),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <FiMail className="absolute left-5 top-7 text-4xl text-gray-300" />
+            <div className="absolute top-7 -right-[7.5rem] text-light-blue-600">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="150"
+                height="150"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
+                viewBox="0 0 24 24"
+              >
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                <path d="m9 11 3 3 3-3"></path>
+              </svg>
             </div>
-            <div className="relative">
-              <Input
-                id="password"
-                className="w-full py-3 px-4 shadow-normal my-2 rounded-md text-2xl outline-none"
-                type="text"
-                placeholder="رمز عبور"
-                validations={[
-                  requiredValidator(),
-                  minValidator(8),
-                  maxValidator(18),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <BiLockOpenAlt className="absolute left-5 top-7 text-4xl text-gray-300" />
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-white/30 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+              <span className="block font-EstedadMedium text-4xl mb-9">
+                عضویت
+              </span>
+              <div className="flex-center text-[1.7rem] gap-x-2 mb-8">
+                <span>قبلا ثبت‌نام کرده‌اید؟ </span>
+                <Button
+                  className="font-EstedadBold text-light-blue-700 dark:text-light-blue-400"
+                  to="/login"
+                >
+                  وارد شوید
+                </Button>
+              </div>
+              <form action="#" className="w-full flex flex-col gap-y-8">
+                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="name"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="نام مستعار"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(3),
+                      maxValidator(20),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <HiOutlineUser className="w-10 h-10 opacity-50" />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="username"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="نام کاربری"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(8),
+                      maxValidator(20),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <span className="text-[2rem] opacity-50">@</span>
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="email"
+                    className="bg-transparent outline-none"
+                    type="email"
+                    placeholder="آدرس ایمیل"
+                    validations={[
+                      requiredValidator(),
+                      maxValidator(25),
+                      emailValidator(),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <FiMail className="w-9 h-9 opacity-50" />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="password"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="رمز عبور"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(8),
+                      maxValidator(18),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <BiLockOpenAlt className="w-10 h-10 opacity-50" />
+                </div>
+                <Button
+                  className={`h-20 rounded-4xl ${
+                    formState.isFormValid
+                      ? "bg-teal-400/40 hover:bg-teal-400/60"
+                      : "bg-[#333c4c]/50"
+                  }`}
+                  type="submit"
+                  onClick={registerUser}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto">ادامه</span>
+                </Button>
+              </form>
             </div>
-            <Button
-              className={`relative w-full border-none rounded-md py-3 mt-3 flex items-center ${
-                formState.isFormValid ? "bg-blue-500" : "bg-slate-500"
-              }`}
-              type="submit"
-              onClick={registerUser}
-              disabled={!formState.isFormValid}
-            >
-              <FiUserPlus className="absolute right-4 text-4xl text-white" />
-              <span className="text-white mx-auto">عضویت</span>
-            </Button>
-          </form>
-          <div className="mt-12 w-full text-xl text-zinc-500">
-            <span className="">سلام کاربر محترم:</span>
-            <ul className="mt-4 mr-8 list-disc">
-              <li className="">
-                لطفا از مرورگر های مطمئن و بروز مانند گوگل کروم و فایرفاکس
-                استفاده کنید.
-              </li>
-              <li className="">
-                ما هرگز اطلاعات محرمانه شمارا از طریق ایمیل درخواست نمیکنیم.
-              </li>
-              <li className="">
-                لطفا کلمه عبور خود را در فواصل زمانی کوتاه تغییر دهید.
-              </li>
-            </ul>
+            <p className="mt-12 font-EstedadMedium text-center text-darkColor dark:text-white text-[1.6rem]">
+              با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمات{" "}
+              <Button
+                to={"/"}
+                className="text-light-blue-700 dark:text-light-blue-400"
+              >
+                اسکای لرن
+              </Button>{" "}
+              را پذیرفته اید.
+            </p>
           </div>
         </div>
+        <div className="absolute top-0 -left-80 2xl:left-0 w-[340px] h-[340px] bg-yellow-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-0 -right-80 2xl:right-0 w-[340px] h-[340px] bg-light-blue-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
       </section>
-
-      <Footer />
     </>
   );
 }
