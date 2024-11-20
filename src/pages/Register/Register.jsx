@@ -88,7 +88,7 @@ export default function Register() {
               </Link>
               <span className="tracking-[0.5rem]">skylearn.com</span>
             </div>
-            <div className="absolute top-7 -right-[7.5rem] text-light-blue-600">
+            <div className="absolute top-20 -right-[7.5rem] text-light-blue-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="150"

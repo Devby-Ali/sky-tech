@@ -15,7 +15,7 @@ export default function Category() {
       {/* <Topbar /> */}
       <Navbar />
 
-      <section className="py-28">
+      <section className="py-44">
         <div className="container">
           <div className="flex justify-between items-center p-9 shadow-normal">
             <div className="flex items-center">

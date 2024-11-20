@@ -12,18 +12,16 @@ import {
 import { useForm } from "../../hooks/useForm";
 import AuthContext from "../../context/authContext";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 // import Topbar from "../../Components/Topbar/Topbar";
-import { FaRegUser } from "react-icons/fa";
 import { BiLockOpenAlt } from "react-icons/bi";
-import { FaSignInAlt } from "react-icons/fa";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const authContext = useContext(AuthContext);
-  const [isGoogleRecaptchaVerify, setIsGoogleRecaptchaVerify] = useState(false)
+  const [isGoogleRecaptchaVerify, setIsGoogleRecaptchaVerify] = useState(false);
 
   const [formState, onInputHandler] = useForm(
     {
@@ -86,114 +84,132 @@ export default function Login() {
   };
 
   const onChangeHandler = () => {
-    setIsGoogleRecaptchaVerify(true)
-  }
-
+    setIsGoogleRecaptchaVerify(true);
+  };
 
   return (
     <>
       {/* <Topbar /> */}
-      <Navbar />
+      {/* <Navbar /> */}
 
-      <section className="relative flex justify-center overflow-hidden pt-40">
-        <div className="flex flex-col items-center bg-gradient-to-tr from-lightishBlue-500/50 via-emerald-400/10 to-transparent backdrop-blur-[4px]  my-16 p-10 rounded-lg rounded-tl-4xl rounded-br-4xl w-[50rem] border-b-8 border-l-8 border-lightishBlue-500 shadow-lightishBlue-500 shadow-normal">
-          <span className="block text-4xl text-zinc-600">
-            ورود به حساب کاربری
-          </span>
-          <span className="block text-2xl text-zinc-500">
-            خوشحالیم دوباره میبینیمت دوست عزیز :)
-          </span>
-          <div className="bg-gray-100 my-6 rounded-md w-full flex-center py-6">
-            <span className="text-2xl text-zinc-500">حساب کاربری ندارید؟</span>
-            <Button
-              className="bg-gray-400 text-gray-600 text-xl mr-3 rounded-md py-1 px-3 hover:bg-emerald-400"
-              to="/register"
-            >
-              ثبت نام
-            </Button>
-          </div>
-          <form action="#" className="w-full">
-            <div className="relative">
-              <Input
-                id="username"
-                className="w-full py-3 px-4 shadow-normal my-2 rounded-md text-2xl outline-none"
-                type="text"
-                placeholder="نام کاربری یا آدرس ایمیل"
-                validations={[
-                  requiredValidator(),
-                  minValidator(8),
-                  maxValidator(20),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <FaRegUser className="absolute left-6 top-7 text-4xl text-gray-300" />
+      <section className="relative flex-center h-screen overflow-hidden">
+        <div className="container">
+          <div className="relative mx-auto flex flex-col items-center w-min">
+            <div className="flex items-center flex-col text-light-blue-600 font-MikhakWoff2one mb-12">
+              <Link to={"/"} className="text-7xl font-bold mb-4 tracking-tight">
+                اسکای لرن
+              </Link>
+              <span className="tracking-[0.5rem]">skylearn.com</span>
             </div>
-            <div className="relative">
-              <Input
-                id="password"
-                className="w-full py-3 px-4 shadow-normal my-2 rounded-md text-2xl outline-none"
-                type="text"
-                placeholder="رمز عبور"
-                validations={[
-                  requiredValidator(),
-                  minValidator(8),
-                  maxValidator(18),
-                ]}
-                onInputHandler={onInputHandler}
-              />
-              <BiLockOpenAlt className="absolute left-4.5 top-5 text-5xl text-gray-300" />
+            <div className="absolute top-20 -right-[7.5rem] text-light-blue-600">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="150"
+                height="150"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
+                viewBox="0 0 24 24"
+              >
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                <path d="m9 11 3 3 3-3"></path>
+              </svg>
             </div>
-            <div className="mt-2">
-            <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChangeHandler} />
-            </div>
-            <Button
-              className={`relative w-full border-none rounded-md py-3 mt-3 flex items-center ${
-                (formState.isFormValid && isGoogleRecaptchaVerify) ? "bg-blue-500" : "bg-slate-500"
-              }`}
-              type="submit"
-              onClick={userLogin}
-              disabled={(!formState.isFormValid || !isGoogleRecaptchaVerify)}
-            >
-              <FaSignInAlt className="absolute right-4 text-3xl text-white" />
-              <span className="text-white mx-auto">ورود</span>
-            </Button>
-            <div className="flex justify-between items-center my-4">
-              <label className="flex items-center">
-                <input className="ml-4" type="checkbox" />
-                <span className="text-2xl text-zinc-500">
-                  مرا به خاطر داشته باش
-                </span>
-              </label>
-              <label className="">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-white/30 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+              <span className="block font-EstedadMedium text-4xl mb-9">
+                ورود | login
+              </span>
+              <div className="flex-center text-[1.7rem] gap-x-2 mb-8">
+                <span>حساب کاربری ندارید؟</span>
                 <Button
-                  className="text-2xl text-zinc-500"
-                  href="#"
-                  onClick={userLogin}
+                  className="font-EstedadBold text-light-blue-700 dark:text-light-blue-400"
+                  to="/register"
                 >
-                  رمز عبور را فراموش کرده اید؟
+                  ثبت نام کنید
                 </Button>
-              </label>
+              </div>
+              <form action="#" className="w-full flex flex-col gap-y-8">
+                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="username"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="نام کاربری یا آدرس ایمیل"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(8),
+                      maxValidator(20),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <span className="text-[2rem] opacity-50">@</span>
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="password"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="رمز عبور"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(8),
+                      maxValidator(18),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <BiLockOpenAlt className="w-10 h-10 opacity-50" />
+                </div>
+                <div className="mt-2 opacity-40">
+                  <ReCAPTCHA
+                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                    onChange={onChangeHandler}
+                  />
+                </div>
+                <Button
+                  className={`h-20 rounded-4xl ${
+                    formState.isFormValid
+                      ? "bg-teal-400/40 hover:bg-teal-400/60"
+                      : "bg-[#333c4c]/50"
+                  }`}
+                  type="submit"
+                  onClick={userLogin}
+                  disabled={!formState.isFormValid || !isGoogleRecaptchaVerify}
+                >
+                  <span className="mx-auto">ورود</span>
+                </Button>
+                <div className="flex justify-between items-center my-3 opacity-60">
+                  <label className="flex items-center">
+                    <input className="ml-4" type="checkbox" />
+                    <span className="text-2xl">مرا به خاطر داشته باش</span>
+                  </label>
+                  <label className="">
+                    <Button className="text-2xl" href="#" onClick={userLogin}>
+                      رمز عبور را فراموش کرده اید؟
+                    </Button>
+                  </label>
+                </div>
+              </form>
             </div>
-          </form>
-          <div className="mt-12 w-full text-xl text-zinc-500">
-            <span className="">سلام کاربر محترم:</span>
-            <ul className="mt-4 mr-8 list-disc">
-              <li className="">
-                لطفا از مرورگر های مطمئن و بروز مانند گوگل کروم و فایرفاکس
-                استفاده کنید.
-              </li>
-              <li className="">
-                ما هرگز اطلاعات محرمانه شمارا از طریق ایمیل درخواست نمیکنیم.
-              </li>
-              <li className="">
-                لطفا کلمه عبور خود را در فواصل زمانی کوتاه تغییر دهید.
-              </li>
-            </ul>
+            <p className="mt-12 font-EstedadMedium text-center text-darkColor dark:text-white text-[1.6rem]">
+              با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمات{" "}
+              <Button
+                to={"/"}
+                className="text-light-blue-700 dark:text-light-blue-400"
+              >
+                اسکای لرن
+              </Button>{" "}
+              را پذیرفته اید.
+            </p>
           </div>
         </div>
+        <div className="absolute top-0 -left-80 2xl:left-0 w-[340px] h-[340px] bg-yellow-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-0 -right-80 2xl:right-0 w-[340px] h-[340px] bg-light-blue-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
       </section>
-
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
