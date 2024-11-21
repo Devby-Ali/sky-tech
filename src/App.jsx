@@ -64,7 +64,7 @@ export default function App() {
  
 
   return (
-    <div className="bg-blue-gray-100 dark:bg-[#111827] font-EstedadLight">
+    <>
       <AuthContext.Provider
         value={{
           isLoggedIn,
@@ -76,6 +76,6 @@ export default function App() {
       >
         {router}
       </AuthContext.Provider>
-    </div>
+    </>
   );
 }

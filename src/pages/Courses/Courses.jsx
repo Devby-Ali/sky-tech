@@ -1,32 +1,22 @@
 import React from "react";
 import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
-import Breadcrumb from "./../../Components/Breadcrumb/Breadcrumb";
 import Footer from "./../../Components/Footer/Footer";
 import CourseBox from "./../../Components/CourseBox/CourseBox";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 
 
 
 export default function Courses() {
   return (
     <>
-      <Topbar />
+      {/* <Topbar /> */}
       <Navbar />
 
-      <Breadcrumb
-        links={[
-          { id: 1, title: "خانه", to: "" },
-          {
-            id: 2,
-            title: "تمامی دوره ها",
-            to: "courses",
-          },
-        ]}
-      />
-
       {/* <!--------------------------------  Courses-Section  --------------------------------> */}
-      <section className="courses">
+      <section className="courses pt-48">
+        <SectionHeader title={"دوره ها"} titleValue={"۶۴ دوره ی آموزشی"} />
         <div className="container">
           <div className="courses-content">
             <div className="container">
