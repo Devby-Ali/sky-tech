@@ -33,7 +33,7 @@ export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHr
         ) : null}
         {titleValue ? (
           <div className="courses-header__left">
-            <p className="text-[1.7rem] sm:text-[2rem] text-[#64748b] -mt-11 sm:mt-0">
+            <p className="text-[1.7rem] sm:text-[2rem] text-[#64748b] -mt-14 sm:mt-0">
               {titleValue}
             </p>
           </div>
