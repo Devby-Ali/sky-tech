@@ -7,7 +7,7 @@ export default function LastArticles() {
     <section className="my-5">
       <div className="container">
         <SectionHeader
-          title="وبلاگ آموزشی اسکای لرن"
+          title="وبلاگ آموزشی SKY-Tech"
           desc="پیش به سوی ارتقای دانش"
           btnTitle="مشاهده همه مقالات"
         />

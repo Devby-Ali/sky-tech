@@ -32,7 +32,7 @@ export default function Footer() {
               </svg>
               </div>
               <span className="font-MikhakWoff2one text-5xl sm:text-6xl font-bold -mr-4">
-                SKYlearn
+                SKY Tech
               </span>
             </Link>
             <div className="flex gap-x-4 sm:gap-x-5">
@@ -69,7 +69,7 @@ export default function Footer() {
               <div className="text-3xl sm:text-4xl">
                 <HiOutlineEnvelope />
               </div>
-              info@cyan-academy.ir
+              info@SKY-Tech_academy.ir
             </a>
             <a
               href="https://t.me/sabzlearn_support"
@@ -78,14 +78,14 @@ export default function Footer() {
               <div className="text-3xl sm:text-4xl">
                 <LiaTelegram />
               </div>
-              cyan-academy_support@
+              SKY-Tech_academy_support@
             </a>
           </div>
         </div>
         <div className="flex items-start justify-between flex-wrap gap-5 sm:mb-14 text-3xl/10">
           <div>
             <span className="inline-block sm:text-4xl font-EstedadBold mb-3 sm:mb-6">
-              درباره cyan-academy
+              درباره SKY Tech
             </span>
             <p className="max-w-[60rem]"></p>
             <div className="md:w-[50rem] lg:w-auto">
@@ -139,8 +139,8 @@ export default function Footer() {
           </a>
         </div>
         <div className="flex items-center justify-center text-center sm:text-right sm:justify-between flex-wrap gap-y-2 gap-x-4 mt-8 sm:mt-10">
-          <span>کلیه حقوق مادی و معنوی سایت برای cyan-academy محفوظ است.</span>
-          <span>ساخته شده با ❤️ در cyan-academy</span>
+          <span>کلیه حقوق مادی و معنوی سایت برای SK-Tech academy محفوظ است.</span>
+          <span>ساخته شده با ❤️ در SKY-Tech</span>
         </div>
       </div>
     </footer>

@@ -21,7 +21,7 @@ export default function Landing() {
                     .start()
                     .pauseFor(2000)
                     .deleteAll()
-                    .typeString("Cyan - آکادمی خصوصی برنامه نویسی")
+                    .typeString("Sky Tech - آکادمی خصوصی برنامه نویسی")
                     .start()
                     .pauseFor(2000);
                 }}
@@ -31,7 +31,7 @@ export default function Landing() {
               />
             </h1>
             <h2 className="text-3xl">
-              با ساین آکادمی، برنامه نویسی رو با خیال راحت یاد بگیر و پیشرفت کن.
+              با اسکای آکادمی، برنامه نویسی تخصصی رو به صورت حرفه ای یاد بگیر .
             </h2>
             <div className="relative max-w-[700px] mt-16 sm:mt-24 lg:mt-16 xl:mt-20 mx-auto">
               <input
