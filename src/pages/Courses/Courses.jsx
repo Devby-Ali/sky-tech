@@ -34,7 +34,7 @@ export default function Courses() {
                     <input
                       type="text"
                       name="s"
-                      className="md:font-danaMedium tracking-tight placeholder-[#64748b] bg-transparent flex-grow"
+                      className="tracking-tight placeholder-[#64748b] bg-transparent flex-grow"
                       placeholder="جستجو بین دوره ها"
                     />
                     <button type="submit">
@@ -122,7 +122,7 @@ export default function Courses() {
                   <div className="text-5xl">
                     <HiArrowsUpDown />
                   </div>
-                  <span className="font-danaMedium">مرتب سازی بر اساس :</span>
+                  <span className="">مرتب سازی بر اساس :</span>
                 </div>
                 <div className="flex items-center gap-x-7 lg:gap-x-8 h-full">
                   <a
@@ -205,7 +205,7 @@ export default function Courses() {
                 </ul>
               </div>
               <div className="archive_empty flex items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed hidden">
-                <p className="text-lg md:text-xl text-center font-danaDemiBold text-[#64748b] dark:text-white mt-8 md:mt-12">
+                <p className="text-lg md:text-xl text-center  text-[#64748b] dark:text-white mt-8 md:mt-12">
                   متاسفانه دوره ای مطابق با جستجوی شما پیدا نشد ):
                 </p>
               </div>
