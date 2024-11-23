@@ -12,6 +12,7 @@ import {
   HiOutlineFunnel,
 } from "react-icons/hi2";
 import CourseBox from "../../Components/CourseBox/CourseBox";
+import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
 
 export default function Courses() {
   return (
@@ -29,7 +30,7 @@ export default function Courses() {
               {/* <!-- SearchBox --> */}
               <form id="archive_filters" className="space-y-9">
                 <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 mb-3">
-                  <div className="flex items-center justify-between gap-x-6 h-full text-[#64748b] dark:text-white text-[1.7rem]">
+                  <div className="flex items-center justify-between h-full text-[#64748b] dark:text-white text-[1.7rem]">
                     <input
                       type="text"
                       name="s"
@@ -51,7 +52,7 @@ export default function Courses() {
                     </span>
                     <label className="toggle">
                       <input
-                        className="w-7 h-7 opacity-60"
+                        className="w-7 h-7 opacity-60 mt-2"
                         type="checkbox"
                         name="only_free"
                         value="yes"
@@ -66,7 +67,7 @@ export default function Courses() {
                     </span>
                     <label className="toggle">
                       <input
-                        className="w-7 h-7 opacity-60"
+                        className="w-7 h-7 opacity-60 mt-2"
                         type="checkbox"
                         name="presell"
                         value="yes"
@@ -81,7 +82,7 @@ export default function Courses() {
                     </span>
                     <label className="toggle">
                       <input
-                        className="w-7 h-7 opacity-60"
+                        className="w-7 h-7 opacity-60 mt-2"
                         type="checkbox"
                         name="enrolled"
                         value="yes"
@@ -89,127 +90,7 @@ export default function Courses() {
                     </label>
                   </div>
                 </div>
-                {/* <!-- Category Filter --> */}
-                <div
-                  className="bg-white dark:bg-darkBox rounded-[1.2rem] p-5 hidden md:block overflow-hidden"
-                  id="category-collapse"
-                >
-                  <div className="flex items-center justify-between mb-5 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10">
-                    <div className="flex items-center gap-x-2 font-EstedadMedium text-[1.7rem]">
-                      <div className="">
-                        <HiOutlineFolderOpen />
-                      </div>
-                      دسته بندی دوره ها{" "}
-                    </div>
-                    <button
-                      type="button"
-                      data-collapse="#category-collapse"
-                      data-height="h-17"
-                    >
-                      <div className="w-5.5 h-5.5 rotate-180">
-                        <HiChevronDown />
-                      </div>
-                    </button>
-                  </div>
-                  <div className="space-y-4.5">
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[4]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        فرانت اند
-                      </span>
-                    </label>
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[49]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        ارتقای مهارت ها
-                      </span>
-                    </label>
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[6]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        بک اند
-                      </span>
-                    </label>
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[8]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        امنیت
-                      </span>
-                    </label>
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[7]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        پایتون
-                      </span>
-                    </label>
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[9]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        مهارت های نرم
-                      </span>
-                    </label>
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[50]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        پی اچ پی
-                      </span>
-                    </label>
-                    <label className="checkbox">
-                      <input
-                        className="checkbox__input"
-                        name="category[14]"
-                        value="yes"
-                        type="checkbox"
-                      />
-                      <span className="checkbox__marker"></span>
-                      <span className="text-sm font-danaMedium select-none">
-                        هوش مصنوعی
-                      </span>
-                    </label>
-                  </div>
-                </div>
+                <CoursesFilter />
               </form>
             </aside>
             {/* <!-- Content --> */}
