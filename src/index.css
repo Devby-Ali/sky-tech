@@ -200,6 +200,13 @@ i {
   .shadowLightBlue {
     box-shadow: 3px 0 8px 1px #039be5;
   }
+
+  .sort-btn--active {
+    color: #ad7ffd;
+    border-top: 2px solid #ad7ffd;
+    border-bottom: 2px solid #ad7ffd;
+    padding: 1.6rem 0;
+  }
 }
 
 

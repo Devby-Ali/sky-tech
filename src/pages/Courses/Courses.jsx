@@ -29,7 +29,7 @@ export default function Courses() {
             <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
               {/* <!-- SearchBox --> */}
               <form id="archive_filters" className="space-y-9">
-                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 mb-3">
+                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8">
                   <div className="flex items-center justify-between h-full text-[#64748b] dark:text-white text-[1.7rem]">
                     <input
                       type="text"
@@ -45,7 +45,7 @@ export default function Courses() {
                   </div>
                 </div>
                 {/* <!-- Toggle Box Container --> */}
-                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 mb-3 hidden md:block">
+                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 hidden md:block">
                   <div className="flex items-center justify-between h-full">
                     <span className="font-EstedadMedium text-[1.7rem]">
                       فقط دوره های رایگان
@@ -60,7 +60,7 @@ export default function Courses() {
                     </label>
                   </div>
                 </div>
-                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 mb-3 hidden md:block">
+                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 hidden md:block">
                   <div className="flex items-center justify-between h-full">
                     <span className="font-EstedadMedium text-[1.7rem]">
                       در حال پیش فروش
@@ -75,7 +75,7 @@ export default function Courses() {
                     </label>
                   </div>
                 </div>
-                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 mb-3 hidden md:block">
+                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8 hidden md:block">
                   <div className="flex items-center justify-between h-full">
                     <span className="font-EstedadMedium text-[1.7rem]">
                       دوره ها خریداری شده
@@ -96,7 +96,7 @@ export default function Courses() {
             {/* <!-- Content --> */}
             <section className="col-span-full lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
               {/* <!-- Sort & Filter in Mobile Size --> */}
-              <div className="flex md:hidden items-center gap-8 mb-14">
+              <div className="flex md:hidden items-center gap-8 mb-14 -mt-6">
                 <div
                   className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-3xl w-1/2"
                   id="filter-btn"
@@ -117,14 +117,14 @@ export default function Courses() {
                 </div>
               </div>
               {/* <!-- Course Sort --> */}
-              <div className="hidden md:flex items-center gap-x-6 px-5 mb-8 h-16 bg-white dark:bg-darkBox shadow-normal dark:shadow-none rounded-[1.2rem]">
+              <div className="hidden md:flex items-center gap-x-6 h-[6.3rem] bg-white dark:bg-darkBox shadow-normal dark:shadow-none rounded-[1.2rem] px-7 md:px-8 mt-4 lg:mt-0 mb-16 lg:mb-11">
                 <div className="flex items-center shrink-0 gap-x-2">
-                  <div className="w-7 h-7">
+                  <div className="text-5xl">
                     <HiArrowsUpDown />
                   </div>
                   <span className="font-danaMedium">مرتب سازی بر اساس :</span>
                 </div>
-                <div className="flex gap-x-5 lg:gap-x-8 h-full">
+                <div className="flex items-center gap-x-7 lg:gap-x-8 h-full">
                   <a
                     href="javascript:setArchiveSort('default', 'همه دوره ها')"
                     data-id="default"

@@ -32,7 +32,7 @@ export default function Footer() {
               </svg>
               </div>
               <span className="font-MikhakWoff2one text-5xl sm:text-6xl font-bold -mr-4">
-                SKY Tech
+                SKYTech
               </span>
             </Link>
             <div className="flex gap-x-4 sm:gap-x-5">
