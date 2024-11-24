@@ -212,7 +212,7 @@ i {
     background-color: #1e83f0;
   }
   .courses-top-bar__selection-item--active {
-    background-color: #ddd !important;
+    color: #039be5 !important;
   }
 
   .courses__pagination-link--active {
