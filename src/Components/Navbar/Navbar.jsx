@@ -207,7 +207,7 @@ export default function Navbar() {
           <form action="https://" method="get">
             <label className="relative py-5 mt-10 block bg-gray-100 text-gray-700 dark:bg-white/5 dark:text-white text-2xl rounded-tl-4xl rounded-br-4xl">
               <input
-                className=" font-danaMedium bg-transparent pr-4 pl-12 w-72 h-full outline-none"
+                className="bg-transparent pr-4 pl-12 w-72 h-full outline-none"
                 type="text"
                 placeholder="چیو میخوای یاد بگیری؟"
                 name="s"

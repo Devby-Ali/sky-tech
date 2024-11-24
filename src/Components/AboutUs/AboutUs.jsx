@@ -12,7 +12,7 @@ export default function AboutUs() {
       <div className="container">
         <SectionHeader
           title="ما چه کمکی بهتون میکنیم؟"
-          desc="از اونجایی که آکادمی آموزشی سبزلرن یک آکادمی خصوصی هست"
+          desc="از اونجایی که آکادمی آموزشی اسکای تک یک آکادمی خصوصی هست"
         />
 
         <div className="grid grid-rows-2 md:grid-cols-2 gap-8 sm:gap-10 cursor-default">

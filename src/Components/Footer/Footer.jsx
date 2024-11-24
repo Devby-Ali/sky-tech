@@ -63,7 +63,7 @@ export default function Footer() {
               0211234567
             </a>
             <a
-              href="mailto:info@sabzlearn.ir"
+              href="mailto:info@skytech.ir"
               className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
@@ -72,7 +72,7 @@ export default function Footer() {
               info@SKY-Tech_academy.ir
             </a>
             <a
-              href="https://t.me/sabzlearn_support"
+              href="https://t.me/skytech_support"
               className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
@@ -91,7 +91,7 @@ export default function Footer() {
             <div className="md:w-[50rem] lg:w-auto">
               <p className="max-w-[40rem] text-2xl sm:text-[1.65rem] leading-relaxed">
                 شروع هرچیزی سخته، ولی وقتی مسیر درستی رو انتخاب کنی، با خیال
-                راحت و بدون استرس میتونی از مسیر لذت ببری. ما در سبزلرن، توی سفر
+                راحت و بدون استرس میتونی از مسیر لذت ببری. ما در آکادمی اسکای, توی سفر
                 به دنیای برنامه نویسی کنارت هستیم تا باهم رشد کنیم و از نتیجه
                 زحمات مون لذت ببریم.
               </p>
@@ -103,14 +103,14 @@ export default function Footer() {
                 دوره های پرطرفدار
               </span>
               <div className="flex flex-col items-start gap-y-5 sm:gap-y-8 text-2xl sm:text-[1.65rem  ]">
-                <a href="https://sabzlearn.ir/course/python/">آموزش پایتون</a>
-                <a href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
+                <a href="">آموزش پایتون</a>
+                <a href="">
                   آموزش جاوااسکریپت
                 </a>
-                <a href="https://sabzlearn.ir/course/html-tutorial/">
+                <a href="">
                   آموزش Html
                 </a>
-                <a href="https://sabzlearn.ir/course/css-tutorial/">
+                <a href="">
                   آموزش Css
                 </a>
               </div>
@@ -120,13 +120,13 @@ export default function Footer() {
                 دسترسی سریع
               </span>
               <div className="flex flex-col items-start gap-y-5 sm:gap-y-8 text-2xl sm:text-[1.65rem  ]">
-                <a href="https://sabzlearn.ir/terms-conditions/">
+                <a href="">
                   قوانین و مقررات
                 </a>
-                <a href="https://sabzlearn.ir/my-account/tickets/">
+                <a href="">
                   ارسال تیکت
                 </a>
-                <a href="https://sabzlearn.ir/courses/">همه دوره ها</a>
+                <a href="">همه دوره ها</a>
               </div>
             </div>
           </div>

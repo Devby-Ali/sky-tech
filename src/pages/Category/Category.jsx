@@ -15,39 +15,39 @@ export default function Category() {
       {/* <Topbar /> */}
       <Navbar />
 
-      <section className="py-44">
+      <section className="pt-56">
         <div className="container">
-          <div className="flex justify-between items-center p-9 shadow-normal">
+          <div className="flex justify-between items-center p-9 shadow-normal text-darkBox dark:text-white bg-white dark:bg-darkBox rounded-2xl mb-12">
             <div className="flex items-center">
-              <div className="courses-top-bar__row-btn py-3 px-4 flex-center w-16 h-14 rounded-md text-black cursor-pointer border border-slate-300 ml-4 courses-top-bar__icon--active">
+              <div className="courses-top-bar__row-btn py-3 px-4 flex-center w-16 h-14 rounded-md text-black cursor-pointer border border-gray-500 ml-4 courses-top-bar__icon--active">
                 <TbBorderAll />
               </div>
-              <div className="courses-top-bar__column-btn py-3 px-4 flex-center w-16 h-14 rounded-md text-black cursor-pointer border border-slate-300 ml-4">
+              <div className="courses-top-bar__column-btn py-3 px-4 flex-center w-16 h-14 rounded-md text-darkColor dark:text-white cursor-pointer border border-gray-500 ml-4">
                 <FaAlignLeft />
               </div>
 
               <div className="courses-top-bar__selection relative cursor-pointer">
-                <span className="courses-top-bar__selection-title flex items-center h-14 rounded-md py-3 px-8 border border-slate-400 text-zinc-500 transition-all hover:bg-lightishBlue-500 hover:text-white">
+                <span className="courses-top-bar__selection-title flex items-center h-14 rounded-md py-3 px-8 border border-gray-500 text-zinc-500 transition-all hover:bg-lightishBlue-500 hover:text-white">
                   مرتب سازی پیش فرض
                   <GoTriangleDown className="mr-2" />
                 </span>
-                <ul className="courses-top-bar__selection-list absolute shadow-normal bg-slate-200 w-full py-3 z-50 transition-all">
-                  <li className="text-zinc-500 text-xl py-4 px-5 transition-all hover:bg-white courses-top-bar__selection-item--active">
+                <ul className="courses-top-bar__selection-list absolute shadow-normal bg-gray-300 dark:bg[#333c4c] w-full py-3 z-50 transition-all">
+                  <li className="text-darkColor/90 text-xl py-4 px-5 transition-all hover:bg-white courses-top-bar__selection-item--active">
                     مرتب سازی پیش فرض
                   </li>
-                  <li className="text-zinc-500 text-xl py-4 px-5 transition-all hover:bg-white">
+                  <li className="text-darkColor/90 text-xl py-4 px-5 transition-all hover:bg-white">
                     مرتب سازی بر اساس محبوبیت
                   </li>
-                  <li className="text-zinc-500 text-xl py-4 px-5 transition-all hover:bg-white">
+                  <li className="text-darkColor/90 text-xl py-4 px-5 transition-all hover:bg-white">
                     مرتب سازی بر اساس امتیاز
                   </li>
-                  <li className="text-zinc-500 text-xl py-4 px-5 transition-all hover:bg-white">
+                  <li className="text-darkColor/90 text-xl py-4 px-5 transition-all hover:bg-white">
                     مرتب سازی بر اساس آخرین
                   </li>
-                  <li className="text-zinc-500 text-xl py-4 px-5 transition-all hover:bg-white">
+                  <li className="text-darkColor/90 text-xl py-4 px-5 transition-all hover:bg-white">
                     مرتب سازی بر اساس ارزان ترین
                   </li>
-                  <li className="text-zinc-500 text-xl py-4 px-5 transition-all hover:bg-white">
+                  <li className="text-darkColor/90 text-xl py-4 px-5 transition-all hover:bg-white">
                     مرتب سازی بر اساس گران ترین
                   </li>
                 </ul>
@@ -58,21 +58,20 @@ export default function Category() {
               <form action="#" className="relative w-96">
                 <input
                   type="text"
-                  className="text-2xl w-full border border-slate-400 py-3 pr-6 pl-16 rounded-md"
+                  className="text-2xl w-full border border-gray-500 bg-transparent py-3 pr-6 pl-16 rounded-md"
                   placeholder="جستجوی دوره ..."
                 />
-                <FaSearch className="absolute left-4 top-4 text-3xl text-zinc-500 cursor-pointer" />
+                <FaSearch className="absolute left-4 top-4 text-3xl text-darkColor/90 dark:text-white/70 cursor-pointer" />
               </form>
             </div>
           </div>
 
           <div className="courses-content">
-            <div className="container">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 md:gap-5">
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-11">
+              <CourseBox />
+              <CourseBox />
+              <CourseBox />
+              <CourseBox />
             </div>
           </div>
 

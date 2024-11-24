@@ -13,6 +13,7 @@ import {
 } from "react-icons/hi2";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
+import Pagination from "../../Components/Pagination/Pagination";
 
 export default function Courses() {
   return (
@@ -168,43 +169,8 @@ export default function Courses() {
                 <CourseBox />
               </div>
               {/* <!-- Show more Button --> */}
-              <div className="my-12">
-                <ul className="flex-center">
-                  <li className="courses__pagination-item">
-                    <a
-                      href="#"
-                      className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500"
-                    >
-                      <HiChevronRight />
-                    </a>
-                  </li>
-                  <li className="courses__pagination-item">
-                    <a
-                      href="#"
-                      className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500 courses__pagination-link--active"
-                    >
-                      1
-                    </a>
-                  </li>
-                  <li className="courses__pagination-item">
-                    <a
-                      href="#"
-                      className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500"
-                    >
-                      2
-                    </a>
-                  </li>
-                  <li className="courses__pagination-item">
-                    <a
-                      href="#"
-                      className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500"
-                    >
-                      3
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="archive_empty flex items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed hidden">
+              <Pagination />
+              <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed hidden">
                 <p className="text-lg md:text-xl text-center  text-[#64748b] dark:text-white mt-8 md:mt-12">
                   متاسفانه دوره ای مطابق با جستجوی شما پیدا نشد ):
                 </p>
@@ -217,58 +183,4 @@ export default function Courses() {
       <Footer />
     </>
   );
-}
-
-{
-  /* <section className="courses">
-<div className="courses-content">
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 md:gap-5">
-    <CourseBoxOnFilter />
-    <CourseBoxOnFilter />
-    <CourseBoxOnFilter />
-    <CourseBoxOnFilter />
-    <CourseBoxOnFilter />
-    <CourseBoxOnFilter />
-    <CourseBoxOnFilter />
-    <CourseBoxOnFilter />
-  </div>
-</div>
-
-<div className="my-12">
-  <ul className="flex-center">
-    <li className="courses__pagination-item">
-      <a
-        href="#"
-        className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500"
-      >
-        <FaLongArrowAltRight />
-      </a>
-    </li>
-    <li className="courses__pagination-item">
-      <a
-        href="#"
-        className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500 courses__pagination-link--active"
-      >
-        1
-      </a>
-    </li>
-    <li className="courses__pagination-item">
-      <a
-        href="#"
-        className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500"
-      >
-        2
-      </a>
-    </li>
-    <li className="courses__pagination-item">
-      <a
-        href="#"
-        className="courses__pagination-link rounded-lg w-16 h-16 flex-center text-2xl mx-2 bg-slate-200 hover:text-white hover:bg-lightishBlue-500"
-      >
-        3
-      </a>
-    </li>
-  </ul>
-</div>
-</section> */
 }

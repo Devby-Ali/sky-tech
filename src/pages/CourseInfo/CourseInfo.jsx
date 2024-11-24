@@ -12,10 +12,7 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
-import {
-  HiOutlineArrowUturnLeft,
-  HiOutlineDocumentText,
-} from "react-icons/hi2";
+import { HiOutlineDocumentText } from "react-icons/hi2";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { PiBriefcase, PiStarBold } from "react-icons/pi";
 import { LiaUserSolid } from "react-icons/lia";
@@ -28,11 +25,7 @@ import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { PiPlayBold } from "react-icons/pi";
 import { FaRegObjectGroup } from "react-icons/fa";
-import { BiSolidLeftArrow, BiUserCircle } from "react-icons/bi";
-import { PiChats } from "react-icons/pi";
-import { PiChatCenteredTextLight } from "react-icons/pi";
-import { BsExclamationTriangle } from "react-icons/bs";
-import { RiGraduationCapFill } from "react-icons/ri";
+import { BiSolidLeftArrow } from "react-icons/bi";
 
 function Icon({ id, open }) {
   return (
@@ -47,6 +40,7 @@ function Icon({ id, open }) {
 }
 
 export default function CourseInfo() {
+  
   const [open, setOpen] = useState(0);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
@@ -58,8 +52,6 @@ export default function CourseInfo() {
 
   const { courseName } = useParams();
 
-
-
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/${courseName}`, {
       method: "POST",
@@ -69,7 +61,7 @@ export default function CourseInfo() {
         }`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => console.log(res.json()))
       .then((courseInfo) => {
         console.log(courseInfo);
         setComments(courseInfo.comments);
@@ -82,7 +74,7 @@ export default function CourseInfo() {
     <>
       {/* <Topbar /> */}
       <Navbar />
-      <main className="max-w-[1920px] mx-auto overflow-x-hidden">
+      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-44 lg:pt-52 2xl:pt-56">
         <div className="container">
           <Breadcrumb
             links={[
@@ -334,7 +326,9 @@ export default function CourseInfo() {
                         های سراسر دنیا تبادل اطلاعات و تجربه داشته باشن.
                       </li>
                     </ol>
-                    <h2 id="h_4">چرا اسکای لرن بهترین گزینه برای یادگیری هست؟</h2>
+                    <h2 id="h_4">
+                      چرا اسکای لرن بهترین گزینه برای یادگیری هست؟
+                    </h2>
                     <p>
                       حتما برای شما هم پیش اومده که گاهی فرصت ها و پروژه های
                       بزرگ رو از دست میدید فقط به خاطر اینکه در ظاهر فکر میکنید
@@ -344,11 +338,11 @@ export default function CourseInfo() {
                       فریم ورک ها، کتابخانه ها و …
                     </p>
                     <p>
-                      تفاوت اسکای لرن در همین هست که علاوه بر دوره های آموزشی اصلی،
-                      مجموعه ای از دوره های مکمل فوق العاده هم برای دانشجوهای
-                      خودش تدارک میبینه ( اکثرا رایگان! ) تا مطمئن بشه فاصله شون
-                      با تسلط کامل و کسب درآمدهای بالا فقط و فقط اراده و جدیت
-                      اون ها باشه نه مسائل فنی!
+                      تفاوت اسکای لرن در همین هست که علاوه بر دوره های آموزشی
+                      اصلی، مجموعه ای از دوره های مکمل فوق العاده هم برای
+                      دانشجوهای خودش تدارک میبینه ( اکثرا رایگان! ) تا مطمئن بشه
+                      فاصله شون با تسلط کامل و کسب درآمدهای بالا فقط و فقط اراده
+                      و جدیت اون ها باشه نه مسائل فنی!
                     </p>
                     <p>
                       این دوره با محتوای جذاب و مفید خودش میتونه به شما کمک کنه
@@ -414,11 +408,9 @@ export default function CourseInfo() {
                       مسلط نباشید، دیدن این دوره هم کمکی به شما نخواهد کرد.
                     </p>
                     <p>
-                      حتما میدونید که یاد گرفتن پیش نیازی که اشاره شد، در اسکای لرن
-                      کاملا رایگان هست دیگه ؟؟؟!{" "}
-                      <Button href="">
-                        این هم لینک دوره ش…
-                      </Button>
+                      حتما میدونید که یاد گرفتن پیش نیازی که اشاره شد، در اسکای
+                      لرن کاملا رایگان هست دیگه ؟؟؟!{" "}
+                      <Button href="">این هم لینک دوره ش…</Button>
                     </p>
                     <h2 id="h_7">وقتی این دوره رو دیدم قدم بعدیم چیه؟</h2>
                     <p>
@@ -452,8 +444,8 @@ export default function CourseInfo() {
                       </li>
                     </ol>
                     <p>
-                      دو مورد اینها بر عهده شماست و دو مورد هم بر عهده اسکای لرن.
-                      ما به شما قول میدیم این آموزش رو با بالاترین کیفیت و
+                      دو مورد اینها بر عهده شماست و دو مورد هم بر عهده اسکای
+                      لرن. ما به شما قول میدیم این آموزش رو با بالاترین کیفیت و
                       موثرترین پشتیبانی در اختیار شما قرار بدیم. شما قول می دید
                       که با علاقه و پشتکار تمام تمرینات رو انجام بدید تا به
                       نتیجه برسید؟!
@@ -631,10 +623,7 @@ export default function CourseInfo() {
                         src="/images/courses/jango.png"
                         alt="آموزش ۲۰ کتابخانه کاربردی ReactJS برای بازارکار"
                       />
-                      <a
-                        href=""
-                        className="font-danaMedium line-clamp-2"
-                      >
+                      <a href="" className="line-clamp-2">
                         آموزش ۲۰ کتابخانه کاربردی ReactJS برای بازارکار
                       </a>
                     </div>
@@ -655,10 +644,7 @@ export default function CourseInfo() {
                         src="/images/courses/js_project.png"
                         alt="آموزش git و github"
                       />
-                      <a
-                        href=""
-                        className="font-danaMedium line-clamp-2"
-                      >
+                      <a href="" className="line-clamp-2">
                         آموزش git و github
                       </a>
                     </div>
@@ -679,10 +665,7 @@ export default function CourseInfo() {
                         src="/images/courses/nodejs.png"
                         alt="پروژه های خلاقانه با جاوااسکریپت"
                       />
-                      <a
-                        href=""
-                        className="font-danaMedium line-clamp-2"
-                      >
+                      <a href="" className="line-clamp-2">
                         پروژه های خلاقانه با جاوااسکریپت
                       </a>
                     </div>
@@ -703,10 +686,7 @@ export default function CourseInfo() {
                         src="/images/courses/python.png"
                         alt="آموزش اصولی RegEX برای تمام برنامه نویسان"
                       />
-                      <a
-                        href=""
-                        className="font-danaMedium line-clamp-2"
-                      >
+                      <a href="" className="line-clamp-2">
                         آموزش اصولی RegEX برای تمام برنامه نویسان
                       </a>
                     </div>
@@ -723,7 +703,7 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Comments --> */}
-             <CommentsTextArea />
+              <CommentsTextArea />
             </div>
             <aside className="col-span-12 lg:col-span-4 space-y-12">
               {/* <!-- Students & Rating & Progress --> */}
@@ -782,7 +762,7 @@ export default function CourseInfo() {
               </div>
               {/* <!-- Course Short Link --> */}
               <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7 text-center">
-                <span className="font-danaDemiBold text-lg">
+                <span className="font-EstedadMedium text-2xl">
                   لینک کوتاه آموزش
                 </span>
                 <div className="flex items-center justify-between gap-x-3 p-4 mt-7 bg-sky-50 dark:bg-sky-500/10 text-sky-500 border border-dashed border-sky-500 rounded-lg">

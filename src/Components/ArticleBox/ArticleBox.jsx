@@ -11,7 +11,7 @@ export default function ArticleBox({ title, desc, cover }) {
         <img
           src={cover}
           className="block w-full h-full object-cover"
-          alt="برنامه‌ نویسی به عنوان شغل دوم: مزایا و چالش‌ها"
+          alt="Article-Image"
           loading="lazy"
         />
         <div className="absolute bottom-0 right-0 left-0 h-44 bg-gradient-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-40% to-white/0 dark:to-darkBox/0 to-100%"></div>

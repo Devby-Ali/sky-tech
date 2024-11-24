@@ -78,7 +78,7 @@ export default function CourseBox() {
               <span className="text-xl text-blue-gray-600 dark:text-white/70 -mb-1.5 line-through">
                 2,300,000
               </span>
-              <span className="flex gap-x-1 text-green-500 font-danaDemiBold text-2xl">
+              <span className="flex gap-x-1 text-green-500 font-EstedadMedium text-2xl">
                 1,840,000
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
