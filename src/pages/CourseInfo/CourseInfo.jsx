@@ -53,15 +53,8 @@ export default function CourseInfo() {
   const { courseName } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses/${courseName}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
-        }`,
-      },
-    })
-      .then((res) => console.log(res.json()))
+    fetch(`http://localhost:4000/v1/courses/${courseName}`)
+      .then((res) => res.json())
       .then((courseInfo) => {
         console.log(courseInfo);
         setComments(courseInfo.comments);

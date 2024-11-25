@@ -37,7 +37,6 @@ export default function Navbar() {
     fetch(`http://localhost:4000/v1/menus`)
       .then((res) => res.json())
       .then((menus) => {
-        console.log(menus);
         setAllMenus(menus);
       });
   }, []);
@@ -223,12 +222,6 @@ export default function Navbar() {
               </button>
             </label>
           </form>
-
-          {/* <div className="flex text-xl items-center bg-orange-200/20 text-amber-200 mb-4 pr-2.5 rounded-md">
-            <a onClick={navOpenHandler} className="flex items-center gap-x-2 text-gray-700">
-              خانه
-            </a>
-          </div> */}
 
           <ul className="child:transition-all child:pr-2.5 space-y-12 mt-12 text-darkColor dark:text-white ">
             {allMenus.map((menu) => (

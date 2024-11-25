@@ -4,7 +4,7 @@ import Navbar from "./../../Components/Navbar/Navbar";
 import Footer from "./../../Components/Footer/Footer";
 import Breadcrumb from "./../../Components/Breadcrumb/Breadcrumb";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
-import { LiaUser, LiaUserSolid } from "react-icons/lia";
+import { LiaUser } from "react-icons/lia";
 import {
   HiBars4,
   HiBookOpen,
@@ -15,8 +15,6 @@ import {
   HiOutlineClipboardDocument,
   HiShare,
 } from "react-icons/hi2";
-import { PiChatCenteredTextLight, PiChats } from "react-icons/pi";
-import { BsExclamationTriangle } from "react-icons/bs";
 
 export default function ArticleInfo() {
   return (
@@ -189,7 +187,7 @@ export default function ArticleInfo() {
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 relative pb-10 sm:pb-12">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <div className="hidden md:block text-6xl text-light-blue-700 dark:text-light-blue-600">
-                  <HiBookOpen />
+                    <HiBookOpen />
                   </div>
                   <h1 className="font-EstedadBold text-3xl md:text-4xl">
                     پیشنهاد مطالعه
@@ -287,9 +285,7 @@ export default function ArticleInfo() {
               {/* <!-- Sidebar --> */}
               <aside className="col-span-full lg:col-span-4 xl:col-span-3 space-y-8">
                 {/* <!-- Course Short Link --> */}
-                <div
-                  className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12"
-                >
+                <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                   <div className="flex items-center justify-between mb-8 pb-8 border-b border-b-gray-300 dark:border-b-white/10">
                     <div className="flex items-center gap-x-3 font-EstedadMedium">
                       <div className="text-5xl">

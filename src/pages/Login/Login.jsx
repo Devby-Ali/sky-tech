@@ -18,6 +18,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { BiLockOpenAlt } from "react-icons/bi";
 
 export default function Login() {
+  
   const navigate = useNavigate();
 
   const authContext = useContext(AuthContext);
