@@ -5,10 +5,7 @@ import Footer from "./../../Components/Footer/Footer";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import {
   HiArrowsUpDown,
-  HiChevronDown,
-  HiChevronRight,
   HiMagnifyingGlass,
-  HiOutlineFolderOpen,
   HiOutlineFunnel,
 } from "react-icons/hi2";
 import CourseBox from "../../Components/CourseBox/CourseBox";

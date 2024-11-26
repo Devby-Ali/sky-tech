@@ -15,13 +15,13 @@ export default function App() {
     setIsLoggedIn(true);
     setUserInfos(userInfos);
     localStorage.setItem("user", JSON.stringify({ token }));
-  }, [])
+  }, []);
 
   const logout = useCallback(() => {
     setToken(null);
     setUserInfos({});
     localStorage.removeItem("user");
-  }, [])
+  }, []);
 
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
@@ -34,6 +34,7 @@ export default function App() {
       })
         .then((res) => res.json())
         .then((userData) => {
+          console.log(userData)
           setIsLoggedIn(true);
           setUserInfos(userData);
         });
@@ -59,9 +60,6 @@ export default function App() {
       document.documentElement.classList.remove("dark");
     }
   }, []);
-
-
- 
 
   return (
     <>

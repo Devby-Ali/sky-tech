@@ -49,11 +49,11 @@ export default function Register() {
     event.preventDefault();
 
     const newUserInfo = {
-      name: formState.inputs.name.value,
       username: formState.inputs.username.value,
       email: formState.inputs.email.value,
       password: formState.inputs.password.value,
       confirmPassword: formState.inputs.password.value,
+      name: formState.inputs.name.value,
     };
 
     fetch(`http://localhost:4000/v1/auth/register`, {
@@ -106,7 +106,7 @@ export default function Register() {
                 <path d="m9 11 3 3 3-3"></path>
               </svg>
             </div>
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-white/30 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-green-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
               <span className="block font-EstedadMedium text-4xl mb-9">
                 عضویت
               </span>
@@ -120,7 +120,7 @@ export default function Register() {
                 </Button>
               </div>
               <form action="#" className="w-full flex flex-col gap-y-8">
-                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="name"
                     className="bg-transparent outline-none"
@@ -135,7 +135,7 @@ export default function Register() {
                   />
                   <HiOutlineUser className="w-10 h-10 opacity-50" />
                 </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="username"
                     className="bg-transparent outline-none"
@@ -150,7 +150,7 @@ export default function Register() {
                   />
                   <span className="text-[2rem] opacity-50">@</span>
                 </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="email"
                     className="bg-transparent outline-none"
@@ -165,7 +165,7 @@ export default function Register() {
                   />
                   <FiMail className="w-9 h-9 opacity-50" />
                 </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-[#333c4c] rounded-2xl">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="password"
                     className="bg-transparent outline-none"
@@ -184,7 +184,7 @@ export default function Register() {
                   className={`h-20 rounded-4xl ${
                     formState.isFormValid
                       ? "bg-teal-400/40 hover:bg-teal-400/60"
-                      : "bg-[#333c4c]/50"
+                      : "bg-[#333c4c]/30"
                   }`}
                   type="submit"
                   onClick={registerUser}
