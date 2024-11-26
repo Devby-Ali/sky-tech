@@ -173,7 +173,7 @@ export default function Login() {
                 <Button
                   className={`h-20 rounded-4xl ${
                     formState.isFormValid
-                      ? "bg-teal-400/40 hover:bg-teal-400/60"
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                       : "bg-[#333c4c]/30"
                   }`}
                   type="submit"
@@ -184,11 +184,11 @@ export default function Login() {
                 </Button>
                 <div className="flex justify-between items-center my-3 opacity-60">
                   <label className="flex items-center">
-                    <input className="ml-4" type="checkbox" />
-                    <span className="text-2xl">مرا به خاطر داشته باش</span>
+                    <input className="ml-3" type="checkbox" />
+                    <span className="text-lg sm:text-xl lg:text-2xl">مرا به خاطر داشته باش</span>
                   </label>
                   <label className="">
-                    <Button className="text-2xl" href="#" onClick={userLogin}>
+                    <Button className="text-lg sm:text-xl lg:text-2xl" href="#" onClick={userLogin}>
                       رمز عبور را فراموش کرده اید؟
                     </Button>
                   </label>

@@ -2,6 +2,7 @@ const requiredValue = "REQUIRED_VALUE";
 const minValue = "MIN_VALUE";
 const maxValue = "MAX_VALUE";
 const emailValue = "EMAIL_VALUE";
+const mobileNumberValue = "MOBILE-NUMBER_VALUE"
 
 export const requiredValidator = () => ({
   value: requiredValue,
@@ -21,4 +22,9 @@ export const emailValidator = () => ({
   value: emailValue,
 });
 
-export default { requiredValue, minValue, maxValue, emailValue };
+
+export const mobileNumberValidator = () => ({
+  value: mobileNumberValue,
+});
+
+export default { requiredValue, minValue, maxValue, emailValue, mobileNumberValue };

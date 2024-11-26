@@ -3,16 +3,18 @@ const testEmail = (value) => {
     return emailPattent.test(value)
 }
 
+const testMobileNumber = (value) => {
+    const mobileNumbersPattern =  /^(\+98|0)?9\d{9}$/g
+    return mobileNumbersPattern.test(value)
+}
+
 const testCodeMelli = (value) => {
     // Test
 }
 
-const testPhoneNumber = (value) => {
-    // Test
-}
 
 export default {
     testEmail,
     testCodeMelli,
-    testPhoneNumber
+    testMobileNumber
 }

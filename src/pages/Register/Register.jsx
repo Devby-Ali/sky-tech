@@ -7,14 +7,14 @@ import {
   maxValidator,
   minValidator,
   emailValidator,
+  mobileNumberValidator,
 } from "../../validators/rules";
 import { useForm } from "../../hooks/useForm";
 import AuthContext from "../../context/authContext";
 // import Topbar from "../../Components/Topbar/Topbar";
-import { HiOutlineUser } from "react-icons/hi2";
+import { HiOutlinePhone, HiOutlineUser } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
-import { FiUserPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 export default function Register() {
@@ -39,6 +39,10 @@ export default function Register() {
         value: "",
         isValid: false,
       },
+      mobileNumber: {
+        value: "",
+        isValid: false,
+      }
     },
     false
   );
@@ -54,6 +58,7 @@ export default function Register() {
       password: formState.inputs.password.value,
       confirmPassword: formState.inputs.password.value,
       name: formState.inputs.name.value,
+      phone: formState.inputs.mobileNumber.value,
     };
 
     fetch(`http://localhost:4000/v1/auth/register`, {
@@ -65,11 +70,11 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result.accessToken);
+        console.log(result, result.accessToken);
         authContext.login(result.user, result.accessToken);
       });
 
-    console.log("User Login");
+    console.log("User Register");
   };
 
   return (
@@ -167,6 +172,20 @@ export default function Register() {
                 </div>
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
+                    id="mobileNumber"
+                    className="bg-transparent outline-none text-right"
+                    type="tel"
+                    placeholder="شماره موبایل"
+                    validations={[
+                      requiredValidator(),
+                      mobileNumberValidator()
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <HiOutlinePhone className="w-10 h-10 opacity-50" />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
                     id="password"
                     className="bg-transparent outline-none"
                     type="text"
@@ -183,7 +202,7 @@ export default function Register() {
                 <Button
                   className={`h-20 rounded-4xl ${
                     formState.isFormValid
-                      ? "bg-teal-400/40 hover:bg-teal-400/60"
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                       : "bg-[#333c4c]/30"
                   }`}
                   type="submit"

@@ -17,6 +17,9 @@ const validators = (value, validations) => {
     if (validator.value === rules.emailValue) {
       !regex.testEmail(value) && validationResults.push(false);
     }
+    if (validator.value === rules.mobileNumberValue) {
+      !regex.testMobileNumber(value) && validationResults.push(false)
+    }
   }
 
   if (validationResults.length) {
