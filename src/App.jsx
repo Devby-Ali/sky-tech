@@ -6,7 +6,7 @@ import routes from "./routes";
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
-  const [userInfos, setUserInfos] = useState(false);
+  const [userInfos, setUserInfos] = useState({});
 
   const router = useRoutes(routes);
 

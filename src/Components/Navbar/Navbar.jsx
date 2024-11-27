@@ -11,6 +11,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { PiMagnifyingGlass } from "react-icons/pi";
+import { Collapse, Card } from "@material-tailwind/react";
+import { HiOutlineUser } from "react-icons/hi2";
 
 export default function Navbar() {
   const [dark, setDark] = useState(false);
@@ -18,6 +20,10 @@ export default function Navbar() {
   const [allMenus, setAllMenus] = useState([]);
 
   const [navOpen, setNavOpen] = useState(false);
+
+  const [open, setOpen] = useState(false);
+
+  const [overlay, setOverlay] = useState(false);
 
   const themeHandler = () => {
     if (localStorage.theme === "dark") {
@@ -29,6 +35,17 @@ export default function Navbar() {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }
+  };
+
+  const toggleOpen = () => {
+    setOpen((cur) => !cur);
+    setOverlay(!overlay);
+  };
+
+  const overlayOnClick = () => {
+    setNavOpen(false);
+    setOpen(false);
+    setOverlay(false);
   };
 
   const authContext = useContext(AuthContext);
@@ -43,10 +60,16 @@ export default function Navbar() {
 
   const navOpenHandler = () => {
     setNavOpen(!navOpen);
+    setOverlay(!overlay);
   };
 
   return (
     <>
+      <Collapse className="absolute top-48 left-0 w-96 z-50" open={open}>
+        <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
+          <span className="text-2xl">{authContext.userInfos.name}</span>
+        </Card>
+      </Collapse>
       <header className="fixed hidden lg:flex top-7 right-0 left-0 z-50 justify-between items-center w-[98%] lg:w-[95%] h-32 2xl:h-36 mx-auto rounded-4xl bg-gradient-to-tr from-lightishBlue-400/50 via-darkBox/80 via-60% to-lightishBlue-400/50 backdrop-blur-[4px]">
         <div className="w-full">
           <div className="flex items-center justify-between px-12 xl:px-24 py-4">
@@ -127,12 +150,15 @@ export default function Navbar() {
               </Link>
 
               {authContext.isLoggedIn ? (
-                <Link
-                  to="#"
-                  className="flex items-center h-16 px-3 bg-lightishBlue-500 rounded-lg mr-4 transition-all duration-200 text-white"
-                >
-                  <span className="text-xl">{authContext.userInfos.name}</span>
-                </Link>
+                <>
+                  <Link
+                    to="#"
+                    className="relative flex items-center justify-center h-16 w-16 bg-lightishBlue-500 rounded-lg mr-4 transition-all duration-200 text-white"
+                    onClick={toggleOpen}
+                  >
+                    <HiOutlineUser className="text-4xl" />
+                  </Link>
+                </>
               ) : (
                 <Link
                   to="/login"
@@ -236,7 +262,10 @@ export default function Navbar() {
         </div>
 
         <div className="logo">
-          <Link to={"/"} className="text-light-blue-600 dark:text-light-blue-500">
+          <Link
+            to={"/"}
+            className="text-light-blue-600 dark:text-light-blue-500"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="65"
@@ -271,8 +300,8 @@ export default function Navbar() {
         </div>
       </div>
       <div
-        onClick={navOpenHandler}
-        className={navOpen ? "overlay overlay--visible" : "overlay"}
+        onClick={overlayOnClick}
+        className={overlay ? "overlay overlay--visible" : "overlay"}
       ></div>
     </>
   );

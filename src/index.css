@@ -71,7 +71,7 @@ i {
 
 @layer components {
   .overlay {
-    @apply lg:hidden invisible opacity-0 fixed inset-0 w-full h-full bg-black/40 z-20 transition-all backdrop-blur-[4px];
+    @apply invisible opacity-0 fixed inset-0 w-full h-full bg-black/40 z-20 transition-all backdrop-blur-[4px];
   }
 
   .overlay--visible {
