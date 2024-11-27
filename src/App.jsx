@@ -55,9 +55,9 @@ export default function App() {
 
   useEffect(() => {
     if (localStorage.theme === "dark") {
-      document.documentElement.classList.add("dark");
+      document.documentElement.children[1].classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.children[1].classList.remove("dark");
     }
   }, []);
 
