@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const [navOpen, setNavOpen] = useState(false);
 
-  const [open, setOpen] = useState(false);
+  const [openCollapse, setOpenCollapse] = useState(false);
 
   const [overlay, setOverlay] = useState(false);
 
@@ -38,13 +38,13 @@ export default function Navbar() {
   };
 
   const toggleOpen = () => {
-    setOpen((cur) => !cur);
+    setOpenCollapse((cur) => !cur);
     setOverlay(!overlay);
   };
 
   const overlayOnClick = () => {
     setNavOpen(false);
-    setOpen(false);
+    setOpenCollapse(false);
     setOverlay(false);
   };
 
@@ -65,14 +65,8 @@ export default function Navbar() {
 
   return (
     <>
-      <Collapse className="absolute top-48 left-0 w-96 z-50" open={open}>
-        <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-          <span className="text-2xl">{authContext.userInfos.name}</span>
-        </Card>
-      </Collapse>
-
       <div
-        className={`nav fixed flex-col top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 ${
+        className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-[263px]"
         }`}
       >
@@ -149,13 +143,11 @@ export default function Navbar() {
         </ul>
       </div>
 
-      <header
-        className="lg:fixed lg:flex lg:top-7 lg:right-0 lg:left-0 z-40 justify-between items-center w-full lg:w-[95%] h-[8.5rem] md:h-40 2xl:h-36 lg:mx-auto lg:rounded-4xl shadow-lg bg-gradient-to-tr from-light-blue-900 via-darkBox to-light-blue-900 lg:from-lightishBlue-400/50 lg:via-darkBox/80 via-60% lg:to-lightishBlue-400/50 lg:backdrop-blur-[4px]"
-      >
+      <header className="lg:fixed lg:flex lg:top-7 lg:right-0 lg:left-0 z-40 justify-between items-center w-full lg:w-[95%] h-[8.5rem] md:h-40 2xl:h-36 lg:mx-auto lg:rounded-4xl shadow-lg bg-gradient-to-tr from-light-blue-900 via-darkBox to-light-blue-900 lg:from-lightishBlue-400/50 lg:via-darkBox/80 via-60% lg:to-lightishBlue-400/50 lg:backdrop-blur-[4px]">
         <div className="w-full h-full">
-          <div className="h-full flex items-center justify-between px-12 xl:px-24 py-4">
+          <div className="h-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
             <div
-              className="lg:hidden bg-gray-300 dark:bg-white/10 text-gray-500 dark:text-white cursor-pointer text-5xl p-4 rounded-full"
+              className="lg:hidden text-gray-500 dark:text-white cursor-pointer text-7xl"
               onClick={navOpenHandler}
             >
               <IoMenu />
@@ -181,9 +173,9 @@ export default function Navbar() {
                 </svg>
               </Link>
 
-              <ul className="hidden lg:flex gap-x-12 text-white text-[1.7rem]">
+              <ul className="hidden lg:flex gap-x-8 xl:gap-x-12 text-white text-2xl xl:text-[1.7rem]">
                 <li className="main-header__item flex-center relative">
-                  <Link to={"/"} className="flex-center text-da">
+                  <Link to={"/"} className="flex-center">
                     صفحه اصلی
                   </Link>
                 </li>
@@ -200,8 +192,8 @@ export default function Navbar() {
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>
-                          <GoTriangleDown className="mt-1 mx-1" />
-                          <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 bg-white dark:bg-darkBox text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-8 border-r-8 border-light-blue-700 dark:border-light-blue-400">
+                          <GoTriangleDown className="mt-1 xl:mr-1" />
+                          <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 bg-white dark:bg-darkBox text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-8 border-r-8 border-light-blue-700 dark:border-light-blue-400 delay-75">
                             {menu.submenus.map((submenu) => (
                               <li key={menu._id}>
                                 <Link
@@ -223,16 +215,16 @@ export default function Navbar() {
 
             <div className="flex items-center">
               <div
-                className="hidden lg:flex-center w-16 h-16 bg-lightishBlue-500 text-white text-4xl rounded-lg toggle-theme cursor-pointer"
+                className="hidden lg:flex-center w-[4.5rem] h-[4.5rem] bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-4xl rounded-lg toggle-theme cursor-pointer"
                 onClick={() => themeHandler()}
               >
                 <IoSunnyOutline className="hidden dark:inline-block w-8 h-8" />
-
                 <BsMoon className="inline-block dark:hidden w-8 h-8 " />
               </div>
+
               <Link
                 to="#"
-                className="flex-center w-16 h-16 bg-gray-200 text-4xl mr-4 rounded-lg"
+                className="flex-center w-[4.5rem] h-[4.5rem] bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-4xl mr-4 rounded-lg"
               >
                 <RiShoppingCartFill />
               </Link>
@@ -241,10 +233,20 @@ export default function Navbar() {
                 <>
                   <Link
                     to="#"
-                    className="relative flex items-center justify-center h-16 w-16 bg-lightishBlue-500 rounded-lg mr-4 transition-all duration-200 text-white"
+                    className={`relative flex items-center justify-center w-[4.5rem] h-[4.5rem] text-darkColor dark:text-white rounded-lg mr-4 transition-all duration-200 ${openCollapse ? "z-40 bg-white dark:bg-[#333c4c]" : "z-0 bg-gray-300/40 dark:bg-white/10"}`}
                     onClick={toggleOpen}
                   >
                     <HiOutlineUser className="text-4xl" />
+                    <Collapse
+                      className="absolute top-32 left-0 w-96 z-50"
+                      open={openCollapse}
+                    >
+                      <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
+                        <span className="text-2xl">
+                          {authContext.userInfos.name}
+                        </span>
+                      </Card>
+                    </Collapse>
                   </Link>
                 </>
               ) : (
