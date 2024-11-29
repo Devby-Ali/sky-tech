@@ -12,7 +12,7 @@ import { IoMenu } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { Collapse, Card } from "@material-tailwind/react";
-import { HiOutlineUser } from "react-icons/hi2";
+import { HiBars3, HiChevronRight, HiMagnifyingGlass, HiOutlineArrowLeftEndOnRectangle, HiOutlineMoon, HiOutlineShoppingBag, HiOutlineSun, HiOutlineUser } from "react-icons/hi2";
 
 export default function Navbar() {
   const [dark, setDark] = useState(false);
@@ -95,18 +95,17 @@ export default function Navbar() {
           </Link>
           <div className="flex items-center gap-x-6 text-4xl text-blue-gray-500 dark:text-white">
             <div
-              className="flex-center p-5 rounded-full toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+              className="flex-center p-5 rounded-3xl toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
               onClick={() => themeHandler()}
             >
-              <IoSunnyOutline className="hidden dark:inline-block" />
-
-              <BsMoon className="inline-block dark:hidden" />
+              <HiOutlineSun className="hidden dark:inline-block" />
+              <HiOutlineMoon className="inline-block dark:hidden" />
             </div>
             <div
-              className="flex-center p-5 rounded-full cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+              className="flex-center p-5 rounded-3xl cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
               onClick={navOpenHandler}
             >
-              <IoIosArrowForward />
+              <HiChevronRight />
             </div>
           </div>
         </div>
@@ -125,7 +124,7 @@ export default function Navbar() {
               role="button"
             >
               <div className="text-4xl">
-                <PiMagnifyingGlass />
+                <HiMagnifyingGlass />
               </div>
             </button>
           </label>
@@ -137,7 +136,7 @@ export default function Navbar() {
               <Link to={menu.href} className="flex items-center gap-x-2">
                 {menu.title}
               </Link>
-              <IoIosArrowBack className="text-3xl" />
+              <HiChevronRight className="text-3xl rotate-180" />
             </li>
           ))}
         </ul>
@@ -147,14 +146,14 @@ export default function Navbar() {
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
             <div
-              className="lg:hidden text-gray-500 dark:text-white cursor-pointer text-7xl"
+              className="lg:hidden p-3.5 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white rounded-3xl cursor-pointer text-5xl"
               onClick={navOpenHandler}
             >
-              <IoMenu />
+              <HiBars3 />
             </div>
 
-            <div className="flex gap-x-14">
-              <Link to={"/"} className="text-light-blue-500">
+            <div className="flex gap-x-6 xl:gap-x-14">
+              <Link to={"/"} className="text-light-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="65"
@@ -173,7 +172,7 @@ export default function Navbar() {
                 </svg>
               </Link>
 
-              <ul className="hidden lg:flex gap-x-8 xl:gap-x-12 text-white text-2xl xl:text-[1.7rem]">
+              <ul className="hidden lg:flex gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
                 <li className="main-header__item flex-center relative">
                   <Link to={"/"} className="flex-center">
                     صفحه اصلی
@@ -183,17 +182,17 @@ export default function Navbar() {
                 {allMenus.map((menu) => (
                   <li
                     key={menu._id}
-                    className="main-header__item flex-center relative"
+                    className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative"
                   >
                     <Link
                       to={menu.href}
-                      className="flex-center hover:text-light-blue-400"
+                      className="flex-center"
                     >
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>
                           <GoTriangleDown className="mt-1 xl:mr-1" />
-                          <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 bg-white dark:bg-darkBox text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-8 border-r-8 border-light-blue-700 dark:border-light-blue-400 delay-75">
+                          <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
                             {menu.submenus.map((submenu) => (
                               <li key={menu._id}>
                                 <Link
@@ -215,28 +214,28 @@ export default function Navbar() {
 
             <div className="flex items-center">
               <div
-                className="hidden lg:flex-center w-[4.5rem] h-[4.5rem] bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-4xl rounded-lg toggle-theme cursor-pointer"
+                className="hidden lg:flex-center p-4 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-[2.75rem] rounded-3xl toggle-theme cursor-pointer"
                 onClick={() => themeHandler()}
               >
-                <IoSunnyOutline className="hidden dark:inline-block w-8 h-8" />
-                <BsMoon className="inline-block dark:hidden w-8 h-8 " />
+                <HiOutlineSun className="hidden dark:inline-block" />
+                <HiOutlineMoon className="inline-block dark:hidden " />
               </div>
 
               <Link
                 to="#"
-                className="flex-center w-[4.5rem] h-[4.5rem] bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-4xl mr-4 rounded-lg"
+                className="flex-center p-4 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-[2.75rem] mr-4 rounded-3xl"
               >
-                <RiShoppingCartFill />
+                <HiOutlineShoppingBag />
               </Link>
 
               {authContext.isLoggedIn ? (
                 <>
                   <Link
                     to="#"
-                    className={`relative flex items-center justify-center w-[4.5rem] h-[4.5rem] text-darkColor dark:text-white rounded-lg mr-4 transition-all duration-200 ${openCollapse ? "z-40 bg-white dark:bg-[#333c4c]" : "z-0 bg-gray-300/40 dark:bg-white/10"}`}
+                    className={`relative flex items-center justify-center p-4 text-darkColor dark:text-white rounded-3xl mr-4 transition-all duration-200 ${openCollapse ? "z-40 bg-white dark:bg-[#333c4c]" : "z-0 bg-gray-300/40 dark:bg-white/10"}`}
                     onClick={toggleOpen}
                   >
-                    <HiOutlineUser className="text-4xl" />
+                    <HiOutlineUser className="text-[2.75rem]" />
                     <Collapse
                       className="absolute top-32 left-0 w-96 z-50"
                       open={openCollapse}
@@ -252,9 +251,9 @@ export default function Navbar() {
               ) : (
                 <Link
                   to="/login"
-                  className="flex items-center h-16 px-3 bg-lightishBlue-500 rounded-lg mr-4 transition-all duration-200 text-white"
+                  className="flex-center w-[4.5rem] h-[4.5rem] bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-5xl rounded-lg mr-4 transition-all duration-200"
                 >
-                  <span className="text-xl">ورود | ثبت نام</span>
+                  <HiOutlineArrowLeftEndOnRectangle />
                 </Link>
               )}
             </div>

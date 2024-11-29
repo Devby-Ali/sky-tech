@@ -186,7 +186,7 @@ i {
   .main-header__item:hover .main-header__dropdown {
     opacity: 1;
     visibility: visible;
-    top: 8rem;
+    top: 7rem;
   }
 
   .courses-top-bar__selection-list {
