@@ -13,6 +13,7 @@ import Footer from "../../Components/Footer/Footer";
 
 export default function Index() {
   // const [show, setModalShow] = useState(true);
+  
   return (
     <>
       <Header />

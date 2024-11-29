@@ -3,18 +3,20 @@ import AuthContext from "../../context/authContext";
 import Input from "../Form/Input";
 import { Link } from "react-router-dom";
 import { GoTriangleDown } from "react-icons/go";
-import { IoSunnyOutline } from "react-icons/io5";
-import { BsMoon } from "react-icons/bs";
-import { RiShoppingCartFill } from "react-icons/ri";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoMenu } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
-import { PiMagnifyingGlass } from "react-icons/pi";
 import { Collapse, Card } from "@material-tailwind/react";
-import { HiBars3, HiChevronRight, HiMagnifyingGlass, HiOutlineArrowLeftEndOnRectangle, HiOutlineMoon, HiOutlineShoppingBag, HiOutlineSun, HiOutlineUser } from "react-icons/hi2";
+import {
+  HiBars3,
+  HiChevronRight,
+  HiMagnifyingGlass,
+  HiOutlineArrowLeftEndOnRectangle,
+  HiOutlineMoon,
+  HiOutlineShoppingBag,
+  HiOutlineSun,
+  HiOutlineUser,
+} from "react-icons/hi2";
 
 export default function Navbar() {
+
   const [dark, setDark] = useState(false);
 
   const [allMenus, setAllMenus] = useState([]);
@@ -24,6 +26,7 @@ export default function Navbar() {
   const [openCollapse, setOpenCollapse] = useState(false);
 
   const [overlay, setOverlay] = useState(false);
+
 
   const themeHandler = () => {
     if (localStorage.theme === "dark") {
@@ -57,6 +60,8 @@ export default function Navbar() {
         setAllMenus(menus);
       });
   }, []);
+
+
 
   const navOpenHandler = () => {
     setNavOpen(!navOpen);
@@ -184,10 +189,7 @@ export default function Navbar() {
                     key={menu._id}
                     className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative"
                   >
-                    <Link
-                      to={menu.href}
-                      className="flex-center"
-                    >
+                    <Link to={`category-info/${menu.href}`} className="flex-center">
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>
@@ -232,7 +234,11 @@ export default function Navbar() {
                 <>
                   <Link
                     to="#"
-                    className={`relative flex items-center justify-center p-4 text-darkColor dark:text-white rounded-3xl mr-4 transition-all duration-200 ${openCollapse ? "z-40 bg-white dark:bg-[#333c4c]" : "z-0 bg-gray-300/40 dark:bg-white/10"}`}
+                    className={`relative flex items-center justify-center p-4 text-darkColor dark:text-white rounded-3xl mr-4 transition-all duration-200 ${
+                      openCollapse
+                        ? "z-40 bg-white dark:bg-[#333c4c]"
+                        : "z-0 bg-gray-300/40 dark:bg-white/10"
+                    }`}
                     onClick={toggleOpen}
                   >
                     <HiOutlineUser className="text-[2.75rem]" />

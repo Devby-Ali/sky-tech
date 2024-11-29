@@ -17,7 +17,10 @@ import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
+
+
 export default function Register() {
+
   const authContext = useContext(AuthContext);
   console.log(authContext);
 
@@ -111,7 +114,7 @@ export default function Register() {
                 <path d="m9 11 3 3 3-3"></path>
               </svg>
             </div>
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-green-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
               <span className="block font-EstedadMedium text-4xl mb-9">
                 عضویت
               </span>

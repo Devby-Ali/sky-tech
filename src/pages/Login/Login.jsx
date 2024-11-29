@@ -17,11 +17,14 @@ import ReCAPTCHA from "react-google-recaptcha";
 // import Topbar from "../../Components/Topbar/Topbar";
 import { BiLockOpenAlt } from "react-icons/bi";
 
+
+
 export default function Login() {
   
   const navigate = useNavigate();
 
   const authContext = useContext(AuthContext);
+
   const [isGoogleRecaptchaVerify, setIsGoogleRecaptchaVerify] = useState(false);
 
   const [formState, onInputHandler] = useForm(
@@ -38,7 +41,6 @@ export default function Login() {
     false
   );
 
-  console.log(formState);
 
   const userLogin = (event) => {
     event.preventDefault();
@@ -120,7 +122,7 @@ export default function Login() {
                 <path d="m9 11 3 3 3-3"></path>
               </svg>
             </div>
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-green-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
               <span className="block font-EstedadMedium text-4xl mb-9">
                 ورود | login
               </span>
@@ -172,7 +174,7 @@ export default function Login() {
                 </div>
                 <Button
                   className={`h-20 rounded-4xl ${
-                    formState.isFormValid
+                    (formState.isFormValid && isGoogleRecaptchaVerify)
                       ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                       : "bg-[#333c4c]/30"
                   }`}

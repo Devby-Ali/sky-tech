@@ -4,6 +4,7 @@ import AuthContext from "./context/authContext";
 import routes from "./routes";
 
 export default function App() {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [userInfos, setUserInfos] = useState({});
