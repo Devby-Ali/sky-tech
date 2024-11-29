@@ -7,8 +7,7 @@ import { LiaUserSolid } from "react-icons/lia";
 import { PiChatCenteredTextLight, PiChats } from "react-icons/pi";
 import { RiGraduationCapFill } from "react-icons/ri";
 
-export default function CommentsTextArea() {
-  
+export default function CommentsTextArea({ comments }) {
   const [openTextArea, setOpenTextArea] = useState(false);
 
   const textAreaHandler = () => {
@@ -113,43 +112,71 @@ export default function CommentsTextArea() {
       {/* <!-- Comment List --> */}
       <div className="comments_wrap space-y-7 sm:space-y-6 child:bg-gray-200  dark:child:bg-[#333c4c]">
         {/* <!-- Comments --> */}
-        <div id="comment-56773" className="p-8 md:p-5 rounded-xl">
-          <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
-            <div className="flex items-center gap-x-4">
-              <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
-                <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
-                  <div className="text-[1.4rem] mb-0.5 mr-0.5">
-                    <RiGraduationCapFill />
+
+        {comments.length === 0 ? (
+          <div className="py-6 text-center text-amber-300 rounded-xl">هنوز کامنتی برای این دوره ثبت نشده</div>
+        ) : (
+          <>
+            {comments.map((comment) => (
+              <>
+                <div id="comment-56773" className="p-8 md:p-5 rounded-xl">
+                  <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
+                    <div className="flex items-center gap-x-4">
+                      <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
+                        <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                          <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                            <RiGraduationCapFill />
+                          </div>
+                        </div>
+                        <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                          <BiUserCircle />
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-x-2 ">
+                          <span className="inline-block max-w-40 truncate">
+                            {comment.creator.name}
+                          </span>
+                          <span className="font-EstedadThin">
+                            |
+                            {comment.creator.role === "ADMIN"
+                              ? " مدیر"
+                              : " دانشجو"}
+                          </span>
+                        </div>
+                        <span className="text-xl opacity-70">
+                          {comment.createdAt.slice(0, 10)}
+                        </span>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
+                    >
+                      <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
+                        <HiOutlineArrowUturnLeft />
+                      </div>
+                    </button>
                   </div>
+                  <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
+                    {comment.body}
+                  </p>
                 </div>
-                <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
-                  <BiUserCircle />
-                </div>
-              </div>
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-x-1 ">
-                  <span className="inline-block max-w-40 truncate">
-                    Alirezzaa
-                  </span>
-                  <span className="font-EstedadThin">| دانشجو</span>
-                </div>
-                <span className="text-xl opacity-70">1403/08/07</span>
-              </div>
-            </div>
+              </>
+            ))}
             <button
+              data-id="78"
               type="button"
-              className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
+              className="button-primary w-full sm:w-auto mt-10 mx-auto"
             >
-              <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
-                <HiOutlineArrowUturnLeft />
+              مشاهده بیشتر
+              <div className="text-5xl">
+                <GoTriangleDown />
               </div>
             </button>
-          </div>
-          <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
-            سلام ممنونم از دوره عالیتون🙏
-          </p>
-          {/* <!-- Replies --> */}
-        </div>
+          </>
+        )}
+
         <div id="comment-56731" className="p-8 md:p-5 rounded-xl">
           <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
             <div className="flex items-center gap-x-4">
@@ -336,16 +363,6 @@ export default function CommentsTextArea() {
         </div>
       </div>
       {/* <!-- Load more --> */}
-      <button
-        data-id="78"
-        type="button"
-        className="button-primary w-full sm:w-auto mt-10 mx-auto"
-      >
-        مشاهده بیشتر
-        <div className="text-5xl">
-          <GoTriangleDown />
-        </div>
-      </button>
     </div>
   );
 }

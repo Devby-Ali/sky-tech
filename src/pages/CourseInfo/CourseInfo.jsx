@@ -56,9 +56,11 @@ export default function CourseInfo() {
       .then((res) => res.json())
       .then((courseInfo) => {
         console.log(courseInfo);
+        setCourseDetails(courseInfo);
         setComments(courseInfo.comments);
         setSessions(courseInfo.sessions);
-        setCourseDetails(courseInfo);
+        setCreatedAt(courseInfo.createdAt);
+        setUpdatedAt(courseInfo.updatedAt);
       });
   }, []);
 
@@ -93,57 +95,56 @@ export default function CourseInfo() {
                 </p>
               </div>
               <div className="space-y-4 lg:space-y-8 lg:mt-4 lg:px-12">
-                {/* <!-- When Registered --> */}
-                <div className="hidden flex justify-center xl:items-center lg:justify-between flex-wrap-reverse gap-y-4 gap-x-8">
-                  <div className="flex items-center gap-x-2">
-                    <LiaUserSolid className="text-6xl mb-1" />
-                    <p className="font-EstedadBold text-3xl">
-                      شما دانشجوی دوره هستید
-                    </p>
-                  </div>
-                  <Button
-                    to={"/"}
-                    className="button-primary text-white lg:w-80 hover:text-lightishBlue-600 dark:hover:text-lightishBlue-500"
-                  >
-                    <MdOutlineLaptopChromebook className="text-4xl" />
-                    مشاهده دوره
-                  </Button>
-                </div>
-                <div className="flex justify-center xl:items-center lg:justify-between flex-wrap-reverse gap-y-4 gap-x-8">
-                  {/* <!-- Normal --> */}
-                  <button
-                    id="register-in-course"
-                    className="button-primary w-full sm:w-auto"
-                  >
-                    <div className="text-4xl">
-                      <HiOutlineAcademicCap />
+                {courseDetails.isUserRegisteredToThisCourse ? (
+                  <div className="hidden flex justify-center xl:items-center lg:justify-between flex-wrap-reverse gap-y-4 gap-x-8">
+                    <div className="flex items-center gap-x-2">
+                      <LiaUserSolid className="text-6xl mb-1" />
+                      <p className="font-EstedadBold text-3xl">
+                        شما دانشجوی دوره هستید
+                      </p>
                     </div>
-                    افزودن به سبد خرید
-                  </button>
-                  <div className="flex items-end gap-x-5">
-                    {/* <!-- Offer --> */}
-                    <span className="text-4xl line-through">
-                      436,500
-                    </span>
-                    {/* <!-- Price --> */}
-                    <span className="flex gap-x-2 font-danaBold text-5xl">
-                      218,250
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="30"
-                        height="30"
-                        fill="none"
-                        viewBox="0 0 14 16"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M1.149 6.918q.443 0 .775-.14.343-.142.575-.383.232-.243.352-.565.12-.312.141-.664H1.985q-.514 0-.846-.111a1.2 1.2 0 0 1-.524-.323 1.2 1.2 0 0 1-.272-.503 3 3 0 0 1-.07-.675q0-.382.11-.726t.323-.604q.21-.262.523-.413.322-.162.736-.161.332 0 .634.11a1.4 1.4 0 0 1 .534.353q.232.232.363.615.141.372.141.906v.836h.967q.12 0 .161.091.05.081.05.252 0 .181-.05.272-.04.08-.16.08h-.988q-.02.495-.202.937a2.4 2.4 0 0 1-.483.776 2.3 2.3 0 0 1-.746.524 2.3 2.3 0 0 1-.977.201H.141l-.06-.685zM.897 3.513q0 .252.05.434.06.18.192.302.141.11.372.171.233.05.585.05h.906v-.755q0-.745-.292-1.068-.292-.322-.806-.322-.483 0-.745.322-.262.323-.262.866m5.372.957q.13 0 .171.091.05.081.05.252 0 .181-.05.272-.04.08-.171.08H4.607q-.132 0-.172-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.172-.09zm1.663 0q.13 0 .17.091.051.081.051.252 0 .181-.05.272-.04.08-.171.08H6.269q-.13 0-.17-.08a.5.5 0 0 1-.051-.252q0-.18.05-.272.04-.09.171-.09zm1.662 0q.131 0 .171.091.05.081.05.252 0 .181-.05.272-.04.08-.17.08H7.931q-.13 0-.171-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.17-.09zm1.663 0q.13 0 .171.091.05.081.05.252 0 .181-.05.272-.04.08-.171.08H9.595q-.132 0-.172-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.172-.09zm.907 0q.393 0 .624-.211.242-.212.242-.584v-1.39h.655v1.39q0 .715-.403 1.108-.393.383-1.078.383h-.947q-.13 0-.171-.081a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.171-.09zM13.786.995h-.806V.28h.806zm-1.28 0H11.7V.28h.806zm-6.864 11.97q0 .542-.171 1.017a2.42 2.42 0 0 1-1.28 1.41 2.4 2.4 0 0 1-1.027.212h-.595q-1.128 0-1.753-.696-.624-.695-.624-1.904v-1.763h.644v1.743q0 .433.101.786.111.353.333.604.232.263.574.403t.826.141h.443q.474 0 .826-.16.352-.152.585-.414a1.6 1.6 0 0 0 .352-.614q.12-.352.121-.736v-2.71h.645zm-2.428-2.902h-.846v-.736h.846zm5.031 3.103q-.261 0-.503-.071a1.16 1.16 0 0 1-.434-.262 1.3 1.3 0 0 1-.292-.473 2.2 2.2 0 0 1-.11-.746V6.92h.654v4.573q0 .423.182.705.19.273.614.272h.171q.222 0 .222.343 0 .353-.222.353zm.448-.696q.393 0 .595-.191a.68.68 0 0 0 .201-.514v-.383q0-.875.443-1.37.454-.493 1.25-.493.413 0 .725.13.313.132.514.374.21.24.312.574.1.332.1.735 0 .867-.453 1.35t-1.239.484q-.402 0-.775-.152a1.2 1.2 0 0 1-.585-.564q-.09.232-.221.373a1.2 1.2 0 0 1-.272.222q-.141.07-.303.1-.15.02-.292.02h-.16q-.132 0-.172-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.171-.09zm3.496-1.078q0-.523-.232-.846-.232-.332-.796-.332-1.047 0-1.047 1.219 0 .512.282.776.292.261.745.261.514 0 .776-.282.272-.282.272-.796"
-                          className="text-green-500"
-                        ></path>
-                      </svg>
-                    </span>
+                    <Button
+                      to={"/"}
+                      className="button-primary text-white lg:w-80 hover:text-lightishBlue-600 dark:hover:text-lightishBlue-500"
+                    >
+                      <MdOutlineLaptopChromebook className="text-4xl" />
+                      مشاهده دوره
+                    </Button>
                   </div>
-                </div>
+                ) : (
+                  <div className="flex justify-center xl:items-center lg:justify-between flex-wrap-reverse gap-y-4 gap-x-8">
+                    <button
+                      id="register-in-course"
+                      className="button-primary w-full sm:w-auto"
+                    >
+                      <div className="text-4xl">
+                        <HiOutlineAcademicCap />
+                      </div>
+                      ثبت نام
+                    </button>
+                    <div className="flex items-end gap-x-5">
+                      {/* <!-- Offer --> */}
+                      <span className="text-4xl line-through">436,500</span>
+                      {/* <!-- Price --> */}
+                      <span className="flex gap-x-2 font-danaBold text-5xl">
+                        218,250
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="30"
+                          height="30"
+                          fill="none"
+                          viewBox="0 0 14 16"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M1.149 6.918q.443 0 .775-.14.343-.142.575-.383.232-.243.352-.565.12-.312.141-.664H1.985q-.514 0-.846-.111a1.2 1.2 0 0 1-.524-.323 1.2 1.2 0 0 1-.272-.503 3 3 0 0 1-.07-.675q0-.382.11-.726t.323-.604q.21-.262.523-.413.322-.162.736-.161.332 0 .634.11a1.4 1.4 0 0 1 .534.353q.232.232.363.615.141.372.141.906v.836h.967q.12 0 .161.091.05.081.05.252 0 .181-.05.272-.04.08-.16.08h-.988q-.02.495-.202.937a2.4 2.4 0 0 1-.483.776 2.3 2.3 0 0 1-.746.524 2.3 2.3 0 0 1-.977.201H.141l-.06-.685zM.897 3.513q0 .252.05.434.06.18.192.302.141.11.372.171.233.05.585.05h.906v-.755q0-.745-.292-1.068-.292-.322-.806-.322-.483 0-.745.322-.262.323-.262.866m5.372.957q.13 0 .171.091.05.081.05.252 0 .181-.05.272-.04.08-.171.08H4.607q-.132 0-.172-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.172-.09zm1.663 0q.13 0 .17.091.051.081.051.252 0 .181-.05.272-.04.08-.171.08H6.269q-.13 0-.17-.08a.5.5 0 0 1-.051-.252q0-.18.05-.272.04-.09.171-.09zm1.662 0q.131 0 .171.091.05.081.05.252 0 .181-.05.272-.04.08-.17.08H7.931q-.13 0-.171-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.17-.09zm1.663 0q.13 0 .171.091.05.081.05.252 0 .181-.05.272-.04.08-.171.08H9.595q-.132 0-.172-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.172-.09zm.907 0q.393 0 .624-.211.242-.212.242-.584v-1.39h.655v1.39q0 .715-.403 1.108-.393.383-1.078.383h-.947q-.13 0-.171-.081a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.171-.09zM13.786.995h-.806V.28h.806zm-1.28 0H11.7V.28h.806zm-6.864 11.97q0 .542-.171 1.017a2.42 2.42 0 0 1-1.28 1.41 2.4 2.4 0 0 1-1.027.212h-.595q-1.128 0-1.753-.696-.624-.695-.624-1.904v-1.763h.644v1.743q0 .433.101.786.111.353.333.604.232.263.574.403t.826.141h.443q.474 0 .826-.16.352-.152.585-.414a1.6 1.6 0 0 0 .352-.614q.12-.352.121-.736v-2.71h.645zm-2.428-2.902h-.846v-.736h.846zm5.031 3.103q-.261 0-.503-.071a1.16 1.16 0 0 1-.434-.262 1.3 1.3 0 0 1-.292-.473 2.2 2.2 0 0 1-.11-.746V6.92h.654v4.573q0 .423.182.705.19.273.614.272h.171q.222 0 .222.343 0 .353-.222.353zm.448-.696q.393 0 .595-.191a.68.68 0 0 0 .201-.514v-.383q0-.875.443-1.37.454-.493 1.25-.493.413 0 .725.13.313.132.514.374.21.24.312.574.1.332.1.735 0 .867-.453 1.35t-1.239.484q-.402 0-.775-.152a1.2 1.2 0 0 1-.585-.564q-.09.232-.221.373a1.2 1.2 0 0 1-.272.222q-.141.07-.303.1-.15.02-.292.02h-.16q-.132 0-.172-.08a.5.5 0 0 1-.05-.252q0-.18.05-.272.04-.09.171-.09zm3.496-1.078q0-.523-.232-.846-.232-.332-.796-.332-1.047 0-1.047 1.219 0 .512.282.776.292.261.745.261.514 0 .776-.282.272-.282.272-.796"
+                            className="text-green-500"
+                          ></path>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="course_intro_wrap order-1 rounded-2xl overflow-hidden">
@@ -163,22 +164,26 @@ export default function CourseInfo() {
                 <CourseDetailBox
                   icon={<BsInfoCircle />}
                   title={"وضعیت دوره"}
-                  text={"تکمیل شده"}
+                  text={
+                    courseDetails.isComplete === 1
+                      ? "تکمیل شده"
+                      : "در حال برگزاری"
+                  }
                 />
                 <CourseDetailBox
                   icon={<BsClock />}
-                  title={"مدت زمان دوره"}
-                  text={"3 ساعت"}
+                  title={"زمان برگزاری"}
+                  text={createdAt.slice(0, 10)}
                 />
                 <CourseDetailBox
                   icon={<IoCalendarOutline />}
-                  title={"آخرین بروزرسانی"}
-                  text={"1400/12/22"}
+                  title={"بروزرسانی"}
+                  text={updatedAt.slice(0, 10)}
                 />
                 <CourseDetailBox
                   icon={<PiUsersThree />}
                   title={"روش پشتیبانی"}
-                  text={"آنلاین"}
+                  text={courseDetails.support}
                 />
                 <CourseDetailBox
                   icon={<PiBriefcase />}
@@ -516,7 +521,7 @@ export default function CourseInfo() {
                       onClick={() => handleOpen(1)}
                     >
                       <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
-                        سرفصل ها
+                        جلسات دوره
                       </span>
                       <div className="flex items-center end gap-x-2.5 shrink-0">
                         <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white child:transition-colors">
@@ -526,27 +531,33 @@ export default function CourseInfo() {
                         </div>
                       </div>
                     </AccordionHeader>
-                    <AccordionBody className="divide-y divide-gray-600 -mt-1">
-                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
-                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
-                            1
+                    {sessions.map((sessions, index) => (
+                      <>
+                        <AccordionBody className="divide-y divide-gray-600 -mt-1">
+                          <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                            <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                              <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                                {index + 1}
+                              </div>
+                              <a
+                                href=""
+                                className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
+                              >
+                                {sessions.title}
+                              </a>
+                            </div>
+                            <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                              <span className="text-xl md:2xl">
+                                {sessions.time}
+                              </span>
+                              <div className="text-3xl">
+                                <PiPlayBold />
+                              </div>
+                            </div>
                           </div>
-                          <a
-                            href=""
-                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
-                          >
-                            ویدیوی معرفی
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
-                          <span className="text-xl md:2xl">08:26 </span>
-                          <div className="text-3xl">
-                            <PiPlayBold />
-                          </div>
-                        </div>
-                      </div>
-                    </AccordionBody>
+                        </AccordionBody>
+                      </>
+                    ))}
                   </Accordion>
 
                   <Accordion
@@ -730,7 +741,7 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Comments --> */}
-              <CommentsTextArea />
+              <CommentsTextArea comments={comments} />
             </div>
             <aside className="col-span-12 lg:col-span-4 space-y-12">
               {/* <!-- Students & Rating & Progress --> */}
@@ -742,7 +753,7 @@ export default function CourseInfo() {
                     </div>
                     <div>
                       <span className="block font-bold text-xl md:text-2xl">
-                        22848
+                        {courseDetails.courseStudentsCount}
                       </span>
                       <span className="block text-2xl opacity-70">دانشجو</span>
                     </div>
