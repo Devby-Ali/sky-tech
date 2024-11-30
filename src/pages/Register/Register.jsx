@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import Input from "../../Components/Form/Input";
-import Navbar from "../../Components/Navbar/Navbar";
 import Button from "../../Components/Form/Button";
+import { useForm } from "../../hooks/useForm";
+import AuthContext from "../../context/authContext";
 import {
   requiredValidator,
   maxValidator,
@@ -9,9 +10,6 @@ import {
   emailValidator,
   mobileNumberValidator,
 } from "../../validators/rules";
-import { useForm } from "../../hooks/useForm";
-import AuthContext from "../../context/authContext";
-// import Topbar from "../../Components/Topbar/Topbar";
 import { HiOutlinePhone, HiOutlineUser } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";

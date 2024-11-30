@@ -1,9 +1,9 @@
 import React from "react";
 import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
-import Footer from "./../../Components/Footer/Footer";
 import Breadcrumb from "./../../Components/Breadcrumb/Breadcrumb";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
+import Footer from "./../../Components/Footer/Footer";
 import { LiaUser } from "react-icons/lia";
 import {
   HiBars4,
@@ -15,6 +15,7 @@ import {
   HiOutlineClipboardDocument,
   HiShare,
 } from "react-icons/hi2";
+
 
 export default function ArticleInfo() {
   return (

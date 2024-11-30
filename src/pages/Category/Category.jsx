@@ -1,9 +1,9 @@
 import React from "react";
 // import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
-import Footer from "./../../Components/Footer/Footer";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import Pagination from "../../Components/Pagination/Pagination";
+import Footer from "./../../Components/Footer/Footer";
 import { TbBorderAll } from "react-icons/tb";
 import { FaAlignLeft } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";

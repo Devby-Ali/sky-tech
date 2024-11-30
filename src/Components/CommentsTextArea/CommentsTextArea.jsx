@@ -9,16 +9,22 @@ import { RiGraduationCapFill } from "react-icons/ri";
 import AuthContext from "../../context/authContext";
 import { Link } from "react-router-dom";
 
-export default function CommentsTextArea({ comments }) {
-  const [openTextArea, setOpenTextArea] = useState(false);
+export default function CommentsTextArea({ comments, submitComment }) {
 
+  const [openTextArea, setOpenTextArea] = useState(false);
+  
   const textAreaHandler = () => {
-    setOpenTextArea(true);
+    setOpenTextArea(!openTextArea);
     console.log(openTextArea);
   };
+  
+  const [newCommentBody, setNewCommentBody] = useState("")
 
   const authContext = useContext(AuthContext);
-  console.log(authContext);
+  
+  const onChangeHandler = event => {
+    setNewCommentBody(event.target.value)
+  }
 
   return (
     <div
@@ -96,21 +102,25 @@ export default function CommentsTextArea({ comments }) {
               </p>
             </div>
             <textarea
-              rows="6"
-              id="comment-textarea"
               className="w-full block p-7 md:p-4 bg-gray-200 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm sm:rounded-xl"
               placeholder="نظر خود را بنویسید ..."
-            ></textarea>
+              onChange={onChangeHandler}
+            >
+              {
+                newCommentBody
+              }
+            </textarea>
             <div className="flex gap-x-2 justify-end mt-2 sm:mt-6">
               <button
                 className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline rounded-br-[3rem] rounded-l-sm rounded-tr-sm sm:rounded-sm sm:rounded-tr-4xl"
                 id="comment-cancel-btn"
+                onClick={() => textAreaHandler()}
               >
                 لغو
               </button>
               <button
                 className="flex-grow sm:grow-0 sm:w-36 button-primary rounded-bl-2xl rounded-tl-sm rounded-r-sm sm:rounded-sm sm:rounded-bl-4xl"
-                id="comment-submit-btn"
+                onClick={() => submitComment(newCommentBody)}
               >
                 ارسال
               </button>

@@ -1,16 +1,16 @@
 import React from "react";
 import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
-import Footer from "./../../Components/Footer/Footer";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
+import CourseBox from "../../Components/CourseBox/CourseBox";
+import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
+import Pagination from "../../Components/Pagination/Pagination";
+import Footer from "./../../Components/Footer/Footer";
 import {
   HiArrowsUpDown,
   HiMagnifyingGlass,
   HiOutlineFunnel,
 } from "react-icons/hi2";
-import CourseBox from "../../Components/CourseBox/CourseBox";
-import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
-import Pagination from "../../Components/Pagination/Pagination";
 
 export default function Courses() {
   return (

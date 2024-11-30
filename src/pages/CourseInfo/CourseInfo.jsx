@@ -12,6 +12,7 @@ import {
 } from "@material-tailwind/react";
 import Footer from "./../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { HiOutlineAcademicCap, HiOutlineDocumentText } from "react-icons/hi2";
 import { PiBriefcase, PiStarBold } from "react-icons/pi";
 import { LiaUserSolid } from "react-icons/lia";
@@ -63,6 +64,31 @@ export default function CourseInfo() {
         console.log(courseInfo);
       });
   }, []);
+
+  const submitComment = (newCommentBody) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"))
+
+    fetch(`http://localhost:4000/v1/comments`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorageData.token}`
+      },
+      body: JSON.stringify({
+        body: newCommentBody,
+        courseShortName: courseName,
+        score: 5
+      })
+    }).then(res => res.json())
+    .then(result => {
+      Swal.fire({
+        title: "کامنت ثبت شد",
+        icon: "success",
+        confirmButtonText: "تایید"
+      })
+    })
+  
+  }
 
   return (
     <>
@@ -741,7 +767,7 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Comments --> */}
-              <CommentsTextArea comments={comments} />
+              <CommentsTextArea comments={comments} submitComment={submitComment} />
             </div>
             <aside className="col-span-12 lg:col-span-4 space-y-12">
               {/* <!-- Students & Rating & Progress --> */}

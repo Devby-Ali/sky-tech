@@ -1,18 +1,16 @@
 import React, { useContext, useState } from "react";
 import Input from "../../Components/Form/Input";
-import Footer from "../../Components/Footer/Footer";
-import Navbar from "../../Components/Navbar/Navbar";
 import Button from "../../Components/Form/Button";
+import { useForm } from "../../hooks/useForm";
+import AuthContext from "../../context/authContext";
 import {
   requiredValidator,
   maxValidator,
   minValidator,
   emailValidator,
 } from "../../validators/rules";
-import { useForm } from "../../hooks/useForm";
-import AuthContext from "../../context/authContext";
-import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import ReCAPTCHA from "react-google-recaptcha";
 // import Topbar from "../../Components/Topbar/Topbar";
 import { BiLockOpenAlt } from "react-icons/bi";
