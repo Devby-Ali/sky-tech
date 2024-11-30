@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { BsExclamationTriangle } from "react-icons/bs";
 import { GoTriangleDown } from "react-icons/go";
@@ -6,6 +6,8 @@ import { HiOutlineArrowUturnLeft } from "react-icons/hi2";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiChatCenteredTextLight, PiChats } from "react-icons/pi";
 import { RiGraduationCapFill } from "react-icons/ri";
+import AuthContext from "../../context/authContext";
+import { Link } from "react-router-dom";
 
 export default function CommentsTextArea({ comments }) {
   const [openTextArea, setOpenTextArea] = useState(false);
@@ -14,6 +16,9 @@ export default function CommentsTextArea({ comments }) {
     setOpenTextArea(true);
     console.log(openTextArea);
   };
+
+  const authContext = useContext(AuthContext);
+  console.log(authContext);
 
   return (
     <div
@@ -57,57 +62,65 @@ export default function CommentsTextArea({ comments }) {
       </div>
       {/* <!-- Comment Form --> */}
       <div className={openTextArea ? "mb-14" : "hidden"} id="comment-form">
-        <div className="flex gap-x-4 mb-8 sm:mb-5">
-          <div className="flex-center p-2 border border-gray-100 dark:border-[#333c4c] rounded-full">
-            <div className="flex-center w-14 sm:w-16 h-14 sm:h-16 bg-gray-200 dark:bg-[#333c4c] rounded-full">
-              <div className="text-4xl text-gray-300">
-                <LiaUserSolid />
+        {authContext.isLoggedIn ? (
+          <>
+            <div className="flex gap-x-4 mb-8 sm:mb-5">
+              <div className="flex-center p-2 border border-gray-100 dark:border-[#333c4c] rounded-full">
+                <div className="flex-center w-14 sm:w-16 h-14 sm:h-16 bg-gray-200 dark:bg-[#333c4c] rounded-full">
+                  <div className="text-4xl text-gray-300">
+                    <LiaUserSolid />
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <span className="font-EstedadMedium tracking-wider">
+                  Theotherali
+                </span>
+                <span
+                  className="font-EstedadThin text-2xl opacity-70"
+                  id="comment-to"
+                >
+                  ثبت نظر جدید
+                </span>
               </div>
             </div>
+            <input type="hidden" value="" id="comment-id" />
+            <input type="hidden" value="" id="comment-is-reply" />
+            <div className="flex items-center gap-x-3 bg-red-500/20 text-white px-6 py-5 rounded-xl mb-5">
+              <div className="shrink-0 text-red-400">
+                <BsExclamationTriangle className="w-10 h-10" />
+              </div>
+              <p className="text-[1.4rem]/10 text-red-100">
+                لطفا پرسش مربوط به هر درس یا ویدئو دوره را در صفحه همان ویدئو
+                مطرح کنید.
+              </p>
+            </div>
+            <textarea
+              rows="6"
+              id="comment-textarea"
+              className="w-full block p-7 md:p-4 bg-gray-200 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm sm:rounded-xl"
+              placeholder="نظر خود را بنویسید ..."
+            ></textarea>
+            <div className="flex gap-x-2 justify-end mt-2 sm:mt-6">
+              <button
+                className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline rounded-br-[3rem] rounded-l-sm rounded-tr-sm sm:rounded-sm sm:rounded-tr-4xl"
+                id="comment-cancel-btn"
+              >
+                لغو
+              </button>
+              <button
+                className="flex-grow sm:grow-0 sm:w-36 button-primary rounded-bl-2xl rounded-tl-sm rounded-r-sm sm:rounded-sm sm:rounded-bl-4xl"
+                id="comment-submit-btn"
+              >
+                ارسال
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="mb-8 sm:mb-5 text-3xl py-6 px-4 rounded-xl bg-amber-400/20 text-amber-700">
+            لطفا ابتدا در سایت {<Link className="text-light-blue-500" to={"/login"}>وارد</Link>} شوید
           </div>
-          <div className="flex flex-col gap-3">
-            <span className="font-EstedadMedium tracking-wider">
-              Theotherali
-            </span>
-            <span
-              className="font-EstedadThin text-2xl opacity-70"
-              id="comment-to"
-            >
-              ثبت نظر جدید
-            </span>
-          </div>
-        </div>
-        <input type="hidden" value="" id="comment-id" />
-        <input type="hidden" value="" id="comment-is-reply" />
-        <div className="flex items-center gap-x-3 bg-red-500/20 text-white px-6 py-5 rounded-xl mb-5">
-          <div className="shrink-0 text-red-400">
-            <BsExclamationTriangle className="w-10 h-10" />
-          </div>
-          <p className="text-[1.4rem]/10 text-red-100">
-            لطفا پرسش مربوط به هر درس یا ویدئو دوره را در صفحه همان ویدئو مطرح
-            کنید.
-          </p>
-        </div>
-        <textarea
-          rows="6"
-          id="comment-textarea"
-          className="w-full block p-7 md:p-4 bg-gray-200 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm sm:rounded-xl"
-          placeholder="نظر خود را بنویسید ..."
-        ></textarea>
-        <div className="flex gap-x-2 justify-end mt-2 sm:mt-6">
-          <button
-            className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline rounded-br-[3rem] rounded-l-sm rounded-tr-sm sm:rounded-sm sm:rounded-tr-4xl"
-            id="comment-cancel-btn"
-          >
-            لغو
-          </button>
-          <button
-            className="flex-grow sm:grow-0 sm:w-36 button-primary rounded-bl-2xl rounded-tl-sm rounded-r-sm sm:rounded-sm sm:rounded-bl-4xl"
-            id="comment-submit-btn"
-          >
-            ارسال
-          </button>
-        </div>
+        )}
       </div>
       {/* <!-- Comment List --> */}
       <div className="comments_wrap space-y-7 sm:space-y-6 child:bg-gray-200  dark:child:bg-[#333c4c]">
@@ -188,7 +201,8 @@ export default function CommentsTextArea({ comments }) {
                                   {comment.answerContent.creator.name}
                                 </span>
                                 <strong className="font-EstedadThin">
-                                  {comment.answerContent.creator.role === "ADMIN"
+                                  {comment.answerContent.creator.role ===
+                                  "ADMIN"
                                     ? " مدیر"
                                     : " دانشجو"}
                                 </strong>
@@ -220,7 +234,6 @@ export default function CommentsTextArea({ comments }) {
             </button>
           </>
         )}
-
       </div>
       {/* <!-- Load more --> */}
     </div>

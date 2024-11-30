@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
-import Footer from "./../../Components/Footer/Footer";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Button from "../../Components/Form/Button";
 import CourseDetailBox from "../../Components/CourseDetailBox/CourseDetailBox";
@@ -11,9 +10,9 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
+import Footer from "./../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
-import { HiAcademicCap, HiOutlineDocumentText } from "react-icons/hi2";
-import { HiOutlineAcademicCap } from "react-icons/hi2";
+import { HiOutlineAcademicCap, HiOutlineDocumentText } from "react-icons/hi2";
 import { PiBriefcase, PiStarBold } from "react-icons/pi";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
@@ -40,6 +39,7 @@ function Icon({ id, open }) {
 }
 
 export default function CourseInfo() {
+  
   const [open, setOpen] = useState(0);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
@@ -55,12 +55,12 @@ export default function CourseInfo() {
     fetch(`http://localhost:4000/v1/courses/${courseName}`)
       .then((res) => res.json())
       .then((courseInfo) => {
-        console.log(courseInfo);
-        setCourseDetails(courseInfo);
         setComments(courseInfo.comments);
         setSessions(courseInfo.sessions);
+        setCourseDetails(courseInfo);
         setCreatedAt(courseInfo.createdAt);
         setUpdatedAt(courseInfo.updatedAt);
+        console.log(courseInfo);
       });
   }, []);
 
@@ -113,7 +113,7 @@ export default function CourseInfo() {
                   </div>
                 ) : (
                   <div className="flex justify-center xl:items-center lg:justify-between flex-wrap-reverse gap-y-4 gap-x-8">
-                    <button
+                    <Button
                       id="register-in-course"
                       className="button-primary w-full sm:w-auto"
                     >
@@ -121,7 +121,7 @@ export default function CourseInfo() {
                         <HiOutlineAcademicCap />
                       </div>
                       ثبت نام
-                    </button>
+                    </Button>
                     <div className="flex items-end gap-x-5">
                       {/* <!-- Offer --> */}
                       <span className="text-4xl line-through">436,500</span>
@@ -531,9 +531,9 @@ export default function CourseInfo() {
                         </div>
                       </div>
                     </AccordionHeader>
-                    {sessions.map((sessions, index) => (
-                      <>
-                        <AccordionBody className="divide-y divide-gray-600 -mt-1">
+                    <AccordionBody className="divide-y divide-gray-600 -mt-1">
+                      {sessions.map((sessions, index) => (
+                        <>
                           <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                             <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
                               <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
@@ -555,9 +555,9 @@ export default function CourseInfo() {
                               </div>
                             </div>
                           </div>
-                        </AccordionBody>
-                      </>
-                    ))}
+                        </>
+                      ))}
+                    </AccordionBody>
                   </Accordion>
 
                   <Accordion

@@ -16,7 +16,7 @@ body {
 *::after,
 *::before {
   outline: none;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 a {
