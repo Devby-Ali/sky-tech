@@ -63,7 +63,7 @@ export default function CourseInfo() {
         setUpdatedAt(courseInfo.updatedAt);
         console.log(courseInfo);
       });
-  }, []);
+  }, [courseName]);
 
   const submitComment = (newCommentBody) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"))
