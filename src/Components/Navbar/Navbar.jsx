@@ -57,6 +57,7 @@ export default function Navbar() {
     fetch(`http://localhost:4000/v1/menus`)
       .then((res) => res.json())
       .then((menus) => {
+        console.log(menus)
         setAllMenus(menus);
       });
   }, []);
