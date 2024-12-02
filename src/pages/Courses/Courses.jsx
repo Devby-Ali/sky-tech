@@ -13,8 +13,9 @@ import {
 } from "react-icons/hi2";
 
 export default function Courses() {
-
   const [courses, setCourses] = useState([]);
+
+  const [shownCourses, setShownCourses] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses`)
@@ -23,7 +24,6 @@ export default function Courses() {
         setCourses(allCourses);
       });
   }, []);
-
 
   return (
     <>
@@ -171,14 +171,17 @@ export default function Courses() {
               </div>
               {/* <!-- Course List --> */}
               <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
-                {
-                  courses.map(course => (
-                    <CourseBox {...course} />
-                  ))
-                }
+                {shownCourses.map((course) => (
+                  <CourseBox {...course} />
+                ))}
               </div>
               {/* <!-- Show more Button --> */}
-              <Pagination />
+              <Pagination
+                items={courses}
+                itemsCount={1}
+                pathName="/courses"
+                setShownCourses={setShownCourses}
+              />
               <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed hidden">
                 <p className="text-lg md:text-xl text-center  text-[#64748b] dark:text-white mt-8 md:mt-12">
                   متاسفانه دوره ای مطابق با جستجوی شما پیدا نشد ):

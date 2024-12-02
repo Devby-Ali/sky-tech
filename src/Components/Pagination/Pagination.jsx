@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiChevronLeft } from "react-icons/hi2";
+import { useParams } from "react-router-dom";
 
-export default function Pagination() {
+export default function Pagination({
+  items,
+  itemsCount,
+  pathName,
+  setShownCourses,
+}) {
+  const [pageCount, setPageCount] = useState(null);
+
+  const { page } = useParams();
+
+  useEffect(() => {
+    let endIndex = itemsCount * page;
+    let startIndex = endIndex - itemsCount;
+    let PaginatedItems = items.slice(startIndex, endIndex);
+    setShownCourses(PaginatedItems);
+    let pagesNumber = Math.ceil(items.length / itemsCount);
+    setPageCount(pagesNumber);
+  }, [page, items]);
+
   return (
     <div className="my-12">
       <ul className="flex-center text-darkColor dark:text-white">
