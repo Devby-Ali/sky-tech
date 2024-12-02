@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
@@ -13,6 +13,18 @@ import {
 } from "react-icons/hi2";
 
 export default function Courses() {
+
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/v1/courses`)
+      .then((res) => res.json())
+      .then((allCourses) => {
+        setCourses(allCourses);
+      });
+  }, []);
+
+
   return (
     <>
       {/* <Topbar /> */}
@@ -159,11 +171,11 @@ export default function Courses() {
               </div>
               {/* <!-- Course List --> */}
               <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
-                <CourseBox />
+                {
+                  courses.map(course => (
+                    <CourseBox {...course} />
+                  ))
+                }
               </div>
               {/* <!-- Show more Button --> */}
               <Pagination />

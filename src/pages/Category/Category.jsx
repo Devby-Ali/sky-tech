@@ -11,6 +11,7 @@ import { FaSearch } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
 export default function Category() {
+  
   const [courses, setCourses] = useState([]);
 
   const { categoryName } = useParams();
@@ -22,6 +23,7 @@ export default function Category() {
         setCourses(allCourses);
       });
   }, [categoryName]);
+  
 
   return (
     <>

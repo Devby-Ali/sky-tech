@@ -1,5 +1,5 @@
 // import React, { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../Components/Header/Header";
 import LastCourses from "../../Components/LastCourses/LastCourses";
 import AboutUs from "../../Components/AboutUs/AboutUs";
@@ -12,7 +12,7 @@ import Footer from "../../Components/Footer/Footer";
 
 
 export default function Index() {
-  // const [show, setModalShow] = useState(true);
+  const [show, setModalShow] = useState(true);
   
   return (
     <>

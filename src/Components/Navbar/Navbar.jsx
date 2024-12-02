@@ -18,14 +18,11 @@ import {
 export default function Navbar() {
 
   const [dark, setDark] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+  const [openCollapse, setOpenCollapse] = useState(false);
+  const [overlay, setOverlay] = useState(false);
 
   const [allMenus, setAllMenus] = useState([]);
-
-  const [navOpen, setNavOpen] = useState(false);
-
-  const [openCollapse, setOpenCollapse] = useState(false);
-
-  const [overlay, setOverlay] = useState(false);
 
 
   const themeHandler = () => {
@@ -51,23 +48,21 @@ export default function Navbar() {
     setOverlay(false);
   };
 
+  const navOpenHandler = () => {
+    setNavOpen(!navOpen);
+    setOverlay(!overlay);
+  };
+
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/menus`)
       .then((res) => res.json())
       .then((menus) => {
-        console.log(menus)
         setAllMenus(menus);
       });
   }, []);
 
-
-
-  const navOpenHandler = () => {
-    setNavOpen(!navOpen);
-    setOverlay(!overlay);
-  };
 
   return (
     <>
@@ -190,7 +185,7 @@ export default function Navbar() {
                     key={menu._id}
                     className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative"
                   >
-                    <Link to={`category-info/${menu.href}`} className="flex-center">
+                    <Link to={`/category-info/${menu.href}`} className="flex-center">
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>
