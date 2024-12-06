@@ -8,14 +8,14 @@ import PresellCourses from "../../Components/PresellCourses/PresellCourses";
 import LastArticles from "../../Components/LastArticles/LastArticles";
 import Footer from "../../Components/Footer/Footer";
 
-
-
-
 export default function Index() {
   const [show, setModalShow] = useState(true);
-  
+
   return (
     <>
+      <div className="absolute -z-10 opacity-40 dark:opacity-20">
+        <img src="/images/landing/sky.png" alt="" />
+      </div>
       <Header />
       <LastCourses />
       <AboutUs />
