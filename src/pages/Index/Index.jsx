@@ -14,7 +14,7 @@ export default function Index() {
   return (
     <>
       <div className="absolute -z-10 opacity-40 dark:opacity-20">
-        <img src="/images/landing/sky.png" alt="" />
+        <img src="/images/sky.png" alt="" />
       </div>
       <Header />
       <LastCourses />

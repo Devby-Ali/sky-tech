@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HiChevronLeft } from "react-icons/hi2";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Pagination({
   items,
@@ -8,7 +8,7 @@ export default function Pagination({
   pathName,
   setShownCourses,
 }) {
-  const [pageCount, setPageCount] = useState(null);
+  const [pagesCount, setPagesCount] = useState(null);
 
   const { page } = useParams();
 
@@ -18,51 +18,43 @@ export default function Pagination({
     let PaginatedItems = items.slice(startIndex, endIndex);
     setShownCourses(PaginatedItems);
     let pagesNumber = Math.ceil(items.length / itemsCount);
-    setPageCount(pagesNumber);
+    setPagesCount(pagesNumber);
   }, [page, items]);
 
   return (
     <div className="my-12">
       <ul className="flex-center text-darkColor dark:text-white">
         <li className="courses__pagination-item">
-          <a
-            href="#"
-            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 rotate-180 hover:bg-cyan-700"
+          <Link
+            to={`${pathName}/${Number(page) - 1}`}
+            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 rotate-180 hover:bg-light-blue-400/70"
           >
             <HiChevronLeft />
-          </a>
+          </Link>
         </li>
+        {Array(pagesCount)
+          .fill(0)
+          .map((item, index) => (
+            <>
+            <li className="courses__pagination-item">
+              <Link
+                to={`${pathName}/${index + 1}`}
+                className={`rounded-lg w-16 h-16 flex-center text-2xl mx-2 ${
+                  index + 1 === Number(page) ? "bg-light-blue-500" : null
+                } hover:bg-light-blue-400/70`}
+              >
+                {index + 1}
+              </Link>
+            </li>
+            </>
+          ))}
         <li className="courses__pagination-item">
-          <a
-            href="#"
-            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 hover:bg-cyan-700"
-          >
-            1
-          </a>
-        </li>
-        <li className="courses__pagination-item">
-          <a
-            href="#"
-            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 hover:bg-cyan-700"
-          >
-            2
-          </a>
-        </li>
-        <li className="courses__pagination-item">
-          <a
-            href="#"
-            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 hover:bg-cyan-700 active"
-          >
-            3
-          </a>
-        </li>
-        <li className="courses__pagination-item">
-          <a
-            href="#"
-            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 hover:bg-cyan-700"
+          <Link
+            to={`${pathName}/${Number(page) + 1}`}
+            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 hover:bg-light-blue-400/70"
           >
             <HiChevronLeft />
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
