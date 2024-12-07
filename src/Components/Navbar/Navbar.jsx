@@ -185,7 +185,7 @@ export default function Navbar() {
                     key={menu._id}
                     className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative"
                   >
-                    <Link to={`/category-info/${menu.href}`} className="flex-center">
+                    <Link to={`/category-info/${menu.href}/1`} className="flex-center">
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>

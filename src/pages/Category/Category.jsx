@@ -11,8 +11,9 @@ import { FaSearch } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
 export default function Category() {
-  
+
   const [courses, setCourses] = useState([]);
+  const [shownCourses, setShownCourses] = useState([]);
 
   const { categoryName } = useParams();
 
@@ -23,7 +24,6 @@ export default function Category() {
         setCourses(allCourses);
       });
   }, [categoryName]);
-  
 
   return (
     <>
@@ -85,16 +85,23 @@ export default function Category() {
 
               <div className="courses-content">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-11">
-                  {courses.map((course) => (
+                  {shownCourses.map((course) => (
                     <CourseBox {...course} />
                   ))}
                 </div>
               </div>
 
-              <Pagination />
+              <Pagination
+                items={courses}
+                itemsCount={3}
+                pathName={`/category-info/${categoryName}`}
+                setShownCourses={setShownCourses}
+              />
             </>
           ) : (
-            <div className="bg bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">هنوز دوره ای به این دسته بندی اضافه نشده</div>
+            <div className="bg bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+              هنوز دوره ای به این دسته بندی اضافه نشده
+            </div>
           )}
         </div>
       </section>

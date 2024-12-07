@@ -49,6 +49,7 @@ export default function CourseInfo() {
   const [createdAt, setCreatedAt] = useState("");
   const [updatedAt, setUpdatedAt] = useState("");
   const [courseDetails, setCourseDetails] = useState({});
+  const [courseTeacher, setCourseTeacher] = useState({})
 
   const { courseName } = useParams();
 
@@ -61,6 +62,7 @@ export default function CourseInfo() {
         setCourseDetails(courseInfo);
         setCreatedAt(courseInfo.createdAt);
         setUpdatedAt(courseInfo.updatedAt);
+        setCourseTeacher(courseInfo.creator)
         console.log(courseInfo);
       });
   }, [courseName]);
@@ -810,15 +812,15 @@ export default function CourseInfo() {
                   className="block mb-6 mx-auto object-cover rounded-full"
                   width="90"
                   height="90"
-                  src=""
+                  src={courseTeacher.profile}
                   alt="محمدامین سعیدی راد"
                 />
                 <span className="block font-EstedadMedium text-2xl sm:text-3xl mb-8">
-                  محمدامین سعیدی راد | مدرس دوره
+                  {courseTeacher.name} | مدرس دوره
                 </span>
                 <p className="mt-2"></p>
                 <Button
-                  to="https://"
+                  to="#"
                   className="button-primary mx-auto mt-4 w-72"
                 >
                   مشاهده پروفایل من
