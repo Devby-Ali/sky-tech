@@ -3,7 +3,7 @@ import { LiaUserSolid } from "react-icons/lia";
 import { CiCalendar } from "react-icons/ci";
 import { GoTriangleLeft } from "react-icons/go";
 
-export default function ArticleBox({ title, desc, cover }) {
+export default function ArticleBox({ title, description, cover, createdAt, creator }) {
   return (
     <div className="blog flex flex-col bg-white dark:bg-darkBox text-darkColor dark:text-white overflow-hidden rounded-3xl">
       {/* <!-- Blog Banner --> */}
@@ -23,7 +23,7 @@ export default function ArticleBox({ title, desc, cover }) {
           <a href="">{title}</a>
         </h3>
         {/* <!-- Blog Description --> */}
-        <p className="text-2xl line-clamp-4 opacity-70">{desc}</p>
+        <p className="text-2xl line-clamp-4 opacity-70">{description}</p>
       </div>
       {/* <!-- Blog Footer --> */}
       <div className="px-7 pb-8">
@@ -33,13 +33,13 @@ export default function ArticleBox({ title, desc, cover }) {
             <div className="text-3xl">
               <LiaUserSolid />
             </div>
-            <a href="">شهرام خندقی</a>
+            <a href="">{creator.name}</a>
           </div>
           <div className="flex items-center gap-x-1">
             <div className="text-3xl">
               <CiCalendar />
             </div>
-            <span>1403/08/21</span>
+            <span>{createdAt.slice(0, 10)}</span>
           </div>
         </div>
         {/* <!-- Blog Link Address --> */}
