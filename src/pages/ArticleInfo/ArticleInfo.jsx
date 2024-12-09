@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
 import Breadcrumb from "./../../Components/Breadcrumb/Breadcrumb";
@@ -15,13 +15,32 @@ import {
   HiOutlineClipboardDocument,
   HiShare,
 } from "react-icons/hi2";
-
+import { useParams } from "react-router-dom";
 
 export default function ArticleInfo() {
+  const { articleName } = useParams();
+
+  const [articleDetails, setArticleDetails] = useState({});
+  const [articleCategory, setArticleCategory] = useState({});
+  const [articleCreator, setArticleCreator] = useState({});
+  const [articleCreatedAt, setArticleCreatedAt] = useState('');
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/v1/articles/${articleName}`)
+      .then((res) => res.json())
+      .then((articleInfo) => {
+        setArticleDetails(articleInfo);
+        setArticleCategory(articleInfo.categoryID);
+        setArticleCreator(articleInfo.creator);
+        setArticleCreatedAt(articleInfo.createdAt)
+        console.log(articleInfo);
+      });
+  }, []);
+
   return (
     <>
       <Navbar />
-      <main className="max-w-[1920px] mx-auto overflow-x-hidden">
+      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-10 lg:pt-60">
         <div className="container">
           <Breadcrumb
             links={[
@@ -32,7 +51,7 @@ export default function ArticleInfo() {
               },
               {
                 id: 3,
-                title: "زبان برنامه نویسی بازی counter Strike 2",
+                title: "hi",
                 to: "course-info/js-expert",
               },
             ]}
@@ -46,7 +65,7 @@ export default function ArticleInfo() {
                 <div className="mt-4 sm:mt-2 flex items-center gap-x-3 mb-10 relative border-b border-b-gray-300 dark:border-b-white/10 pb-10 sm:pb-12">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <h1 className="font-EstedadBold text-3xl md:text-4xl">
-                    زبان برنامه نویسی بازی counter Strike 2
+                    {articleDetails.title}
                   </h1>
                 </div>
                 {/* <!-- info --> */}
@@ -57,7 +76,7 @@ export default function ArticleInfo() {
                       <LiaUser />
                     </div>
                     <span className="text-[1.35rem] sm:text-2xl">
-                      شهرام خندقی
+                      {articleCreator.name}
                     </span>
                   </div>
                   {/* <!-- date --> */}
@@ -66,7 +85,7 @@ export default function ArticleInfo() {
                       <HiMiniCalendar />
                     </div>
                     <span className="text-[1.35rem] sm:text-2xl mt-2">
-                      1403/08/30
+                      {articleCreatedAt.slice(0, 10)}
                     </span>
                   </div>
                   {/* <!-- view count --> */}
@@ -83,6 +102,12 @@ export default function ArticleInfo() {
                   className="aspect-video object-cover rounded-2xl"
                   alt="زبان برنامه نویسی بازی counter Strike 2"
                 />
+                {/* category */}
+                <div className="opacity-40 mt-4">
+                  <span className="text-[1.35rem] sm:text-2xl mt-2">
+                    {articleCategory.title}
+                  </span>
+                </div>
                 <div
                   className="rounded-4xl !rounded-tr-none border border-gray-400 dark:border-white/30 mt-14 overflow-hidden mb-10 md:mb-12 tracking-wide"
                   id="toc-collapse"
@@ -142,45 +167,7 @@ export default function ArticleInfo() {
                 </div>
                 {/*					<!-- Full Description --> */}
                 <p className=" tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem]">
-                  چرا C++ زبان اصلی توسعه Counter-Strike 2 است؟ اگر قرار باشد
-                  زبان‌های برنامه‌نویسی را به ابزارهای یک معمار تشبیه کنیم، C++
-                  مانند ابزار چندکاره‌ای است که برای هر چالشی یک راه‌حل دارد.
-                  این زبان، که به‌عنوان ستون فقرات موتور Source 2 عمل می‌کند،
-                  نقشی کلیدی در ساخت بازی‌هایی مانند Counter-Strike 2 ایفا
-                  می‌کند. اما چرا C++؟ در این بخش به بررسی ویژگی‌ها و دلایلی
-                  می‌پردازیم که باعث شده این زبان انتخاب اصلی توسعه‌دهندگان برای
-                  چنین بازی‌های پیچیده‌ای باشد. 1. عملکرد و کارایی بالا C++
-                  بهینه‌ترین زبان برای پردازش وظایف سنگین است، به‌ویژه در
-                  بازی‌هایی که نیاز به گرافیک پیچیده و سیستم‌های فیزیکی دقیق
-                  دارند. این ویژگی به Counter-Strike 2 امکان می‌دهد: بازی را روی
-                  سخت‌افزارهای متنوع اجرا کند. لگ (تاخیر) را به حداقل برساند.
-                  تجربه‌ای روان و بدون قطعی به بازیکنان ارائه دهد. 2. کنترل دقیق
-                  حافظه یکی از ویژگی‌های برجسته C++، امکان مدیریت دقیق حافظه
-                  است. این قابلیت در بازی‌هایی با حجم بالای داده‌های گرافیکی و
-                  فیزیکی اهمیت زیادی دارد. مثال عملی: هنگام شبیه‌سازی پرتاب
-                  نارنجک در بازی، مسیر، انفجار، و تاثیرات فیزیکی آن در لحظه توسط
-                  کدهای بهینه C++ پردازش و نمایش داده می‌شود. 3. مناسب برای
-                  سیستم‌های پیچیده C++ با پشتیبانی از شی‌ءگرایی، توسعه سیستم‌های
-                  پیچیده‌ای مانند هوش مصنوعی دشمنان، شبیه‌سازی‌های فیزیکی و
-                  مدیریت چندین بازیکن آنلاین را تسهیل می‌کند. مثال: در
-                  Counter-Strike 2، رفتار دشمنان (Bots) و تصمیم‌گیری‌های آن‌ها
-                  توسط الگوریتم‌های مبتنی بر شی‌ءگرایی مدیریت می‌شود. 4.
-                  پشتیبانی گسترده و جامعه قوی C++ یکی از پرکاربردترین زبان‌ها در
-                  صنعت بازی‌سازی است و منابع آموزشی و ابزارهای زیادی برای آن در
-                  دسترس است. این امر باعث می‌شود توسعه‌دهندگان به‌راحتی از این
-                  زبان استفاده کنند و مشکلات احتمالی را برطرف کنند. نتیجه‌گیری
-                  برنامه‌نویسی بازی‌های ویدیویی مثل Counter-Strike 2 سفری
-                  هیجان‌انگیز به دنیایی است که در آن خلاقیت و تکنولوژی دست به
-                  دست هم می‌دهند. با یادگیری زبان‌های قدرتمندی مثل C++ برای
-                  سیستم‌های پیچیده و Lua برای تعاملات درون بازی، شما نیز
-                  می‌توانید اولین قدم‌ها را به سمت تبدیل ایده‌های خود به واقعیت
-                  بردارید. این مسیر شاید چالش‌برانگیز باشد، اما با ابزارهای
-                  مناسب و منابع آموزشی در دسترس، هر چیزی ممکن است. حالا که
-                  می‌دانید چگونه این بازی محبوب ساخته شده و چه ابزارهایی برای
-                  ورود به دنیای بازی‌سازی نیاز دارید، وقت آن است که قدم اول را
-                  بردارید. آیا آماده‌اید تا کدهای خود را بنویسید و دنیاهای جدید
-                  خلق کنید؟ نظرات و سوالات خود را با ما در میان بگذارید و در این
-                  مسیر یادگیری با ما همراه شوید. دنیا منتظر بازی بعدی شماست!
+                {articleDetails.body}
                 </p>
               </div>
               {/* <!-- Related Blogs --> */}
@@ -281,7 +268,7 @@ export default function ArticleInfo() {
               </div>
               {/* <!-- Comments --> */}
 
-              <CommentsTextArea />
+              {/* <CommentsTextArea /> */}
 
               {/* <!-- Sidebar --> */}
               <aside className="col-span-full lg:col-span-4 xl:col-span-3 space-y-8">
