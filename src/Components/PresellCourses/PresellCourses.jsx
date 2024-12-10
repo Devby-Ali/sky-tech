@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import SectionHeader from "../SectionHeader/SectionHeader";
+import CourseBox from "../CourseBox/CourseBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import CourseBox from "../CourseBox/CourseBox";
+import { Autoplay } from "swiper/modules";
 
 export default function PresellCourses() {
   const [PresellCourses, setpresellCourses] = useState([]);
@@ -12,7 +13,6 @@ export default function PresellCourses() {
     fetch(`http://localhost:4000/v1/courses/presell`)
       .then((res) => res.json())
       .then((allpresell) => {
-        console.log(allpresell);
         setpresellCourses(allpresell);
       });
   }, []);
@@ -28,8 +28,10 @@ export default function PresellCourses() {
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
-            pagination={{
-              clickable: true,
+            loop={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
             }}
             breakpoints={{
               640: {
@@ -43,6 +45,7 @@ export default function PresellCourses() {
                 slidesPerView: 4,
               },
             }}
+            modules={[Autoplay]}
             className="mySwiper"
           >
             {PresellCourses.map((course) => (
