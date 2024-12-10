@@ -6,7 +6,7 @@ export default function Pagination({
   items,
   itemsCount,
   pathName,
-  setShownCourses,
+  setShownItems,
 }) {
   const [pagesCount, setPagesCount] = useState(null);
 
@@ -16,7 +16,7 @@ export default function Pagination({
     let endIndex = itemsCount * page;
     let startIndex = endIndex - itemsCount;
     let PaginatedItems = items.slice(startIndex, endIndex);
-    setShownCourses(PaginatedItems);
+    setShownItems(PaginatedItems);
     let pagesNumber = Math.ceil(items.length / itemsCount);
     setPagesCount(pagesNumber);
   }, [page, items]);

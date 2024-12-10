@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Topbar from "./../../Components/Topbar/Topbar";
 import Navbar from "./../../Components/Navbar/Navbar";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
-import CourseBox from "../../Components/CourseBox/CourseBox";
+import ArticleBox from "../../Components/ArticleBox/ArticleBox";
 import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
 import Pagination from "../../Components/Pagination/Pagination";
 import Footer from "./../../Components/Footer/Footer";
@@ -12,16 +11,18 @@ import {
   HiOutlineFunnel,
 } from "react-icons/hi2";
 
-export default function Courses() {
-  const [courses, setCourses] = useState([]);
 
-  const [shownCourses, setShownCourses] = useState([]);
+export default function Articles() {
+
+  const [articles, setArticles] = useState([]);
+
+  const [shownArticles, setShownArticles] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses`)
+    fetch(`http://localhost:4000/v1/articles`)
       .then((res) => res.json())
-      .then((allCourses) => {
-        setCourses(allCourses);
+      .then((allArticles) => {
+        setArticles(allArticles);
       });
   }, []);
 
@@ -31,7 +32,7 @@ export default function Courses() {
       <Navbar />
       <div className="pt-[11.5rem]">
         <div className="-mb-6">
-          <SectionHeader title={"دوره ها"} titleValue={"۶۴ دوره ی آموزشی"} />
+          <SectionHeader title={"مقاله ها"} titleValue={"۶۴ دوره ی آموزشی"} />
         </div>
         <div className="container">
           <section className="grid grid-cols-12 gap-y-5 md:gap-x-12 text-darkColor dark:text-white ">
@@ -171,16 +172,16 @@ export default function Courses() {
               </div>
               {/* <!-- Course List --> */}
               <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
-                {shownCourses.map((course) => (
-                  <CourseBox {...course} />
+                {shownArticles.map((article) => (
+                  <ArticleBox {...article} />
                 ))}
               </div>
               {/* <!-- Show more Button --> */}
               <Pagination
-                items={courses}
-                itemsCount={1}
-                pathName="/courses"
-                setShownItems={setShownCourses}
+                items={articles}
+                itemsCount={3}
+                pathName="/articles"
+                setShownItems={setShownArticles}
               />
               <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed hidden">
                 <p className="text-lg md:text-xl text-center  text-[#64748b] dark:text-white mt-8 md:mt-12">

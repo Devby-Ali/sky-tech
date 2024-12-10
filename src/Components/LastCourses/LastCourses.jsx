@@ -16,7 +16,7 @@ export default function LastCourses() {
 
   return (
     <>
-      <div className="my-16">
+      <div className="mb-48">
         <div className="container">
           <SectionHeader
             title="جدیدترین دوره ها"

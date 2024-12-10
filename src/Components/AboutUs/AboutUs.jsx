@@ -8,7 +8,7 @@ import { IoCodeWorking } from "react-icons/io5";
 
 export default function AboutUs() {
   return (
-    <div className="my-24">
+    <div className="mb-48">
       <div className="container">
         <SectionHeader
           title="ما چه کمکی بهتون میکنیم؟"

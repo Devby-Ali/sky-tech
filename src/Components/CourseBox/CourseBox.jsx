@@ -15,7 +15,7 @@ export default function CourseBox(props) {
   };
 
   return (
-    <div className="course flex flex-col  bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl">
+    <div className="course flex flex-col  bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl h-full">
       {/* <!-- Course Banner --> */}
       <div className="relative h-[17rem] group">
         <Link
@@ -38,7 +38,7 @@ export default function CourseBox(props) {
         </span>
       </div>
       {/* <!-- Course Title & Description --> */}
-      <div className="flex-grow px-6 py-6">
+      <div className={`flex-grow px-6 py-6 ${props.isSlider && "h-48"}`}>
         {/* <!-- Course Title --> */}
         <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2 mb-5">
           <Link to={`/course-info/${props.shortName}`} href="">
@@ -82,7 +82,7 @@ export default function CourseBox(props) {
           {props.price === 0 ? (
             <div>رایگان</div>
           ) : (
-            <div className="flex flex-col">
+            <div className="flex-center gap-x-3">
               {props.price >= 250_000 ? (
                 <>
                   <span className="text-xl text-blue-gray-600 dark:text-white/70 -mb-1.5 line-through">
