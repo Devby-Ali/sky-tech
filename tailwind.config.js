@@ -42,9 +42,10 @@ module.exports = withMT({
       container: {
         center: true,
         padding: {
-          DEFAULT: "2rem",
-          md: "3rem",
-          lg: "4rem",
+          DEFAULT: "1rem",
+          sm: ".625rem",
+          lg: "2rem",
+          "2xl": "4rem",
         },
       },
     },

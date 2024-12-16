@@ -265,10 +265,7 @@ export default function ArticleInfo() {
                     </div>
                   </div>
                 </div>
-              </div>
-              {/* <!-- Comments --> */}
-
-              {/* <CommentsTextArea /> */}
+              </div> 
 
               {/* <!-- Sidebar --> */}
               <aside className="col-span-full lg:col-span-4 xl:col-span-3 space-y-8">

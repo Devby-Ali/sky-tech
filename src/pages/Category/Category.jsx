@@ -11,9 +11,11 @@ import { FaSearch } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
 export default function Category() {
-
   const [courses, setCourses] = useState([]);
+  const [orderedCourses, setOrderedCourses] = useState([]);
   const [shownCourses, setShownCourses] = useState([]);
+  const [status, setStatus] = useState("default");
+  const [statusTitle, setStatusTitle] = useState("مرتب سازی پیش فرض");
 
   const { categoryName } = useParams();
 
@@ -22,8 +24,40 @@ export default function Category() {
       .then((res) => res.json())
       .then((allCourses) => {
         setCourses(allCourses);
+        setOrderedCourses(allCourses);
       });
   }, [categoryName]);
+
+  useEffect(() => {
+    switch (status) {
+      case "free": {
+        const freeCourses = courses.filter((course) => course.price === 0);
+        setOrderedCourses(freeCourses);
+        break;
+      }
+      case "money": {
+        const notFreeCourses = courses.filter((course) => course.price !== 0);
+        setOrderedCourses(notFreeCourses);
+        break;
+      }
+      case "last": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "first": {
+        const reversedCourses = courses.slice().reverse()
+        setOrderedCourses(reversedCourses);
+        break;
+      }
+      default: {
+        setOrderedCourses(courses);
+      }
+    }
+  }, [status]);
+
+  const statusTitleChangeHandler = event => {
+    setStatusTitle(event.target.textContent)
+  }
 
   return (
     <>
@@ -45,26 +79,61 @@ export default function Category() {
 
                   <div className="courses-top-bar__selection relative cursor-pointer">
                     <span className="courses-top-bar__selection-title flex items-center h-14 rounded-md py-3 px-8 border border-gray-400 dark:border-white/30 text-darkColor/70 dark:text-white/70 transition-all hover:text-light-blue-600 dark:hover:text-light-blue-300">
-                      مرتب سازی پیش فرض
+                      {statusTitle}
                       <GoTriangleDown className="mr-2" />
                     </span>
                     <ul className="courses-top-bar__selection-list absolute shadow-normal bg-gray-300 dark:bg-[#333c4c] text-darkColor/90 dark:text-white/70 w-full py-3 z-20 rounded-b-2xl transition-all text-center">
-                      <li className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400 courses-top-bar__selection-item--active">
+                      <li
+                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400 courses-top-bar__selection-item--active"
+                      >
                         مرتب سازی پیش فرض
                       </li>
-                      <li className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400">
-                        مرتب سازی بر اساس محبوبیت
+                      <li
+                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
+                        onClick={(event) => {
+                          setStatus("free")
+                          statusTitleChangeHandler(event)
+                        }}
+                      >
+                        مرتب سازی بر اساس رایگان
                       </li>
-                      <li className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400">
-                        مرتب سازی بر اساس امتیاز
+                      <li
+                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
+                        onClick={(event) => {
+                          setStatus("money")
+                          statusTitleChangeHandler(event)
+                        }}
+                      >
+                        مرتب سازی بر اساس پولی
                       </li>
-                      <li className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400">
+                      <li
+                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
+                        onClick={(event) => {
+                          setStatus("last")
+                          statusTitleChangeHandler(event)
+                        }}
+                      >
                         مرتب سازی بر اساس آخرین
                       </li>
-                      <li className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400">
+                      <li
+                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
+                        onClick={(event) => {
+                          setStatus("first")
+                          statusTitleChangeHandler(event)
+                        }}
+                      >
+                        مرتب سازی بر اساس اولین
+                      </li>
+                      <li
+                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
+                        onClick={() => setStatus("cheapest")}
+                      >
                         مرتب سازی بر اساس ارزان ترین
                       </li>
-                      <li className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400 mb-1">
+                      <li
+                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400 mb-1"
+                        onClick={() => setStatus("expensive")}
+                      >
                         مرتب سازی بر اساس گران ترین
                       </li>
                     </ul>
@@ -92,10 +161,10 @@ export default function Category() {
               </div>
 
               <Pagination
-                items={courses}
+                items={orderedCourses}
                 itemsCount={3}
                 pathName={`/category-info/${categoryName}`}
-                setShownCourses={setShownCourses}
+                setShownItems={setShownCourses}
               />
             </>
           ) : (
