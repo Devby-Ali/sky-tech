@@ -26,6 +26,8 @@ export default function Category() {
       .then((allCourses) => {
         setCourses(allCourses);
         setOrderedCourses(allCourses);
+        setStatusTitle("همه دوره ها");
+        setStatus("default");
       });
   }, [categoryName]);
 
@@ -168,19 +170,19 @@ export default function Category() {
               </div>
 
               <div className="courses-content">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-11">
-                  {shownCourses.length !== 0 ? (
-                    <>
+                {shownCourses.length !== 0 ? (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-11">
                       {shownCourses.map((course) => (
                         <CourseBox {...course} />
                       ))}
-                    </>
-                  ) : (
-                    <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl w-full">
-                      هنوز دوره ای برای {statusTitle} وجود ندارد
                     </div>
-                  )}
-                </div>
+                  </>
+                ) : (
+                  <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+                    هنوز دوره ای برای {statusTitle} وجود ندارد
+                  </div>
+                )}
               </div>
 
               <Pagination
