@@ -13,12 +13,12 @@ import {
 import { HiOutlinePhone, HiOutlineUser } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Register() {
 
+  const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   console.log(authContext);
 
@@ -43,7 +43,7 @@ export default function Register() {
       mobileNumber: {
         value: "",
         isValid: false,
-      }
+      },
     },
     false
   );
@@ -71,9 +71,15 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result, result.accessToken);
+        Swal.fire({
+          title: "ثبت نام موفقیت آمیز",
+          icon: "success",
+          confirmButtonText: "ورود به پنل",
+        }).then((value) => {
+          navigate("/");
+        });
         authContext.login(result.user, result.accessToken);
-      });
+      })
 
     console.log("User Register");
   };
@@ -86,10 +92,7 @@ export default function Register() {
         <div className="container">
           <div className="relative mx-auto flex flex-col items-center w-min">
             <div className="flex items-center flex-col text-light-blue-600 font-MikhakWoff2one mb-12">
-              <Link
-                to={"/"}
-                className="text-7xl font-bold mb-4 tracking-tight"
-              >
+              <Link to={"/"} className="text-7xl font-bold mb-4 tracking-tight">
                 اسکای لرن
               </Link>
               <span className="tracking-[0.5rem]">skylearn.com</span>
@@ -177,10 +180,7 @@ export default function Register() {
                     className="bg-transparent outline-none text-right"
                     type="tel"
                     placeholder="شماره موبایل"
-                    validations={[
-                      requiredValidator(),
-                      mobileNumberValidator()
-                    ]}
+                    validations={[requiredValidator(), mobileNumberValidator()]}
                     onInputHandler={onInputHandler}
                   />
                   <HiOutlinePhone className="w-10 h-10 opacity-50" />

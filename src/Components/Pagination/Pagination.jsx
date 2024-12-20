@@ -24,14 +24,6 @@ export default function Pagination({
   return (
     <div className="my-12">
       <ul className="flex-center text-darkColor dark:text-white">
-        <li className="courses__pagination-item">
-          <Link
-            to={`${pathName}/${Number(page) - 1}`}
-            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 rotate-180 hover:bg-light-blue-400/70"
-          >
-            <HiChevronLeft />
-          </Link>
-        </li>
         {Array(pagesCount)
           .fill(0)
           .map((item, index) => (
@@ -48,14 +40,6 @@ export default function Pagination({
             </li>
             </>
           ))}
-        <li className="courses__pagination-item">
-          <Link
-            to={`${pathName}/${Number(page) + 1}`}
-            className="rounded-lg w-16 h-16 flex-center text-2xl mx-2 hover:bg-light-blue-400/70"
-          >
-            <HiChevronLeft />
-          </Link>
-        </li>
       </ul>
     </div>
   );

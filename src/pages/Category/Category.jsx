@@ -15,7 +15,8 @@ export default function Category() {
   const [orderedCourses, setOrderedCourses] = useState([]);
   const [shownCourses, setShownCourses] = useState([]);
   const [status, setStatus] = useState("default");
-  const [statusTitle, setStatusTitle] = useState("مرتب سازی پیش فرض");
+  const [statusTitle, setStatusTitle] = useState("همه دوره ها");
+  const [searchValue, setSearchValue] = useState("");
 
   const { categoryName } = useParams();
 
@@ -45,7 +46,7 @@ export default function Category() {
         break;
       }
       case "first": {
-        const reversedCourses = courses.slice().reverse()
+        const reversedCourses = courses.slice().reverse();
         setOrderedCourses(reversedCourses);
         break;
       }
@@ -55,9 +56,17 @@ export default function Category() {
     }
   }, [status]);
 
-  const statusTitleChangeHandler = event => {
-    setStatusTitle(event.target.textContent)
-  }
+  const statusTitleChangeHandler = (event) => {
+    setStatusTitle(event.target.textContent);
+  };
+
+  const searchValueChangeHandler = (event) => {
+    setSearchValue(event.target.value);
+    const filtredCourses = courses.filter((course) =>
+      course.name.includes(event.target.value)
+    );
+    setOrderedCourses(filtredCourses);
+  };
 
   return (
     <>
@@ -78,21 +87,25 @@ export default function Category() {
                   </div>
 
                   <div className="courses-top-bar__selection relative cursor-pointer">
-                    <span className="courses-top-bar__selection-title flex items-center h-14 rounded-md py-3 px-8 border border-gray-400 dark:border-white/30 text-darkColor/70 dark:text-white/70 transition-all hover:text-light-blue-600 dark:hover:text-light-blue-300">
+                    <span className="flex justify-between items-center courses-top-bar__selection-title h-14 rounded-md py-3 px-8 border border-gray-400 dark:border-white/30 text-darkColor/70 dark:text-white/70 transition-all hover:text-light-blue-600 dark:hover:text-light-blue-300 min-w-[230px]">
                       {statusTitle}
                       <GoTriangleDown className="mr-2" />
                     </span>
                     <ul className="courses-top-bar__selection-list absolute shadow-normal bg-gray-300 dark:bg-[#333c4c] text-darkColor/90 dark:text-white/70 w-full py-3 z-20 rounded-b-2xl transition-all text-center">
                       <li
                         className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400 courses-top-bar__selection-item--active"
+                        onClick={(event) => {
+                          setStatus("All");
+                          statusTitleChangeHandler(event);
+                        }}
                       >
-                        مرتب سازی پیش فرض
+                        همه دوره ها
                       </li>
                       <li
                         className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
                         onClick={(event) => {
-                          setStatus("free")
-                          statusTitleChangeHandler(event)
+                          setStatus("free");
+                          statusTitleChangeHandler(event);
                         }}
                       >
                         مرتب سازی بر اساس رایگان
@@ -100,8 +113,8 @@ export default function Category() {
                       <li
                         className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
                         onClick={(event) => {
-                          setStatus("money")
-                          statusTitleChangeHandler(event)
+                          setStatus("money");
+                          statusTitleChangeHandler(event);
                         }}
                       >
                         مرتب سازی بر اساس پولی
@@ -109,8 +122,8 @@ export default function Category() {
                       <li
                         className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
                         onClick={(event) => {
-                          setStatus("last")
-                          statusTitleChangeHandler(event)
+                          setStatus("last");
+                          statusTitleChangeHandler(event);
                         }}
                       >
                         مرتب سازی بر اساس آخرین
@@ -118,8 +131,8 @@ export default function Category() {
                       <li
                         className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
                         onClick={(event) => {
-                          setStatus("first")
-                          statusTitleChangeHandler(event)
+                          setStatus("first");
+                          statusTitleChangeHandler(event);
                         }}
                       >
                         مرتب سازی بر اساس اولین
@@ -146,6 +159,8 @@ export default function Category() {
                       type="text"
                       className="text-2xl w-full border border-gray-400 dark:border-white/30 bg-transparent py-3 pr-6 pl-16 rounded-md"
                       placeholder="جستجوی دوره ..."
+                      value={searchValue}
+                      onChange={searchValueChangeHandler}
                     />
                     <FaSearch className="absolute left-4 top-4 text-3xl text-darkColor/70 dark:text-white/60 cursor-pointer" />
                   </form>
@@ -154,9 +169,17 @@ export default function Category() {
 
               <div className="courses-content">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-11">
-                  {shownCourses.map((course) => (
-                    <CourseBox {...course} />
-                  ))}
+                  {shownCourses.length !== 0 ? (
+                    <>
+                      {shownCourses.map((course) => (
+                        <CourseBox {...course} />
+                      ))}
+                    </>
+                  ) : (
+                    <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl w-full">
+                      هنوز دوره ای برای {statusTitle} وجود ندارد
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -168,7 +191,7 @@ export default function Category() {
               />
             </>
           ) : (
-            <div className="bg bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+            <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
               هنوز دوره ای به این دسته بندی اضافه نشده
             </div>
           )}
