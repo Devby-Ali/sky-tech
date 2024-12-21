@@ -17,6 +17,7 @@ export default function Category() {
   const [status, setStatus] = useState("default");
   const [statusTitle, setStatusTitle] = useState("همه دوره ها");
   const [searchValue, setSearchValue] = useState("");
+  const [coursesDisplayType, setCoursesDisplayType] = useState("row");
 
   const { categoryName } = useParams();
 
@@ -81,10 +82,16 @@ export default function Category() {
             <>
               <div className="flex justify-between items-center p-9 shadow-normal text-darkBox dark:text-white bg-white dark:bg-darkBox rounded-2xl mb-12">
                 <div className="flex items-center">
-                  <div className="courses-top-bar__row-btn flex-center text-4xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 courses-top-bar__icon--active">
+                  <div
+                    className={`courses-top-bar__row-btn flex-center text-4xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${coursesDisplayType === "row" ? "courses-top-bar__icon--active" : null}`}
+                    onClick={() => setCoursesDisplayType("row")}
+                  >
                     <TbBorderAll />
                   </div>
-                  <div className="courses-top-bar__column-btn flex-center text-3xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4">
+                  <div
+                    className={`courses-top-bar__column-btn flex-center text-3xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${coursesDisplayType === "column" ? "courses-top-bar__icon--active" : null}`}
+                    onClick={() => setCoursesDisplayType("column")}
+                  >
                     <FaAlignLeft />
                   </div>
 
