@@ -15,13 +15,12 @@ import ReCAPTCHA from "react-google-recaptcha";
 // import Topbar from "../../Components/Topbar/Topbar";
 import { BiLockOpenAlt } from "react-icons/bi";
 
-
-
 export default function Login() {
-  
   const navigate = useNavigate();
 
   const authContext = useContext(AuthContext);
+
+  console.log(authContext);
 
   const [isGoogleRecaptchaVerify, setIsGoogleRecaptchaVerify] = useState(false);
 
@@ -38,7 +37,6 @@ export default function Login() {
     },
     false
   );
-
 
   const userLogin = (event) => {
     event.preventDefault();
@@ -73,7 +71,18 @@ export default function Login() {
         }).then((value) => {
           navigate("/");
         });
-        authContext.login({}, result.accessToken);
+        fetch(`http://localhost:4000/v1/auth/me`, {
+          headers: {
+            Authorization: `Bearer ${result.accessToken}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((userData) => {
+            console.log(userData);
+            authContext.login(userData, result.accessToken);
+          });
+        console.log(result);
+
       })
       .catch((err) => {
         Swal.fire({
@@ -172,7 +181,7 @@ export default function Login() {
                 </div>
                 <Button
                   className={`h-20 rounded-4xl ${
-                    (formState.isFormValid && isGoogleRecaptchaVerify)
+                    formState.isFormValid && isGoogleRecaptchaVerify
                       ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                       : "bg-[#333c4c]/30"
                   }`}
@@ -185,10 +194,12 @@ export default function Login() {
                 <div className="flex justify-between items-center my-3 opacity-60">
                   <label className="flex items-center">
                     <input className="ml-3" type="checkbox" />
-                    <span className="text-lg sm:text-xl lg:text-2xl">مرا به خاطر داشته باش</span>
+                    <span className="text-lg sm:text-xl lg:text-2xl">
+                      مرا به خاطر داشته باش
+                    </span>
                   </label>
                   <label className="">
-                    <Button className="text-lg sm:text-xl lg:text-2xl" href="#" onClick={userLogin}>
+                    <Button className="text-lg sm:text-xl lg:text-2xl" href="#">
                       رمز عبور را فراموش کرده اید؟
                     </Button>
                   </label>
