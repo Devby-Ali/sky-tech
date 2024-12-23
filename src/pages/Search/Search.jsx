@@ -22,7 +22,7 @@ export default function Search() {
     <>
       <Navbar />
 
-      <div className="mb-48">
+      <div className="mb-40 mt-72">
         <div className="container">
           <SectionHeader
             title="نتیجه دوره‌ها برای جستجوی شما"
@@ -30,19 +30,17 @@ export default function Search() {
           />
 
           <div className="container">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
-              {courses.length === 0 ? (
-                <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
-                  دوره‌ای برای جستجوی شما وجود ندارد
-                </div>
-              ) : (
-                <>
-                  {courses.map((course) => (
-                    <CourseBox key={course._id} {...course} />
-                  ))}
-                </>
-              )}
-            </div>
+            {courses.length === 0 ? (
+              <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+                دوره‌ای برای جستجوی شما وجود ندارد
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
+                {courses.map((course) => (
+                  <CourseBox key={course._id} {...course} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -54,20 +52,18 @@ export default function Search() {
             desc="پیش به سوی ارتقای دانش"
           />
 
-          <div className="articles__content">
-            <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
-              {articles.length === 0 ? (
-                <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
-                  مقاله‌ای برای جستجوی شما وجود ندارد
-                </div>
-              ) : (
-                <>
-                  {articles.map((article) => (
-                    <ArticleBox {...article} key={article._id} />
-                  ))}
-                </>
-              )}
-            </div>
+          <div className="container">
+            {articles.length === 0 ? (
+              <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+                مقاله‌ای برای جستجوی شما وجود ندارد
+              </div>
+            ) : (
+              <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
+                {articles.map((article) => (
+                  <ArticleBox {...article} key={article._id} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>

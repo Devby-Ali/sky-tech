@@ -83,13 +83,21 @@ export default function Category() {
               <div className="flex justify-between items-center p-9 shadow-normal text-darkBox dark:text-white bg-white dark:bg-darkBox rounded-2xl mb-12">
                 <div className="flex items-center">
                   <div
-                    className={`courses-top-bar__row-btn flex-center text-4xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${coursesDisplayType === "row" ? "courses-top-bar__icon--active" : null}`}
+                    className={`courses-top-bar__row-btn flex-center text-4xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${
+                      coursesDisplayType === "row"
+                        ? "courses-top-bar__icon--active"
+                        : null
+                    }`}
                     onClick={() => setCoursesDisplayType("row")}
                   >
                     <TbBorderAll />
                   </div>
                   <div
-                    className={`courses-top-bar__column-btn flex-center text-3xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${coursesDisplayType === "column" ? "courses-top-bar__icon--active" : null}`}
+                    className={`courses-top-bar__column-btn flex-center text-3xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${
+                      coursesDisplayType === "column"
+                        ? "courses-top-bar__icon--active"
+                        : null
+                    }`}
                     onClick={() => setCoursesDisplayType("column")}
                   >
                     <FaAlignLeft />
@@ -186,7 +194,7 @@ export default function Category() {
                     </div>
                   </>
                 ) : (
-                  <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+                  <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
                     هنوز دوره ای برای {statusTitle} وجود ندارد
                   </div>
                 )}
@@ -200,7 +208,7 @@ export default function Category() {
               />
             </>
           ) : (
-            <div className="bg-amber-400/20 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+            <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
               هنوز دوره ای به این دسته بندی اضافه نشده
             </div>
           )}

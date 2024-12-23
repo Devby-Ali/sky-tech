@@ -137,8 +137,8 @@ export default function Landing() {
                 <span className="text-xl mt-2">دقیقه آموزش تولید کردیم</span>
               </div>
             </div>
-            <div className="hidden lg:block absolute -bottom-44 left-0 w-[250px] h-[250px] bg-light-blue-600 opacity-25 blur-[120px] rounded-full"></div>
-            <div className="hidden lg:block absolute -top-20 -right-17 w-[250px] h-[250px] bg-purple-600 opacity-25 blur-[120px] rounded-full"></div>
+            <div className="hidden lg:block absolute -top-20 left-0 w-[250px] h-[250px] bg-purple-600 opacity-25 blur-[120px] rounded-full"></div>
+            <div className="hidden lg:block absolute -bottom-44 -right-17 w-[250px] h-[250px] bg-light-blue-600 opacity-25 blur-[120px] rounded-full"></div>
           </div>
         </div>
       </div>

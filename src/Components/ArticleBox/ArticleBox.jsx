@@ -54,13 +54,13 @@ export default function ArticleBox({
         </div>
         {/* <!-- Blog Link Address --> */}
         <div className="flex justify-center mt-7">
-          <a
-            href="#"
+          <Link
+            to={`/article-info/${shortName}`}
             className="flex items-center gap-x-1 text-3xl hover:text-light-blue-600 font-EstedadMedium transition-colors"
           >
             <span>مطالعه مقاله</span>
             <GoTriangleLeft />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
