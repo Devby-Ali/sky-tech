@@ -13,8 +13,12 @@ import {
 import { HiOutlinePhone, HiOutlineUser } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 import { useForm } from "../../hooks/useForm";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Contact() {
+  const navigate = useNavigate();
+
   const [formState, onInputHandler] = useForm(
     {
       name: {
@@ -37,7 +41,34 @@ export default function Contact() {
     false
   );
 
-  const addNewContact = () => {
+  const addNewContact = (event) => {
+    event.preventDefault();
+
+    const newContact = {
+      name: formState.inputs.name.value,
+      email: formState.inputs.email.value,
+      phone: formState.inputs.mobileNumber.value,
+      body: formState.inputs.body.value,
+    };
+
+    fetch(`http://localhost:4000/v1/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newContact),
+    }).then((res) => {
+      res.json();
+      if (res.ok) {
+        Swal.fire({
+          title: "پیام شما با موفقیت به مدیران سایت ارسال شد",
+          icon: "success",
+          confirmButtonText: "ورود به پنل",
+        }).then(() => {
+          navigate("/");
+        });
+      }
+    });
     console.log("درخواست شما برای مدیران ثبت شد");
   };
 
@@ -81,7 +112,6 @@ export default function Contact() {
               </span>
               <div className="flex-center text-3xl gap-x-2 mb-8 font-EstedadThin">
                 <span>نظر یا انتقادتو بنویس برامون</span>
-
               </div>
               <form action="#" className="w-full flex flex-col gap-y-8">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
@@ -133,10 +163,7 @@ export default function Contact() {
                     className="bg-transparent outline-none w-full"
                     type="text"
                     placeholder="متن خود را وارد کنید"
-                    validations={[
-                      requiredValidator(),
-                      minValidator(10),
-                    ]}
+                    validations={[requiredValidator(), minValidator(10)]}
                     onInputHandler={onInputHandler}
                   />
                 </div>

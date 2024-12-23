@@ -127,6 +127,7 @@ export default function Footer() {
                   ارسال تیکت
                 </a>
                 <a href="">همه دوره ها</a>
+                <Link to={"/contact"}>تماس با ما</Link>
               </div>
             </div>
           </div>
