@@ -9,7 +9,7 @@ import {
   minValidator,
   emailValidator,
 } from "../../validators/rules";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ReCAPTCHA from "react-google-recaptcha";
 // import Topbar from "../../Components/Topbar/Topbar";
@@ -106,9 +106,9 @@ export default function Login() {
         <div className="container">
           <div className="relative mx-auto flex flex-col items-center w-min">
             <div className="flex items-center flex-col text-light-blue-600 font-MikhakWoff2one mb-12">
-              <Link to={"/"} className="text-7xl font-bold mb-4 tracking-tight">
+              <Button to={"/"} className="text-7xl font-bold mb-4 tracking-tight">
                 اسکای لرن
-              </Link>
+              </Button>
               <span className="tracking-[0.5rem]">skylearn.com</span>
             </div>
             <div className="absolute top-20 -right-[7.5rem] text-light-blue-600">

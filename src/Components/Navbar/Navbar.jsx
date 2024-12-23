@@ -143,7 +143,7 @@ export default function Navbar() {
         </ul>
       </div>
 
-      <header className="lg:fixed lg:flex lg:top-7 lg:right-0 lg:left-0 z-40 justify-between items-center w-full lg:w-[95%] h-[8.5rem] md:h-40 2xl:h-36 lg:mx-auto lg:rounded-4xl shadow-lg bg-gradient-to-tr from-light-blue-900 via-darkBox to-light-blue-900 lg:from-lightishBlue-400/50 lg:via-darkBox/80 via-60% lg:to-lightishBlue-400/50 lg:backdrop-blur-[4px]">
+      <header className="lg:fixed lg:flex lg:top-7 lg:right-0 lg:left-0 z-40 justify-between items-center w-full lg:w-[95%] h-[8.5rem] 2xl:h-36 lg:mx-auto lg:rounded-4xl shadow-lg bg-gradient-to-tr from-light-blue-900 via-darkBox to-light-blue-900 lg:from-lightishBlue-400/50 lg:via-darkBox/80 via-60% lg:to-lightishBlue-400/50 lg:backdrop-blur-[4px]">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
             <div
