@@ -120,7 +120,10 @@ export default function Footer() {
               SKY-Tech_academy_support@
             </a>
             <div className="flex items-center flex-wrap gap-y-6 gap-x-4 lg:gap-x-8">
-              <span>اشتراک در خبرنامه :  جهت اطلاع از آخرین اخبار و تخفیف های سایت عضو شوید!</span>
+              <span>
+                اشتراک در خبرنامه : جهت اطلاع از آخرین اخبار و تخفیف های سایت
+                عضو شوید!
+              </span>
               <form action="#" className="flex flex-wrap">
                 <div className="flex items-center justify-between px-4 py-3 bg-[#333c4c]/15 dark:bg-[#333c4c] rounded-2xl">
                   <Input
@@ -128,18 +131,21 @@ export default function Footer() {
                     className="bg-transparent outline-none"
                     type="email"
                     placeholder="آدرس ایمیل"
-                    validations={[
-                      emailValidator(),
-                    ]}
+                    validations={[emailValidator()]}
                     onInputHandler={onInputHandler}
                   />
-                <Button
-                  type="submit"
-                  className="bg-light-blue-600/30 rounded-lg px-4 pb-0.5 hover:bg-light-blue-500/40 transition-all"
-                  onClick={addNewEmail}
-                >
-                  تایید
-                </Button>
+                  <Button
+                    type="submit"
+                    className={` rounded-lg px-4 pb-0.5 transition-all ${
+                      formState.isFormValid
+                        ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                        : "bg-white/10"
+                    }`}
+                    onClick={addNewEmail}
+                    disabled={!formState.isFormValid}
+                  >
+                    تایید
+                  </Button>
                 </div>
               </form>
             </div>
