@@ -1,10 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Typewriter from "typewriter-effect";
 import { FaSearch } from "react-icons/fa";
 import LandingCounter from "../LandingCounter/LandingCounter";
-
+import Input from "../Form/Input";
+import { useForm } from "../../hooks/useForm";
+import Button from "../Form/Button";
+import { useNavigate } from "react-router-dom";
+import { requiredValidator } from "../../validators/rules";
 
 export default function Landing() {
+
+  const [formState, onInputHandler] = useForm(
+    {
+      search: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+
+  const navigate = useNavigate()
+
+  const search = (event) => {
+    event.preventDefault()
+    navigate(`search/${formState.inputs.search.value}`)
+  };
+
   return (
     <section className="text-center lg:pt-60 pb-20 sm:mb-20 xl:mb-0 xxl:pb-10 text-darkColor dark:text-white">
       <div className="container">
@@ -34,17 +56,23 @@ export default function Landing() {
               با اسکای آکادمی، برنامه نویسی تخصصی رو به صورت حرفه ای یاد بگیر .
             </h2>
             <div className="relative max-w-[700px] mt-16 sm:mt-24 lg:mt-16 xl:mt-20 mx-auto">
-              <input
-                type="text"
-                className="w-full border-2 dark:border border-gray-500 rounded-3xl h-24 bg-transparent text-xl xs:text-3xl pr-10 outline-none"
-                placeholder="چه چیزی دوست داری یاد بگیری ..."
-              />
-              <button
-                className="absolute flex-center w-20 h-20 bg-light-blue-700/60 border-none left-2 top-2 rounded-2xl"
-                type="submit"
-              >
-                <FaSearch className="text-5xl text-darkBox/80 dark:text-white" />
-              </button>
+              <form action="#">
+                <Input
+                  type="text"
+                  id="search"
+                  className="w-full border-2 dark:border border-gray-500 rounded-3xl h-24 bg-transparent text-xl xs:text-3xl pr-10 outline-none"
+                  placeholder="چی دوست داری یاد بگیری ..."
+                  validations={[requiredValidator()]}
+                  onInputHandler={onInputHandler}
+                />
+                <Button
+                  className="absolute flex-center w-20 h-20 bg-light-blue-700/60 border-none left-2 top-2 rounded-2xl"
+                  type="submit"
+                  onClick={search}
+                >
+                  <FaSearch className="text-5xl text-darkBox/80 dark:text-white" />
+                </Button>
+              </form>
             </div>
             <div className="hidden lg:flex justify-between items-center mt-20 2xl:mt-32">
               <div className="flex-center flex-col text-darkBox dark:text-white">
