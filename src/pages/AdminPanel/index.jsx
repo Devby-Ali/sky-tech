@@ -8,10 +8,10 @@ import "./index.css";
 export default function index() {
   return (
     <>
-      <div id="content">
+      <div className="" id="content">
         <Sidebar />
 
-        <div id="home" className="col-10">
+        <div id="home" className="w-5/6">
           <Topbar />
         </div>
       </div>
