@@ -1,22 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: "vazir";
-}
-a {
-  text-decoration: none;
-  color: #000;
-}
-a:hover {
-  color: #000;
-}
-ul {
-  margin: 0;
-  padding: 0;
-}
+
 .active-menu {
   position: relative;
   background: #353c50;
