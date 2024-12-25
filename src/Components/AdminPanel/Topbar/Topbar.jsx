@@ -1,17 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
 import {
-  HiBars3,
   HiOutlineBell,
-  HiOutlineMoon,
   HiOutlineShoppingBag,
-  HiOutlineSun,
   HiOutlineUser,
 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
 export default function Topbar() {
+
+  const [adminInfo, setAdminInfo] = useState({})
+
+    useEffect(() => {
+      const localStorageData = JSON.parse(localStorage.getItem("user"));
+      if (localStorageData) {
+        fetch(`http://localhost:4000/v1/auth/me`, {
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((userData) => {
+            console.log(userData)
+            setAdminInfo(userData);
+          });
+      }
+    }, []);
+
+
   return (
     // <div className="container-fluid">
     //   <div className="container">
@@ -80,7 +97,7 @@ export default function Topbar() {
     <header className="z-50 justify-between items-center h-[8rem] 2xl:h-36 shadow-lg bg-gradient-to-tr from-lightishBlue-400/50 via-darkBox/80 via-60% to-lightishBlue-400/50 backdrop-blur-[4px]">
       <div className="w-full h-full">
         <div className="h-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
-          <div className="flex items-center gap-x-6 xl:gap-x-14">
+          <div className="flex items-center gap-x-6 2xl:gap-x-8">
             <form action="#" className="relative w-96">
               <input
                 type="text"
@@ -90,7 +107,10 @@ export default function Topbar() {
               <FaSearch className="absolute left-4 top-4 text-3xl text-darkColor/70 dark:text-white/60 cursor-pointer" />
             </form>
 
-            <HiOutlineBell className="text-4xl text-darkColor/70 dark:text-white/60 cursor-pointer"/>
+            <div className="flex-center p-3 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-4xl rounded-lg cursor-pointer">
+
+            <HiOutlineBell />
+            </div>
 
             <ul className="hidden gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
               <li className="main-header__item flex-center relative">
@@ -120,17 +140,20 @@ export default function Topbar() {
           <div className="flex items-center">
             <Link
               to="#"
-              className="flex-center p-4 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-[2.75rem] mr-4 rounded-3xl"
+              className="flex-center p-3 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-4xl mr-4 rounded-lg"
             >
               <HiOutlineShoppingBag />
             </Link>
 
+            <div className="flex items-center gap-x-3 px-4 py-3 rounded-lg mr-4 z-40 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white">
             <Link
               to="#"
-              className="relative flex items-center justify-center p-4 rounded-3xl mr-4 z-40 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white"
+              className=""
             >
-              <HiOutlineUser className="text-[2.75rem]" />
+              {adminInfo.name}
             </Link>
+            <HiOutlineUser className="text-4xl" />
+            </div>
           </div>
         </div>
       </div>

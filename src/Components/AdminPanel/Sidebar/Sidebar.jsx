@@ -27,7 +27,7 @@ export default function Sidebar() {
   return (
 
     <div className="w-1/6 min-h-screen px-7 bg-white dark:bg-darkBox transition-all z-50">
-      <div className="flex items-center justify-between gap-x-14 h-20 text-darkColor dark:text-white px-1 py-16 my-2">
+      <div className="flex items-center justify-between gap-x-14 h-20 text-darkColor dark:text-white px-1 py-16 2xl:my-2">
         <Link to={"/"} className="text-light-blue-600 dark:text-light-blue-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -46,9 +46,9 @@ export default function Sidebar() {
             <path d="m9 11 3 3 3-3"></path>
           </svg>
         </Link>
-        <div className="flex items-center gap-x-6 text-4xl text-blue-gray-500 dark:text-white">
+        <div className="flex items-center gap-x-6 text-[2.75rem] text-blue-gray-500 dark:text-white">
           <div
-            className="flex-center p-5 rounded-3xl toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkColor"
+            className="flex-center p-2.5 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-white/10"
             onClick={() => themeHandler()}
           >
             <HiOutlineSun className="hidden dark:inline-block" />
