@@ -38,7 +38,7 @@ export default function CourseBox(props) {
         </span>
       </div>
       {/* <!-- Course Title & Description --> */}
-      <div className={`flex-grow px-6 py-6 ${props.isSlider && "h-48"}`}>
+      <div className={`flex-grow px-6 py-6 mb-6 ${props.isSlider && "h-48"}`}>
         {/* <!-- Course Title --> */}
         <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2 mb-5">
           <Link to={`/course-info/${props.shortName}`} href="">

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 export default function Topbar() {
   const [adminInfo, setAdminInfo] = useState({});
+  const [adminNotif, setAdminNotif] = useState({});
   const [openCollapse, setOpenCollapse] = useState(false);
 
   useEffect(() => {
@@ -23,8 +24,9 @@ export default function Topbar() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData);
+          console.log(userData.notifications);
           setAdminInfo(userData);
+          setAdminNotif(userData.notifications);
         });
     }
   }, []);
@@ -32,7 +34,6 @@ export default function Topbar() {
   const toggleOpen = () => {
     setOpenCollapse((cur) => !cur);
   };
-
 
   return (
     // <div className="container-fluid">
@@ -122,12 +123,35 @@ export default function Topbar() {
               >
                 <HiOutlineBell />
                 <Collapse
-                  className="absolute top-0 right-20 w-96"
+                  className="absolute top-[5.9rem] 2xl:top-[6.4rem] w-[350px]"
                   open={openCollapse}
                 >
-                  <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                    <span className="text-2xl">blablahblah</span>
+                  <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                      <span className="truncate hover:text-clip">blablabl</span>
+                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                    </div>
+                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                      <span className="truncate hover:text-clip">blablabl</span>
+                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                    </div>
+                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                      <span className="truncate hover:text-clip">blablabl</span>
+                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                    </div>
+                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                      <span className="truncate hover:text-clip">blablabl</span>
+                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                    </div>
                   </Card>
+                  {/* {adminNotif.map((notification) => (
+                    <>
+                      <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                        <span className="text-2xl">{notification}</span>
+                        <a href="javascript:void(0)">دیدم</a>
+                      </Card>
+                    </>
+                  ))} */}
                 </Collapse>
               </div>
 
