@@ -30,75 +30,28 @@ export default function Topbar() {
         });
     }
   }, []);
+  // }, [seeNotification]);
+
+  // function seeNotification(notficationID) {
+  //   const localStorageData = JSON.parse(localStorage.getItem("user"));
+  //   fetch(`http://localhost:4000/v1/notifications/see/${notficationID}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       Authorization: `Bearer ${localStorageData.token}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   const toggleOpen = () => {
     setOpenCollapse((cur) => !cur);
   };
 
   return (
-    // <div className="container-fluid">
-    //   <div className="container">
-    //     <div className="home-header">
-    //       <div className="home-right">
-    //         <div className="home-searchbar">
-    //           <input type="text" className="search-bar" placeholder="جستجو..." />
-    //         </div>
-    //         <div className="home-notification">
-    //           <button type="button">
-    //             <i className="far fa-bell"></i>
-    //           </button>
-    //         </div>
-    //         <div className="home-notification-modal">
-    //           <ul className="home-notification-modal-list">
-    //             <li className="home-notification-modal-item">
-    //               <span className="home-notification-modal-text">پیغام ها</span>
-    //               <label className="switch">
-    //                 <input type="checkbox" checked />
-    //                 <span className="slider round"></span>
-    //               </label>
-    //             </li>
-    //             <li className="home-notification-modal-item">
-    //               <span className="home-notification-modal-text">پیغام ها</span>
-    //               <label className="switch">
-    //                 <input type="checkbox" checked />
-    //                 <span className="slider round"></span>
-    //               </label>
-    //             </li>
-    //             <li className="home-notification-modal-item">
-    //               <span className="home-notification-modal-text">پیغام ها</span>
-    //               <label className="switch">
-    //                 <input type="checkbox" checked />
-    //                 <span className="slider round"></span>
-    //               </label>
-    //             </li>
-    //             <li className="home-notification-modal-item">
-    //               <span className="home-notification-modal-text">پیغام ها</span>
-    //               <label className="switch">
-    //                 <input type="checkbox" checked />
-    //                 <span className="slider round"></span>
-    //               </label>
-    //             </li>
-    //           </ul>
-    //         </div>
-    //       </div>
-    //       <div className="home-left">
-    //         <div className="home-profile">
-    //           <div className="home-profile-image">
-    //             <a href="#">
-    //               <img src="/images/profile.png" alt="" />
-    //             </a>
-    //           </div>
-    //           <div className="home-profile-name">
-    //             <a href="#">محمدامین سعیدی راد</a>
-    //           </div>
-    //           <div className="home-profile-icon">
-    //             <i className="fas fa-angle-down"></i>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
+
     <>
       <header className="justify-between items-center h-[8rem] 2xl:h-36 shadow-lg bg-gradient-to-tr from-lightishBlue-400/50 via-darkBox/80 via-60% to-lightishBlue-400/50 backdrop-blur-[4px] z-40">
         <div className="w-full h-full">
@@ -129,53 +82,39 @@ export default function Topbar() {
                   <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
                     <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                       <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                      <a className="text-2xl" href="javascript:void(0)">
+                        دیدم
+                      </a>
                     </div>
                     <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                       <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                      <a className="text-2xl" href="javascript:void(0)">
+                        دیدم
+                      </a>
                     </div>
                     <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                       <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                      <a className="text-2xl" href="javascript:void(0)">
+                        دیدم
+                      </a>
                     </div>
                     <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                       <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">دیدم</a>
+                      <a className="text-2xl" href="javascript:void(0)">
+                        دیدم
+                      </a>
                     </div>
                   </Card>
                   {/* {adminNotif.map((notification) => (
                     <>
                       <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
                         <span className="text-2xl">{notification}</span>
-                        <a href="javascript:void(0)">دیدم</a>
+                        <a href="javascript:void(0)" onClick={() => seeNotification(notification._id)}>دیدم</a>
                       </Card>
                     </>
                   ))} */}
                 </Collapse>
               </div>
-
-              {/* <Link
-                    to="#"
-                    className={`relative flex items-center justify-center p-4 text-darkColor dark:text-white rounded-3xl mr-4 transition-all duration-200 ${
-                      openCollapse
-                        ? "z-40 bg-white dark:bg-[#333c4c]"
-                        : "z-0 bg-gray-300/40 dark:bg-white/10"
-                    }`}
-                    onClick={toggleOpen}
-                  >
-                    <HiOutlineUser className="text-[2.75rem]" />
-                    <Collapse
-                      className="absolute top-32 left-0 w-96 z-50"
-                      open={openCollapse}
-                    >
-                      <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                        <span className="text-2xl">
-                          {authContext.userInfos.name}
-                        </span>
-                      </Card>
-                    </Collapse>
-                  </Link> */}
 
               <ul className="hidden gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
                 <li className="main-header__item flex-center relative">
