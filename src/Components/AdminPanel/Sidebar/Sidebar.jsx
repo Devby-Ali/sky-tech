@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../../Form/Button"
+import AuthContext from "../../../context/authContext"
+import Swal from "sweetalert2";
 
 import "./Sidebar.css";
 import {
@@ -10,6 +13,7 @@ import {
 } from "react-icons/hi2";
 
 export default function Sidebar() {
+
   const themeHandler = () => {
     if (localStorage.theme === "dark") {
       setDark(false);
@@ -24,9 +28,23 @@ export default function Sidebar() {
 
   const [dark, setDark] = useState(false);
 
+  const authContext = useContext(AuthContext);
+  const navigate = useNavigate()
+
+  const logoutAdmin = () => {
+            Swal.fire({
+              title: "با موفقیت logout شدید",
+              icon: "success",
+              confirmButtonText: "OK",
+            }).then(() => {
+              authContext.logout()
+              navigate("/")
+            });
+  }
+
   return (
 
-    <div className="transition-all">
+    <div className="transition-all text-darkColor dark:text-white">
       <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
         <Link to={"/"} className="text-light-blue-600 dark:text-light-blue-500">
           <svg
@@ -59,7 +77,7 @@ export default function Sidebar() {
       <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
 
-      <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12 text-darkColor dark:text-white ">
+      <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
         <li className="active-menu">
           <Link to="/p-admin">
             <span>صفحه اصلی</span>
@@ -96,6 +114,11 @@ export default function Sidebar() {
           </a>
         </li>
       </ul>
+      <div>
+        <Button className="pr-2.5 py-8" onClick={logoutAdmin}>
+          خروج
+        </Button>
+      </div>
     </div>
   );
 }
