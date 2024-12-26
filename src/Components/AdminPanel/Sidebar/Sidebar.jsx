@@ -26,8 +26,8 @@ export default function Sidebar() {
 
   return (
 
-    <div className="w-1/6 min-h-screen px-7 bg-white dark:bg-darkBox transition-all z-50">
-      <div className="flex items-center justify-between gap-x-14 h-20 text-darkColor dark:text-white px-1 py-16 2xl:my-2">
+    <div className="transition-all">
+      <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
         <Link to={"/"} className="text-light-blue-600 dark:text-light-blue-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"

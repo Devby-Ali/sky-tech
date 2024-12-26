@@ -30,28 +30,26 @@ export default function Topbar() {
         });
     }
   }, []);
-  // }, [seeNotification]);
 
-  // function seeNotification(notficationID) {
-  //   const localStorageData = JSON.parse(localStorage.getItem("user"));
-  //   fetch(`http://localhost:4000/v1/notifications/see/${notficationID}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       Authorization: `Bearer ${localStorageData.token}`,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((err) => {
-  //       console.log(err);
-  //     });
-  // }
+  function seeNotification(notficationID) {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    fetch(`http://localhost:4000/v1/notifications/see/${notficationID}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorageData.token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((err) => {
+        console.log(err);
+      });
+  }
 
   const toggleOpen = () => {
     setOpenCollapse((cur) => !cur);
   };
 
   return (
-
     <>
       <header className="justify-between items-center h-[8rem] 2xl:h-36 shadow-lg bg-gradient-to-tr from-lightishBlue-400/50 via-darkBox/80 via-60% to-lightishBlue-400/50 backdrop-blur-[4px] z-40">
         <div className="w-full h-full">
@@ -76,43 +74,66 @@ export default function Topbar() {
               >
                 <HiOutlineBell />
                 <Collapse
-                  className="absolute top-[5.9rem] 2xl:top-[6.4rem] w-[350px]"
+                  className="absolute top-[5.9rem] 2xl:top-[6.4rem] w-auto"
                   open={openCollapse}
                 >
-                  <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
-                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                      <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">
-                        دیدم
-                      </a>
-                    </div>
-                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                      <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">
-                        دیدم
-                      </a>
-                    </div>
-                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                      <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">
-                        دیدم
-                      </a>
-                    </div>
-                    <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                      <span className="truncate hover:text-clip">blablabl</span>
-                      <a className="text-2xl" href="javascript:void(0)">
-                        دیدم
-                      </a>
-                    </div>
-                  </Card>
-                  {/* {adminNotif.map((notification) => (
+                  {adminNotif.length === 0 ? (
+                    <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                      <span className="text-2xl text-nowrap">
+                        نوتیفی برای نمایش وجود ندارد
+                      </span>
+                    </Card>
+                  ) : (
                     <>
-                      <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
-                        <span className="text-2xl">{notification}</span>
-                        <a href="javascript:void(0)" onClick={() => seeNotification(notification._id)}>دیدم</a>
+                      <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                        <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                          <span className="truncate hover:text-clip">
+                            blablabl
+                          </span>
+                          <a className="text-2xl" href="javascript:void(0)">
+                            دیدم
+                          </a>
+                        </div>
+                        <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                          <span className="truncate hover:text-clip">
+                            blablabl
+                          </span>
+                          <a className="text-2xl" href="javascript:void(0)">
+                            دیدم
+                          </a>
+                        </div>
+                        <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                          <span className="truncate hover:text-clip">
+                            blablabl
+                          </span>
+                          <a className="text-2xl" href="javascript:void(0)">
+                            دیدم
+                          </a>
+                        </div>
+                        <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                          <span className="truncate hover:text-clip">
+                            blablabl
+                          </span>
+                          <a className="text-2xl" href="javascript:void(0)">
+                            دیدم
+                          </a>
+                        </div>
                       </Card>
+                      {/* {adminNotif.map((notification) => (
+                        <>
+                          <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                            <span className="text-2xl">{notification}</span>
+                            <a
+                              href="javascript:void(0)"
+                              onClick={() => seeNotification(notification._id)}
+                            >
+                              دیدم
+                            </a>
+                          </Card>
+                        </>
+                      ))} */}
                     </>
-                  ))} */}
+                  )}
                 </Collapse>
               </div>
 
