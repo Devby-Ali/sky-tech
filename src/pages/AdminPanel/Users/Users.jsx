@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
+import Swal from "sweetalert2";
 
 const TABLE_HEAD = [
   "شناسه",
@@ -17,6 +18,10 @@ export default function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    getAllUsers()
+  }, []);
+
+  function getAllUsers() {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
     fetch(`http://localhost:4000/v1/users`, {
       headers: {
@@ -28,7 +33,37 @@ export default function Users() {
         console.log(allUsers);
         setUsers(allUsers);
       });
-  }, []);
+  }
+
+  const removeUser = (userID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "آیا از حذف مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/users/${userID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "کاربر با موفقیت حذف شد",
+              icon: "success",
+              confirmButtonText: "اوکی",
+            }).then(() => {
+              getAllUsers()
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -40,7 +75,7 @@ export default function Users() {
                 {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
-                    className="border-b border-gray-300 pb-4 pt-10"
+                    className="border-b-4 border-gray-400 pb-10 pt-12"
                   >
                     <Typography
                       variant="small"
@@ -57,8 +92,8 @@ export default function Users() {
               {users.map((user, index) => {
                 const isLast = index === users.length - 1;
                 const classes = isLast
-                  ? "py-4"
-                  : "py-4 border-b border-gray-300";
+                  ? "py-6"
+                  : "py-6 border-b border-gray-400";
 
                 return (
                   <tr key={user.name} className="hover:bg-gray-50">
@@ -74,7 +109,7 @@ export default function Users() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem]"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
                         {user.name}
                       </Typography>
@@ -82,7 +117,7 @@ export default function Users() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem]"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
                         {user.email}
                       </Typography>
@@ -90,7 +125,7 @@ export default function Users() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem]"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
                         {user.username}
                       </Typography>
@@ -98,34 +133,34 @@ export default function Users() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem]"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
                         {user.phone}
                       </Typography>
                     </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="text-darkBox text-[1.6rem]"
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        ویرایش
-                      </button>
+                        <button type="button">ویرایش</button>
+                      </Typography>
                     </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="text-darkBox text-[1.6rem]"
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        حذف
-                      </button>
+                        <button type="button" onClick={() => removeUser(user._id)}>حذف</button>
+                      </Typography>
                     </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="text-darkBox text-[1.6rem]"
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        بن
-                      </button>
+                        <button type="button">بن</button>
+                      </Typography>
                     </td>
                   </tr>
                 );

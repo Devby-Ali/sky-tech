@@ -44,7 +44,7 @@ export default function Sidebar() {
 
   return (
 
-    <div className="transition-all text-darkColor dark:text-white h-full px-7 bg-white dark:bg-darkBox">
+    <div className="transition-all text-darkColor dark:text-white px-7 bg-white dark:bg-darkBox">
       <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
         <Link to={"/"} className="text-light-blue-600 dark:text-light-blue-500">
           <svg
