@@ -65,6 +65,34 @@ export default function Users() {
     });
   };
 
+  const banUser = (userID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "آیا از بن مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/users/ban/${userID}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "کاربر با موفقیت بن شد",
+              icon: "success",
+              confirmButtonText: "اوکی",
+            })
+          }
+        });
+      }
+    });
+  };
+
   return (
     <>
       <DataTable title="کاربران">
@@ -159,7 +187,7 @@ export default function Users() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">بن</button>
+                        <button type="button" onClick={() => banUser(user._id)}>بن</button>
                       </Typography>
                     </td>
                   </tr>

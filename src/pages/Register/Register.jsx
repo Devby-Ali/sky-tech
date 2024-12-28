@@ -36,14 +36,15 @@ export default function Register() {
         value: "",
         isValid: false,
       },
-      password: {
-        value: "",
-        isValid: false,
-      },
       mobileNumber: {
         value: "",
         isValid: false,
       },
+      password: {
+        value: "",
+        isValid: false,
+      },
+
     },
     false
   );
@@ -54,12 +55,12 @@ export default function Register() {
     event.preventDefault();
 
     const newUserInfo = {
+      name: formState.inputs.name.value,
       username: formState.inputs.username.value,
       email: formState.inputs.email.value,
+      phone: formState.inputs.mobileNumber.value,
       password: formState.inputs.password.value,
       confirmPassword: formState.inputs.password.value,
-      name: formState.inputs.name.value,
-      phone: formState.inputs.mobileNumber.value,
     };
 
     fetch(`http://localhost:4000/v1/auth/register`, {
@@ -134,7 +135,7 @@ export default function Register() {
                     id="name"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="نام مستعار"
+                    placeholder="نام و نام خانوادگی"
                     validations={[
                       requiredValidator(),
                       minValidator(3),
