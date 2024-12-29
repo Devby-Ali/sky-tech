@@ -17,8 +17,8 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Register() {
-
   const navigate = useNavigate();
+
   const authContext = useContext(AuthContext);
   console.log(authContext);
 
@@ -44,12 +44,21 @@ export default function Register() {
         value: "",
         isValid: false,
       },
-
     },
     false
   );
 
-  console.log(formState);
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -70,8 +79,25 @@ export default function Register() {
       },
       body: JSON.stringify(newUserInfo),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.ok) {
+          return res.json();
+        } else {
+          if (res.status === 409) {
+            Toast.fire({
+              icon: "error",
+              title: "این شماره تماس مسدود شده",
+              position: "top",
+              width: "35%",
+              padding: "2rem",
+              heightAuto: false,
+            });
+          }
+        }
+      })
       .then((result) => {
+        if (result) {
         Swal.fire({
           title: "ثبت نام موفقیت آمیز",
           icon: "success",
@@ -79,8 +105,9 @@ export default function Register() {
         }).then((value) => {
           navigate("/");
         });
+      }
         authContext.login(result.user, result.accessToken);
-      })
+      });
 
     console.log("User Register");
   };
@@ -93,7 +120,10 @@ export default function Register() {
         <div className="container">
           <div className="relative mx-auto flex flex-col items-center w-min">
             <div className="flex items-center flex-col text-light-blue-600 font-MikhakWoff2one mb-12">
-              <Button to={"/"} className="text-7xl font-bold mb-4 tracking-tight">
+              <Button
+                to={"/"}
+                className="text-7xl font-bold mb-4 tracking-tight"
+              >
                 اسکای لرن
               </Button>
               <span className="tracking-[0.5rem]">skylearn.com</span>
