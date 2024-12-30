@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import DataTable from '../../../Components/AdminPanel/DataTable/DataTable'
-import Input from '../../../Components/Form/Input'
-import Button from '../../../Components/Form/Button'
+import React, { useEffect, useState } from "react";
+import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+import Input from "../../../Components/Form/Input";
+import Button from "../../../Components/Form/Button";
 import {
   requiredValidator,
   minValidator,
   maxValidator,
 } from "./../../../validators/rules";
-import { useForm } from '../../../hooks/useForm';
-import Swal from 'sweetalert2';
-import { Card, Typography } from '@material-tailwind/react';
+import { useForm } from "../../../hooks/useForm";
+import Swal from "sweetalert2";
+import { Card, Typography } from "@material-tailwind/react";
 
-
-const TABLE_HEAD = [
-  "شناسه",
-  "عنوان",
-  "نام کوتاه",
-  "ویرایش",
-  "حذف",
-];
+const TABLE_HEAD = ["شناسه", "عنوان", "نام کوتاه", "ویرایش", "حذف"];
 
 export default function Category() {
-
   const [formState, onInputHandler] = useForm(
     {
       title: {
@@ -53,7 +45,7 @@ export default function Category() {
 
   const createNewCategory = (event) => {
     event.preventDefault();
-    const localStorageData = JSON.parse(localStorage.getItem("user"))
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
 
     const newCategoryInfo = {
       title: formState.inputs.title.value,
@@ -64,7 +56,7 @@ export default function Category() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorageData.token}`,
+        Authorization: `Bearer ${localStorageData.token}`,
       },
       body: JSON.stringify(newCategoryInfo),
     })
@@ -111,13 +103,49 @@ export default function Category() {
     });
   };
 
+  const updateCategory = (categoryID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "عنوان جدید دسته بندی را وارد نمایید",
+      input: "text",
+      confirmButtonText: "ثبت عنوان جدید",
+      inputValue: "دسته بندیییی",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.value.trim().length) {
+        console.log(result)
+        fetch(`http://localhost:4000/v1/category/${categoryID}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorageData.token}`,
+          },
+          body: JSON.stringify({
+            title: result.value
+          })
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+            Swal.fire({
+              title: "دسته بندی مورد نظر با موفقیت ویرایش شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllCategories();
+            });
+          });
+      }
+    });
+  };
+
   return (
     <>
       <section className="flex-center overflow-hidden mt-12">
         <div className="mx-auto flex flex-col items-center w-min">
           <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
             <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
-            افزودن دسته‌بندی جدید
+              افزودن دسته‌بندی جدید
             </span>
             <form action="#" className="w-full flex flex-col gap-y-8">
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
@@ -146,7 +174,8 @@ export default function Category() {
                     maxValidator(12),
                   ]}
                   onInputHandler={onInputHandler}
-                /><span className="text-[2rem] opacity-50">@</span>
+                />
+                <span className="text-[2rem] opacity-50">@</span>
               </div>
 
               <Button
@@ -226,7 +255,12 @@ export default function Category() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">ویرایش</button>
+                        <button
+                          type="button"
+                          onClick={() => updateCategory(category._id)}
+                        >
+                          ویرایش
+                        </button>
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -250,5 +284,5 @@ export default function Category() {
         </Card>
       </DataTable>
     </>
-  )
+  );
 }
