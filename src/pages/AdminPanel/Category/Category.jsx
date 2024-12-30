@@ -81,6 +81,36 @@ export default function Category() {
       });
   };
 
+  const removeCategory = (categoryID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "از حذف دسته بندی مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/category/${categoryID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            Swal.fire({
+              title: "دسته بندی مورد نظر با موفقیت حذف شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllCategories();
+            });
+          });
+      }
+    });
+  };
+
   return (
     <>
       <section className="flex-center overflow-hidden mt-12">
@@ -206,6 +236,7 @@ export default function Category() {
                       >
                         <button
                           type="button"
+                          onClick={() => removeCategory(category._id)}
                         >
                           حذف
                         </button>
