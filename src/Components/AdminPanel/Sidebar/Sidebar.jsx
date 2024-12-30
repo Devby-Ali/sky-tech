@@ -4,8 +4,6 @@ import Button from "../../Form/Button"
 import AuthContext from "../../../context/authContext"
 import Swal from "sweetalert2";
 import {
-  HiChevronRight,
-  HiMagnifyingGlass,
   HiOutlineMoon,
   HiOutlineSun,
 } from "react-icons/hi2";
