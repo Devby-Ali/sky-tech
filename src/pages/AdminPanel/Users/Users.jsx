@@ -155,7 +155,11 @@ export default function Users() {
         res.json();
       })
       .then((result) => {
-        console.log(result);
+        Swal.fire({
+          title: 'کاربر مورد نظر با موفقیت ثبت نام شد',
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
         getAllUsers();
       });
   };
