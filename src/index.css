@@ -165,6 +165,29 @@ i {
     border-bottom: 2px solid #ad7ffd;
     padding: 1.6rem 0;
   }
+
+  .active-menu {
+    position: relative;
+    background: #6190FF;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#6190ff),
+      to(rgba(0, 212, 255, 0))
+    );
+    background: linear-gradient(90deg, #6190ff42 0%, rgba(0, 212, 255, 0) 100%);
+  }
+  
+  .active-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    background-color: #6190FF;
+    width: 5px;
+    height: 100%;
+  }
 }
 
 

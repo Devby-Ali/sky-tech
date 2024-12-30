@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Form/Button"
 import AuthContext from "../../../context/authContext"
 import Swal from "sweetalert2";
-
-import "./Sidebar.css";
 import {
   HiChevronRight,
   HiMagnifyingGlass,
