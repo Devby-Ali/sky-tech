@@ -144,11 +144,12 @@ export default function Category() {
     <>
       <section className="flex-center overflow-hidden mt-12">
         <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl z-10">
             <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
               افزودن دسته‌بندی جدید
             </span>
-            <form action="#" className="w-full flex flex-col gap-y-8">
+            <form action="#" className="w-full flex items-center flex-col gap-y-8">
+              <div className="flex items-center gap-x-4">
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <Input
                   id="title"
@@ -176,11 +177,11 @@ export default function Category() {
                   ]}
                   onInputHandler={onInputHandler}
                 />
-                <span className="text-[2rem] opacity-50">@</span>
+              </div>
               </div>
 
               <Button
-                className={`h-20 rounded-4xl ${
+                className={`h-20 w-[80%] rounded-4xl ${
                   formState.isFormValid
                     ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                     : "bg-[#333c4c]/30"
