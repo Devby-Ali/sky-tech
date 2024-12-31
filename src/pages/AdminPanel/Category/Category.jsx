@@ -121,7 +121,8 @@ export default function Category() {
             "Authorization": `Bearer ${localStorageData.token}`,
           },
           body: JSON.stringify({
-            title: result.value
+            title: result.value,
+            name: "static value"
           })
         })
           .then((res) => res.json())

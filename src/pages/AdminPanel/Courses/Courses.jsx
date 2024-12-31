@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
+import Swal from "sweetalert2";
 
 const TABLE_HEAD = [
   "شناسه",
@@ -18,7 +19,11 @@ export default function Courses() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    const localStorageData = localStorage.getItem("user");
+    getAllCourses();
+  }, []);
+
+  function getAllCourses() {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
     fetch("http://localhost:4000/v1/courses", {
       headers: {
         Authorization: `Bearer ${localStorageData.token}`,
@@ -29,7 +34,43 @@ export default function Courses() {
         console.log(allCourses);
         setCourses(allCourses);
       });
-  }, []);
+  }
+
+  const removeCourse = (courseID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "از حذف دوره مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/courses/${courseID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "دوره موردنظر با موفقیت حذف شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllCourses();
+            });
+          } else {
+            Swal.fire({
+              title: "حذف دوره با مشکل مواجه شد",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -137,7 +178,12 @@ export default function Courses() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">حذف</button>
+                        <button
+                          type="button"
+                          onClick={() => removeCourse(course._id)}
+                        >
+                          حذف
+                        </button>
                       </Typography>
                     </td>
                   </tr>
