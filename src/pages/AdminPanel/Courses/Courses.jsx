@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+import Input from "../../../Components/Form/Input";
+import Button from "../../../Components/Form/Button";
+import {
+  requiredValidator,
+  minValidator,
+  maxValidator,
+} from "./../../../validators/rules";
+import { useForm } from "../../../hooks/useForm";
 import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 
@@ -17,9 +25,44 @@ const TABLE_HEAD = [
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
+  const [courseCategory, setCourseCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [courseStatus, setCourseStatus] = useState("start");
+  const [courseCover, setCourseCover] = useState({});
+
+  const [formState, onInputHandler] = useForm(
+    {
+      name: {
+        value: "",
+        isValid: false,
+      },
+      description: {
+        value: "",
+        isValid: false,
+      },
+      shortName: {
+        value: "",
+        isValid: false,
+      },
+      price: {
+        value: "",
+        isValid: false,
+      },
+      support: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
 
   useEffect(() => {
     getAllCourses();
+    fetch(`http://localhost:4000/v1/category`)
+      .then((res) => res.json())
+      .then((allCategories) => {
+        setCategories(allCategories);
+      });
   }, []);
 
   function getAllCourses() {
@@ -72,8 +115,166 @@ export default function Courses() {
     });
   };
 
+  const selectCategory = (event) => {
+    setCourseCategory(event.target.value);
+  };
+
+  const addNewCourse = (event) => {
+    event.preventDefault();
+    console.log(formState);
+  };
+
   return (
     <>
+      <section className="flex-center overflow-hidden mt-12">
+        <div className="mx-auto flex flex-col items-center w-min">
+          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl z-10">
+            <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
+              افزودن دوره جدید
+            </span>
+            <form
+              action="#"
+              className="w-full flex items-center flex-col gap-y-8"
+            >
+              <div className="flex items-center gap-x-4">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="name"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="نام دوره"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="description"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="توضیحات دوره"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-x-4">
+              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="shortName"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="Url دوره"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="price"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="قیمت دوره"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-x-4">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="support"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="نحوه پشتیبانی دوره"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <div className="flex items-center gap-x-2">
+                    <label className="text-xl text-darkColor dark:text-white/70">دسته‌بندی</label>
+                    <select className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1" onChange={selectCategory}>
+                      {categories.map((category) => (
+                        <>
+                          <option className="text-darkColor text-[1.6rem]" value={category._id}>{category.title}</option>
+                        </>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-x-4">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <div className="flex items-center gap-x-2 w-[19.1rem]">
+                    <label className="text-darkColor dark:text-white/70">عکس</label>
+                    <input
+                      type="file"
+                      id="file"
+                      className="w-full bg-white/10 rounded-md p-1"
+                      onChange={(event) => {
+                        console.log(event.target.files[0]);
+                        setCourseCover(event.target.files[0]);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <div className="flex items-center w-[19.1rem] text-darkColor dark:text-white/70">
+                    <label className="text-3xl ml-10">وضعیت</label>
+                    <div className="radios flex flex-col gap-y-1 items-center text-xl">
+                      <div className="available">
+                        <label>
+                          <span>در حال برگزاری</span>
+                          <input
+                            type="radio"
+                            value="start"
+                            name="condition"
+                            checked
+                            onInput={(event) =>
+                              setCourseStatus(event.target.value)
+                            }
+                          />
+                        </label>
+                      </div>
+                      <div className="unavailable">
+                        <label>
+                          <span>پیش فروش</span>
+                          <input
+                            type="radio"
+                            value="presell"
+                            name="condition"
+                            onInput={(event) =>
+                              setCourseStatus(event.target.value)
+                            }
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <Button
+                className={`h-20 w-[50%] mt-4 rounded-4xl ${
+                  formState.isFormValid
+                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                    : "bg-[#333c4c]/30"
+                }`}
+                type="submit"
+                onClick={addNewCourse}
+                disabled={!formState.isFormValid}
+              >
+                <span className="mx-auto">افزودن</span>
+              </Button>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <DataTable title="دوره ها">
         <Card className="h-full w-full rounded-md overflow-scroll px-6">
           <table className="w-full min-w-max table-auto text-center">
