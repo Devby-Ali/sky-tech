@@ -25,7 +25,7 @@ export default function CourseBox(props) {
         >
           <img
             className="block w-full h-full object-cover"
-            src={`/images/courses/${props.cover}`}
+            src={`http://localhost:4000/courses/covers/${props.cover}`}
             alt={props.name}
             onLoad={onImageLoaded}
             onError={onImageError}

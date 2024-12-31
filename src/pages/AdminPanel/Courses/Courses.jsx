@@ -121,7 +121,34 @@ export default function Courses() {
 
   const addNewCourse = (event) => {
     event.preventDefault();
-    console.log(formState);
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    let formData = new FormData();
+    formData.append("name", formState.inputs.name.value);
+    formData.append("description", formState.inputs.description.value);
+    formData.append("cover", courseCover);
+    formData.append("shortName", formState.inputs.shortName.value);
+    formData.append("price", formState.inputs.price.value);
+    formData.append("status", courseStatus);
+    formData.append("categoryID", courseCategory);
+
+    fetch(`http://localhost:4000/v1/courses`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorageData.token}`,
+      },
+      body: formData,
+    }).then((res) => {
+      console.log(res);
+      if (res.ok) {
+        Swal.fire({
+          title: "دوره جدید با موفقیت اضافه شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getAllCourses();
+        });
+      }
+    });
   };
 
   return (
@@ -136,7 +163,7 @@ export default function Courses() {
               action="#"
               className="w-full flex items-center flex-col gap-y-8"
             >
-              <div className="flex items-center gap-x-4">
+              <div className="flex items-center gap-x-6">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="name"
@@ -147,9 +174,10 @@ export default function Courses() {
                     onInputHandler={onInputHandler}
                   />
                 </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="description"
+                    element="textarea"
                     className="bg-transparent outline-none"
                     type="text"
                     placeholder="توضیحات دوره"
@@ -159,8 +187,8 @@ export default function Courses() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-4">
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+              <div className="flex items-center gap-x-6">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="shortName"
                     className="bg-transparent outline-none"
@@ -182,7 +210,7 @@ export default function Courses() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-4">
+              <div className="flex items-center gap-x-6">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="support"
@@ -195,11 +223,21 @@ export default function Courses() {
                 </div>
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <div className="flex items-center gap-x-2">
-                    <label className="text-xl text-darkColor dark:text-white/70">دسته‌بندی</label>
-                    <select className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1" onChange={selectCategory}>
+                    <label className="text-xl text-darkColor dark:text-white/70">
+                      دسته‌بندی
+                    </label>
+                    <select
+                      className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
+                      onChange={selectCategory}
+                    >
                       {categories.map((category) => (
                         <>
-                          <option className="text-darkColor text-[1.6rem]" value={category._id}>{category.title}</option>
+                          <option
+                            className="text-darkColor text-[1.6rem]"
+                            value={category._id}
+                          >
+                            {category.title}
+                          </option>
                         </>
                       ))}
                     </select>
@@ -207,10 +245,12 @@ export default function Courses() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-4">
+              <div className="flex items-center gap-x-6">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <div className="flex items-center gap-x-2 w-[19.1rem]">
-                    <label className="text-darkColor dark:text-white/70">عکس</label>
+                    <label className="text-darkColor dark:text-white/70">
+                      عکس
+                    </label>
                     <input
                       type="file"
                       id="file"
