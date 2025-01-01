@@ -222,11 +222,7 @@ export default function CourseInfo() {
                 <CourseDetailBox
                   icon={<BsInfoCircle />}
                   title={"وضعیت دوره"}
-                  text={`${courseDetails.status === "presell" && "پیش فروش"} ${
-                    courseDetails.isComplete === 1
-                      ? "تکمیل شده"
-                      : "در حال برگزاری"
-                  }`}
+                  text={`${courseDetails.status === "presell" ? "پیش فروش" : courseDetails.isComplete === 1 ? "تکمیل شده" : "در حال برگزاری"}`}
                 />
                 <CourseDetailBox
                   icon={<BsClock />}
@@ -241,7 +237,7 @@ export default function CourseInfo() {
                 <CourseDetailBox
                   icon={<PiUsersThree />}
                   title={"روش پشتیبانی"}
-                  text={courseDetails.support}
+                  text={`${courseDetails.support || "واتساپ"}`}
                 />
                 <CourseDetailBox
                   icon={<PiBriefcase />}

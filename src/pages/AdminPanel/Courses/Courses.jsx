@@ -273,8 +273,7 @@ export default function Courses() {
                             type="radio"
                             value="start"
                             name="condition"
-                            checked
-                            onInput={(event) =>
+                            onChange={(event) =>
                               setCourseStatus(event.target.value)
                             }
                           />
@@ -287,7 +286,7 @@ export default function Courses() {
                             type="radio"
                             value="presell"
                             name="condition"
-                            onInput={(event) =>
+                            onChange={(event) =>
                               setCourseStatus(event.target.value)
                             }
                           />
