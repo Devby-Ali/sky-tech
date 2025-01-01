@@ -161,11 +161,10 @@ export default function CourseInfo() {
                           {price >= 250_000 ? (
                             <>
                               <span className="text-4xl text-blue-gray-600 dark:text-white/70 -mb-1.5 line-through">
-                                {(price - 20_000).toLocaleString()}
+                                {price.toLocaleString()}
                               </span>
                               <span className="flex gap-x-1 text-green-500 font-EstedadMedium text-5xl">
-                                {price.toLocaleString()}
-
+                                {(price - 20_000).toLocaleString()}
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="30"
@@ -223,7 +222,11 @@ export default function CourseInfo() {
                 <CourseDetailBox
                   icon={<BsInfoCircle />}
                   title={"وضعیت دوره"}
-                  text={`${courseDetails.status === "presell" && "پیش فروش"} ${courseDetails.isComplete === 1 ? "تکمیل شده" : "در حال برگزاری"}`}
+                  text={`${courseDetails.status === "presell" && "پیش فروش"} ${
+                    courseDetails.isComplete === 1
+                      ? "تکمیل شده"
+                      : "در حال برگزاری"
+                  }`}
                 />
                 <CourseDetailBox
                   icon={<BsClock />}
