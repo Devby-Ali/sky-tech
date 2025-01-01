@@ -103,6 +103,11 @@ export default function Sidebar() {
             <span>دسته‌بندی‌ها</span>
           </Link>
         </li>
+        <li>
+            <Link to="contacts">
+              <span>پیغام‌ها</span>
+            </Link>
+          </li>
       </ul>
       <div>
         <Button className="pr-2.5 py-8" onClick={logoutAdmin}>
