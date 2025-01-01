@@ -32,7 +32,38 @@ export default function Contact() {
     });
   };
 
-  
+  const sendAnwserToUser = (contactEmail) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "متن پاسخ را وارد کنید",
+      input: "textarea",
+      confirmButtonText: "ارسال ایمیل",
+      showCancelButton: true,
+    }).then((result) => {
+      console.log(result);
+
+      const anwserInfo = {
+        email: contactEmail,
+        answer: result.value,
+      };
+
+      fetch("http://localhost:4000/v1/contact/answer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorageData.token}`,
+        },
+        body: JSON.stringify(anwserInfo),
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((result) => console.log(result));
+    });
+  };
 
   return (
     <>
@@ -118,7 +149,12 @@ export default function Contact() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">ویرایش</button>
+                        <button
+                          type="button"
+                          onClick={() => sendAnwserToUser(contact.email)}
+                        >
+                          پاسخ
+                        </button>
                       </Typography>
                     </td>
                     <td className={classes}>
