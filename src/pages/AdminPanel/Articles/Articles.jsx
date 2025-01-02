@@ -1,36 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import DataTable from './../../../Components/AdminPanel/DataTable/DataTable'
-import { Card, Typography } from '@material-tailwind/react';
+import React, { useEffect, useState } from "react";
+import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
+import { Card, Typography } from "@material-tailwind/react";
+import Swal from "sweetalert2";
 
-const TABLE_HEAD = [
-  "شناسه",
-  "عنوان",
-  "لینک",
-  "نویسنده",
-  "ویرایش",
-  "حذف",
-];
+const TABLE_HEAD = ["شناسه", "عنوان", "لینک", "نویسنده", "ویرایش", "حذف"];
 
 export default function Articles() {
-
-  const [articles, setArticles] = useState([])
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     getAllArticles();
-  }, [])
+  }, []);
 
   function getAllArticles() {
-    fetch('http://localhost:4000/v1/articles')
-    .then(res => res.json())
-    .then(allArticles => {
-      console.log(allArticles);
-      setArticles(allArticles)
-    })
+    fetch("http://localhost:4000/v1/articles")
+      .then((res) => res.json())
+      .then((allArticles) => {
+        console.log(allArticles);
+        setArticles(allArticles);
+      });
   }
+
+  const removeArticle = (articleID) => {
+    const localStorageDate = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "از حذف مقاله مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/articles/${articleID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageDate.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "مقاله مورد نظر با موفقیت حذف شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllArticles();
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <>
-          <DataTable title="مقاله‌ها">
+      <DataTable title="مقاله‌ها">
         <Card className="h-full w-full rounded-md overflow-scroll px-6">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
@@ -108,6 +131,7 @@ export default function Articles() {
                       >
                         <button
                           type="button"
+                          onClick={() => removeArticle(article._id)}
                         >
                           حذف
                         </button>
@@ -121,5 +145,5 @@ export default function Articles() {
         </Card>
       </DataTable>
     </>
-  )
+  );
 }
