@@ -176,7 +176,7 @@ export default function Courses() {
                     id="name"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="نام دوره"
+                    placeholder="نام"
                     validations={[minValidator(5)]}
                     onInputHandler={onInputHandler}
                   />
@@ -187,7 +187,7 @@ export default function Courses() {
                     element="textarea"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="توضیحات دوره"
+                    placeholder="توضیحات"
                     validations={[minValidator(5)]}
                     onInputHandler={onInputHandler}
                   />
@@ -200,7 +200,7 @@ export default function Courses() {
                     id="shortName"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="Url دوره"
+                    placeholder="Url"
                     validations={[minValidator(5)]}
                     onInputHandler={onInputHandler}
                   />
@@ -210,7 +210,7 @@ export default function Courses() {
                     id="price"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="قیمت دوره"
+                    placeholder="قیمت"
                     validations={[minValidator(1)]}
                     onInputHandler={onInputHandler}
                   />
@@ -223,7 +223,7 @@ export default function Courses() {
                     id="support"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="نحوه پشتیبانی دوره"
+                    placeholder="نحوه پشتیبانی"
                     validations={[minValidator(5)]}
                     onInputHandler={onInputHandler}
                   />

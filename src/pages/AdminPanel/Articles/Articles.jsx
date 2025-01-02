@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
+import Input from "../../../Components/Form/Input";
+import Button from "../../../Components/Form/Button";
+import {
+  requiredValidator,
+  minValidator,
+  maxValidator,
+} from "./../../../validators/rules";
+import { useForm } from "../../../hooks/useForm";
 import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
@@ -7,9 +15,39 @@ const TABLE_HEAD = ["شناسه", "عنوان", "لینک", "نویسنده", "�
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [articleCategory, setArticleCategory] = useState("-1");
+  const [articleCover, setArticleCover] = useState({});
+
+  const [formState, onInputHandler] = useForm(
+    {
+      title: {
+        value: "",
+        isValid: false,
+      },
+      shortName: {
+        value: "",
+        isValid: false,
+      },
+      description: {
+        value: "",
+        isValid: false,
+      },
+      body: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
 
   useEffect(() => {
     getAllArticles();
+    fetch(`http://localhost:4000/v1/category`)
+      .then((res) => res.json())
+      .then((allCategories) => {
+        setCategories(allCategories);
+      });
   }, []);
 
   function getAllArticles() {
@@ -53,6 +91,124 @@ export default function Articles() {
 
   return (
     <>
+      <section className="flex-center overflow-hidden mt-12">
+        <div className="mx-auto flex flex-col items-center w-min">
+          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl z-10">
+            <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
+              افزودن مقاله جدید
+            </span>
+            <form
+              action="#"
+              className="w-full flex items-center flex-col gap-y-8"
+            >
+              <div className="flex items-center gap-x-6">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="title"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="عنوان"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+                <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="shortName"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="لینک"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-x-6">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="description"
+                    element="textarea"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="چکیده"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <Input
+                    id="body"
+                    element="textarea"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="متن"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center gap-x-6">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <div className="flex items-center gap-x-2 w-[19.1rem]">
+                    <label className="text-darkColor dark:text-white/70">
+                      کاور
+                    </label>
+                    <input
+                      type="file"
+                      id="file"
+                      className="w-full bg-white/10 rounded-md p-1"
+                      onChange={(event) => {
+                        console.log(event.target.files[0]);
+                        setArticleCover(event.target.files[0]);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                  <div className="flex items-center gap-x-2">
+                    <label className="text-xl text-darkColor dark:text-white/70">
+                      دسته‌بندی
+                    </label>
+                    <select
+                      className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
+                      onChange={(event) =>
+                        setArticleCategory(event.target.value)
+                      }
+                    >
+                      <option value={"-1"}>را انتخاب نمایید</option>
+                      {categories.map((category) => (
+                        <>
+                          <option
+                            className="text-darkColor text-[1.6rem]"
+                            value={category._id}
+                          >
+                            {category.title}
+                          </option>
+                        </>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <Button
+                className={`h-20 w-[50%] mt-4 rounded-4xl ${
+                  formState.isFormValid
+                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                    : "bg-[#333c4c]/30"
+                }`}
+                type="submit"
+                disabled={!formState.isFormValid}
+              >
+                <span className="mx-auto">افزودن</span>
+              </Button>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <DataTable title="مقاله‌ها">
         <Card className="h-full w-full rounded-md overflow-scroll px-6">
           <table className="w-full min-w-max table-auto text-center">
