@@ -25,7 +25,7 @@ const TABLE_HEAD = [
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
-  const [courseCategory, setCourseCategory] = useState("");
+  const [courseCategory, setCourseCategory] = useState("-1");
   const [categories, setCategories] = useState([]);
   const [courseStatus, setCourseStatus] = useState("start");
   const [courseCover, setCourseCover] = useState({});
@@ -131,24 +131,31 @@ export default function Courses() {
     formData.append("status", courseStatus);
     formData.append("categoryID", courseCategory);
 
-    fetch(`http://localhost:4000/v1/courses`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-      body: formData,
-    }).then((res) => {
-      console.log(res);
-      if (res.ok) {
-        Swal.fire({
-          title: "دوره جدید با موفقیت اضافه شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getAllCourses();
-        });
-      }
-    });
+    if (courseCategory === "-1") {
+      Swal.fire({
+        title: "لطفا دسته بندی دوره را انتخاب کنید",
+        icon: "warning",
+      });
+    } else {
+      fetch(`http://localhost:4000/v1/courses`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorageData.token}`,
+        },
+        body: formData,
+      }).then((res) => {
+        console.log(res);
+        if (res.ok) {
+          Swal.fire({
+            title: "دوره جدید با موفقیت اضافه شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            getAllCourses();
+          });
+        }
+      });
+    }
   };
 
   return (
@@ -204,7 +211,7 @@ export default function Courses() {
                     className="bg-transparent outline-none"
                     type="text"
                     placeholder="قیمت دوره"
-                    validations={[minValidator(5)]}
+                    validations={[minValidator(1)]}
                     onInputHandler={onInputHandler}
                   />
                 </div>
@@ -230,6 +237,9 @@ export default function Courses() {
                       className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
                       onChange={selectCategory}
                     >
+                      <option value={"-1"}>
+                         را انتخاب نمایید
+                      </option>
                       {categories.map((category) => (
                         <>
                           <option
