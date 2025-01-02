@@ -17,13 +17,17 @@ export default function Contact() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
+    getAllContacnts();
+  }, []);
+
+  function getAllContacnts() {
     fetch("http://localhost:4000/v1/contact")
       .then((res) => res.json())
       .then((allContacts) => {
         console.log(allContacts);
         setContacts(allContacts);
       });
-  }, []);
+  }
 
   const showContactBody = (body) => {
     Swal.fire({
@@ -62,6 +66,36 @@ export default function Contact() {
           }
         })
         .then((result) => console.log(result));
+    });
+  };
+
+  const removeContact = (contactID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "از حذف پیام مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/contact/${contactID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "پیغام مورد نظر با موفقیت حذف شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllContacnts();
+            });
+          }
+        });
+      }
     });
   };
 
@@ -162,7 +196,12 @@ export default function Contact() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">حذف</button>
+                        <button
+                          type="button"
+                          onClick={() => removeContact(contact._id)}
+                        >
+                          حذف
+                        </button>
                       </Typography>
                     </td>
                   </tr>
