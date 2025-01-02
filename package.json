@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^9.4.0",
     "@material-tailwind/react": "^2.1.10",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "bootstrap": "^5.3.3",
+    "ckeditor5": "^44.1.0",
     "react": "^18.3.1",
     "react-bootstrap-accordion": "^1.0.0",
     "react-dom": "^18.3.1",

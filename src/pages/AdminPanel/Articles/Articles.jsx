@@ -7,6 +7,8 @@ import {
   maxValidator,
 } from "./../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
+
+import Editor from "../../../Components/Form/Editor";
 import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
@@ -18,6 +20,7 @@ export default function Articles() {
   const [categories, setCategories] = useState([]);
   const [articleCategory, setArticleCategory] = useState("-1");
   const [articleCover, setArticleCover] = useState({});
+  const [articleBody, setArticleBody] = useState("");
 
   const [formState, onInputHandler] = useForm(
     {
@@ -30,10 +33,6 @@ export default function Articles() {
         isValid: false,
       },
       description: {
-        value: "",
-        isValid: false,
-      },
-      body: {
         value: "",
         isValid: false,
       },
@@ -137,15 +136,10 @@ export default function Articles() {
                   />
                 </div>
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="body"
-                    element="textarea"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="متن"
-                    validations={[minValidator(5)]}
-                    onInputHandler={onInputHandler}
-                  />
+                <Editor 
+                  value={articleBody}
+                  setValue={setArticleBody}
+                />
                 </div>
               </div>
 
