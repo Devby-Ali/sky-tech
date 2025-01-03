@@ -7,8 +7,7 @@ import {
   maxValidator,
 } from "./../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
-
-import Editor from "../../../Components/Form/Editor";
+import Editor from "../../../Components/Form/Editor/Editor";
 import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
@@ -20,7 +19,7 @@ export default function Articles() {
   const [categories, setCategories] = useState([]);
   const [articleCategory, setArticleCategory] = useState("-1");
   const [articleCover, setArticleCover] = useState({});
-  const [articleBody, setArticleBody] = useState("");
+  const [articleBody, setArticleBody] = useState("محتوا");
 
   const [formState, onInputHandler] = useForm(
     {
@@ -121,9 +120,6 @@ export default function Articles() {
                     onInputHandler={onInputHandler}
                   />
                 </div>
-              </div>
-
-              <div className="flex items-center gap-x-6">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="description"
@@ -135,12 +131,10 @@ export default function Articles() {
                     onInputHandler={onInputHandler}
                   />
                 </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Editor 
-                  value={articleBody}
-                  setValue={setArticleBody}
-                />
-                </div>
+              </div>
+
+              <div className="flex items-center gap-x-6">
+                <Editor value={articleBody} setValue={setArticleBody} />
               </div>
 
               <div className="flex items-center gap-x-6">
