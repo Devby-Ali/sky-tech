@@ -166,9 +166,9 @@ export default function ArticleInfo() {
                   </div>
                 </div>
                 {/*					<!-- Full Description --> */}
-                <p className=" tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem]">
+                <div className="tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem] overflow-auto">
                 {articleDetails.body}
-                </p>
+                </div>
               </div>
               {/* <!-- Related Blogs --> */}
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">

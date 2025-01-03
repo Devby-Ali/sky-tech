@@ -18,7 +18,7 @@ export default function ArticleBox({
       <div className="blog__banner relative h-[182px] overflow-hidden">
         <Link to={`/article-info/${shortName}`}>
           <img
-            src={cover}
+            src={`http://localhost:4000/courses/covers/${cover}`}
             className="block w-full h-full object-cover"
             alt="Article-Image"
             loading="lazy"

@@ -87,6 +87,36 @@ export default function Articles() {
     });
   };
 
+  const createArticle = (event) => {
+    event.preventDefault();
+    const localStorageDate = JSON.parse(localStorage.getItem("user"));
+    let formData = new FormData();
+    formData.append("title", formState.inputs.title.value);
+    formData.append("shortName", formState.inputs.shortName.value);
+    formData.append("description", formState.inputs.description.value);
+    formData.append("categoryID", articleCategory);
+    formData.append("cover", articleCover);
+    formData.append("body", articleBody);
+
+    fetch(`http://localhost:4000/v1/articles`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorageDate.token}`,
+      },
+      body: formData,
+    }).then((res) => {
+      if (res.ok) {
+        Swal.fire({
+          title: "مقاله جدید با موفقیت ایجاد شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getAllArticles();
+        });
+      }
+    });
+  };
+
   return (
     <>
       <section className="flex-center overflow-hidden mt-12">
@@ -188,6 +218,7 @@ export default function Articles() {
                     : "bg-[#333c4c]/30"
                 }`}
                 type="submit"
+                onClick={() => createArticle(event)}
                 disabled={!formState.isFormValid}
               >
                 <span className="mx-auto">افزودن</span>
