@@ -79,6 +79,11 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+            <Link to="sessions">
+              <span>جلسات</span>
+            </Link>
+          </li>
+        <li>
           <Link to="menus">
             <span>منو ها</span>
           </Link>
