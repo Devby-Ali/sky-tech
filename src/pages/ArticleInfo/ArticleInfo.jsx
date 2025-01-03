@@ -16,6 +16,7 @@ import {
   HiShare,
 } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
+import domPurify from "dompurify"
 
 export default function ArticleInfo() {
   const { articleName } = useParams();
@@ -166,8 +167,7 @@ export default function ArticleInfo() {
                   </div>
                 </div>
                 {/*					<!-- Full Description --> */}
-                <div className="tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem] overflow-auto">
-                {articleDetails.body}
+                <div className="tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem] overflow-auto" dangerouslySetInnerHTML={{ __html: domPurify.sanitize(articleDetails.body) }}>
                 </div>
               </div>
               {/* <!-- Related Blogs --> */}
