@@ -3,11 +3,13 @@ import { useForm } from "../../../hooks/useForm";
 import Input from "../../../Components/Form/Input";
 import { minValidator } from "../../../validators/rules";
 import Button from "../../../Components/Form/Button";
+import Swal from "sweetalert2";
 
 export default function Sessions() {
   const [courses, setCourses] = useState([]);
   const [sessionCourse, setSessionCourse] = useState("-1");
   const [sessionVideo, setSessionVideo] = useState({});
+  const [sessionFree, setSessionFree] = useState(null);
   const [formState, onInputHandler] = useForm(
     {
       title: {
@@ -31,6 +33,36 @@ export default function Sessions() {
       });
   }, []);
 
+  const createSession = (event) => {
+    event.preventDefault();
+
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+
+    let formData = new FormData();
+    formData.append("title", formState.inputs.title.value);
+    formData.append("time", formState.inputs.time.value);
+    formData.append("video", sessionVideo);
+    formData.append("free", sessionFree);
+
+    fetch(`http://localhost:4000/v1/courses/${sessionCourse}/sessions`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorageData.token}`,
+      },
+      body: formData,
+    }).then((res) => {
+      if (res.ok) {
+        Swal.fire({
+          title: "جلسه مورد نظر با موفقیت اضافه شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          console.log("Get All Sessions");
+        });
+      }
+    });
+  };
+
   return (
     <>
       <section className="flex-center overflow-hidden mt-40">
@@ -42,7 +74,7 @@ export default function Sessions() {
             <form action="#" className="w-full flex flex-col gap-y-8">
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <Input
-                  id="name"
+                  id="title"
                   className="bg-transparent outline-none"
                   type="text"
                   placeholder="عنوان"
@@ -52,7 +84,7 @@ export default function Sessions() {
               </div>
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <Input
-                  id="shortName"
+                  id="time"
                   className="bg-transparent outline-none"
                   type="text"
                   placeholder="مدت زمان"
@@ -83,6 +115,40 @@ export default function Sessions() {
                 </div>
               </div>
 
+              <div className="min-h-20 flex items-center px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                <div className="flex items-center justify-between w-[20rem] text-darkColor dark:text-white/70">
+                  <label className="text-3xl">وضعیت</label>
+                  <div className="radios flex gap-x-6 items-center">
+                    <div className="available">
+                      <label className="flex items-center gap-x-1">
+                        <span>رایگان</span>
+                        <input
+                          type="radio"
+                          value="1"
+                          name="condition"
+                          onChange={(event) =>
+                            setSessionFree(event.target.value)
+                          }
+                        />
+                      </label>
+                    </div>
+                    {/* <div className="unavailable">
+                      <label className="flex items-center gap-x-1">
+                        <span>پولی</span>
+                        <input
+                          type="radio"
+                          value="0"
+                          name="condition"
+                          onChange={(event) =>
+                            setSessionFree(event.target.value)
+                          }
+                        />
+                      </label>
+                    </div> */}
+                  </div>
+                </div>
+              </div>
+
               <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <label>بارگذاری</label>
                 <input
@@ -98,6 +164,7 @@ export default function Sessions() {
                     : "bg-[#333c4c]/30"
                 }`}
                 type="submit"
+                onClick={createSession}
                 disabled={!formState.isFormValid}
               >
                 <span className="mx-auto">افزودن</span>
