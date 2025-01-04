@@ -9,7 +9,7 @@ export default function Sessions() {
   const [courses, setCourses] = useState([]);
   const [sessionCourse, setSessionCourse] = useState("-1");
   const [sessionVideo, setSessionVideo] = useState({});
-  const [sessionFree, setSessionFree] = useState(null);
+  const [sessionFree, setSessionFree] = useState({});
   const [formState, onInputHandler] = useForm(
     {
       title: {
@@ -132,7 +132,7 @@ export default function Sessions() {
                         />
                       </label>
                     </div>
-                    {/* <div className="unavailable">
+                    <div className="unavailable">
                       <label className="flex items-center gap-x-1">
                         <span>پولی</span>
                         <input
@@ -144,7 +144,7 @@ export default function Sessions() {
                           }
                         />
                       </label>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
