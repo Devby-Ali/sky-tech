@@ -26,6 +26,7 @@ import { GoTriangleDown } from "react-icons/go";
 import { PiPlayBold } from "react-icons/pi";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
+import Sessions from "../AdminPanel/Sessions/Sessions";
 
 function Icon({ id, open }) {
   return (
@@ -611,7 +612,7 @@ export default function CourseInfo() {
                             </div>
                             <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
                               <span className="text-xl md:2xl">
-                                {sessions.time}
+                               {sessions.time.slice(2,4)} : {sessions.time.slice(0,2)}
                               </span>
                               <div className="text-3xl">
                                 <PiPlayBold />
