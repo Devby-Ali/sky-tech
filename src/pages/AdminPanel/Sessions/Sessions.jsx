@@ -9,7 +9,7 @@ export default function Sessions() {
   const [courses, setCourses] = useState([]);
   const [sessionCourse, setSessionCourse] = useState("-1");
   const [sessionVideo, setSessionVideo] = useState({});
-  const [sessionFree, setSessionFree] = useState({});
+  const [sessionFree, setSessionFree] = useState(null);
   const [formState, onInputHandler] = useForm(
     {
       title: {
@@ -88,7 +88,7 @@ export default function Sessions() {
                   className="bg-transparent outline-none"
                   type="text"
                   placeholder="مدت زمان"
-                  validations={[minValidator(5)]}
+                  validations={[minValidator(2)]}
                   onInputHandler={onInputHandler}
                 />
               </div>

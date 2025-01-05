@@ -222,7 +222,13 @@ export default function CourseInfo() {
                 <CourseDetailBox
                   icon={<BsInfoCircle />}
                   title={"وضعیت دوره"}
-                  text={`${courseDetails.status === "presell" ? "پیش فروش" : courseDetails.isComplete === 1 ? "تکمیل شده" : "در حال برگزاری"}`}
+                  text={`${
+                    courseDetails.status === "presell"
+                      ? "پیش فروش"
+                      : courseDetails.isComplete === 1
+                      ? "تکمیل شده"
+                      : "در حال برگزاری"
+                  }`}
                 />
                 <CourseDetailBox
                   icon={<BsClock />}
@@ -588,7 +594,10 @@ export default function CourseInfo() {
                     <AccordionBody className="divide-y divide-gray-600 -mt-1">
                       {sessions.map((sessions, index) => (
                         <>
-                          <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                          <div
+                            key={sessions._id}
+                            className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
+                          >
                             <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
                               <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
                                 {index + 1}
