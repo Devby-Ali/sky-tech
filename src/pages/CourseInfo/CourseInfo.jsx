@@ -59,9 +59,9 @@ export default function CourseInfo() {
     fetch(`http://localhost:4000/v1/courses/${courseName}`)
       .then((res) => res.json())
       .then((courseInfo) => {
+        setCourseDetails(courseInfo);
         setComments(courseInfo.comments);
         setSessions(courseInfo.sessions);
-        setCourseDetails(courseInfo);
         setCreatedAt(courseInfo.createdAt);
         setUpdatedAt(courseInfo.updatedAt);
         setCourseTeacher(courseInfo.creator);

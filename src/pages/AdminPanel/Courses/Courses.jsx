@@ -168,9 +168,9 @@ export default function Courses() {
             </span>
             <form
               action="#"
-              className="w-full flex items-center flex-col gap-y-8"
+              className="w-full flex items-center flex-col gap-6 md:gap-8"
             >
-              <div className="flex items-center gap-x-6">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="name"
@@ -194,7 +194,7 @@ export default function Courses() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-6">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="shortName"
@@ -217,7 +217,7 @@ export default function Courses() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-6">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="support"
@@ -255,7 +255,7 @@ export default function Courses() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-6">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <div className="flex items-center gap-x-2 w-[19.1rem]">
                     <label className="text-darkColor dark:text-white/70">
@@ -308,7 +308,7 @@ export default function Courses() {
               </div>
 
               <Button
-                className={`h-20 w-[50%] mt-4 rounded-4xl ${
+                className={`h-20 w-full md:w-[50%] mt-4 rounded-4xl ${
                   formState.isFormValid
                     ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                     : "bg-[#333c4c]/30"
