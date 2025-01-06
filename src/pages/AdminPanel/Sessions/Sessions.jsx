@@ -4,12 +4,18 @@ import Input from "../../../Components/Form/Input";
 import { minValidator } from "../../../validators/rules";
 import Button from "../../../Components/Form/Button";
 import Swal from "sweetalert2";
+import { Card, Typography } from "@material-tailwind/react";
+import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+
+const TABLE_HEAD = ["شناسه", "عنوان", "زمان", "دوره", "حذف"];
 
 export default function Sessions() {
   const [courses, setCourses] = useState([]);
   const [sessionCourse, setSessionCourse] = useState("-1");
   const [sessionVideo, setSessionVideo] = useState({});
   const [sessionFree, setSessionFree] = useState(null);
+  const [sessions, setSessions] = useState([]);
+
   const [formState, onInputHandler] = useForm(
     {
       title: {
@@ -25,6 +31,9 @@ export default function Sessions() {
   );
 
   useEffect(() => {
+    
+    getAllSessions();
+
     fetch("http://localhost:4000/v1/courses")
       .then((res) => res.json())
       .then((allCourses) => {
@@ -32,6 +41,12 @@ export default function Sessions() {
         setCourses(allCourses);
       });
   }, []);
+
+  function getAllSessions() {
+    fetch("http://localhost:4000/v1/courses/sessions")
+      .then((res) => res.json())
+      .then((allSessions) => setSessions(allSessions));
+  }
 
   const createSession = (event) => {
     event.preventDefault();
@@ -57,7 +72,7 @@ export default function Sessions() {
           icon: "success",
           confirmButtonText: "Ok",
         }).then(() => {
-          console.log("Get All Sessions");
+          getAllSessions();
         });
       }
     });
@@ -173,6 +188,85 @@ export default function Sessions() {
           </div>
         </div>
       </section>
+
+      <DataTable title="جلسات">
+        <Card className="h-full w-full rounded-md overflow-scroll px-6">
+          <table className="w-full min-w-max table-auto text-center">
+            <thead>
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="border-b-4 border-gray-400 pb-10 pt-12"
+                  >
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="text-4xl font-EstedadBold leading-none"
+                    >
+                      {head}
+                    </Typography>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sessions.map((Session, index) => {
+                const isLast = index === sessions.length - 1;
+                const classes = isLast
+                  ? "py-6"
+                  : "py-6 border-b border-gray-400";
+
+                return (
+                  <tr key={Session._id} className="hover:bg-gray-50">
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="text-2xl font-EstedadBold"
+                      >
+                        {index + 1}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                      >
+                        {Session.title}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                      >
+                        {Session.time}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                      >
+                        {Session.course.name}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                      >
+                        <button type="button">حذف</button>
+                      </Typography>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </Card>
+      </DataTable>
     </>
   );
 }
