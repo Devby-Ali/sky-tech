@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { Card, Typography } from "@material-tailwind/react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 
-const TABLE_HEAD = ["شناسه", "عنوان", "زمان", "دوره", "حذف"];
+const TABLE_HEAD = ["شناسه", "دوره", "عنوان", "زمان", "حذف"];
 
 export default function Sessions() {
   const [courses, setCourses] = useState([]);
@@ -73,6 +73,37 @@ export default function Sessions() {
           confirmButtonText: "Ok",
         }).then(() => {
           getAllSessions();
+        });
+      }
+    });
+  };
+
+  const removeSession = (sessionID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+
+    Swal.fire({
+      title: "از حذف جلسه مطمعنی؟",
+      icon: "warning",
+      confirmButtonText: "آره",
+      showDenyButton: true,
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/courses/sessions/${sessionID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "جلسه مورد نظر با موفقیت حذف شد",
+              icon: "success",
+              cancelButtonText: "Ok",
+            }).then((result) => {
+              getAllSessions();
+            });
+          }
         });
       }
     });
@@ -211,14 +242,14 @@ export default function Sessions() {
               </tr>
             </thead>
             <tbody>
-              {sessions.map((Session, index) => {
+              {sessions.map((session, index) => {
                 const isLast = index === sessions.length - 1;
                 const classes = isLast
                   ? "py-6"
                   : "py-6 border-b border-gray-400";
 
                 return (
-                  <tr key={Session._id} className="hover:bg-gray-50">
+                  <tr key={session._id} className="hover:bg-gray-50">
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -233,7 +264,7 @@ export default function Sessions() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        {Session.title}
+                        {session.course.name}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -241,7 +272,7 @@ export default function Sessions() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        {Session.time}
+                        {session.title}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -249,7 +280,7 @@ export default function Sessions() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        {Session.course.name}
+                        {session.time}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -257,7 +288,7 @@ export default function Sessions() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">حذف</button>
+                        <button type="button" onClick={() => removeSession(session._id)}>حذف</button>
                       </Typography>
                     </td>
                   </tr>
