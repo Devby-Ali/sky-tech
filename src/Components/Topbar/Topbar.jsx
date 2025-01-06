@@ -5,11 +5,15 @@ import { FaPhoneAlt } from "react-icons/fa";
 
 export default function Topbar() {
   const [allTopbarLinks, setAllTopbarLinks] = useState([]);
+  const [indexInfo, setIndexInfo] = useState({});
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/menus/topbar`)
       .then((res) => res.json())
       .then((data) => setAllTopbarLinks(data));
+    fetch("http://localhost:4000/v1/infos/index")
+      .then((res) => res.json())
+      .then((allInfos) => setIndexInfo(allInfos));
   }, []);
 
   const getRandomItemsFromArray = (arr, randomCount) => {
@@ -18,7 +22,7 @@ export default function Topbar() {
   };
 
   return (
-    <div className="text-zinc-500 py-8 bg-slate-100">
+    <div className="lg:fixed lg:flex lg:top-44 lg:right-0 lg:left-0 z-40 justify-between items-center lg:mx-auto dark:text-white">
       <div className="container">
         <div className="flex justify-between px-6">
           <div className="flex">
@@ -39,20 +43,20 @@ export default function Topbar() {
             <div className="flex items-center">
               <a
                 href="#"
-                className="px-4 text-zinc-500 transition-all text-2xl px-4"
+                className="text-zinc-500 transition-all text-2xl px-4"
               >
-                sabzlearn@gmail.com
+                {indexInfo.email}
               </a>
-              <FaEnvelope className="text-3xl bg-lightishBlue-500" />
+              <FaEnvelope className="text-3xl" />
             </div>
             <div className="flex items-center">
               <a
                 href="#"
-                className="px-4 text-zinc-500 transition-all text-2xl px-4"
+                className="text-zinc-500 transition-all text-2xl px-4"
               >
-                09921558293
+                {indexInfo.phone}
               </a>
-              <FaPhoneAlt className="text-3xl bg-lightishBlue-500" />{" "}
+              <FaPhoneAlt className="text-3xl" />{" "}
             </div>
           </div>
         </div>
