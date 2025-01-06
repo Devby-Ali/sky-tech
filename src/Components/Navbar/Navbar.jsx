@@ -15,7 +15,7 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 
-import Topbar from "../Topbar/Topbar"
+// import Topbar from "../Topbar/Topbar"
 
 export default function Navbar() {
 
@@ -69,7 +69,7 @@ export default function Navbar() {
   return (
     <>
 
-    <Topbar />
+    {/* <Topbar /> */}
       <div
         className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-[263px]"

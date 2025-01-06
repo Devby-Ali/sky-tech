@@ -13,7 +13,7 @@ import {
 import Footer from "./../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { HiOutlineAcademicCap, HiOutlineDocumentText } from "react-icons/hi2";
+import { HiOutlineAcademicCap, HiOutlineDocumentText, HiOutlineLockClosed, HiOutlinePlay } from "react-icons/hi2";
 import { PiBriefcase, PiStarBold } from "react-icons/pi";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
@@ -23,10 +23,8 @@ import { BsClock } from "react-icons/bs";
 import { IoCalendarOutline } from "react-icons/io5";
 import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
-import { PiPlayBold } from "react-icons/pi";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
-import Sessions from "../AdminPanel/Sessions/Sessions";
 
 function Icon({ id, open }) {
   return (
@@ -593,33 +591,57 @@ export default function CourseInfo() {
                       </div>
                     </AccordionHeader>
                     <AccordionBody className="divide-y divide-gray-600 -mt-1">
-                      {sessions.map((sessions, index) => (
-                        <>
-                          <div
-                            key={sessions._id}
-                            className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
-                          >
-                            <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
-                              <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
-                                {index + 1}
+                      {sessions.map((session, index) => (
+                        <div
+                          key={session._id}
+                          className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
+                        >
+                          {session.free === 1 ||
+                          courseDetails.isUserRegisteredToThisCourse ? (
+                            <>
+                              <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                                  {index + 1}
+                                </div>
+                                <Link
+                                  to={"/"}
+                                  className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
+                                >
+                                  {session.title}
+                                </Link>
                               </div>
-                              <a
-                                href=""
-                                className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
-                              >
-                                {sessions.title}
-                              </a>
-                            </div>
-                            <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
-                              <span className="text-xl md:2xl">
-                               {sessions.time.slice(2,4)} : {sessions.time.slice(0,2)}
-                              </span>
-                              <div className="text-3xl">
-                                <PiPlayBold />
+                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                                <span className="text-xl md:2xl">
+                                  {session.time}
+                                </span>
+                                <div className="text-3xl">
+                                <HiOutlinePlay />
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        </>
+                            </>
+                          ) : (
+                            <>
+                              <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                                  {index + 1}
+                                </div>
+                                <span
+                                  className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
+                                >
+                                  {session.title}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                                <span className="text-xl md:2xl">
+                                  {session.time}
+                                </span>
+                                <div className="text-3xl">
+                                  <HiOutlineLockClosed />
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
                       ))}
                     </AccordionBody>
                   </Accordion>
@@ -659,7 +681,7 @@ export default function CourseInfo() {
                         <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
-                            <PiPlayBold />
+                            <HiOutlinePlay />
                           </div>
                         </div>
                       </div>
@@ -678,7 +700,7 @@ export default function CourseInfo() {
                         <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
-                            <PiPlayBold />
+                            <HiOutlinePlay />
                           </div>
                         </div>
                       </div>
@@ -697,7 +719,7 @@ export default function CourseInfo() {
                         <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
-                            <PiPlayBold />
+                            <HiOutlinePlay />
                           </div>
                         </div>
                       </div>
