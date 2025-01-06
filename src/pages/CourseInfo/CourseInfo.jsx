@@ -604,7 +604,7 @@ export default function CourseInfo() {
                                   {index + 1}
                                 </div>
                                 <Link
-                                  to={"/"}
+                                  to={`/${courseName}/${session._id}`}
                                   className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
                                 >
                                   {session.title}

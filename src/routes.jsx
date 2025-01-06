@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Contact from "./pages/Contact/Contact";
 import Search from "./pages/Search/Search";
+import Session from "./pages/Session/Session";
 
 import AdminPanel from "./pages/AdminPanel/index";
 import Users from "./pages/AdminPanel/Users/Users";
@@ -29,6 +30,7 @@ const routes = [
   { path: "/register", element: <Register /> },
   { path: "/contact", element: <Contact /> },
   { path: "/search/:value", element: <Search /> },
+  { path: "/:courseName/:sessionID", element: <Session /> },
 
   {
     path: "/p-admin/*",
@@ -40,7 +42,7 @@ const routes = [
       { path: "articles", element: <AdminArticles /> },
       { path: "category", element: <AdminCategory /> },
       { path: "contacts", element: <AdminContact /> },
-      { path: "sessions", element: <Sessions /> }
+      { path: "sessions", element: <Sessions /> },
     ],
   },
 ];
