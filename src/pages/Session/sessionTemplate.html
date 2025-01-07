@@ -1,239 +1,207 @@
-import React, { useState, useEffect } from "react";
-import Footer from "../../Components/Footer/Footer";
-import Navbar from "../../Components/Navbar/Navbar";
-import { Link, useParams } from "react-router-dom";
-import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
-export default function Session() {
-  const { courseName, sessionID } = useParams();
-  const [session, setSession] = useState({});
-  const [sessions, setSessions] = useState([]);
+    <div className="grid grid-cols-12 gap-y-6 gap-x-5 lg:gap-x-7 mt-6 lg:mt-8 ">
+        <div className="col-span-full order-last md:order-none md:col-span-7 xl:col-span-8">
+          <div className="hidden md:block bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5">
+            <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
+              <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm "></span>
+              <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
+                کد نویسی سریع html css با Emmet
+              </h3>
+            </div>
 
-  useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses/${courseName}/${sessionID}`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setSession(data.session);
-        setSessions(data.sessions);
-        console.log(data);
-      });
-  }, []);
+            <div className="flex pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-b-neutral-200/80 dark:border-b-white/10">
+              <div className="inline-flex items-center shrink-0 h-7 bg-sky-50 text-sky-500 dark:bg-sky-500/10 text-sm px-1 ml-2.5 font-danaDemiBold rounded">
+                6
+              </div>
+              <h4 className="font-danaMedium sm:text-lg">Sibling</h4>
+            </div>
 
-  return (
-    <>
-      <Navbar />
-
-      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-44 lg:pt-52 2xl:pt-56">
-        <div className="container">
-          <Breadcrumb
-            links={[
-              {
-                id: 2,
-                title: session.title,
-                to: `course-info/${courseName}`,
-              },
-              {
-                id: 3,
-                title: session.title,
-                to: `course-info/${courseName}`,
-              },
-            ]}
-          />
-
-          <div className="aspect-video mt-8 sm:mt-10 overflow-hidden rounded-lg">
-            <video
-              className="w-full h-full"
-              controls
-              src={`http://localhost:4000/courses/covers/${session.video}`}
-            ></video>
+            <div className="flex justify-between gap-3.5 flex-wrap">
+              <a href="#lesson-qaa" className="w-full sm:w-36 btn btn-gray">
+                سوال دارم!
+              </a>
+              <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
+                <a
+                  href="/"
+                  className="w-full sm:w-36 btn btn-primary"
+                >
+                  دانلود ویدیو
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-y-6 gap-x-5 lg:gap-x-7 mt-6 lg:mt-8 ">
-
-            <div className="col-span-full order-last md:order-none md:col-span-7 xl:col-span-8">
-              <div className="hidden md:block bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5">
-                <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
-                  <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm "></span>
-                  <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
-                    کد نویسی سریع html css با Emmet
-                  </h3>
-                </div>
-
-                <div className="flex pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-b-neutral-200/80 dark:border-b-white/10">
-                  <div className="inline-flex items-center shrink-0 h-7 bg-sky-50 text-sky-500 dark:bg-sky-500/10 text-sm px-1 ml-2.5 font-danaDemiBold rounded">
-                    6
-                  </div>
-                  <h4 className="font-danaMedium sm:text-lg">Sibling</h4>
-                </div>
-
-                <div className="flex justify-between gap-3.5 flex-wrap">
-                  <a href="#lesson-qaa" className="w-full sm:w-36 btn btn-gray">
-                    سوال دارم!
-                  </a>
-                  <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
-                    <a href="/" className="w-full sm:w-36 btn btn-primary">
-                      دانلود ویدیو
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5 mt-6 lg:mt-8"
-                id="lesson-qaa"
-              >
-                <div className="flex items-center justify-between mb-6 sm:mb-7">
-                  <div className="flex items-center gap-x-3 relative">
-                    <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-red-500 rounded-r-sm "></span>
-                    {/* chat bubble icon */}
-                    <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
-                      {" "}
-                      پرسش و پاسخ
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="mb-8 pb-8 border-b border-b-neutral-200 dark:border-b-white/10">
-                  <h5 className="font-danaBold mb-3">
-                    چگونه سوال خود را مطرح کنم تا به بهترین پاسخ ممکن برسم؟
-                  </h5>
-                  <div className="dark:text-gray-400">
-                    برای اینکه مهارت حل مسئله و دیباگ کردن‌تون رو بالا ببرید،
-                    قبل از اینکه سوالی بپرسید، با دقت و تمرکز سعی کنید مشکل رو
-                    خودتون حل کنید. اگه به جواب نرسیدید، می‌تونید از گوگل کمک
-                    بگیرید. اگه با خطایی مواجه شدید یا نیاز به نمونه‌ای داشتید،
-                    با استفاده از کلمات کلیدی مختلف توی گوگل سرچ کنید و از
-                    سایت‌هایی مثل Stack Overflow کمک بگیرید. (جواب 99٪ سوالات با
-                    این روش زیر 5 دقیقه پیدا میشه)
-                    <br />
-                    از پرسیدن سوالات کلی مثل «من مثل شما انجام دادم ولی کار
-                    نکرد» یا «کد من مشکل داره و اجرا نمیشه» که جزئیات ندارن،
-                    خودداری کنید. وقتی سوال می‌پرسید، لطفاً اون رو با مستندات و
-                    به صورت شفاف و واضح بیان کنید تا قابل تحلیل و بررسی باشه.
-                    سعی کنید سوالاتتون مفهومی و دقیق باشه تا مکالمه‌ای که دارید
-                    خلاصه و مفید باشه. همچنین قبل از اینکه سوال ارسال کنید، یه
-                    بار خودتون اون رو بخونید و مطمئن بشید که سوالتون خوانا و
-                    واضحه.
-                  </div>
-                  <h5 className="font-danaBold mb-3 mt-6">
-                    چه انتظاراتی از پشتیبانان باید داشته باشم؟
-                  </h5>
-                  <div className="dark:text-gray-400">
-                    از مدرسین و پشتیبانان انتظارات منطقی و مرتبط با خدمات
-                    دریافتی خود داشته باشید. حل مشکلات خارج از مباحث و پروژه های
-                    دوره در حیطه وظایف پشتیبانان/مدرسین نیست. اگر نیاز به مشاوره
-                    دارید میتوانید از طریق تیکت ها به واحد مشاوره پیام دهید
-                  </div>
-                </div>
-
-                <div className="mb-8 sm:mb-10">
-                  <div className="flex gap-x-3.5 mb-3">
-                    <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
-                      <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-dark rounded-full">
-                        {/* User mini icon */}
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="font-danaMedium">Theotherali</span>
-                      <span
-                        className="font-danaLight text-sm text-gray-700 dark:text-gray-400"
-                        id="qa-to"
-                        data-newtxt="پرسش جدید"
-                      >
-                        پرسش جدید
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-x-2 text-red-500 mb-4">
-                    <svg className="size-6 shrink-0 hidden sm:inline-block">
-                      <use href="#exclamation-triangle"></use>
-                    </svg>
-                    <p className="text-sm md:font-danaMedium">
-                      لطفا قبل از ثبت پرسش بالاتر بخش قوانین ایجاد سوال را
-                      مطالعه کنید.
-                    </p>
-                  </div>
-                  <form id="submit-question">
-                    <input type="hidden" name="nonce" value="426393f9b0" />
-                    <input type="hidden" name="lesson_id" value="23933" />
-                    <input type="hidden" name="course_id" value="12" />
-                    <input type="hidden" name="question_id" value="" />
-                    <textarea
-                      id="editor"
-                      dir="rtl"
-                      rows="6"
-                      className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-dark text-gray-900 dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-lg"
-                      placeholder="سوال خود را بپرسید ..."
-                    ></textarea>
-                    <div className="flex items-center justify-between flex-wrap gap-4.5 mt-4.5 sm:mt-6">
-                      <div className="w-full sm:w-auto">
-                        <div className="attachments_btnwrap attachments_button flex items-center gap-x-2 sm:gap-x-1.5 cursor-pointer">
-                          <svg className="size-6 sm:size-7">
-                            <use href="#arrow-up-tray"></use>
-                          </svg>
-                          <span className="font-danaMedium text-sm sm:text-base">
-                            اگر فایل ضمیمه ای دارید لطفا آپلود کنید
-                          </span>
-                        </div>
-                        <div className="attachment_item hidden flex items-center justify-between gap-x-2 w-full sm:w-72 bg-green-50 dark:bg-green-500/10 text-green-500 px-3.5 py-2.5 rounded-xl">
-                          {/* trash icon */}
-                          {/* close icon */}
-                          <div className="flex items-center gap-x-1.5">
-                            <span className="up_percent"></span>
-                            <span className="hidden"></span>
-                            <span className="max-w-34 truncate en-value file_name"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <button
-                        className="w-full sm:w-36 btn btn-primary btn-outline"
-                        type="submit"
-                        id="qa-submit-btn"
-                      >
-                        ارسال
-                      </button>
-                    </div>
-                  </form>
-                  <form id="attachments_form" className="hidden">
-                    <input type="hidden" className="api_url" value="/" />
-                    <input
-                      type="file"
-                      name="file"
-                      className="hidden"
-                      id="attachments_file"
-                    />
-                    <input type="hidden" name="action" value="POST" />
-                    <input
-                      type="hidden"
-                      name="key"
-                      value="eac614f85053e52907f310b5f0a8b75e"
-                    />
-                    <input type="hidden" name="valid" value="1736245749" />
-                    <input type="hidden" name="uid" value="42501" />
-                    <input
-                      type="hidden"
-                      name="exts"
-                      value="zip,rar,png,jpg,jpeg"
-                    />
-                    <input type="hidden" name="max" value="15" />
-                  </form>
-                </div>
-
-                <div className="space-y-4.5 sm:space-y-5">
-                  <p className="text-zinc-700 dark:text-white font-danaLight leading-7 mt-3.5">
-                    هنوز برای این جلسه سوالی نپرسیده‌اید!
-                  </p>
-                </div>
+          <div
+            className="bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5 mt-6 lg:mt-8"
+            id="lesson-qaa"
+          >
+            <div className="flex items-center justify-between mb-6 sm:mb-7">
+              <div className="flex items-center gap-x-3 relative">
+                <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-red-500 rounded-r-sm "></span>
+                <svg className="hidden md:inline-block text-red-500 w-9.5 h-9.5">
+                  <use href="#chat-bubble-oval-left-ellipsis-fill"></use>
+                </svg>
+                <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
+                  {" "}
+                  پرسش و پاسخ
+                </h3>
               </div>
             </div>
 
-            <aside className="col-span-full order-first md:order-none md:col-span-5 xl:col-span-4">
+            <div className="mb-8 pb-8 border-b border-b-neutral-200 dark:border-b-white/10">
+              <h5 className="font-danaBold mb-3">
+                چگونه سوال خود را مطرح کنم تا به بهترین پاسخ ممکن برسم؟
+              </h5>
+              <div className="dark:text-gray-400">
+                برای اینکه مهارت حل مسئله و دیباگ کردن‌تون رو بالا ببرید،
+                قبل از اینکه سوالی بپرسید، با دقت و تمرکز سعی کنید مشکل رو
+                خودتون حل کنید. اگه به جواب نرسیدید، می‌تونید از گوگل کمک
+                بگیرید. اگه با خطایی مواجه شدید یا نیاز به نمونه‌ای داشتید،
+                با استفاده از کلمات کلیدی مختلف توی گوگل سرچ کنید و از
+                سایت‌هایی مثل Stack Overflow کمک بگیرید. (جواب 99٪ سوالات با
+                این روش زیر 5 دقیقه پیدا میشه)
+                <br />
+                از پرسیدن سوالات کلی مثل «من مثل شما انجام دادم ولی کار
+                نکرد» یا «کد من مشکل داره و اجرا نمیشه» که جزئیات ندارن،
+                خودداری کنید. وقتی سوال می‌پرسید، لطفاً اون رو با مستندات و
+                به صورت شفاف و واضح بیان کنید تا قابل تحلیل و بررسی باشه.
+                سعی کنید سوالاتتون مفهومی و دقیق باشه تا مکالمه‌ای که دارید
+                خلاصه و مفید باشه. همچنین قبل از اینکه سوال ارسال کنید، یه
+                بار خودتون اون رو بخونید و مطمئن بشید که سوالتون خوانا و
+                واضحه.
+              </div>
+              <h5 className="font-danaBold mb-3 mt-6">
+                چه انتظاراتی از پشتیبانان باید داشته باشم؟
+              </h5>
+              <div className="dark:text-gray-400">
+                از مدرسین و پشتیبانان انتظارات منطقی و مرتبط با خدمات
+                دریافتی خود داشته باشید. حل مشکلات خارج از مباحث و پروژه های
+                دوره در حیطه وظایف پشتیبانان/مدرسین نیست. اگر نیاز به مشاوره
+                دارید میتوانید از طریق تیکت ها به واحد مشاوره پیام دهید
+              </div>
+            </div>
+
+            <div className="mb-8 sm:mb-10">
+              <div className="flex gap-x-3.5 mb-3">
+                <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
+                  <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-dark rounded-full">
+                    <svg className="w-5 sm:w-6 h-5 sm:h-6 text-slate-500">
+                      <use href="#user-mini"></use>
+                    </svg>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-danaMedium">Theotherali</span>
+                  <span
+                    className="font-danaLight text-sm text-gray-700 dark:text-gray-400"
+                    id="qa-to"
+                    data-newtxt="پرسش جدید"
+                  >
+                    پرسش جدید
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center gap-x-2 text-red-500 mb-4">
+                <svg className="size-6 shrink-0 hidden sm:inline-block">
+                  <use href="#exclamation-triangle"></use>
+                </svg>
+                <p className="text-sm md:font-danaMedium">
+                  لطفا قبل از ثبت پرسش بالاتر بخش قوانین ایجاد سوال را
+                  مطالعه کنید.
+                </p>
+              </div>
+              <form id="submit-question">
+                <input type="hidden" name="nonce" value="426393f9b0" />
+                <input type="hidden" name="lesson_id" value="23933" />
+                <input type="hidden" name="course_id" value="12" />
+                <input type="hidden" name="question_id" value="" />
+                <textarea
+                  id="editor"
+                  dir="rtl"
+                  rows="6"
+                  className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-dark text-gray-900 dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-lg"
+                  placeholder="سوال خود را بپرسید ..."
+                  style="display: none;"
+                ></textarea>
+                <div className="flex items-center justify-between flex-wrap gap-4.5 mt-4.5 sm:mt-6">
+                  <div className="w-full sm:w-auto">
+                    <div className="attachments_btnwrap attachments_button flex items-center gap-x-2 sm:gap-x-1.5 cursor-pointer">
+                      <svg className="size-6 sm:size-7">
+                        <use href="#arrow-up-tray"></use>
+                      </svg>
+                      <span className="font-danaMedium text-sm sm:text-base">
+                        اگر فایل ضمیمه ای دارید لطفا آپلود کنید
+                      </span>
+                    </div>
+                    <div className="attachment_item hidden flex items-center justify-between gap-x-2 w-full sm:w-72 bg-green-50 dark:bg-green-500/10 text-green-500 px-3.5 py-2.5 rounded-xl">
+                      <svg className="size-5 shrink-0 cursor-pointer remove_attachment after_upload">
+                        <use href="#trash"></use>
+                      </svg>
+                      <svg className="size-5 shrink-0 cursor-pointer in_progress remove_attachment hidden">
+                        <use href="#close"></use>
+                      </svg>
+                      <div className="flex items-center gap-x-1.5">
+                        <span className="up_percent"></span>
+                        <span className="hidden"></span>
+                        <span className="max-w-34 truncate en-value file_name"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full sm:w-36 btn btn-primary btn-outline"
+                    type="submit"
+                    id="qa-submit-btn"
+                  >
+                    ارسال
+                  </button>
+                </div>
+              </form>
+              <form id="attachments_form" className="hidden">
+                <input
+                  type="hidden"
+                  className="api_url"
+                  value="/"
+                />
+                <input
+                  type="file"
+                  name="file"
+                  className="hidden"
+                  id="attachments_file"
+                />
+                <input type="hidden" name="action" value="POST" />
+                <input
+                  type="hidden"
+                  name="key"
+                  value="eac614f85053e52907f310b5f0a8b75e"
+                />
+                <input type="hidden" name="valid" value="1736245749" />
+                <input type="hidden" name="uid" value="42501" />
+                <input
+                  type="hidden"
+                  name="exts"
+                  value="zip,rar,png,jpg,jpeg"
+                />
+                <input type="hidden" name="max" value="15" />
+              </form>
+            </div>
+
+            <div className="space-y-4.5 sm:space-y-5">
+              <p className="text-zinc-700 dark:text-white font-danaLight leading-7 mt-3.5">
+                هنوز برای این جلسه سوالی نپرسیده‌اید!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <aside className="col-span-full order-first md:order-none md:col-span-5 xl:col-span-4">
           <div className="block md:hidden bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5">
             <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
               <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm "></span>
@@ -735,12 +703,8 @@ export default function Session() {
             </a>
           </div>
         </aside>
+      </div>
 
-          </div>
-        </div>
-      </main>
 
-      <Footer />
-    </>
-  );
-}
+</body>
+</html>
