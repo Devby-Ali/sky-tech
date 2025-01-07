@@ -59,7 +59,7 @@ export default function Session() {
               <div className="hidden md:block bg-white dark:bg-darkBox rounded-xl p-4.5 sm:p-5">
                 <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
                   <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-light-blue-500 rounded-r-sm "></span>
-                  <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
+                  <h3 className="font-EstedadBold text-4xl md:text-2xl">
                     کد نویسی سریع html css با Emmet
                   </h3>
                 </div>
