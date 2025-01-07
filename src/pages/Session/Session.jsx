@@ -29,7 +29,7 @@ export default function Session() {
     <>
       <Navbar />
 
-      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-44 lg:pt-52 2xl:pt-56">
+      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-12 lg:pt-52 2xl:pt-56">
         <div className="container">
           <Breadcrumb
             links={[
@@ -54,19 +54,18 @@ export default function Session() {
             ></video>
           </div>
 
-          <div className="grid grid-cols-12 gap-y-6 gap-x-5 lg:gap-x-7 mt-6 lg:mt-8 ">
-
+          <div className="grid grid-cols-12 gap-y-6 gap-x-5 lg:gap-x-7 mt-6 lg:mt-8 text-darkColor dark:text-white">
             <div className="col-span-full order-last md:order-none md:col-span-7 xl:col-span-8">
-              <div className="hidden md:block bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5">
+              <div className="hidden md:block bg-white dark:bg-darkBox rounded-xl p-4.5 sm:p-5">
                 <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
-                  <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm "></span>
+                  <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-light-blue-500 rounded-r-sm "></span>
                   <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
                     کد نویسی سریع html css با Emmet
                   </h3>
                 </div>
 
                 <div className="flex pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-b-neutral-200/80 dark:border-b-white/10">
-                  <div className="inline-flex items-center shrink-0 h-7 bg-sky-50 text-sky-500 dark:bg-sky-500/10 text-sm px-1 ml-2.5 font-danaDemiBold rounded">
+                  <div className="inline-flex items-center shrink-0 h-7 bg-light-blue-50 text-light-blue-500 dark:bg-light-blue-500/10 text-sm px-1 ml-2.5 font-danaDemiBold rounded">
                     6
                   </div>
                   <h4 className="font-danaMedium sm:text-lg">Sibling</h4>
@@ -85,7 +84,7 @@ export default function Session() {
               </div>
 
               <div
-                className="bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5 mt-6 lg:mt-8"
+                className="bg-white dark:bg-darkBox rounded-xl p-4.5 sm:p-5 mt-6 lg:mt-8"
                 id="lesson-qaa"
               >
                 <div className="flex items-center justify-between mb-6 sm:mb-7">
@@ -135,7 +134,7 @@ export default function Session() {
                 <div className="mb-8 sm:mb-10">
                   <div className="flex gap-x-3.5 mb-3">
                     <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
-                      <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-dark rounded-full">
+                      <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-darkBox rounded-full">
                         {/* User mini icon */}
                       </div>
                     </div>
@@ -168,7 +167,7 @@ export default function Session() {
                       id="editor"
                       dir="rtl"
                       rows="6"
-                      className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-dark text-gray-900 dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-lg"
+                      className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-darkBox text-darkColor dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-lg"
                       placeholder="سوال خود را بپرسید ..."
                     ></textarea>
                     <div className="flex items-center justify-between flex-wrap gap-4.5 mt-4.5 sm:mt-6">
@@ -234,508 +233,444 @@ export default function Session() {
             </div>
 
             <aside className="col-span-full order-first md:order-none md:col-span-5 xl:col-span-4">
-          <div className="block md:hidden bg-white dark:bg-darker rounded-xl p-4.5 sm:p-5">
-            <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
-              <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm "></span>
-              <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
-                کد نویسی سریع html css با Emmet
-              </h3>
-            </div>
+              <div className="block md:hidden bg-white dark:bg-darkBox rounded-xl p-4.5 sm:p-5">
+                <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
+                  <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-light-blue-500 rounded-r-sm "></span>
+                  <h3 className="font-kalamehSemiBold text-4xl md:text-5xl">
+                    کد نویسی سریع html css با Emmet
+                  </h3>
+                </div>
 
-            <div className="flex pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-b-neutral-200/80 dark:border-b-white/10">
-              <div className="inline-flex items-center shrink-0 h-7 bg-sky-50 text-sky-500 dark:bg-sky-500/10 text-sm px-1 ml-2.5 font-danaDemiBold rounded">
-                6
+                <div className="flex pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-b-neutral-200/80 dark:border-b-white/10">
+                  <div className="inline-flex items-center shrink-0 h-7 bg-light-blue-50 text-sky-500 dark:bg-light-blue-500/10 text-2xl px-1 ml-2.5 font-danaDemiBold rounded">
+                    6
+                  </div>
+                  <h4 className="font-danaMedium sm:text-lg">Sibling</h4>
+                </div>
+
+                <div className="flex justify-between gap-3.5 flex-wrap">
+                  <a href="#lesson-qaa" className="w-full sm:w-36 btn btn-gray">
+                    سوال دارم!
+                  </a>
+                  <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
+                    <a href="/" className="w-full sm:w-36 btn btn-primary">
+                      دانلود ویدیو
+                    </a>
+                  </div>
+                </div>
               </div>
-              <h4 className="font-danaMedium sm:text-lg">Sibling</h4>
-            </div>
 
-            <div className="flex justify-between gap-3.5 flex-wrap">
-              <a href="#lesson-qaa" className="w-full sm:w-36 btn btn-gray">
-                سوال دارم!
-              </a>
-              <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
+              <div className="bg-white dark:bg-darkBox pl-1.5 pr-4.5 sm:pr-5 py-4.5 sm:py-5 rounded-lg mt-6 lg:mt-0">
+                <div className="flex items-center gap-x-2 mb-5 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10">
+                  <svg className="w-[30px] h-[30px]">
+                    <use href="#document-text"></use>
+                  </svg>
+                  <span className="font-danaDemiBold text-lg">
+                    سرفصل های دوره
+                  </span>
+                </div>
+                <div className="chapters">
+                  <div className="chapter">
+                    <div className="chapter__head  chapter__head--active">
+                      <span className="font-danaMedium truncate">سرفصل ها</span>
+                      <svg className="w-6 h-6 shrink-0 transition-transform">
+                        <use href="#chevron-down"></use>
+                      </svg>
+                    </div>
+                    <div className="chapter__lessons">
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          معرفی Emmet
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            02:31{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Abbreviation
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            02:03{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          DocType
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            00:51{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Id &amp; Class
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:30{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a className="block lin" href="/">
+                          Nesting
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            00:57{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson  lesson--watching">
+                        <a href="\" className="block line-clamp-2">
+                          Sibling
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            00:44{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Multiple
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:00{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Lorem Ipsum
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:47{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Text
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            00:57{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Climb-up
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            02:10{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Grouping
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            02:04{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Attribute
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:37{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Numbering
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:50{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Link
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:05{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Margin &amp; Padding
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            02:19{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          دستورات CSS
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            02:30{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Wrap
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            03:07{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Update Tag
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:53{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Remove Tag &amp; Matching Pair
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:28{" "}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="lesson ">
+                        <a href="/" className="block line-clamp-2">
+                          Merge Lines &amp; Evaluate
+                        </a>
+                        <div className="flex items-center justify-between mt-3 sm:mt-2">
+                          <div className="lesson__status">
+                            <svg className="size-3">
+                              <use href="#check"></use>
+                            </svg>
+                          </div>
+                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
+                            01:10{" "}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3.5 mt-6 lg:mt-8">
+                <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
+                  <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
+                    <use href="#information-circle"></use>
+                  </svg>
+                  <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
+                    وضعیت دوره
+                  </span>
+                  <span className="text-gray-700 dark:text-gray-400 text-sm">
+                    تکمیل شده
+                  </span>
+                </div>
+                <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
+                  <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
+                    <use href="#clock"></use>
+                  </svg>
+                  <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
+                    زمان دوره
+                  </span>
+                  <span className="text-gray-700 dark:text-gray-400 text-sm">
+                    00:33
+                  </span>
+                </div>
+                <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
+                  <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
+                    <use href="#video-camera"></use>
+                  </svg>
+                  <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
+                    جلسات دوره
+                  </span>
+                  <span className="text-gray-700 dark:text-gray-400 text-sm">
+                    20
+                  </span>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-darkBox p-4.5 sm:p-5 rounded-lg mt-6 lg:mt-8">
+                <p className="text-sm mb-4">
+                  وقتی 70 درصد یک ویدیو را بصورت آنلاین تماشا میکنید، میزان
+                  پیشرفت شما بصورت خودکار بروزرسانی میشود.
+                </p>
+                <div className="flex items-center justify-between mb-4.5 font-danaDemiBold text-green-500">
+                  <span>میزان پیشرفت شما</span>
+                  <span>0%</span>
+                </div>
+                <progress value="0" max="100"></progress>
+              </div>
+
+              <div className="bg-white dark:bg-darkBox p-4.5 sm:p-5 rounded-lg mt-6 lg:mt-8">
+                <img
+                  src="/"
+                  className="mx-auto rounded-full object-cover"
+                  width="90"
+                  height="90"
+                  alt="کاربر"
+                />
+                <p className="font-danaDemiBold text-lg my-4.5 text-center">
+                  کاربر | مدرس دوره
+                </p>
                 <a
                   href="/"
-                  className="w-full sm:w-36 btn btn-primary"
+                  className="flex items-center justify-center gap-x-2.5 text-green-500 font-danaMedium"
                 >
-                  دانلود ویدیو
+                  مشاهده پروفایل من
+                  <svg className="w-7 h-7">
+                    <use href="#arrow-left-circle"></use>
+                  </svg>
                 </a>
               </div>
-            </div>
-          </div>
 
-          <div className="bg-white dark:bg-darker pl-1.5 pr-4.5 sm:pr-5 py-4.5 sm:py-5 rounded-lg mt-6 lg:mt-0">
-            <div className="flex items-center gap-x-2 mb-5 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10">
-              <svg className="w-[30px] h-[30px]">
-                <use href="#document-text"></use>
-              </svg>
-              <span className="font-danaDemiBold text-lg">
-                سرفصل های دوره
-              </span>
-            </div>
-            <div className="chapters">
-              <div className="chapter">
-                <div className="chapter__head  chapter__head--active">
-                  <span className="font-danaMedium truncate">سرفصل ها</span>
-                  <svg className="w-6 h-6 shrink-0 transition-transform">
-                    <use href="#chevron-down"></use>
+              <div className="bg-white dark:bg-darkBox p-4.5 sm:p-5 text-center rounded-lg mt-6 lg:mt-8">
+                <div className="flex-center w-[90px] h-[90px] mx-auto bg-light-blue-50 dark:bg-light-blue-500/10 rounded-full">
+                  <svg className="w-8 h-8 text-light-blue-500">
+                    <use href="#arrow-down-tray-mini"></use>
                   </svg>
                 </div>
-                <div className="chapter__lessons">
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      معرفی Emmet
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        02:31{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Abbreviation
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        02:03{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      DocType
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        00:51{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Id &amp; Class
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:30{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      className="block lin"
-                      href="/"
-                    >
-                      Nesting
-                   </a> 
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        00:57{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson  lesson--watching">
-                    <a
-                      href="\"
-                      className="block line-clamp-2"
-                    >
-                      Sibling
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        00:44{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Multiple
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:00{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Lorem Ipsum
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:47{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Text
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        00:57{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Climb-up
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        02:10{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Grouping
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        02:04{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Attribute
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:37{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Numbering
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:50{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Link
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:05{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Margin &amp; Padding
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        02:19{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      دستورات CSS
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        02:30{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Wrap
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        03:07{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Update Tag
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:53{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Remove Tag &amp; Matching Pair
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:28{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="lesson ">
-                    <a
-                      href="/"
-                      className="block line-clamp-2"
-                    >
-                      Merge Lines &amp; Evaluate
-                    </a>
-                    <div className="flex items-center justify-between mt-3 sm:mt-2">
-                      <div className="lesson__status">
-                        <svg className="size-3">
-                          <use href="#check"></use>
-                        </svg>
-                      </div>
-                      <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                        01:10{" "}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <span className="inline-block my-4.5 text-lg font-danaDemiBold">
+                  دانلود همگانی ویدیو ها
+                </span>
+                <a
+                  target="_blank"
+                  href="/"
+                  className="w-full btn btn-secondary"
+                >
+                  دانلود
+                </a>
               </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3.5 mt-6 lg:mt-8">
-            <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darker rounded-lg">
-              <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
-                <use href="#information-circle"></use>
-              </svg>
-              <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
-                وضعیت دوره
-              </span>
-              <span className="text-gray-700 dark:text-gray-400 text-sm">
-                تکمیل شده
-              </span>
-            </div>
-            <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darker rounded-lg">
-              <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
-                <use href="#clock"></use>
-              </svg>
-              <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
-                زمان دوره
-              </span>
-              <span className="text-gray-700 dark:text-gray-400 text-sm">
-                00:33
-              </span>
-            </div>
-            <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darker rounded-lg">
-              <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
-                <use href="#video-camera"></use>
-              </svg>
-              <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
-                جلسات دوره
-              </span>
-              <span className="text-gray-700 dark:text-gray-400 text-sm">
-                20
-              </span>
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-darker p-4.5 sm:p-5 rounded-lg mt-6 lg:mt-8">
-            <p className="text-sm mb-4">
-              وقتی 70 درصد یک ویدیو را بصورت آنلاین تماشا میکنید، میزان
-              پیشرفت شما بصورت خودکار بروزرسانی میشود.
-            </p>
-            <div className="flex items-center justify-between mb-4.5 font-danaDemiBold text-green-500">
-              <span>میزان پیشرفت شما</span>
-              <span>0%</span>
-            </div>
-            <progress value="0" max="100"></progress>
-          </div>
-
-          <div className="bg-white dark:bg-darker p-4.5 sm:p-5 rounded-lg mt-6 lg:mt-8">
-            <img
-              src="/"
-              className="mx-auto rounded-full object-cover"
-              width="90"
-              height="90"
-              alt="کاربر"
-            />
-            <p className="font-danaDemiBold text-lg my-4.5 text-center">
-              کاربر | مدرس دوره
-            </p>
-            <a
-              href="/"
-              className="flex items-center justify-center gap-x-2.5 text-green-500 font-danaMedium"
-            >
-              مشاهده پروفایل من
-              <svg className="w-7 h-7">
-                <use href="#arrow-left-circle"></use>
-              </svg>
-            </a>
-          </div>
-
-          <div className="bg-white dark:bg-darker p-4.5 sm:p-5 text-center rounded-lg mt-6 lg:mt-8">
-            <div className="flex-center w-[90px] h-[90px] mx-auto bg-sky-50 dark:bg-sky-500/10 rounded-full">
-              <svg className="w-8 h-8 text-sky-500">
-                <use href="#arrow-down-tray-mini"></use>
-              </svg>
-            </div>
-            <span className="inline-block my-4.5 text-lg font-danaDemiBold">
-              دانلود همگانی ویدیو ها
-            </span>
-            <a
-              target="_blank"
-              href="/"
-              className="w-full btn btn-secondary"
-            >
-              دانلود
-            </a>
-          </div>
-        </aside>
-
+            </aside>
           </div>
         </div>
       </main>
