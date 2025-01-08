@@ -228,34 +228,34 @@ export default function Session() {
         </div>
 
         <aside className="col-span-full order-first md:order-none md:col-span-5 xl:col-span-4">
-          <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12 md:hidden">
+          <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 md:hidden">
             <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-12 sm:mb-16 relative">
             <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-              <h3 className="font-EstedadBold text-3xl md:text-5xl tracking-wide">
+              <h3 className="font-EstedadBold text-[2rem] md:text-5xl tracking-wide">
                 کد نویسی سریع html css با Emmet
               </h3>
             </div>
 
-            <div className="flex pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-b-neutral-200/80 dark:border-b-white/10">
-              <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1 ml-2.5 font-EstedadBold rounded-md">
+            <div className="flex gap-x-3 pb-7 sm:pb-8 mb-7 sm:mb-8 border-b border-b-neutral-200/80 dark:border-b-white/10">
+              <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1 font-EstedadBold rounded-md">
                 6
               </div>
-              <h4 className="font-danaMedium sm:text-lg">Sibling</h4>
+              <h4 className="text-3xl/10 sm:text-[2rem]">Sibling</h4>
             </div>
 
-            <div className="flex justify-between gap-3.5 flex-wrap">
-              <a href="#lesson-qaa" className="w-full sm:w-36 btn btn-gray">
+            <div className="flex justify-between gap-6 flex-wrap">
+              <a href="#lesson-qaa" className="w-full sm:w-60 sm:text-[1.7rem] dark:bg-[#333c4c] rounded-lg p-4 text-center">
                 سوال دارم!
               </a>
               <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
-                <a href="/" className="w-full sm:w-36 btn btn-primary">
+                <a href="/" className="w-full sm:w-60 sm:text-[1.7rem] bg-light-blue-700 rounded-lg p-4 text-center">
                   دانلود ویدیو
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-darkBox pl-1.5 pr-4.5 sm:pr-5 py-4.5 sm:py-5 rounded-lg mt-6 lg:mt-0">
+          <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mt-9">
             <div className="flex items-center gap-x-2 mb-5 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10">
               <svg className="w-[30px] h-[30px]">
                 <use href="#document-text"></use>
