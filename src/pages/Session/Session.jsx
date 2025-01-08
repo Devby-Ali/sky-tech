@@ -3,7 +3,13 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
-import { HiOutlineDocumentText } from "react-icons/hi2";
+import { HiChevronDown, HiOutlineDocumentText } from "react-icons/hi2";
+import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+} from "@material-tailwind/react";
 
 export default function Session() {
   const { courseName, sessionID } = useParams();
@@ -25,6 +31,12 @@ export default function Session() {
         console.log(data);
       });
   }, []);
+
+  const [open, setOpen] = React.useState(0);
+  const [alwaysOpen, setAlwaysOpen] = React.useState(true);
+
+  const handleAlwaysOpen = () => setAlwaysOpen((cur) => !cur);
+  const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   return (
     <>
@@ -57,7 +69,7 @@ export default function Session() {
 
           <div className="grid grid-cols-12 gap-y-6 gap-x-8 lg:gap-x-12 mt-10 lg:mt-12 text-darkColor dark:text-white">
             <div className="col-span-full order-last md:order-none md:col-span-7 xl:col-span-8">
-              <div className="hidden md:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mb-9">
+              <div className="hidden md:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mb-9 lg:mb-12">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-12 sm:mb-16 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <h3 className="font-EstedadBold text-[2rem] md:text-4xl tracking-wide">
@@ -96,8 +108,8 @@ export default function Session() {
               >
                 <div className="flex items-center justify-between mb-6 sm:mb-7">
                   <div className="flex items-center gap-x-3 relative">
-                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                    {/* chat bubble icon */}
+                    <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                    <HiOutlineChatBubbleLeftEllipsis />
                     <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
                       {" "}
                       پرسش و پاسخ
@@ -273,7 +285,7 @@ export default function Session() {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mt-10 md:mt-0">
+              <div className="bg-light-blue-50 dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mt-10 md:mt-0">
                 <div className="flex items-center gap-x-2 mb-5 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10">
                   <HiOutlineDocumentText />
                   <span className="font-danaDemiBold text-lg">
@@ -281,15 +293,20 @@ export default function Session() {
                   </span>
                 </div>
                 <div className="chapters">
-                  <div className="chapter">
-                    <div className="chapter__head  chapter__head--active">
-                      <span className="font-danaMedium truncate">سرفصل ها</span>
-                      <svg className="w-6 h-6 shrink-0 transition-transform">
-                        <use href="#chevron-down"></use>
-                      </svg>
-                    </div>
-                    <div className="chapter__lessons">
-                      <div className="lesson ">
+                  <Accordion open={alwaysOpen}>
+                    <AccordionHeader
+                      className="flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white rounded-lg p-5"
+                      onClick={handleAlwaysOpen}
+                    >
+                      <div className="w-full flex items-center justify-between">
+                        <span className="font-EstedadMedium font-normal">
+                          سرفصل ها
+                        </span>
+                        <HiChevronDown />
+                      </div>
+                    </AccordionHeader>
+                    <AccordionBody>
+                    <div className="lesson ">
                         <a href="/" className="block line-clamp-2">
                           معرفی Emmet
                         </a>
@@ -304,6 +321,7 @@ export default function Session() {
                           </div>
                         </div>
                       </div>
+                      
                       <div className="lesson ">
                         <a href="/" className="block line-clamp-2">
                           Abbreviation
@@ -316,51 +334,6 @@ export default function Session() {
                           </div>
                           <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
                             02:03{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          DocType
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            00:51{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Id &amp; Class
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:30{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a className="block lin" href="/">
-                          Nesting
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            00:57{" "}
                           </div>
                         </div>
                       </div>
@@ -409,188 +382,20 @@ export default function Session() {
                           </div>
                         </div>
                       </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Text
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            00:57{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Climb-up
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            02:10{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Grouping
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            02:04{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Attribute
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:37{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Numbering
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:50{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Link
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:05{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Margin &amp; Padding
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            02:19{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          دستورات CSS
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            02:30{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Wrap
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            03:07{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Update Tag
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:53{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Remove Tag &amp; Matching Pair
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:28{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Merge Lines &amp; Evaluate
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:10{" "}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </AccordionBody>
+                  </Accordion>
+                  <Accordion open={open === 1}>
+                    <AccordionHeader onClick={() => handleOpen(1)}>
+                      How to use Material Tailwind?
+                    </AccordionHeader>
+                    <AccordionBody>
+                      We&apos;re not always in the position that we want to be
+                      at. We&apos;re constantly growing. We&apos;re constantly
+                      making mistakes. We&apos;re constantly trying to express
+                      ourselves and actualize our dreams.
+                    </AccordionBody>
+                  </Accordion>
+
                 </div>
               </div>
 
