@@ -3,7 +3,7 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
-import { HiChevronDown, HiOutlineDocumentText } from "react-icons/hi2";
+import { HiChevronDown, HiOutlineClock, HiOutlineDocumentText, HiOutlineInformationCircle, HiOutlineVideoCamera } from "react-icons/hi2";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { FaRegCircle } from "react-icons/fa6";
 import { FaRegCircleCheck } from "react-icons/fa6";
@@ -465,36 +465,30 @@ export default function Session() {
               </div>
 
               <div className="grid grid-cols-3 gap-3.5 mt-6 lg:mt-8">
-                <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
-                  <svg className="w-10 h-10 text-light-blue-500 mb-2.5 sm:mb-1.5">
-                    <use href="#information-circle"></use>
-                  </svg>
-                  <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
+                <div className="flex flex-col items-center justify-center bg-white dark:bg-darkBox rounded-lg text-6xl py-8">
+                  <HiOutlineInformationCircle />
+                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6">
                     وضعیت دوره
                   </span>
-                  <span className="text-gray-700 dark:text-gray-400 text-sm">
+                  <span className="text-gray-700 dark:text-gray-400 text-[1.4rem]">
                     تکمیل شده
                   </span>
                 </div>
-                <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
-                  <svg className="w-10 h-10 text-light-blue-500 mb-2.5 sm:mb-1.5">
-                    <use href="#clock"></use>
-                  </svg>
-                  <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
+                <div className="flex flex-col items-center justify-center bg-white dark:bg-darkBox rounded-lg text-6xl py-8">
+                  <HiOutlineClock />
+                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6">
                     زمان دوره
                   </span>
-                  <span className="text-gray-700 dark:text-gray-400 text-sm">
+                  <span className="text-gray-700 dark:text-gray-400 text-[1.4rem]">
                     00:33
                   </span>
                 </div>
-                <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
-                  <svg className="w-10 h-10 text-light-blue-500 mb-2.5 sm:mb-1.5">
-                    <use href="#video-camera"></use>
-                  </svg>
-                  <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
+                <div className="flex flex-col items-center justify-center bg-white dark:bg-darkBox rounded-lg text-6xl py-8">
+                 <HiOutlineVideoCamera />
+                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6">
                     جلسات دوره
                   </span>
-                  <span className="text-gray-700 dark:text-gray-400 text-sm">
+                  <span className="text-gray-700 dark:text-gray-400 text-[1.4rem]">
                     20
                   </span>
                 </div>
