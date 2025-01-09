@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import { HiChevronDown, HiOutlineDocumentText } from "react-icons/hi2";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
+import { FaRegCircle } from "react-icons/fa6";
+import { FaRegCircleCheck } from "react-icons/fa6";
 import {
   Accordion,
   AccordionHeader,
@@ -158,7 +160,7 @@ export default function Session() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <span className="font-danaMedium">Theotherali</span>
+                      <span className="font-EstedadMedium">Theotherali</span>
                       <span
                         className="font-danaLight text-sm text-gray-700 dark:text-gray-400"
                         id="qa-to"
@@ -172,7 +174,7 @@ export default function Session() {
                     <svg className="size-6 shrink-0 hidden sm:inline-block">
                       <use href="#exclamation-triangle"></use>
                     </svg>
-                    <p className="text-sm md:font-danaMedium">
+                    <p className="text-sm md:font-EstedadMedium">
                       لطفا قبل از ثبت پرسش بالاتر بخش قوانین ایجاد سوال را
                       مطالعه کنید.
                     </p>
@@ -186,7 +188,7 @@ export default function Session() {
                       id="editor"
                       dir="rtl"
                       rows="6"
-                      className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-darkBox text-darkColor dark:text-white placeholder:text-slate-500/70 font-danaMedium text-sm rounded-lg"
+                      className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-darkBox text-darkColor dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-sm rounded-lg"
                       placeholder="سوال خود را بپرسید ..."
                     ></textarea>
                     <div className="flex items-center justify-between flex-wrap gap-4.5 mt-4.5 sm:mt-6">
@@ -195,11 +197,11 @@ export default function Session() {
                           <svg className="size-6 sm:size-7">
                             <use href="#arrow-up-tray"></use>
                           </svg>
-                          <span className="font-danaMedium text-sm sm:text-base">
+                          <span className="font-EstedadMedium text-sm sm:text-base">
                             اگر فایل ضمیمه ای دارید لطفا آپلود کنید
                           </span>
                         </div>
-                        <div className="attachment_item hidden flex items-center justify-between gap-x-2 w-full sm:w-72 bg-green-50 dark:bg-green-500/10 text-green-500 px-3.5 py-2.5 rounded-xl">
+                        <div className="attachment_item hidden flex items-center justify-between gap-x-2 w-full sm:w-72 bg-green-50 dark:bg-green-500/10 text-light-blue-500 px-3.5 py-2.5 rounded-xl">
                           {/* trash icon */}
                           {/* close icon */}
                           <div className="flex items-center gap-x-1.5">
@@ -286,122 +288,185 @@ export default function Session() {
               </div>
 
               <div className="bg-light-blue-50 dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mt-10 md:mt-0">
-                <div className="flex items-center gap-x-2 mb-5 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10">
+                <div className="flex items-center gap-x-2 mb-8 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10 text-5xl">
                   <HiOutlineDocumentText />
-                  <span className="font-danaDemiBold text-lg">
+                  <span className="font-EstedadMedium text-[2rem]">
                     سرفصل های دوره
                   </span>
                 </div>
-                <div className="chapters">
+                <div className="space-y-6">
                   <Accordion open={alwaysOpen}>
                     <AccordionHeader
-                      className="flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white rounded-lg p-5"
+                      className="flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white rounded-t-lg p-7"
                       onClick={handleAlwaysOpen}
                     >
                       <div className="w-full flex items-center justify-between">
-                        <span className="font-EstedadMedium font-normal">
+                        <span className="font-EstedadMedium font-normal text-[1.8rem]">
                           سرفصل ها
                         </span>
                         <HiChevronDown />
                       </div>
                     </AccordionHeader>
-                    <AccordionBody>
-                    <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          معرفی Emmet
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            02:31{" "}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Abbreviation
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            02:03{" "}
+                    <AccordionBody className="p-0">
+                      <div className="bg-light-blue-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20 max-h-[530px] overflow-y-auto">
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            معرفی Emmet
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircleCheck />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              02:31
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="lesson  lesson--watching">
-                        <a href="\" className="block line-clamp-2">
-                          Sibling
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            00:44{" "}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Multiple
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
-                          </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:00{" "}
+
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            Abbreviation
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircleCheck />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              02:03
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="lesson ">
-                        <a href="/" className="block line-clamp-2">
-                          Lorem Ipsum
-                        </a>
-                        <div className="flex items-center justify-between mt-3 sm:mt-2">
-                          <div className="lesson__status">
-                            <svg className="size-3">
-                              <use href="#check"></use>
-                            </svg>
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="\" className="block line-clamp-2">
+                            Sibling
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircle />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              00:44
+                            </div>
                           </div>
-                          <div className="min-w-14 text-center text-sm font-danaMedium py-1 px-2.5 text-green-500 bg-transparent border border-green-500 rounded-full">
-                            01:47{" "}
+                        </div>
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            Multiple
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircle />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              01:00
+                            </div>
+                          </div>
+                        </div>
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            Lorem Ipsum
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircle />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              01:47
+                            </div>
                           </div>
                         </div>
                       </div>
                     </AccordionBody>
                   </Accordion>
                   <Accordion open={open === 1}>
-                    <AccordionHeader onClick={() => handleOpen(1)}>
-                      How to use Material Tailwind?
+                  <AccordionHeader
+                      className="flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white rounded-t-lg p-7"
+                      onClick={() => handleOpen(1)}
+                    >
+                      <div className="w-full flex items-center justify-between">
+                        <span className="font-EstedadMedium font-normal text-[1.8rem]">
+                          سرفصل ها
+                        </span>
+                        <HiChevronDown />
+                      </div>
                     </AccordionHeader>
-                    <AccordionBody>
-                      We&apos;re not always in the position that we want to be
-                      at. We&apos;re constantly growing. We&apos;re constantly
-                      making mistakes. We&apos;re constantly trying to express
-                      ourselves and actualize our dreams.
+                    <AccordionBody className="p-0">
+                      <div className="bg-light-blue-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20">
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            معرفی Emmet
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircleCheck />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              02:31
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            Abbreviation
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircleCheck />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              02:03
+                            </div>
+                          </div>
+                        </div>
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="\" className="block line-clamp-2">
+                            Sibling
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircle />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              00:44
+                            </div>
+                          </div>
+                        </div>
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            Multiple
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircle />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              01:00
+                            </div>
+                          </div>
+                        </div>
+                        <div className="lesson font-EstedadMedium mb-8 pt-6">
+                          <a href="/" className="block line-clamp-2 mb-3">
+                            Lorem Ipsum
+                          </a>
+                          <div className="flex items-center justify-between mt-3 sm:mt-2">
+                            <div className="lesson__status text-4xl text-light-blue-600">
+                              <FaRegCircle />
+                            </div>
+                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                              01:47
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </AccordionBody>
                   </Accordion>
-
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-3.5 mt-6 lg:mt-8">
                 <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
-                  <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
+                  <svg className="w-10 h-10 text-light-blue-500 mb-2.5 sm:mb-1.5">
                     <use href="#information-circle"></use>
                   </svg>
                   <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
@@ -412,7 +477,7 @@ export default function Session() {
                   </span>
                 </div>
                 <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
-                  <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
+                  <svg className="w-10 h-10 text-light-blue-500 mb-2.5 sm:mb-1.5">
                     <use href="#clock"></use>
                   </svg>
                   <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
@@ -423,7 +488,7 @@ export default function Session() {
                   </span>
                 </div>
                 <div className="text-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darkBox rounded-lg">
-                  <svg className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5">
+                  <svg className="w-10 h-10 text-light-blue-500 mb-2.5 sm:mb-1.5">
                     <use href="#video-camera"></use>
                   </svg>
                   <span className="block font-danaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">
@@ -440,7 +505,7 @@ export default function Session() {
                   وقتی 70 درصد یک ویدیو را بصورت آنلاین تماشا میکنید، میزان
                   پیشرفت شما بصورت خودکار بروزرسانی میشود.
                 </p>
-                <div className="flex items-center justify-between mb-4.5 font-danaDemiBold text-green-500">
+                <div className="flex items-center justify-between mb-4.5 font-danaDemiBold text-light-blue-500">
                   <span>میزان پیشرفت شما</span>
                   <span>0%</span>
                 </div>
@@ -460,7 +525,7 @@ export default function Session() {
                 </p>
                 <a
                   href="/"
-                  className="flex items-center justify-center gap-x-2.5 text-green-500 font-danaMedium"
+                  className="flex items-center justify-center gap-x-2.5 text-light-blue-500 font-EstedadMedium"
                 >
                   مشاهده پروفایل من
                   <svg className="w-7 h-7">
