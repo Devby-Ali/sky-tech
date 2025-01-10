@@ -8,8 +8,10 @@ import {
   HiChevronDown,
   HiMiniUser,
   HiOutlineArrowDownTray,
+  HiOutlineArrowUpTray,
   HiOutlineClock,
   HiOutlineDocumentText,
+  HiOutlineExclamationTriangle,
   HiOutlineInformationCircle,
   HiOutlineVideoCamera,
 } from "react-icons/hi2";
@@ -127,11 +129,11 @@ export default function Session() {
                   </div>
                 </div>
 
-                <div className="mb-8 pb-8 border-b border-b-neutral-200 dark:border-b-white/10">
-                  <h5 className="font-danaBold mb-3">
+                <div className="mb-10 pb-10 border-b border-b-light-blue-200 dark:border-b-white/10">
+                  <h5 className="font-EstedadMedium mb-6">
                     چگونه سوال خود را مطرح کنم تا به بهترین پاسخ ممکن برسم؟
                   </h5>
-                  <div className="dark:text-gray-400">
+                  <div className="dark:text-gray-400 leading-[28px] tracking-wide">
                     برای اینکه مهارت حل مسئله و دیباگ کردن‌تون رو بالا ببرید،
                     قبل از اینکه سوالی بپرسید، با دقت و تمرکز سعی کنید مشکل رو
                     خودتون حل کنید. اگه به جواب نرسیدید، می‌تونید از گوگل کمک
@@ -149,10 +151,10 @@ export default function Session() {
                     بار خودتون اون رو بخونید و مطمئن بشید که سوالتون خوانا و
                     واضحه.
                   </div>
-                  <h5 className="font-danaBold mb-3 mt-6">
+                  <h5 className="font-EstedadMedium mb-6 mt-8">
                     چه انتظاراتی از پشتیبانان باید داشته باشم؟
                   </h5>
-                  <div className="dark:text-gray-400">
+                  <div className="dark:text-gray-400 leading-[28px] tracking-wide">
                     از مدرسین و پشتیبانان انتظارات منطقی و مرتبط با خدمات
                     دریافتی خود داشته باشید. حل مشکلات خارج از مباحث و پروژه های
                     دوره در حیطه وظایف پشتیبانان/مدرسین نیست. اگر نیاز به مشاوره
@@ -160,17 +162,17 @@ export default function Session() {
                   </div>
                 </div>
 
-                <div className="mb-8 sm:mb-10">
+                <div className="mb-10 sm:mb-12">
                   <div className="flex gap-x-3.5 mb-3">
-                    <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
-                      <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-darkBox rounded-full">
+                    <div className="flex-center p-2 border border-gray-100 dark:border-[#333c4c] rounded-full">
+                      <div className="flex-center text-3xl bg-gray-100 dark:bg-[#333c4c] p-5 rounded-full">
                         <HiMiniUser/>
                       </div>
                     </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="font-EstedadMedium">Theotherali</span>
+                    <div className="flex flex-col gap-4">
+                      <span className="font-EstedadMedium text-3xl tracking-wide">Theotherali</span>
                       <span
-                        className="font-danaLight text-sm text-gray-700 dark:text-gray-400"
+                        className="font-danaLight text-xl text-gray-700 dark:text-gray-400"
                         id="qa-to"
                         data-newtxt="پرسش جدید"
                       >
@@ -178,11 +180,11 @@ export default function Session() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-x-2 text-red-500 mb-4">
-                    <svg className="size-6 shrink-0 hidden sm:inline-block">
-                      <use href="#exclamation-triangle"></use>
-                    </svg>
-                    <p className="text-sm md:font-EstedadMedium">
+                  <div className="flex items-center gap-x-3 text-red-600 dark:text-red-400 mb-4">
+                    <div className="text-5xl hidden sm:inline-block">
+                    <HiOutlineExclamationTriangle />
+                    </div>
+                    <p className="text-2xl md:font-EstedadMedium">
                       لطفا قبل از ثبت پرسش بالاتر بخش قوانین ایجاد سوال را
                       مطالعه کنید.
                     </p>
@@ -196,16 +198,16 @@ export default function Session() {
                       id="editor"
                       dir="rtl"
                       rows="6"
-                      className="w-full block p-4.5 md:p-4 bg-gray-100 dark:bg-darkBox text-darkColor dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-sm rounded-lg"
+                      className="w-full block p-8 md:p-9 bg-gray-100 dark:bg-[#333c4c] text-darkColor dark:text-white placeholder:text-blue-gray-500/70 font-EstedadMedium text-2xl rounded-lg"
                       placeholder="سوال خود را بپرسید ..."
                     ></textarea>
-                    <div className="flex items-center justify-between flex-wrap gap-4.5 mt-4.5 sm:mt-6">
+                    <div className="flex items-center justify-between flex-wrap gap-4.5 mt-8 sm:mt-10">
                       <div className="w-full sm:w-auto">
-                        <div className="attachments_btnwrap attachments_button flex items-center gap-x-2 sm:gap-x-1.5 cursor-pointer">
-                          <svg className="size-6 sm:size-7">
-                            <use href="#arrow-up-tray"></use>
-                          </svg>
-                          <span className="font-EstedadMedium text-sm sm:text-base">
+                        <div className="attachments_btnwrap attachments_button flex items-center gap-x-3 sm:gap-x-4 cursor-pointer">
+                          <div className="text-5xl">
+                          <HiOutlineArrowUpTray />
+                          </div>
+                          <span className="font-EstedadMedium text-2xl sm:text-[1.7rem]">
                             اگر فایل ضمیمه ای دارید لطفا آپلود کنید
                           </span>
                         </div>
@@ -220,7 +222,7 @@ export default function Session() {
                         </div>
                       </div>
                       <button
-                        className="w-full sm:w-36 btn btn-primary btn-outline"
+                        className="w-full sm:w-40 sm:text-[1.7rem] mt-10 sm:mt-0 text-light-blue-700 border border-light-blue-700 rounded-lg p-4 text-center btn btn-primary btn-outline"
                         type="submit"
                         id="qa-submit-btn"
                       >
