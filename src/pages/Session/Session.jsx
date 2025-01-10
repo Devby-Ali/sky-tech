@@ -61,7 +61,7 @@ export default function Session() {
             links={[
               {
                 id: 2,
-                title: session.title,
+                title: courseName,
                 to: `course-info/${courseName}`,
               },
               {
@@ -86,7 +86,7 @@ export default function Session() {
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-12 sm:mb-16 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <h3 className="font-EstedadBold text-[2rem] md:text-4xl tracking-wide">
-                    کد نویسی سریع html css با Emmet
+                    {courseName}
                   </h3>
                 </div>
 
@@ -94,7 +94,7 @@ export default function Session() {
                   <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1.5 font-EstedadBold rounded-md">
                     6
                   </div>
-                  <h4 className="text-3xl/10 sm:text-[1.9rem]">Sibling</h4>
+                  <h4 className="text-3xl/10 sm:text-[1.9rem]">{session.title}</h4>
                 </div>
 
                 <div className="flex justify-between gap-6 flex-wrap">
@@ -166,11 +166,13 @@ export default function Session() {
                   <div className="flex gap-x-3.5 mb-3">
                     <div className="flex-center p-2 border border-gray-100 dark:border-[#333c4c] rounded-full">
                       <div className="flex-center text-3xl bg-gray-100 dark:bg-[#333c4c] p-5 rounded-full">
-                        <HiMiniUser/>
+                        <HiMiniUser />
                       </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                      <span className="font-EstedadMedium text-3xl tracking-wide">Theotherali</span>
+                      <span className="font-EstedadMedium text-3xl tracking-wide">
+                        Theotherali
+                      </span>
                       <span
                         className="font-danaLight text-xl text-gray-700 dark:text-gray-400"
                         id="qa-to"
@@ -182,7 +184,7 @@ export default function Session() {
                   </div>
                   <div className="flex items-center gap-x-3 text-red-600 dark:text-red-400 mb-4">
                     <div className="text-5xl hidden sm:inline-block">
-                    <HiOutlineExclamationTriangle />
+                      <HiOutlineExclamationTriangle />
                     </div>
                     <p className="text-2xl md:font-EstedadMedium">
                       لطفا قبل از ثبت پرسش بالاتر بخش قوانین ایجاد سوال را
@@ -190,9 +192,9 @@ export default function Session() {
                     </p>
                   </div>
                   <form id="submit-question">
-                    <input type="hidden" name="nonce" value="426393f9b0" />
-                    <input type="hidden" name="lesson_id" value="23933" />
-                    <input type="hidden" name="course_id" value="12" />
+                    <input type="hidden" name="nonce" value="" />
+                    <input type="hidden" name="lesson_id" value="" />
+                    <input type="hidden" name="course_id" value="" />
                     <input type="hidden" name="question_id" value="" />
                     <textarea
                       id="editor"
@@ -205,7 +207,7 @@ export default function Session() {
                       <div className="w-full sm:w-auto">
                         <div className="attachments_btnwrap attachments_button flex items-center gap-x-3 sm:gap-x-4 cursor-pointer">
                           <div className="text-5xl">
-                          <HiOutlineArrowUpTray />
+                            <HiOutlineArrowUpTray />
                           </div>
                           <span className="font-EstedadMedium text-2xl sm:text-[1.7rem]">
                             اگر فایل ضمیمه ای دارید لطفا آپلود کنید
@@ -276,7 +278,7 @@ export default function Session() {
                   <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1.5 font-EstedadBold rounded-md">
                     6
                   </div>
-                  <h4 className="text-3xl/10 sm:text-[2rem]">Sibling</h4>
+                  <h4 className="text-3xl/10 sm:text-[2rem]">{session.title}</h4>
                 </div>
 
                 <div className="flex justify-between gap-6 flex-wrap">
@@ -307,7 +309,9 @@ export default function Session() {
                 <div className="space-y-6">
                   <Accordion open={alwaysOpen}>
                     <AccordionHeader
-                      className="flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white rounded-t-lg p-7"
+                      className={`flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white ${
+                        alwaysOpen ? "rounded-t-lg" : "rounded-lg"
+                      } p-7`}
                       onClick={handleAlwaysOpen}
                     >
                       <div className="w-full flex items-center justify-between">
@@ -319,78 +323,34 @@ export default function Session() {
                     </AccordionHeader>
                     <AccordionBody className="p-0">
                       <div className="bg-light-blue-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20 max-h-[530px] overflow-y-auto">
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="/" className="block line-clamp-2 mb-3">
-                            معرفی Emmet
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircleCheck />
+                        {sessions.map((session) => (
+                          <>
+                            <div className="lesson font-EstedadMedium mb-8 pt-6">
+                              <Link to={`/${courseName}/${session._id}`}>
+                                <a href="#" className="block line-clamp-2 mb-3">
+                                  {session.title}
+                                </a>
+                                <div className="flex items-center justify-between mt-3 sm:mt-2">
+                                  <div className="lesson__status text-4xl text-light-blue-600">
+                                    <FaRegCircleCheck />
+                                  </div>
+                                  <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
+                                    {session.time}
+                                  </div>
+                                </div>
+                              </Link>
                             </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              02:31
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="/" className="block line-clamp-2 mb-3">
-                            Abbreviation
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircleCheck />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              02:03
-                            </div>
-                          </div>
-                        </div>
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="\" className="block line-clamp-2">
-                            Sibling
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircle />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              00:44
-                            </div>
-                          </div>
-                        </div>
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="/" className="block line-clamp-2 mb-3">
-                            Multiple
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircle />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              01:00
-                            </div>
-                          </div>
-                        </div>
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="/" className="block line-clamp-2 mb-3">
-                            Lorem Ipsum
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircle />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              01:47
-                            </div>
-                          </div>
-                        </div>
+                          </>
+                        ))}
                       </div>
                     </AccordionBody>
                   </Accordion>
+                  {/* other Accordions */}
                   <Accordion open={open === 1}>
                     <AccordionHeader
-                      className="flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white rounded-t-lg p-7"
+                      className={`flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white ${
+                        open === 0 ? "rounded-lg" : "rounded-t-lg"
+                      } p-7`}
                       onClick={() => handleOpen(1)}
                     >
                       <div className="w-full flex items-center justify-between">
@@ -412,59 +372,6 @@ export default function Session() {
                             </div>
                             <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
                               02:31
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="/" className="block line-clamp-2 mb-3">
-                            Abbreviation
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircleCheck />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              02:03
-                            </div>
-                          </div>
-                        </div>
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="\" className="block line-clamp-2">
-                            Sibling
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircle />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              00:44
-                            </div>
-                          </div>
-                        </div>
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="/" className="block line-clamp-2 mb-3">
-                            Multiple
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircle />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              01:00
-                            </div>
-                          </div>
-                        </div>
-                        <div className="lesson font-EstedadMedium mb-8 pt-6">
-                          <a href="/" className="block line-clamp-2 mb-3">
-                            Lorem Ipsum
-                          </a>
-                          <div className="flex items-center justify-between mt-3 sm:mt-2">
-                            <div className="lesson__status text-4xl text-light-blue-600">
-                              <FaRegCircle />
-                            </div>
-                            <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-light-blue-500 bg-transparent border border-light-blue-600 rounded-2xl">
-                              01:47
                             </div>
                           </div>
                         </div>
