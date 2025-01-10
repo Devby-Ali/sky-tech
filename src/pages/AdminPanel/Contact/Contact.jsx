@@ -62,6 +62,7 @@ export default function Contact() {
         .then((res) => {
           console.log(res);
           if (res.ok) {
+            getAllContacnts()
             return res.json();
           }
         })
@@ -102,7 +103,7 @@ export default function Contact() {
   return (
     <>
       <DataTable title="پیام ها">
-        <Card className="h-full w-full rounded-md overflow-scroll px-6">
+        <Card className="h-full w-full rounded-md overflow-scroll px-6 dark:bg-darkBox">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
               <tr>
@@ -114,7 +115,7 @@ export default function Contact() {
                     <Typography
                       variant="small"
                       color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none"
+                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70"
                     >
                       {head}
                     </Typography>
@@ -130,12 +131,12 @@ export default function Contact() {
                   : "py-6 border-b border-gray-400";
 
                 return (
-                  <tr key={contact.name} className="hover:bg-gray-50">
+                  <tr key={contact.name} className={` ${contact.answer === 1 ? 'from-green-400/50' : 'from-red-400/50'} bg-gradient-to-l via-transparent via-5% to-light-blue-700/15 hover:bg-gray-200`}>
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
-                        className="text-2xl font-EstedadBold"
+                        className="text-2xl font-EstedadBold text-darkColor dark:text-white/90"
                       >
                         {index + 1}
                       </Typography>
@@ -143,7 +144,7 @@ export default function Contact() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {contact.name}
                       </Typography>
@@ -152,7 +153,7 @@ export default function Contact() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {contact.email}
                       </Typography>
@@ -160,7 +161,7 @@ export default function Contact() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {contact.phone}
                       </Typography>
@@ -168,7 +169,7 @@ export default function Contact() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         <button
                           type="button"
@@ -181,7 +182,7 @@ export default function Contact() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         <button
                           type="button"
@@ -194,7 +195,7 @@ export default function Contact() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox  dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         <button
                           type="button"
