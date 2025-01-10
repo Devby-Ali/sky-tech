@@ -3,7 +3,16 @@ import Footer from "../../Components/Footer/Footer";
 import Navbar from "../../Components/Navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
-import { HiArrowLongLeft, HiChevronDown, HiOutlineClock, HiOutlineDocumentText, HiOutlineInformationCircle, HiOutlineVideoCamera } from "react-icons/hi2";
+import {
+  HiArrowLongLeft,
+  HiChevronDown,
+  HiMiniUser,
+  HiOutlineArrowDownTray,
+  HiOutlineClock,
+  HiOutlineDocumentText,
+  HiOutlineInformationCircle,
+  HiOutlineVideoCamera,
+} from "react-icons/hi2";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { FaRegCircle } from "react-icons/fa6";
 import { FaRegCircleCheck } from "react-icons/fa6";
@@ -109,11 +118,10 @@ export default function Session() {
                 id="lesson-qaa"
               >
                 <div className="flex items-center justify-between mb-6 sm:mb-7">
-                  <div className="flex items-center gap-x-3 relative">
+                  <div className="flex items-center gap-x-4 pb-5 text-5xl mt-2 sm:mt-0 relative">
                     <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                     <HiOutlineChatBubbleLeftEllipsis />
-                    <h3 className="font-kalamehSemiBold text-xl md:text-2xl">
-                      {" "}
+                    <h3 className="font-EstedadBold text-[2rem] md:text-4xl tracking-wide mb-2">
                       پرسش و پاسخ
                     </h3>
                   </div>
@@ -156,7 +164,7 @@ export default function Session() {
                   <div className="flex gap-x-3.5 mb-3">
                     <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
                       <div className="flex-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-darkBox rounded-full">
-                        {/* User mini icon */}
+                        <HiMiniUser/>
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
@@ -288,7 +296,7 @@ export default function Session() {
               </div>
 
               <div className="bg-light-blue-50 dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mt-8 md:mt-0">
-                <div className="flex items-center gap-x-2 mb-8 pb-5 border-b border-b-neutral-200/60 dark:border-b-white/10 text-5xl">
+                <div className="flex items-center gap-x-4 mb-8 pb-5 border-b border-b-light-blue-200/60 dark:border-b-white/10 text-5xl">
                   <HiOutlineDocumentText />
                   <span className="font-EstedadMedium text-[2rem]">
                     سرفصل های دوره
@@ -379,7 +387,7 @@ export default function Session() {
                     </AccordionBody>
                   </Accordion>
                   <Accordion open={open === 1}>
-                  <AccordionHeader
+                    <AccordionHeader
                       className="flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white rounded-t-lg p-7"
                       onClick={() => handleOpen(1)}
                     >
@@ -484,7 +492,7 @@ export default function Session() {
                   </span>
                 </div>
                 <div className="flex flex-col items-center justify-center bg-white dark:bg-darkBox rounded-lg text-6xl py-8 text-light-blue-600">
-                 <HiOutlineVideoCamera />
+                  <HiOutlineVideoCamera />
                   <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6 text-darkBox dark:text-white">
                     جلسات دوره
                   </span>
@@ -506,7 +514,7 @@ export default function Session() {
                 <progress className="w-full" value="23" max="100"></progress>
               </div>
 
-              <div className="bg-white dark:bg-darkBox p-4.5 sm:p-5 rounded-lg mt-8 lg:mt-10">
+              <div className="bg-white dark:bg-darkBox p-8 sm:p-9 rounded-lg mt-8 lg:mt-10">
                 <img
                   src="/"
                   className="mx-auto rounded-full object-cover"
@@ -523,24 +531,22 @@ export default function Session() {
                 >
                   مشاهده پروفایل من
                   <span className="text-4xl">
-                  <HiArrowLongLeft/>
+                    <HiArrowLongLeft />
                   </span>
                 </a>
               </div>
 
-              <div className="bg-white dark:bg-darkBox p-4.5 sm:p-5 text-center rounded-lg mt-8 lg:mt-10">
-                <div className="flex-center w-[90px] h-[90px] mx-auto bg-light-blue-50 dark:bg-light-blue-500/10 rounded-full">
-                  <svg className="w-8 h-8 text-light-blue-500">
-                    <use href="#arrow-down-tray-mini"></use>
-                  </svg>
+              <div className="bg-white dark:bg-darkBox p-8 sm:p-9 text-center rounded-lg mt-8 lg:mt-10">
+                <div className="flex-center w-[90px] h-[90px] mx-auto bg-light-blue-50 dark:bg-light-blue-500/10 text-6xl text-light-blue-600 rounded-full">
+                  <HiOutlineArrowDownTray />
                 </div>
-                <span className="inline-block font-EstedadMedium text-3xl my-8 text-center">
+                <span className="inline-block font-EstedadMedium text-3xl my-12 text-center">
                   دانلود همگانی ویدیو ها
                 </span>
                 <a
                   target="_blank"
                   href="/"
-                  className="w-full btn btn-secondary"
+                  className="block w-full sm:text-[1.7rem] bg-light-blue-700 rounded-lg p-4 text-center"
                 >
                   دانلود
                 </a>
