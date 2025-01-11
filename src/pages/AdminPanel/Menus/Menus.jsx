@@ -5,29 +5,28 @@ import { minValidator } from "../../../validators/rules";
 import Button from "../../../Components/Form/Button";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
-import { HiOutlineCheck, HiOutlineCheckCircle } from "react-icons/hi2";
+import { HiOutlineCheckCircle } from "react-icons/hi2";
 import Swal from "sweetalert2";
 
 const TABLE_HEAD = ["شناسه", "عنوان", "آدرس", "دسته بندی ...", "ویرایش", "حذف"];
 
 export default function Menus() {
-
   const [menus, setMenus] = useState([]);
   const [menuParent, setMenuParent] = useState("-1");
 
-    const [formState, onInputHandler] = useForm(
-      {
-        title: {
-          value: "",
-          isValid: false,
-        },
-        href: {
-          value: "",
-          isValid: false,
-        },
+  const [formState, onInputHandler] = useForm(
+    {
+      title: {
+        value: "",
+        isValid: false,
       },
-      false
-    );
+      href: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
 
   useEffect(() => {
     getAllMenus();
@@ -123,7 +122,7 @@ export default function Menus() {
               </div>
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <Input
-                  id="time"
+                  id="href"
                   className="bg-transparent outline-none"
                   type="text"
                   placeholder="آدرس"
@@ -134,26 +133,29 @@ export default function Menus() {
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <div className="flex items-center gap-x-2">
                   <label className="text-darkColor dark:text-white/70">
-                    دوره
+                    منو
                   </label>
                   <select
                     className="text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
-                    onChange={(event) => setSessionCourse(event.target.value)}
+                    onChange={(event) => setMenuParent(event.target.value)}
                   >
                     <option value="-1">مدنظر را انتخاب کنید</option>
-                    {courses.map((course) => (
-                      <option
-                        className="text-darkColor text-[1.8rem]"
-                        value={course._id}
-                        key={course._id}
-                      >
-                        {course.name}
-                      </option>
+                    {menus.map((menu) => (
+                      <>
+                        {!Boolean(menu.parent) && (
+                          <option
+                            className="text-darkColor text-[1.8rem]"
+                            value={menu._id}
+                            key={menu._id}
+                          >
+                            {menu.title}
+                          </option>
+                        )}
+                      </>
                     ))}
                   </select>
                 </div>
               </div>
-
 
               <Button
                 className={`h-20 rounded-4xl ${
@@ -162,7 +164,7 @@ export default function Menus() {
                     : "bg-[#333c4c]/30"
                 }`}
                 type="submit"
-                onClick={createSession}
+                onClick={createMenu}
                 disabled={!formState.isFormValid}
               >
                 <span className="mx-auto">افزودن</span>
