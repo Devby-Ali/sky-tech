@@ -24,7 +24,7 @@ export default function Menus() {
                 {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
-                    className="border-b-4 border-[#333c4c] pb-10 pt-12"
+                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
                   >
                     <Typography
                       variant="small"
@@ -47,7 +47,7 @@ export default function Menus() {
                 return (
                   <tr
                     key={menu.name}
-                    className="bg-gradient-to-l from-lightishBlue-500/15 via-transparent via-25% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
+                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
                   >
                     <td className={classes}>
                       <Typography
@@ -83,7 +83,7 @@ export default function Menus() {
                         {menu.parent ? (
                           menu.parent.title
                         ) : (
-                          <div className="flex-center text-6xl">
+                          <div className="flex-center text-light-blue-600 dark:text-light-blue-100/90 text-6xl">
                             <HiOutlineCheckCircle />
                           </div>
                         )}
