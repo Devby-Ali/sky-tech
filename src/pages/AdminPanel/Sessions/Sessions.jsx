@@ -31,7 +31,6 @@ export default function Sessions() {
   );
 
   useEffect(() => {
-    
     getAllSessions();
 
     fetch("http://localhost:4000/v1/courses")
@@ -45,7 +44,10 @@ export default function Sessions() {
   function getAllSessions() {
     fetch("http://localhost:4000/v1/courses/sessions")
       .then((res) => res.json())
-      .then((allSessions) => setSessions(allSessions));
+      .then((allSessions) => {
+        setSessions(allSessions);
+        console.log(allSessions)
+      });
   }
 
   const createSession = (event) => {
@@ -288,7 +290,12 @@ export default function Sessions() {
                         variant="small"
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button" onClick={() => removeSession(session._id)}>حذف</button>
+                        <button
+                          type="button"
+                          onClick={() => removeSession(session._id)}
+                        >
+                          حذف
+                        </button>
                       </Typography>
                     </td>
                   </tr>

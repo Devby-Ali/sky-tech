@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
+import Swal from "sweetalert2";
 
 const TABLE_HEAD = [
   "شناسه",
@@ -8,6 +9,7 @@ const TABLE_HEAD = [
   "دوره",
   "مشاهده",
   "پاسخ",
+  "تایید",
   "ویرایش",
   "حذف",
   "بن",
@@ -17,12 +19,179 @@ export default function Comments() {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    getAllComments();
+  }, []);
+
+  function getAllComments() {
     fetch("http://localhost:4000/v1/comments")
       .then((res) => res.json())
       .then((allComments) => setComments(allComments));
-  }, []);
+  }
 
-  console.log(comments)
+  const removeComment = (commentID) => {
+    Swal.fire({
+      title: "از حذف کامنت مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/comments/${commentID}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user")).token
+            }`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "کامنت حذف شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => getAllComments());
+          }
+        });
+      }
+    });
+  };
+
+  const showCommentBody = (commentBody) => {
+    Swal.fire({
+      title: commentBody,
+      confirmButtonText: "Ok",
+    });
+  };
+
+  const banUser = (userID) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    Swal.fire({
+      title: "از بن کاربر مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/users/ban/${userID}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorageData.token}`,
+          },
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "کاربر با موفقیت بن شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => getAllComments());
+          }
+        });
+      }
+    });
+  };
+
+  const acceptComment = (commentID) => {
+    Swal.fire({
+      title: "از تایید کامنت مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/comments/accept/${commentID}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user")).token
+            }`,
+          },
+        }).then((res) => {
+          console.log(res);
+          if (res.ok) {
+            Swal.fire({
+              title: "کامنت تایید شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllComments();
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const rejectComment = (commentID) => {
+    Swal.fire({
+      title: "از رد کامنت مطمعنی؟",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "آره",
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/v1/comments/reject/${commentID}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user")).token
+            }`,
+          },
+        }).then((res) => {
+          console.log(res);
+          if (res.ok) {
+            Swal.fire({
+              title: "کامنت رد شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllComments();
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const answerToComment = (commentID) => {
+    Swal.fire({
+      title: "پاسخ مورد نظر را وارد کنید",
+      input: "text",
+      confirmButtonText: "ثبت پاسخ",
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const commentAnswer = {
+          body: result.value,
+        };
+
+        fetch(`http://localhost:4000/v1/comments/answer/${commentID}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user")).token
+            }`,
+          },
+          body: JSON.stringify(commentAnswer),
+        }).then((res) => {
+          console.log(res);
+          if (res.ok) {
+            Swal.fire({
+              title: "پاسخ مورد نظر با موفقیت ثبت شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getAllComments();
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -49,7 +218,7 @@ export default function Comments() {
             </thead>
             <tbody>
               {comments.map((comment, index) => {
-                const isLast = index === comments.length - 1;
+                const isLast = index === comment.length - 1;
                 const classes = isLast
                   ? "py-6"
                   : "py-6 border-b border-gray-400";
@@ -57,7 +226,11 @@ export default function Comments() {
                 return (
                   <tr
                     key={index}
-                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
+                    className={` ${
+                      comment.answer === 1
+                        ? "from-green-400/50"
+                        : "from-red-400/50"
+                    } bg-gradient-to-l via-transparent via-5% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-400/10`}
                   >
                     <td className={classes}>
                       <Typography
@@ -73,7 +246,7 @@ export default function Comments() {
                         variant="small"
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        {comment.course}
+                        {comment.creator.name}
                       </Typography>
                     </td>
 
@@ -90,7 +263,12 @@ export default function Comments() {
                         variant="small"
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">مشاهده</button>
+                        <button
+                          type="button"
+                          onClick={() => showCommentBody(comment.body)}
+                        >
+                          مشاهده
+                        </button>
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -98,9 +276,47 @@ export default function Comments() {
                         variant="small"
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">پاسخ</button>
+                        <button
+                          type="button"
+                          onClick={() => answerToComment(comment._id)}
+                        >
+                          پاسخ
+                        </button>
                       </Typography>
                     </td>
+                    {comment.answer === 1 ? (
+                      <>
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
+                          >
+                            <button
+                              type="button"
+                              onClick={() => rejectComment(comment._id)}
+                            >
+                              رد
+                            </button>
+                          </Typography>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
+                          >
+                            <button
+                              type="button"
+                              onClick={() => acceptComment(comment._id)}
+                            >
+                              تایید
+                            </button>
+                          </Typography>
+                        </td>
+                      </>
+                    )}
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -114,7 +330,12 @@ export default function Comments() {
                         variant="small"
                         className="text-darkBox  dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">حذف</button>
+                        <button
+                          type="button"
+                          onClick={() => removeComment(comment._id)}
+                        >
+                          حذف
+                        </button>
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -122,7 +343,12 @@ export default function Comments() {
                         variant="small"
                         className="text-darkBox  dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">بن</button>
+                        <button
+                          type="button"
+                          onClick={() => banUser(comment.creator._id)}
+                        >
+                          بن
+                        </button>
                       </Typography>
                     </td>
                   </tr>
