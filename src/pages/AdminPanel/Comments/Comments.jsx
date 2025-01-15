@@ -328,7 +328,7 @@ export default function Comments() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox  dark:text-white/90 text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         <button
                           type="button"
@@ -341,7 +341,7 @@ export default function Comments() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox  dark:text-white/90 text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         <button
                           type="button"

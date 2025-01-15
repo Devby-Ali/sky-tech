@@ -104,9 +104,9 @@ export default function Sidebar() {
             </Link>
           </li>
         <li>
-          <a href="#">
+          <Link to="offs">
             <span>کدهای تخفیف</span>
-          </a>
+          </Link>
         </li>
         <li>
           <Link to="category">
