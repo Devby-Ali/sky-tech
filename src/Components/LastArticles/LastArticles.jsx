@@ -26,11 +26,12 @@ export default function LastArticles() {
 
         <div className="container">
           <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
-            {articles.slice(0, 4).map((article) => (
-              <>
-                <ArticleBox {...article} />
-              </>
-            ))}
+            {articles
+              .filter((article) => article.publish === 1)
+              .slice(0, 3)
+              .map((article) => (
+                <ArticleBox {...article} key={article._id} />
+              ))}
           </div>
         </div>
       </div>

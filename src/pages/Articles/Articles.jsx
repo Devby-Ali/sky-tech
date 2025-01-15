@@ -11,9 +11,7 @@ import {
   HiOutlineFunnel,
 } from "react-icons/hi2";
 
-
 export default function Articles() {
-
   const [articles, setArticles] = useState([]);
 
   const [shownArticles, setShownArticles] = useState([]);
@@ -172,9 +170,11 @@ export default function Articles() {
               </div>
               {/* <!-- Course List --> */}
               <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
-                {shownArticles.map((article) => (
-                  <ArticleBox {...article} />
-                ))}
+                {shownArticles
+                  .filter((article) => article.publish === 1)
+                  .map((article) => (
+                    <ArticleBox key={article._id} {...article} />
+                  ))}
               </div>
               {/* <!-- Show more Button --> */}
               <Pagination
