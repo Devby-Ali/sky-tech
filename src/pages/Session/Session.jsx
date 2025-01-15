@@ -16,7 +16,6 @@ import {
   HiOutlineVideoCamera,
 } from "react-icons/hi2";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
-import { FaRegCircle } from "react-icons/fa6";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import {
   Accordion,
