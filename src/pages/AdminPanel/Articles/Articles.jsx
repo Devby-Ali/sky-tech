@@ -11,8 +11,19 @@ import Editor from "../../../Components/Form/Editor/Editor";
 import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { HiOutlineCheckCircle } from "react-icons/hi2";
 
-const TABLE_HEAD = ["شناسه", "عنوان", "لینک", "نویسنده", "ویرایش", "حذف"];
+const TABLE_HEAD = [
+  "شناسه",
+  "عنوان",
+  "لینک",
+  "نویسنده",
+  "وضعیت",
+  "مشاهده",
+  "ویرایش",
+  "حذف",
+];
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -107,7 +118,37 @@ export default function Articles() {
     }).then((res) => {
       if (res.ok) {
         Swal.fire({
-          title: "مقاله جدید با موفقیت ایجاد شد",
+          title: "مقاله جدید منتشر شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getAllArticles();
+        });
+      }
+    });
+  };
+
+  const saveArticleAsDraft = (event) => {
+    event.preventDefault();
+    const localStorageDate = JSON.parse(localStorage.getItem("user"));
+    let formData = new FormData();
+    formData.append("title", formState.inputs.title.value);
+    formData.append("shortName", formState.inputs.shortName.value);
+    formData.append("description", formState.inputs.description.value);
+    formData.append("categoryID", articleCategory);
+    formData.append("cover", articleCover);
+    formData.append("body", articleBody);
+
+    fetch(`http://localhost:4000/v1/articles/draft`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorageDate.token}`,
+      },
+      body: formData,
+    }).then((res) => {
+      if (res.ok) {
+        Swal.fire({
+          title: "مقاله جدید پیش نویس شد",
           icon: "success",
           confirmButtonText: "Ok",
         }).then(() => {
@@ -210,19 +251,32 @@ export default function Articles() {
                   </div>
                 </div>
               </div>
-
-              <Button
-                className={`h-20 w-[50%] mt-4 rounded-4xl ${
-                  formState.isFormValid
-                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
-                    : "bg-[#333c4c]/30"
-                }`}
-                type="submit"
-                onClick={() => createArticle(event)}
-                disabled={!formState.isFormValid}
-              >
-                <span className="mx-auto">افزودن</span>
-              </Button>
+              <div className="flex w-[80%] gap-x-6 items-center">
+                <Button
+                  className={`h-20 w-full mt-4 rounded-lg ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={createArticle}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto">انتشار</span>
+                </Button>
+                <Button
+                  className={`h-20 w-full mt-4 rounded-lg ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={saveArticleAsDraft}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto">پیش نویس</span>
+                </Button>
+              </div>
             </form>
           </div>
         </div>
@@ -289,6 +343,33 @@ export default function Articles() {
                         className="text-darkBox text-[1.6rem] font-EstedadLight"
                       >
                         {article.creator.name}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                      >
+                        {article.publish === 1 ? "منتشر شده" : "پیش‌نویس"}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                      >
+                        {article.publish === 1 ? (
+                          <div className="flex-center text-light-blue-600 dark:text-light-blue-100/90 text-6xl">
+                            <HiOutlineCheckCircle />
+                          </div>
+                        ) : (
+                          <Link
+                            to={`draft/${article.shortName}`}
+                            class="btn btn-primary edit-btn"
+                          >
+                            ادامه نوشتن
+                          </Link>
+                        )}
                       </Typography>
                     </td>
                     <td className={classes}>
