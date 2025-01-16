@@ -4,14 +4,11 @@ import Button from "../../../Components/Form/Button";
 import {
   requiredValidator,
   minValidator,
-  maxValidator,
 } from "./../../../validators/rules";
 import Editor from "../../../Components/Form/Editor/Editor";
-import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
-import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { HiOutlineCheckCircle } from "react-icons/hi2";
+import { useParams, useNavigate } from "react-router-dom";
+import { useForm } from "../../../hooks/useForm";
 
 export default function Draft() {
   const [draft, setDraft] = useState([]);
@@ -20,28 +17,44 @@ export default function Draft() {
   const [articleCover, setArticleCover] = useState({});
   const [articleBody, setArticleBody] = useState("محتوا");
 
-
+  const [formState, onInputHandler] = useForm(
+    {
+      title: {
+        value: "",
+        isValid: false,
+      },
+      shortName: {
+        value: "",
+        isValid: false,
+      },
+      description: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
 
   const { shortName } = useParams();
 
   const navigate = useNavigate();
 
-  console.log(shortName);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles/${shortName}`)
       .then((res) => res.json())
       .then((draft) => {
         setDraft(draft);
-        setArticleCategory(draft.categoryID._id)
+        setArticleCategory(draft.categoryID._id);
         console.log(draft);
       });
-      fetch(`http://localhost:4000/v1/category`)
+    fetch(`http://localhost:4000/v1/category`)
       .then((res) => res.json())
       .then((allCategories) => {
         setCategories(allCategories);
       });
   }, []);
+
 
   const createArticle = (event) => {
     event.preventDefault();
@@ -67,7 +80,7 @@ export default function Draft() {
           icon: "success",
           confirmButtonText: "Ok",
         }).then(() => {
-          navigate("p-admin/articles");
+          navigate("/p-admin/articles");
         });
       }
     });
@@ -87,28 +100,35 @@ export default function Draft() {
             >
               <div className="flex items-center gap-x-6">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <input
+                  <Input
+                    id="title"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="عنوان"
-                    value={draft.title}
+                    placeholder={draft.title}
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
                   />
                 </div>
                 <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <input
+                  <Input
+                    id="shortName"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="لینک"
-                    value={draft.shortName}
+                    placeholder={draft.shortName}
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
                   />
                 </div>
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <textarea
+                  <Input
+                    id="description"
+                    element="textarea"
                     className="bg-transparent outline-none"
                     type="text"
-                    placeholder="چکیده"
-                    value={draft.description}
-                  ></textarea>
+                    placeholder={draft.description}
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
                 </div>
               </div>
 
@@ -160,13 +180,18 @@ export default function Draft() {
                 </div>
               </div>
 
-              <Button
-                className={`h-20 w-[51%] mt-4 rounded-lg bg-light-blue-600/40 hover:bg-light-blue-600/60`}
-                type="submit"
-                onClick={createArticle}
-              >
-                <span className="mx-auto">انتشار</span>
-              </Button>
+                <Button
+                  className={`h-20 w-[51%] mt-4 rounded-lg ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={createArticle}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto">انتشار</span>
+                </Button>
             </form>
           </div>
         </div>
