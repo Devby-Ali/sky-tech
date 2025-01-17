@@ -11,6 +11,7 @@ import Search from "./pages/Search/Search";
 import Session from "./pages/Session/Session";
 
 import AdminPanel from "./pages/AdminPanel/index";
+import PAdminIndex from "./pages/AdminPanel/Index/Index";
 import Users from "./pages/AdminPanel/Users/Users";
 import AdminCourses from "./pages/AdminPanel/Courses/Courses";
 import Menus from "./pages/AdminPanel/Menus/Menus";
@@ -39,6 +40,7 @@ const routes = [
     path: "/p-admin/*",
     element: <AdminPanel />,
     children: [
+      { path: "", element: <PAdminIndex /> },
       { path: "users", element: <Users /> },
       { path: "courses", element: <AdminCourses /> },
       { path: "menus", element: <Menus /> },
