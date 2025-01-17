@@ -99,11 +99,11 @@ export default function Topbar() {
   return (
     <>
       <div
-        className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
+        className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 md:hidden ${
           navOpen ? "right-0" : "-right-[263px]"
         }`}
       >
-        <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white px-7 bg-white dark:bg-darkBox">
+        <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
           <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
             <Link
               to={"/"}
@@ -128,14 +128,14 @@ export default function Topbar() {
             </Link>
             <div className="flex items-center gap-x-6 text-[2.75rem] text-blue-gray-500 dark:text-white">
               <div
-                className="flex-center p-2.5 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-white/10"
+                className="flex-center p-3.5 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
                 onClick={() => themeHandler()}
               >
                 <HiOutlineSun className="hidden dark:inline-block" />
                 <HiOutlineMoon className="inline-block dark:hidden" />
               </div>
               <div
-                className="flex-center p-5 rounded-3xl cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+                className="flex-center p-3.5 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
                 onClick={navOpenHandler}
               >
                 <HiChevronRight />
@@ -204,12 +204,12 @@ export default function Topbar() {
         </div>
       </div>
 
-      <header className="justify-between items-center h-[8rem] 2xl:h-36 shadow-lg bg-gradient-to-tr from-lightishBlue-400/50 via-darkBox/80 via-60% to-lightishBlue-400/50 backdrop-blur-[4px] z-40">
+      <header className="justify-between w-full items-center h-[8rem] 2xl:h-36 shadow-lg bg-gradient-to-tr from-lightishBlue-400/50 via-darkBox/80 via-60% to-lightishBlue-400/50 backdrop-blur-[4px] z-40">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
             <div className="flex items-center gap-x-6 2xl:gap-x-8">
               <div
-                className="lg:hidden p-3 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white rounded-lg cursor-pointer text-4xl"
+                className="md:hidden p-3 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white rounded-lg cursor-pointer text-4xl"
                 onClick={navOpenHandler}
               >
                 <HiBars3 />
@@ -339,6 +339,7 @@ export default function Topbar() {
           </div>
         </div>
       </header>
+
       <div
         onClick={overlayOnClick}
         className={overlay ? "overlay overlay--visible" : "overlay"}
