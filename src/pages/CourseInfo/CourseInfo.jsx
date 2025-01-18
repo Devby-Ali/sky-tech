@@ -98,7 +98,7 @@ export default function CourseInfo() {
     <>
       {/* <Topbar /> */}
       <Navbar />
-      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-44 lg:pt-52 2xl:pt-56">
+      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-14 lg:pt-52 2xl:pt-56">
         <div className="container">
           <Breadcrumb
             links={[
@@ -115,12 +115,12 @@ export default function CourseInfo() {
             ]}
           />
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 rounded-3xl p-7 lg:p-0 bg-white dark:bg-darkBox lg:!bg-transparent border border-gray-100 dark:border-none lg:border-none">
-            <div className="flex flex-col justify-between order-2 lg:order-1 text-darkColor dark:text-white">
+            <div className="flex flex-col lg:gap-56 justify-between order-2 lg:order-1 text-darkColor dark:text-white">
               <div>
                 <h1 className="font-EstedadBold text-4xl sm:text-5xl mb-7">
                   {courseDetails.name}
                 </h1>
-                <p className="text-[1.6rem]/relaxed sm:text-3xl line-clamp-4 sm:line-clamp-3 mb-4 lg:mb-0">
+                <p className="text-[1.6rem]/relaxed sm:text-3xl line-clamp-4 sm:line-clamp-3 mb-12 lg:mb-0">
                   {courseDetails.description}
                 </p>
               </div>
@@ -142,12 +142,12 @@ export default function CourseInfo() {
                     </Button>
                   </div>
                 ) : (
-                  <div className="flex justify-center xl:items-center lg:justify-between flex-wrap-reverse gap-y-4 gap-x-8">
+                  <div className="flex justify-center lg:items-center lg:justify-between gap-y-4 gap-x-14">
                     <Button
                       id="register-in-course"
-                      className="button-primary w-full sm:w-auto"
+                      className="button-primary h-[4.5rem] lg:h-20 lg:px-14 sm:text-3xl w-full sm:w-auto"
                     >
-                      <div className="text-4xl">
+                      <div className="text-4xl sm:text-5xl">
                         <HiOutlineAcademicCap />
                       </div>
                       ثبت نام
