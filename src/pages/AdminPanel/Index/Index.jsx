@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PAdminItem from "../../../Components/AdminPanel/PAdminItem/PAdminItem";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+import { HiBookOpen, HiUserPlus } from "react-icons/hi2";
+import { MdPlayLesson } from "react-icons/md";
 
 export default function Index() {
   const [infos, setInfos] = useState([]);
@@ -27,26 +29,19 @@ export default function Index() {
   return (
     <div className="container">
       <div className="text-darkColor dark:text-white">
-        <h3 className="mt-12 sm:text-4xl">به پنل خودت خوش اومدی <span className="text-light-blue-600 font-bold mx-2">{adminName}</span></h3>
+        <h3 className="mt-12 sm:text-4xl">
+          به پنل خودت خوش اومدی{" "}
+          <span className="text-light-blue-600 font-bold mx-2">
+            {adminName}
+          </span>
+        </h3>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center mt-12">
-          <div className="bg-white dark:bg-darkBox rounded-xl">
-            <p>title</p>
-            <span>count</span>
-            <p>title ها در یک ماه گذشته</p>
-          </div>
-          <div className="bg-white dark:bg-darkBox rounded-xl">
-            <p>title</p>
-            <span>count</span>
-            <p>title ها در یک ماه گذشته</p>
-          </div>
-          <div className="bg-white dark:bg-darkBox rounded-xl">
-            <p>title</p>
-            <span>count</span>
-            <p>title ها در یک ماه گذشته</p>
-          </div>
+        <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-center gap-8 lg:gap-12 justify-center mt-12">
+          {infos.map((item) => (
+            <PAdminItem {...item} />
+          ))}
+
         </div>
-        
       </div>
     </div>
   );

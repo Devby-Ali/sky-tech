@@ -178,7 +178,7 @@ export default function Courses() {
               {/* <!-- Show more Button --> */}
               <Pagination
                 items={courses}
-                itemsCount={1}
+                itemsCount={6}
                 pathName="/courses"
                 setShownItems={setShownCourses}
               />

@@ -13,7 +13,9 @@ export default function index() {
 
         <div id="home" className="w-full overflow-auto">
           <Topbar />
-          <Outlet />
+          <div className="container md:px-12">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>
