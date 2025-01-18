@@ -29,18 +29,18 @@ export default function Index() {
       <div className="text-darkColor dark:text-white">
         <h3 className="mt-12 sm:text-4xl">به پنل خودت خوش اومدی <span className="text-light-blue-600 font-bold mx-2">{adminName}</span></h3>
 
-        <div className="flex items-center justify-evenly mt-12">
-          <div className="bg-white dark:bg-darkBox">
+        <div className="flex flex-col sm:flex-row items-center justify-center mt-12">
+          <div className="bg-white dark:bg-darkBox rounded-xl">
             <p>title</p>
             <span>count</span>
             <p>title ها در یک ماه گذشته</p>
           </div>
-          <div className="bg-white dark:bg-darkBox">
+          <div className="bg-white dark:bg-darkBox rounded-xl">
             <p>title</p>
             <span>count</span>
             <p>title ها در یک ماه گذشته</p>
           </div>
-          <div className="bg-white dark:bg-darkBox">
+          <div className="bg-white dark:bg-darkBox rounded-xl">
             <p>title</p>
             <span>count</span>
             <p>title ها در یک ماه گذشته</p>
