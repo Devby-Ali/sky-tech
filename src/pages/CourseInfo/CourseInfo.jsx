@@ -54,20 +54,24 @@ export default function CourseInfo() {
   const { courseName } = useParams();
 
   useEffect(() => {
+    getCourseDetails()
+  }, []);
+
+  function getCourseDetails() {
     fetch(`http://localhost:4000/v1/courses/${courseName}`)
-      .then((res) => res.json())
-      .then((courseInfo) => {
-        setCourseDetails(courseInfo);
-        setComments(courseInfo.comments);
-        setSessions(courseInfo.sessions);
-        setCreatedAt(courseInfo.createdAt);
-        setUpdatedAt(courseInfo.updatedAt);
-        setCourseTeacher(courseInfo.creator);
-        setCategory(courseInfo.categoryID);
-        setPrice(courseInfo.price);
-        console.log(courseInfo);
-      });
-  }, [courseName]);
+    .then((res) => res.json())
+    .then((courseInfo) => {
+      setCourseDetails(courseInfo);
+      setComments(courseInfo.comments);
+      setSessions(courseInfo.sessions);
+      setCreatedAt(courseInfo.createdAt);
+      setUpdatedAt(courseInfo.updatedAt);
+      setCourseTeacher(courseInfo.creator);
+      setCategory(courseInfo.categoryID);
+      setPrice(courseInfo.price);
+      console.log(courseInfo);
+    });
+  }
 
   const submitComment = (newCommentBody) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
@@ -92,6 +96,34 @@ export default function CourseInfo() {
           confirmButtonText: "تایید",
         });
       });
+  };
+
+  const registerInCourse = (course) => {
+    if (course.price === 0) {
+          fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${
+                JSON.parse(localStorage.getItem("user")).token
+              }`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              price: course.price,
+            }),
+          }).then((res) => {
+            console.log(res);
+            if (res.ok) {
+              Swal.fire({
+                title: "ثبت نام با موفقیت انجام شد",
+                icon: "success",
+                confirmButtonText: "Ok",
+              }).then(() => {
+                getCourseDetails();
+              });
+            }
+          });
+    }
   };
 
   return (
@@ -146,6 +178,7 @@ export default function CourseInfo() {
                     <Button
                       id="register-in-course"
                       className="button-primary h-[4.5rem] lg:h-20 lg:px-14 sm:text-3xl w-full sm:w-auto"
+                      onClick={() => registerInCourse(courseDetails)}
                     >
                       <div className="text-4xl sm:text-5xl">
                         <HiOutlineAcademicCap />
