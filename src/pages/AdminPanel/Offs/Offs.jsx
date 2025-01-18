@@ -7,10 +7,17 @@ import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
 import { Card, Typography } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["شناسه", "کد", "درصد", "حداکثر استفاده", "دفعات استفاده", "سازنده", "حذف"];
+const TABLE_HEAD = [
+  "شناسه",
+  "کد",
+  "درصد",
+  "حداکثر استفاده",
+  "دفعات استفاده",
+  "سازنده",
+  "حذف",
+];
 
 export default function Offs() {
-
   const [courses, setCourses] = useState([]);
   const [offs, setOffs] = useState([]);
   const [offCourse, setOffCourse] = useState("-1");
@@ -124,7 +131,7 @@ export default function Offs() {
         <div className="mx-auto flex flex-col items-center w-min">
           <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
             <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
-               افزودن کد تخفیف
+              افزودن کد تخفیف
             </span>
             <form action="#" className="w-full flex flex-col gap-y-8">
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
@@ -198,7 +205,7 @@ export default function Offs() {
       </section>
 
       <DataTable title="کد های تخفیف">
-        <Card className="h-full w-full rounded-md overflow-scroll px-6 dark:bg-darkBox mb-36">
+        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
               <tr>
@@ -210,7 +217,7 @@ export default function Offs() {
                     <Typography
                       variant="small"
                       color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70"
+                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
                     >
                       {head}
                     </Typography>
@@ -226,7 +233,10 @@ export default function Offs() {
                   : "py-6 border-b border-gray-400";
 
                 return (
-                  <tr key={off._id} className="hover:bg-light-blue-50 dark:hover:bg-light-blue-400/10">
+                  <tr
+                    key={off._id}
+                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
+                  >
                     <td className={classes}>
                       <Typography
                         variant="small"

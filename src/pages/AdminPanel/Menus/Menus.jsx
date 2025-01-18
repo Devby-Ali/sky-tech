@@ -187,7 +187,7 @@ export default function Menus() {
                     <Typography
                       variant="small"
                       color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70"
+                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
                     >
                       {head}
                     </Typography>

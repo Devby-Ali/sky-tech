@@ -196,7 +196,7 @@ export default function Comments() {
   return (
     <>
       <DataTable title="کامنت ها">
-        <Card className="h-full w-full rounded-md overflow-scroll px-6 dark:bg-darkBox">
+        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
               <tr>
@@ -208,7 +208,7 @@ export default function Comments() {
                     <Typography
                       variant="small"
                       color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70"
+                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
                     >
                       {head}
                     </Typography>
@@ -230,7 +230,7 @@ export default function Comments() {
                       comment.answer === 1
                         ? "from-green-400/50"
                         : "from-red-400/50"
-                    } bg-gradient-to-l via-transparent via-5% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-400/10`}
+                    } h-28 bg-gradient-to-l via-transparent via-5% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-400/10`}
                   >
                     <td className={classes}>
                       <Typography

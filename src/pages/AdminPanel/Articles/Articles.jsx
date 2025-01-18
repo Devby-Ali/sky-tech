@@ -283,19 +283,19 @@ export default function Articles() {
       </section>
 
       <DataTable title="مقاله‌ها">
-        <Card className="h-full w-full rounded-md overflow-scroll px-6">
+        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
               <tr>
                 {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
-                    className="border-b-4 border-gray-400 pb-10 pt-12"
+                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
                   >
                     <Typography
                       variant="small"
                       color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none"
+                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
                     >
                       {head}
                     </Typography>
@@ -311,12 +311,15 @@ export default function Articles() {
                   : "py-6 border-b border-gray-400";
 
                 return (
-                  <tr key={article.title} className="hover:bg-gray-50">
+                  <tr
+                    key={article.title}
+                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
+                  >
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
-                        className="text-2xl font-EstedadBold"
+                        className="text-2xl font-EstedadBold text-darkColor dark:text-white/90"
                       >
                         {index + 1}
                       </Typography>
@@ -324,7 +327,7 @@ export default function Articles() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {article.title}
                       </Typography>
@@ -332,7 +335,7 @@ export default function Articles() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {article.shortName}
                       </Typography>
@@ -340,7 +343,7 @@ export default function Articles() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {article.creator.name}
                       </Typography>
@@ -348,7 +351,7 @@ export default function Articles() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {article.publish === 1 ? "منتشر شده" : "پیش‌نویس"}
                       </Typography>
@@ -356,7 +359,7 @@ export default function Articles() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {article.publish === 1 ? (
                           <div className="flex-center text-light-blue-600 dark:text-light-blue-100/90 text-6xl">
@@ -375,7 +378,7 @@ export default function Articles() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         <button type="button">ویرایش</button>
                       </Typography>
@@ -383,7 +386,7 @@ export default function Articles() {
                     <td className={classes}>
                       <Typography
                         variant="small"
-                        className="text-darkBox text-[1.6rem] font-EstedadLight"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         <button
                           type="button"

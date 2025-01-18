@@ -62,7 +62,7 @@ export default function Contact() {
         .then((res) => {
           console.log(res);
           if (res.ok) {
-            getAllContacnts()
+            getAllContacnts();
             return res.json();
           }
         })
@@ -103,19 +103,19 @@ export default function Contact() {
   return (
     <>
       <DataTable title="پیام ها">
-        <Card className="h-full w-full rounded-md overflow-scroll px-6 dark:bg-darkBox">
+        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
               <tr>
                 {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
-                    className="border-b-4 border-[#333c4c] pb-10 pt-12"
+                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
                   >
                     <Typography
                       variant="small"
                       color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70"
+                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
                     >
                       {head}
                     </Typography>
@@ -131,7 +131,14 @@ export default function Contact() {
                   : "py-6 border-b border-gray-400";
 
                 return (
-                  <tr key={contact.name} className={` ${contact.answer === 1 ? 'from-green-400/50' : 'from-red-400/50'} bg-gradient-to-l via-transparent via-5% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-400/10`}>
+                  <tr
+                    key={contact.name}
+                    className={` ${
+                      contact.answer === 1
+                        ? "from-green-400/50"
+                        : "from-red-400/50"
+                    } h-28 bg-gradient-to-l via-transparent via-5% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-400/10`}
+                  >
                     <td className={classes}>
                       <Typography
                         variant="small"
