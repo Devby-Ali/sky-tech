@@ -175,7 +175,7 @@ export default function Menus() {
       </section>
 
       <DataTable title="منو ها">
-        <Card className="h-full w-full rounded-md overflow-scroll px-6 dark:bg-darkBox">
+        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
               <tr>
