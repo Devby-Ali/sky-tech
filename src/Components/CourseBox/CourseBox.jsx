@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import { HiOutlineStar, HiStar } from "react-icons/hi2";
 
 export default function CourseBox(props) {
   const [isImgShow, setIsImgShow] = useState(false);
@@ -61,13 +62,27 @@ export default function CourseBox(props) {
             <a href="https:/">{props.creator}</a>
           </div>
           {/* <!-- Rating --> */}
-          <div className="flex items-center gap-x-2 text-amber-500">
-            <span className="font-EstedadMedium mt-1">
+          <div className="flex items-center gap-x-1 text-3xl opacity-65 text-amber-500">
+            {/* <span className="font-EstedadMedium mt-1">
               {props.courseAverageScore}
             </span>
             <div className="text-3xl">
-              <FaStar />
-            </div>
+              <HiStar />
+            </div> */}
+            {Array(5 - props.courseAverageScore)
+              .fill(0)
+              .map((item) => (
+                <>
+                  <HiOutlineStar />
+                </>
+              ))}
+            {Array(props.courseAverageScore)
+              .fill(0)
+              .map((item) => (
+                <>
+                 <HiStar />
+                </>
+              ))}
           </div>
         </div>
         <div className="flex items-end justify-between mt-3">
