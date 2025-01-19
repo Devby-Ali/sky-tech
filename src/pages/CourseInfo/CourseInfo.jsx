@@ -13,7 +13,12 @@ import {
 import Footer from "./../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { HiOutlineAcademicCap, HiOutlineDocumentText, HiOutlineLockClosed, HiOutlinePlay } from "react-icons/hi2";
+import {
+  HiOutlineAcademicCap,
+  HiOutlineDocumentText,
+  HiOutlineLockClosed,
+  HiOutlinePlay,
+} from "react-icons/hi2";
 import { PiBriefcase, PiStarBold } from "react-icons/pi";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
@@ -54,23 +59,31 @@ export default function CourseInfo() {
   const { courseName } = useParams();
 
   useEffect(() => {
-    getCourseDetails()
+    getCourseDetails();
   }, []);
 
   function getCourseDetails() {
-    fetch(`http://localhost:4000/v1/courses/${courseName}`)
-    .then((res) => res.json())
-    .then((courseInfo) => {
-      setCourseDetails(courseInfo);
-      setComments(courseInfo.comments);
-      setSessions(courseInfo.sessions);
-      setCreatedAt(courseInfo.createdAt);
-      setUpdatedAt(courseInfo.updatedAt);
-      setCourseTeacher(courseInfo.creator);
-      setCategory(courseInfo.categoryID);
-      setPrice(courseInfo.price);
-      console.log(courseInfo);
-    });
+    const localStorageData = JSON.parse(localStorage.getItem("user"));
+
+    fetch(`http://localhost:4000/v1/courses/${courseName}`, {
+      headers: {
+        Authorization: `Bearer ${
+          localStorageData === null ? null : localStorageData.token
+        }`,
+      },
+    })
+      .then((res) => res.json())
+      .then((courseInfo) => {
+        setCourseDetails(courseInfo);
+        setComments(courseInfo.comments);
+        setSessions(courseInfo.sessions);
+        setCreatedAt(courseInfo.createdAt);
+        setUpdatedAt(courseInfo.updatedAt);
+        setCourseTeacher(courseInfo.creator);
+        setCategory(courseInfo.categoryID);
+        setPrice(courseInfo.price);
+        console.log(courseInfo);
+      });
   }
 
   const submitComment = (newCommentBody) => {
@@ -100,29 +113,123 @@ export default function CourseInfo() {
 
   const registerInCourse = (course) => {
     if (course.price === 0) {
-          fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${
-                JSON.parse(localStorage.getItem("user")).token
-              }`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              price: course.price,
-            }),
-          }).then((res) => {
-            console.log(res);
-            if (res.ok) {
-              Swal.fire({
-                title: "ثبت نام با موفقیت انجام شد",
-                icon: "success",
-                confirmButtonText: "Ok",
-              }).then(() => {
-                getCourseDetails();
-              });
-            }
+      fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${
+            JSON.parse(localStorage.getItem("user")).token
+          }`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          price: course.price,
+        }),
+      }).then((res) => {
+        console.log(res);
+        if (res.ok) {
+          Swal.fire({
+            title: "ثبت نام با موفقیت انجام شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            getCourseDetails();
           });
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "در صورت داشتن کد تخفیف وارد کنید:",
+        input: "text",
+        confirmButtonText: "ثبت‌نام",
+        showDenyButton: true,
+        denyButtonText: "نه",
+      }).then((code) => {
+        console.log(code)
+        if (code.isConfirmed) {
+          if (code.value === "") {
+            fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${
+                  JSON.parse(localStorage.getItem("user")).token
+                }`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                price: course.price,
+              }),
+            }).then((res) => {
+              console.log(res);
+              if (res.ok) {
+                Swal.fire({
+                  title: "ثبت نام با موفقیت انجام شد",
+                  icon: "success",
+                  confirmButtonText: "Ok",
+                }).then(() => {
+                  getCourseDetails();
+                });
+              }
+            });
+          } else {
+            fetch(`http://localhost:4000/v1/offs/${code.value}`, {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${
+                  JSON.parse(localStorage.getItem("user")).token
+                }`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                course: course._id,
+              }),
+            })
+              .then((res) => {
+                console.log(res);
+  
+                if (res.status == 404) {
+                  Swal.fire({
+                    title: "کد تخفیف معتبر نیست",
+                    icon: "error",
+                    confirmButtonText: "Ok",
+                  });
+                } else if (res.status == 409) {
+                  Swal.fire({
+                    title: "کد تخفیف قبلا استفاده شده!",
+                    icon: "error",
+                    confirmButtonText: "Ok",
+                  });
+                } else {
+                  return res.json();
+                }
+              })
+              .then((code) => {
+                fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+                  method: "POST",
+                  headers: {
+                    Authorization: `Bearer ${
+                      JSON.parse(localStorage.getItem("user")).token
+                    }`,
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    price: course.price - (course.price * code.percent) / 100,
+                  }),
+                }).then((res) => {
+                  console.log(res);
+                  if (res.ok) {
+                    Swal.fire({
+                      title: "ثبت نام با موفقیت انجام شد",
+                      icon: "success",
+                      confirmButtonText: "Ok",
+                    }).then(() => {
+                      getCourseDetails();
+                    });
+                  }
+                });
+              });
+          }
+        }
+      });
     }
   };
 
@@ -157,8 +264,8 @@ export default function CourseInfo() {
                 </p>
               </div>
               <div className="space-y-4 lg:space-y-8 lg:mt-4 lg:px-12">
-                {courseDetails.isUserRegisteredToThisCourse ? (
-                  <div className="hidden flex justify-center xl:items-center lg:justify-between flex-wrap-reverse gap-y-4 gap-x-8">
+                {courseDetails.isUserRegisteredToThisCourse === true ? (
+                  <div className="flex justify-center lg:items-center lg:justify-between gap-y-4 gap-x-14">
                     <div className="flex items-center gap-x-2">
                       <LiaUserSolid className="text-6xl mb-1" />
                       <p className="font-EstedadBold text-3xl">
@@ -167,7 +274,7 @@ export default function CourseInfo() {
                     </div>
                     <Button
                       to={"/"}
-                      className="button-primary text-white lg:w-80 hover:text-lightishBlue-600 dark:hover:text-lightishBlue-500"
+                      className="button-primary py-4 text-white lg:w-80"
                     >
                       <MdOutlineLaptopChromebook className="text-4xl" />
                       مشاهده دوره
@@ -648,7 +755,7 @@ export default function CourseInfo() {
                                   {session.time}
                                 </span>
                                 <div className="text-3xl">
-                                <HiOutlinePlay />
+                                  <HiOutlinePlay />
                                 </div>
                               </div>
                             </>
@@ -658,9 +765,7 @@ export default function CourseInfo() {
                                 <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
                                   {index + 1}
                                 </div>
-                                <span
-                                  className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
-                                >
+                                <span className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 ">
                                   {session.title}
                                 </span>
                               </div>
