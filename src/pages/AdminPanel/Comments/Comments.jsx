@@ -7,6 +7,7 @@ const TABLE_HEAD = [
   "شناسه",
   "کاربر",
   "دوره",
+  "امتیاز",
   "مشاهده",
   "پاسخ",
   "تایید",
@@ -256,6 +257,30 @@ export default function Comments() {
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
                         {comment.course}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="flex text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
+                      >
+                        {Array(5 - comment.score)
+                          .fill(0)
+                          .map((item) => (
+                            <>
+                              <img src="/images/svgs/star.svg" alt="score" />
+                            </>
+                          ))}
+                        {Array(comment.score)
+                          .fill(0)
+                          .map((item) => (
+                            <>
+                              <img
+                                src="/images/svgs/star_fill.svg"
+                                alt="score"
+                              />
+                            </>
+                          ))}
                       </Typography>
                     </td>
                     <td className={classes}>
