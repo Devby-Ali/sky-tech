@@ -86,7 +86,7 @@ export default function CourseInfo() {
       });
   }
 
-  const submitComment = (newCommentBody) => {
+  const submitComment = (newCommentBody, commentScore) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
 
     fetch(`http://localhost:4000/v1/comments`, {
@@ -98,7 +98,7 @@ export default function CourseInfo() {
       body: JSON.stringify({
         body: newCommentBody,
         courseShortName: courseName,
-        score: 5,
+        score: commentScore,
       }),
     })
       .then((res) => res.json())

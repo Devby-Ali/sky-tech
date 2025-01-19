@@ -10,21 +10,21 @@ import AuthContext from "../../context/authContext";
 import { Link } from "react-router-dom";
 
 export default function CommentsTextArea({ comments, submitComment }) {
-
   const [openTextArea, setOpenTextArea] = useState(false);
-  
+
   const textAreaHandler = () => {
     setOpenTextArea(!openTextArea);
     console.log(openTextArea);
   };
-  
-  const [newCommentBody, setNewCommentBody] = useState("")
+
+  const [newCommentBody, setNewCommentBody] = useState("");
+  const [commentScore, setCommentScore] = useState("-1");
 
   const authContext = useContext(AuthContext);
-  
-  const onChangeHandler = event => {
-    setNewCommentBody(event.target.value)
-  }
+
+  const onChangeHandler = (event) => {
+    setNewCommentBody(event.target.value);
+  };
 
   return (
     <div
@@ -106,29 +106,48 @@ export default function CommentsTextArea({ comments, submitComment }) {
               placeholder="نظر خود را بنویسید ..."
               onChange={onChangeHandler}
             >
-              {
-                newCommentBody
-              }
+              {newCommentBody}
             </textarea>
-            <div className="flex gap-x-2 justify-end mt-2 sm:mt-6">
-              <button
-                className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline rounded-br-[3rem] rounded-l-sm rounded-tr-sm sm:rounded-sm sm:rounded-tr-4xl"
-                id="comment-cancel-btn"
-                onClick={() => textAreaHandler()}
+            <div className="flex items-center justify-between mt-2 sm:mt-6">
+              <select
+                className="bg-white dark:bg-[#333c4c] py-2 pr-6 rounded-lg text-2xl ml-2"
+                onChange={(event) => setCommentScore(event.target.value)}
               >
-                لغو
-              </button>
-              <button
-                className="flex-grow sm:grow-0 sm:w-36 button-primary rounded-bl-2xl rounded-tl-sm rounded-r-sm sm:rounded-sm sm:rounded-bl-4xl"
-                onClick={() => submitComment(newCommentBody)}
-              >
-                ارسال
-              </button>
+                <option value="-1">
+                  امتیاز شما
+                </option>
+                <option value="5">عالی</option>
+                <option value="4">خیلی خوب</option>
+                <option value="3">خوب</option>
+                <option value="2">ضعیف</option>
+                <option value="1">بد</option>
+              </select>
+              <div className="flex gap-x-2">
+                <button
+                  className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline py-2"
+                  id="comment-cancel-btn"
+                  onClick={() => textAreaHandler()}
+                >
+                  لغو
+                </button>
+                <button
+                  className="flex-grow sm:grow-0 sm:w-36 button-primary py-2"
+                  onClick={() => submitComment(newCommentBody, commentScore)}
+                >
+                  ارسال
+                </button>
+              </div>
             </div>
           </>
         ) : (
           <div className="mb-8 sm:mb-5 text-3xl py-6 px-4 rounded-xl bg-amber-400/20 text-amber-700">
-            لطفا ابتدا در سایت {<Link className="text-light-blue-500" to={"/login"}>وارد</Link>} شوید
+            لطفا ابتدا در سایت{" "}
+            {
+              <Link className="text-light-blue-500" to={"/login"}>
+                وارد
+              </Link>
+            }{" "}
+            شوید
           </div>
         )}
       </div>
