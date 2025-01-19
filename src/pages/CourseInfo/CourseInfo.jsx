@@ -55,11 +55,19 @@ export default function CourseInfo() {
   const [courseTeacher, setCourseTeacher] = useState({});
   const [category, setCategory] = useState({});
   const [price, setPrice] = useState("");
+  const [relatedCourses, setRelatedCourses] = useState([]);
 
   const { courseName } = useParams();
 
   useEffect(() => {
     getCourseDetails();
+
+    fetch(`http://localhost:4000/v1/courses/related/${courseName}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setRelatedCourses(data);
+      });
   }, []);
 
   function getCourseDetails() {
@@ -144,7 +152,7 @@ export default function CourseInfo() {
         showDenyButton: true,
         denyButtonText: "نه",
       }).then((code) => {
-        console.log(code)
+        console.log(code);
         if (code.isConfirmed) {
           if (code.value === "") {
             fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
@@ -185,7 +193,7 @@ export default function CourseInfo() {
             })
               .then((res) => {
                 console.log(res);
-  
+
                 if (res.status == 404) {
                   Swal.fire({
                     title: "کد تخفیف معتبر نیست",
@@ -203,18 +211,21 @@ export default function CourseInfo() {
                 }
               })
               .then((code) => {
-                fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
-                  method: "POST",
-                  headers: {
-                    Authorization: `Bearer ${
-                      JSON.parse(localStorage.getItem("user")).token
-                    }`,
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    price: course.price - (course.price * code.percent) / 100,
-                  }),
-                }).then((res) => {
+                fetch(
+                  `http://localhost:4000/v1/courses/${course._id}/register`,
+                  {
+                    method: "POST",
+                    headers: {
+                      Authorization: `Bearer ${
+                        JSON.parse(localStorage.getItem("user")).token
+                      }`,
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      price: course.price - (course.price * code.percent) / 100,
+                    }),
+                  }
+                ).then((res) => {
                   console.log(res);
                   if (res.ok) {
                     Swal.fire({
@@ -866,104 +877,48 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
-              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-10 mt-12">
-                <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                  <span className="text-light-blue-700 dark:text-light-blue-500 mx-2 text-[3.4rem]">
-                    <FaRegObjectGroup />
-                  </span>
-                  <div className="font-EstedadBold text-3xl md:text-4xl">
-                    دوره های مرتبط
+              {relatedCourses.length !== 0 && (
+                <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-10 mt-12">
+                  <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
+                    <span className="absolute -right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                    <span className="text-light-blue-700 dark:text-light-blue-500 mx-2 text-[3.4rem]">
+                      <FaRegObjectGroup />
+                    </span>
+                    <div className="font-EstedadBold text-3xl md:text-4xl">
+                      دوره های مرتبط
+                    </div>
                   </div>
-                </div>
 
-                <div className="space-y-4 md:space-y-5 text-darkColor dark:text-white">
-                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
-                    <div className="flex items-center gap-x-4 w-4/5">
-                      <img
-                        className="w-36 rounded-md aspect-video"
-                        src="/images/courses/jango.png"
-                        alt="آموزش ۲۰ کتابخانه کاربردی ReactJS برای بازارکار"
-                      />
-                      <a href="" className="line-clamp-2">
-                        آموزش ۲۰ کتابخانه کاربردی ReactJS برای بازارکار
-                      </a>
-                    </div>
-                    <a
-                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href=""
-                    >
-                      مشاهده
-                      <div className="text-2xl mr-2">
-                        <BiSolidLeftArrow />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
-                    <div className="flex items-center gap-x-4 w-4/5">
-                      <img
-                        className="w-36 rounded-md aspect-video"
-                        src="/images/courses/js_project.png"
-                        alt="آموزش git و github"
-                      />
-                      <a href="" className="line-clamp-2">
-                        آموزش git و github
-                      </a>
-                    </div>
-                    <a
-                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href=""
-                    >
-                      مشاهده
-                      <div className="text-2xl mr-2">
-                        <BiSolidLeftArrow />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
-                    <div className="flex items-center gap-x-4 w-4/5">
-                      <img
-                        className="w-36 rounded-md aspect-video"
-                        src="/images/courses/nodejs.png"
-                        alt="پروژه های خلاقانه با جاوااسکریپت"
-                      />
-                      <a href="" className="line-clamp-2">
-                        پروژه های خلاقانه با جاوااسکریپت
-                      </a>
-                    </div>
-                    <a
-                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href=""
-                    >
-                      مشاهده
-                      <div className="text-2xl mr-2">
-                        <BiSolidLeftArrow />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
-                    <div className="flex items-center gap-x-4 w-4/5">
-                      <img
-                        className="w-36 rounded-md aspect-video"
-                        src="/images/courses/python.png"
-                        alt="آموزش اصولی RegEX برای تمام برنامه نویسان"
-                      />
-                      <a href="" className="line-clamp-2">
-                        آموزش اصولی RegEX برای تمام برنامه نویسان
-                      </a>
-                    </div>
-                    <a
-                      className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
-                      href=""
-                    >
-                      مشاهده
-                      <div className="text-2xl mr-2">
-                        <BiSolidLeftArrow />
-                      </div>
-                    </a>
+                  <div className="space-y-4 md:space-y-5 text-darkColor dark:text-white">
+                    {relatedCourses.map((course) => (
+                      <>
+                        <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
+                          <div className="flex items-center gap-x-4 w-4/5">
+                            <img
+                              className="w-36 rounded-md aspect-video"
+                              src={`http://localhost:4000/courses/covers/${course.cover}`}
+                              alt="Course Cover"
+                            />
+                            <span className="line-clamp-2">
+                            {course.name}
+                            </span>
+                          </div>
+                          <Button
+                            className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
+                            to={`/course-info/${course.shortName}`}
+                          >
+                            مشاهده
+                            <div className="text-2xl mr-2">
+                              <BiSolidLeftArrow />
+                            </div>
+                          </Button>
+                        </div>
+                      </>
+                    ))}
                   </div>
                 </div>
-              </div>
+              )}
+
               {/* <!-- Comments --> */}
               <CommentsTextArea
                 comments={comments}
