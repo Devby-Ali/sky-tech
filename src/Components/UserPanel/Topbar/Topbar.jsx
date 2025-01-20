@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Collapse } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
@@ -7,42 +7,23 @@ import {
   HiChevronRight,
   HiOutlineBell,
   HiOutlineMoon,
-  HiOutlineShoppingBag,
   HiOutlineSun,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../../context/authContext";
-import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 import Button from "../../Form/Button";
 
 export default function Topbar() {
-  const [adminInfo, setAdminInfo] = useState({});
-  const [adminNotif, setAdminNotif] = useState({});
   const [navOpen, setNavOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [dark, setDark] = useState(false);
-  const [openCollapseNotif, setOpenCollapseNotif] = useState(false);
   const [openCollapseInfo, setOpenCollapseInfo] = useState(false);
 
-  const authContext = useContext(AuthContext);
-  const navigate = useNavigate();
 
-  const logoutAdmin = () => {
-    Swal.fire({
-      title: "با موفقیت logout شدید",
-      icon: "success",
-      confirmButtonText: "OK",
-    }).then(() => {
-      authContext.logout();
-      navigate("/");
-    });
-  };
 
   const overlayOnClick = () => {
     setNavOpen(false);
     setOpenCollapseInfo(false);
-    setOpenCollapseNotif(false);
     setOverlay(false);
   };
 
@@ -73,30 +54,12 @@ export default function Topbar() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData.notifications);
-          setAdminInfo(userData);
-          setAdminNotif(userData.notifications);
+          console.log(userData);
         });
     }
   }, []);
 
-  function seeNotification(notficationID) {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
-    fetch(`http://localhost:4000/v1/notifications/see/${notficationID}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((err) => {
-        console.log(err);
-      });
-  }
 
-  const toggleOpenNotif = () => {
-    setOpenCollapseNotif((cur) => !cur);
-  };
 
   const toggleOpenInfo = () => {
     setOpenCollapseInfo((cur) => !cur);
@@ -202,11 +165,6 @@ export default function Topbar() {
               </Link>
             </li>
           </ul>
-          <div>
-            <Button className="pr-2.5 py-8" onClick={logoutAdmin}>
-              خروج
-            </Button>
-          </div>
         </div>
       </div>
 
@@ -230,79 +188,6 @@ export default function Topbar() {
               />
               <FaSearch className="text-3xl text-darkColor/70 dark:text-white/60 cursor-pointer" />
             </form>
-
-            <div
-              className={`relative flex items-center justify-center p-3 text-darkColor dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer ${
-                openCollapseNotif
-                  ? "bg-white dark:bg-[#333c4c]"
-                  : "bg-gray-300/40 dark:bg-white/10"
-              }`}
-              onClick={toggleOpenNotif}
-            >
-              <HiOutlineBell />
-              <Collapse
-                className="absolute top-[5.9rem] 2xl:top-[6.4rem] w-auto"
-                open={openCollapseNotif}
-              >
-                {adminNotif.length === 0 ? (
-                  <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
-                    <span className="text-2xl text-nowrap">
-                      نوتیفی برای نمایش وجود ندارد
-                    </span>
-                  </Card>
-                ) : (
-                  <>
-                    <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
-                    </Card>
-                    {/* {adminNotif.map((notification) => (
-                        <>
-                          <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
-                            <span className="text-2xl">{notification}</span>
-                            <a
-                              href="javascript:void(0)"
-                              onClick={() => seeNotification(notification._id)}
-                            >
-                              دیدم
-                            </a>
-                          </Card>
-                        </>
-                      ))} */}
-                  </>
-                )}
-              </Collapse>
-            </div>
 
             <ul className="hidden gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
               <li className="main-header__item flex-center relative">
@@ -331,14 +216,14 @@ export default function Topbar() {
 
           <div className="hidden xs:flex items-center gap-x-3 p-3 rounded-lg mr-4 bg-gray-300/40 dark:bg-white/10 text-4xl text-darkColor dark:text-white">
             <Link to="#" className="text-2xl">
-              {adminInfo.name}
+              adminInfo.name
             </Link>
             <HiOutlineUser />
           </div>
 
           <Link
             to="#"
-            className={`relative flex xs:hidden mr-6 items-center justify-center p-3 text-darkColor dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer z-50 ${
+            className={`relative flex xs:hidden mr-6 items-center justify-center p-3 text-darkColor dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer ${
               openCollapseInfo
                 ? "bg-white dark:bg-[#333c4c]"
                 : "bg-gray-300/40 dark:bg-white/10"
@@ -351,7 +236,7 @@ export default function Topbar() {
               open={openCollapseInfo}
             >
               <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                <span className="text-2xl">{authContext.userInfos.name}</span>
+                <span className="text-2xl">authContext.userInfos.name</span>
               </Card>
             </Collapse>
           </Link>

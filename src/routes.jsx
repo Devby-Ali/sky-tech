@@ -23,6 +23,8 @@ import Sessions from "./pages/AdminPanel/Sessions/Sessions";
 import Comments from "./pages/AdminPanel/Comments/Comments";
 import Offs from "./pages/AdminPanel/Offs/Offs";
 
+import UserPanel from "./pages/UserPanel/Index";
+
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/course-info/:courseName", element: <CourseInfo /> },
@@ -51,6 +53,13 @@ const routes = [
       { path: "sessions", element: <Sessions /> },
       { path: "comments", element: <Comments /> },
       { path: "offs", element: <Offs /> },
+    ],
+  },
+  {
+    path: "/my-account/*",
+    element: <UserPanel />,
+    children: [
+       
     ],
   },
 ];
