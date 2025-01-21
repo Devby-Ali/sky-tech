@@ -107,8 +107,8 @@ export default function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link to="articles">
-              <span>دوره های خریداری شده</span>
+            <Link to="buyed">
+              <span>دوره های من</span>
             </Link>
           </li>
           <li>
