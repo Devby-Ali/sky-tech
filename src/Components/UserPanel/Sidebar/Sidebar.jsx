@@ -8,18 +8,30 @@ import AuthContext from "../../../context/authContext";
 export default function Sidebar() {
 
   const [dark, setDark] = useState(false);
+
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const logoutAdmin = () => {
+  const logoutUser = () => {
     Swal.fire({
-      title: "با موفقیت logout شدید",
-      icon: "success",
-      confirmButtonText: "OK",
-    }).then(() => {
-      authContext.logout();
-      navigate("/");
-    });
+      title: "مطمعنی میخوای از سیستم خارج بشی؟",
+      icon: "warning",
+      confirmButtonText: "آره",
+      showDenyButton: true,
+      denyButtonText: "نه",
+    }).then(result => {
+      if(result.isConfirmed) {
+        Swal.fire({
+          title: "با موفقیت logout شدید",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(() => {
+          authContext.logout();
+          navigate("/");
+        });
+      }
+    })
+
   };
 
   const themeHandler = () => {
@@ -106,7 +118,7 @@ export default function Sidebar() {
           </li>
         </ul>
         <div>
-          <Button className="pr-2.5 py-8" onClick={logoutAdmin}>
+          <Button className="pr-2.5 py-8" onClick={logoutUser}>
             خروج
           </Button>
         </div>
