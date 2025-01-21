@@ -87,12 +87,12 @@ export default function Sidebar() {
 
         <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
           <li className="active-menu">
-            <Link to="/p-admin">
+            <Link to="/my-account">
               <span>پیشخوان</span>
             </Link>
           </li>
           <li>
-            <Link to="courses">
+            <Link to="orders">
               <span>سفارش</span>
             </Link>
           </li>

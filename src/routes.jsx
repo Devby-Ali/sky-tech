@@ -24,7 +24,8 @@ import Comments from "./pages/AdminPanel/Comments/Comments";
 import Offs from "./pages/AdminPanel/Offs/Offs";
 
 import UserPanel from "./pages/UserPanel/Index";
-import UserPIndex from "./pages/UserPanel/Index/Index"
+import UserPIndex from "./pages/UserPanel/Index/Index";
+import UserPanelOrder from "./pages/UserPanel/Orders/Orders";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -56,11 +57,13 @@ const routes = [
       { path: "offs", element: <Offs /> },
     ],
   },
+
   {
     path: "/my-account/*",
     element: <UserPanel />,
     children: [
       { path: "", element: <UserPIndex /> },
+      { path: "orders", element: <UserPanelOrder /> },
     ],
   },
 ];
