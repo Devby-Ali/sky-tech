@@ -35,8 +35,8 @@ export default function Sidebar() {
   };
 
   return (
-    <div
-      className="nav w-[26rem] h-full px-7"
+    <aside
+      className="nav w-[27rem] h-full px-7"
     >
       <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
         <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
@@ -76,52 +76,32 @@ export default function Sidebar() {
         <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
           <li className="active-menu">
             <Link to="/p-admin">
-              <span>صفحه اصلی</span>
+              <span>پیشخوان</span>
             </Link>
           </li>
           <li>
             <Link to="courses">
-              <span>دوره ها</span>
+              <span>سفارش</span>
             </Link>
           </li>
           <li>
             <Link to="sessions">
-              <span>جلسات</span>
+              <span>کیف پول من</span>
             </Link>
           </li>
           <li>
             <Link to="menus">
-              <span>منو ها</span>
+              <span>جزئیات حساب کاربری</span>
             </Link>
           </li>
           <li>
             <Link to="articles">
-              <span>مقاله ها</span>
+              <span>دوره های خریداری شده</span>
             </Link>
           </li>
           <li>
             <Link to="users">
-              <span>کاربران</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="comments">
-              <span>کامنت‌ها</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="offs">
-              <span>کدهای تخفیف</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="category">
-              <span>دسته‌بندی‌ها</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="contacts">
-              <span>پیغام‌ها</span>
+              <span>تیکت های پشتیبانی</span>
             </Link>
           </li>
         </ul>
@@ -131,6 +111,6 @@ export default function Sidebar() {
           </Button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
