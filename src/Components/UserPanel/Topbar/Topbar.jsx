@@ -18,6 +18,7 @@ export default function Topbar() {
   const [overlay, setOverlay] = useState(false);
   const [dark, setDark] = useState(false);
   const [openCollapseInfo, setOpenCollapseInfo] = useState(false);
+  const [userInfo, setUserInfo] = useState("")
 
 
 
@@ -54,7 +55,8 @@ export default function Topbar() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData);
+          console.log(userData)
+          setUserInfo(userData.name)
         });
     }
   }, []);
@@ -216,7 +218,7 @@ export default function Topbar() {
 
           <div className="hidden xs:flex items-center gap-x-3 p-3 rounded-lg mr-4 bg-gray-300/40 dark:bg-white/10 text-4xl text-darkColor dark:text-white">
             <Link to="#" className="text-2xl">
-              adminInfo.name
+              {userInfo}
             </Link>
             <HiOutlineUser />
           </div>
@@ -236,7 +238,7 @@ export default function Topbar() {
               open={openCollapseInfo}
             >
               <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                <span className="text-2xl">authContext.userInfos.name</span>
+                <span className="text-2xl">{userInfo}</span>
               </Card>
             </Collapse>
           </Link>

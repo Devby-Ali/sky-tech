@@ -30,51 +30,57 @@ export default function Orders() {
           </div>
         </div>
 
-        <div className="payment-table pb-2 md:pb-4 md:pr-5 overflow-x-auto">
-          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
-            <div className="col-span-1 text-nowrap">شماره پیگیری</div>
-            <div className="col-span-3">شرح سفارش</div>
-            <div className="col-span-2">تاریخ سفارش</div>
-            <div className="col-span-2">مبلغ سفارش</div>
-            <div className="col-span-2">وضعیت سفارش</div>
-            <div className="col-span-2">عملیات ها</div>
-          </div>
+        {orders.length !== 0 ? (
+          <div className="payment-table pb-2 md:pb-4 md:pr-5 overflow-x-auto">
+            <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+              <div className="col-span-1 text-nowrap">شماره پیگیری</div>
+              <div className="col-span-3">شرح سفارش</div>
+              <div className="col-span-2">تاریخ سفارش</div>
+              <div className="col-span-2">مبلغ سفارش</div>
+              <div className="col-span-2">وضعیت سفارش</div>
+              <div className="col-span-2">عملیات ها</div>
+            </div>
 
-          <div
-            className="min-w-[840px] md:min-w-[900px] space-y-6"
-            id="container_orders"
-          >
-            {orders.map((order, index) => (
-              <>
-                <div className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3">
-                  <div className="col-span-1">{index + 1}</div>
+            <div
+              className="min-w-[840px] md:min-w-[900px] space-y-6"
+              id="container_orders"
+            >
+              {orders.map((order, index) => (
+                <>
+                  <div className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3">
+                    <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-3">{order.course.name}</div>
+                    <div className="col-span-3">{order.course.name}</div>
 
-                  <div className="col-span-2">
-                    {order.createdAt.slice(0, 10)}
-                  </div>
+                    <div className="col-span-2">
+                      {order.createdAt.slice(0, 10)}
+                    </div>
 
-                  <div className="col-span-2">
-                    {order.price} &nbsp;
-                    <span className="slms-price_symbol">تومان</span>
-                  </div>
+                    <div className="col-span-2">
+                      {order.price} &nbsp;
+                      <span className="slms-price_symbol">تومان</span>
+                    </div>
 
-                  <div className="col-span-2">
-                    <div className="inline-flex items-center justify-center bg-green-50 dark:bg-green-500/10 text-green-500  font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none">
-                      پرداخت شده
+                    <div className="col-span-2">
+                      <div className="inline-flex items-center justify-center bg-green-50 dark:bg-green-500/10 text-green-500  font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none">
+                        پرداخت شده
+                      </div>
+                    </div>
+                    <div className="col-span-2">
+                      <a className="" href="#">
+                        نمایش
+                      </a>
                     </div>
                   </div>
-                  <div className="col-span-2">
-                    <a className="" href="#">
-                      نمایش
-                    </a>
-                  </div>
-                </div>
-              </>
-            ))}
+                </>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="w-full text-3xl px-8 py-6 text-amber-600 bg-amber-500/10 rounded-lg">
+            فعلا سفارشی ثبت نشده !
+          </div>
+        )}
       </section>
     </main>
   );
