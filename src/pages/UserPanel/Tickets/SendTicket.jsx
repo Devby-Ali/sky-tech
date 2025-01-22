@@ -5,11 +5,25 @@ import { Link } from "react-router-dom";
 export default function SendTicket() {
   const [departments, setDepartments] = useState([]);
   const [departmentsSubs, setDepartmentsSubs] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [ticketTypeID, setTicketTypeID] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/tickets/departments`)
       .then((res) => res.json())
       .then((data) => setDepartments(data));
+
+    fetch(`http://localhost:4000/v1/users/courses/`, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("user")).token
+        }`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data);
+      });
   }, []);
 
   const getDepartmentsSub = (departmentID) => {
@@ -59,35 +73,42 @@ export default function SendTicket() {
               name="department"
               id="department"
               className="w-full sm:w-1/2 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
-              onChange={(event) => getDepartmentsSub(event.target.value)}
+              onChange={(event) => setTicketTypeID(event.target.value)}
             >
               <option>نوع تیکت را انتخاب کنید:</option>
-              {departmentsSubs.map((sub) => (
-                <>
-                  <option value={sub._id}>{sub.title}</option>
-                </>
-              ))}
+              {departmentsSubs.length &&
+                departmentsSubs.map((sub) => (
+                  <>
+                    <option value={sub._id}>{sub.title}</option>
+                  </>
+                ))}
             </select>
           </div>
 
           <div className="flex flex-wrap sm:flex-nowrap gap-8 md:gap-9">
             <input
               type="text"
-              className="w-full sm:w-1/2 lg:w-2/3 placeholder:text-darkBox/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-white dark:bg-darkBox text-2xl p-5 rounded-lg"
+              className="w-full sm:w-1/2 lg:w-full placeholder:text-darkBox/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-white dark:bg-darkBox text-2xl p-5 rounded-lg"
               placeholder="موضوع تیکت:"
               id="title"
               name="title"
               required=""
             />
-            <select
-              name="department"
-              id="department"
-              className="w-full sm:w-1/2 lg:w-1/3 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
-            >
-              <option value="finance">مالی</option>
-              <option value="support">پشتیبانی</option>
-              <option value="counseling">مشاوره</option>
-            </select>
+            {ticketTypeID === "63b688c5516a30a651e98156" && (
+              <select
+                name="department"
+                id="department"
+                className="w-full sm:w-1/2 lg:w-1/3 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
+                onChange={(event) => getDepartmentsSub(event.target.value)}
+              >
+                <option>دوره را انتخاب کنید:</option>
+                {courses.map((course) => (
+                  <option value={course._id} key={course._id}>
+                    {course.course.name}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
 
           <textarea
