@@ -112,7 +112,7 @@ export default function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link to="users">
+            <Link to="ticket">
               <span>تیکت های پشتیبانی</span>
             </Link>
           </li>

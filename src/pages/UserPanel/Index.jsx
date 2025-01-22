@@ -12,12 +12,12 @@ export default function Index() {
                 <Sidebar />
               </div>
       
-              <main id="home" className="w-full overflow-auto">
+              <section id="home" className="w-full overflow-auto">
                 <Topbar />
                 <div className="container md:px-12">
                   <Outlet />
                 </div>
-              </main>
+              </section>
             </div>
     </>
   );
