@@ -7,6 +7,11 @@ export default function SendTicket() {
   const [departmentsSubs, setDepartmentsSubs] = useState([]);
   const [courses, setCourses] = useState([]);
   const [ticketTypeID, setTicketTypeID] = useState("");
+  const [departmentID, setDepartmentID] = useState("");
+  const [title, setTitle] = useState("");
+  const [priority, setPriority] = useState("1");
+  const [body, setBody] = useState("");
+  const [courseID, setCourseID] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/tickets/departments`)
@@ -32,8 +37,39 @@ export default function SendTicket() {
       .then((subs) => setDepartmentsSubs(subs));
   };
 
+  const sendTicket = (event) => {
+    event.preventDefault();
+
+    const newTicketInfos = {
+      departmentID,
+      departmentSubID: ticketTypeID,
+      title,
+      body,
+      priority,
+      course: courseID.length ? courseID : undefined,
+    };
+
+    fetch(`http://localhost:4000/v1/tickets`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("user")).token
+        }`,
+      },
+      body: JSON.stringify(newTicketInfos),
+    })
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((result) => {
+        console.log(result);
+      });
+  };
+
   return (
-    <main className="pb-5 md:pb-8 mx-auto mt-6 md:mt-12">
+    <main className="pb-5 md:pb-8 mx-auto mt-8 md:mt-14">
       <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-xl mb-8">
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
           <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
@@ -59,7 +95,10 @@ export default function SendTicket() {
               name="department"
               id="department"
               className="w-full sm:w-1/2 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
-              onChange={(event) => getDepartmentsSub(event.target.value)}
+              onChange={(event) => {
+                getDepartmentsSub(event.target.value);
+                setDepartmentID(event.target.value)
+              }}
             >
               <option>دپارتمان را انتخاب کنید:</option>
               {departments.map((department) => (
@@ -90,16 +129,16 @@ export default function SendTicket() {
               type="text"
               className="w-full sm:w-1/2 lg:w-full placeholder:text-darkBox/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-white dark:bg-darkBox text-2xl p-5 rounded-lg"
               placeholder="موضوع تیکت:"
+              onChange={(event) => setTitle(event.target.value)}
               id="title"
               name="title"
-              required=""
             />
             {ticketTypeID === "63b688c5516a30a651e98156" && (
               <select
                 name="department"
                 id="department"
                 className="w-full sm:w-1/2 lg:w-1/3 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
-                onChange={(event) => getDepartmentsSub(event.target.value)}
+                onChange={(event) => setCourseID(event.target.value)}
               >
                 <option>دوره را انتخاب کنید:</option>
                 {courses.map((course) => (
@@ -114,12 +153,13 @@ export default function SendTicket() {
           <textarea
             className="w-full min-h-72 placeholder:text-darkBox/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-white dark:bg-darkBox text-2xl p-5 rounded-lg"
             placeholder="متن تیکت:"
+            onChange={(event) => setBody(event.target.value)}
             id="text"
             name="text"
             required=""
           ></textarea>
 
-          <div className="flex flex-wrap gap-5 items-center justify-between mt-8 md:pr-5">
+          <div className="flex flex-wrap gap-6 items-center justify-between mt-8 md:pr-5">
             {/* <!-- Attach --> */}
             <div className="attachments_btnwrap attachments_button flex items-center justify-between w-full sm:w-80 h-20 px-8 border border-light-blue-500 text-light-blue-500 bg-transparent cursor-pointer rounded-lg">
               <span className="font-EstedadBold text-[1.7rem] select-none">
@@ -130,7 +170,7 @@ export default function SendTicket() {
               </div>
             </div>
 
-            <button className="bg-light-blue-800 text-3xl h-20 w-full sm:w-80 mr-auto rounded-lg">
+            <button onClick={sendTicket} className="bg-light-blue-800 text-3xl h-20 w-full sm:w-80 mr-auto rounded-lg">
               ارسال تیکت
             </button>
           </div>
