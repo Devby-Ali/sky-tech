@@ -18,14 +18,12 @@ import {
 // import Topbar from "../Topbar/Topbar"
 
 export default function Navbar() {
-
   const [dark, setDark] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [openCollapse, setOpenCollapse] = useState(false);
   const [overlay, setOverlay] = useState(false);
 
   const [allMenus, setAllMenus] = useState([]);
-
 
   const themeHandler = () => {
     if (localStorage.theme === "dark") {
@@ -65,11 +63,9 @@ export default function Navbar() {
       });
   }, []);
 
-
   return (
     <>
-
-    {/* <Topbar /> */}
+      {/* <Topbar /> */}
       <div
         className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-[263px]"
@@ -147,7 +143,7 @@ export default function Navbar() {
         </ul>
       </div>
 
-      <header className="lg:fixed lg:flex lg:top-7 lg:right-0 lg:left-0 z-40 justify-between items-center w-full lg:w-[95%] h-[8.5rem] 2xl:h-36 lg:mx-auto lg:rounded-4xl shadow-lg bg-gradient-to-tr from-light-blue-900 via-darkBox to-light-blue-900 lg:from-lightishBlue-400/50 lg:via-darkBox/80 via-60% lg:to-lightishBlue-400/50 lg:backdrop-blur-[4px]">
+      <header className="lg:fixed lg:flex lg:top-7 lg:right-0 lg:left-0 z-40 justify-between items-center w-full lg:w-[95%] h-32 lg:mx-auto lg:rounded-3xl shadow-lg bg-gradient-to-tr from-light-blue-900 via-darkBox to-light-blue-900 lg:from-lightishBlue-400/30 lg:via-darkBox/60 via-60% lg:to-lightishBlue-400/30 lg:backdrop-blur-[5px]">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
             <div
@@ -159,22 +155,20 @@ export default function Navbar() {
 
             <div className="flex gap-x-6 xl:gap-x-14">
               <Link to={"/"} className="text-light-blue-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="65"
-                  height="65"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
-                  viewBox="0 0 24 24"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z"></path>
-                  <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
-                  <path d="m9 11 3 3 3-3"></path>
-                </svg>
+                <div className="mb-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="65"
+                    height="65"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                    <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                    <path d="m9 11 3 3 3-3"></path>
+                  </svg>
+                </div>
               </Link>
 
               <ul className="hidden lg:flex gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
@@ -189,7 +183,10 @@ export default function Navbar() {
                     key={menu._id}
                     className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative"
                   >
-                    <Link to={`/category-info/${menu.href}/1`} className="flex-center">
+                    <Link
+                      to={`/category-info/${menu.href}/1`}
+                      className="flex-center"
+                    >
                       {menu.title}
                       {menu.submenus.length !== 0 && (
                         <>
