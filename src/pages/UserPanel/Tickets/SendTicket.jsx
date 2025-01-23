@@ -69,7 +69,7 @@ export default function SendTicket() {
   };
 
   return (
-    <main className="pb-5 md:pb-8 mx-auto mt-8 md:mt-14">
+    <main className="pb-5 md:pb-8 mx-auto mt-8 md:mt-14 2xl:px-24">
       <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-xl mb-8">
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
           <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { HiOutlineCheckCircle, HiOutlinePlusCircle } from "react-icons/hi2";
+import {
+  HiOutlineCheckCircle,
+  HiOutlineMagnifyingGlassCircle,
+  HiOutlinePlusCircle,
+} from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
 export default function Tickets() {
@@ -15,16 +19,16 @@ export default function Tickets() {
     })
       .then((res) => {
         console.log(res);
-        return res.json()
+        return res.json();
       })
       .then((data) => setTickets(data));
   }, []);
 
   return (
-    <main className="pb-5 md:pb-8 mx-auto mt-6 md:mt-12">
+    <main className="pb-5 md:pb-8 mx-auto mt-6 md:mt-12 2xl:px-24">
       <div className="flex items-center sm:flex-row-reverse justify-between gap-y-8 flex-wrap  text-darkColor dark:text-white mb-12 pt-2">
         <Link
-          className="flex items-center justify-between gap-x-3 w-full sm:w-auto md:w-full lg:w-auto xl:w-96 text-2xl sm:text-[1.6rem] text-teal-300 bg-transparent border border-teal-300 h-24 sm:h-[8.8rem] md:h-[6.9rem] px-5 lg:px-7 font-EstedadBold rounded-lg"
+          className="flex items-center justify-between gap-x-3 w-full sm:w-auto md:w-full lg:w-auto xl:w-96 text-2xl sm:text-[1.6rem] text-teal-300 bg-transparent border border-teal-300 h-24 sm:h-[8.8rem] md:h-[6.9rem] px-5 lg:px-7 font-EstedadBold rounded-lg my-1"
           to="/my-account/send-ticket"
         >
           ارسال تیکت جدید
@@ -34,7 +38,8 @@ export default function Tickets() {
         </Link>
 
         <div className="flex flex-col sm:flex-row w-full sm:w-auto md:w-full lg:w-auto gap-x-5 xl:gap-x-10 2xl:gap-x-12 gap-y-8 items-center">
-          <div className="flex items-center gap-x-4 w-full sm:w-56 md:w-full lg:w-auto xl:w-80 bg-white dark:bg-darkBox rounded-lg px-7 py-4">
+
+          <div className="flex items-center gap-x-4 w-full sm:w-56 md:w-full lg:w-auto xl:w-80 bg-white dark:bg-darkBox rounded-md px-7 py-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -59,7 +64,7 @@ export default function Tickets() {
             </div>
           </div>
 
-          <div className="flex items-center gap-x-4 w-full sm:w-56 md:w-full lg:w-auto xl:w-80 bg-white dark:bg-darkBox rounded-lg px-7 py-4">
+          <div className="flex items-center gap-x-4 w-full sm:w-56 md:w-full lg:w-auto xl:w-80 bg-white dark:bg-darkBox rounded-md px-7 py-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -88,7 +93,7 @@ export default function Tickets() {
             </div>
           </div>
 
-          <div className="flex items-center gap-x-4 w-full sm:w-56 md:w-full lg:w-auto xl:w-80 bg-white dark:bg-darkBox rounded-lg px-7 py-4">
+          <div className="flex items-center gap-x-4 w-full sm:w-56 md:w-full lg:w-auto xl:w-80 bg-white dark:bg-darkBox rounded-md px-7 py-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -115,7 +120,7 @@ export default function Tickets() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-3.5 rounded-xl mb-8">
+      <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-3.5 rounded-md mb-8">
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
           <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
           <span className="text-light-blue-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
@@ -134,16 +139,16 @@ export default function Tickets() {
         </select>
       </div>
 
-      <div className="space-y-3 md:space-y-4 md:pr-5" id="container_tickets">
+      <div className="space-y-4 md:space-y-6 md:pr-5" id="container_tickets">
         {tickets.map((ticket) => (
           <>
-            <div className="flex items-start lg:items-center justify-between flex-col lg:flex-row gap-y-6 bg-white dark:bg-darkBox text-darkColor dark:text-white p-5 md:py-9 md:px-7 rounded-xl mb-8">
-              <a
-                href="/"
+            <div className="flex items-start lg:items-center justify-between flex-col lg:flex-row gap-y-6 bg-white dark:bg-darkBox text-darkColor dark:text-white p-5 md:py-9 md:px-7 rounded-md">
+              <Link
+                to={`answer/${ticket._id}`}
                 className="block lg:w-1/2 lg:truncate text-xl md:text-3xl"
               >
                 {ticket.title}
-              </a>
+              </Link>
               <div className="flex items-center justify-between lg:justify-start gap-x-3 md:gap-x-5 w-full lg:w-auto text-slate-500 dark:text-gray-400 text-lg md:text-2xl">
                 <span className="select-none">
                   {" "}
@@ -155,9 +160,20 @@ export default function Tickets() {
                 <span className="select-none mr-auto lg:mr-0">
                   {ticket.createdAt.slice(0, 10)}
                 </span>
-                <div className="text-3xl md:text-5xl text-green-500">
-                  <HiOutlineCheckCircle />
-                </div>
+
+                {ticket.answer === 0 ? (
+                  <>
+                    <div className="text-3xl md:text-5xl text-amber-500">
+                      <HiOutlineMagnifyingGlassCircle />
+                    </div>
+                  </>
+                ) : (
+                    <>
+                    <div className=" text-3xl md:text-5xl text-green-500">
+                      <HiOutlineCheckCircle />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </>
