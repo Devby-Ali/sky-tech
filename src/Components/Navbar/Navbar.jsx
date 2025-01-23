@@ -154,7 +154,7 @@ export default function Navbar() {
             </div>
 
             <div className="flex gap-x-6 xl:gap-x-14">
-              <Link to={"/"} className="text-light-blue-400">
+              <Link to={"/"} className="text-light-blue-100 dark:text-light-blue-400">
                 <div className="mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
