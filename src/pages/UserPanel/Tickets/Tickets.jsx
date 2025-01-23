@@ -124,7 +124,7 @@ export default function Tickets() {
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
           <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
           <span className="text-light-blue-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
-            تیکت های من (3)
+            تیکت های من ({tickets.length})
           </span>
         </div>
         <select
