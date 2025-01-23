@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HiArrowUpTray, HiChevronLeft } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function SendTicket() {
   const [departments, setDepartments] = useState([]);
@@ -12,6 +13,8 @@ export default function SendTicket() {
   const [priority, setPriority] = useState("1");
   const [body, setBody] = useState("");
   const [courseID, setCourseID] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/tickets/departments`)
@@ -58,14 +61,17 @@ export default function SendTicket() {
         }`,
       },
       body: JSON.stringify(newTicketInfos),
-    })
-      .then((res) => {
-        console.log(res);
-        return res.json();
-      })
-      .then((result) => {
-        console.log(result);
-      });
+    }).then((res) => {
+      if (res.ok) {
+        Swal.fire({
+          title: "تیکت ثبت شد",
+          icon: "success",
+          confirmButtonText: "باشه",
+        }).then(() => {
+          navigate("/my-account/tickets");
+        });
+      }
+    });
   };
 
   return (
