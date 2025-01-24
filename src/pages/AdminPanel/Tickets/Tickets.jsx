@@ -3,14 +3,7 @@ import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 
-const TABLE_HEAD = [
-  "شناسه",
-  "کاربر",
-  "عنوان",
-  "نوع تیکت",
-  "مشاهده",
-  "پاسخ",
-];
+const TABLE_HEAD = ["شناسه", "کاربر", "عنوان", "نوع تیکت", "مشاهده", "پاسخ"];
 
 export default function Tickets() {
   const [tickets, setTickets] = useState([]);
@@ -33,10 +26,44 @@ export default function Tickets() {
   const showTicketBody = (body) => {
     Swal.fire({
       title: body,
-      confirmButtonText: 'دیدم'
-    })
-  }
+      confirmButtonText: "دیدم",
+    });
+  };
 
+  const setAnswerToTicket = (ticketID) => {
+    Swal.fire({
+      title: "پاسخ:",
+      input: "textarea",
+      confirmButtonText: "ثبت",
+    }).then((result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        const ticketAnswerInfos = {
+          ticketID,
+          body: result.value,
+        };
+
+        fetch(`http://localhost:4000/v1/tickets/answer`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user")).token
+            }`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(ticketAnswerInfos),
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "پاسخ مورد نظر با موفقیت ثبت شد",
+              icon: "success",
+              confirmButtonText: "ok",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -111,7 +138,12 @@ export default function Tickets() {
                         variant="small"
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button" onClick={() => showTicketBody(ticket.body)}>مشاهده</button>
+                        <button
+                          type="button"
+                          onClick={() => showTicketBody(ticket.body)}
+                        >
+                          مشاهده
+                        </button>
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -121,6 +153,7 @@ export default function Tickets() {
                       >
                         <button
                           type="button"
+                          onClick={() => setAnswerToTicket(ticket._id)}
                         >
                           پاسخ
                         </button>
