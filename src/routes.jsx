@@ -24,6 +24,7 @@ import AdminContact from "./pages/AdminPanel/Contact/Contact";
 import Sessions from "./pages/AdminPanel/Sessions/Sessions";
 import Comments from "./pages/AdminPanel/Comments/Comments";
 import Offs from "./pages/AdminPanel/Offs/Offs";
+import Tickets from "./pages/AdminPanel/Tickets/Tickets";
 
 import UserPanel from "./pages/UserPanel/Index";
 import UserPIndex from "./pages/UserPanel/Index/Index";
@@ -66,6 +67,7 @@ const routes = [
       { path: "sessions", element: <Sessions /> },
       { path: "comments", element: <Comments /> },
       { path: "offs", element: <Offs /> },
+      { path: "tickets", element: <Tickets /> },
     ],
   },
 

@@ -42,6 +42,7 @@ export default function SendTicket() {
 
   const sendTicket = (event) => {
     event.preventDefault();
+    console.log(courseID)
 
     const newTicketInfos = {
       departmentID,
@@ -49,7 +50,6 @@ export default function SendTicket() {
       title,
       body,
       priority,
-      course: courseID.length ? courseID : undefined,
     };
 
     fetch(`http://localhost:4000/v1/tickets`, {
