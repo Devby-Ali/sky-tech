@@ -55,22 +55,22 @@ export default function Landing({ info }) {
             <h2 className="text-3xl">
               با اسکای آکادمی، برنامه نویسی تخصصی رو به صورت حرفه ای یاد بگیر .
             </h2>
-            <div className="relative max-w-[700px] mt-16 sm:mt-24 lg:mt-16 xl:mt-20 mx-auto">
-              <form action="#">
+            <div className="max-w-[700px] mt-16 sm:mt-24 lg:mt-16 xl:mt-20 mx-auto">
+              <form className="flex items-center justify-between border-2 dark:border border-gray-500 rounded-xl h-24 pl-2.5 pr-8" action="#">
                 <Input
                   type="text"
                   id="search"
-                  className="w-full border-2 dark:border border-gray-500 rounded-3xl h-24 bg-transparent text-xl xs:text-3xl pr-10 outline-none"
+                  className="w-full bg-transparent text-2xl xs:text-3xl outline-none"
                   placeholder="چی دوست داری یاد بگیری ..."
                   validations={[requiredValidator()]}
                   onInputHandler={onInputHandler}
                 />
                 <Button
-                  className="absolute flex-center w-20 h-20 bg-light-blue-700/60 border-none left-2 top-2 rounded-2xl"
+                  className="flex-center p-4 bg-light-blue-500/30 border-none rounded-lg"
                   type="submit"
                   onClick={search}
                 >
-                  <FaSearch className="text-5xl text-darkBox/80 dark:text-white" />
+                  <FaSearch className="text-4xl text-darkBox/80 dark:text-white" />
                 </Button>
               </form>
             </div>

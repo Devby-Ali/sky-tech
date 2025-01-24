@@ -13,7 +13,7 @@ export default function ArticleBox({
   shortName,
 }) {
   return (
-    <div className="blog flex flex-col bg-white dark:bg-darkBox text-darkColor dark:text-white overflow-hidden rounded-3xl">
+    <div className="blog flex flex-col bg-white dark:bg-darkBox text-darkColor dark:text-white overflow-hidden rounded-lg">
       {/* <!-- Blog Banner --> */}
       <div className="blog__banner relative h-[182px] overflow-hidden">
         <Link to={`/article-info/${shortName}`}>

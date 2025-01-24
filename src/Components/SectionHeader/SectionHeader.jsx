@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HiOutlineChevronLeft } from "react-icons/hi2";
+import { HiArrowUpLeft, HiOutlineChevronLeft } from "react-icons/hi2";
 
 export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHref }) {
   return (
@@ -24,10 +24,10 @@ export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHr
               to={`/${btnHref}`}
               className="relative flex text-[1.7rem] md:text-3xl tracking-tighter text-light-blue-700 hover:text-purple-200"
             >
-              <div className="font-MikhakWoff2one font-bold pb-2 pl-8 border-b border-b-light-blue-700 hover:border-b-pink-200 transition-colors">
+              <div className="font-MikhakWoff2one font-bold pb-2 pl-5 border-b-2 border-b-light-blue-700 hover:border-b-pink-200 transition-colors">
                 {btnTitle}
               </div>
-              <HiOutlineChevronLeft className="absolute -left-4 -bottom-[1.4rem] text-5xl transition-colors" />
+              <HiArrowUpLeft className="absolute -left-[2.3rem] -bottom-2 text-5xl transition-colors" />
             </Link>
           </div>
         ) : null}

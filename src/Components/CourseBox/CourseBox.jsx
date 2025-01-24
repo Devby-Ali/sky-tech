@@ -16,11 +16,11 @@ export default function CourseBox(props) {
   };
 
   return (
-    <div className="course flex flex-col  bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl h-full">
+    <div className="course flex flex-col  bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg h-full">
       {/* <!-- Course Banner --> */}
       <div className="relative h-[17rem] group">
         <Link
-          className="block w-full h-full rounded-3xl overflow-hidden"
+          className="block w-full h-full rounded-t-lg overflow-hidden"
           to={`/course-info/${props.shortName}`}
           title={props.name}
         >

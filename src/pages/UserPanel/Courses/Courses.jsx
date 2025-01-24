@@ -17,6 +17,7 @@ export default function Courses() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setCourses(data);
       });
   }, []);
@@ -36,12 +37,12 @@ export default function Courses() {
         <section className="posts_wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 sm:gap-11 px-6 md:p-1">
           {courses.map((course) => (
             <>
-              <div className="course flex flex-col  bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl h-full">
+              <div className="course flex flex-col bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg h-full">
                 {/* <!-- Course Banner --> */}
-                <div className="relative h-[17rem] group">
+                <div className="relative h-[15rem] group">
                   <Link
-                    className="block w-full h-full rounded-xl overflow-hidden"
-                    to={`/course-info/props.shortName`}
+                    className="block w-full h-full rounded-t-lg overflow-hidden"
+                    to={`/course-info/${course.course.shortName}`}
                     title={"props.name"}
                   >
                     <img
@@ -51,10 +52,10 @@ export default function Courses() {
                     />
                   </Link>
                 </div>
-                <div className={`flex-grow px-6 py-6 mb-6 `}>
+                <div className={`flex-grow px-6 py-6`}>
                   {/* <!-- Course Title --> */}
                   <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2">
-                    <Link to={`/course-info/`} href="">
+                    <Link to={`/course-info/${course.course.shortName}`}>
                       {course.course.name}
                     </Link>
                   </h3>
@@ -67,7 +68,7 @@ export default function Courses() {
                       <div className="text-3xl">
                         <LiaUserSolid />
                       </div>
-                      <a href="https:/">props.creator</a>
+                      <a href="https:/">course.creator</a>
                     </div>
                     {/* <!-- Rating --> */}
                     <div className="flex items-center gap-x-1 text-xl text-blue-gray-600 dark:text-white/70">
@@ -75,16 +76,6 @@ export default function Courses() {
                         ? "تکمیل شده"
                         : "در حال برگزاری"}
                     </div>
-                  </div>
-                  <div className="flex items-end justify-between mt-3">
-                    <span className="flex items-center gap-x-2 text-blue-gray-600 dark:text-white/70 text-xl">
-                      <div className="text-4xl">
-                        <PiUsersThree />
-                      </div>
-                      props.registers
-                    </span>
-                    {/* <!-- Price --> */}
-                    {course.course.price === 0 ? "رایگان" : course.course.price}
                   </div>
                   <div className="flex items-center gap-x-3 h-12 -mx-3 px-3 mt-auto">
                     <div className="w-36 text-xl text-green-500 shrink-0">

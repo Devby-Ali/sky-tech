@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AboutUsBox({ title, desc, icon }) {
   return (
-    <div className="flex flex-col lg:flex-row items-center p-8 lg:p-10 gap-x-6 gap-y-8 text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-3xl">
+    <div className="flex flex-col lg:flex-row items-center p-8 lg:p-10 gap-x-6 gap-y-8 text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-lg">
       <div className="text-8xl">
           {icon}
       </div>

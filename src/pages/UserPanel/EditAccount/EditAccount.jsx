@@ -1,7 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/authContext";
-import { HiOutlineArrowUpTray, HiOutlineDeviceTablet, HiOutlineEnvelope, HiOutlineUser, HiOutlineUserCircle } from "react-icons/hi2";
-
+import {
+  HiOutlineArrowUpTray,
+  HiOutlineDeviceTablet,
+  HiOutlineEnvelope,
+  HiOutlineLockClosed,
+  HiOutlineUser,
+  HiOutlineUserCircle,
+} from "react-icons/hi2";
+import Swal from "sweetalert2";
 
 export default function EditAccount() {
   const authContext = useContext(AuthContext);
@@ -9,6 +16,7 @@ export default function EditAccount() {
   const [phone, setPhone] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     setName(authContext.userInfos.name);
@@ -16,24 +24,55 @@ export default function EditAccount() {
     setUsername(authContext.userInfos.username);
     setUsername(authContext.userInfos.username);
     setEmail(authContext.userInfos.email);
-  }, []);
+    console.log(authContext);
+  }, [authContext]);
+
+  const editAccount = (event) => {
+    event.preventDefault();
+
+    const userNewInfos = {
+      name,
+      username,
+      email,
+      password,
+      phone,
+    };
+
+    fetch(`http://localhost:4000/v1/users/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("user")).token
+        }`,
+      },
+      body: JSON.stringify(userNewInfos),
+    }).then((res) => {
+      if (res.ok) {
+        Swal.fire({
+          title: "اطلاعات اکانت شما ویرایش شد",
+          icon: "success",
+          confirmButtonText: "باشه",
+        });
+      }
+    });
+  };
 
   return (
-    <main className="pb-5 md:pb-8 mx-auto mt-10 md:mt-12 2xl:px-24">
+    <main className="pb-5 md:pb-8 mx-auto mt-10 md:mt-14 2xl:px-24">
       <form id="edit-account-info" className="block mt-6 md:mt-10">
-      <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-3.5 rounded-md mb-8">
-        <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
-          <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-          <span className="text-light-blue-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
-          جزئیات حساب کاربری
-          </span>
-        </div>
+        <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-3.5 rounded-md mb-8">
+          <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
+            <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+            <span className="text-light-blue-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
+              جزئیات حساب کاربری
+            </span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-6 md:pr-5">
-
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 md:gap-y-5 md:pr-5">
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-6">
+            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
               نام و نام خانوادگی
             </label>
             <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
@@ -41,7 +80,7 @@ export default function EditAccount() {
                 type="text"
                 className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
                 value={name}
-                onChange={event => setName(event.target.value)}
+                onChange={(event) => setName(event.target.value)}
               />
               <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
                 <HiOutlineUserCircle />
@@ -50,7 +89,7 @@ export default function EditAccount() {
           </div>
 
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-6">
+            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
               نام کاربری
             </label>
             <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
@@ -58,17 +97,16 @@ export default function EditAccount() {
                 type="text"
                 className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
                 value={username}
-                onChange={event => setUsername(event.target.value)}
+                onChange={(event) => setUsername(event.target.value)}
               />
               <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
-              <HiOutlineUser />
+                <HiOutlineUser />
               </div>
             </div>
           </div>
 
-
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-6">
+            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
               ایمیل
             </label>
             <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
@@ -76,7 +114,7 @@ export default function EditAccount() {
                 type="email"
                 className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
                 value={email}
-                onChange={event => setEmail(event.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
               />
               <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
                 <HiOutlineEnvelope />
@@ -85,7 +123,7 @@ export default function EditAccount() {
           </div>
 
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-6">
+            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
               شماره تلفن
             </label>
             <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
@@ -94,11 +132,27 @@ export default function EditAccount() {
                 id="phone"
                 className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
                 value={phone}
-                onChange={event => setPhone(event.target.value)}
+                onChange={(event) => setPhone(event.target.value)}
               />
               <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
                 <HiOutlineDeviceTablet />
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="md:pr-5 mt-7 md:mt-5 lg:mx-36">
+          <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
+            رمز عبور جدید
+          </label>
+          <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
+            <input
+              type="password"
+              className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
+              <HiOutlineLockClosed />
             </div>
           </div>
         </div>
@@ -110,7 +164,7 @@ export default function EditAccount() {
               آپلود عکس پروفایل
             </span>
             <div className="text-4xl">
-              <HiOutlineArrowUpTray/>
+              <HiOutlineArrowUpTray />
             </div>
           </div>
 
@@ -128,55 +182,13 @@ export default function EditAccount() {
             </div>
           </div>
 
-          <button className="h-20 bg-light-blue-600 dark:bg-light-blue-900 w-full text-white font-EstedadMedium sm:w-96 rounded-md">
+          <button
+            onClick={editAccount}
+            className="h-20 bg-light-blue-600 dark:bg-light-blue-900 w-full text-white font-EstedadMedium sm:w-96 rounded-md"
+          >
             ویرایش حساب کاربری
           </button>
         </div>
-      </form>
-
-      <form
-        id="edit-account-password"
-        className="block mt-6 md:mt-10 pt-6 md:pt-10 border-t border-t-neutral-200 dark:border-t-white/10"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 md:pr-5">
-          <div>
-            <label className="inline-block font-danaMedium text-sm mb-3">
-              رمز عبور فعلی
-            </label>
-            <div className="relative">
-              <input
-                type="password"
-                className="w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded"
-                id="old_pass"
-                name="old_pass"
-              />
-              <div className="absolute left-3.5 top-0 bottom-0 my-auto size-6 text-slate-500 dark:text-gray-400">
-                <use href="#lock-closed"></use>
-              </div>
-            </div>
-          </div>
-          <div>
-            <label className="inline-block font-danaMedium text-sm mb-3">
-              رمز عبور جدید
-            </label>
-            <div className="relative">
-              <input
-                type="password"
-                className="w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded"
-                id="new_pass"
-                name="new_pass"
-                required=""
-              />
-              <div className="absolute left-3.5 top-0 bottom-0 my-auto size-6 text-slate-500 dark:text-gray-400">
-                <use href="#lock-closed"></use>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button className="btn-primary btn btn-outline w-full sm:w-62 mr-auto mt-8">
-          تغییر رمز عبور
-        </button>
       </form>
     </main>
   );

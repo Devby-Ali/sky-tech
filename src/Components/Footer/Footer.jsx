@@ -125,7 +125,7 @@ export default function Footer() {
                 عضو شوید!
               </span>
               <form action="#" className="flex flex-wrap">
-                <div className="flex items-center justify-between px-4 py-3 bg-[#333c4c]/15 dark:bg-[#333c4c] rounded-2xl">
+                <div className="flex items-center justify-between p-3 pr-4 bg-[#333c4c]/15 dark:bg-[#333c4c] rounded-md">
                   <Input
                     id="email"
                     className="bg-transparent outline-none"
@@ -136,7 +136,7 @@ export default function Footer() {
                   />
                   <Button
                     type="submit"
-                    className={` rounded-lg px-4 pb-0.5 transition-all ${
+                    className={` rounded-sm px-4 pb-0.5 transition-all ${
                       formState.isFormValid
                         ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                         : "bg-white/10"
