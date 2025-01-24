@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { Card, Typography } from "@material-tailwind/react";
+import Swal from "sweetalert2";
 
 const TABLE_HEAD = [
   "شناسه",
@@ -29,9 +30,17 @@ export default function Tickets() {
       });
   }, []);
 
+  const showTicketBody = (body) => {
+    Swal.fire({
+      title: body,
+      confirmButtonText: 'دیدم'
+    })
+  }
+
+
   return (
     <>
-      <DataTable title="کاربران">
+      <DataTable title="تیکت‌ها">
         <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
           <table className="w-full min-w-max table-auto text-center">
             <thead>
@@ -102,7 +111,7 @@ export default function Tickets() {
                         variant="small"
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">مشاهده</button>
+                        <button type="button" onClick={() => showTicketBody(ticket.body)}>مشاهده</button>
                       </Typography>
                     </td>
                     <td className={classes}>
