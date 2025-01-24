@@ -10,6 +10,8 @@ import Contact from "./pages/Contact/Contact";
 import Search from "./pages/Search/Search";
 import Session from "./pages/Session/Session";
 
+
+import PAdminPrivate from "./Components/Privates/PAdminPrivate";
 import AdminPanel from "./pages/AdminPanel/index";
 import PAdminIndex from "./pages/AdminPanel/Index/Index";
 import Users from "./pages/AdminPanel/Users/Users";
@@ -47,7 +49,11 @@ const routes = [
 
   {
     path: "/p-admin/*",
-    element: <AdminPanel />,
+    element: (
+      <PAdminPrivate>
+        <AdminPanel />
+      </PAdminPrivate>
+    ),
     children: [
       { path: "", element: <PAdminIndex /> },
       { path: "users", element: <Users /> },
