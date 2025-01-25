@@ -22,7 +22,8 @@ const TABLE_HEAD = [
   "ایمیل",
   "نام کاربری",
   "همراه",
-  "ویرایش",
+  "عنوان",
+  "تغیبر‌سطح",
   "حذف",
   "بن",
 ];
@@ -162,6 +163,43 @@ export default function Users() {
         });
         getAllUsers();
       });
+  };
+
+  const changeRole = (userID) => {
+    Swal.fire({
+      title: "ADMIN or USER",
+      input: "text",
+      confirmButtonText: "تغییر‌سطح",
+      showDenyButton: true,
+      denyButtonText: "بیخیال",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const reqBodyInfos = {
+          role: result.value,
+          id: userID,
+        };
+
+        fetch(`http://localhost:4000/v1/users/role`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user")).token
+            }`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reqBodyInfos),
+        }).then((res) => {
+          if (res.ok) {
+            Swal.fire({
+              title: "کاربر مورد نظر تغییر یافت",
+              icon: "success",
+              confirmButtonText: "Ok",
+            });
+            getAllUsers();
+          }
+        });
+      }
+    });
   };
 
   return (
@@ -324,6 +362,14 @@ export default function Users() {
                         variant="small"
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
+                        {user.role === "ADMIN" ? "مدیر" : "کاربر"}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
+                      >
                         {user.username}
                       </Typography>
                     </td>
@@ -340,7 +386,12 @@ export default function Users() {
                         variant="small"
                         className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
                       >
-                        <button type="button">ویرایش</button>
+                        <button
+                          type="button"
+                          onClick={() => changeRole(user._id)}
+                        >
+                          تغییر‌سطح
+                        </button>
                       </Typography>
                     </td>
                     <td className={classes}>
