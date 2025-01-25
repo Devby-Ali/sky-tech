@@ -308,13 +308,13 @@ export default function CourseInfo() {
                         <div>رایگان</div>
                       ) : (
                         <div className="flex-center gap-x-3">
-                          {price >= 250_000 ? (
+                          {courseDetails.discount ? (
                             <>
                               <span className="text-4xl text-blue-gray-600 dark:text-white/70 -mb-1.5 line-through">
                                 {price.toLocaleString()}
                               </span>
                               <span className="flex gap-x-1 text-green-500 font-EstedadMedium text-5xl">
-                                {(price - 20_000).toLocaleString()}
+                                {(price -  (price * courseDetails.discount) / 100).toLocaleString()}
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="30"
@@ -331,7 +331,7 @@ export default function CourseInfo() {
                               </span>
                             </>
                           ) : (
-                            <span className="flex gap-x-1 text-green-500 font-EstedadMedium text-2xl">
+                            <span className="flex gap-x-1 text-green-500 font-EstedadMedium text-5xl">
                               {price.toLocaleString()}
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"

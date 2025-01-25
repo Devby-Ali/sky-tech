@@ -34,9 +34,11 @@ export default function CourseBox(props) {
           {!isImgShow && <CircleSpinner />}
         </Link>
         {/* <!-- Offer percent  --> */}
-        <span className="absolute right-5 top-5 flex-center w-20 h-12 bg-green-500 text-white font-EstedadBold text-xl rounded-full">
-          20%
-        </span>
+        {props.price && props.discount !== 0 ? (
+          <span className="absolute right-5 top-5 flex-center w-20 h-12 bg-green-500 text-white font-EstedadBold text-xl rounded-full">
+            {props.discount}%
+          </span>
+        ) : null}
       </div>
       {/* <!-- Course Title & Description --> */}
       <div className={`flex-grow px-6 py-6 mb-6 ${props.isSlider && "h-48"}`}>
@@ -80,7 +82,7 @@ export default function CourseBox(props) {
               .fill(0)
               .map((item) => (
                 <>
-                 <HiStar />
+                  <HiStar />
                 </>
               ))}
           </div>
@@ -98,13 +100,16 @@ export default function CourseBox(props) {
             <div>رایگان</div>
           ) : (
             <div className="flex-center gap-x-3">
-              {props.price >= 250_000 ? (
+              {props.discount ? (
                 <>
                   <span className="text-xl text-blue-gray-600 dark:text-white/70 -mb-1.5 line-through">
-                    {(props.price - 20_000).toLocaleString()}
+                    {props.price.toLocaleString()}
                   </span>
                   <span className="flex gap-x-1 text-green-500 font-EstedadMedium text-2xl">
-                    {props.price.toLocaleString()}
+                    {(
+                      props.price -
+                      (props.price * props.discount) / 100
+                    ).toLocaleString()}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="25"

@@ -69,11 +69,9 @@ export default function TicketAnswer() {
               <div className="w-full lg:w-1/2 bg-light-blue-100 dark:bg-[#333c4c] p-8 rounded text-white mr-auto">
                 <div className="flex items-center gap-x-2 mb-5 md:mb-7 text-2xl md:text-[1.7rem] font-EstedadMedium">
                   <div className="w-2 h-6 rounded-full bg-green-500"></div>
-                  پشتیبانی | شهرام خندقی
+                  پشتیبانی | Admin 
                 </div>
-                <p>سلام دوست عزیز</p>
-                <p>به فیگماتون درخواست ارسال شد لطفا تایید یا اکسپت کنید</p>
-
+                {ticketInfo.answer}
                 <div className="flex items-center justify-between text-xl text-[#333c4c] dark:text-white/60 mt-6 pt-6 sm:mt-8 sm:pt-7 border-t border-t-white/10">
                   <span>1403/01/07</span>
                   <span>15:32</span>
