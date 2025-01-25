@@ -71,11 +71,11 @@ i {
 
 @layer components {
   .overlay {
-    @apply invisible opacity-0 fixed inset-0 w-full h-full bg-black/40 z-20 transition-all backdrop-blur-[4px];
+    @apply invisible opacity-0 fixed inset-0 w-full h-full bg-black/40 transition-all backdrop-blur-[4px];
   }
 
   .overlay--visible {
-    @apply visible opacity-100;
+    @apply visible opacity-100 z-10;
   }
 
   
@@ -208,6 +208,17 @@ i {
     opacity: 1;
     visibility: visible;
     top: 7rem;
+  }
+
+  .header__dropdown {
+    opacity:  0;
+    visibility: hidden;
+  }
+
+  .header__item:hover .header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    right: 23.6rem;
   }
 
   .courses-top-bar__selection-list {

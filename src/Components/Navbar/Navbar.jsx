@@ -6,6 +6,7 @@ import { GoTriangleDown } from "react-icons/go";
 import { Collapse, Card } from "@material-tailwind/react";
 import {
   HiBars3,
+  HiChevronLeft,
   HiChevronRight,
   HiMagnifyingGlass,
   HiOutlineArrowLeftEndOnRectangle,
@@ -143,86 +144,95 @@ export default function Navbar() {
         </ul>
       </div>
 
-      <header className="lg:fixed lg:flex lg:top-7 lg:right-0 lg:left-0 z-40 justify-between items-center w-full lg:w-[95%] h-32 lg:mx-auto lg:rounded-3xl shadow-lg bg-gradient-to-tr from-light-blue-900 via-darkBox to-light-blue-900 lg:from-lightishBlue-400/30 lg:via-darkBox/60 via-60% lg:to-lightishBlue-400/30 lg:backdrop-blur-[5px]">
+      <header className="md:fixed md:flex md:top-5 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-[95%] h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-gradient-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[4px]">
         <div className="w-full h-full">
-          <div className="h-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
+          <div className="h-full flex items-center justify-between px-12 py-4">
             <div
-              className="lg:hidden p-3.5 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white rounded-3xl cursor-pointer text-5xl"
+              className="md:hidden flex-center p-4 text-lightishBlue-900 dark:text-light-blue-50 cursor-pointer text-5xl"
               onClick={navOpenHandler}
             >
               <HiBars3 />
             </div>
 
             <div className="flex gap-x-6 xl:gap-x-14">
-              <Link to={"/"} className="text-light-blue-100 dark:text-light-blue-400">
-                <div className="mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="65"
-                    height="65"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                    <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
-                    <path d="m9 11 3 3 3-3"></path>
-                  </svg>
-                </div>
+              <Link
+                to={"/"}
+                className="text-light-blue-700 dark:text-light-blue-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="65"
+                  height="65"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z"></path>
+                  <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                  <path d="m9 11 3 3 3-3"></path>
+                </svg>
               </Link>
 
-              <ul className="hidden lg:flex gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
+              <ul className="hidden md:flex gap-x-7 xl:gap-x-12 text-lightishBlue-900 dark:text-light-blue-50 text-[1.7rem] xl:text-[1.8rem] font-EstedadMedium dark:font-EstedadLight">
                 <li className="main-header__item flex-center relative">
                   <Link to={"/"} className="flex-center">
                     صفحه اصلی
                   </Link>
                 </li>
-
-                {allMenus.map((menu) => (
-                  <li
-                    key={menu._id}
-                    className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative"
-                  >
-                    <Link
-                      to={`/category-info/${menu.href}/1`}
-                      className="flex-center"
-                    >
-                      {menu.title}
-                      {menu.submenus.length !== 0 && (
-                        <>
-                          <GoTriangleDown className="mt-1 xl:mr-1" />
-                          <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
-                            {menu.submenus.map((submenu) => (
-                              <li key={menu._id}>
-                                <Link
-                                  to={submenu.href}
-                                  className="block py-2 px-8 text-[1.6rem] text-zinc-600 duration-200"
-                                >
-                                  {submenu.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </>
-                      )}
-                    </Link>
-                  </li>
-                ))}
+                <li className="main-header__item flex-center relative">
+                  <Link to={"/courses/1"}>
+                    دوره های آموزشی
+                    <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
+                      {allMenus.map((menu) => (
+                        <li className="header__item" key={menu._id}>
+                          <Link
+                            to={menu.href}
+                            className="flex items-center justify-between py-2.5 px-8 text-[1.6rem] text-zinc-600 duration-200"
+                          >
+                            {menu.title}
+                            {menu.submenus.length !== 0 && (
+                              <>
+                                <HiChevronLeft className="mt-1 xl:mr-1" />
+                                <ul className="header__dropdown absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
+                                  {menu.submenus.map((submenu) => (
+                                    <li key={menu._id}>
+                                      <Link
+                                        to={submenu.href}
+                                        className="block px-8 py-2 text-[1.6rem] text-zinc-600 duration-200"
+                                      >
+                                        {submenu.title}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </>
+                            )}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </Link>
+                </li>
+                <li className="main-header__item flex-center relative">
+                  <Link to={"/articles/1"} className="flex-center">
+                    مقالات
+                  </Link>
+                </li>
               </ul>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center text-lightishBlue-900 dark:text-light-blue-50">
               <div
-                className="hidden lg:flex-center p-4 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-[2.75rem] rounded-3xl toggle-theme cursor-pointer"
+                className="hidden md:flex-center p-4 text-[2.75rem] rounded-xl toggle-theme cursor-pointer"
                 onClick={() => themeHandler()}
               >
-                <HiOutlineSun className="hidden dark:inline-block" />
+                <HiOutlineSun className="hidden dark:inline-block text-[2.9rem]" />
                 <HiOutlineMoon className="inline-block dark:hidden " />
               </div>
 
               <Link
                 to="#"
-                className="flex-center p-4 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-[2.75rem] mr-4 rounded-3xl"
+                className="flex-center p-4 text-[2.75rem] mr-4 rounded-xl"
               >
                 <HiOutlineShoppingBag />
               </Link>
@@ -231,10 +241,8 @@ export default function Navbar() {
                 <>
                   <Link
                     to="#"
-                    className={`relative flex items-center justify-center p-4 text-darkColor dark:text-white rounded-3xl mr-4 transition-all duration-200 ${
-                      openCollapse
-                        ? "z-40 bg-white dark:bg-[#333c4c]"
-                        : "z-0 bg-gray-300/40 dark:bg-white/10"
+                    className={`relative hidden md:flex-center items-center justify-center p-4 rounded-xl mr-4 transition-all duration-200 ${
+                      openCollapse && "z-40 bg-white/10 dark:bg-white/5"
                     }`}
                     onClick={toggleOpen}
                   >
