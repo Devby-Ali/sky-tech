@@ -10,10 +10,14 @@ import {
   HiChevronRight,
   HiMagnifyingGlass,
   HiOutlineArrowLeftEndOnRectangle,
+  HiOutlineChatBubbleLeftEllipsis,
+  HiOutlineFolder,
+  HiOutlineHome,
   HiOutlineMoon,
   HiOutlineShoppingBag,
   HiOutlineSun,
   HiOutlineUser,
+  HiPower,
 } from "react-icons/hi2";
 import Button from "../Form/Button";
 import Swal from "sweetalert2";
@@ -205,13 +209,13 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li className="main-header__item flex-center relative">
-                  <Link to={"/courses/1"}>
+                  <span className="cursor-pointer">
                     دوره های آموزشی
                     <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
                       {allMenus.map((menu) => (
                         <li className="header__item" key={menu._id}>
                           <Link
-                            to={menu.href}
+                            to={`/category-info/${menu.href}/1`}
                             className="flex items-center justify-between py-2.5 px-8 text-[1.6rem] text-zinc-600 duration-200"
                           >
                             {menu.title}
@@ -236,6 +240,11 @@ export default function Navbar() {
                         </li>
                       ))}
                     </ul>
+                  </span>
+                </li>
+                <li className="main-header__item flex-center relative">
+                  <Link to={"/courses/1"}>
+                    همه دوره ها
                   </Link>
                 </li>
                 <li className="main-header__item flex-center relative">
@@ -276,36 +285,49 @@ export default function Navbar() {
                       className="absolute top-32 left-0 w-96 z-50"
                       open={openCollapse}
                     >
-                      <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                        <span className="text-3xl text-center pb-8 border-b border-b-white/20">
+                      <Card className="py-8 px-8 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
+                        <span className="text-3xl pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.name}
                         </span>
-                        <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
-                          <li className="active-menu">
+                        <ul className="child:transition-all child:pr-2.5 child:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
+                          <li className="flex items-center gap-x-3">
+                            <span className="text-4xl">
+                              <HiOutlineHome />
+                            </span>
                             <Link to="/my-account">
                               <span>پیشخوان</span>
                             </Link>
                           </li>
-                          <li>
-                            <Link to="edit-account">
-                              <span>جزئیات حساب کاربری</span>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link to="buyed">
+                          <li className="flex items-center gap-x-3">
+                            <span className="text-4xl">
+                              <HiOutlineFolder />
+                            </span>
+                            <Link to="/my-account/buyed">
                               <span>دوره های من</span>
                             </Link>
                           </li>
-                          <li>
-                            <Link to="tickets">
-                              <span>تیکت های پشتیبانی</span>
+                          <li className="flex items-center gap-x-3">
+                            <span className="text-4xl">
+                              <HiOutlineChatBubbleLeftEllipsis />
+                            </span>
+                            <Link to="/my-account/tickets">
+                              <span>تیکت های من</span>
+                            </Link>
+                          </li>
+                          <li className="flex items-center gap-x-3">
+                            <span className="text-4xl">
+                              <HiOutlineUser />
+                            </span>
+                            <Link to="/my-account/edit-account">
+                              <span>جزئیات حساب</span>
                             </Link>
                           </li>
                         </ul>
-                        <div>
-                          <Button className="pr-2.5 py-8" onClick={logoutUser}>
-                            خروج
-                          </Button>
+                        <div className="flex items-center gap-x-3 pr-2.5 mt-6 mb-1">
+                          <span className="text-4xl">
+                            <HiPower />
+                          </span>
+                          <Button onClick={logoutUser}>خروج</Button>
                         </div>
                       </Card>
                     </Collapse>
