@@ -197,7 +197,7 @@ export default function Sessions() {
                 </div>
               </div>
 
-              <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+              <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl overflow-x-auto">
                 <label>بارگذاری</label>
                 <input
                   type="file"

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/authContext";
 import Input from "../Form/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GoTriangleDown } from "react-icons/go";
 import { Collapse, Card } from "@material-tailwind/react";
 import {
@@ -15,6 +15,8 @@ import {
   HiOutlineSun,
   HiOutlineUser,
 } from "react-icons/hi2";
+import Button from "../Form/Button";
+import Swal from "sweetalert2";
 
 // import Topbar from "../Topbar/Topbar"
 
@@ -25,6 +27,29 @@ export default function Navbar() {
   const [overlay, setOverlay] = useState(false);
 
   const [allMenus, setAllMenus] = useState([]);
+
+  const navigate = useNavigate();
+
+  const logoutUser = () => {
+    Swal.fire({
+      title: "مطمعنی میخوای از سیستم خارج بشی؟",
+      icon: "warning",
+      confirmButtonText: "آره",
+      showDenyButton: true,
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "با موفقیت logout شدید",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(() => {
+          authContext.logout();
+          navigate("/");
+        });
+      }
+    });
+  };
 
   const themeHandler = () => {
     if (localStorage.theme === "dark") {
@@ -76,7 +101,7 @@ export default function Navbar() {
           <Link
             to={"/"}
             onClick={navOpenHandler}
-            className="text-light-blue-600 dark:text-light-blue-500"
+            className="text-light-blue-600 dark:text-white0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -144,11 +169,11 @@ export default function Navbar() {
         </ul>
       </div>
 
-      <header className="md:fixed md:flex md:top-5 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-[95%] h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-gradient-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[4px]">
+      <header className="md:fixed md:flex md:top-5 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-[95%] h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-gradient-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[3px]">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-12 py-4">
             <div
-              className="md:hidden flex-center p-4 text-lightishBlue-900 dark:text-light-blue-50 cursor-pointer text-5xl"
+              className="md:hidden flex-center p-4 text-lightishBlue-900 dark:text-white cursor-pointer text-5xl"
               onClick={navOpenHandler}
             >
               <HiBars3 />
@@ -157,7 +182,7 @@ export default function Navbar() {
             <div className="flex gap-x-6 xl:gap-x-14">
               <Link
                 to={"/"}
-                className="text-light-blue-700 dark:text-light-blue-400"
+                className="text-light-blue-700 dark:text-light-blue-400 mb-1 2xl:mb-0"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +198,7 @@ export default function Navbar() {
                 </svg>
               </Link>
 
-              <ul className="hidden md:flex gap-x-7 xl:gap-x-12 text-lightishBlue-900 dark:text-light-blue-50 text-[1.7rem] xl:text-[1.8rem] font-EstedadMedium dark:font-EstedadLight">
+              <ul className="hidden md:flex gap-x-7 xl:gap-x-12 text-lightishBlue-900 dark:text-white text-[1.7rem] xl:text-[1.8rem] font-EstedadMedium dark:font-EstedadLight">
                 <li className="main-header__item flex-center relative">
                   <Link to={"/"} className="flex-center">
                     صفحه اصلی
@@ -221,7 +246,7 @@ export default function Navbar() {
               </ul>
             </div>
 
-            <div className="flex items-center text-lightishBlue-900 dark:text-light-blue-50">
+            <div className="flex items-center text-lightishBlue-900 dark:text-white">
               <div
                 className="hidden md:flex-center p-4 text-[2.75rem] rounded-xl toggle-theme cursor-pointer"
                 onClick={() => themeHandler()}
@@ -252,9 +277,36 @@ export default function Navbar() {
                       open={openCollapse}
                     >
                       <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                        <span className="text-2xl">
+                        <span className="text-3xl text-center pb-8 border-b border-b-white/20">
                           {authContext.userInfos.name}
                         </span>
+                        <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
+                          <li className="active-menu">
+                            <Link to="/my-account">
+                              <span>پیشخوان</span>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="edit-account">
+                              <span>جزئیات حساب کاربری</span>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="buyed">
+                              <span>دوره های من</span>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="tickets">
+                              <span>تیکت های پشتیبانی</span>
+                            </Link>
+                          </li>
+                        </ul>
+                        <div>
+                          <Button className="pr-2.5 py-8" onClick={logoutUser}>
+                            خروج
+                          </Button>
+                        </div>
                       </Card>
                     </Collapse>
                   </Link>
