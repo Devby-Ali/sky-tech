@@ -8,14 +8,14 @@ import { IoCodeWorking } from "react-icons/io5";
 
 export default function AboutUs() {
   return (
-    <div className="mb-48">
-      <div className="container">
+    <div className="container">
         <SectionHeader
           title="ما چه کمکی بهتون میکنیم؟"
           desc="از اونجایی که آکادمی آموزشی اسکای تک یک آکادمی خصوصی هست"
         />
+      <div className="container">
 
-        <div className="grid grid-rows-2 md:grid-cols-2 gap-8 sm:gap-10 cursor-default">
+        <div className="grid grid-rows-2 md:grid-cols-2 gap-8 sm:gap-10 cursor-default mb-36">
           <AboutUsBox
             title="پشتیبانی دائمی"
             desc="هرجا سوالی داشتی به مشکل خوردی بچه های تیم آمادن که مشکلت رو حل کنن تلاشمون اینه بدون نگرانی دوره رو کامل کنی."

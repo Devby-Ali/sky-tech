@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/authContext";
 import Input from "../Form/Input";
 import { Link, useNavigate } from "react-router-dom";
-import { GoTriangleDown } from "react-icons/go";
+import { GrUserAdmin } from "react-icons/gr";
 import { Collapse, Card } from "@material-tailwind/react";
 import {
   HiBars3,
@@ -97,43 +97,22 @@ export default function Navbar() {
     <>
       {/* <Topbar /> */}
       <div
-        className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
+        className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-9 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-[263px]"
         }`}
       >
-        <div className="flex items-center justify-between gap-x-14 h-20 mb-3 text-darkColor dark:text-white px-1 py-16">
-          <Link
-            to={"/"}
-            onClick={navOpenHandler}
-            className="text-light-blue-600 dark:text-white0"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="65"
-              height="65"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
-              viewBox="0 0 24 24"
-            >
-              <path stroke="none" d="M0 0h24v24H0z"></path>
-              <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
-              <path d="m9 11 3 3 3-3"></path>
-            </svg>
-          </Link>
-          <div className="flex items-center gap-x-6 text-4xl text-blue-gray-500 dark:text-white">
+        <div className="flex items-center text-[1.7rem] justify-between gap-x-4 h-20 mb-3 text-darkColor dark:text-white px-1 pt-16 pb-14">
+          {authContext.userInfos.name}
+          <div className="flex items-center gap-x-4 text-4xl text-blue-gray-500 dark:text-white">
             <div
-              className="flex-center p-5 rounded-3xl toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+              className="flex-center p-4 rounded-xl toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-white/5"
               onClick={() => themeHandler()}
             >
               <HiOutlineSun className="hidden dark:inline-block" />
               <HiOutlineMoon className="inline-block dark:hidden" />
             </div>
             <div
-              className="flex-center p-5 rounded-3xl cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+              className="flex-center p-4 rounded-xl cursor-pointer bg-blue-gray-50 dark:bg-white/5"
               onClick={navOpenHandler}
             >
               <HiChevronRight />
@@ -141,33 +120,46 @@ export default function Navbar() {
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <form action="https://" method="get">
-          <label className="relative py-5 mt-10 block bg-gray-100 text-gray-700 dark:bg-white/5 dark:text-white text-2xl rounded-tl-4xl rounded-br-4xl">
-            <input
-              className="bg-transparent pr-4 pl-12 w-72 h-full outline-none"
-              type="text"
-              placeholder="چیو میخوای یاد بگیری؟"
-              name="s"
-            />
-            <button
-              className="absolute left-4 top-0 bottom-0 my-auto text-gray-700 dark:text-white"
-              type="submit"
-              role="button"
-            >
-              <div className="text-4xl">
-                <HiMagnifyingGlass />
-              </div>
-            </button>
-          </label>
-        </form>
-
-        <ul className="child:transition-all child:pr-2.5 space-y-12 mt-12 text-darkColor dark:text-white ">
+        <ul className="child:transition-all px-3 child:pr-2.5 space-y-9 mt-8 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+          {authContext.userInfos.role === "ADMIN" && (
+            <li className="flex items-center justify-between hover:text-light-blue-500">
+              <Link to="/p-admin">
+                <span>پنل مدیریت</span>
+              </Link>
+              <HiChevronRight className="text-2xl rotate-180" />
+            </li>
+          )}
+          <li className="flex items-center justify-between hover:text-light-blue-500">
+            <Link to="/my-account">
+              <span>پیشخوان</span>
+            </Link>
+            <HiChevronRight className="text-2xl rotate-180" />
+          </li>
+          <li className="flex items-center justify-between hover:text-light-blue-500">
+            <Link to="/my-account/buyed">
+              <span>دوره های من</span>
+            </Link>
+            <HiChevronRight className="text-2xl rotate-180" />
+          </li>
+          <li className="flex items-center justify-between hover:text-light-blue-500">
+            <Link to="/my-account/tickets">
+              <span>تیکت های من</span>
+            </Link>
+            <HiChevronRight className="text-2xl rotate-180" />
+          </li>
+          <li className="flex items-center justify-between hover:text-light-blue-500">
+            <Link to="/my-account/edit-account">
+              <span>جزئیات حساب</span>
+            </Link>
+            <HiChevronRight className="text-2xl rotate-180" />
+          </li>
+          <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
           {allMenus.map((menu) => (
-            <li key={menu._id} className="flex items-center justify-between">
+            <li key={menu._id} className="flex items-center justify-between hover:text-light-blue-500">
               <Link to={menu.href} className="flex items-center gap-x-2">
                 {menu.title}
               </Link>
-              <HiChevronRight className="text-3xl rotate-180" />
+              <HiChevronRight className="text-2xl rotate-180" />
             </li>
           ))}
         </ul>
@@ -243,9 +235,7 @@ export default function Navbar() {
                   </span>
                 </li>
                 <li className="main-header__item flex-center relative">
-                  <Link to={"/courses/1"}>
-                    همه دوره ها
-                  </Link>
+                  <Link to={"/courses/1"}>همه دوره ها</Link>
                 </li>
                 <li className="main-header__item flex-center relative">
                   <Link to={"/articles/1"} className="flex-center">
@@ -290,6 +280,16 @@ export default function Navbar() {
                           {authContext.userInfos.name}
                         </span>
                         <ul className="child:transition-all child:pr-2.5 child:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
+                          {authContext.userInfos.role === "ADMIN" && (
+                            <li className="flex items-center gap-x-3">
+                              <span className="text-4xl">
+                                <GrUserAdmin />
+                              </span>
+                              <Link to="/p-admin">
+                                <span>پنل مدیریت</span>
+                              </Link>
+                            </li>
+                          )}
                           <li className="flex items-center gap-x-3">
                             <span className="text-4xl">
                               <HiOutlineHome />

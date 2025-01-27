@@ -1,19 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/authContext";
 
 export default function Index() {
+
   const authContext = useContext(AuthContext);
+  
+  const [userCourses, setUserCourses] = useState([])
+
+  useEffect(() => {
+    console.log(authContext.userInfos.courses)
+    setUserCourses(authContext.userInfos.courses)
+  }, [])
+
+  
+  console.log(authContext)
 
   return (
     <div className="">
       <div className="">
         <div className="text-darkColor dark:text-white md:text-3xl my-12">
           <span className="">
-            سلام{" "}
-            <span className="">
-              {authContext.userInfos.name}
-            </span>
-            ، به پنل کاربری خوش اومدی
+            سلام <span className="">{authContext.userInfos.name}</span>، به پنل
+            کاربری خوش اومدی
           </span>
         </div>
 
@@ -47,7 +55,9 @@ export default function Index() {
               <span className="text-2xl sm:text-[1.6rem] text-gray-700 dark:text-gray-400">
                 دوره های در حال یادگیری
               </span>
-              <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">26 دوره</span>
+              <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
+              {userCourses.length}
+              </span>
             </div>
           </div>
 
@@ -94,7 +104,9 @@ export default function Index() {
               <span className="text-2xl sm:text-[1.6rem] text-gray-700 dark:text-gray-400">
                 مجموع تیکت های من
               </span>
-              <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">2 تیکت</span>
+              <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
+                2 تیکت
+              </span>
             </div>
           </div>
 
@@ -178,7 +190,9 @@ export default function Index() {
               <span className="text-2xl sm:text-[1.6rem] text-gray-700 dark:text-gray-400">
                 پرسش پاسخ های من
               </span>
-              <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">9 پرسش </span>
+              <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
+                9 پرسش{" "}
+              </span>
             </div>
           </div>
 
