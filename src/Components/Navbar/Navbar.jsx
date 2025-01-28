@@ -122,44 +122,59 @@ export default function Navbar() {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
         <ul className="child:transition-all px-3 child:pr-2.5 space-y-9 mt-8 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {authContext.userInfos.role === "ADMIN" && (
-            <li className="flex items-center justify-between hover:text-light-blue-500">
-              <Link to="/p-admin">
+            <li>
+              <Link
+                className="flex items-center justify-between hover:text-light-blue-500"
+                to="/p-admin"
+              >
                 <span>پنل مدیریت</span>
+                <HiChevronRight className="text-2xl rotate-180" />
               </Link>
-              <HiChevronRight className="text-2xl rotate-180" />
             </li>
           )}
-          <li className="flex items-center justify-between hover:text-light-blue-500">
-            <Link to="/my-account">
+          <li>
+            <Link
+              className="flex items-center justify-between hover:text-light-blue-500"
+              to="/my-account"
+            >
               <span>پیشخوان</span>
+              <HiChevronRight className="text-2xl rotate-180" />
             </Link>
-            <HiChevronRight className="text-2xl rotate-180" />
           </li>
-          <li className="flex items-center justify-between hover:text-light-blue-500">
-            <Link to="/my-account/buyed">
+          <li>
+            <Link
+              className="flex items-center justify-between hover:text-light-blue-500"
+              to="/my-account/buyed"
+            >
               <span>دوره های من</span>
+              <HiChevronRight className="text-2xl rotate-180" />
             </Link>
-            <HiChevronRight className="text-2xl rotate-180" />
           </li>
-          <li className="flex items-center justify-between hover:text-light-blue-500">
-            <Link to="/my-account/tickets">
+          <li>
+            <Link
+              className="flex items-center justify-between hover:text-light-blue-500"
+              to="/my-account/tickets"
+            >
               <span>تیکت های من</span>
+              <HiChevronRight className="text-2xl rotate-180" />
             </Link>
-            <HiChevronRight className="text-2xl rotate-180" />
           </li>
-          <li className="flex items-center justify-between hover:text-light-blue-500">
-            <Link to="/my-account/edit-account">
+          <li>
+            <Link
+              className="flex items-center justify-between hover:text-light-blue-500"
+              to="/my-account/edit-account"
+            >
               <span>جزئیات حساب</span>
+              <HiChevronRight className="text-2xl rotate-180" />
             </Link>
-            <HiChevronRight className="text-2xl rotate-180" />
           </li>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
           {allMenus.map((menu) => (
-            <li key={menu._id} className="flex items-center justify-between hover:text-light-blue-500">
-              <Link to={menu.href} className="flex items-center gap-x-2">
-                {menu.title}
+            <li key={menu._id}>
+              <Link  to={`/category-info/${menu.href}/1`} className="flex items-center justify-between hover:text-light-blue-500">
+                <span>{menu.title}</span>
+                <HiChevronRight className="text-2xl rotate-180" />
               </Link>
-              <HiChevronRight className="text-2xl rotate-180" />
             </li>
           ))}
         </ul>
@@ -203,12 +218,15 @@ export default function Navbar() {
                 <li className="main-header__item flex-center relative">
                   <span className="cursor-pointer">
                     دوره های آموزشی
-                    <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
+                    <ul className="main-header__dropdown absolute top-24 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
                       {allMenus.map((menu) => (
-                        <li className="header__item" key={menu._id}>
+                        <li
+                          className="header__item hover:bg-light-blue-800/60 rounded-l-sm rounded-r-2xl mx-4"
+                          key={menu._id}
+                        >
                           <Link
                             to={`/category-info/${menu.href}/1`}
-                            className="flex items-center justify-between py-2.5 px-8 text-[1.6rem] text-zinc-600 duration-200"
+                            className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] text-zinc-600 duration-200"
                           >
                             {menu.title}
                             {menu.submenus.length !== 0 && (
@@ -275,60 +293,78 @@ export default function Navbar() {
                       className="absolute top-32 left-0 w-96 z-50"
                       open={openCollapse}
                     >
-                      <Card className="py-8 px-8 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
+                      <Card className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
                         <span className="text-3xl pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.name}
                         </span>
-                        <ul className="child:transition-all child:pr-2.5 child:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
+                        <ul className="child:transition-all child:pr-4 child:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.role === "ADMIN" && (
-                            <li className="flex items-center gap-x-3">
-                              <span className="text-4xl">
-                                <GrUserAdmin />
-                              </span>
-                              <Link to="/p-admin">
+                            <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                              <Link
+                                className="flex items-center gap-x-3"
+                                to="/p-admin"
+                              >
+                                <span className="text-4xl">
+                                  <GrUserAdmin />
+                                </span>
                                 <span>پنل مدیریت</span>
                               </Link>
                             </li>
                           )}
-                          <li className="flex items-center gap-x-3">
-                            <span className="text-4xl">
-                              <HiOutlineHome />
-                            </span>
-                            <Link to="/my-account">
+                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                            <Link
+                              className="flex items-center gap-x-3"
+                              to="/my-account"
+                            >
+                              <span className="text-4xl">
+                                <HiOutlineHome />
+                              </span>
                               <span>پیشخوان</span>
                             </Link>
                           </li>
-                          <li className="flex items-center gap-x-3">
-                            <span className="text-4xl">
-                              <HiOutlineFolder />
-                            </span>
-                            <Link to="/my-account/buyed">
+                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                            <Link
+                              className="flex items-center gap-x-3"
+                              to="/my-account/buyed"
+                            >
+                              <span className="text-4xl">
+                                <HiOutlineFolder />
+                              </span>
                               <span>دوره های من</span>
                             </Link>
                           </li>
-                          <li className="flex items-center gap-x-3">
-                            <span className="text-4xl">
-                              <HiOutlineChatBubbleLeftEllipsis />
-                            </span>
-                            <Link to="/my-account/tickets">
+                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                            <Link
+                              className="flex items-center gap-x-3"
+                              to="/my-account/tickets"
+                            >
+                              <span className="text-4xl">
+                                <HiOutlineChatBubbleLeftEllipsis />
+                              </span>
                               <span>تیکت های من</span>
                             </Link>
                           </li>
-                          <li className="flex items-center gap-x-3">
-                            <span className="text-4xl">
-                              <HiOutlineUser />
-                            </span>
-                            <Link to="/my-account/edit-account">
+                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                            <Link
+                              className="flex items-center gap-x-3"
+                              to="/my-account/edit-account"
+                            >
+                              <span className="text-4xl">
+                                <HiOutlineUser />
+                              </span>
                               <span>جزئیات حساب</span>
                             </Link>
                           </li>
                         </ul>
-                        <div className="flex items-center gap-x-3 pr-2.5 mt-6 mb-1">
+                        <Button
+                          className="flex items-center gap-x-3 pr-4 py-[1rem] mt-4 rounded-md hover:bg-red-600/85 dark:hover:bg-red-700/60 hover:text-white"
+                          onClick={logoutUser}
+                        >
                           <span className="text-4xl">
                             <HiPower />
                           </span>
-                          <Button onClick={logoutUser}>خروج</Button>
-                        </div>
+                          <div>خروج</div>
+                        </Button>
                       </Card>
                     </Collapse>
                   </Link>

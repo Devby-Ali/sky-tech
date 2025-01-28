@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Collapse } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
@@ -10,17 +10,42 @@ import {
   HiOutlineSun,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Form/Button";
+import AuthContext from "../../../context/authContext";
+import Swal from "sweetalert2";
 
 export default function Topbar() {
   const [navOpen, setNavOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [dark, setDark] = useState(false);
   const [openCollapseInfo, setOpenCollapseInfo] = useState(false);
-  const [userInfo, setUserInfo] = useState("")
+  const [userInfo, setUserInfo] = useState("");
 
+  const authContext = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
+  const logoutUser = () => {
+    Swal.fire({
+      title: "مطمعنی میخوای از سیستم خارج بشی؟",
+      icon: "warning",
+      confirmButtonText: "آره",
+      showDenyButton: true,
+      denyButtonText: "نه",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "با موفقیت logout شدید",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(() => {
+          authContext.logout();
+          navigate("/");
+        });
+      }
+    });
+  };
 
   const overlayOnClick = () => {
     setNavOpen(false);
@@ -55,13 +80,11 @@ export default function Topbar() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData)
-          setUserInfo(userData.name)
+          console.log(userData);
+          setUserInfo(userData.name);
         });
     }
   }, []);
-
-
 
   const toggleOpenInfo = () => {
     setOpenCollapseInfo((cur) => !cur);
@@ -114,59 +137,43 @@ export default function Topbar() {
             </div>
           </div>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-
           <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
             <li className="active-menu">
-              <Link to="/p-admin">
-                <span>صفحه اصلی</span>
+              <Link to="/my-account">
+                <span>پیشخوان</span>
               </Link>
             </li>
             <li>
-              <Link to="courses">
-                <span>دوره ها</span>
+              <Link to="orders">
+                <span>سفارش</span>
               </Link>
             </li>
             <li>
-              <Link to="sessions">
-                <span>جلسات</span>
+              <Link to="#">
+                <span>کیف پول من</span>
               </Link>
             </li>
             <li>
-              <Link to="menus">
-                <span>منو ها</span>
+              <Link to="edit-account">
+                <span>جزئیات حساب کاربری</span>
               </Link>
             </li>
             <li>
-              <Link to="articles">
-                <span>مقاله ها</span>
+              <Link to="buyed">
+                <span>دوره های من</span>
               </Link>
             </li>
             <li>
-              <Link to="users">
-                <span>کاربران</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="comments">
-                <span>کامنت‌ها</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="offs">
-                <span>کدهای تخفیف</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="category">
-                <span>دسته‌بندی‌ها</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="contacts">
-                <span>پیغام‌ها</span>
+              <Link to="tickets">
+                <span>تیکت های پشتیبانی</span>
               </Link>
             </li>
           </ul>
+          <div>
+            <Button className="pr-2.5 py-8" onClick={logoutUser}>
+              خروج
+            </Button>
+          </div>
         </div>
       </div>
 

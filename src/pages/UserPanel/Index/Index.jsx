@@ -3,12 +3,29 @@ import AuthContext from "../../../context/authContext";
 
 export default function Index() {
 
+  const [ticketsCount, setTicketsCount] = useState(null)
+
   const authContext = useContext(AuthContext);
   
   const [userCourses, setUserCourses] = useState([])
 
   useEffect(() => {
-    console.log(authContext.userInfos.courses)
+    
+    fetch(`http://localhost:4000/v1/tickets/user`, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("user")).token
+        }`,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setTicketsCount(data.length)
+        console.log(data.length)
+      });
+    
     setUserCourses(authContext.userInfos.courses)
   }, [])
 
@@ -105,7 +122,7 @@ export default function Index() {
                 مجموع تیکت های من
               </span>
               <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
-                2 تیکت
+                {ticketsCount}
               </span>
             </div>
           </div>
@@ -191,7 +208,7 @@ export default function Index() {
                 پرسش پاسخ های من
               </span>
               <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
-                9 پرسش{" "}
+              {ticketsCount}
               </span>
             </div>
           </div>
@@ -219,17 +236,11 @@ export default function Index() {
                 موجودی کیف پول
               </span>
               <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
-                0&nbsp;<span className="slms-price_symbol">تومان</span>
+                {ticketsCount},542,000&nbsp;<span className="slms-price_symbol">تومان</span>
               </span>
             </div>
           </div>
         </div>
-
-        <p className="text-darkColor dark:text-white md:text-3xl my-12">
-          از طریق پیشخوان حساب کاربری‌تان، می‌توانید سفارش‌های اخیرتان را
-          مشاهده، آدرس‌های حمل و نقل و صورتحساب‌تان را مدیریت و جزییات حساب
-          کاربری و کلمه عبور خود را ویرایش کنید.
-        </p>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import Swal from "sweetalert2";
@@ -11,6 +11,8 @@ export default function Sidebar() {
 
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
+
+    const pageName = useParams()
 
   const logoutUser = () => {
     Swal.fire({
@@ -48,10 +50,10 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="nav w-[27rem] h-full px-7"
+      className="nav w-[27rem] h-full pr-7"
     >
       <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
-        <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
+        <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem] pl-7">
           <Link
             to={"/"}
             className="text-light-blue-600 dark:text-light-blue-500"
@@ -85,13 +87,13 @@ export default function Sidebar() {
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-        <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
-          <li className="active-menu">
+        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-6">
+          <li className={pageName["*"] === "" && "active-menu"}>
             <Link to="/my-account">
               <span>پیشخوان</span>
             </Link>
           </li>
-          <li>
+          <li className={pageName["*"] === "orders" && "active-menu"}>
             <Link to="orders">
               <span>سفارش</span>
             </Link>
@@ -101,24 +103,24 @@ export default function Sidebar() {
               <span>کیف پول من</span>
             </Link>
           </li>
-          <li>
+          <li className={pageName["*"] === "edit-account" && "active-menu"}>
             <Link to="edit-account">
               <span>جزئیات حساب کاربری</span>
             </Link>
           </li>
-          <li>
+          <li className={pageName["*"] === "buyed" && "active-menu"}>
             <Link to="buyed">
               <span>دوره های من</span>
             </Link>
           </li>
-          <li>
+          <li className={pageName["*"] === "tickets" && "active-menu"}>
             <Link to="tickets">
               <span>تیکت های پشتیبانی</span>
             </Link>
           </li>
         </ul>
-        <div>
-          <Button className="pr-2.5 py-8" onClick={logoutUser}>
+        <div className="hover:bg-red-500/40 ml-7 rounded-md">
+          <Button className="px-2.5 py-4" onClick={logoutUser}>
             خروج
           </Button>
         </div>

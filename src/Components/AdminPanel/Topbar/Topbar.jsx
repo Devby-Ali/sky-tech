@@ -11,7 +11,7 @@ import {
   HiOutlineSun,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
 import Button from "../../Form/Button";
@@ -26,6 +26,9 @@ export default function Topbar() {
   const [openCollapseInfo, setOpenCollapseInfo] = useState(false);
 
   const authContext = useContext(AuthContext);
+
+   const pageName = useParams()
+
   const navigate = useNavigate();
 
   const logoutAdmin = () => {
@@ -150,63 +153,73 @@ export default function Topbar() {
           </div>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-          <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
-            <li className="active-menu">
-              <Link to="/p-admin">
-                <span>صفحه اصلی</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="courses">
-                <span>دوره ها</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="sessions">
-                <span>جلسات</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="menus">
-                <span>منو ها</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="articles">
-                <span>مقاله ها</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="users">
-                <span>کاربران</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="comments">
-                <span>کامنت‌ها</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="offs">
-                <span>کدهای تخفیف</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="category">
-                <span>دسته‌بندی‌ها</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="contacts">
-                <span>پیغام‌ها</span>
-              </Link>
-            </li>
-          </ul>
-          <div>
-            <Button className="pr-2.5 py-8" onClick={logoutAdmin}>
-              خروج
-            </Button>
-          </div>
+        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-4">
+          <li className={pageName["*"] === "" && "active-menu"}>
+            <Link to="/p-admin">
+              <span>صفحه اصلی</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "courses" && "active-menu"}>
+            <Link to="courses">
+              <span>دوره ها</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "sessions" && "active-menu"}>
+            <Link to="sessions">
+              <span>جلسات</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "menus" && "active-menu"}>
+            <Link to="menus">
+              <span>منو ها</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "articles" && "active-menu"}>
+            <Link to="articles">
+              <span>مقاله ها</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "users" && "active-menu"}>
+            <Link to="users">
+              <span>کاربران</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "comments" && "active-menu"}>
+            <Link to="comments">
+              <span>کامنت‌ها</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "tickets" && "active-menu"}>
+            <Link to="tickets">
+              <span>تیکت‌ها</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "offs" && "active-menu"}>
+            <Link to="offs">
+              <span>کدهای تخفیف</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "discounts" && "active-menu"}>
+            <Link to="discounts">
+              <span>تخفیف همگانی</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "category" && "active-menu"}>
+            <Link to="category">
+              <span>دسته‌بندی‌ها</span>
+            </Link>
+          </li>
+          <li className={pageName["*"] === "contacts" && "active-menu"}>
+            <Link to="contacts">
+              <span>پیغام‌ها</span>
+            </Link>
+          </li>
+        </ul>
+        <div className="hover:bg-red-500/60 hover:text-white ml-7 rounded-md">
+          <Button className="pr-2.5 py-5 text-red-200" onClick={logoutAdmin}>
+            خروج
+          </Button>
+        </div>
         </div>
       </div>
 
@@ -304,32 +317,10 @@ export default function Topbar() {
               </Collapse>
             </div>
 
-            <ul className="hidden gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
-              <li className="main-header__item flex-center relative">
-                <Link to={"/"} className="flex-center">
-                  صفحه اصلی
-                </Link>
-              </li>
-
-              <li className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative">
-                <Link to={`/category-info`} className="flex-center">
-                  <GoTriangleDown className="mt-1 xl:mr-1" />
-                  <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
-                    <li>
-                      <Link
-                        to={"/"}
-                        className="block py-2 px-8 text-[1.6rem] text-zinc-600 duration-200"
-                      >
-                        cgxjnf
-                      </Link>
-                    </li>
-                  </ul>
-                </Link>
-              </li>
-            </ul>
+      
           </div>
 
-          <div className="hidden xs:flex items-center gap-x-3 p-3 rounded-lg mr-4 bg-gray-300/40 dark:bg-white/10 text-4xl text-darkColor dark:text-white">
+          <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-gray-300/40 dark:bg-white/5 text-4xl text-darkColor dark:text-white">
             <Link to="#" className="text-2xl">
               {adminInfo.name}
             </Link>
