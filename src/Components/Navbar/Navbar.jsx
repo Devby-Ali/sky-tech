@@ -372,7 +372,7 @@ export default function Navbar() {
               ) : (
                 <Link
                   to="/login"
-                  className="flex-center w-[4.5rem] h-[4.5rem] bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white text-5xl rounded-lg mr-4 transition-all duration-200"
+                  className="flex-center w-[4.5rem] h-[4.5rem] text-darkColor dark:text-white text-5xl rounded-lg mr-4 transition-all duration-200"
                 >
                   <HiOutlineArrowLeftEndOnRectangle />
                 </Link>

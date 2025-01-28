@@ -10,7 +10,7 @@ import {
   HiOutlineSun,
   HiOutlineUser,
 } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
@@ -23,6 +23,8 @@ export default function Topbar() {
   const [userInfo, setUserInfo] = useState("");
 
   const authContext = useContext(AuthContext);
+
+  const pageName = useParams()
 
   const navigate = useNavigate();
 
@@ -98,7 +100,7 @@ export default function Topbar() {
         }`}
       >
         <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
-          <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
+          <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
             <Link
               to={"/"}
               className="text-light-blue-600 dark:text-light-blue-500"
@@ -137,40 +139,40 @@ export default function Topbar() {
             </div>
           </div>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-          <ul className="child:transition-all child:pr-2.5 child:py-8 mt-12">
-            <li className="active-menu">
+          <ul className="child:transition-all child:pr-2.5 child:py-6 mt-6 -ml-7">
+            <li className={pageName["*"] === "" && "active-menu"}>
               <Link to="/my-account">
                 <span>پیشخوان</span>
               </Link>
             </li>
-            <li>
+            <li className={pageName["*"] === "orders" && "active-menu"}>
               <Link to="orders">
                 <span>سفارش</span>
               </Link>
             </li>
-            <li>
+            <li className={pageName["*"] === "#" && "active-menu"}>
               <Link to="#">
                 <span>کیف پول من</span>
               </Link>
             </li>
-            <li>
+            <li className={pageName["*"] === "edit-account" && "active-menu"}>
               <Link to="edit-account">
                 <span>جزئیات حساب کاربری</span>
               </Link>
             </li>
-            <li>
+            <li className={pageName["*"] === "buyed" && "active-menu"}>
               <Link to="buyed">
                 <span>دوره های من</span>
               </Link>
             </li>
-            <li>
+            <li className={pageName["*"] === "tickets" && "active-menu"}>
               <Link to="tickets">
                 <span>تیکت های پشتیبانی</span>
               </Link>
             </li>
           </ul>
-          <div>
-            <Button className="pr-2.5 py-8" onClick={logoutUser}>
+          <div className="hover:bg-red-500/60 hover:text-white rounded-r-md text-red-200 mt-4 -mr-2 -ml-7">
+            <Button className="pr-2.5 py-4" onClick={logoutUser}>
               خروج
             </Button>
           </div>
@@ -223,7 +225,7 @@ export default function Topbar() {
             </ul>
           </div>
 
-          <div className="hidden xs:flex items-center gap-x-3 p-3 rounded-lg mr-4 bg-gray-300/40 dark:bg-white/10 text-4xl text-darkColor dark:text-white">
+          <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-gray-300/40 dark:bg-white/5 text-4xl text-darkColor dark:text-white">
             <Link to="#" className="text-2xl">
               {userInfo}
             </Link>

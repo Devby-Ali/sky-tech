@@ -6,13 +6,12 @@ import Swal from "sweetalert2";
 import AuthContext from "../../../context/authContext";
 
 export default function Sidebar() {
-
   const [dark, setDark] = useState(false);
 
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
 
-    const pageName = useParams()
+  const pageName = useParams();
 
   const logoutUser = () => {
     Swal.fire({
@@ -21,8 +20,8 @@ export default function Sidebar() {
       confirmButtonText: "آره",
       showDenyButton: true,
       denyButtonText: "نه",
-    }).then(result => {
-      if(result.isConfirmed) {
+    }).then((result) => {
+      if (result.isConfirmed) {
         Swal.fire({
           title: "با موفقیت logout شدید",
           icon: "success",
@@ -32,8 +31,7 @@ export default function Sidebar() {
           navigate("/");
         });
       }
-    })
-
+    });
   };
 
   const themeHandler = () => {
@@ -49,11 +47,9 @@ export default function Sidebar() {
   };
 
   return (
-    <aside
-      className="nav w-[27rem] h-full pr-7"
-    >
+    <aside className="nav w-[27rem] h-full px-7">
       <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
-        <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem] pl-7">
+        <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
           <Link
             to={"/"}
             className="text-light-blue-600 dark:text-light-blue-500"
@@ -87,7 +83,7 @@ export default function Sidebar() {
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-6">
+        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-6 -ml-7">
           <li className={pageName["*"] === "" && "active-menu"}>
             <Link to="/my-account">
               <span>پیشخوان</span>
@@ -119,7 +115,7 @@ export default function Sidebar() {
             </Link>
           </li>
         </ul>
-        <div className="hover:bg-red-500/40 ml-7 rounded-md">
+        <div className="hover:bg-red-500/60 hover:text-white rounded-r-md text-red-200 mt-4 -mr-2 -ml-7">
           <Button className="px-2.5 py-4" onClick={logoutUser}>
             خروج
           </Button>

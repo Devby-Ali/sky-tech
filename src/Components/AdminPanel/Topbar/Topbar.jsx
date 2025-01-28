@@ -153,7 +153,7 @@ export default function Topbar() {
           </div>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-4">
+        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-4 -ml-7">
           <li className={pageName["*"] === "" && "active-menu"}>
             <Link to="/p-admin">
               <span>صفحه اصلی</span>
@@ -215,8 +215,8 @@ export default function Topbar() {
             </Link>
           </li>
         </ul>
-        <div className="hover:bg-red-500/60 hover:text-white ml-7 rounded-md">
-          <Button className="pr-2.5 py-5 text-red-200" onClick={logoutAdmin}>
+        <div className="hover:bg-red-500/60 hover:text-white rounded-r-md text-red-200 mt-4 -mr-3 -ml-7">
+          <Button className="pr-2.5 py-5" onClick={logoutAdmin}>
             خروج
           </Button>
         </div>
