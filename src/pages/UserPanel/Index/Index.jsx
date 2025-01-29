@@ -2,15 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/authContext";
 
 export default function Index() {
-
-  const [ticketsCount, setTicketsCount] = useState(null)
+  const [ticketsCount, setTicketsCount] = useState(null);
 
   const authContext = useContext(AuthContext);
-  
-  const [userCourses, setUserCourses] = useState([])
+
+  const [userCourses, setUserCourses] = useState([]);
 
   useEffect(() => {
-    
     fetch(`http://localhost:4000/v1/tickets/user`, {
       headers: {
         Authorization: `Bearer ${
@@ -22,15 +20,12 @@ export default function Index() {
         return res.json();
       })
       .then((data) => {
-        setTicketsCount(data.length)
-        console.log(data.length)
+        setTicketsCount(data.length);
+        setUserCourses(authContext.userInfos.courses);
       });
-    
-    setUserCourses(authContext.userInfos.courses)
-  }, [])
+  }, [authContext]);
 
-  
-  console.log(authContext)
+  console.log(authContext);
 
   return (
     <div className="">
@@ -73,7 +68,7 @@ export default function Index() {
                 دوره های در حال یادگیری
               </span>
               <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
-              {userCourses.length}
+                {userCourses.length}
               </span>
             </div>
           </div>
@@ -208,7 +203,7 @@ export default function Index() {
                 پرسش پاسخ های من
               </span>
               <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
-              {ticketsCount}
+                {ticketsCount}
               </span>
             </div>
           </div>
@@ -236,7 +231,8 @@ export default function Index() {
                 موجودی کیف پول
               </span>
               <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
-                {ticketsCount},542,000&nbsp;<span className="slms-price_symbol">تومان</span>
+                {ticketsCount},542,000&nbsp;
+                <span className="slms-price_symbol">تومان</span>
               </span>
             </div>
           </div>

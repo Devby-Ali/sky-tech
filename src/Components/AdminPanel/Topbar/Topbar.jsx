@@ -299,19 +299,6 @@ export default function Topbar() {
                         </a>
                       </div>
                     </Card>
-                    {/* {adminNotif.map((notification) => (
-                        <>
-                          <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
-                            <span className="text-2xl">{notification}</span>
-                            <a
-                              href="javascript:void(0)"
-                              onClick={() => seeNotification(notification._id)}
-                            >
-                              دیدم
-                            </a>
-                          </Card>
-                        </>
-                      ))} */}
                   </>
                 )}
               </Collapse>

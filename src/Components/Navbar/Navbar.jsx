@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/authContext";
 import Input from "../Form/Input";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import { Collapse, Card } from "@material-tailwind/react";
 import {
@@ -33,6 +33,8 @@ export default function Navbar() {
   const [allMenus, setAllMenus] = useState([]);
 
   const navigate = useNavigate();
+
+  const categoryName = useParams();
 
   const logoutUser = () => {
     Swal.fire({
@@ -120,7 +122,7 @@ export default function Navbar() {
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 child:pr-2.5 space-y-9 mt-8 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="child:transition-all px-3 child:pr-2.5 space-y-9 mt-8 mb-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {authContext.userInfos.role === "ADMIN" && (
             <li>
               <Link
@@ -168,10 +170,15 @@ export default function Navbar() {
               <HiChevronRight className="text-2xl rotate-180" />
             </Link>
           </li>
+          </ul>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
+          <ul className="child:transition-all px-3 child:pr-2.5 space-y-2 mt-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {allMenus.map((menu) => (
             <li key={menu._id}>
-              <Link  to={`/category-info/${menu.href}/1`} className="flex items-center justify-between hover:text-light-blue-500">
+              <Link
+                to={`/category-info/${menu.href}/1`}
+                className={`flex items-center justify-between py-3 -mx-5 px-5 rounded-md hover:bg-light-blue-400/80 dark:hover:bg-light-blue-900 ${categoryName["categoryName"] === menu.href && 'bg-light-blue-400/50 dark:bg-light-blue-900/70'}`}
+              >
                 <span>{menu.title}</span>
                 <HiChevronRight className="text-2xl rotate-180" />
               </Link>
