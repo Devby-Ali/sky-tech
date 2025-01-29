@@ -211,13 +211,10 @@ export default function Courses() {
 
       <Footer />
 
-      <Drawer
-        placement="bottom"
-        open={openBottom}
-        onClose={closeDrawerBottom}
-        className="rounded-t-3xl"
+      <div
+        className={`absolute right-0 left-0 transition-all ${openBottom === true ? 'visible bottom-0' : 'invisible -bottom-[36rem]'}`}
       >
-        <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-3xl overflow-hidden">
+        <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
           <div className="flex items-center justify-between bg-[#333c4c] p-8">
             <span className="font-EstedadBold text-[2rem]">مرتب سازی بر اساس</span>
             <button className="">
@@ -226,11 +223,11 @@ export default function Courses() {
               </div>
             </button>
           </div>
-          <div className="text-3xl px-8 space-y-7 divide-y divide-darkBox/30 dark:divide-white/20">
+          <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
             <Button
               href="javascript:setArchiveSort('default', 'همه دوره ها')"
               data-id="default"
-              className="flex items-center justify-between pt-6"
+              className="flex items-center justify-between pt-9"
             >
               <div>همه دوره ها</div>
               <span className="text-5xl">
@@ -240,27 +237,27 @@ export default function Courses() {
             <Button
               href="javascript:setArchiveSort('cheapest', 'ارزان ترین')"
               data-id="cheapest"
-              className="flex items-center justify-between pt-6"
+              className="flex items-center justify-between pt-8"
             >
               <div>ارزان ترین</div>
             </Button>
             <Button
               href="javascript:setArchiveSort('expensive', 'گران ترین')"
               data-id="expensive"
-              className="flex items-center justify-between pt-6"
+              className="flex items-center justify-between pt-8"
             >
               <div>گران ترین</div>
             </Button>
             <Button
               href="javascript:setArchiveSort('popular', 'پرمخاطب ها')"
               data-id="popular"
-              className="flex items-center justify-between pt-6 pb-7"
+              className="flex items-center justify-between pt-8 pb-12"
             >
               <div>پرمخاطب ها</div>
             </Button>
           </div>
         </div>
-      </Drawer>
+      </div>
     </>
   );
 }
