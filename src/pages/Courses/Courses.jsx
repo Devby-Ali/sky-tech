@@ -223,19 +223,23 @@ export default function Courses() {
                 </div>
               </div>
               {/* <!-- Course List --> */}
-              <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
-                {shownCourses.length !== 0 ? (
-                  <>
+
+              {shownCourses.length !== 0 ? (
+                <>
+                  <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
                     {shownCourses.map((course) => (
                       <CourseBox {...course} />
                     ))}
-                  </>
-                ) : (
-                  <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
-                    هنوز دوره ای برای {statusTitle} وجود ندارد
                   </div>
-                )}
+                </>
+              ) : (
+                <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
+                <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+                دوره ای مطابق با جستجوی شما پیدا نشد!
+                </p>
               </div>
+              )}
+
               {/* <!-- Show more Button --> */}
               <Pagination
                 items={orderedCourses}
@@ -243,11 +247,6 @@ export default function Courses() {
                 pathName="/courses"
                 setShownItems={setShownCourses}
               />
-              <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed hidden">
-                <p className="text-lg md:text-xl text-center  text-[#64748b] dark:text-white mt-8 md:mt-12">
-                  متاسفانه دوره ای مطابق با جستجوی شما پیدا نشد ):
-                </p>
-              </div>
             </section>
           </section>
         </div>

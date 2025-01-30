@@ -9,6 +9,16 @@ import { FaAlignLeft } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import {
+  HiArrowsUpDown,
+  HiMagnifyingGlass,
+  HiOutlineCheckCircle,
+  HiOutlineFunnel,
+  HiOutlineXCircle,
+} from "react-icons/hi2";
+import Button from "../../Components/Form/Button";
+import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
+import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 
 export default function Category() {
   const [courses, setCourses] = useState([]);
@@ -17,9 +27,12 @@ export default function Category() {
   const [status, setStatus] = useState("default");
   const [statusTitle, setStatusTitle] = useState("همه دوره ها");
   const [searchValue, setSearchValue] = useState("");
-  const [coursesDisplayType, setCoursesDisplayType] = useState("row");
+  const [openBottom, setOpenBottom] = useState(false);
 
   const { categoryName } = useParams();
+
+  const openDrawerBottom = () => setOpenBottom(true);
+  const closeDrawerBottom = () => setOpenBottom(false);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/category/${categoryName}`)
@@ -48,11 +61,6 @@ export default function Category() {
         setOrderedCourses(courses);
         break;
       }
-      case "first": {
-        const reversedCourses = courses.slice().reverse();
-        setOrderedCourses(reversedCourses);
-        break;
-      }
       default: {
         setOrderedCourses(courses);
       }
@@ -75,147 +83,278 @@ export default function Category() {
     <>
       {/* <Topbar /> */}
       <Navbar />
-
-      <section className="pt-56">
-        <div className="container">
-          {courses.length ? (
-            <>
-              <div className="flex justify-between items-center p-9 shadow-normal text-darkBox dark:text-white bg-white dark:bg-darkBox rounded-2xl mb-12">
-                <div className="flex items-center">
-                  <div
-                    className={`courses-top-bar__row-btn flex-center text-4xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${
-                      coursesDisplayType === "row"
-                        ? "courses-top-bar__icon--active"
-                        : null
-                    }`}
-                    onClick={() => setCoursesDisplayType("row")}
-                  >
-                    <TbBorderAll />
+      <section className="pt-16 md:pt-52">
+        {courses.length ? (
+          <>
+            <div>
+              <SectionHeader
+                title={`دوره های ${categoryName}`}
+                titleValue={"۶۴ دوره ی آموزشی"}
+              />
+            </div>
+            <div className="container">
+              <section className="grid grid-cols-12 gap-y-5 md:gap-x-12 text-darkColor dark:text-white ">
+                {/* <!-- Sidebar --> */}
+                <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
+                  {/* <!-- SearchBox --> */}
+                  <form id="archive_filters" className="space-y-9">
+                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8">
+                      <div className="flex items-center gap-x-8 justify-between h-full text-[#64748b] dark:text-white text-[1.7rem]">
+                        <input
+                          type="text"
+                          value={searchValue}
+                          onChange={searchValueChangeHandler}
+                          className="tracking-tight py-2 placeholder-[#64748b] bg-transparent flex-grow outli"
+                          placeholder="جستجو بین دوره ها"
+                        />
+                        <button type="submit">
+                          <div className="text-5xl">
+                            <HiMagnifyingGlass />
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    {/* <!-- Toggle Box Container --> */}
+                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                      <div className="flex items-center justify-between h-full">
+                        <span className="font-EstedadMedium text-[1.7rem]">
+                          فقط دوره های رایگان
+                        </span>
+                        <label className="toggle">
+                          <input
+                            className="w-7 h-7 opacity-60 mt-2"
+                            type="checkbox"
+                            name="only_free"
+                            value="yes"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                      <div className="flex items-center justify-between h-full">
+                        <span className="font-EstedadMedium text-[1.7rem]">
+                          در حال پیش فروش
+                        </span>
+                        <label className="toggle">
+                          <input
+                            className="w-7 h-7 opacity-60 mt-2"
+                            type="checkbox"
+                            name="presell"
+                            value="yes"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                      <div className="flex items-center justify-between h-full">
+                        <span className="font-EstedadMedium text-[1.7rem]">
+                          دوره ها خریداری شده
+                        </span>
+                        <label className="toggle">
+                          <input
+                            className="w-7 h-7 opacity-60 mt-2"
+                            type="checkbox"
+                            name="enrolled"
+                            value="yes"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <CoursesFilter />
+                  </form>
+                </aside>
+                {/* <!-- Content --> */}
+                <section className="col-span-full lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
+                  {/* <!-- Sort & Filter in Mobile Size --> */}
+                  <div className="flex md:hidden items-center gap-8 mb-14 -mt-6">
+                    <Button
+                      className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
+                      id="filter-btn"
+                    >
+                      <div className="text-4xl shrink-0">
+                        <HiOutlineFunnel />
+                      </div>
+                      <span>فیلتر</span>
+                    </Button>
+                    <Button
+                      onClick={openDrawerBottom}
+                      className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
+                      id="sort-btn"
+                    >
+                      <div className="text-4xl shrink-0">
+                        <HiArrowsUpDown />
+                      </div>
+                      <span className="active_sort_title">همه دوره ها</span>
+                    </Button>
                   </div>
-                  <div
-                    className={`courses-top-bar__column-btn flex-center text-3xl w-20 h-14 rounded-md text-darkColor/70 dark:text-white/60 cursor-pointer border border-gray-400 dark:border-white/30 ml-4 ${
-                      coursesDisplayType === "column"
-                        ? "courses-top-bar__icon--active"
-                        : null
-                    }`}
-                    onClick={() => setCoursesDisplayType("column")}
-                  >
-                    <FaAlignLeft />
-                  </div>
-
-                  <div className="courses-top-bar__selection relative cursor-pointer">
-                    <span className="flex justify-between items-center courses-top-bar__selection-title h-14 rounded-md py-3 px-8 border border-gray-400 dark:border-white/30 text-darkColor/70 dark:text-white/70 transition-all hover:text-light-blue-600 dark:hover:text-light-blue-300 min-w-[230px]">
-                      {statusTitle}
-                      <GoTriangleDown className="mr-2" />
-                    </span>
-                    <ul className="courses-top-bar__selection-list absolute shadow-normal bg-gray-300 dark:bg-[#333c4c] text-darkColor/90 dark:text-white/70 w-full py-3 z-20 rounded-b-2xl transition-all text-center">
-                      <li
-                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400 courses-top-bar__selection-item--active"
-                        onClick={(event) => {
-                          setStatus("All");
-                          statusTitleChangeHandler(event);
-                        }}
+                  {/* <!-- Course Sort --> */}
+                  <div className="hidden md:flex items-center gap-x-6 h-[6.3rem] bg-white dark:bg-darkBox shadow-normal dark:shadow-none rounded-xl px-7 md:px-8 mt-4 lg:mt-0 mb-16 lg:mb-11">
+                    <div className="flex items-center shrink-0 gap-x-2">
+                      <div className="text-5xl">
+                        <HiArrowsUpDown />
+                      </div>
+                      <span className="">مرتب سازی بر اساس :</span>
+                    </div>
+                    <div className="flex items-center gap-x-7 lg:gap-x-8 h-full">
+                      <a
+                        href="javascript:setArchiveSort('default', 'همه دوره ها')"
+                        data-id="default"
+                        className="sort-btn sort-btn--active"
+                        role="button"
                       >
                         همه دوره ها
-                      </li>
-                      <li
-                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
-                        onClick={(event) => {
-                          setStatus("free");
-                          statusTitleChangeHandler(event);
-                        }}
+                      </a>
+                      <a
+                        href="javascript:setArchiveSort('cheapest', 'ارزان ترین')"
+                        data-id="cheapest"
+                        className="sort-btn "
+                        role="button"
                       >
-                        مرتب سازی بر اساس رایگان
-                      </li>
-                      <li
-                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
-                        onClick={(event) => {
-                          setStatus("money");
-                          statusTitleChangeHandler(event);
-                        }}
+                        ارزان ترین
+                      </a>
+                      <a
+                        href="javascript:setArchiveSort('expensive', 'گران ترین')"
+                        data-id="expensive"
+                        className="sort-btn "
+                        role="button"
                       >
-                        مرتب سازی بر اساس پولی
-                      </li>
-                      <li
-                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
-                        onClick={(event) => {
-                          setStatus("last");
-                          statusTitleChangeHandler(event);
-                        }}
+                        گران ترین
+                      </a>
+                      <a
+                        href="javascript:setArchiveSort('popular', 'پرمخاطب ها')"
+                        data-id="popular"
+                        className="sort-btn "
+                        role="button"
                       >
-                        مرتب سازی بر اساس آخرین
-                      </li>
-                      <li
-                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
-                        onClick={(event) => {
-                          setStatus("first");
-                          statusTitleChangeHandler(event);
-                        }}
-                      >
-                        مرتب سازی بر اساس اولین
-                      </li>
-                      <li
-                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400"
-                        onClick={() => setStatus("cheapest")}
-                      >
-                        مرتب سازی بر اساس ارزان ترین
-                      </li>
-                      <li
-                        className="text-[1.4rem] py-4 px-5 transition-all hover:text-light-blue-400 mb-1"
-                        onClick={() => setStatus("expensive")}
-                      >
-                        مرتب سازی بر اساس گران ترین
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="courses-top-bar__left">
-                  <form action="#" className="relative w-96">
-                    <input
-                      type="text"
-                      className="text-2xl w-full border border-gray-400 dark:border-white/30 bg-transparent py-3 pr-6 pl-16 rounded-md"
-                      placeholder="جستجوی دوره ..."
-                      value={searchValue}
-                      onChange={searchValueChangeHandler}
-                    />
-                    <FaSearch className="absolute left-4 top-4 text-3xl text-darkColor/70 dark:text-white/60 cursor-pointer" />
-                  </form>
-                </div>
-              </div>
-
-              <div className="courses-content">
-                {shownCourses.length !== 0 ? (
-                  <>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-11">
-                      {shownCourses.map((course) => (
-                        <CourseBox {...course} />
-                      ))}
+                        پرمخاطب ها
+                      </a>
                     </div>
-                  </>
-                ) : (
-                  <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
-                    هنوز دوره ای برای {statusTitle} وجود ندارد
                   </div>
-                )}
-              </div>
+                  {/* <!-- Course List --> */}
 
-              <Pagination
-                items={orderedCourses}
-                itemsCount={3}
-                pathName={`/category-info/${categoryName}`}
-                setShownItems={setShownCourses}
-              />
-            </>
-          ) : (
-            <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
-              هنوز دوره ای به این دسته بندی اضافه نشده
+                  {shownCourses.length !== 0 ? (
+                    <>
+                      <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
+                        {shownCourses.map((course) => (
+                          <CourseBox {...course} />
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
+                    <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+                    دوره ای مطابق با جستجوی شما پیدا نشد!
+                    </p>
+                  </div>
+                  )}
+                  {/* <!-- Show more Button --> */}
+                  <Pagination
+                    items={orderedCourses}
+                    itemsCount={6}
+                    pathName="/courses"
+                    setShownItems={setShownCourses}
+                  />
+                </section>
+              </section>
             </div>
-          )}
-        </div>
+          </>
+        ) : (
+          <div className="container">
+              <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
+                <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+                هنوز دوره ای به دسته‌بندی {categoryName} اضافه نشده
+                </p>
+              </div>
+          </div>
+        )}
       </section>
 
       <Footer />
+
+      <div
+        className={`fixed right-0 left-0 md:hidden transition-all ${
+          openBottom === true ? "visible bottom-0" : "invisible -bottom-[36rem]"
+        }`}
+      >
+        <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
+          <div className="flex items-center justify-between bg-[#333c4c] p-8">
+            <span className="font-EstedadBold text-[2rem]">
+              مرتب سازی بر اساس
+            </span>
+            <button className="">
+              <div onClick={closeDrawerBottom} className="text-[3.5rem]">
+                <HiOutlineXCircle />
+              </div>
+            </button>
+          </div>
+          <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
+            <Button
+              onClick={(event) => {
+                setStatus("All");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between w-full pt-9 ${
+                status === "All" && "text-light-blue-600"
+              }`}
+            >
+              <div>همه دوره ها</div>
+              {status === "All" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
+            </Button>
+            <Button
+              onClick={(event) => {
+                setStatus("free");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between w-full pt-8 ${
+                status === "free" && "text-light-blue-600"
+              }`}
+            >
+              <div>ارزان ترین</div>
+              {status === "free" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
+            </Button>
+            <Button
+              onClick={(event) => {
+                setStatus("money");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between w-full pt-8 ${
+                status === "money" && "text-light-blue-600"
+              }`}
+            >
+              <div>گران ترین</div>
+              {status === "money" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
+            </Button>
+            <Button
+              onClick={(event) => {
+                setStatus("last");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between pt-8 w-full pb-12 ${
+                status === "last" && "text-light-blue-600"
+              }`}
+            >
+              <div>پرمخاطب ها</div>
+              {status === "last" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
+            </Button>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
