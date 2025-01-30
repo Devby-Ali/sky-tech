@@ -12,9 +12,9 @@ import {
   HiMagnifyingGlass,
   HiOutlineCheckCircle,
   HiOutlineFunnel,
+  HiOutlineXCircle,
   HiXMark,
 } from "react-icons/hi2";
-import { Drawer, Typography, IconButton } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
 
 export default function Courses() {
@@ -36,14 +36,51 @@ export default function Courses() {
       .then((res) => res.json())
       .then((allCourses) => {
         setCourses(allCourses);
+        setOrderedCourses(allCourses);
+        setStatusTitle("همه دوره ها");
+        setStatus("default");
       });
   }, []);
+
+  useEffect(() => {
+    switch (status) {
+      case "free": {
+        const freeCourses = courses.filter((course) => course.price === 0);
+        setOrderedCourses(freeCourses);
+        break;
+      }
+      case "money": {
+        const notFreeCourses = courses.filter((course) => course.price !== 0);
+        setOrderedCourses(notFreeCourses);
+        break;
+      }
+      case "last": {
+        setOrderedCourses(courses);
+        break;
+      }
+      default: {
+        setOrderedCourses(courses);
+      }
+    }
+  }, [status]);
+
+  const statusTitleChangeHandler = (event) => {
+    setStatusTitle(event.target.textContent);
+  };
+
+  const searchValueChangeHandler = (event) => {
+    setSearchValue(event.target.value);
+    const filtredCourses = courses.filter((course) =>
+      course.name.includes(event.target.value)
+    );
+    setOrderedCourses(filtredCourses);
+  };
 
   return (
     <>
       {/* <Topbar /> */}
       <Navbar />
-      <section className="pt-12 md:pt-48">
+      <section className="pt-16 md:pt-52">
         <div>
           <SectionHeader title={"دوره ها"} titleValue={"۶۴ دوره ی آموزشی"} />
         </div>
@@ -54,11 +91,12 @@ export default function Courses() {
               {/* <!-- SearchBox --> */}
               <form id="archive_filters" className="space-y-9">
                 <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8">
-                  <div className="flex items-center justify-between h-full text-[#64748b] dark:text-white text-[1.7rem]">
+                  <div className="flex items-center gap-x-8 justify-between h-full text-[#64748b] dark:text-white text-[1.7rem]">
                     <input
                       type="text"
-                      name="s"
-                      className="tracking-tight placeholder-[#64748b] bg-transparent flex-grow"
+                      value={searchValue}
+                      onChange={searchValueChangeHandler}
+                      className="tracking-tight py-2 placeholder-[#64748b] bg-transparent flex-grow outli"
                       placeholder="جستجو بین دوره ها"
                     />
                     <button type="submit">
@@ -186,13 +224,21 @@ export default function Courses() {
               </div>
               {/* <!-- Course List --> */}
               <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
-                {shownCourses.map((course) => (
-                  <CourseBox {...course} />
-                ))}
+                {shownCourses.length !== 0 ? (
+                  <>
+                    {shownCourses.map((course) => (
+                      <CourseBox {...course} />
+                    ))}
+                  </>
+                ) : (
+                  <div className="bg-amber-400/10 px-6 py-8 text-3xl text-amber-700 rounded-2xl">
+                    هنوز دوره ای برای {statusTitle} وجود ندارد
+                  </div>
+                )}
               </div>
               {/* <!-- Show more Button --> */}
               <Pagination
-                items={courses}
+                items={orderedCourses}
                 itemsCount={6}
                 pathName="/courses"
                 setShownItems={setShownCourses}
@@ -207,53 +253,88 @@ export default function Courses() {
         </div>
       </section>
 
-
-
       <Footer />
 
       <div
-        className={`absolute right-0 left-0 transition-all ${openBottom === true ? 'visible bottom-0' : 'invisible -bottom-[36rem]'}`}
+        className={`fixed right-0 left-0 md:hidden transition-all ${
+          openBottom === true ? "visible bottom-0" : "invisible -bottom-[36rem]"
+        }`}
       >
         <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
           <div className="flex items-center justify-between bg-[#333c4c] p-8">
-            <span className="font-EstedadBold text-[2rem]">مرتب سازی بر اساس</span>
+            <span className="font-EstedadBold text-[2rem]">
+              مرتب سازی بر اساس
+            </span>
             <button className="">
-              <div onClick={closeDrawerBottom} className="text-4xl">
-                <HiXMark/>
+              <div onClick={closeDrawerBottom} className="text-[3.5rem]">
+                <HiOutlineXCircle />
               </div>
             </button>
           </div>
           <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
             <Button
-              href="javascript:setArchiveSort('default', 'همه دوره ها')"
-              data-id="default"
-              className="flex items-center justify-between pt-9"
+              onClick={(event) => {
+                setStatus("All");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between w-full pt-9 ${
+                status === "All" && "text-light-blue-600"
+              }`}
             >
               <div>همه دوره ها</div>
-              <span className="text-5xl">
-                <HiOutlineCheckCircle/>
-              </span>
+              {status === "All" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
             </Button>
             <Button
-              href="javascript:setArchiveSort('cheapest', 'ارزان ترین')"
-              data-id="cheapest"
-              className="flex items-center justify-between pt-8"
+              onClick={(event) => {
+                setStatus("free");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between w-full pt-8 ${
+                status === "free" && "text-light-blue-600"
+              }`}
             >
               <div>ارزان ترین</div>
+              {status === "free" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
             </Button>
             <Button
-              href="javascript:setArchiveSort('expensive', 'گران ترین')"
-              data-id="expensive"
-              className="flex items-center justify-between pt-8"
+              onClick={(event) => {
+                setStatus("money");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between w-full pt-8 ${
+                status === "money" && "text-light-blue-600"
+              }`}
             >
               <div>گران ترین</div>
+              {status === "money" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
             </Button>
             <Button
-              href="javascript:setArchiveSort('popular', 'پرمخاطب ها')"
-              data-id="popular"
-              className="flex items-center justify-between pt-8 pb-12"
+              onClick={(event) => {
+                setStatus("last");
+                statusTitleChangeHandler(event);
+              }}
+              className={`flex items-center justify-between pt-8 w-full pb-12 ${
+                status === "last" && "text-light-blue-600"
+              }`}
             >
               <div>پرمخاطب ها</div>
+              {status === "last" && (
+                <span className="text-5xl">
+                  <HiOutlineCheckCircle />
+                </span>
+              )}
             </Button>
           </div>
         </div>

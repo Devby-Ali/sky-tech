@@ -5,7 +5,7 @@ import { HiArrowUpLeft, HiOutlineChevronLeft } from "react-icons/hi2";
 export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHref }) {
   return (
     <div className="container">
-      <div className="flex-center sm:justify-between flex-wrap flex-col mb-14 sm:mb-16 sm:flex-row gap-x-4 gap-y-7 text-darkColor dark:text-white">
+      <div className="flex-center sm:justify-between flex-wrap flex-col mb-14 sm:mb-20 sm:flex-row gap-x-4 gap-y-7 text-darkColor dark:text-white">
         <div className="space-y-2 sm:space-y-3 sm:self-start mb-6 sm:mb-0">
           <div className="flex-center sm:justify-start gap-x-2.5">
             {/* <span className="hidden sm:inline-block w-8 h-8 bg-cyan-600 rounded-full mt-3"></span> */}
