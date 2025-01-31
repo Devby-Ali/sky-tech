@@ -16,6 +16,7 @@ import {
   HiXMark,
 } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
+import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
@@ -24,12 +25,16 @@ export default function Courses() {
   const [status, setStatus] = useState("default");
   const [statusTitle, setStatusTitle] = useState("همه دوره ها");
   const [searchValue, setSearchValue] = useState("");
-  const [openBottom, setOpenBottom] = useState(false);
+  const [openSortCourses, setOpenSortCourses] = useState(false);
+  const [openFilteredCourses, setOpenFilteredCourses] = useState(false);
 
   const { categoryName } = useParams();
 
-  const openDrawerBottom = () => setOpenBottom(true);
-  const closeDrawerBottom = () => setOpenBottom(false);
+  const openDrawerSort = () => setOpenSortCourses(true);
+  const closeDrawerSort = () => setOpenSortCourses(false);
+
+  const openDrawerFilter = () => setOpenFilteredCourses(true);
+  const closeDrawerFilter = () => setOpenFilteredCourses(false);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses`)
@@ -160,6 +165,7 @@ export default function Courses() {
               {/* <!-- Sort & Filter in Mobile Size --> */}
               <div className="flex md:hidden items-center gap-8 mb-14 -mt-6">
                 <Button
+                  onClick={openDrawerFilter}
                   className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
                   id="filter-btn"
                 >
@@ -169,7 +175,7 @@ export default function Courses() {
                   <span>فیلتر</span>
                 </Button>
                 <Button
-                  onClick={openDrawerBottom}
+                  onClick={openDrawerSort}
                   className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
                   id="sort-btn"
                 >
@@ -193,7 +199,9 @@ export default function Courses() {
                       setStatus("default");
                       statusTitleChangeHandler(event);
                     }}
-                    className={`sort-btn ${status === "default" && "sort-btn--active"}`}
+                    className={`sort-btn ${
+                      status === "default" && "sort-btn--active"
+                    }`}
                   >
                     همه دوره ها
                   </Button>
@@ -202,7 +210,9 @@ export default function Courses() {
                       setStatus("free");
                       statusTitleChangeHandler(event);
                     }}
-                    className={`sort-btn ${status === "free" && "sort-btn--active"}`}
+                    className={`sort-btn ${
+                      status === "free" && "sort-btn--active"
+                    }`}
                   >
                     ارزان ترین
                   </Button>
@@ -211,7 +221,9 @@ export default function Courses() {
                       setStatus("money");
                       statusTitleChangeHandler(event);
                     }}
-                    className={`sort-btn ${status === "money" && "sort-btn--active"}`}
+                    className={`sort-btn ${
+                      status === "money" && "sort-btn--active"
+                    }`}
                   >
                     گران ترین
                   </Button>
@@ -220,7 +232,9 @@ export default function Courses() {
                       setStatus("last");
                       statusTitleChangeHandler(event);
                     }}
-                    className={`sort-btn ${status === "last" && "sort-btn--active"}`}
+                    className={`sort-btn ${
+                      status === "last" && "sort-btn--active"
+                    }`}
                   >
                     پرمخاطب ها
                   </Button>
@@ -258,9 +272,19 @@ export default function Courses() {
 
       <Footer />
 
+      <SortedCourses
+        openSortCourses={openSortCourses}
+        closeDrawerSort={closeDrawerSort}
+        setStatus={setStatus}
+        status={status}
+        statusTitleChangeHandler={statusTitleChangeHandler}
+      />
+
       <div
         className={`fixed right-0 left-0 md:hidden transition-all ${
-          openBottom === true ? "visible bottom-0" : "invisible -bottom-[36rem]"
+          openFilteredCourses === true
+            ? "visible bottom-0"
+            : "invisible -bottom-[36rem]"
         }`}
       >
         <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
@@ -269,7 +293,7 @@ export default function Courses() {
               مرتب سازی بر اساس
             </span>
             <button className="">
-              <div onClick={closeDrawerBottom} className="text-[3.5rem]">
+              <div onClick={closeDrawerFilter} className="text-[3.5rem]">
                 <HiOutlineXCircle />
               </div>
             </button>
@@ -277,6 +301,7 @@ export default function Courses() {
           <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
             <Button
               onClick={(event) => {
+                closeDrawerFilter();
                 setStatus("default");
                 statusTitleChangeHandler(event);
               }}
@@ -293,6 +318,7 @@ export default function Courses() {
             </Button>
             <Button
               onClick={(event) => {
+                closeDrawerFilter();
                 setStatus("free");
                 statusTitleChangeHandler(event);
               }}
@@ -309,6 +335,7 @@ export default function Courses() {
             </Button>
             <Button
               onClick={(event) => {
+                closeDrawerFilter();
                 setStatus("money");
                 statusTitleChangeHandler(event);
               }}
@@ -325,6 +352,7 @@ export default function Courses() {
             </Button>
             <Button
               onClick={(event) => {
+                closeDrawerFilter();
                 setStatus("last");
                 statusTitleChangeHandler(event);
               }}
