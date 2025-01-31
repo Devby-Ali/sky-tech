@@ -194,39 +194,51 @@ export default function Category() {
                       </div>
                       <span className="">مرتب سازی بر اساس :</span>
                     </div>
-                    <div className="flex items-center gap-x-7 lg:gap-x-8 h-full">
-                      <a
-                        href="javascript:setArchiveSort('default', 'همه دوره ها')"
-                        data-id="default"
-                        className="sort-btn sort-btn--active"
-                        role="button"
+                    <div className="flex items-center gap-x-7 lg:gap-x-8 h-full child:transition-all">
+                      <Button
+                        onClick={(event) => {
+                          setStatus("default");
+                          statusTitleChangeHandler(event);
+                        }}
+                        className={`sort-btn ${
+                          status === "default" && "sort-btn--active"
+                        }`}
                       >
                         همه دوره ها
-                      </a>
-                      <a
-                        href="javascript:setArchiveSort('cheapest', 'ارزان ترین')"
-                        data-id="cheapest"
-                        className="sort-btn "
-                        role="button"
+                      </Button>
+                      <Button
+                        onClick={(event) => {
+                          setStatus("free");
+                          statusTitleChangeHandler(event);
+                        }}
+                        className={`sort-btn ${
+                          status === "free" && "sort-btn--active"
+                        }`}
                       >
                         ارزان ترین
-                      </a>
-                      <a
-                        href="javascript:setArchiveSort('expensive', 'گران ترین')"
-                        data-id="expensive"
-                        className="sort-btn "
-                        role="button"
+                      </Button>
+                      <Button
+                        onClick={(event) => {
+                          setStatus("money");
+                          statusTitleChangeHandler(event);
+                        }}
+                        className={`sort-btn ${
+                          status === "money" && "sort-btn--active"
+                        }`}
                       >
                         گران ترین
-                      </a>
-                      <a
-                        href="javascript:setArchiveSort('popular', 'پرمخاطب ها')"
-                        data-id="popular"
-                        className="sort-btn "
-                        role="button"
+                      </Button>
+                      <Button
+                        onClick={(event) => {
+                          setStatus("last");
+                          statusTitleChangeHandler(event);
+                        }}
+                        className={`sort-btn ${
+                          status === "last" && "sort-btn--active"
+                        }`}
                       >
                         پرمخاطب ها
-                      </a>
+                      </Button>
                     </div>
                   </div>
                   {/* <!-- Course List --> */}
