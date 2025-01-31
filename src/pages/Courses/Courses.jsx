@@ -176,7 +176,7 @@ export default function Courses() {
                   <div className="text-4xl shrink-0">
                     <HiArrowsUpDown />
                   </div>
-                  <span className="active_sort_title">همه دوره ها</span>
+                  <span className="active_sort_title">{statusTitle}</span>
                 </Button>
               </div>
               {/* <!-- Course Sort --> */}
@@ -187,39 +187,43 @@ export default function Courses() {
                   </div>
                   <span className="">مرتب سازی بر اساس :</span>
                 </div>
-                <div className="flex items-center gap-x-7 lg:gap-x-8 h-full">
-                  <a
-                    href="javascript:setArchiveSort('default', 'همه دوره ها')"
-                    data-id="default"
-                    className="sort-btn sort-btn--active"
-                    role="button"
+                <div className="flex items-center gap-x-7 lg:gap-x-8 h-full child:transition-all">
+                  <Button
+                    onClick={(event) => {
+                      setStatus("default");
+                      statusTitleChangeHandler(event);
+                    }}
+                    className={`sort-btn ${status === "default" && "sort-btn--active"}`}
                   >
                     همه دوره ها
-                  </a>
-                  <a
-                    href="javascript:setArchiveSort('cheapest', 'ارزان ترین')"
-                    data-id="cheapest"
-                    className="sort-btn "
-                    role="button"
+                  </Button>
+                  <Button
+                    onClick={(event) => {
+                      setStatus("free");
+                      statusTitleChangeHandler(event);
+                    }}
+                    className={`sort-btn ${status === "free" && "sort-btn--active"}`}
                   >
                     ارزان ترین
-                  </a>
-                  <a
-                    href="javascript:setArchiveSort('expensive', 'گران ترین')"
-                    data-id="expensive"
-                    className="sort-btn "
-                    role="button"
+                  </Button>
+                  <Button
+                    onClick={(event) => {
+                      setStatus("money");
+                      statusTitleChangeHandler(event);
+                    }}
+                    className={`sort-btn ${status === "money" && "sort-btn--active"}`}
                   >
                     گران ترین
-                  </a>
-                  <a
-                    href="javascript:setArchiveSort('popular', 'پرمخاطب ها')"
-                    data-id="popular"
-                    className="sort-btn "
-                    role="button"
+                  </Button>
+                  <Button
+                    onClick={(event) => {
+                      setStatus("last");
+                      statusTitleChangeHandler(event);
+                    }}
+                    className={`sort-btn ${status === "last" && "sort-btn--active"}`}
                   >
                     پرمخاطب ها
-                  </a>
+                  </Button>
                 </div>
               </div>
               {/* <!-- Course List --> */}
@@ -234,10 +238,10 @@ export default function Courses() {
                 </>
               ) : (
                 <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
-                <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
-                دوره ای مطابق با جستجوی شما پیدا نشد!
-                </p>
-              </div>
+                  <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+                    دوره ای مطابق با جستجوی شما پیدا نشد!
+                  </p>
+                </div>
               )}
 
               {/* <!-- Show more Button --> */}
@@ -273,15 +277,15 @@ export default function Courses() {
           <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
             <Button
               onClick={(event) => {
-                setStatus("All");
+                setStatus("default");
                 statusTitleChangeHandler(event);
               }}
               className={`flex items-center justify-between w-full pt-9 ${
-                status === "All" && "text-light-blue-600"
+                status === "default" && "text-light-blue-600"
               }`}
             >
               <div>همه دوره ها</div>
-              {status === "All" && (
+              {status === "default" && (
                 <span className="text-5xl">
                   <HiOutlineCheckCircle />
                 </span>

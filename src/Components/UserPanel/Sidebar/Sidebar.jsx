@@ -116,7 +116,7 @@ export default function Sidebar() {
           </li>
         </ul>
         <div className="hover:bg-red-500/60 hover:text-white rounded-r-md text-red-200 mt-4 -mr-2 -ml-7">
-          <Button className="px-2.5 py-4" onClick={logoutUser}>
+          <Button className="px-5 py-4" onClick={logoutUser}>
             خروج
           </Button>
         </div>

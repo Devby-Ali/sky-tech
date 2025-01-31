@@ -160,13 +160,12 @@ export default function Category() {
                         </label>
                       </div>
                     </div>
-                    <CoursesFilter />
                   </form>
                 </aside>
                 {/* <!-- Content --> */}
                 <section className="col-span-full lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
                   {/* <!-- Sort & Filter in Mobile Size --> */}
-                  <div className="flex md:hidden items-center gap-8 mb-14 -mt-6">
+                  <div className="flex md:hidden items-center gap-8 mb-14 mt-3">
                     <Button
                       className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
                       id="filter-btn"
@@ -184,7 +183,7 @@ export default function Category() {
                       <div className="text-4xl shrink-0">
                         <HiArrowsUpDown />
                       </div>
-                      <span className="active_sort_title">همه دوره ها</span>
+                      <span className="active_sort_title">{statusTitle}</span>
                     </Button>
                   </div>
                   {/* <!-- Course Sort --> */}
@@ -242,10 +241,10 @@ export default function Category() {
                     </>
                   ) : (
                     <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
-                    <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
-                    دوره ای مطابق با جستجوی شما پیدا نشد!
-                    </p>
-                  </div>
+                      <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+                        دوره ای مطابق با جستجوی شما پیدا نشد!
+                      </p>
+                    </div>
                   )}
                   {/* <!-- Show more Button --> */}
                   <Pagination
@@ -260,11 +259,11 @@ export default function Category() {
           </>
         ) : (
           <div className="container">
-              <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
-                <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+            <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
+              <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
                 هنوز دوره ای به دسته‌بندی {categoryName} اضافه نشده
-                </p>
-              </div>
+              </p>
+            </div>
           </div>
         )}
       </section>
@@ -290,15 +289,15 @@ export default function Category() {
           <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
             <Button
               onClick={(event) => {
-                setStatus("All");
+                setStatus("default");
                 statusTitleChangeHandler(event);
               }}
               className={`flex items-center justify-between w-full pt-9 ${
-                status === "All" && "text-light-blue-600"
+                status === "default" && "text-light-blue-600"
               }`}
             >
               <div>همه دوره ها</div>
-              {status === "All" && (
+              {status === "default" && (
                 <span className="text-5xl">
                   <HiOutlineCheckCircle />
                 </span>
