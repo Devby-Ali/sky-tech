@@ -20,6 +20,7 @@ import Button from "../../Components/Form/Button";
 import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
+import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
 
 export default function Category() {
   const [courses, setCourses] = useState([]);
@@ -29,11 +30,34 @@ export default function Category() {
   const [statusTitle, setStatusTitle] = useState("همه دوره ها");
   const [searchValue, setSearchValue] = useState("");
   const [openSortCourses, setOpenSortCourses] = useState(false);
+  const [openFilteredCourses, setOpenFilteredCourses] = useState(false);
+  const [overlay, setOverlay] = useState(false);
 
   const { categoryName } = useParams();
 
-  const openDrawerSort = () => setOpenSortCourses(true);
-  const closeDrawerSort = () => setOpenSortCourses(false);
+  const openDrawerSort = () => {
+    setOpenSortCourses(true);
+    setOverlay(!overlay);
+  };
+  const closeDrawerSort = () => {
+    setOpenSortCourses(false);
+    setOverlay(!overlay);
+  };
+
+  const openDrawerFilter = () => {
+    setOpenFilteredCourses(true);
+    setOverlay(!overlay);
+  };
+  const closeDrawerFilter = () => {
+    setOpenFilteredCourses(false);
+    setOverlay(!overlay);
+  };
+
+  const overlayOnClick = () => {
+    setOpenSortCourses(false);
+    setOpenFilteredCourses(false);
+    setOverlay(false);
+  };
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/category/${categoryName}`)
@@ -90,7 +114,7 @@ export default function Category() {
             <div>
               <SectionHeader
                 title={`دوره های ${categoryName}`}
-                titleValue={"۶۴ دوره ی آموزشی"}
+                titleValue={`${courses.length} دوره ی آموزشی`}
               />
             </div>
             <div className="container">
@@ -168,6 +192,7 @@ export default function Category() {
                   {/* <!-- Sort & Filter in Mobile Size --> */}
                   <div className="flex md:hidden items-center gap-8 mb-14 mt-3">
                     <Button
+                      onClick={openDrawerFilter}
                       className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
                       id="filter-btn"
                     >
@@ -290,6 +315,19 @@ export default function Category() {
         status={status}
         statusTitleChangeHandler={statusTitleChangeHandler}
       />
+
+      <FilteredCourses
+        openFilteredCourses={openFilteredCourses}
+        closeDrawerFilter={closeDrawerFilter}
+        setStatus={setStatus}
+        status={status}
+        statusTitleChangeHandler={statusTitleChangeHandler}
+      />
+
+      <div
+        onClick={overlayOnClick}
+        className={overlay ? "overlay overlay--visible backdrop-blur-[2px]" : "overlay"}
+      ></div>
     </>
   );
 }

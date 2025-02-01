@@ -11,7 +11,7 @@ export default function SortedCourses({
 }) {
   return (
     <div
-      className={`fixed right-0 left-0 md:hidden transition-all ${
+      className={`fixed right-0 left-0 md:hidden transition-all z-50 ${
         openSortCourses === true
           ? "visible bottom-0"
           : "invisible -bottom-[36rem]"

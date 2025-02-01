@@ -17,6 +17,7 @@ import {
 } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
+import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
@@ -27,14 +28,34 @@ export default function Courses() {
   const [searchValue, setSearchValue] = useState("");
   const [openSortCourses, setOpenSortCourses] = useState(false);
   const [openFilteredCourses, setOpenFilteredCourses] = useState(false);
+  const [overlay, setOverlay] = useState(false);
 
   const { categoryName } = useParams();
 
-  const openDrawerSort = () => setOpenSortCourses(true);
-  const closeDrawerSort = () => setOpenSortCourses(false);
+  const openDrawerSort = () => {
+    setOpenSortCourses(true);
+    setOverlay(!overlay);
+  };
+  const closeDrawerSort = () => {
+    setOpenSortCourses(false);
+    setOverlay(!overlay);
+  };
 
-  const openDrawerFilter = () => setOpenFilteredCourses(true);
-  const closeDrawerFilter = () => setOpenFilteredCourses(false);
+
+  const openDrawerFilter = () => {
+    setOpenFilteredCourses(true);
+    setOverlay(!overlay);
+  };
+  const closeDrawerFilter = () => {
+    setOpenFilteredCourses(false);
+    setOverlay(!overlay);
+  };
+
+  const overlayOnClick = () => {
+    setOpenSortCourses(false);
+    setOpenFilteredCourses(false);
+    setOverlay(false);
+  };
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses`)
@@ -87,7 +108,10 @@ export default function Courses() {
       <Navbar />
       <section className="pt-16 md:pt-52">
         <div>
-          <SectionHeader title={"دوره ها"} titleValue={"۶۴ دوره ی آموزشی"} />
+          <SectionHeader
+            title={"دوره ها"}
+            titleValue={`${courses.length} دوره ی آموزشی`}
+          />
         </div>
         <div className="container">
           <section className="grid grid-cols-12 gap-y-5 md:gap-x-12 text-darkColor dark:text-white ">
@@ -280,96 +304,18 @@ export default function Courses() {
         statusTitleChangeHandler={statusTitleChangeHandler}
       />
 
+      <FilteredCourses
+        openFilteredCourses={openFilteredCourses}
+        closeDrawerFilter={closeDrawerFilter}
+        setStatus={setStatus}
+        status={status}
+        statusTitleChangeHandler={statusTitleChangeHandler}
+      />
+
       <div
-        className={`fixed right-0 left-0 md:hidden transition-all ${
-          openFilteredCourses === true
-            ? "visible bottom-0"
-            : "invisible -bottom-[36rem]"
-        }`}
-      >
-        <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
-          <div className="flex items-center justify-between bg-[#333c4c] p-8">
-            <span className="font-EstedadBold text-[2rem]">
-              مرتب سازی بر اساس
-            </span>
-            <button className="">
-              <div onClick={closeDrawerFilter} className="text-[3.5rem]">
-                <HiOutlineXCircle />
-              </div>
-            </button>
-          </div>
-          <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
-            <Button
-              onClick={(event) => {
-                closeDrawerFilter();
-                setStatus("default");
-                statusTitleChangeHandler(event);
-              }}
-              className={`flex items-center justify-between w-full pt-9 ${
-                status === "default" && "text-light-blue-600"
-              }`}
-            >
-              <div>همه دوره ها</div>
-              {status === "default" && (
-                <span className="text-5xl">
-                  <HiOutlineCheckCircle />
-                </span>
-              )}
-            </Button>
-            <Button
-              onClick={(event) => {
-                closeDrawerFilter();
-                setStatus("free");
-                statusTitleChangeHandler(event);
-              }}
-              className={`flex items-center justify-between w-full pt-8 ${
-                status === "free" && "text-light-blue-600"
-              }`}
-            >
-              <div>ارزان ترین</div>
-              {status === "free" && (
-                <span className="text-5xl">
-                  <HiOutlineCheckCircle />
-                </span>
-              )}
-            </Button>
-            <Button
-              onClick={(event) => {
-                closeDrawerFilter();
-                setStatus("money");
-                statusTitleChangeHandler(event);
-              }}
-              className={`flex items-center justify-between w-full pt-8 ${
-                status === "money" && "text-light-blue-600"
-              }`}
-            >
-              <div>گران ترین</div>
-              {status === "money" && (
-                <span className="text-5xl">
-                  <HiOutlineCheckCircle />
-                </span>
-              )}
-            </Button>
-            <Button
-              onClick={(event) => {
-                closeDrawerFilter();
-                setStatus("last");
-                statusTitleChangeHandler(event);
-              }}
-              className={`flex items-center justify-between pt-8 w-full pb-12 ${
-                status === "last" && "text-light-blue-600"
-              }`}
-            >
-              <div>پرمخاطب ها</div>
-              {status === "last" && (
-                <span className="text-5xl">
-                  <HiOutlineCheckCircle />
-                </span>
-              )}
-            </Button>
-          </div>
-        </div>
-      </div>
+        onClick={overlayOnClick}
+        className={overlay ? "overlay overlay--visible backdrop-blur-[2px]" : "overlay"}
+      ></div>
     </>
   );
 }
