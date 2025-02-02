@@ -5,7 +5,7 @@ import CourseBox from "../../Components/CourseBox/CourseBox";
 import Pagination from "../../Components/Pagination/Pagination";
 import Footer from "./../../Components/Footer/Footer";
 import { TbBorderAll } from "react-icons/tb";
-import { FaAlignLeft } from "react-icons/fa";
+import { FaAlignLeft, FaSquare } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
 import { useParams } from "react-router-dom";
@@ -14,6 +14,7 @@ import {
   HiMagnifyingGlass,
   HiOutlineCheckCircle,
   HiOutlineFunnel,
+  HiOutlineTrash,
   HiOutlineXCircle,
 } from "react-icons/hi2";
 import Button from "../../Components/Form/Button";
@@ -32,6 +33,7 @@ export default function Category() {
   const [openSortCourses, setOpenSortCourses] = useState(false);
   const [openFilteredCourses, setOpenFilteredCourses] = useState(false);
   const [overlay, setOverlay] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("default");
 
   const { categoryName } = useParams();
 
@@ -48,6 +50,7 @@ export default function Category() {
     setOpenFilteredCourses(true);
     setOverlay(!overlay);
   };
+
   const closeDrawerFilter = () => {
     setOpenFilteredCourses(false);
     setOverlay(!overlay);
@@ -77,13 +80,27 @@ export default function Category() {
         setOrderedCourses(freeCourses);
         break;
       }
-      case "money": {
+      case "preSale": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "purchased": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "cheapest": {
+        const freeCourses = courses.filter((course) => course.price === 0);
+        setOrderedCourses(freeCourses);
+        break;
+      }
+      case "expensive": {
         const notFreeCourses = courses.filter((course) => course.price !== 0);
         setOrderedCourses(notFreeCourses);
         break;
       }
       case "last": {
-        setOrderedCourses(courses);
+        const lastCourses = courses.filter((course) => course.registers !== 0);
+        setOrderedCourses(lastCourses);
         break;
       }
       default: {
@@ -91,6 +108,27 @@ export default function Category() {
       }
     }
   }, [status]);
+
+  useEffect(() => {
+    switch (statusFilter) {
+      case "free": {
+        const freeCourses = courses.filter((course) => course.price === 0);
+        setOrderedCourses(freeCourses);
+        break;
+      }
+      case "preSale": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "purchased": {
+        setOrderedCourses(courses);
+        break;
+      }
+      default: {
+        setOrderedCourses(courses);
+      }
+    }
+  }, [statusFilter]);
 
   const statusTitleChangeHandler = (event) => {
     setStatusTitle(event.target.textContent);
@@ -140,51 +178,90 @@ export default function Category() {
                       </div>
                     </div>
                     {/* <!-- Toggle Box Container --> */}
-                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                    <div
+                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      onClick={() => {
+                        setStatusFilter("default");
+                      }}
+                    >
+                      <div className="flex items-center justify-between h-full">
+                        <span className="font-EstedadMedium text-[1.7rem]">
+                          حذف فیلتر
+                        </span>
+                        <span className="text-4xl">
+                          <HiOutlineTrash />
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      onClick={() => {
+                        setStatusFilter("free");
+                      }}
+                    >
                       <div className="flex items-center justify-between h-full">
                         <span className="font-EstedadMedium text-[1.7rem]">
                           فقط دوره های رایگان
                         </span>
-                        <label className="toggle">
-                          <input
-                            className="w-7 h-7 opacity-60 mt-2"
-                            type="checkbox"
-                            name="only_free"
-                            value="yes"
-                          />
-                        </label>
+                        <span
+                          className={`opacity-70 ${
+                            statusFilter === "free"
+                              ? "text-light-blue-500"
+                              : "text-white"
+                          }`}
+                        >
+                          <FaSquare />
+                        </span>
                       </div>
                     </div>
-                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                    <div
+                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      onClick={() => {
+                        setStatusFilter("preSale");
+                      }}
+                    >
                       <div className="flex items-center justify-between h-full">
                         <span className="font-EstedadMedium text-[1.7rem]">
                           در حال پیش فروش
                         </span>
-                        <label className="toggle">
-                          <input
-                            className="w-7 h-7 opacity-60 mt-2"
-                            type="checkbox"
-                            name="presell"
-                            value="yes"
-                          />
-                        </label>
+                        <input
+                          className="outline-none w-6 h-6"
+                          type="checkbox"
+                          onClick={() => {
+                            closeDrawerFilter();
+                            setStatusFilter("preSale");
+                          }}
+                          disabled={true}
+                          name=""
+                          id=""
+                        />
                       </div>
                     </div>
-                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                    <div
+                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      onClick={(event) => {
+                        setStatusFilter("purchased");
+                        statusTitleChangeHandler(event);
+                      }}
+                    >
                       <div className="flex items-center justify-between h-full">
                         <span className="font-EstedadMedium text-[1.7rem]">
                           دوره ها خریداری شده
                         </span>
-                        <label className="toggle">
-                          <input
-                            className="w-7 h-7 opacity-60 mt-2"
-                            type="checkbox"
-                            name="enrolled"
-                            value="yes"
-                          />
-                        </label>
+                        <input
+                          className="outline-none w-6 h-6"
+                          type="checkbox"
+                          onClick={() => {
+                            closeDrawerFilter();
+                            setStatusFilter("purchased");
+                          }}
+                          disabled={true}
+                          name=""
+                          id=""
+                        />
                       </div>
                     </div>
+                    <CoursesFilter />
                   </form>
                 </aside>
                 {/* <!-- Content --> */}
@@ -319,14 +396,15 @@ export default function Category() {
       <FilteredCourses
         openFilteredCourses={openFilteredCourses}
         closeDrawerFilter={closeDrawerFilter}
-        setStatus={setStatus}
-        status={status}
-        statusTitleChangeHandler={statusTitleChangeHandler}
+        setStatusFilter={setStatusFilter}
+        statusFilter={statusFilter}
       />
 
       <div
         onClick={overlayOnClick}
-        className={overlay ? "overlay overlay--visible backdrop-blur-[2px]" : "overlay"}
+        className={
+          overlay ? "overlay overlay--visible backdrop-blur-[2px]" : "overlay"
+        }
       ></div>
     </>
   );

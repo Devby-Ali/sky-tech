@@ -1,104 +1,102 @@
-import React from 'react'
-import { HiOutlineCheckCircle, HiOutlineXCircle } from 'react-icons/hi2';
-import Button from '../Form/Button';
+import React from "react";
+import {
+  HiOutlineCheckCircle,
+  HiOutlineTrash,
+  HiOutlineXCircle,
+} from "react-icons/hi2";
+import Button from "../Form/Button";
+import { FaSquare } from "react-icons/fa";
 
 export default function FilteredCourses({
-    openFilteredCourses,
-    closeDrawerFilter,
-    setStatus,
-    status,
-    statusTitleChangeHandler,
-  }) {
+  openFilteredCourses,
+  closeDrawerFilter,
+  setStatusFilter,
+  statusFilter,
+}) {
   return (
     <div
-    className={`fixed right-0 left-0 md:hidden transition-all z-50 ${
-      openFilteredCourses === true
-        ? "visible bottom-0"
-        : "invisible -bottom-[36rem]"
-    }`}
-  >
-    <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
-      <div className="flex items-center justify-between bg-[#333c4c] p-8">
-        <span className="font-EstedadBold text-[2rem]">
-          مرتب سازی بر اساس
-        </span>
-        <button className="">
-          <div onClick={closeDrawerFilter} className="text-[3.5rem]">
-            <HiOutlineXCircle />
+      className={`fixed right-0 left-0 md:hidden transition-all z-50 ${
+        openFilteredCourses === true
+          ? "visible bottom-0"
+          : "invisible -bottom-[36rem]"
+      }`}
+    >
+      <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
+        <div className="flex items-center justify-between bg-[#333c4c] p-8">
+          <span className="font-EstedadBold text-[2rem]">فیلتر ها</span>
+          <button className="">
+            <div onClick={closeDrawerFilter} className="text-[3.5rem]">
+              <HiOutlineXCircle />
+            </div>
+          </button>
+        </div>
+        <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
+          <div
+            className="flex items-center justify-between w-full pt-8"
+            onClick={() => {
+              closeDrawerFilter();
+              setStatusFilter("default");
+            }}
+          >
+            <span className="font-EstedadMedium text-[1.7rem]">حذف فیلتر</span>
+            <span className="text-4xl">
+              <HiOutlineTrash />
+            </span>
           </div>
-        </button>
-      </div>
-      <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
-        <Button
-          onClick={(event) => {
-            closeDrawerFilter();
-            setStatus("default");
-            statusTitleChangeHandler(event);
-          }}
-          className={`flex items-center justify-between w-full pt-9 ${
-            status === "default" && "text-light-blue-600"
-          }`}
-        >
-          <div>همه دوره ها</div>
-          {status === "default" && (
-            <span className="text-5xl">
-              <HiOutlineCheckCircle />
+          <div
+            className="flex items-center justify-between w-full pt-8"
+            onClick={() => {
+              closeDrawerFilter();
+              setStatusFilter("free");
+            }}
+          >
+            <div>فقط دوره های رایگان</div>
+            <span
+              className={`opacity-70 ${
+                statusFilter === "free" ? "text-light-blue-500" : "text-white"
+              }`}
+            >
+              <FaSquare />
             </span>
-          )}
-        </Button>
-        <Button
-          onClick={(event) => {
-            closeDrawerFilter();
-            setStatus("free");
-            statusTitleChangeHandler(event);
-          }}
-          className={`flex items-center justify-between w-full pt-8 ${
-            status === "free" && "text-light-blue-600"
-          }`}
-        >
-          <div>ارزان ترین</div>
-          {status === "free" && (
-            <span className="text-5xl">
-              <HiOutlineCheckCircle />
-            </span>
-          )}
-        </Button>
-        <Button
-          onClick={(event) => {
-            closeDrawerFilter();
-            setStatus("money");
-            statusTitleChangeHandler(event);
-          }}
-          className={`flex items-center justify-between w-full pt-8 ${
-            status === "money" && "text-light-blue-600"
-          }`}
-        >
-          <div>گران ترین</div>
-          {status === "money" && (
-            <span className="text-5xl">
-              <HiOutlineCheckCircle />
-            </span>
-          )}
-        </Button>
-        <Button
-          onClick={(event) => {
-            closeDrawerFilter();
-            setStatus("last");
-            statusTitleChangeHandler(event);
-          }}
-          className={`flex items-center justify-between pt-8 w-full pb-12 ${
-            status === "last" && "text-light-blue-600"
-          }`}
-        >
-          <div>پرمخاطب ها</div>
-          {status === "last" && (
-            <span className="text-5xl">
-              <HiOutlineCheckCircle />
-            </span>
-          )}
-        </Button>
+          </div>
+          <Button
+            className={`flex items-center justify-between w-full pt-8 ${
+              statusFilter === "preSale" && "text-light-blue-600"
+            }`}
+          >
+            <div>در حال پیش فروش</div>
+            <input
+              className="outline-none w-6 h-6"
+              type="checkbox"
+              onClick={() => {
+                closeDrawerFilter();
+                setStatusFilter("preSale");
+              }}
+              disabled={true}
+              name=""
+              id=""
+            />
+          </Button>
+          <Button
+            className={`flex items-center justify-between pt-8 w-full pb-12 ${
+              statusFilter === "purchased" && "text-light-blue-600"
+            }`}
+          >
+            <div>دوره ها خریداری شده</div>
+            <input
+              className="outline-none w-6 h-6"
+              type="checkbox"
+              onClick={() => {
+                closeDrawerFilter();
+                setStatusFilter("purchased");
+              }}
+              disabled={true}
+              name=""
+              id=""
+            />
+          </Button>
+        </div>
       </div>
     </div>
-  </div>
-  )
+  );
 }

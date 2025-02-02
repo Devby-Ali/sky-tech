@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Topbar from "./../../Components/Topbar/Topbar";
 import Button from "../../Components/Form/Button";
 import Navbar from "./../../Components/Navbar/Navbar";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
@@ -10,27 +9,26 @@ import Footer from "./../../Components/Footer/Footer";
 import {
   HiArrowsUpDown,
   HiMagnifyingGlass,
-  HiOutlineCheckCircle,
+  HiOutlineCheckBadge,
   HiOutlineFunnel,
-  HiOutlineXCircle,
-  HiXMark,
+  HiOutlineTrash,
+  HiSquare3Stack3D,
 } from "react-icons/hi2";
-import { useParams } from "react-router-dom";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
+import { FaSquare } from "react-icons/fa";
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
   const [orderedCourses, setOrderedCourses] = useState([]);
   const [shownCourses, setShownCourses] = useState([]);
   const [status, setStatus] = useState("default");
+  const [statusFilter, setStatusFilter] = useState("default");
   const [statusTitle, setStatusTitle] = useState("همه دوره ها");
   const [searchValue, setSearchValue] = useState("");
   const [openSortCourses, setOpenSortCourses] = useState(false);
   const [openFilteredCourses, setOpenFilteredCourses] = useState(false);
   const [overlay, setOverlay] = useState(false);
-
-  const { categoryName } = useParams();
 
   const openDrawerSort = () => {
     setOpenSortCourses(true);
@@ -41,11 +39,11 @@ export default function Courses() {
     setOverlay(!overlay);
   };
 
-
   const openDrawerFilter = () => {
     setOpenFilteredCourses(true);
     setOverlay(!overlay);
   };
+
   const closeDrawerFilter = () => {
     setOpenFilteredCourses(false);
     setOverlay(!overlay);
@@ -65,6 +63,7 @@ export default function Courses() {
         setOrderedCourses(allCourses);
         setStatusTitle("همه دوره ها");
         setStatus("default");
+        console.log(allCourses);
       });
   }, []);
 
@@ -75,13 +74,27 @@ export default function Courses() {
         setOrderedCourses(freeCourses);
         break;
       }
-      case "money": {
+      case "preSale": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "purchased": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "cheapest": {
+        const freeCourses = courses.filter((course) => course.price === 0);
+        setOrderedCourses(freeCourses);
+        break;
+      }
+      case "expensive": {
         const notFreeCourses = courses.filter((course) => course.price !== 0);
         setOrderedCourses(notFreeCourses);
         break;
       }
       case "last": {
-        setOrderedCourses(courses);
+        const lastCourses = courses.filter((course) => course.registers !== 0);
+        setOrderedCourses(lastCourses);
         break;
       }
       default: {
@@ -89,6 +102,27 @@ export default function Courses() {
       }
     }
   }, [status]);
+
+  useEffect(() => {
+    switch (statusFilter) {
+      case "free": {
+        const freeCourses = courses.filter((course) => course.price === 0);
+        setOrderedCourses(freeCourses);
+        break;
+      }
+      case "preSale": {
+        setOrderedCourses(courses);
+        break;
+      }
+      case "purchased": {
+        setOrderedCourses(courses);
+        break;
+      }
+      default: {
+        setOrderedCourses(courses);
+      }
+    }
+  }, [statusFilter]);
 
   const statusTitleChangeHandler = (event) => {
     setStatusTitle(event.target.textContent);
@@ -136,49 +170,86 @@ export default function Courses() {
                   </div>
                 </div>
                 {/* <!-- Toggle Box Container --> */}
-                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                <div
+                  className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                  onClick={() => {
+                    setStatusFilter("default");
+                  }}
+                >
+                  <div className="flex items-center justify-between h-full">
+                    <span className="font-EstedadMedium text-[1.7rem]">
+                      حذف فیلتر
+                    </span>
+                    <span className="text-4xl">
+                      <HiOutlineTrash />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                  onClick={() => {
+                    setStatusFilter("free");
+                  }}
+                >
                   <div className="flex items-center justify-between h-full">
                     <span className="font-EstedadMedium text-[1.7rem]">
                       فقط دوره های رایگان
                     </span>
-                    <label className="toggle">
-                      <input
-                        className="w-7 h-7 opacity-60 mt-2"
-                        type="checkbox"
-                        name="only_free"
-                        value="yes"
-                      />
-                    </label>
+                    <span
+                      className={`opacity-70 ${
+                        statusFilter === "free"
+                          ? "text-light-blue-500"
+                          : "text-white"
+                      }`}
+                    >
+                      <FaSquare />
+                    </span>
                   </div>
                 </div>
-                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                <div
+                  className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                  onClick={() => {
+                    setStatusFilter("preSale");
+                  }}
+                >
                   <div className="flex items-center justify-between h-full">
                     <span className="font-EstedadMedium text-[1.7rem]">
                       در حال پیش فروش
                     </span>
-                    <label className="toggle">
-                      <input
-                        className="w-7 h-7 opacity-60 mt-2"
-                        type="checkbox"
-                        name="presell"
-                        value="yes"
-                      />
-                    </label>
+                    <input
+                      className="outline-none w-6 h-6"
+                      type="checkbox"
+                      onClick={() => {
+                        closeDrawerFilter();
+                        setStatusFilter("preSale");
+                      }}
+                      disabled={true}
+                      name=""
+                      id=""
+                    />
                   </div>
                 </div>
-                <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block">
+                <div
+                  className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                  onClick={() => {
+                    setStatusFilter("purchased");
+                  }}
+                >
                   <div className="flex items-center justify-between h-full">
                     <span className="font-EstedadMedium text-[1.7rem]">
                       دوره ها خریداری شده
                     </span>
-                    <label className="toggle">
-                      <input
-                        className="w-7 h-7 opacity-60 mt-2"
-                        type="checkbox"
-                        name="enrolled"
-                        value="yes"
-                      />
-                    </label>
+                    <input
+                      className="outline-none w-6 h-6"
+                      type="checkbox"
+                      onClick={() => {
+                        closeDrawerFilter();
+                        setStatusFilter("purchased");
+                      }}
+                      disabled={true}
+                      name=""
+                      id=""
+                    />
                   </div>
                 </div>
                 <CoursesFilter />
@@ -231,22 +302,22 @@ export default function Courses() {
                   </Button>
                   <Button
                     onClick={(event) => {
-                      setStatus("free");
+                      setStatus("cheapest");
                       statusTitleChangeHandler(event);
                     }}
                     className={`sort-btn ${
-                      status === "free" && "sort-btn--active"
+                      status === "cheapest" && "sort-btn--active"
                     }`}
                   >
                     ارزان ترین
                   </Button>
                   <Button
                     onClick={(event) => {
-                      setStatus("money");
+                      setStatus("expensive");
                       statusTitleChangeHandler(event);
                     }}
                     className={`sort-btn ${
-                      status === "money" && "sort-btn--active"
+                      status === "expensive" && "sort-btn--active"
                     }`}
                   >
                     گران ترین
@@ -307,14 +378,15 @@ export default function Courses() {
       <FilteredCourses
         openFilteredCourses={openFilteredCourses}
         closeDrawerFilter={closeDrawerFilter}
-        setStatus={setStatus}
-        status={status}
-        statusTitleChangeHandler={statusTitleChangeHandler}
+        setStatusFilter={setStatusFilter}
+        statusFilter={statusFilter}
       />
 
       <div
         onClick={overlayOnClick}
-        className={overlay ? "overlay overlay--visible backdrop-blur-[2px]" : "overlay"}
+        className={
+          overlay ? "overlay overlay--visible backdrop-blur-[2px]" : "overlay"
+        }
       ></div>
     </>
   );

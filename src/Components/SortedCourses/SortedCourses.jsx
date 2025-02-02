@@ -49,15 +49,15 @@ export default function SortedCourses({
           <Button
             onClick={(event) => {
               closeDrawerSort();
-              setStatus("free");
+              setStatus("cheapest");
               statusTitleChangeHandler(event);
             }}
             className={`flex items-center justify-between w-full pt-8 ${
-              status === "free" && "text-light-blue-600"
+              status === "cheapest" && "text-light-blue-600"
             }`}
           >
             <div>ارزان ترین</div>
-            {status === "free" && (
+            {status === "cheapest" && (
               <span className="text-5xl">
                 <HiOutlineCheckCircle />
               </span>
@@ -66,15 +66,15 @@ export default function SortedCourses({
           <Button
             onClick={(event) => {
               closeDrawerSort();
-              setStatus("money");
+              setStatus("expensive");
               statusTitleChangeHandler(event);
             }}
             className={`flex items-center justify-between w-full pt-8 ${
-              status === "money" && "text-light-blue-600"
+              status === "expensive" && "text-light-blue-600"
             }`}
           >
             <div>گران ترین</div>
-            {status === "money" && (
+            {status === "expensive" && (
               <span className="text-5xl">
                 <HiOutlineCheckCircle />
               </span>
