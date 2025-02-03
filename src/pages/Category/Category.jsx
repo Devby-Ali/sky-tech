@@ -18,7 +18,6 @@ import {
   HiOutlineXCircle,
 } from "react-icons/hi2";
 import Button from "../../Components/Form/Button";
-import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
@@ -261,7 +260,6 @@ export default function Category() {
                         />
                       </div>
                     </div>
-                    <CoursesFilter />
                   </form>
                 </aside>
                 {/* <!-- Content --> */}

@@ -3,7 +3,7 @@ import Button from "../../Components/Form/Button";
 import Navbar from "./../../Components/Navbar/Navbar";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import CourseBox from "../../Components/CourseBox/CourseBox";
-import CoursesFilter from "../../Components/CoursesFilter/CoursesFilter";
+import CategoryList from "../../Components/CategoryList/CategoryList";
 import Pagination from "../../Components/Pagination/Pagination";
 import Footer from "./../../Components/Footer/Footer";
 import {
@@ -252,7 +252,7 @@ export default function Courses() {
                     />
                   </div>
                 </div>
-                <CoursesFilter />
+                <CategoryList />
               </form>
             </aside>
             {/* <!-- Content --> */}
