@@ -205,7 +205,7 @@ export default function Articles() {
               </div>
 
               <div className="flex items-center gap-x-6">
-                <Editor value={articleBody} setValue={setArticleBody} />
+                <Editor articleBody={articleBody} setArticleBody={setArticleBody} />
               </div>
 
               <div className="flex items-center gap-x-6">
