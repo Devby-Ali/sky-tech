@@ -10,21 +10,17 @@ const initialValue = [
 ];
 
 export default function Editor({ articleBody, setArticleBody }) {
-  const [editorContent, setEditorContent] = useState([]);
   const [editor] = useState(() => withReact(createEditor()));
 
-  const onChangeHandler = (event) => {
-    console.log(event);
-  };
 
   return (
     // Add the editable component inside the context.
-    <Slate
-      onChange={onChangeHandler}
-      editor={editor}
-      initialValue={initialValue}
-    >
-      <Editable />
+    <Slate editor={editor} initialValue={initialValue}>
+      <Editable
+        onChange={(event) => {
+          console.log(event.key);
+        }}
+      />
     </Slate>
   );
 }
