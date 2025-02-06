@@ -4,11 +4,9 @@ import Input from "../../../Components/Form/Input";
 import { minValidator } from "../../../validators/rules";
 import Button from "../../../Components/Form/Button";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
-import { Card, Typography } from "@material-tailwind/react";
 import { HiOutlineCheckCircle } from "react-icons/hi2";
 import Swal from "sweetalert2";
 
-const TABLE_HEAD = ["شناسه", "عنوان", "آدرس", "دسته بندی ...", "ویرایش", "حذف"];
 
 export default function Menus() {
   const [menus, setMenus] = useState([]);
@@ -103,7 +101,7 @@ export default function Menus() {
 
   return (
     <>
-      <section className="flex-center overflow-hidden my-56">
+      <section className="flex-center overflow-hidden mt-24">
         <div className="mx-auto flex flex-col items-center w-min">
           <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
             <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
@@ -175,105 +173,61 @@ export default function Menus() {
       </section>
 
       <DataTable title="منو ها">
-        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
-          <table className="w-full min-w-max table-auto text-center">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
-                  >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
+
+        <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+            <div className="col-span-1 text-nowrap">شناسه</div>
+            <div className="col-span-3">عنوان</div>
+            <div className="col-span-2">آدرس</div>
+            <div className="col-span-2">دسته بندی ...</div>
+            <div className="col-span-2">ویرایش</div>
+            <div className="col-span-2">حذف</div>
+          </div>
+
+          <div
+            className="min-w-[840px] md:min-w-[900px] space-y-6"
+            id="container_orders"
+          >
+            {menus.map((menu, index) => (
+              <>
+                <div
+                  key={menu.name}
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                >
+                  <div className="col-span-1">{index + 1}</div>
+
+                  <div className="col-span-3">{menu.title}</div>
+
+                  <div className="col-span-2">{menu.href}</div>
+
+                  <div className="col-span-2">
+                    {menu.parent ? (
+                      menu.parent.title
+                    ) : (
+                      <div className="flex-center text-light-blue-600 dark:text-light-blue-100/90 text-6xl">
+                        <HiOutlineCheckCircle />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="col-span-2">
+                    <div className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none">
+                      ویرایش
+                    </div>
+                  </div>
+                  <div className="col-span-2">
+                    <div
+                      onClick={() => removeMenu(menu._id)}
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
                     >
-                      {head}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {menus.map((menu, index) => {
-                const isLast = index === menus.length - 1;
-                const classes = isLast
-                  ? "py-6"
-                  : "py-6 border-b border-gray-400";
-
-                return (
-                  <tr
-                    key={menu.name}
-                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
-                  >
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="text-2xl font-EstedadBold text-darkColor dark:text-white/90"
-                      >
-                        {index + 1}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {menu.title}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {menu.href}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {menu.parent ? (
-                          menu.parent.title
-                        ) : (
-                          <div className="flex-center text-light-blue-600 dark:text-light-blue-100/90 text-6xl">
-                            <HiOutlineCheckCircle />
-                          </div>
-                        )}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button type="button">ویرایش</button>
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox  dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => removeMenu(menu._id)}
-                        >
-                          حذف
-                        </button>
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Card>
+                      حذف
+                    </div>
+                  </div>
+                </div>
+              </>
+            ))}
+          </div>
+        </div>
       </DataTable>
     </>
   );

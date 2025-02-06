@@ -9,21 +9,9 @@ import {
 import { useForm } from "../../../hooks/useForm";
 import Editor from "../../../Components/Form/Editor/Editor";
 import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
-import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { HiOutlineCheckCircle } from "react-icons/hi2";
-
-const TABLE_HEAD = [
-  "شناسه",
-  "عنوان",
-  "لینک",
-  "نویسنده",
-  "وضعیت",
-  "مشاهده",
-  "ویرایش",
-  "حذف",
-];
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -283,125 +271,68 @@ export default function Articles() {
       </section>
 
       <DataTable title="مقاله‌ها">
-        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
-          <table className="w-full min-w-max table-auto text-center">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
-                  >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
-                    >
-                      {head}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {articles.map((article, index) => {
-                const isLast = index === articles.length - 1;
-                const classes = isLast
-                  ? "py-6"
-                  : "py-6 border-b border-gray-400";
+        <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+            <div className="col-span-1 text-nowrap">شناسه</div>
+            <div className="col-span-3">عنوان</div>
+            <div className="col-span-2">لینک</div>
+            <div className="col-span-3">نویسنده</div>
+            <div className="col-span-1">وضعیت</div>
+            <div className="col-span-1">مشاهده</div>
+            <div className="col-span-1">حذف</div>
+          </div>
 
-                return (
-                  <tr
-                    key={article.title}
-                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
-                  >
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="text-2xl font-EstedadBold text-darkColor dark:text-white/90"
+          <div
+            className="min-w-[840px] md:min-w-[900px] space-y-6"
+            id="container_orders"
+          >
+            {articles.map((article, index) => (
+              <>
+                <div
+                  key={article.title}
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                >
+                  <div className="col-span-1">{index + 1}</div>
+
+                  <div className="col-span-3">{article.title}</div>
+
+                  <div className="col-span-3">{article.shortName}</div>
+
+                  <div className="col-span-2">{article.creator.name}</div>
+
+                  <div className="col-span-1">
+                    {article.publish === 1 ? "منتشر شده" : "پیش‌نویس"}
+                  </div>
+
+                  <div className="col-span-1">
+                    {article.publish === 1 ? (
+                      <div className="flex-center text-light-blue-600 dark:text-light-blue-100/90 text-6xl">
+                        <HiOutlineCheckCircle />
+                      </div>
+                    ) : (
+                      <Link
+                        to={`draft/${article.shortName}`}
+                        class="btn btn-primary edit-btn"
                       >
-                        {index + 1}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {article.title}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {article.shortName}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {article.creator.name}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {article.publish === 1 ? "منتشر شده" : "پیش‌نویس"}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {article.publish === 1 ? (
-                          <div className="flex-center text-light-blue-600 dark:text-light-blue-100/90 text-6xl">
-                            <HiOutlineCheckCircle />
-                          </div>
-                        ) : (
-                          <Link
-                            to={`draft/${article.shortName}`}
-                            class="btn btn-primary edit-btn"
-                          >
-                            ادامه نوشتن
-                          </Link>
-                        )}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button type="button">ویرایش</button>
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => removeArticle(article._id)}
-                        >
-                          حذف
-                        </button>
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Card>
+                        ادامه نوشتن
+                      </Link>
+                    )}
+                  </div>
+
+  
+                  <div className="col-span-1">
+                    <div
+                      onClick={() => removeArticle(article._id)}
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                    >
+                      حذف
+                    </div>
+                  </div>
+                </div>
+              </>
+            ))}
+          </div>
+        </div>
       </DataTable>
     </>
   );

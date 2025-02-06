@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PAdminItem from "../../../Components/AdminPanel/PAdminItem/PAdminItem";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
-import { HiBookOpen, HiUserPlus } from "react-icons/hi2";
-import { MdPlayLesson } from "react-icons/md";
-import { Card, Typography } from "@material-tailwind/react";
-
-const TABLE_HEAD = ["شناسه", "نام‌ و نام‌خانوادگی", "عنوان", "ایمیل", "همراه"];
 
 export default function Index() {
   const [infos, setInfos] = useState([]);
@@ -41,95 +36,49 @@ export default function Index() {
 
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-center gap-8 lg:gap-12 justify-center mt-12">
           {infos.map((item) => (
-            <PAdminItem {...item} />
+            <>
+              <PAdminItem {...item} />
+            </>
           ))}
         </div>
       </div>
-      <DataTable title="افراد اخیرا ثبت‌نام شده">
-        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
-          <table className="w-full min-w-max table-auto text-center">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
-                  >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70"
-                    >
-                      {head}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {lastRegisteredUsers.map((user, index) => {
-                const isLast = index === lastRegisteredUsers.length - 1;
-                const classes = isLast
-                  ? "py-6"
-                  : "py-6 border-b border-gray-400";
 
-                return (
-                  <tr
-                    key={user._id}
-                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
-                  >
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="text-2xl font-EstedadBold text-darkColor dark:text-white/90"
-                      >
-                        {index + 1}
-                      </Typography>
-                    </td>
+      <DataTable title={"افراد اخیرا ثبت‌نام شده"}>
+      <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+            <div className="col-span-1 text-nowrap">شناسه</div>
+            <div className="col-span-3">نام‌ و نام‌خانوادگی</div>
+            <div className="col-span-2">عنوان</div>
+            <div className="col-span-3">ایمیل</div>
+            <div className="col-span-3">همراه</div>
+          </div>
 
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {user.username}
-                      </Typography>
-                    </td>
+          <div
+            className="min-w-[840px] md:min-w-[900px] space-y-6"
+            id="container_orders"
+          >
+            {lastRegisteredUsers.map((user, index) => (
+              <>
+                <div
+                  key={user._id}
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                >
+                  <div className="col-span-1">{index + 1}</div>
 
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {user.role}
-                      </Typography>
-                    </td>
+                  <div className="col-span-3">{user.username}</div>
 
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {user.email}
-                      </Typography>
-                    </td>
+                  <div className="col-span-2"> {user.role}</div>
 
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {user.phone}
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Card>
+                  <div className="col-span-3">{user.email}</div>
+
+                  <div className="col-span-3"> {user.phone}</div>
+                </div>
+              </>
+            ))}
+          </div>
+        </div>
       </DataTable>
+
     </div>
   );
 }
