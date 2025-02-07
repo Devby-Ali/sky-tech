@@ -18,9 +18,12 @@ export default function Articles() {
     fetch(`http://localhost:4000/v1/articles`)
       .then((res) => res.json())
       .then((allArticles) => {
-        setArticles(allArticles);
+        setArticles(allArticles.filter((article) => article.publish === 1));
       });
   }, []);
+
+  console.log(shownArticles)
+  console.log(articles)
 
 
   return (
@@ -71,7 +74,7 @@ export default function Articles() {
                   className="sort-btn sort-btn--active"
                   role="button"
                 >
-                  همه دوره ها
+                  همه مقاله ها
                 </a>
                 <a
                   href="javascript:setArchiveSort('cheapest', 'ارزان ترین')"
@@ -102,7 +105,6 @@ export default function Articles() {
             {/* <!-- Course List --> */}
             <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 sm:gap-11 mb-24 mt-16">
               {shownArticles
-                .filter((article) => article.publish === 1)
                 .map((article) => (
                   <ArticleBox key={article._id} {...article} />
                 ))}
@@ -110,7 +112,7 @@ export default function Articles() {
             {/* <!-- Show more Button --> */}
             <Pagination
               items={articles}
-              itemsCount={5}
+              itemsCount={3}
               pathName="/articles"
               setShownItems={setShownArticles}
             />
