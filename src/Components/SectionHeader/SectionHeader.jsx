@@ -10,7 +10,7 @@ export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHr
           <div className="flex-center sm:justify-start gap-x-2.5">
             {/* <span className="hidden sm:inline-block w-8 h-8 bg-cyan-600 rounded-full mt-3"></span> */}
             <span className="hidden sm:block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue ml-2 mt-3"></span>
-            <h3 className="font-EstedadBold text-[2.4rem] sm:text-5xl">{title}</h3>
+            <h3 className="font-EstedadBold text-[2.4rem] sm:text-[2.7rem]">{title}</h3>
           </div>
           {desc ? (
           <p className="font-Dirooz sm:text-3xl text-center sm:text-right opacity-70">
@@ -19,12 +19,12 @@ export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHr
           ) : null}
         </div>
         {btnTitle ? (
-          <div className="courses-header__left">
+          <div className="courses-header__left sm:self-end">
             <Link
               to={`/${btnHref}`}
-              className="relative flex text-[1.7rem] md:text-3xl tracking-tighter text-light-blue-700 hover:text-purple-200"
+              className="relative flex text-[1.7rem] md:text-3xl tracking-tighter text-light-blue-700 hover:text-purple-200 group"
             >
-              <div className="font-MikhakWoff2one font-bold pb-2 pl-5 border-b-2 border-b-light-blue-700 hover:border-b-pink-200 transition-colors">
+              <div className="font-EstedadMedium pb-2 pl-5 border-b-2 border-b-light-blue-700 group-hover:border-b-pink-200 transition-colors">
                 {btnTitle}
               </div>
               <HiArrowUpLeft className="absolute -left-[2.3rem] -bottom-2 text-5xl transition-colors" />
@@ -33,7 +33,7 @@ export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHr
         ) : null}
         {titleValue ? (
           <div className="courses-header__left">
-            <p className="text-[1.7rem] sm:text-[2rem] text-[#64748b] -mt-8 sm:mt-0">
+            <p className="text-[1.7rem] sm:text-[2rem] text-[#64748b] font-EstedadBold -mt-8 sm:mt-0">
               {titleValue}
             </p>
           </div>
