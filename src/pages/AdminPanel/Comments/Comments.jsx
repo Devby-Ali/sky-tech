@@ -225,7 +225,7 @@ export default function Comments() {
                   <div className="col-span-2">{comment.creator.name}</div>
 
                   <div className="col-span-3">{comment.course}</div>
-                  <div className="col-span-1 flex-center">
+                  <div className="col-span-1 child:w-5 xl:child:w-6 flex-center">
                     {Array(5 - comment.score)
                       .fill(0)
                       .map((item) => (
@@ -245,7 +245,7 @@ export default function Comments() {
                   <div className="col-span-1">
                     <div
                       onClick={() => showCommentBody(comment.body)}
-                      className="inline-flex items-center justify-center bg-green-50 dark:bg-white/10 text-green-500 font-danaMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-3 xl:px-5 rounded select-none"
                     >
                       مشاهده
                     </div>
@@ -253,7 +253,7 @@ export default function Comments() {
                   <div className="col-span-1">
                     <div
                       onClick={() => answerToComment(comment._id)}
-                      className="inline-flex items-center justify-center bg-green-50 dark:bg-white/10 text-green-500 font-danaMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 rounded select-none"
                     >
                       پاسخ
                     </div>
@@ -262,7 +262,7 @@ export default function Comments() {
                     <div className="col-span-1">
                       <div
                         onClick={() => rejectComment(comment._id)}
-                        className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 font-danaMedium text-xl md:text-2xl py-2 px-5 xl:px-11 rounded select-none"
+                        className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-11 rounded select-none"
                       >
                         رد
                       </div>
@@ -271,7 +271,7 @@ export default function Comments() {
                     <div className="col-span-1">
                       <div
                         onClick={() => acceptComment(comment._id)}
-                        className="inline-flex items-center justify-center bg-green-50 dark:bg-green-500/10 text-green-500 font-danaMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded select-none"
+                        className="inline-flex items-center justify-center bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded select-none"
                       >
                         تایید
                       </div>
@@ -281,7 +281,7 @@ export default function Comments() {
                   <div className="col-span-1">
                     <div
                       onClick={() => banUser(comment.creator._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded select-none"
                     >
                       بن
                     </div>
@@ -289,7 +289,7 @@ export default function Comments() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeComment(comment._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded select-none"
                     >
                       حذف
                     </div>

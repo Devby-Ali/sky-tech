@@ -275,8 +275,8 @@ export default function Articles() {
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
             <div className="col-span-3">عنوان</div>
-            <div className="col-span-2">لینک</div>
-            <div className="col-span-3">نویسنده</div>
+            <div className="col-span-3">لینک</div>
+            <div className="col-span-2">نویسنده</div>
             <div className="col-span-1">وضعیت</div>
             <div className="col-span-1">مشاهده</div>
             <div className="col-span-1">حذف</div>
@@ -323,7 +323,7 @@ export default function Articles() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeArticle(article._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
                     >
                       حذف
                     </div>

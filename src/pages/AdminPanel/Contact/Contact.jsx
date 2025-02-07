@@ -104,121 +104,64 @@ export default function Contact() {
   return (
     <>
       <DataTable title="پیام ها">
-        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
-          <table className="w-full min-w-max table-auto text-center">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
-                  >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
+        <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+            <div className="col-span-1 text-nowrap">شناسه</div>
+            <div className="col-span-3">نام و نام خانوادگی</div>
+            <div className="col-span-3">ایمیل</div>
+            <div className="col-span-2">شماره تماس</div>
+            <div className="col-span-1">مشاهده</div>
+            <div className="col-span-1">پاسخ</div>
+            <div className="col-span-1">حذف</div>
+          </div>
+
+          <div
+            className="min-w-[840px] md:min-w-[900px] space-y-6"
+            id="container_orders"
+          >
+            {contacts.map((contact, index) => (
+              <>
+                <div
+                  key={contact.name}
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                >
+                  <div className="col-span-1">{index + 1}</div>
+
+                  <div className="col-span-3">{contact.name}</div>
+
+                  <div className="col-span-3">{contact.email}</div>
+
+                  <div className="col-span-2">{contact.phone}</div>
+
+                  <div className="col-span-1 flex-center">
+                    <div
+                      onClick={() => showContactBody(contact.body)}
+                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-5 rounded select-none"
                     >
-                      {head}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {contacts.map((contact, index) => {
-                const isLast = index === contacts.length - 1;
-                const classes = isLast
-                  ? "py-6"
-                  : "py-6 border-b border-gray-400";
-
-                return (
-                  <tr
-                    key={contact.name}
-                    className={` ${
-                      contact.answer === 1
-                        ? "from-green-400/50"
-                        : "from-red-400/50"
-                    } h-28 bg-gradient-to-l via-transparent via-5% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-400/10`}
-                  >
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="text-2xl font-EstedadBold text-darkColor dark:text-white/90"
-                      >
-                        {index + 1}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {contact.name}
-                      </Typography>
-                    </td>
-
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {contact.email}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {contact.phone}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => showContactBody(contact.body)}
-                        >
-                          مشاهده پیغام
-                        </button>
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => sendAnwserToUser(contact.email)}
-                        >
-                          پاسخ
-                        </button>
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox  dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => removeContact(contact._id)}
-                        >
-                          حذف
-                        </button>
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Card>
+                      مشاهده
+                    </div>
+                  </div>
+                  <div className="col-span-1">
+                    <div
+                      onClick={() => sendAnwserToUser(contact.email)}
+                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                    >
+                      پاسخ
+                    </div>
+                  </div>
+                  <div className="col-span-1">
+                    <div
+                      onClick={() => removeContact(contact._id)}
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                    >
+                      حذف
+                    </div>
+                  </div>
+                </div>
+              </>
+            ))}
+          </div>
+        </div>
       </DataTable>
     </>
   );

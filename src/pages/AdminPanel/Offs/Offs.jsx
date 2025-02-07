@@ -205,106 +205,52 @@ export default function Offs() {
       </section>
 
       <DataTable title="کد های تخفیف">
-        <Card className="h-full w-full rounded-md overflow-scroll dark:bg-darkBox">
-          <table className="w-full min-w-max table-auto text-center">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-b-4 border-b-darkBox/30 dark:border-[#333c4c] pb-10 pt-12"
-                  >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="text-4xl font-EstedadBold leading-none text-darkColor dark:text-white/70 mx-10"
-                    >
-                      {head}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {offs.map((off, index) => {
-                const isLast = index === offs.length - 1;
-                const classes = isLast
-                  ? "py-6"
-                  : "py-6 border-b border-gray-400";
+        <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+            <div className="col-span-1 text-nowrap">شناسه</div>
+            <div className="col-span-2">کد</div>
+            <div className="col-span-1">درصد</div>
+            <div className="col-span-2">حداکثر استفاده</div>
+            <div className="col-span-2">دفعات استفاده</div>
+            <div className="col-span-3">سازنده</div>
+            <div className="col-span-1">حذف</div>
+          </div>
 
-                return (
-                  <tr
-                    key={off._id}
-                    className="bg-gradient-to-l h-28 from-lightishBlue-500/15 via-transparent via-20% to-light-blue-700/15 hover:bg-light-blue-50 dark:hover:bg-light-blue-200/5"
-                  >
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="text-2xl font-EstedadBold text-darkColor dark:text-white/90"
-                      >
-                        {index + 1}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {off.code}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {off.percent}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {off.max}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {off.uses}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        {off.creator}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        className="text-darkBox dark:text-white/90 text-[1.6rem] font-EstedadLight"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => removeOff(off._id)}
-                        >
-                          حذف
-                        </button>
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Card>
+          <div
+            className="min-w-[840px] md:min-w-[900px] space-y-6"
+            id="container_orders"
+          >
+            {offs.map((off, index) => (
+              <>
+                <div
+                  key={off._id}
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                >
+                  <div className="col-span-1">{index + 1}</div>
+
+                  <div className="col-span-2">{off.code}</div>
+
+                  <div className="col-span-1">{off.percent}</div>
+
+                  <div className="col-span-2">{off.max}</div>
+
+                  <div className="col-span-2">{off.uses}</div>
+
+                  <div className="col-span-3">{off.creator}</div>
+
+                  <div className="col-span-1">
+                    <div
+                      onClick={() => removeOff(off._id)}
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                    >
+                      حذف
+                    </div>
+                  </div>
+                </div>
+              </>
+            ))}
+          </div>
+        </div>
       </DataTable>
     </>
   );

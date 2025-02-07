@@ -337,10 +337,10 @@ export default function Users() {
                     {user.role === "ADMIN" ? "مدیر" : "کاربر"}
                   </div>
 
-                  <div className="col-span-1">
+                  <div className="col-span-1 flex-center">
                     <div
                       onClick={() => changeRole(user._id)}
-                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded select-none"
                     >
                       تغییر‌سطح
                     </div>
@@ -348,7 +348,7 @@ export default function Users() {
                   <div className="col-span-1">
                     <div
                       onClick={() => banUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
                     >
                       بن
                     </div>
@@ -356,7 +356,7 @@ export default function Users() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
                     >
                       حذف
                     </div>

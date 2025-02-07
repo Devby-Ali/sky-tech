@@ -224,9 +224,9 @@ export default function Sessions() {
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
             <div className="col-span-4">دوره</div>
-            <div className="col-span-3">عنوان</div>
+            <div className="col-span-4">عنوان</div>
             <div className="col-span-2">زمان</div>
-            <div className="col-span-2">حذف</div>
+            <div className="col-span-1">حذف</div>
           </div>
 
           <div
@@ -243,14 +243,14 @@ export default function Sessions() {
 
                   <div className="col-span-4">{session.course.name}</div>
 
-                  <div className="col-span-3">{session.title}</div>
+                  <div className="col-span-4">{session.title}</div>
 
                   <div className="col-span-2">{session.time}</div>
 
-                  <div className="col-span-2">
+                  <div className="col-span-1">
                     <div
                       onClick={() => removeSession(session._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
                     >
                       حذف
                     </div>

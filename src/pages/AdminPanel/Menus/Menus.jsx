@@ -177,11 +177,11 @@ export default function Menus() {
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
-            <div className="col-span-3">عنوان</div>
-            <div className="col-span-2">آدرس</div>
+            <div className="col-span-4">عنوان</div>
+            <div className="col-span-3">آدرس</div>
             <div className="col-span-2">دسته بندی ...</div>
-            <div className="col-span-2">ویرایش</div>
-            <div className="col-span-2">حذف</div>
+            <div className="col-span-1">ویرایش</div>
+            <div className="col-span-1">حذف</div>
           </div>
 
           <div
@@ -196,9 +196,9 @@ export default function Menus() {
                 >
                   <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-3">{menu.title}</div>
+                  <div className="col-span-4">{menu.title}</div>
 
-                  <div className="col-span-2">{menu.href}</div>
+                  <div className="col-span-3">{menu.href}</div>
 
                   <div className="col-span-2">
                     {menu.parent ? (
@@ -210,15 +210,15 @@ export default function Menus() {
                     )}
                   </div>
 
-                  <div className="col-span-2">
-                    <div className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none">
+                  <div className="col-span-1">
+                    <div className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none">
                       ویرایش
                     </div>
                   </div>
-                  <div className="col-span-2">
+                  <div className="col-span-1">
                     <div
                       onClick={() => removeMenu(menu._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
                     >
                       حذف
                     </div>

@@ -315,9 +315,9 @@ export default function Courses() {
             <div className="col-span-1 text-nowrap">شناسه</div>
             <div className="col-span-2">عنوان</div>
             <div className="col-span-1">مبلغ</div>
-            <div className="col-span-1">وضعیت</div>
+            <div className="col-span-2">وضعیت</div>
             <div className="col-span-2">لینک</div>
-            <div className="col-span-2">مدرس</div>
+            <div className="col-span-1">مدرس</div>
             <div className="col-span-1">دسته بندی</div>
             <div className="col-span-1">ویرایش</div>
             <div className="col-span-1">حذف</div>
@@ -343,25 +343,25 @@ export default function Courses() {
                       : course.price.toLocaleString()}
                   </div>
 
-                  <div className="col-span-1">
+                  <div className="col-span-2">
                     {course.isComplete === 0 ? "در حال برگزاری" : "تکمیل شده"}
                   </div>
 
                   <div className="col-span-2">{course.shortName}</div>
 
-                  <div className="col-span-2"> {course.creator}</div>
+                  <div className="col-span-1 text-nowrap text-xl"> {course.creator}</div>
 
                   <div className="col-span-1"> {course.categoryID.name}</div>
 
-                  <div className="col-span-1">
-                    <div className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none">
+                  <div className="col-span-1 flex-center">
+                    <div className="inline-flex items-center justify-center bg-amber-100/80 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none">
                       ویرایش
                     </div>
                   </div>
                   <div className="col-span-1">
                     <div
                       onClick={() => removeCourse(course._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-danaMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
                     >
                       حذف
                     </div>
