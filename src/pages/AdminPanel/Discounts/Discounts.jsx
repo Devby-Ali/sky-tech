@@ -32,9 +32,14 @@ export default function Discounts() {
   };
 
   return (
-    <section>
-      <div className="flex-center my-10 md:my-16 xs:pt-6 md:pt-0 text-4xl text-darkColor dark:text-white font-EstedadBold">
-        <span>ایجاد تخفیف همگانی</span>
+    <section className="mt-16 md:mt-20 text-darkColor dark:text-white/95">
+      <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-xl mb-20">
+        <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
+          <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+          <span className="text-light-blue-500 text-2xl md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
+            ایحاد تخفیف همگانی
+          </span>
+        </div>
       </div>
         <form className="lg:px-36 xl:mx-56 2xl:mx-96">
           <div>
