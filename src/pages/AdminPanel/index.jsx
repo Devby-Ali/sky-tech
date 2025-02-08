@@ -7,7 +7,7 @@ export default function index() {
   return (
     <>
       <div className="flex" id="content">
-        <div className="hidden md:block min-h-screen bg-white dark:bg-light-blue-800/5">
+        <div className="hidden md:block min-h-screen bg-white dark:bg-light-blue-900/5">
           <Sidebar />
         </div>
 

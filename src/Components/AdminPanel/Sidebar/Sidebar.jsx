@@ -36,7 +36,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="nav w-[26rem] h-full">
+    <div className="nav w-[22rem] 2xl:w-[26rem] h-full">
       <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white px-7">
         <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
           <Link
@@ -72,7 +72,7 @@ export default function Sidebar() {
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-7 -ml-7">
+        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-7 -ml-7 text-2xl 2xl:text-[1.6rem]">
           <li className={pageName["*"] === "" && "active-menu"}>
             <Link to="/p-admin">
               <span>صفحه اصلی</span>
