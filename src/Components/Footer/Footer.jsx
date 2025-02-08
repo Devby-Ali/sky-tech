@@ -1,15 +1,12 @@
 import React from "react";
-import FooterItem from "../FooterItem/FooterItem";
 import { Link } from "react-router-dom";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { HiOutlinePhone } from "react-icons/hi2";
-import { LiaTelegram } from "react-icons/lia";
-import { SlSocialInstagram } from "react-icons/sl";
+import { FaInstagram, FaTelegramPlane } from "react-icons/fa";
 import Input from "../Form/Input";
 import { emailValidator } from "../../validators/rules";
 import { useForm } from "../../hooks/useForm";
 import Swal from "sweetalert2";
-import { FiMail } from "react-icons/fi";
 import Button from "../Form/Button";
 
 export default function Footer() {
@@ -77,17 +74,17 @@ export default function Footer() {
             <div className="flex gap-x-4 sm:gap-x-5">
               <a
                 href="https://"
-                className="flex-center text-[2.1rem] text-darkColor bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16"
+                className="flex-center text-[2.6rem] text-darkColor bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 hover:bg-light-blue-500"
                 rel="nofollow"
               >
-                <SlSocialInstagram />
+                <FaInstagram />
               </a>
               <a
                 href="https://"
-                className="flex-center text-5xl text-darkColor bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 child:mt-0.5 child:mr-0.5"
+                className="flex-center text-[2.6rem] text-darkBox bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 child:mt-0.5 child:mr-0.5 hover:bg-light-blue-500"
                 rel="nofollow"
               >
-                <LiaTelegram />
+                <FaTelegramPlane />
               </a>
             </div>
           </div>
@@ -115,7 +112,7 @@ export default function Footer() {
               className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
-                <LiaTelegram />
+              <FaTelegramPlane />
               </div>
               SKY-Tech_academy_support@
             </a>
@@ -172,10 +169,10 @@ export default function Footer() {
                 دوره های پرطرفدار
               </span>
               <div className="flex flex-col items-start gap-y-5 sm:gap-y-8 text-2xl sm:text-[1.65rem  ]">
-                <a href="">آموزش پایتون</a>
-                <a href="">آموزش جاوااسکریپت</a>
-                <a href="">آموزش Html</a>
-                <a href="">آموزش Css</a>
+                <Link to={"/course-info/npm"}>آموزش NPM</Link>
+                <Link to={"/course-info/node-expert"}>متخصص Node Js </Link>
+                <Link to={"/course-info/html"}>آموزش Html </Link>
+                <Link to={"/course-info/vuejs"}>آموزش Vue Js</Link>
               </div>
             </div>
             <div>
@@ -183,9 +180,9 @@ export default function Footer() {
                 دسترسی سریع
               </span>
               <div className="flex flex-col items-start gap-y-5 sm:gap-y-8 text-2xl sm:text-[1.65rem  ]">
-                <a href="">قوانین و مقررات</a>
-                <a href="">ارسال تیکت</a>
-                <a href="">همه دوره ها</a>
+                <Link to={"/my-account"}>پیشخوان</Link>
+                <Link to={"/my-account/send-ticket"}>ارسال تیکت</Link>
+                <Link to={"/courses/1"}>همه دوره ها</Link>
                 <Link to={"/contact"}>تماس با ما</Link>
               </div>
             </div>
