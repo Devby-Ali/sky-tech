@@ -47,7 +47,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="nav w-[27rem] h-full px-7">
+    <aside className="nav w-[22rem] 2xl:w-[26rem] h-full px-7">
       <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
         <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
           <Link

@@ -95,8 +95,8 @@ export default function Topbar() {
   return (
     <>
       <div
-        className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 md:hidden ${
-          navOpen ? "right-0" : "-right-[263px]"
+        className={`nav fixed top-0 bottom-0 w-[220px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 md:hidden ${
+          navOpen ? "right-0" : "-right-[220px]"
         }`}
       >
         <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
@@ -107,8 +107,8 @@ export default function Topbar() {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="65"
-                height="65"
+                width="55"
+                height="55"
                 fill="none"
                 stroke="currentColor"
                 strokeLinecap="round"
@@ -124,14 +124,14 @@ export default function Topbar() {
             </Link>
             <div className="flex items-center gap-x-6 text-[2.75rem] text-blue-gray-500 dark:text-white">
               <div
-                className="flex-center p-3.5 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
                 onClick={() => themeHandler()}
               >
                 <HiOutlineSun className="hidden dark:inline-block" />
                 <HiOutlineMoon className="inline-block dark:hidden" />
               </div>
               <div
-                className="flex-center p-3.5 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
                 onClick={navOpenHandler}
               >
                 <HiChevronRight />
@@ -139,7 +139,7 @@ export default function Topbar() {
             </div>
           </div>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-          <ul className="child:transition-all child:pr-2.5 child:py-6 mt-6 -ml-7">
+          <ul className="child:transition-all child:pr-2.5 child:py-6 mt-4 -ml-7 text-2xl">
             <li className={pageName["*"] === "" && "active-menu"}>
               <Link to="/my-account">
                 <span>پیشخوان</span>
