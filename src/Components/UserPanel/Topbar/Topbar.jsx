@@ -179,7 +179,7 @@ export default function Topbar() {
         </div>
       </div>
 
-      <header className="w-full flex items-center h-[8rem] 2xl:h-36 dark:bg-gradient-to-tr from-light-blue-800/5 to-light-blue-800/5 backdrop-blur-[4px] shadow-lg">
+      <header className="w-full flex items-center h-[8rem] 2xl:h-36 dark:bg-gradient-to-tr from-light-blue-800/5 via-light-blue-900/5 to-light-blue-900/5 backdrop-blur-[4px] shadow-lg">
         <div className="h-full w-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
           <div className="flex items-center gap-x-6 2xl:gap-x-8">
             <div

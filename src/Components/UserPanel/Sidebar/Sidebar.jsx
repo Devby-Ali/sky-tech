@@ -83,7 +83,7 @@ export default function Sidebar() {
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-6 -ml-7">
+        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-7 -ml-7 text-2xl">
           <li className={pageName["*"] === "" && "active-menu"}>
             <Link to="/my-account">
               <span>پیشخوان</span>
