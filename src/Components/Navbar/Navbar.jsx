@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/authContext";
-import Input from "../Form/Input";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import { Collapse, Card } from "@material-tailwind/react";
@@ -8,7 +7,6 @@ import {
   HiBars3,
   HiChevronLeft,
   HiChevronRight,
-  HiMagnifyingGlass,
   HiOutlineArrowLeftEndOnRectangle,
   HiOutlineChatBubbleLeftEllipsis,
   HiOutlineFolder,

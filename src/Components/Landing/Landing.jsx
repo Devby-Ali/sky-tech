@@ -32,7 +32,7 @@ export default function Landing({ info }) {
       <div className="container">
         <div className="lg:flex lg:flex-row-reverse gap-x-16 items-center">
           <div className="lg:w-1/2">
-            <img src="/images/landing/coding-man.png" alt="" />
+            {/* <img src="/images/landing/coding-man.png" alt="" /> */}
           </div>
           <div className="relative lg:w-1/2">
             <h1 className="text-3xl sm:text-5xl lg:text-4xl sm:mb-16 lg:mb-10 font-bold">

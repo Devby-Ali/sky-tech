@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="header">
         {/* <Topbar /> */}
-        <Navbar />
+        {/* <Navbar /> */}
         <Landing info={indexInfo} />
     </header>
   );
