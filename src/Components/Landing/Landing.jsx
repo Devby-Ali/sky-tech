@@ -7,9 +7,9 @@ import { useForm } from "../../hooks/useForm";
 import Button from "../Form/Button";
 import { useNavigate } from "react-router-dom";
 import { requiredValidator } from "../../validators/rules";
+import { HiChevronDown } from "react-icons/hi2";
 
 export default function Landing({ info }) {
-
   const [formState, onInputHandler] = useForm(
     {
       search: {
@@ -20,22 +20,20 @@ export default function Landing({ info }) {
     false
   );
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const search = (event) => {
-    event.preventDefault()
-    navigate(`search/${formState.inputs.search.value}`)
+    event.preventDefault();
+    navigate(`search/${formState.inputs.search.value}`);
   };
 
   return (
-    <section className="text-center h-[93vh] bg-landing text-darkColor dark:text-white">
-      <div className="container">
-        <div className="lg:flex lg:flex-row-reverse gap-x-16 items-center">
-          <div className="lg:w-1/2">
-            {/* <img src="/images/landing/coding-man.png" alt="" /> */}
-          </div>
-          <div className="relative lg:w-1/2">
-            <h1 className="text-3xl sm:text-5xl lg:text-4xl sm:mb-16 lg:mb-10 font-bold">
+    <section className="relative h-[48vh] sm:h-[60vh] lg:h-[72vh] xl:h-[90vh] bg-landing text-darkColor dark:text-white">
+      <div className="relative h-full container overflow-hidden">
+        <div className="">
+          <div className="pt-12">
+
+            <h2 className="text-3xl sm:text-5xl lg:text-4xl sm:mb-16 lg:mb-10 font-bold">
               <Typewriter
                 onInit={(typeWriter) => {
                   typeWriter
@@ -51,12 +49,15 @@ export default function Landing({ info }) {
                   loop: true,
                 }}
               />
-            </h1>
-            <h2 className="text-3xl">
-              با اسکای آکادمی، برنامه نویسی تخصصی رو به صورت حرفه ای یاد بگیر .
             </h2>
+            <h3 className="text-3xl">
+              با اسکای آکادمی، برنامه نویسی تخصصی رو به صورت حرفه ای یاد بگیر .
+            </h3>
             <div className="max-w-[700px] mt-16 sm:mt-24 lg:mt-16 xl:mt-20 mx-auto">
-              <form className="flex items-center justify-between border-2 dark:border border-gray-500 rounded-xl h-24 pl-2.5 pr-8" action="#">
+              <form
+                className="flex items-center justify-between border-2 dark:border border-gray-500 rounded-xl h-24 pl-2.5 pr-8"
+                action="#"
+              >
                 <Input
                   type="text"
                   id="search"
@@ -74,7 +75,7 @@ export default function Landing({ info }) {
                 </Button>
               </form>
             </div>
-            <div className="hidden lg:flex justify-between items-center mt-20 2xl:mt-32">
+            <div className="flex justify-between items-center mt-20 2xl:mt-32">
               <div className="flex-center flex-col text-darkBox dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -137,10 +138,33 @@ export default function Landing({ info }) {
                 <span className="text-xl mt-2">دقیقه آموزش تولید کردیم</span>
               </div>
             </div>
-            <div className="hidden lg:block absolute -top-20 left-0 w-[250px] h-[250px] bg-purple-600 opacity-25 blur-[120px] rounded-full"></div>
-            <div className="hidden lg:block absolute -bottom-44 -right-17 w-[250px] h-[250px] bg-light-blue-600 opacity-25 blur-[120px] rounded-full"></div>
+            {/* <div className="hidden lg:block absolute -top-20 left-0 w-[250px] h-[250px] bg-purple-600 opacity-25 blur-[120px] rounded-full"></div>
+            <div className="hidden lg:block absolute -bottom-44 -right-17 w-[250px] h-[250px] bg-light-blue-600 opacity-25 blur-[120px] rounded-full"></div> */}
           </div>
         </div>
+        {/* <!-- Circle --> */}
+        <div className="circle circle--main circle--lg">
+          <div className="circle circle--md">
+            <div className="circle circle--sm"></div>
+          </div>
+        </div>
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="curve-footer"
+        width="100"
+        height="22"
+        fill="none"
+        viewBox="0 0 100 22"
+        className="absolute bottom-0 right-0 left-0 mx-auto hidden md:inline-block w-[130px] h-[28px] text-blue-gray-50 dark:text-darkColor dark:text-zinc-800 rotate-180"
+      >
+        <path
+          fill="currentColor"
+          d="M50 22C31 22 19 0 0 0h100C81.25 0 69 22 50 22"
+        ></path>
+      </svg>
+      <div className="absolute bottom-3 right-0 left-0 mx-auto translate-y-1/2 hidden md:block h-12 w-12 text-5xl">
+        <HiChevronDown />
       </div>
     </section>
   );
