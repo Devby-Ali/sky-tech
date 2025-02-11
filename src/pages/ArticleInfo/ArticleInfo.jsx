@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Topbar from "./../../Components/Topbar/Topbar";
-import Navbar from "./../../Components/Navbar/Navbar";
+import Header from "./../../Components/Header/Header";
 import Breadcrumb from "./../../Components/Breadcrumb/Breadcrumb";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
 import Footer from "./../../Components/Footer/Footer";
@@ -16,7 +16,7 @@ import {
   HiShare,
 } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
-import domPurify from "dompurify"
+import domPurify from "dompurify";
 
 export default function ArticleInfo() {
   const { articleName } = useParams();
@@ -24,7 +24,7 @@ export default function ArticleInfo() {
   const [articleDetails, setArticleDetails] = useState({});
   const [articleCategory, setArticleCategory] = useState({});
   const [articleCreator, setArticleCreator] = useState({});
-  const [articleCreatedAt, setArticleCreatedAt] = useState('');
+  const [articleCreatedAt, setArticleCreatedAt] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles/${articleName}`)
@@ -33,14 +33,14 @@ export default function ArticleInfo() {
         setArticleDetails(articleInfo);
         setArticleCategory(articleInfo.categoryID);
         setArticleCreator(articleInfo.creator);
-        setArticleCreatedAt(articleInfo.createdAt)
+        setArticleCreatedAt(articleInfo.createdAt);
         console.log(articleInfo);
       });
   }, []);
 
   return (
     <>
-      <Navbar />
+      <Header />
       <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-10 lg:pt-60">
         <div className="container">
           <Breadcrumb
@@ -167,8 +167,12 @@ export default function ArticleInfo() {
                   </div>
                 </div>
                 {/*					<!-- Full Description --> */}
-                <div className="tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem] overflow-auto" dangerouslySetInnerHTML={{ __html: domPurify.sanitize(articleDetails.body) }}>
-                </div>
+                <div
+                  className="tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem] overflow-auto"
+                  dangerouslySetInnerHTML={{
+                    __html: domPurify.sanitize(articleDetails.body),
+                  }}
+                ></div>
               </div>
               {/* <!-- Related Blogs --> */}
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
@@ -265,7 +269,7 @@ export default function ArticleInfo() {
                     </div>
                   </div>
                 </div>
-              </div> 
+              </div>
 
               {/* <!-- Sidebar --> */}
               <aside className="col-span-full lg:col-span-4 xl:col-span-3 space-y-8">

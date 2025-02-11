@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../Components/Form/Button";
-import Navbar from "./../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import CategoryList from "../../Components/CategoryList/CategoryList";
@@ -139,7 +139,7 @@ export default function Courses() {
   return (
     <>
       {/* <Topbar /> */}
-      <Navbar />
+      <Header />
       <section className="pt-16 md:pt-52">
         <div>
           <SectionHeader

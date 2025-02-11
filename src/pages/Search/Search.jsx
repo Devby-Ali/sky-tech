@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import { useParams } from "react-router-dom";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
@@ -20,7 +20,7 @@ export default function Search() {
 
   return (
     <>
-      <Navbar />
+      <Header />
 
       <div className="mb-40 mt-72">
         <div className="container">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import Topbar from "./../../Components/Topbar/Topbar";
-import Navbar from "./../../Components/Navbar/Navbar";
+import Header from "./../../Components/Header/Header";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Button from "../../Components/Form/Button";
 import CourseDetailBox from "../../Components/CourseDetailBox/CourseDetailBox";
@@ -247,7 +247,7 @@ export default function CourseInfo() {
   return (
     <>
       {/* <Topbar /> */}
-      <Navbar />
+      <Header />
       <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-14 lg:pt-52 2xl:pt-56">
         <div className="container">
           <Breadcrumb
@@ -314,7 +314,10 @@ export default function CourseInfo() {
                                 {price.toLocaleString()}
                               </span>
                               <span className="flex gap-x-1 text-green-500 font-EstedadMedium text-5xl">
-                                {(price -  (price * courseDetails.discount) / 100).toLocaleString()}
+                                {(
+                                  price -
+                                  (price * courseDetails.discount) / 100
+                                ).toLocaleString()}
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="30"
@@ -899,9 +902,7 @@ export default function CourseInfo() {
                               src={`http://localhost:4000/courses/covers/${course.cover}`}
                               alt="Course Cover"
                             />
-                            <span className="line-clamp-2">
-                            {course.name}
-                            </span>
+                            <span className="line-clamp-2">{course.name}</span>
                           </div>
                           <Button
                             className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"

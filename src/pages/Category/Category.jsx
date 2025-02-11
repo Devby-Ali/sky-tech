@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import Topbar from "./../../Components/Topbar/Topbar";
-import Navbar from "./../../Components/Navbar/Navbar";
+import Header from "./../../Components/Header/Header";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import Pagination from "../../Components/Pagination/Pagination";
 import Footer from "./../../Components/Footer/Footer";
@@ -144,7 +144,7 @@ export default function Category() {
   return (
     <>
       {/* <Topbar /> */}
-      <Navbar />
+      <Header />
       <section className="pt-16 md:pt-52">
         {courses.length ? (
           <>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./../../Components/Navbar/Navbar";
+import Header from "./../../Components/Header/Header";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import ArticleBox from "../../Components/ArticleBox/ArticleBox";
 import Pagination from "../../Components/Pagination/Pagination";
@@ -29,7 +29,7 @@ export default function Articles() {
   return (
     <>
       {/* <Topbar /> */}
-      <Navbar />
+      <Header />
       <div className="pt-[11.5rem]">
         <div className="-mb-6">
           <SectionHeader title={"مقاله ها"} titleValue={`${articles.length} مقاله آموزشی`} />

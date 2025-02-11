@@ -28,7 +28,7 @@ export default function Landing({ info }) {
   };
 
   return (
-    <section className="text-center lg:pt-60 pb-20 sm:mb-20 xl:mb-0 xxl:pb-10 text-darkColor dark:text-white">
+    <section className="text-center h-[93vh] bg-landing text-darkColor dark:text-white">
       <div className="container">
         <div className="lg:flex lg:flex-row-reverse gap-x-16 items-center">
           <div className="lg:w-1/2">

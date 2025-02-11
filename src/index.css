@@ -233,7 +233,8 @@ i {
 
   .bg-landing {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url(/images/landing/background_landing.jfif) no-repeat center center;
+      url(/images/landing/bg_landing1.jpg) no-repeat right bottom;
+      background-size: cover;
   }
 
   .active {

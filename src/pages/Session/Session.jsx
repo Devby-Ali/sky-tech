@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../../Components/Footer/Footer";
-import Navbar from "../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import {
@@ -52,7 +52,7 @@ export default function Session() {
 
   return (
     <>
-      <Navbar />
+      <Header />
 
       <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-12 lg:pt-52 2xl:pt-56">
         <div className="container">

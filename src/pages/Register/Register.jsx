@@ -98,14 +98,14 @@ export default function Register() {
       })
       .then((result) => {
         if (result) {
-        Swal.fire({
-          title: "ثبت نام موفقیت آمیز",
-          icon: "success",
-          confirmButtonText: "ورود به پنل",
-        }).then((value) => {
-          navigate("/");
-        });
-      }
+          Swal.fire({
+            title: "ثبت نام موفقیت آمیز",
+            icon: "success",
+            confirmButtonText: "ورود به پنل",
+          }).then((value) => {
+            navigate("/");
+          });
+        }
         authContext.login(result.user, result.accessToken);
       });
 
@@ -115,7 +115,7 @@ export default function Register() {
   return (
     <>
       {/* <Topbar /> */}
-      {/* <Navbar /> */}
+      {/* <Header /> */}
       <section className="relative flex-center h-screen overflow-hidden">
         <div className="container">
           <div className="relative mx-auto flex flex-col items-center w-min">

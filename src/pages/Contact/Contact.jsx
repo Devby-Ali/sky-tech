@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import Input from "../../Components/Form/Input";
 import Button from "../../Components/Form/Button";
@@ -74,7 +74,7 @@ export default function Contact() {
 
   return (
     <>
-      <Navbar />
+      <Header />
 
       <section className="relative flex-center overflow-hidden -mb-40 sm:-mb-60 pt-14 lg:pt-60 2xl:pt-72 pb-24">
         <div className="container">

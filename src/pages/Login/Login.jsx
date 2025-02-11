@@ -82,7 +82,6 @@ export default function Login() {
             authContext.login(userData, result.accessToken);
           });
         console.log(result);
-
       })
       .catch((err) => {
         Swal.fire({
@@ -100,13 +99,16 @@ export default function Login() {
   return (
     <>
       {/* <Topbar /> */}
-      {/* <Navbar /> */}
+      {/* <Header /> */}
 
       <section className="relative flex-center h-screen overflow-hidden">
         <div className="container">
           <div className="relative mx-auto flex flex-col items-center w-min">
             <div className="flex items-center flex-col text-light-blue-600 font-MikhakWoff2one mb-12">
-              <Button to={"/"} className="text-7xl font-bold mb-4 tracking-tight">
+              <Button
+                to={"/"}
+                className="text-7xl font-bold mb-4 tracking-tight"
+              >
                 اسکای لرن
               </Button>
               <span className="tracking-[0.5rem]">skylearn.com</span>
