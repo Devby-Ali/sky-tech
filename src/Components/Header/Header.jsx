@@ -95,7 +95,6 @@ export default function Header() {
 
   return (
     <>
-      {/* <Topbar /> */}
       <div
         className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-9 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-[263px]"

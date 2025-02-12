@@ -15,5 +15,5 @@ export default function LandingCounter({ count }) {
     return () => clearInterval(interval);
   }, [courseCounter]);
 
-  return <span className="font-bold mt-3 text-3xl">{courseCounter}</span>;
+  return <span className="font-EstedadBold font-bold mt-4 sm:mt-6 text-3xl sm:text-4xl">{courseCounter}</span>;
 }

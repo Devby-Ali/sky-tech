@@ -83,7 +83,7 @@ i {
   }
 
   .circle--main {
-    @apply absolute bottom-0 right-0 left-0 mx-auto translate-y-1/2 hidden md:flex;
+    @apply absolute bottom-0 right-0 left-0 mx-auto translate-y-1/2 hidden lg:flex;
   }
 
   .circle--lg {
