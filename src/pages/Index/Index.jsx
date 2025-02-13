@@ -21,10 +21,10 @@ export default function Index() {
 
   return (
     <>
+    <Landing info={indexInfo} />
       <div className="absolute -z-10 opacity-40 dark:opacity-20">
         <img src="/images/sky.png" alt="" />
       </div>
-      <Landing info={indexInfo} />
       <LastCourses />
       <AboutUs />
       <PopularCourses />
