@@ -8,6 +8,7 @@ import {
   maxValidator,
 } from "./../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
+import { HiMiniPlus } from "react-icons/hi2";
 import Swal from "sweetalert2";
 
 export default function Courses() {
@@ -309,7 +310,7 @@ export default function Courses() {
         </div>
       </section>
 
-      <DataTable title="دوره ها">
+      <DataTable title="دوره ها" btnTitle={"دوره جدید"} icon={<HiMiniPlus />}>
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
