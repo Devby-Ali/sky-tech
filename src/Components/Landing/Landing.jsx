@@ -113,7 +113,7 @@ export default function Landing({ info }) {
   };
 
   return (
-    <section className="relative bg-landing pb-28 2xl:pb-44 overflow-hidden mb-14 sm:mb-36 lg:mb-48">
+    <section className="relative bg-landing pb-28 xl:pb-24  2xl:pb-48 overflow-hidden mb-14 sm:mb-36 lg:mb-48">
       <div
         className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-9 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-[263px]"
@@ -206,7 +206,7 @@ export default function Landing({ info }) {
         </ul>
       </div>
 
-      <header className="lg:container md:flex justify-between items-center w-full md:mx-auto mb-24 2xl:mb-36">
+      <header className="lg:container md:flex justify-between items-center w-full md:mx-auto mb-24 xl:mb-16 2xl:mb-36">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-12 py-4 md:py-8">
             <div

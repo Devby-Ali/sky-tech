@@ -24,7 +24,7 @@ export default function Topbar() {
 
   const authContext = useContext(AuthContext);
 
-  const pageName = useParams()
+  const pageName = useParams();
 
   const navigate = useNavigate();
 
@@ -200,29 +200,13 @@ export default function Topbar() {
               <FaSearch className="text-3xl text-darkColor/70 dark:text-white/60 cursor-pointer" />
             </form>
 
-            <ul className="hidden gap-x-7 xl:gap-x-12 text-white text-[1.55rem] xl:text-[1.7rem]">
-              <li className="main-header__item flex-center relative">
-                <Link to={"/"} className="flex-center">
-                  صفحه اصلی
-                </Link>
-              </li>
-
-              <li className="main-header__item flex-center hover:text-light-blue-400 cursor-pointer relative">
-                <Link to={`/category-info`} className="flex-center">
-                  <GoTriangleDown className="mt-1 xl:mr-1" />
-                  <ul className="main-header__dropdown absolute top-24 left-0 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
-                    <li>
-                      <Link
-                        to={"/"}
-                        className="block py-2 px-8 text-[1.6rem] text-zinc-600 duration-200"
-                      >
-                        cgxjnf
-                      </Link>
-                    </li>
-                  </ul>
-                </Link>
-              </li>
-            </ul>
+            <div className="hidden lg:block text-nowrap text-darkColor dark:text-white lg:text-3xl mr-3">
+              <h4>
+                {userInfo} عزیز‚ به پنل کاربری{" "}
+                <span className="text-light-blue-400 mx-1.5">Sky Tech</span> خوش
+                اومدی
+              </h4>
+            </div>
           </div>
 
           <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-gray-300/40 dark:bg-white/5 text-4xl text-darkColor dark:text-white">

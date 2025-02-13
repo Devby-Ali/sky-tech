@@ -303,7 +303,7 @@ export default function Topbar() {
                 )}
               </Collapse>
             </div>
-            <div className="text-nowrap text-darkColor dark:text-white text-3xl">
+            <div className="hidden lg:block text-nowrap text-darkColor dark:text-white text-3xl mr-3">
               <h4>{adminInfo.name} عزیز‚ به پنل مدیریت <span className="text-light-blue-400 mx-1.5">Sky Tech</span> خوش اومدی</h4>
             </div>
       
