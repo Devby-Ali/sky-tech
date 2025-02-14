@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
-import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import AuthContext from "../../../context/authContext";
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
+import { HiOutlineLogout } from "react-icons/hi";
 
 export default function Sidebar() {
   const [dark, setDark] = useState(false);
@@ -48,7 +49,7 @@ export default function Sidebar() {
 
   return (
     <aside className="nav w-[22rem] 2xl:w-[26rem] h-full px-7">
-      <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
+      <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white h-[90%]">
         <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
           <Link
             to={"/"}
@@ -83,42 +84,50 @@ export default function Sidebar() {
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-        <ul className="child:transition-all child:pr-2.5 child:py-6 mt-7 -ml-7 text-2xl">
-          <li className={pageName["*"] === "" && "active-menu"}>
-            <Link to="/my-account">
-              <span>پیشخوان</span>
-            </Link>
-          </li>
-          <li className={pageName["*"] === "orders" && "active-menu"}>
-            <Link to="orders">
-              <span>سفارش</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="#">
-              <span>کیف پول من</span>
-            </Link>
-          </li>
-          <li className={pageName["*"] === "edit-account" && "active-menu"}>
-            <Link to="edit-account">
-              <span>جزئیات حساب کاربری</span>
-            </Link>
-          </li>
-          <li className={pageName["*"] === "buyed" && "active-menu"}>
-            <Link to="buyed">
-              <span>دوره های من</span>
-            </Link>
-          </li>
-          <li className={pageName["*"] === "tickets" && "active-menu"}>
-            <Link to="tickets">
-              <span>تیکت های پشتیبانی</span>
-            </Link>
-          </li>
-        </ul>
-        <div className="hover:bg-red-500/60 hover:text-white rounded-r-md text-red-200 mt-4 -mr-2 -ml-7">
-          <Button className="px-5 py-4" onClick={logoutUser}>
-            خروج
-          </Button>
+        <div className="h-full flex flex-col justify-between">
+          <ul className="child:transition-all child:pr-2.5 child:py-6 mt-7 -ml-7 text-2xl">
+            <li className={pageName["*"] === "" && "active-menu"}>
+              <Link to="/my-account">
+                <span>پیشخوان</span>
+              </Link>
+            </li>
+            <li className={pageName["*"] === "orders" && "active-menu"}>
+              <Link to="orders">
+                <span>سفارش</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <span>کیف پول من</span>
+              </Link>
+            </li>
+            <li className={pageName["*"] === "edit-account" && "active-menu"}>
+              <Link to="edit-account">
+                <span>جزئیات حساب کاربری</span>
+              </Link>
+            </li>
+            <li className={pageName["*"] === "buyed" && "active-menu"}>
+              <Link to="buyed">
+                <span>دوره های من</span>
+              </Link>
+            </li>
+            <li className={pageName["*"] === "tickets" && "active-menu"}>
+              <Link to="tickets">
+                <span>تیکت های پشتیبانی</span>
+              </Link>
+            </li>
+          </ul>
+          <div className="hover:bg-red-500/60 hover:text-white bg-red-500/20 rounded-md text-red-200 mt-4 mb-8">
+            <Button
+              className="flex items-center justify-between px-5 py-5 text-[1.7rem] w-full"
+              onClick={logoutUser}
+            >
+              خروج از حساب کاربری
+              <span className="text-4xl">
+                <HiOutlineLogout />
+              </span>
+            </Button>
+          </div>
         </div>
       </div>
     </aside>
