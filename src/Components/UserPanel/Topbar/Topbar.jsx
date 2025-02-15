@@ -5,6 +5,7 @@ import { GoTriangleDown } from "react-icons/go";
 import {
   HiBars3,
   HiChevronRight,
+  HiMiniChevronLeft,
   HiOutlineBell,
   HiOutlineMoon,
   HiOutlineSun,
@@ -14,6 +15,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
+import { HiOutlineLogout } from "react-icons/hi";
 
 export default function Topbar() {
   const [navOpen, setNavOpen] = useState(false);
@@ -95,11 +97,11 @@ export default function Topbar() {
   return (
     <>
       <div
-        className={`nav fixed top-0 bottom-0 w-[220px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 md:hidden ${
-          navOpen ? "right-0" : "-right-[220px]"
+        className={`nav fixed top-0 bottom-0 w-[240px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 md:hidden ${
+          navOpen ? "right-0" : "-right-[240px]"
         }`}
       >
-        <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white">
+        <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white h-[90vh]">
           <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
             <Link
               to={"/"}
@@ -138,44 +140,60 @@ export default function Topbar() {
               </div>
             </div>
           </div>
+
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-          <ul className="child:transition-all child:pr-2.5 child:py-6 mt-4 -ml-7 text-2xl">
+
+        <div className="h-full flex flex-col justify-between">
+          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li className={pageName["*"] === "" && "active-menu"}>
-              <Link to="/my-account">
+              <Link className="flex items-center justify-between" to="/my-account">
                 <span>پیشخوان</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "orders" && "active-menu"}>
-              <Link to="orders">
+              <Link className="flex items-center justify-between" to="orders">
                 <span>سفارش</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
-            <li className={pageName["*"] === "#" && "active-menu"}>
-              <Link to="#">
+            <li>
+              <Link className="flex items-center justify-between" to="#">
                 <span>کیف پول من</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "edit-account" && "active-menu"}>
-              <Link to="edit-account">
+              <Link className="flex items-center justify-between" to="edit-account">
                 <span>جزئیات حساب کاربری</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "buyed" && "active-menu"}>
-              <Link to="buyed">
+              <Link className="flex items-center justify-between" to="buyed">
                 <span>دوره های من</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "tickets" && "active-menu"}>
-              <Link to="tickets">
+              <Link className="flex items-center justify-between" to="tickets">
                 <span>تیکت های پشتیبانی</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
           </ul>
-          <div className="hover:bg-red-500/60 hover:text-white rounded-r-md text-red-200 mt-4 -mr-2 -ml-7">
-            <Button className="pr-5 py-4" onClick={logoutUser}>
-              خروج
+          <div className="hover:bg-red-500/80 hover:text-white dark:hover:bg-red-500/80 dark:hover:text-white bg-red-300/40 dark:bg-red-500/20 rounded-md text-red-300 dark:text-red-100 mt-4 mb-8 mx-3 font-EstedadMedium">
+            <Button
+              className="flex items-center justify-between px-5 py-5 text-2xl w-full"
+              onClick={logoutUser}
+            >
+              خروج از حساب کاربری
+              <span className="text-4xl">
+                <HiOutlineLogout />
+              </span>
             </Button>
           </div>
+        </div>
         </div>
       </div>
 
