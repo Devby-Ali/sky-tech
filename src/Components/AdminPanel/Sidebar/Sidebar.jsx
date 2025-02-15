@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
-import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
+import { HiChevronLeft, HiMiniChevronLeft, HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import AuthContext from "../../../context/authContext";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -37,8 +37,8 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="nav w-[22rem] 2xl:w-[26rem] h-full">
-      <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white px-7">
+    <aside className="w-[24rem] 2xl:w-[26rem] h-full">
+      <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white px-7 h-[90vh] 2xl:h-[91vh]">
         <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
           <Link
             to={"/"}
@@ -74,71 +74,83 @@ export default function Sidebar() {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
         <div className="h-full flex flex-col justify-between">
-          <ul className="child:transition-all child:pr-2.5 child:py-6 mt-7 -ml-7 text-2xl 2xl:text-[1.6rem]">
+          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li className={pageName["*"] === "" && "active-menu"}>
-              <Link to="/p-admin">
+              <Link className="flex items-center justify-between" to="/p-admin">
                 <span>صفحه اصلی</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "courses" && "active-menu"}>
-              <Link to="courses">
+              <Link className="flex items-center justify-between" to="courses">
                 <span>دوره ها</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "sessions" && "active-menu"}>
-              <Link to="sessions">
+              <Link className="flex items-center justify-between" to="sessions">
                 <span>جلسات</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "menus" && "active-menu"}>
-              <Link to="menus">
+              <Link className="flex items-center justify-between" to="menus">
                 <span>منو ها</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "articles" && "active-menu"}>
-              <Link to="articles">
+              <Link className="flex items-center justify-between" to="articles">
                 <span>مقاله ها</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "users" && "active-menu"}>
-              <Link to="users">
+              <Link className="flex items-center justify-between" to="users">
                 <span>کاربران</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "comments" && "active-menu"}>
-              <Link to="comments">
+              <Link className="flex items-center justify-between" to="comments">
                 <span>کامنت‌ها</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "tickets" && "active-menu"}>
-              <Link to="tickets">
+              <Link className="flex items-center justify-between" to="tickets">
                 <span>تیکت‌ها</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "offs" && "active-menu"}>
-              <Link to="offs">
+              <Link className="flex items-center justify-between" to="offs">
                 <span>کدهای تخفیف</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "discounts" && "active-menu"}>
-              <Link to="discounts">
+              <Link className="flex items-center justify-between" to="discounts">
                 <span>تخفیف همگانی</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "category" && "active-menu"}>
-              <Link to="category">
+              <Link className="flex items-center justify-between" to="category">
                 <span>دسته‌بندی‌ها</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
             <li className={pageName["*"] === "contacts" && "active-menu"}>
-              <Link to="contacts">
+              <Link className="flex items-center justify-between" to="contacts">
                 <span>پیغام‌ها</span>
+                <HiMiniChevronLeft className="text-5xl"/>
               </Link>
             </li>
           </ul>
-          <div className="hover:bg-red-500/60 hover:text-white bg-red-500/20 rounded-md text-red-200 mt-4 mb-8">
+          <div className="hover:bg-red-500/80 hover:text-white dark:hover:bg-red-500/80 dark:hover:text-white bg-red-300/40 dark:bg-red-500/20 rounded-md text-red-300 dark:text-red-100 mt-4 mb-8 mx-3 font-EstedadMedium">
             <Button
-              className="flex items-center justify-between px-5 py-5 text-[1.7rem] w-full"
+              className="flex items-center justify-between px-5 py-5 text-2xl w-full"
               onClick={logoutAdmin}
             >
               خروج از حساب کاربری

@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import Swal from "sweetalert2";
 import AuthContext from "../../../context/authContext";
-import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
+import { HiMiniChevronLeft, HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 import { HiOutlineLogout } from "react-icons/hi";
 
 export default function Sidebar() {
@@ -48,7 +48,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="nav w-[22rem] 2xl:w-[26rem] h-full">
+    <aside className="nav w-[24rem] 2xl:w-[26rem] h-full">
       <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white px-7 h-[90vh] 2xl:h-[91vh]">
         <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
           <Link
@@ -85,41 +85,47 @@ export default function Sidebar() {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
         <div className="h-full flex flex-col justify-between">
-          <ul className="child:transition-all child:pr-2.5 child:py-6 mt-7 -ml-7 text-2xl">
+          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li className={pageName["*"] === "" && "active-menu"}>
-              <Link to="/my-account">
+              <Link className="flex items-center justify-between" to="/my-account">
                 <span>پیشخوان</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "orders" && "active-menu"}>
-              <Link to="orders">
+              <Link className="flex items-center justify-between" to="orders">
                 <span>سفارش</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li>
-              <Link to="#">
+              <Link className="flex items-center justify-between" to="#">
                 <span>کیف پول من</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "edit-account" && "active-menu"}>
-              <Link to="edit-account">
+              <Link className="flex items-center justify-between" to="edit-account">
                 <span>جزئیات حساب کاربری</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "buyed" && "active-menu"}>
-              <Link to="buyed">
+              <Link className="flex items-center justify-between" to="buyed">
                 <span>دوره های من</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "tickets" && "active-menu"}>
-              <Link to="tickets">
+              <Link className="flex items-center justify-between" to="tickets">
                 <span>تیکت های پشتیبانی</span>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
           </ul>
-          <div className="hover:bg-red-500/60 hover:text-white bg-red-500/20 rounded-md text-red-200 mt-4 mb-8">
+          <div className="hover:bg-red-500/80 hover:text-white dark:hover:bg-red-500/80 dark:hover:text-white bg-red-300/40 dark:bg-red-500/20 rounded-md text-red-300 dark:text-red-100 mt-4 mb-8 mx-3 font-EstedadMedium">
             <Button
-              className="flex items-center justify-between px-5 py-5 text-2xl 2xl:text-[1.7rem] w-full"
+              className="flex items-center justify-between px-5 py-5 text-2xl w-full"
               onClick={logoutUser}
             >
               خروج از حساب کاربری
