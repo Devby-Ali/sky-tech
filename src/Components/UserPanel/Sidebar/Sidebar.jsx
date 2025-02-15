@@ -48,8 +48,8 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="nav w-[22rem] 2xl:w-[26rem] h-full px-7">
-      <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white h-[90%]">
+    <aside className="nav w-[22rem] 2xl:w-[26rem] h-full">
+      <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white px-7 h-[90vh] 2xl:h-[91vh]">
         <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.55rem] 2xl:my-[1.05rem]">
           <Link
             to={"/"}
@@ -119,7 +119,7 @@ export default function Sidebar() {
           </ul>
           <div className="hover:bg-red-500/60 hover:text-white bg-red-500/20 rounded-md text-red-200 mt-4 mb-8">
             <Button
-              className="flex items-center justify-between px-5 py-5 text-[1.7rem] w-full"
+              className="flex items-center justify-between px-5 py-5 text-2xl 2xl:text-[1.7rem] w-full"
               onClick={logoutUser}
             >
               خروج از حساب کاربری
