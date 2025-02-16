@@ -172,7 +172,7 @@ export default function Courses() {
                 className="w-full flex items-center flex-col gap-6 md:gap-8"
               >
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <Input
                       id="name"
                       className="bg-transparent outline-none"
@@ -182,7 +182,7 @@ export default function Courses() {
                       onInputHandler={onInputHandler}
                     />
                   </div>
-                  <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="min-h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <Input
                       id="description"
                       element="textarea"
@@ -196,7 +196,7 @@ export default function Courses() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <Input
                       id="shortName"
                       className="bg-transparent outline-none"
@@ -206,7 +206,7 @@ export default function Courses() {
                       onInputHandler={onInputHandler}
                     />
                   </div>
-                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <Input
                       id="price"
                       className="bg-transparent outline-none"
@@ -219,7 +219,7 @@ export default function Courses() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <Input
                       id="support"
                       className="bg-transparent outline-none"
@@ -229,7 +229,7 @@ export default function Courses() {
                       onInputHandler={onInputHandler}
                     />
                   </div>
-                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <div className="flex items-center gap-x-2">
                       <label className="text-xl text-darkColor dark:text-white/70">
                         دسته‌بندی
@@ -255,7 +255,7 @@ export default function Courses() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <div className="flex items-center gap-x-2 w-[19.1rem]">
                       <label className="text-darkColor dark:text-white/70">
                         عکس
@@ -271,7 +271,7 @@ export default function Courses() {
                       />
                     </div>
                   </div>
-                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
                     <div className="flex items-center w-[19.1rem] text-darkColor dark:text-white/70">
                       <label className="text-3xl ml-10">وضعیت</label>
                       <div className="radios flex flex-col gap-y-1 items-center text-xl">

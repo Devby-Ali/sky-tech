@@ -702,7 +702,7 @@ export default function CourseInfo() {
                 </div>
                 <Button
                   type="button"
-                  className="button-primary text-white w-full sm:w-auto mx-auto mt-14"
+                  className="button-primary text-white py-4 w-full sm:w-auto mx-auto mt-14"
                 >
                   <span>مشاهده بیشتر مطلب</span>
                   <div className="text-5xl">

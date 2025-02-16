@@ -4,13 +4,13 @@ import Input from "../../../Components/Form/Input";
 import { minValidator } from "../../../validators/rules";
 import Button from "../../../Components/Form/Button";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
-import { HiOutlineCheckCircle } from "react-icons/hi2";
+import { HiMiniPlus, HiOutlineCheckCircle, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
-
 
 export default function Menus() {
   const [menus, setMenus] = useState([]);
   const [menuParent, setMenuParent] = useState("-1");
+  const [showAddMenu, setShowAddMenu] = useState(false);
 
   const [formState, onInputHandler] = useForm(
     {
@@ -67,6 +67,10 @@ export default function Menus() {
     });
   };
 
+  const addMenuHandler = () => {
+    setShowAddMenu(!showAddMenu);
+  };
+
   const createMenu = (event) => {
     event.preventDefault();
 
@@ -92,8 +96,9 @@ export default function Menus() {
           title: "منوی جدید ایجاد شد",
           icon: "success",
           confirmButtonText: "Ok",
-        }).then((result) => {
+        }).then(() => {
           getAllMenus();
+          setShowAddMenu(false);
         });
       }
     });
@@ -101,79 +106,97 @@ export default function Menus() {
 
   return (
     <>
-      <section className="flex-center overflow-hidden mt-24">
-        <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem]">
-            <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
-              افزودن منو جدید
-            </span>
-            <form action="#" className="w-full flex flex-col gap-y-8">
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="title"
-                  className="bg-transparent outline-none"
-                  type="text"
-                  placeholder="عنوان"
-                  validations={[minValidator(3)]}
-                  onInputHandler={onInputHandler}
-                />
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="href"
-                  className="bg-transparent outline-none"
-                  type="text"
-                  placeholder="آدرس"
-                  validations={[minValidator(5)]}
-                  onInputHandler={onInputHandler}
-                />
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <div className="flex items-center gap-x-2">
-                  <label className="text-darkColor dark:text-white/70">
-                    منو
-                  </label>
-                  <select
-                    className="text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
-                    onChange={(event) => setMenuParent(event.target.value)}
-                  >
-                    <option value="-1">مدنظر را انتخاب کنید</option>
-                    {menus.map((menu) => (
-                      <>
-                        {!Boolean(menu.parent) && (
-                          <option
-                            className="text-darkColor text-[1.8rem]"
-                            value={menu._id}
-                            key={menu._id}
-                          >
-                            {menu.title}
-                          </option>
-                        )}
-                      </>
-                    ))}
-                  </select>
+      {showAddMenu && (
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+          <div className="mx-auto flex flex-col items-center w-min">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur px-20 py-14 rounded-xl">
+              <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
+                افزودن منو جدید
+                <span
+                  onClick={addMenuHandler}
+                  className="rounded-full border border-darkColor dark:border-white p-0.5 text-4xl cursor-pointer"
+                >
+                  <HiXMark />
+                </span>
+              </span>
+              <form action="#" className="w-full flex flex-col gap-y-8">
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <Input
+                    id="title"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="عنوان"
+                    validations={[minValidator(3)]}
+                    onInputHandler={onInputHandler}
+                  />
                 </div>
-              </div>
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <Input
+                    id="href"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="آدرس"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="flex items-center gap-x-2">
+                    <label className="text-darkColor dark:text-white/70">
+                      منو
+                    </label>
+                    <select
+                      className="text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
+                      onChange={(event) => setMenuParent(event.target.value)}
+                    >
+                      <option value="-1">مدنظر را انتخاب کنید</option>
+                      <option
+                        className="text-darkColor text-[1.8rem]"
+                        value="-1"
+                      >
+                        منو اصلی
+                      </option>
+                      {menus.map((menu) => (
+                        <>
+                          {!Boolean(menu.parent) && (
+                            <option
+                              className="text-darkColor text-[1.8rem]"
+                              value={menu._id}
+                              key={menu._id}
+                            >
+                              {menu.title}
+                            </option>
+                          )}
+                        </>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-              <Button
-                className={`h-20 rounded-4xl ${
-                  formState.isFormValid
-                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
-                    : "bg-[#333c4c]/30"
-                }`}
-                type="submit"
-                onClick={createMenu}
-                disabled={!formState.isFormValid}
-              >
-                <span className="mx-auto">افزودن</span>
-              </Button>
-            </form>
+                <Button
+                  className={`h-20 rounded-xl ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={createMenu}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto">افزودن</span>
+                </Button>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <DataTable title="منو ها">
-
+      <DataTable
+        title="منو ها"
+        eventHandler={addMenuHandler}
+        btnTitle={"ایجاد منو"}
+        icon={<HiMiniPlus />}
+      >
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
