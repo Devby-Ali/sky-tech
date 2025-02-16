@@ -5,6 +5,7 @@ import { minValidator } from "../../../validators/rules";
 import Button from "../../../Components/Form/Button";
 import Swal from "sweetalert2";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+import { HiMiniPlus, HiXMark } from "react-icons/hi2";
 
 export default function Sessions() {
   const [courses, setCourses] = useState([]);
@@ -12,6 +13,7 @@ export default function Sessions() {
   const [sessionVideo, setSessionVideo] = useState({});
   const [sessionFree, setSessionFree] = useState(null);
   const [sessions, setSessions] = useState([]);
+  const [showAddSession, setShowAddSession] = useState(false);
 
   const [formState, onInputHandler] = useForm(
     {
@@ -47,6 +49,10 @@ export default function Sessions() {
       });
   }
 
+  const addSessionHandler = () => {
+    setShowAddSession(!showAddSession);
+  };
+
   const createSession = (event) => {
     event.preventDefault();
 
@@ -72,6 +78,7 @@ export default function Sessions() {
           confirmButtonText: "Ok",
         }).then(() => {
           getAllSessions();
+          setShowAddSession(false);
         });
       }
     });
@@ -110,116 +117,129 @@ export default function Sessions() {
 
   return (
     <>
-      <section className="flex-center overflow-hidden my-28">
-        <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem]">
-            <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
-              افزودن جلسه جدید
-            </span>
-            <form action="#" className="w-full flex flex-col gap-y-8">
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="title"
-                  className="bg-transparent outline-none"
-                  type="text"
-                  placeholder="عنوان"
-                  validations={[minValidator(5)]}
-                  onInputHandler={onInputHandler}
-                />
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="time"
-                  className="bg-transparent outline-none"
-                  type="text"
-                  placeholder="مدت زمان"
-                  validations={[minValidator(2)]}
-                  onInputHandler={onInputHandler}
-                />
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <div className="flex items-center gap-x-2">
-                  <label className="text-darkColor dark:text-white/70">
-                    دوره
-                  </label>
-                  <select
-                    className="text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
-                    onChange={(event) => setSessionCourse(event.target.value)}
-                  >
-                    <option value="-1">مدنظر را انتخاب کنید</option>
-                    {courses.map((course) => (
-                      <option
-                        className="text-darkColor text-[1.8rem]"
-                        value={course._id}
-                        key={course._id}
-                      >
-                        {course.name}
-                      </option>
-                    ))}
-                  </select>
+      {showAddSession && (
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+          <div className="mx-auto flex flex-col items-center w-min">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur px-20 py-14 rounded-xl">
+              <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
+                افزودن جلسه جدید
+                <span
+                  onClick={addSessionHandler}
+                  className="rounded-full border border-darkColor dark:border-white p-0.5 text-4xl cursor-pointer"
+                >
+                  <HiXMark />
+                </span>
+              </span>
+              <form action="#" className="w-full flex flex-col gap-y-8">
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <Input
+                    id="title"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="عنوان"
+                    validations={[minValidator(5)]}
+                    onInputHandler={onInputHandler}
+                  />
                 </div>
-              </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <Input
+                    id="time"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="مدت زمان"
+                    validations={[minValidator(2)]}
+                    onInputHandler={onInputHandler}
+                  />
+                </div>
+                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="flex items-center gap-x-2">
+                    <label className="text-darkColor dark:text-white/70">
+                      دوره
+                    </label>
+                    <select
+                      className="text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
+                      onChange={(event) => setSessionCourse(event.target.value)}
+                    >
+                      <option value="-1">مدنظر را انتخاب کنید</option>
+                      {courses.map((course) => (
+                        <option
+                          className="text-darkColor text-[1.8rem]"
+                          value={course._id}
+                          key={course._id}
+                        >
+                          {course.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-              <div className="min-h-20 flex items-center px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <div className="flex items-center justify-between w-[20rem] text-darkColor dark:text-white/70">
-                  <label className="text-3xl">وضعیت</label>
-                  <div className="radios flex gap-x-6 items-center">
-                    <div className="available">
-                      <label className="flex items-center gap-x-1">
-                        <span>رایگان</span>
-                        <input
-                          type="radio"
-                          value="1"
-                          name="condition"
-                          onChange={(event) =>
-                            setSessionFree(event.target.value)
-                          }
-                        />
-                      </label>
-                    </div>
-                    <div className="unavailable">
-                      <label className="flex items-center gap-x-1">
-                        <span>پولی</span>
-                        <input
-                          type="radio"
-                          value="0"
-                          name="condition"
-                          onChange={(event) =>
-                            setSessionFree(event.target.value)
-                          }
-                        />
-                      </label>
+                <div className="min-h-20 flex items-center px-4 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="flex items-center justify-between w-[20rem] text-darkColor dark:text-white/70">
+                    <label className="text-3xl">وضعیت</label>
+                    <div className="radios flex gap-x-6 items-center">
+                      <div className="available">
+                        <label className="flex items-center gap-x-1">
+                          <span>رایگان</span>
+                          <input
+                            type="radio"
+                            value="1"
+                            name="condition"
+                            onChange={(event) =>
+                              setSessionFree(event.target.value)
+                            }
+                          />
+                        </label>
+                      </div>
+                      <div className="unavailable">
+                        <label className="flex items-center gap-x-1">
+                          <span>پولی</span>
+                          <input
+                            type="radio"
+                            value="0"
+                            name="condition"
+                            onChange={(event) =>
+                              setSessionFree(event.target.value)
+                            }
+                          />
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl overflow-x-auto">
-                <label>بارگذاری</label>
-                <input
-                  type="file"
-                  onChange={(event) => setSessionVideo(event.target.files[0])}
-                />
-              </div>
+                <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-xl overflow-x-auto">
+                  <label>بارگذاری</label>
+                  <input
+                    type="file"
+                    onChange={(event) => setSessionVideo(event.target.files[0])}
+                  />
+                </div>
 
-              <Button
-                className={`h-20 rounded-4xl ${
-                  formState.isFormValid
-                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
-                    : "bg-[#333c4c]/30"
-                }`}
-                type="submit"
-                onClick={createSession}
-                disabled={!formState.isFormValid}
-              >
-                <span className="mx-auto">افزودن</span>
-              </Button>
-            </form>
+                <Button
+                  className={`h-20 rounded-xl ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={createSession}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto">افزودن</span>
+                </Button>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <DataTable title="جلسات">
+      <DataTable
+        title="جلسات"
+        eventHandler={addSessionHandler}
+        btnTitle={"دوره جدید"}
+        icon={<HiMiniPlus />}
+      >
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>

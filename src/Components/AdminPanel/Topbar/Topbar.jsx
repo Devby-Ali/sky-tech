@@ -156,7 +156,7 @@ export default function Topbar() {
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
         <div className="h-full flex flex-col justify-between">
-          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
+          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-6 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li className={pageName["*"] === "" && "active-menu"}>
               <Link className="flex items-center justify-between" to="/p-admin">
                 <span>صفحه اصلی</span>
