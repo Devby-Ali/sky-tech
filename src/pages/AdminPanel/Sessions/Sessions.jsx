@@ -270,7 +270,7 @@ export default function Sessions() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeSession(session._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       حذف
                     </div>
