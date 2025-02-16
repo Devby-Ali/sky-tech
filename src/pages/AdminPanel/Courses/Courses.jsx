@@ -172,7 +172,7 @@ export default function Courses() {
                 className="w-full flex items-center flex-col gap-6 md:gap-8"
               >
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="name"
                       className="bg-transparent outline-none"
@@ -182,7 +182,7 @@ export default function Courses() {
                       onInputHandler={onInputHandler}
                     />
                   </div>
-                  <div className="min-h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="min-h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="description"
                       element="textarea"
@@ -196,7 +196,7 @@ export default function Courses() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="shortName"
                       className="bg-transparent outline-none"
@@ -206,7 +206,7 @@ export default function Courses() {
                       onInputHandler={onInputHandler}
                     />
                   </div>
-                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="price"
                       className="bg-transparent outline-none"
@@ -219,7 +219,7 @@ export default function Courses() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="support"
                       className="bg-transparent outline-none"
@@ -229,7 +229,7 @@ export default function Courses() {
                       onInputHandler={onInputHandler}
                     />
                   </div>
-                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <div className="flex items-center gap-x-2">
                       <label className="text-xl text-darkColor dark:text-white/70">
                         دسته‌بندی
@@ -255,7 +255,7 @@ export default function Courses() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <div className="flex items-center gap-x-2 w-[19.1rem]">
                       <label className="text-darkColor dark:text-white/70">
                         عکس
@@ -271,7 +271,7 @@ export default function Courses() {
                       />
                     </div>
                   </div>
-                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <div className="flex items-center w-[19.1rem] text-darkColor dark:text-white/70">
                       <label className="text-3xl ml-10">وضعیت</label>
                       <div className="radios flex flex-col gap-y-1 items-center text-xl">
@@ -307,7 +307,7 @@ export default function Courses() {
                 </div>
 
                 <Button
-                  className={`h-20 w-full mt-4 rounded-xl ${
+                  className={`h-20 w-full mt-4 rounded-lg ${
                     formState.isFormValid
                       ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                       : "bg-[#333c4c]/30"
@@ -316,7 +316,7 @@ export default function Courses() {
                   onClick={addNewCourse}
                   disabled={!formState.isFormValid}
                 >
-                  <span className="mx-auto">افزودن</span>
+                  <span className="mx-auto font-EstedadMedium">افزودن</span>
                 </Button>
               </form>
             </div>
@@ -331,7 +331,7 @@ export default function Courses() {
         icon={<HiMiniPlus />}
       >
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
-          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-lg">
             <div className="col-span-1 text-nowrap">شناسه</div>
             <div className="col-span-2">عنوان</div>
             <div className="col-span-1">مبلغ</div>
@@ -351,7 +351,7 @@ export default function Courses() {
               <>
                 <div
                   key={course.name}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
                 >
                   <div className="col-span-1">{index + 1}</div>
 

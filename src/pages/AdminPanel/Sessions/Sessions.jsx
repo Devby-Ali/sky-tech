@@ -106,7 +106,7 @@ export default function Sessions() {
               title: "جلسه مورد نظر با موفقیت حذف شد",
               icon: "success",
               cancelButtonText: "Ok",
-            }).then((result) => {
+            }).then(() => {
               getAllSessions();
             });
           }
@@ -131,7 +131,7 @@ export default function Sessions() {
                 </span>
               </span>
               <form action="#" className="w-full flex flex-col gap-y-8">
-                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <Input
                     id="title"
                     className="bg-transparent outline-none"
@@ -141,7 +141,7 @@ export default function Sessions() {
                     onInputHandler={onInputHandler}
                   />
                 </div>
-                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <Input
                     id="time"
                     className="bg-transparent outline-none"
@@ -151,7 +151,7 @@ export default function Sessions() {
                     onInputHandler={onInputHandler}
                   />
                 </div>
-                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <div className="flex items-center gap-x-2">
                     <label className="text-darkColor dark:text-white/70">
                       دوره
@@ -174,7 +174,7 @@ export default function Sessions() {
                   </div>
                 </div>
 
-                <div className="min-h-20 flex items-center px-8 bg-white dark:bg-[#333c4c] rounded-xl">
+                <div className="min-h-20 flex items-center px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <div className="flex items-center justify-between w-[20rem] text-darkColor dark:text-white/70">
                     <label className="text-3xl">وضعیت</label>
                     <div className="radios flex gap-x-6 items-center">
@@ -208,7 +208,7 @@ export default function Sessions() {
                   </div>
                 </div>
 
-                <div className="min-h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-xl overflow-x-auto">
+                <div className="min-h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg overflow-x-auto">
                   <label>بارگذاری</label>
                   <input
                     type="file"
@@ -217,7 +217,7 @@ export default function Sessions() {
                 </div>
 
                 <Button
-                  className={`h-20 rounded-xl ${
+                  className={`h-20 rounded-lg ${
                     formState.isFormValid
                       ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                       : "bg-[#333c4c]/30"
@@ -226,7 +226,7 @@ export default function Sessions() {
                   onClick={createSession}
                   disabled={!formState.isFormValid}
                 >
-                  <span className="mx-auto">افزودن</span>
+                  <span className="mx-auto font-EstedadMedium">افزودن</span>
                 </Button>
               </form>
             </div>
@@ -241,7 +241,7 @@ export default function Sessions() {
         icon={<HiMiniPlus />}
       >
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
-          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-lg">
             <div className="col-span-1 text-nowrap">شناسه</div>
             <div className="col-span-4">دوره</div>
             <div className="col-span-4">عنوان</div>
@@ -257,7 +257,7 @@ export default function Sessions() {
               <>
                 <div
                   key={session._id}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
                 >
                   <div className="col-span-1">{index + 1}</div>
 

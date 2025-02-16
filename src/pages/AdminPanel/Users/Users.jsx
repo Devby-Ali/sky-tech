@@ -12,7 +12,12 @@ import {
   emailValidator,
   mobileNumberValidator,
 } from "../../../validators/rules";
-import { HiOutlinePhone, HiOutlineUser } from "react-icons/hi2";
+import {
+  HiMiniPlus,
+  HiOutlinePhone,
+  HiOutlineUser,
+  HiXMark,
+} from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
 
@@ -30,6 +35,7 @@ const TABLE_HEAD = [
 
 export default function Users() {
   const [users, setUsers] = useState([]);
+  const [showAddUser, setShowAddUser] = useState(false);
 
   const [formState, onInputHandler] = useForm(
     {
@@ -133,6 +139,10 @@ export default function Users() {
     });
   };
 
+  const addUserHandler = () => {
+    setShowAddUser(!showAddUser);
+  };
+
   const registerUser = (event) => {
     event.preventDefault();
     const newUserInfo = {
@@ -155,13 +165,14 @@ export default function Users() {
         console.log(res);
         res.json();
       })
-      .then((result) => {
+      .then(() => {
         Swal.fire({
           title: "کاربر مورد نظر با موفقیت ثبت نام شد",
           icon: "success",
           confirmButtonText: "Ok",
         });
         getAllUsers();
+        setShowAddUser(false);
       });
   };
 
@@ -204,102 +215,115 @@ export default function Users() {
 
   return (
     <>
-      <section className="flex-center overflow-hidden mt-12">
-        <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem]">
-            <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
-              ثبت نام کاربر جدید
-            </span>
-            <form action="#" className="w-full flex flex-col gap-y-8">
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="name"
-                  className="bg-transparent outline-none"
-                  type="text"
-                  placeholder="نام و نام خانوادگی"
-                  validations={[
-                    requiredValidator(),
-                    minValidator(3),
-                    maxValidator(20),
-                  ]}
-                  onInputHandler={onInputHandler}
-                />
-                <HiOutlineUser className="w-10 h-10 opacity-50" />
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="username"
-                  className="bg-transparent outline-none"
-                  type="text"
-                  placeholder="نام کاربری"
-                  validations={[
-                    requiredValidator(),
-                    minValidator(8),
-                    maxValidator(20),
-                  ]}
-                  onInputHandler={onInputHandler}
-                />
-                <span className="text-[2rem] opacity-50">@</span>
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="email"
-                  className="bg-transparent outline-none"
-                  type="email"
-                  placeholder="آدرس ایمیل"
-                  validations={[
-                    requiredValidator(),
-                    maxValidator(25),
-                    emailValidator(),
-                  ]}
-                  onInputHandler={onInputHandler}
-                />
-                <FiMail className="w-9 h-9 opacity-50" />
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="mobileNumber"
-                  className="bg-transparent outline-none text-right"
-                  type="tel"
-                  placeholder="شماره موبایل"
-                  validations={[requiredValidator(), mobileNumberValidator()]}
-                  onInputHandler={onInputHandler}
-                />
-                <HiOutlinePhone className="w-10 h-10 opacity-50" />
-              </div>
-              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                <Input
-                  id="password"
-                  className="bg-transparent outline-none"
-                  type="text"
-                  placeholder="رمز عبور"
-                  validations={[
-                    requiredValidator(),
-                    minValidator(8),
-                    maxValidator(18),
-                  ]}
-                  onInputHandler={onInputHandler}
-                />
-                <BiLockOpenAlt className="w-10 h-10 opacity-50" />
-              </div>
-              <Button
-                className={`h-20 rounded-4xl ${
-                  formState.isFormValid
-                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
-                    : "bg-[#333c4c]/30"
-                }`}
-                type="submit"
-                onClick={registerUser}
-                disabled={!formState.isFormValid}
-              >
-                <span className="mx-auto">ادامه</span>
-              </Button>
-            </form>
+      {showAddUser && (
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+          <div className="mx-auto flex flex-col items-center w-min">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur px-20 py-14 rounded-xl">
+              <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
+                ثبت کاربر جدید
+                <span
+                  onClick={addUserHandler}
+                  className="rounded-full border border-darkColor dark:border-white p-0.5 text-4xl cursor-pointer"
+                >
+                  <HiXMark />
+                </span>
+              </span>
+              <form action="#" className="w-full flex flex-col gap-y-8">
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
+                  <Input
+                    id="name"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="نام و نام خانوادگی"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(3),
+                      maxValidator(20),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <HiOutlineUser className="w-10 h-10 opacity-50" />
+                </div>
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
+                  <Input
+                    id="username"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="نام کاربری"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(8),
+                      maxValidator(20),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <span className="text-[2rem] opacity-50">@</span>
+                </div>
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
+                  <Input
+                    id="email"
+                    className="bg-transparent outline-none"
+                    type="email"
+                    placeholder="آدرس ایمیل"
+                    validations={[
+                      requiredValidator(),
+                      maxValidator(25),
+                      emailValidator(),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <FiMail className="w-9 h-9 opacity-50" />
+                </div>
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
+                  <Input
+                    id="mobileNumber"
+                    className="bg-transparent outline-none text-right"
+                    type="tel"
+                    placeholder="شماره موبایل"
+                    validations={[requiredValidator(), mobileNumberValidator()]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <HiOutlinePhone className="w-10 h-10 opacity-50" />
+                </div>
+                <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
+                  <Input
+                    id="password"
+                    className="bg-transparent outline-none"
+                    type="text"
+                    placeholder="رمز عبور"
+                    validations={[
+                      requiredValidator(),
+                      minValidator(8),
+                      maxValidator(18),
+                    ]}
+                    onInputHandler={onInputHandler}
+                  />
+                  <BiLockOpenAlt className="w-10 h-10 opacity-50" />
+                </div>
+                <Button
+                  className={`h-20 rounded-lg ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={registerUser}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto font-EstedadMedium">ادامه</span>
+                </Button>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <DataTable title="کاربران">
+      <DataTable
+        title="کاربران"
+        eventHandler={addUserHandler}
+        btnTitle={"ثبت نام"}
+        icon={<HiMiniPlus />}
+      >
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
@@ -340,7 +364,7 @@ export default function Users() {
                   <div className="col-span-1 flex-center">
                     <div
                       onClick={() => changeRole(user._id)}
-                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       تغییر‌سطح
                     </div>
@@ -348,7 +372,7 @@ export default function Users() {
                   <div className="col-span-1">
                     <div
                       onClick={() => banUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       بن
                     </div>
@@ -356,7 +380,7 @@ export default function Users() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       حذف
                     </div>
