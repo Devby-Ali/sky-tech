@@ -530,7 +530,7 @@ export default function Landing({ info }) {
         height="22"
         fill="none"
         viewBox="0 0 100 22"
-        className="absolute bottom-0 right-0 left-0 mx-auto hidden lg:inline-block w-[130px] h-[28px] text-blue-gray-50 dark:text-darkColor dark:text-zinc-800 rotate-180 z-10"
+        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[130px] h-[28px] text-blue-gray-50 dark:text-darkColor dark:text-zinc-800 rotate-180 z-10"
       >
         <path
           fill="currentColor"

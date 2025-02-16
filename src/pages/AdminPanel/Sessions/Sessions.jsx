@@ -112,7 +112,7 @@ export default function Sessions() {
     <>
       <section className="flex-center overflow-hidden my-28">
         <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem]">
             <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
               افزودن جلسه جدید
             </span>

@@ -8,7 +8,7 @@ import {
   maxValidator,
 } from "./../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
-import { HiMiniPlus } from "react-icons/hi2";
+import { HiMiniPlus, HiXCircle, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
 
 export default function Courses() {
@@ -17,6 +17,7 @@ export default function Courses() {
   const [categories, setCategories] = useState([]);
   const [courseStatus, setCourseStatus] = useState("start");
   const [courseCover, setCourseCover] = useState({});
+  const [showAddCourse, setShowAddCourse] = useState(false);
 
   const [formState, onInputHandler] = useForm(
     {
@@ -66,6 +67,10 @@ export default function Courses() {
         setCourses(allCourses);
       });
   }
+
+  const addCourseHandler = () => {
+    setShowAddCourse(!showAddCourse);
+  };
 
   const removeCourse = (courseID) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
@@ -148,169 +153,174 @@ export default function Courses() {
 
   return (
     <>
-      <section className="flex-center overflow-hidden mt-12">
-        <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl">
-            <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
-              افزودن دوره جدید
-            </span>
-            <form
-              action="#"
-              className="w-full flex items-center flex-col gap-6 md:gap-8"
-            >
-              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="name"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="نام"
-                    validations={[minValidator(5)]}
-                    onInputHandler={onInputHandler}
-                  />
-                </div>
-                <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="description"
-                    element="textarea"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="توضیحات"
-                    validations={[minValidator(5)]}
-                    onInputHandler={onInputHandler}
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="shortName"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="Url"
-                    validations={[minValidator(5)]}
-                    onInputHandler={onInputHandler}
-                  />
-                </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="price"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="قیمت"
-                    validations={[minValidator(1)]}
-                    onInputHandler={onInputHandler}
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="support"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="نحوه پشتیبانی"
-                    validations={[minValidator(5)]}
-                    onInputHandler={onInputHandler}
-                  />
-                </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <div className="flex items-center gap-x-2">
-                    <label className="text-xl text-darkColor dark:text-white/70">
-                      دسته‌بندی
-                    </label>
-                    <select
-                      className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
-                      onChange={selectCategory}
-                    >
-                      <option value={"-1"}>را انتخاب نمایید</option>
-                      {categories.map((category) => (
-                        <>
-                          <option
-                            className="text-darkColor text-[1.6rem]"
-                            value={category._id}
-                          >
-                            {category.title}
-                          </option>
-                        </>
-                      ))}
-                    </select>
+      {showAddCourse && (
+        <section className="absolute left-0 right-0 md:right-[24rem] top-0 bottom-0 flex-center overflow-hidden mt-12 z-50">
+          <div className="mx-auto flex flex-col items-center w-min">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur-[7px] px-20 pb-10 pt-8 rounded-3xl">
+              <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-14 mt-4">
+                افزودن دوره جدید
+                <span onClick={addCourseHandler} className="rounded-full border border-darkColor dark:border-white p-0.5 text-4xl cursor-pointer">
+                <HiXMark />
+                </span>
+              </span>
+              <form
+                action="#"
+                className="w-full flex items-center flex-col gap-6 md:gap-8"
+              >
+                <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <Input
+                      id="name"
+                      className="bg-transparent outline-none"
+                      type="text"
+                      placeholder="نام"
+                      validations={[minValidator(5)]}
+                      onInputHandler={onInputHandler}
+                    />
                   </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <div className="flex items-center gap-x-2 w-[19.1rem]">
-                    <label className="text-darkColor dark:text-white/70">
-                      عکس
-                    </label>
-                    <input
-                      type="file"
-                      id="file"
-                      className="w-full bg-white/10 rounded-md p-1"
-                      onChange={(event) => {
-                        console.log(event.target.files[0]);
-                        setCourseCover(event.target.files[0]);
-                      }}
+                  <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <Input
+                      id="description"
+                      element="textarea"
+                      className="bg-transparent outline-none"
+                      type="text"
+                      placeholder="توضیحات"
+                      validations={[minValidator(5)]}
+                      onInputHandler={onInputHandler}
                     />
                   </div>
                 </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <div className="flex items-center w-[19.1rem] text-darkColor dark:text-white/70">
-                    <label className="text-3xl ml-10">وضعیت</label>
-                    <div className="radios flex flex-col gap-y-1 items-center text-xl">
-                      <div className="available">
-                        <label>
-                          <span>در حال برگزاری</span>
-                          <input
-                            type="radio"
-                            value="start"
-                            name="condition"
-                            onChange={(event) =>
-                              setCourseStatus(event.target.value)
-                            }
-                          />
-                        </label>
-                      </div>
-                      <div className="unavailable">
-                        <label>
-                          <span>پیش فروش</span>
-                          <input
-                            type="radio"
-                            value="presell"
-                            name="condition"
-                            onChange={(event) =>
-                              setCourseStatus(event.target.value)
-                            }
-                          />
-                        </label>
+
+                <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <Input
+                      id="shortName"
+                      className="bg-transparent outline-none"
+                      type="text"
+                      placeholder="Url"
+                      validations={[minValidator(5)]}
+                      onInputHandler={onInputHandler}
+                    />
+                  </div>
+                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <Input
+                      id="price"
+                      className="bg-transparent outline-none"
+                      type="text"
+                      placeholder="قیمت"
+                      validations={[minValidator(1)]}
+                      onInputHandler={onInputHandler}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <Input
+                      id="support"
+                      className="bg-transparent outline-none"
+                      type="text"
+                      placeholder="نحوه پشتیبانی"
+                      validations={[minValidator(5)]}
+                      onInputHandler={onInputHandler}
+                    />
+                  </div>
+                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <div className="flex items-center gap-x-2">
+                      <label className="text-xl text-darkColor dark:text-white/70">
+                        دسته‌بندی
+                      </label>
+                      <select
+                        className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
+                        onChange={selectCategory}
+                      >
+                        <option value={"-1"}>را انتخاب نمایید</option>
+                        {categories.map((category) => (
+                          <>
+                            <option
+                              className="text-darkColor text-[1.6rem]"
+                              value={category._id}
+                            >
+                              {category.title}
+                            </option>
+                          </>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <div className="flex items-center gap-x-2 w-[19.1rem]">
+                      <label className="text-darkColor dark:text-white/70">
+                        عکس
+                      </label>
+                      <input
+                        type="file"
+                        id="file"
+                        className="w-full bg-white/10 rounded-md p-1"
+                        onChange={(event) => {
+                          console.log(event.target.files[0]);
+                          setCourseCover(event.target.files[0]);
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                    <div className="flex items-center w-[19.1rem] text-darkColor dark:text-white/70">
+                      <label className="text-3xl ml-10">وضعیت</label>
+                      <div className="radios flex flex-col gap-y-1 items-center text-xl">
+                        <div className="available">
+                          <label>
+                            <span>در حال برگزاری</span>
+                            <input
+                              type="radio"
+                              value="start"
+                              name="condition"
+                              onChange={(event) =>
+                                setCourseStatus(event.target.value)
+                              }
+                            />
+                          </label>
+                        </div>
+                        <div className="unavailable">
+                          <label>
+                            <span>پیش فروش</span>
+                            <input
+                              type="radio"
+                              value="presell"
+                              name="condition"
+                              onChange={(event) =>
+                                setCourseStatus(event.target.value)
+                              }
+                            />
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <Button
-                className={`h-20 w-full md:w-[50%] mt-4 rounded-4xl ${
-                  formState.isFormValid
-                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
-                    : "bg-[#333c4c]/30"
-                }`}
-                type="submit"
-                onClick={addNewCourse}
-                disabled={!formState.isFormValid}
-              >
-                <span className="mx-auto">افزودن</span>
-              </Button>
-            </form>
+                <Button
+                  className={`h-20 w-full md:w-[50%] mt-4 rounded-4xl ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={addNewCourse}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto">افزودن</span>
+                </Button>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <DataTable title="دوره ها" btnTitle={"دوره جدید"} icon={<HiMiniPlus />}>
+      <DataTable title="دوره ها" eventHandler={addCourseHandler} btnTitle={"دوره جدید"} icon={<HiMiniPlus />}>
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
@@ -350,7 +360,10 @@ export default function Courses() {
 
                   <div className="col-span-2">{course.shortName}</div>
 
-                  <div className="col-span-1 text-nowrap text-xl"> {course.creator}</div>
+                  <div className="col-span-1 text-nowrap text-xl">
+                    {" "}
+                    {course.creator}
+                  </div>
 
                   <div className="col-span-1"> {course.categoryID.name}</div>
 
