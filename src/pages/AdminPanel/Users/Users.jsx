@@ -139,7 +139,7 @@ export default function Users() {
     });
   };
 
-  const addUserHandler = () => {
+  const showAddUserHandler = () => {
     setShowAddUser(!showAddUser);
   };
 
@@ -320,7 +320,7 @@ export default function Users() {
 
       <DataTable
         title="کاربران"
-        eventHandler={addUserHandler}
+        eventHandler={showAddUserHandler}
         btnTitle={"ثبت نام"}
         icon={<HiMiniPlus />}
       >

@@ -136,7 +136,7 @@ export default function Contact() {
                   <div className="col-span-1 flex-center">
                     <div
                       onClick={() => showContactBody(contact.body)}
-                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-5 rounded select-none"
+                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-5 rounded select-none cursor-pointer"
                     >
                       مشاهده
                     </div>
@@ -144,7 +144,7 @@ export default function Contact() {
                   <div className="col-span-1">
                     <div
                       onClick={() => sendAnwserToUser(contact.email)}
-                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       پاسخ
                     </div>
@@ -152,7 +152,7 @@ export default function Contact() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeContact(contact._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       حذف
                     </div>

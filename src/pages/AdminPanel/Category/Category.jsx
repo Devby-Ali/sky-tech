@@ -10,10 +10,12 @@ import {
 import { useForm } from "../../../hooks/useForm";
 import Swal from "sweetalert2";
 import { Card, Typography } from "@material-tailwind/react";
+import { HiPlus, HiXMark } from "react-icons/hi2";
 
 const TABLE_HEAD = ["شناسه", "عنوان", "نام کوتاه", "ویرایش", "حذف"];
 
 export default function Category() {
+  const [showCreateCategory, setShowCreateCategory] = useState(false);
   const [formState, onInputHandler] = useForm(
     {
       title: {
@@ -43,6 +45,10 @@ export default function Category() {
       });
   }
 
+  const showCreateCategoryHandler = () => {
+    setShowCreateCategory(!showCreateCategory);
+  };
+
   const createNewCategory = (event) => {
     event.preventDefault();
     const localStorageData = JSON.parse(localStorage.getItem("user"));
@@ -69,6 +75,7 @@ export default function Category() {
           confirmButtonText: "Ok",
         }).then(() => {
           getAllCategories();
+          setShowCreateCategory(false);
         });
       });
   };
@@ -142,66 +149,78 @@ export default function Category() {
 
   return (
     <>
-      <section className="flex-center overflow-hidden mt-12">
-        <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl">
-            <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
-              افزودن دسته‌بندی جدید
-            </span>
-            <form
-              action="#"
-              className="w-full flex items-center flex-col gap-y-8"
-            >
-              <div className="flex items-center gap-x-4">
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="title"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="عنوان"
-                    validations={[
-                      requiredValidator(),
-                      minValidator(3),
-                      maxValidator(20),
-                    ]}
-                    onInputHandler={onInputHandler}
-                  />
-                </div>
-                <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
-                  <Input
-                    id="shortname"
-                    className="bg-transparent outline-none"
-                    type="text"
-                    placeholder="نام کوتاه"
-                    validations={[
-                      requiredValidator(),
-                      minValidator(3),
-                      maxValidator(12),
-                    ]}
-                    onInputHandler={onInputHandler}
-                  />
-                </div>
-              </div>
-
-              <Button
-                className={`h-20 w-[80%] rounded-4xl ${
-                  formState.isFormValid
-                    ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
-                    : "bg-[#333c4c]/30"
-                }`}
-                type="submit"
-                onClick={createNewCategory}
-                disabled={!formState.isFormValid}
+      {showCreateCategory && (
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+          <div className="mx-auto flex flex-col items-center w-min">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur px-20 py-14 rounded-xl">
+              <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
+                افزودن دسته بندی جدید
+                <span
+                  onClick={showCreateCategoryHandler}
+                  className="rounded-full border border-darkColor dark:border-white p-0.5 text-4xl cursor-pointer"
+                >
+                  <HiXMark />
+                </span>
+              </span>
+              <form
+                action="#"
+                className="w-full flex items-center flex-col gap-y-8"
               >
-                <span className="mx-auto">افزودن</span>
-              </Button>
-            </form>
+                <div className="flex items-center gap-x-8">
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
+                    <Input
+                      id="title"
+                      className="bg-transparent outline-none"
+                      type="text"
+                      placeholder="عنوان"
+                      validations={[
+                        requiredValidator(),
+                        minValidator(3),
+                        maxValidator(20),
+                      ]}
+                      onInputHandler={onInputHandler}
+                    />
+                  </div>
+                  <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
+                    <Input
+                      id="shortname"
+                      className="bg-transparent outline-none"
+                      type="text"
+                      placeholder="نام کوتاه"
+                      validations={[
+                        requiredValidator(),
+                        minValidator(3),
+                        maxValidator(12),
+                      ]}
+                      onInputHandler={onInputHandler}
+                    />
+                  </div>
+                </div>
+
+                <Button
+                  className={`h-20 w-[80%] rounded-lg ${
+                    formState.isFormValid
+                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                      : "bg-[#333c4c]/30"
+                  }`}
+                  type="submit"
+                  onClick={createNewCategory}
+                  disabled={!formState.isFormValid}
+                >
+                  <span className="mx-auto font-EstedadMedium">افزودن</span>
+                </Button>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      <DataTable title="دسته‌بندی‌ها">
-
+      <DataTable
+        title="دسته‌بندی‌ها"
+        btnTitle={"ایجاد دسته بندی"}
+        icon={<HiPlus />}
+        eventHandler={showCreateCategoryHandler}
+      >
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
@@ -226,11 +245,10 @@ export default function Category() {
 
                   <div className="col-span-3">{category.name}</div>
 
-
                   <div className="col-span-2">
                     <div
-                     onClick={() => updateCategory(category._id)}
-                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      onClick={() => updateCategory(category._id)}
+                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       ویرایش
                     </div>
@@ -238,7 +256,7 @@ export default function Category() {
                   <div className="col-span-2">
                     <div
                       onClick={() => removeCategory(category._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
                     >
                       حذف
                     </div>
