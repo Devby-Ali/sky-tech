@@ -96,7 +96,7 @@ export default function Tickets() {
                 <div className="col-span-2">
                   <div
                     onClick={() => showTicketBody(ticket.body)}
-                    className="inline-flex items-center justify-center bg-light-blue-100/90 dark:bg-white/10 font-EstedadMedium text-light-blue-900 dark:text-white/70 text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                    className="inline-flex items-center justify-center bg-light-blue-100/90 dark:bg-white/10 font-EstedadMedium text-light-blue-900 dark:text-white/70 text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none cursor-pointer"
                   >
                     مشاهده
                   </div>
@@ -104,7 +104,7 @@ export default function Tickets() {
                 <div className="col-span-2">
                   <div
                     onClick={() => setAnswerToTicket(ticket._id)}
-                    className="inline-flex items-center justify-center bg-light-blue-100/90 dark:bg-white/10 font-EstedadMedium text-light-blue-900 dark:text-white/70 text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none"
+                    className="inline-flex items-center justify-center bg-light-blue-100/90 dark:bg-white/10 font-EstedadMedium text-light-blue-900 dark:text-white/70 text-xl md:text-2xl py-2 px-5 md:px-8 rounded select-none cursor-pointer"
                   >
                     پاسخ
                   </div>

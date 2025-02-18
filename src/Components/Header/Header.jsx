@@ -103,43 +103,22 @@ export default function Header() {
         <div className="flex items-center text-[1.7rem] justify-between gap-x-4 h-20 mb-3 text-darkColor dark:text-white px-1 pt-16 pb-14">
           {authContext.userInfos.name}
           <div className="flex items-center gap-x-4 text-4xl text-blue-gray-500 dark:text-white">
-            <div
-              className="flex-center p-4 rounded-xl toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-white/5"
-              onClick={() => themeHandler()}
-            >
-              <HiOutlineSun className="hidden dark:inline-block" />
-              <HiOutlineMoon className="inline-block dark:hidden" />
-            </div>
-            <div
-              className="flex-center p-4 rounded-xl cursor-pointer bg-blue-gray-50 dark:bg-white/5"
+            <Link
+              to={
+                authContext.userInfos.role === "ADMIN"
+                  ? "/p-admin"
+                  : "/my-account"
+              }
+              className="cursor-pointer"
               onClick={navOpenHandler}
             >
-              <HiChevronRight />
-            </div>
+              <HiChevronLeft />
+            </Link>
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 child:pr-2.5 space-y-9 mt-8 mb-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
-          {authContext.userInfos.role === "ADMIN" && (
-            <li>
-              <Link
-                className="flex items-center justify-between hover:text-light-blue-500"
-                to="/p-admin"
-              >
-                <span>پنل مدیریت</span>
-                <HiChevronRight className="text-2xl rotate-180" />
-              </Link>
-            </li>
-          )}
-          <li>
-            <Link
-              className="flex items-center justify-between hover:text-light-blue-500"
-              to="/my-account"
-            >
-              <span>پیشخوان</span>
-              <HiChevronRight className="text-2xl rotate-180" />
-            </Link>
-          </li>
+        <ul className="child:transition-all px-3 child:pr-2.5 space-y-7 mt-8 mb-8 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <span className="text-light-blue-500">دسترسی سریع</span>
           <li>
             <Link
               className="flex items-center justify-between hover:text-light-blue-500"
@@ -167,14 +146,18 @@ export default function Header() {
               <HiChevronRight className="text-2xl rotate-180" />
             </Link>
           </li>
-          </ul>
-          <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-          <ul className="child:transition-all px-3 child:pr-2.5 space-y-2 mt-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        </ul>
+        <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
+        <ul className="child:transition-all child:pr-2.5 space-y-1 my-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <span className="text-light-blue-500 block mb-4 mt-7 mx-3">دسته بندی</span>
           {allMenus.map((menu) => (
             <li key={menu._id}>
               <Link
                 to={`/category-info/${menu.href}/1`}
-                className={`flex items-center justify-between py-3 -mx-5 px-5 rounded-md hover:bg-light-blue-400/80 dark:hover:bg-light-blue-900 ${categoryName["categoryName"] === menu.href && 'bg-light-blue-400/50 dark:bg-light-blue-900/70'}`}
+                className={`flex items-center justify-between py-3 px-3 rounded-md hover:bg-light-blue-400/80 dark:hover:bg-light-blue-900 ${
+                  categoryName["categoryName"] === menu.href &&
+                  "bg-light-blue-400/50 dark:bg-light-blue-900/70"
+                }`}
               >
                 <span>{menu.title}</span>
                 <HiChevronRight className="text-2xl rotate-180" />
@@ -182,6 +165,20 @@ export default function Header() {
             </li>
           ))}
         </ul>
+        <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
+        <div
+          className="px-4 py-6 toggle-theme text-darkColor dark:text-white text-2xl cursor-pointer"
+          onClick={() => themeHandler()}
+        >
+          <span className="hidden dark:flex items-center gap-x-3">
+            <HiOutlineSun className="text-4xl" />
+            تم روشن
+          </span>
+          <span className="flex items-center gap-x-3 dark:hidden">
+            <HiOutlineMoon className="text-4xl" />
+            تم تیره
+          </span>
+        </div>
       </div>
 
       <header className="md:fixed md:flex md:top-5 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-[95%] h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-gradient-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[3px]">
