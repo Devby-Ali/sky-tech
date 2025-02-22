@@ -50,7 +50,7 @@ export default function PresellCourses() {
           >
             {PresellCourses.map((course) => (
               <>
-                <SwiperSlide>
+                <SwiperSlide key={course._id}>
                   <CourseBox {...course} isSlider={true} />
                 </SwiperSlide>
               </>

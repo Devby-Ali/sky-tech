@@ -17,6 +17,7 @@ export default function PopularCourses() {
       });
   }, []);
 
+
   return (
     <div className="mb-48">
       <div className="container">
@@ -50,7 +51,7 @@ export default function PopularCourses() {
           >
             {popularCourses.map((course) => (
               <>
-                <SwiperSlide>
+                <SwiperSlide key={course._id}>
                   <CourseBox {...course} isSlider={true} />
                 </SwiperSlide>
               </>

@@ -103,6 +103,7 @@ export default function Landing({ info }) {
       .then((menus) => {
         setAllMenus(menus);
       });
+    console.log(authContext);
   }, []);
 
   const navigate = useNavigate();
@@ -120,21 +121,22 @@ export default function Landing({ info }) {
         }`}
       >
         <div className="flex items-center text-[1.7rem] justify-between gap-x-4 h-20 mb-3 text-darkColor dark:text-white px-1 pt-16 pb-14">
-          {authContext.userInfos.name}
-          <div className="flex items-center gap-x-4 text-4xl text-blue-gray-500 dark:text-white">
-            <div
-              className="flex-center p-4 rounded-xl toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-white/5"
-              onClick={() => themeHandler()}
+          {authContext.userInfos.name ? (
+            <span className="mr-3">{authContext.userInfos.name}</span>
+          ) : (
+            <Link
+              to={"/login"}
+              className="text-3xl text-light-blue-600 dark:text-light-blue-400 mr-3"
             >
-              <HiOutlineSun className="hidden dark:inline-block" />
-              <HiOutlineMoon className="inline-block dark:hidden" />
-            </div>
-            <div
-              className="flex-center p-4 rounded-xl cursor-pointer bg-blue-gray-50 dark:bg-white/5"
-              onClick={navOpenHandler}
-            >
-              <HiChevronRight />
-            </div>
+              ورود/ثبت نام
+            </Link>
+          )}
+
+          <div
+            className="flex-center p-4 rounded-xl text-3xl cursor-pointer bg-blue-gray-50 dark:bg-white/5"
+            onClick={navOpenHandler}
+          >
+            <HiChevronRight />
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
@@ -188,7 +190,7 @@ export default function Landing({ info }) {
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 child:pr-2.5 space-y-2 mt-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="child:transition-all px-3 child:pr-2.5 space-y-2 my-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {allMenus.map((menu) => (
             <li key={menu._id}>
               <Link
@@ -204,6 +206,20 @@ export default function Landing({ info }) {
             </li>
           ))}
         </ul>
+        <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
+        <div
+          className="px-4 py-6 toggle-theme text-darkColor dark:text-white text-2xl cursor-pointer"
+          onClick={() => themeHandler()}
+        >
+          <span className="hidden dark:flex items-center gap-x-3">
+            <HiOutlineSun className="text-4xl" />
+            تم روشن
+          </span>
+          <span className="flex items-center gap-x-3 dark:hidden">
+            <HiOutlineMoon className="text-4xl" />
+            تم تیره
+          </span>
+        </div>
       </div>
 
       <header className="lg:container md:flex justify-between items-center w-full md:mx-auto mb-24 xl:mb-16 2xl:mb-36">
@@ -303,7 +319,7 @@ export default function Landing({ info }) {
                 <HiOutlineShoppingBag />
               </Link>
 
-              {authContext.isLoggedIn ? (
+              {authContext.userInfos.name ? (
                 <>
                   <Link
                     to="#"

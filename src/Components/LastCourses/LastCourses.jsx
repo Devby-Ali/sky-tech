@@ -9,11 +9,10 @@ export default function LastCourses() {
     fetch(`http://localhost:4000/v1/courses`)
       .then((res) => res.json())
       .then((allCourses) => {
-        console.log(allCourses)
+        console.log(allCourses);
         setCourses(allCourses);
       });
   }, []);
-
 
   return (
     <>
@@ -28,9 +27,13 @@ export default function LastCourses() {
 
           <div className="container">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
-              {courses.reverse().splice(0, 12).map((course) => (
-                <CourseBox {...course} key={course._id} />
-              ))}
+              {courses
+                .slice()
+                .reverse()
+                .splice(0, 12)
+                .map((course) => (
+                  <CourseBox {...course} key={course._id} />
+                ))}
             </div>
           </div>
         </div>

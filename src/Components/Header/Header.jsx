@@ -280,7 +280,7 @@ export default function Header() {
                 <HiOutlineShoppingBag />
               </Link>
 
-              {authContext.isLoggedIn ? (
+              {authContext.userInfos.name ? (
                 <>
                   <Link
                     to="#"

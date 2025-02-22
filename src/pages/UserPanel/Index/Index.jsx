@@ -60,7 +60,7 @@ export default function Index() {
               دوره های در حال یادگیری
             </span>
             <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
-              {userCourses.length}
+              {authContext.userInfos.courses ? userCourses.length : 0}
             </span>
           </div>
         </div>

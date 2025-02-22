@@ -10,7 +10,6 @@ import Footer from "../../Components/Footer/Footer";
 import Landing from "../../Components/Landing/Landing";
 
 export default function Index() {
-  const [show, setModalShow] = useState(true);
   const [indexInfo, setIndexInfo] = useState({});
 
   useEffect(() => {

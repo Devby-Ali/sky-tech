@@ -112,7 +112,7 @@ export default function Footer() {
               className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
-              <FaTelegramPlane />
+                <FaTelegramPlane />
               </div>
               SKY-Tech_academy_support@
             </a>
@@ -197,9 +197,11 @@ export default function Footer() {
         </div>
         <div className="flex items-center justify-center text-center sm:text-right sm:justify-between flex-wrap gap-y-2 gap-x-4 mt-8 sm:mt-10">
           <span>
-            کلیه حقوق مادی و معنوی سایت برای SK-Tech academy محفوظ است.
+            کلیه حقوق مادی و معنوی سایت برای SKY-Tech academy محفوظ است.
           </span>
-          <span>ساخته شده با ❤️ در SKY-Tech</span>
+          <span>
+            برنامه نویس و توسعه دهنده: <span className="text-light-blue-500 font-EstedadBold px-2 tracking-wide">DevbyAli@</span>
+          </span>
         </div>
       </div>
     </footer>
