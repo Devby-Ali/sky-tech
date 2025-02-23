@@ -30,7 +30,7 @@ export default function ArticleBox({
       <div className="flex-grow px-7 py-6">
         {/* <!-- Blog Title --> */}
         <h3 className="font-EstedadMedium text-[1.7rem] line-clamp-2 mb-5">
-          <Link to={`article-info/${shortName}`}>{title}</Link>
+          <Link to={`/article-info/${shortName}`}>{title}</Link>
         </h3>
         {/* <!-- Blog Description --> */}
         <p className="text-2xl line-clamp-4 opacity-70">{description}</p>
