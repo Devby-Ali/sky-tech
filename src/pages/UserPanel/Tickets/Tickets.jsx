@@ -38,7 +38,6 @@ export default function Tickets() {
         </Link>
 
         <div className="flex flex-col sm:flex-row w-full sm:w-auto md:w-full lg:w-auto gap-x-5 xl:gap-x-10 2xl:gap-x-12 gap-y-8 items-center">
-
           <div className="flex items-center gap-x-4 w-full sm:w-56 md:w-full lg:w-auto xl:w-80 bg-white dark:bg-darkBox rounded-md px-7 py-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +167,7 @@ export default function Tickets() {
                     </div>
                   </>
                 ) : (
-                    <>
+                  <>
                     <div className=" text-3xl md:text-5xl text-green-500">
                       <HiOutlineCheckCircle />
                     </div>

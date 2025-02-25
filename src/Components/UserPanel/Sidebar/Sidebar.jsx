@@ -3,7 +3,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import Swal from "sweetalert2";
 import AuthContext from "../../../context/authContext";
-import { HiMiniChevronLeft, HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
+import {
+  HiMiniChevronLeft,
+  HiOutlineMoon,
+  HiOutlineSun,
+} from "react-icons/hi2";
 import { HiOutlineLogout } from "react-icons/hi";
 
 export default function Sidebar() {
@@ -85,9 +89,12 @@ export default function Sidebar() {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
         <div className="h-full flex flex-col justify-between">
-          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
+          <ul className="child:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li className={pageName["*"] === "" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="/my-account">
+              <Link
+                className="flex items-center justify-between"
+                to="/my-account"
+              >
                 <span>پیشخوان</span>
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
@@ -105,7 +112,10 @@ export default function Sidebar() {
               </Link>
             </li>
             <li className={pageName["*"] === "edit-account" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="edit-account">
+              <Link
+                className="flex items-center justify-between"
+                to="edit-account"
+              >
                 <span>جزئیات حساب کاربری</span>
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>

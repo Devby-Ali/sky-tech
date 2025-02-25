@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/authContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
-// import { Collapse, Card } from "@material-tailwind/react";
 import {
   HiBars3,
   HiChevronLeft,
@@ -19,8 +18,6 @@ import {
 } from "react-icons/hi2";
 import Button from "../Form/Button";
 import Swal from "sweetalert2";
-
-// import Topbar from "../Topbar/Topbar"
 
 export default function Header() {
   const [dark, setDark] = useState(false);
@@ -117,8 +114,8 @@ export default function Header() {
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 child:pr-2.5 space-y-7 mt-8 mb-8 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
-        <span className="text-light-blue-500">دسترسی سریع</span>
+        <ul className="child:transition-all px-3 *:pr-2.5 space-y-7 mt-8 mb-8 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+          <span className="text-light-blue-500">دسترسی سریع</span>
           <li>
             <Link
               className="flex items-center justify-between hover:text-light-blue-500"
@@ -148,8 +145,10 @@ export default function Header() {
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all child:pr-2.5 space-y-1 my-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
-        <span className="text-light-blue-500 block mb-4 mt-7 mx-3">دسته بندی</span>
+        <ul className="child:transition-all *:pr-2.5 space-y-1 my-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+          <span className="text-light-blue-500 block mb-4 mt-7 mx-3">
+            دسته بندی
+          </span>
           {allMenus.map((menu) => (
             <li key={menu._id}>
               <Link
@@ -290,19 +289,20 @@ export default function Header() {
                     onClick={toggleOpen}
                   >
                     <HiOutlineUser className="text-[2.75rem]" />
-                    {/* <Collapse
-                      className="absolute top-32 left-0 w-96 z-50"
-                      open={openCollapse}
+                    <div
+                      className={`absolute top-32 left-0 w-96 z-50 ${
+                        openCollapse ? "block visible" : "hidden invisible"
+                      }`}
                     >
-                      <Card className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                        <span className="text-3xl pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
+                      <div className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-lg">
+                        <span className="text-3xl inline-block w-full pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.name}
                         </span>
-                        <ul className="child:transition-all child:pr-4 child:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
+                        <ul className="*:transition-all *:pr-4 *:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.role === "ADMIN" && (
                             <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                               <Link
-                                className="flex items-center gap-x-3"
+                                className="flex items-center gap-x-4"
                                 to="/p-admin"
                               >
                                 <span className="text-4xl">
@@ -314,7 +314,7 @@ export default function Header() {
                           )}
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account"
                             >
                               <span className="text-4xl">
@@ -325,7 +325,7 @@ export default function Header() {
                           </li>
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account/buyed"
                             >
                               <span className="text-4xl">
@@ -336,7 +336,7 @@ export default function Header() {
                           </li>
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account/tickets"
                             >
                               <span className="text-4xl">
@@ -347,7 +347,7 @@ export default function Header() {
                           </li>
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account/edit-account"
                             >
                               <span className="text-4xl">
@@ -358,7 +358,7 @@ export default function Header() {
                           </li>
                         </ul>
                         <Button
-                          className="flex items-center gap-x-3 pr-4 py-[1rem] mt-4 rounded-md hover:bg-red-600/85 dark:hover:bg-red-700/60 hover:text-white"
+                          className="flex w-full items-center gap-x-4 pr-4 py-[.8rem] mt-4.5 mb-0.5 rounded-md hover:bg-red-600/85 dark:hover:bg-red-700/60 hover:text-white"
                           onClick={logoutUser}
                         >
                           <span className="text-4xl">
@@ -366,8 +366,8 @@ export default function Header() {
                           </span>
                           <div>خروج</div>
                         </Button>
-                      </Card>
-                    </Collapse> */}
+                      </div>
+                    </div>
                   </Link>
                 </>
               ) : (

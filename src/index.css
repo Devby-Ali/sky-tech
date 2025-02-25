@@ -74,13 +74,11 @@
   }
 }
 
-
 /*--------------------------- Start Utility ------------------------------*/
 
 @utility container {
   @apply mx-auto px-4 sm:px-2.5 lg:px-8 2xl:px-16 xs:max-w-[480px] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px];
 }
-
 
 @utility flex-center {
   @apply flex items-center justify-center;
@@ -264,9 +262,6 @@
 } */
 
 /* -------------------------------------End Component------------------------------------- */
-
-
-
 
 /* -------------------------------------Custom Theme------------------------------------- */
 

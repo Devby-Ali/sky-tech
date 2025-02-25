@@ -81,7 +81,7 @@ export default function Footer() {
               </a>
               <a
                 href="https://"
-                className="flex-center text-[2.6rem] text-darkBox bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 child:mt-0.5 child:mr-0.5 hover:bg-light-blue-500"
+                className="flex-center text-[2.6rem] text-darkBox bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 *:mt-0.5 *:mr-0.5 hover:bg-light-blue-500"
                 rel="nofollow"
               >
                 <FaTelegramPlane />
@@ -200,7 +200,10 @@ export default function Footer() {
             کلیه حقوق مادی و معنوی سایت برای SKY-Tech academy محفوظ است.
           </span>
           <span>
-            برنامه نویس و توسعه دهنده: <span className="text-light-blue-500 font-EstedadBold px-2 tracking-wide">DevbyAli@</span>
+            برنامه نویس و توسعه دهنده:{" "}
+            <span className="text-light-blue-500 font-EstedadBold px-2 tracking-wide">
+              DevbyAli@
+            </span>
           </span>
         </div>
       </div>

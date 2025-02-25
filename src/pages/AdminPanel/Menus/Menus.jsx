@@ -107,7 +107,7 @@ export default function Menus() {
   return (
     <>
       {showAddMenu && (
-        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-xs flex-center overflow-hidden z-50">
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
           <div className="mx-auto flex flex-col items-center w-min">
             <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur-sm px-20 py-14 rounded-xl">
               <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
@@ -215,7 +215,7 @@ export default function Menus() {
               <>
                 <div
                   key={menu.name}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] *:px-3"
                 >
                   <div className="col-span-1">{index + 1}</div>
 

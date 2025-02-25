@@ -17,7 +17,7 @@ export default function Courses() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setCourses(data);
       });
   }, []);

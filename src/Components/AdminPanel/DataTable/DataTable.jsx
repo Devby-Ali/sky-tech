@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function DataTable({ children, title, btnTitle, icon, eventHandler }) {
+export default function DataTable({
+  children,
+  title,
+  btnTitle,
+  icon,
+  eventHandler,
+}) {
   return (
     <section className="mt-16 md:mt-20 text-darkColor dark:text-white/95">
       <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-sm mb-12">
@@ -10,7 +16,10 @@ export default function DataTable({ children, title, btnTitle, icon, eventHandle
             {title}
           </span>
         </div>
-        <div onClick={eventHandler} className="flex items-center font-EstedadMedium text-light-blue-500 cursor-pointer ml-10">
+        <div
+          onClick={eventHandler}
+          className="flex items-center font-EstedadMedium text-light-blue-500 cursor-pointer ml-10"
+        >
           {btnTitle && <div className="text-[1.7rem]">{btnTitle}</div>}
           {icon && <span className="text-4xl mr-2 -ml-3">{icon}</span>}
         </div>

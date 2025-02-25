@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
 
-
-
 export default function Comments() {
   const [comments, setComments] = useState([]);
 
@@ -206,14 +204,14 @@ export default function Comments() {
               <>
                 <div
                   key={index}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3"
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] *:px-3"
                 >
                   <div className="col-span-1">{index + 1}</div>
 
                   <div className="col-span-2">{comment.creator.name}</div>
 
                   <div className="col-span-3">{comment.course}</div>
-                  <div className="col-span-1 child:w-5 xl:child:w-6 flex-center">
+                  <div className="col-span-1 *:w-5 xl:child:w-6 flex-center">
                     {Array(5 - comment.score)
                       .fill(0)
                       .map((item) => (

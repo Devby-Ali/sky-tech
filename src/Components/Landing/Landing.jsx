@@ -25,7 +25,6 @@ import {
 import Swal from "sweetalert2";
 import AuthContext from "../../context/authContext";
 import { GrUserAdmin } from "react-icons/gr";
-// import { Card, Collapse } from "@material-tailwind/react";
 
 export default function Landing({ info }) {
   const [dark, setDark] = useState(false);
@@ -140,7 +139,7 @@ export default function Landing({ info }) {
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 child:pr-2.5 space-y-9 mt-8 mb-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="child:transition-all px-3 *:pr-2.5 space-y-9 mt-8 mb-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {authContext.userInfos.role === "ADMIN" && (
             <li>
               <Link
@@ -190,7 +189,7 @@ export default function Landing({ info }) {
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 child:pr-2.5 space-y-2 my-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="child:transition-all px-3 *:pr-2.5 space-y-2 my-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {allMenus.map((menu) => (
             <li key={menu._id}>
               <Link
@@ -226,7 +225,7 @@ export default function Landing({ info }) {
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-12 py-4 md:py-8">
             <div
-              className="md:hidden flex-center p-4 text-lightishBlue-900 dark:text-white cursor-pointer text-5xl"
+              className="md:hidden flex-center p-4 text-white cursor-pointer text-5xl"
               onClick={navOpenHandler}
             >
               <HiBars3 />
@@ -329,19 +328,16 @@ export default function Landing({ info }) {
                     onClick={toggleOpen}
                   >
                     <HiOutlineUser className="text-[2.75rem]" />
-                    {/* <Collapse
-                      className="absolute top-32 left-0 w-96 z-50"
-                      open={openCollapse}
-                    >
-                      <Card className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                        <span className="text-3xl pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
+                    <div className={`absolute top-32 left-0 w-96 z-50 ${openCollapse ? "block visible" : "hidden invisible"}`}>
+                    <div className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-lg">
+                        <span className="text-3xl inline-block w-full pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.name}
                         </span>
-                        <ul className="child:transition-all child:pr-4 child:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
+                        <ul className="*:transition-all *:pr-4 *:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.role === "ADMIN" && (
                             <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                               <Link
-                                className="flex items-center gap-x-3"
+                                className="flex items-center gap-x-4"
                                 to="/p-admin"
                               >
                                 <span className="text-4xl">
@@ -353,7 +349,7 @@ export default function Landing({ info }) {
                           )}
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account"
                             >
                               <span className="text-4xl">
@@ -364,7 +360,7 @@ export default function Landing({ info }) {
                           </li>
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account/buyed"
                             >
                               <span className="text-4xl">
@@ -375,7 +371,7 @@ export default function Landing({ info }) {
                           </li>
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account/tickets"
                             >
                               <span className="text-4xl">
@@ -386,7 +382,7 @@ export default function Landing({ info }) {
                           </li>
                           <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-3"
+                              className="flex items-center gap-x-4"
                               to="/my-account/edit-account"
                             >
                               <span className="text-4xl">
@@ -397,7 +393,7 @@ export default function Landing({ info }) {
                           </li>
                         </ul>
                         <Button
-                          className="flex items-center gap-x-3 pr-4 py-[1rem] mt-4 rounded-md hover:bg-red-600/85 dark:hover:bg-red-700/60 hover:text-white"
+                          className="flex w-full items-center gap-x-4 pr-4 py-[.8rem] mt-4.5 mb-0.5 rounded-md hover:bg-red-600/85 dark:hover:bg-red-700/60 hover:text-white"
                           onClick={logoutUser}
                         >
                           <span className="text-4xl">
@@ -405,8 +401,8 @@ export default function Landing({ info }) {
                           </span>
                           <div>خروج</div>
                         </Button>
-                      </Card>
-                    </Collapse> */}
+                      </div>
+                    </div>
                   </Link>
                 </>
               ) : (
@@ -469,7 +465,7 @@ export default function Landing({ info }) {
               </form>
             </div>
           </div>
-          <div className="flex px-10 sm:px-20 md:px-0 max-w-[65rem] mx-auto justify-between items-center child:text-white/60">
+          <div className="flex px-10 sm:px-20 md:px-0 max-w-[65rem] mx-auto justify-between items-center *:text-white/60">
             <div className="flex-center flex-col">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

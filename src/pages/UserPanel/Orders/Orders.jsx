@@ -47,7 +47,7 @@ export default function Orders() {
             >
               {orders.map((order, index) => (
                 <>
-                  <div className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] child:px-3">
+                  <div className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] *:px-3">
                     <div className="col-span-1">{index + 1}</div>
 
                     <div className="col-span-3">{order.course.name}</div>

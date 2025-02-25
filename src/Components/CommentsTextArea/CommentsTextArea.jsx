@@ -113,9 +113,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
                 className="bg-white dark:bg-[#333c4c] py-2 pr-6 rounded-lg text-2xl ml-2"
                 onChange={(event) => setCommentScore(event.target.value)}
               >
-                <option value="-1">
-                  امتیاز شما
-                </option>
+                <option value="-1">امتیاز شما</option>
                 <option value="5">عالی</option>
                 <option value="4">خیلی خوب</option>
                 <option value="3">خوب</option>
@@ -152,7 +150,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
         )}
       </div>
       {/* <!-- Comment List --> */}
-      <div className="comments_wrap space-y-7 sm:space-y-6 child:bg-gray-200  dark:child:bg-[#333c4c]">
+      <div className="comments_wrap space-y-7 sm:space-y-6 *:bg-gray-200  dark:child:bg-[#333c4c]">
         {/* <!-- Comments --> */}
 
         {comments.length === 0 ? (

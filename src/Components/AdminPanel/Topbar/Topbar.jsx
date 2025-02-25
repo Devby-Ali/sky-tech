@@ -29,7 +29,7 @@ export default function Topbar() {
 
   const authContext = useContext(AuthContext);
 
-   const pageName = useParams()
+  const pageName = useParams();
 
   const navigate = useNavigate();
 
@@ -155,93 +155,120 @@ export default function Topbar() {
           </div>
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
-        <div className="h-full flex flex-col justify-between">
-          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-6 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
-            <li className={pageName["*"] === "" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="/p-admin">
-                <span>صفحه اصلی</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "courses" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="courses">
-                <span>دوره ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "sessions" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="sessions">
-                <span>جلسات</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "menus" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="menus">
-                <span>منو ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "articles" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="articles">
-                <span>مقاله ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "users" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="users">
-                <span>کاربران</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "comments" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="comments">
-                <span>کامنت‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "tickets" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="tickets">
-                <span>تیکت‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "offs" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="offs">
-                <span>کدهای تخفیف</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "discounts" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="discounts">
-                <span>تخفیف همگانی</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "category" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="category">
-                <span>دسته‌بندی‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-            <li className={pageName["*"] === "contacts" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="contacts">
-                <span>پیغام‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
-              </Link>
-            </li>
-          </ul>
-          <div className="hover:bg-red-500/80 hover:text-white dark:hover:bg-red-500/80 dark:hover:text-white bg-red-300/40 dark:bg-red-500/20 rounded-md text-red-300 dark:text-red-100 mt-4 mb-8 mx-3 font-EstedadMedium">
-            <Button
-              className="flex items-center justify-between px-5 py-5 text-2xl w-full"
-              onClick={logoutAdmin}
-            >
-              خروج از حساب کاربری
-              <span className="text-4xl">
-                <HiOutlineLogout />
-              </span>
-            </Button>
+          <div className="h-full flex flex-col justify-between">
+            <ul className="child:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-6 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
+              <li className={pageName["*"] === "" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="/p-admin"
+                >
+                  <span>صفحه اصلی</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "courses" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="courses"
+                >
+                  <span>دوره ها</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "sessions" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="sessions"
+                >
+                  <span>جلسات</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "menus" && "active-menu"}>
+                <Link className="flex items-center justify-between" to="menus">
+                  <span>منو ها</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "articles" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="articles"
+                >
+                  <span>مقاله ها</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "users" && "active-menu"}>
+                <Link className="flex items-center justify-between" to="users">
+                  <span>کاربران</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "comments" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="comments"
+                >
+                  <span>کامنت‌ها</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "tickets" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="tickets"
+                >
+                  <span>تیکت‌ها</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "offs" && "active-menu"}>
+                <Link className="flex items-center justify-between" to="offs">
+                  <span>کدهای تخفیف</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "discounts" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="discounts"
+                >
+                  <span>تخفیف همگانی</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "category" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="category"
+                >
+                  <span>دسته‌بندی‌ها</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+              <li className={pageName["*"] === "contacts" && "active-menu"}>
+                <Link
+                  className="flex items-center justify-between"
+                  to="contacts"
+                >
+                  <span>پیغام‌ها</span>
+                  <HiMiniChevronLeft className="text-5xl" />
+                </Link>
+              </li>
+            </ul>
+            <div className="hover:bg-red-500/80 hover:text-white dark:hover:bg-red-500/80 dark:hover:text-white bg-red-300/40 dark:bg-red-500/20 rounded-md text-red-300 dark:text-red-100 mt-4 mb-8 mx-3 font-EstedadMedium">
+              <Button
+                className="flex items-center justify-between px-5 py-5 text-2xl w-full"
+                onClick={logoutAdmin}
+              >
+                خروج از حساب کاربری
+                <span className="text-4xl">
+                  <HiOutlineLogout />
+                </span>
+              </Button>
+            </div>
           </div>
-        </div>
         </div>
       </div>
 
@@ -277,8 +304,7 @@ export default function Topbar() {
               <HiOutlineBell />
 
               <div
-                className="absolute top-[5.9rem] 2xl:top-[6.4rem] w-auto"
-                open={openCollapseNotif}
+                className={`absolute top-[5.9rem] left-0 2xl:top-[6.4rem] w-auto shadow-xl ${openCollapseNotif ? "block visible" : "hidden invisible"}`}
               >
                 {adminNotif.length === 0 ? (
                   <div className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
@@ -325,12 +351,14 @@ export default function Topbar() {
                   </>
                 )}
               </div>
-
             </div>
             <div className="hidden lg:block text-nowrap text-darkColor dark:text-white text-3xl mr-3">
-              <h4>{adminInfo.name} عزیز‚ به پنل مدیریت <span className="text-light-blue-400 mx-1.5">Sky Tech</span> خوش اومدی</h4>
+              <h4>
+                {adminInfo.name} عزیز‚ به پنل مدیریت{" "}
+                <span className="text-light-blue-400 mx-1.5">Sky Tech</span> خوش
+                اومدی
+              </h4>
             </div>
-      
           </div>
 
           <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-gray-300/40 dark:bg-white/5 text-4xl text-darkColor dark:text-white">
@@ -350,14 +378,7 @@ export default function Topbar() {
             onClick={toggleOpenInfo}
           >
             <HiOutlineUser />
-            {/* <Collapse
-              className="absolute top-32 left-0 w-96 z-50"
-              open={openCollapseInfo}
-            >
-              <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
-                <span className="text-2xl">{authContext.userInfos.name}</span>
-              </Card>
-            </Collapse> */}
+/
           </Link>
         </div>
       </header>

@@ -737,7 +737,7 @@ export default function CourseInfo() {
                         جلسات دوره
                       </span>
                       <div className="flex items-center end gap-x-2.5 shrink-0">
-                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white child:transition-colors">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white *:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
@@ -753,7 +753,7 @@ export default function CourseInfo() {
                           {session.free === 1 ||
                           courseDetails.isUserRegisteredToThisCourse ? (
                             <>
-                              <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                              <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                                 <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                                   {index + 1}
                                 </div>
@@ -764,7 +764,7 @@ export default function CourseInfo() {
                                   {session.title}
                                 </Link>
                               </div>
-                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
                                 <span className="text-xl md:2xl">
                                   {session.time}
                                 </span>
@@ -775,7 +775,7 @@ export default function CourseInfo() {
                             </>
                           ) : (
                             <>
-                              <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                              <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                                 <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                                   {index + 1}
                                 </div>
@@ -783,7 +783,7 @@ export default function CourseInfo() {
                                   {session.title}
                                 </span>
                               </div>
-                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
                                 <span className="text-xl md:2xl">
                                   {session.time}
                                 </span>
@@ -810,7 +810,7 @@ export default function CourseInfo() {
                         سرفصل ها
                       </span>
                       <div className="flex items-center end gap-x-2.5 shrink-0">
-                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white child:transition-colors">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white *:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
@@ -819,7 +819,7 @@ export default function CourseInfo() {
                     </AccordionHeader>
                     <AccordionBody className="divide-y divide-gray-600 -mt-1">
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
-                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                           <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                             1
                           </div>
@@ -830,7 +830,7 @@ export default function CourseInfo() {
                             ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
                             <HiOutlinePlay />
@@ -838,7 +838,7 @@ export default function CourseInfo() {
                         </div>
                       </div>
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
-                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                           <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                             1
                           </div>
@@ -849,7 +849,7 @@ export default function CourseInfo() {
                             ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
                             <HiOutlinePlay />
@@ -857,7 +857,7 @@ export default function CourseInfo() {
                         </div>
                       </div>
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
-                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                           <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                             1
                           </div>
@@ -868,7 +868,7 @@ export default function CourseInfo() {
                             ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 child:transition-colors">
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
                             <HiOutlinePlay />

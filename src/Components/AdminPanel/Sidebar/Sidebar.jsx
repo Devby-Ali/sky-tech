@@ -1,7 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
-import { HiChevronLeft, HiMiniChevronLeft, HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
+import {
+  HiChevronLeft,
+  HiMiniChevronLeft,
+  HiOutlineMoon,
+  HiOutlineSun,
+} from "react-icons/hi2";
 import Swal from "sweetalert2";
 import AuthContext from "../../../context/authContext";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -74,77 +79,80 @@ export default function Sidebar() {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
         <div className="h-full flex flex-col justify-between">
-          <ul className="child:transition-all child:pr-6 child:pl-3 child:py-[.3rem] child:my-6 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
+          <ul className="child:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-6 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li className={pageName["*"] === "" && "active-menu"}>
               <Link className="flex items-center justify-between" to="/p-admin">
                 <span>صفحه اصلی</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "courses" && "active-menu"}>
               <Link className="flex items-center justify-between" to="courses">
                 <span>دوره ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "sessions" && "active-menu"}>
               <Link className="flex items-center justify-between" to="sessions">
                 <span>جلسات</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "menus" && "active-menu"}>
               <Link className="flex items-center justify-between" to="menus">
                 <span>منو ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "articles" && "active-menu"}>
               <Link className="flex items-center justify-between" to="articles">
                 <span>مقاله ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "users" && "active-menu"}>
               <Link className="flex items-center justify-between" to="users">
                 <span>کاربران</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "comments" && "active-menu"}>
               <Link className="flex items-center justify-between" to="comments">
                 <span>کامنت‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "tickets" && "active-menu"}>
               <Link className="flex items-center justify-between" to="tickets">
                 <span>تیکت‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "offs" && "active-menu"}>
               <Link className="flex items-center justify-between" to="offs">
                 <span>کدهای تخفیف</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "discounts" && "active-menu"}>
-              <Link className="flex items-center justify-between" to="discounts">
+              <Link
+                className="flex items-center justify-between"
+                to="discounts"
+              >
                 <span>تخفیف همگانی</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "category" && "active-menu"}>
               <Link className="flex items-center justify-between" to="category">
                 <span>دسته‌بندی‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "contacts" && "active-menu"}>
               <Link className="flex items-center justify-between" to="contacts">
                 <span>پیغام‌ها</span>
-                <HiMiniChevronLeft className="text-5xl"/>
+                <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
           </ul>

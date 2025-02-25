@@ -295,7 +295,7 @@ export default function Category() {
                       </div>
                       <span className="">مرتب سازی بر اساس :</span>
                     </div>
-                    <div className="flex items-center gap-x-7 lg:gap-x-8 h-full child:transition-all">
+                    <div className="flex items-center gap-x-7 lg:gap-x-8 h-full *:transition-all">
                       <Button
                         onClick={(event) => {
                           setStatus("default");
