@@ -253,7 +253,15 @@ export default function Topbar() {
             onClick={toggleOpenInfo}
           >
             <HiOutlineUser />
-/
+            <div
+              className={`absolute top-32 left-0 w-96 z-50  shadow-xl ${
+                openCollapseInfo ? "block visible" : "hidden invisible"
+              }`}
+            >
+              <div className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
+                <span className="text-2xl">{userInfo}</span>
+              </div>
+            </div>
           </Link>
         </div>
       </header>
