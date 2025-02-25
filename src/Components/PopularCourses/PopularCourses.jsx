@@ -17,7 +17,6 @@ export default function PopularCourses() {
       });
   }, []);
 
-
   return (
     <div className="mb-48">
       <div className="container">
@@ -25,39 +24,38 @@ export default function PopularCourses() {
           title="محبوب ترین دوره ها"
           desc="دوره های محبوب بر اساس امتیاز دانشجوها"
         />
-         <div className="container">
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={30}
-            loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 25,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-              1280: {
-                slidesPerView: 4,
-              },
-            }}
-            modules={[Autoplay]}
-            className="mySwiper"
-          >
-            {popularCourses.map((course) => (
-              <>
-                <SwiperSlide key={course._id}>
-                  <CourseBox {...course} isSlider={true} />
-                </SwiperSlide>
-              </>
-            ))}
-          </Swiper>
-        </div>
+
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={30}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 25,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 4,
+            },
+          }}
+          modules={[Autoplay]}
+          className="mySwiper"
+        >
+          {popularCourses.map((course) => (
+            <>
+              <SwiperSlide key={course._id}>
+                <CourseBox {...course} isSlider={true} />
+              </SwiperSlide>
+            </>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

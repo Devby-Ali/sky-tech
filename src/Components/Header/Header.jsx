@@ -114,8 +114,8 @@ export default function Header() {
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 *:pr-2.5 space-y-7 mt-8 mb-8 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
-          <span className="text-light-blue-500">دسترسی سریع</span>
+        <ul className="*:transition-all px-3 *:pr-2.5 space-y-7 mt-8 mb-10 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+          <li className="text-light-blue-500">دسترسی سریع</li>
           <li>
             <Link
               className="flex items-center justify-between hover:text-light-blue-500"
@@ -145,10 +145,10 @@ export default function Header() {
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all *:pr-2.5 space-y-1 my-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
-          <span className="text-light-blue-500 block mb-4 mt-7 mx-3">
+        <ul className="*:transition-all *:pr-2.5 space-y-1 my-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+          <li className="text-light-blue-500 mx-3 py-3">
             دسته بندی
-          </span>
+          </li>
           {allMenus.map((menu) => (
             <li key={menu._id}>
               <Link

@@ -139,7 +139,7 @@ export default function Landing({ info }) {
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 *:pr-2.5 space-y-9 mt-8 mb-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="*:transition-all px-3 *:pr-2.5 space-y-9 mt-8 mb-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {authContext.userInfos.role === "ADMIN" && (
             <li>
               <Link
@@ -189,7 +189,7 @@ export default function Landing({ info }) {
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="child:transition-all px-3 *:pr-2.5 space-y-2 my-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="*:transition-all px-3 *:pr-2.5 space-y-2 my-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
           {allMenus.map((menu) => (
             <li key={menu._id}>
               <Link
@@ -328,8 +328,12 @@ export default function Landing({ info }) {
                     onClick={toggleOpen}
                   >
                     <HiOutlineUser className="text-[2.75rem]" />
-                    <div className={`absolute top-32 left-0 w-96 z-50 ${openCollapse ? "block visible" : "hidden invisible"}`}>
-                    <div className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-lg">
+                    <div
+                      className={`absolute top-32 left-0 w-96 z-50 ${
+                        openCollapse ? "block visible" : "hidden invisible"
+                      }`}
+                    >
+                      <div className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-lg">
                         <span className="text-3xl inline-block w-full pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.name}
                         </span>
@@ -450,13 +454,13 @@ export default function Landing({ info }) {
                 <Input
                   type="text"
                   id="search"
-                  className="w-full bg-transparent text-2xl xs:text-3xl outline-hidden"
+                  className="w-full placeholder-white/70 bg-transparent text-2xl xs:text-3xl outline-hidden"
                   placeholder="چی دوست داری یاد بگیری ..."
                   validations={[requiredValidator()]}
                   onInputHandler={onInputHandler}
                 />
                 <Button
-                  className="text-4xl sm:text-5xl text-white/80"
+                  className="text-4xl sm:text-5xl text-white/60"
                   type="submit"
                   onClick={search}
                 >

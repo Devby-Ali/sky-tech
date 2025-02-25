@@ -754,7 +754,7 @@ export default function CourseInfo() {
                           courseDetails.isUserRegisteredToThisCourse ? (
                             <>
                               <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
                                   {index + 1}
                                 </div>
                                 <Link
@@ -776,7 +776,7 @@ export default function CourseInfo() {
                           ) : (
                             <>
                               <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
                                   {index + 1}
                                 </div>
                                 <span className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 ">
@@ -820,7 +820,7 @@ export default function CourseInfo() {
                     <AccordionBody className="divide-y divide-gray-600 -mt-1">
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
                             1
                           </div>
                           <a
@@ -839,7 +839,7 @@ export default function CourseInfo() {
                       </div>
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
                             1
                           </div>
                           <a
@@ -858,7 +858,7 @@ export default function CourseInfo() {
                       </div>
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
                             1
                           </div>
                           <a
@@ -926,6 +926,8 @@ export default function CourseInfo() {
                 submitComment={submitComment}
               />
             </div>
+
+            {/* <!-- Aside --> */}
             <aside className="col-span-12 lg:col-span-4 space-y-12">
               {/* <!-- Students & Rating & Progress --> */}
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7">

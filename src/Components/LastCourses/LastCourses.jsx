@@ -25,16 +25,14 @@ export default function LastCourses() {
             btnHref="courses/1"
           />
 
-          <div className="container">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
-              {courses
-                .slice()
-                .reverse()
-                .splice(0, 12)
-                .map((course) => (
-                  <CourseBox {...course} key={course._id} />
-                ))}
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
+            {courses
+              .slice()
+              .reverse()
+              .splice(0, 12)
+              .map((course) => (
+                <CourseBox {...course} key={course._id} />
+              ))}
           </div>
         </div>
       </div>

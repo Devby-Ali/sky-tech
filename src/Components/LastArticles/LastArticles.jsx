@@ -24,15 +24,13 @@ export default function LastArticles() {
           btnHref="articles/1"
         />
 
-        <div className="container">
-          <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
-            {articles
-              .filter((article) => article.publish === 1)
-              .slice(0, 3)
-              .map((article) => (
-                <ArticleBox {...article} key={article._id} />
-              ))}
-          </div>
+        <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
+          {articles
+            .filter((article) => article.publish === 1)
+            .slice(0, 3)
+            .map((article) => (
+              <ArticleBox {...article} key={article._id} />
+            ))}
         </div>
       </div>
     </section>

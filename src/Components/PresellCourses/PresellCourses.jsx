@@ -24,39 +24,38 @@ export default function PresellCourses() {
           title="دوره های در حال پیش فروش"
           desc="متن تستی برای توضیحات دوره های پیش فروش"
         />
-        <div className="container">
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={30}
-            loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 25,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-              1280: {
-                slidesPerView: 4,
-              },
-            }}
-            modules={[Autoplay]}
-            className="mySwiper"
-          >
-            {PresellCourses.map((course) => (
-              <>
-                <SwiperSlide key={course._id}>
-                  <CourseBox {...course} isSlider={true} />
-                </SwiperSlide>
-              </>
-            ))}
-          </Swiper>
-        </div>
+
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={30}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 25,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 4,
+            },
+          }}
+          modules={[Autoplay]}
+          className="mySwiper"
+        >
+          {PresellCourses.map((course) => (
+            <>
+              <SwiperSlide key={course._id}>
+                <CourseBox {...course} isSlider={true} />
+              </SwiperSlide>
+            </>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { HiArrowUpLeft, HiOutlineChevronLeft } from "react-icons/hi2";
 
 export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHref }) {
   return (
-    <div className="container">
+    
       <div className="flex-center sm:justify-between flex-wrap flex-col mb-14 sm:mb-20 sm:flex-row gap-x-4 gap-y-7 text-darkColor dark:text-white">
         <div className="space-y-2 sm:space-y-3 sm:self-start mb-6 sm:mb-0">
           <div className="flex-center sm:justify-start gap-x-2.5">
@@ -19,7 +19,7 @@ export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHr
           ) : null}
         </div>
         {btnTitle ? (
-          <div className="courses-header__left sm:self-end">
+          <div className="courses-header__left sm:self-end sm:ml-8">
             <Link
               to={`/${btnHref}`}
               className="relative flex text-[1.7rem] md:text-3xl tracking-tighter text-light-blue-700 hover:text-purple-200 group"
@@ -40,6 +40,6 @@ export default function SectionHeader({ title, desc, titleValue, btnTitle, btnHr
         ) : null}
         {}
       </div>
-    </div>
+   
   );
 }

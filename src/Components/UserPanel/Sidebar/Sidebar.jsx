@@ -89,7 +89,7 @@ export default function Sidebar() {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
         <div className="h-full flex flex-col justify-between">
-          <ul className="child:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
+          <ul className="*:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li className={pageName["*"] === "" && "active-menu"}>
               <Link
                 className="flex items-center justify-between"

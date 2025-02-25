@@ -150,7 +150,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
         )}
       </div>
       {/* <!-- Comment List --> */}
-      <div className="comments_wrap space-y-7 sm:space-y-6 *:bg-gray-200  dark:child:bg-[#333c4c]">
+      <div className="comments_wrap space-y-7 sm:space-y-6 *:bg-gray-200  dark:*:bg-[#333c4c]">
         {/* <!-- Comments --> */}
 
         {comments.length === 0 ? (

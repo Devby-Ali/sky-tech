@@ -125,7 +125,7 @@ export default function Footer() {
                 <div className="flex items-center justify-between p-3 pr-4 bg-[#333c4c]/15 dark:bg-[#333c4c] rounded-md">
                   <Input
                     id="email"
-                    className="bg-transparent outline-hidden"
+                    className="bg-transparent placeholder-white/70 outline-hidden"
                     type="email"
                     placeholder="آدرس ایمیل"
                     validations={[emailValidator()]}
@@ -133,7 +133,7 @@ export default function Footer() {
                   />
                   <Button
                     type="submit"
-                    className={` rounded-sm px-4 pb-0.5 transition-all ${
+                    className={` rounded-sm px-4 pb-0.5 transition-all cursor-pointer ${
                       formState.isFormValid
                         ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
                         : "bg-white/10"
