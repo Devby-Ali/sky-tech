@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
-import { Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
@@ -21,17 +20,6 @@ import {
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
 
-const TABLE_HEAD = [
-  "شناسه",
-  "نام و نام خانوادگی",
-  "ایمیل",
-  "نام کاربری",
-  "همراه",
-  "عنوان",
-  "تغییر‌سطح",
-  "حذف",
-  "بن",
-];
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -216,9 +204,9 @@ export default function Users() {
   return (
     <>
       {showAddUser && (
-        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-xs flex-center overflow-hidden z-50">
           <div className="mx-auto flex flex-col items-center w-min">
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur px-20 py-14 rounded-xl">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur-sm px-20 py-14 rounded-xl">
               <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
                 ثبت کاربر جدید
                 <span
@@ -232,7 +220,7 @@ export default function Users() {
                 <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <Input
                     id="name"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="نام و نام خانوادگی"
                     validations={[
@@ -247,7 +235,7 @@ export default function Users() {
                 <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <Input
                     id="username"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="نام کاربری"
                     validations={[
@@ -262,7 +250,7 @@ export default function Users() {
                 <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <Input
                     id="email"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="email"
                     placeholder="آدرس ایمیل"
                     validations={[
@@ -277,7 +265,7 @@ export default function Users() {
                 <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <Input
                     id="mobileNumber"
-                    className="bg-transparent outline-none text-right"
+                    className="bg-transparent outline-hidden text-right"
                     type="tel"
                     placeholder="شماره موبایل"
                     validations={[requiredValidator(), mobileNumberValidator()]}
@@ -288,7 +276,7 @@ export default function Users() {
                 <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <Input
                     id="password"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="رمز عبور"
                     validations={[
@@ -364,7 +352,7 @@ export default function Users() {
                   <div className="col-span-1 flex-center">
                     <div
                       onClick={() => changeRole(user._id)}
-                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       تغییر‌سطح
                     </div>
@@ -372,7 +360,7 @@ export default function Users() {
                   <div className="col-span-1">
                     <div
                       onClick={() => banUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       بن
                     </div>
@@ -380,7 +368,7 @@ export default function Users() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       حذف
                     </div>

@@ -156,9 +156,9 @@ export default function Articles() {
   return (
     <>
       {showAddArticle && (
-        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-xs flex-center overflow-hidden z-50">
           <div className="mx-auto flex flex-col items-center w-min">
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur px-20 py-14 rounded-xl">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur-sm px-20 py-14 rounded-xl">
               <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
                 افزودن مقاله جدید
                 <span
@@ -176,7 +176,7 @@ export default function Articles() {
                   <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="title"
-                      className="bg-transparent outline-none"
+                      className="bg-transparent outline-hidden"
                       type="text"
                       placeholder="عنوان"
                       validations={[minValidator(5)]}
@@ -186,7 +186,7 @@ export default function Articles() {
                   <div className="min-h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="shortName"
-                      className="bg-transparent outline-none"
+                      className="bg-transparent outline-hidden"
                       type="text"
                       placeholder="لینک"
                       validations={[minValidator(5)]}
@@ -197,7 +197,7 @@ export default function Articles() {
                     <Input
                       id="description"
                       element="textarea"
-                      className="bg-transparent outline-none"
+                      className="bg-transparent outline-hidden"
                       type="text"
                       placeholder="چکیده"
                       validations={[minValidator(5)]}
@@ -342,7 +342,7 @@ export default function Articles() {
                   <div className="col-span-1">
                     <div
                       onClick={() => removeArticle(article._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       حذف
                     </div>

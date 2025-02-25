@@ -52,7 +52,7 @@ export default function Courses() {
                     />
                   </Link>
                 </div>
-                <div className={`flex-grow px-6 py-6`}>
+                <div className={`grow px-6 py-6`}>
                   {/* <!-- Course Title --> */}
                   <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2">
                     <Link to={`/course-info/${course.course.shortName}`}>
@@ -82,8 +82,8 @@ export default function Courses() {
                       <span className="font-EstedadMedium">75%</span>
                       مشاهده دوره
                     </div>
-                    <div className="flex-grow h-1.5 bg-gray-100 dark:bg-dark rounded overflow-hidden direction-ltr">
-                      <div className="bg-green-500 h-full rounded w-3/4"></div>
+                    <div className="grow h-1.5 bg-gray-100 dark:bg-dark rounded-sm overflow-hidden direction-ltr">
+                      <div className="bg-green-500 h-full rounded-sm w-3/4"></div>
                     </div>
                   </div>
                 </div>

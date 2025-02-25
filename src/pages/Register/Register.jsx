@@ -163,7 +163,7 @@ export default function Register() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="name"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="نام و نام خانوادگی"
                     validations={[
@@ -178,7 +178,7 @@ export default function Register() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="username"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="نام کاربری"
                     validations={[
@@ -193,7 +193,7 @@ export default function Register() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="email"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="email"
                     placeholder="آدرس ایمیل"
                     validations={[
@@ -208,7 +208,7 @@ export default function Register() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="mobileNumber"
-                    className="bg-transparent outline-none text-right"
+                    className="bg-transparent outline-hidden text-right"
                     type="tel"
                     placeholder="شماره موبایل"
                     validations={[requiredValidator(), mobileNumberValidator()]}
@@ -219,7 +219,7 @@ export default function Register() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="password"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="رمز عبور"
                     validations={[

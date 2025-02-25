@@ -148,7 +148,7 @@ export default function Login() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="username"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="نام کاربری یا آدرس ایمیل"
                     validations={[
@@ -163,7 +163,7 @@ export default function Login() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="password"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="رمز عبور"
                     validations={[

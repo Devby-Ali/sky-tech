@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Collapse } from "@material-tailwind/react";
+// import { Card, Collapse } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
 import {
@@ -197,7 +197,7 @@ export default function Topbar() {
         </div>
       </div>
 
-      <header className="w-full flex items-center h-[8rem] 2xl:h-36 dark:bg-gradient-to-tr from-light-blue-800/5 via-light-blue-900/5 to-light-blue-900/5 backdrop-blur-[4px] shadow-lg">
+      <header className="w-full flex items-center h-[8rem] 2xl:h-36 dark:bg-linear-to-tr from-light-blue-800/5 via-light-blue-900/5 to-light-blue-900/5 backdrop-blur-[4px] shadow-lg">
         <div className="h-full w-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
           <div className="flex items-center gap-x-6 2xl:gap-x-8">
             <div
@@ -244,14 +244,14 @@ export default function Topbar() {
             onClick={toggleOpenInfo}
           >
             <HiOutlineUser />
-            <Collapse
+            {/* <Collapse
               className="absolute top-32 left-0 w-96 z-50"
               open={openCollapseInfo}
             >
               <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
                 <span className="text-2xl">{userInfo}</span>
               </Card>
-            </Collapse>
+            </Collapse> */}
           </Link>
         </div>
       </header>

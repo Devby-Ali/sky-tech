@@ -24,10 +24,10 @@ export default function ArticleBox({
             loading="lazy"
           />
         </Link>
-        <div className="absolute bottom-0 right-0 left-0 h-44 bg-gradient-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-40% to-white/0 dark:to-darkBox/0 to-100%"></div>
+        <div className="absolute bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-40% to-white/0 dark:to-darkBox/0 to-100%"></div>
       </div>
       {/* <!-- Blog Title & Description --> */}
-      <div className="flex-grow px-7 py-6">
+      <div className="grow px-7 py-6">
         {/* <!-- Blog Title --> */}
         <h3 className="font-EstedadMedium text-[1.7rem] line-clamp-2 mb-5">
           <Link to={`/article-info/${shortName}`}>{title}</Link>

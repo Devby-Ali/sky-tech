@@ -50,7 +50,7 @@ export default function Discounts() {
               <input
                 type="text"
                 id="phone"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-3xl"
+                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-3xl"
                 value={discount}
                 onChange={(event) => setDiscount(event.target.value)}
               />

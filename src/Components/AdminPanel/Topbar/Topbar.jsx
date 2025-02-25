@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Collapse } from "@material-tailwind/react";
+// import { Card, Collapse } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
 import {
@@ -245,7 +245,7 @@ export default function Topbar() {
         </div>
       </div>
 
-      <header className="w-full flex items-center h-[8rem] 2xl:h-36 dark:bg-gradient-to-tr from-light-blue-800/5 via-light-blue-900/5 to-light-blue-900/5 backdrop-blur-[4px] shadow-lg">
+      <header className="w-full flex items-center h-[8rem] 2xl:h-36 dark:bg-linear-to-tr from-light-blue-800/5 via-light-blue-900/5 to-light-blue-900/5 backdrop-blur-[4px] shadow-lg">
         <div className="h-full w-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
           <div className="flex items-center gap-x-6 2xl:gap-x-8">
             <div
@@ -275,19 +275,20 @@ export default function Topbar() {
               onClick={toggleOpenNotif}
             >
               <HiOutlineBell />
-              <Collapse
+
+              <div
                 className="absolute top-[5.9rem] 2xl:top-[6.4rem] w-auto"
                 open={openCollapseNotif}
               >
                 {adminNotif.length === 0 ? (
-                  <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                  <div className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
                     <span className="text-2xl text-nowrap">
                       نوتیفی برای نمایش وجود ندارد
                     </span>
-                  </Card>
+                  </div>
                 ) : (
                   <>
-                    <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                    {/* <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
                       <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                         <span className="truncate hover:text-clip">
                           blablabl
@@ -320,10 +321,11 @@ export default function Topbar() {
                           دیدم
                         </a>
                       </div>
-                    </Card>
+                    </Card> */}
                   </>
                 )}
-              </Collapse>
+              </div>
+
             </div>
             <div className="hidden lg:block text-nowrap text-darkColor dark:text-white text-3xl mr-3">
               <h4>{adminInfo.name} عزیز‚ به پنل مدیریت <span className="text-light-blue-400 mx-1.5">Sky Tech</span> خوش اومدی</h4>
@@ -348,14 +350,14 @@ export default function Topbar() {
             onClick={toggleOpenInfo}
           >
             <HiOutlineUser />
-            <Collapse
+            {/* <Collapse
               className="absolute top-32 left-0 w-96 z-50"
               open={openCollapseInfo}
             >
               <Card className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
                 <span className="text-2xl">{authContext.userInfos.name}</span>
               </Card>
-            </Collapse>
+            </Collapse> */}
           </Link>
         </div>
       </header>

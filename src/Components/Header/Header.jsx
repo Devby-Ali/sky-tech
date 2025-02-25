@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/authContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
-import { Collapse, Card } from "@material-tailwind/react";
+// import { Collapse, Card } from "@material-tailwind/react";
 import {
   HiBars3,
   HiChevronLeft,
@@ -181,7 +181,7 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="md:fixed md:flex md:top-5 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-[95%] h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-gradient-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[3px]">
+      <header className="md:fixed md:flex md:top-5 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-[95%] h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-linear-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[3px]">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-12 py-4">
             <div
@@ -219,7 +219,7 @@ export default function Header() {
                 <li className="main-header__item flex-center relative">
                   <span className="cursor-pointer">
                     دوره های آموزشی
-                    <ul className="main-header__dropdown absolute top-24 right-0 w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
+                    <ul className="main-header__dropdown absolute top-24 right-0 w-96 b bg-linear-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75">
                       {allMenus.map((menu) => (
                         <li
                           className="header__item hover:bg-light-blue-800/60 rounded-l-sm rounded-r-2xl mx-4"
@@ -233,7 +233,7 @@ export default function Header() {
                             {menu.submenus.length !== 0 && (
                               <>
                                 <HiChevronLeft className="mt-1 xl:mr-1" />
-                                <ul className="header__dropdown absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 b bg-gradient-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
+                                <ul className="header__dropdown absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 b bg-linear-to-t from-darkBox/60 via-lightishBlue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
                                   {menu.submenus.map((submenu) => (
                                     <li key={menu._id}>
                                       <Link
@@ -290,7 +290,7 @@ export default function Header() {
                     onClick={toggleOpen}
                   >
                     <HiOutlineUser className="text-[2.75rem]" />
-                    <Collapse
+                    {/* <Collapse
                       className="absolute top-32 left-0 w-96 z-50"
                       open={openCollapse}
                     >
@@ -367,7 +367,7 @@ export default function Header() {
                           <div>خروج</div>
                         </Button>
                       </Card>
-                    </Collapse>
+                    </Collapse> */}
                   </Link>
                 </>
               ) : (

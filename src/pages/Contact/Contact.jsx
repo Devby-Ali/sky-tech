@@ -117,7 +117,7 @@ export default function Contact() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="name"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder="نام و نام خانوادگی"
                     validations={[
@@ -132,7 +132,7 @@ export default function Contact() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="email"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="email"
                     placeholder="آدرس ایمیل"
                     validations={[
@@ -148,7 +148,7 @@ export default function Contact() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="mobileNumber"
-                    className="bg-transparent outline-none text-right"
+                    className="bg-transparent outline-hidden text-right"
                     type="tel"
                     placeholder="شماره موبایل"
                     validations={[requiredValidator(), mobileNumberValidator()]}
@@ -160,7 +160,7 @@ export default function Contact() {
                   <Input
                     element="textarea"
                     id="body"
-                    className="bg-transparent outline-none w-full"
+                    className="bg-transparent outline-hidden w-full"
                     type="text"
                     placeholder="متن خود را وارد کنید"
                     validations={[requiredValidator(), minValidator(10)]}

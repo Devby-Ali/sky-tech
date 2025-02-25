@@ -129,7 +129,7 @@ export default function Tickets() {
         </div>
         <select
           id="filters"
-          className="bg-light-blue-50 dark:bg-[#333c4c] text-darkColor dark:text-white text-2xl md:text-[1.6rem] w-1/2 md:w-80 h-[3.1rem] md:h-20 pr-6 border-l-[14px] border-l-transparent rounded"
+          className="bg-light-blue-50 dark:bg-[#333c4c] text-darkColor dark:text-white text-2xl md:text-[1.6rem] w-1/2 md:w-80 h-[3.1rem] md:h-20 pr-6 border-l-[14px] border-l-transparent rounded-sm"
         >
           <option value="">مرتب سازی بر اساس:</option>
           <option value="">منتظر پاسخ</option>

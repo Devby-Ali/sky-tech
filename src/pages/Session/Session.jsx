@@ -17,11 +17,11 @@ import {
 } from "react-icons/hi2";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { FaRegCircleCheck } from "react-icons/fa6";
-import {
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from "@material-tailwind/react";
+// import {
+//   Accordion,
+//   AccordionHeader,
+//   AccordionBody,
+// } from "@material-tailwind/react";
 
 export default function Session() {
   const { courseName, sessionID } = useParams();
@@ -103,7 +103,7 @@ export default function Session() {
                   >
                     سوال دارم!
                   </a>
-                  <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
+                  <div className="flex gap-y-3.5 gap-x-4 justify-end grow flex-wrap">
                     <a
                       href="/"
                       className="w-full sm:w-60 sm:text-[1.7rem] bg-light-blue-700 rounded-lg p-4 text-center"
@@ -287,7 +287,7 @@ export default function Session() {
                   >
                     سوال دارم!
                   </a>
-                  <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
+                  <div className="flex gap-y-3.5 gap-x-4 justify-end grow flex-wrap">
                     <a
                       href="/"
                       className="w-full sm:w-60 sm:text-[1.7rem] bg-light-blue-700 rounded-lg p-4 text-center"
@@ -306,7 +306,7 @@ export default function Session() {
                   </span>
                 </div>
                 <div className="space-y-6">
-                  <Accordion open={alwaysOpen}>
+                  {/* <Accordion open={alwaysOpen}>
                     <AccordionHeader
                       className={`flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white ${
                         alwaysOpen ? "rounded-t-lg" : "rounded-lg"
@@ -344,7 +344,7 @@ export default function Session() {
                       </div>
                     </AccordionBody>
                   </Accordion>
-                  {/* other Accordions */}
+                   
                   <Accordion open={open === 1}>
                     <AccordionHeader
                       className={`flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white ${
@@ -376,7 +376,7 @@ export default function Session() {
                         </div>
                       </div>
                     </AccordionBody>
-                  </Accordion>
+                  </Accordion> */}
                 </div>
               </div>
 

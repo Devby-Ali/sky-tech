@@ -124,14 +124,14 @@ export default function CommentsTextArea({ comments, submitComment }) {
               </select>
               <div className="flex gap-x-2">
                 <button
-                  className="flex-grow sm:grow-0 sm:w-36 button-primary button-outline py-2"
+                  className="grow sm:grow-0 sm:w-36 button-primary button-outline py-2"
                   id="comment-cancel-btn"
                   onClick={() => textAreaHandler()}
                 >
                   لغو
                 </button>
                 <button
-                  className="flex-grow sm:grow-0 sm:w-36 button-primary py-2"
+                  className="grow sm:grow-0 sm:w-36 button-primary py-2"
                   onClick={() => submitComment(newCommentBody, commentScore)}
                 >
                   ارسال

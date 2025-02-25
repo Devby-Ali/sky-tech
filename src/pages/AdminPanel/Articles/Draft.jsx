@@ -101,7 +101,7 @@ export default function Draft() {
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="title"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder={draft.title}
                     validations={[minValidator(5)]}
@@ -111,7 +111,7 @@ export default function Draft() {
                 <div className="min-h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <Input
                     id="shortName"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder={draft.shortName}
                     validations={[minValidator(5)]}
@@ -122,7 +122,7 @@ export default function Draft() {
                   <Input
                     id="description"
                     element="textarea"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="text"
                     placeholder={draft.description}
                     validations={[minValidator(5)]}

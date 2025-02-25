@@ -159,7 +159,7 @@ export default function Courses() {
                       type="text"
                       value={searchValue}
                       onChange={searchValueChangeHandler}
-                      className="tracking-tight py-2 placeholder-[#64748b] bg-transparent flex-grow outli"
+                      className="tracking-tight py-2 placeholder-[#64748b] bg-transparent grow outli"
                       placeholder="جستجو بین دوره ها"
                     />
                     <button type="submit">
@@ -217,7 +217,7 @@ export default function Courses() {
                       در حال پیش فروش
                     </span>
                     <input
-                      className="outline-none w-6 h-6"
+                      className="outline-hidden w-6 h-6"
                       type="checkbox"
                       onClick={() => {
                         closeDrawerFilter();
@@ -240,7 +240,7 @@ export default function Courses() {
                       دوره ها خریداری شده
                     </span>
                     <input
-                      className="outline-none w-6 h-6"
+                      className="outline-hidden w-6 h-6"
                       type="checkbox"
                       onClick={() => {
                         closeDrawerFilter();

@@ -9,10 +9,7 @@ import {
 } from "./../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import Swal from "sweetalert2";
-import { Card, Typography } from "@material-tailwind/react";
 import { HiPlus, HiXMark } from "react-icons/hi2";
-
-const TABLE_HEAD = ["شناسه", "عنوان", "نام کوتاه", "ویرایش", "حذف"];
 
 export default function Category() {
   const [showCreateCategory, setShowCreateCategory] = useState(false);
@@ -97,7 +94,7 @@ export default function Category() {
           },
         })
           .then((res) => res.json())
-          .then((result) => {
+          .then(() => {
             Swal.fire({
               title: "دسته بندی مورد نظر با موفقیت حذف شد",
               icon: "success",
@@ -150,9 +147,9 @@ export default function Category() {
   return (
     <>
       {showCreateCategory && (
-        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-xs flex-center overflow-hidden z-50">
           <div className="mx-auto flex flex-col items-center w-min">
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur px-20 py-14 rounded-xl">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-lightishBlue-800/40 dark:bg-lightishBlue-900/30 backdrop-blur-sm px-20 py-14 rounded-xl">
               <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
                 افزودن دسته بندی جدید
                 <span
@@ -170,7 +167,7 @@ export default function Category() {
                   <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="title"
-                      className="bg-transparent outline-none"
+                      className="bg-transparent outline-hidden"
                       type="text"
                       placeholder="عنوان"
                       validations={[
@@ -184,7 +181,7 @@ export default function Category() {
                   <div className="h-20 flex items-center justify-between px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                     <Input
                       id="shortname"
-                      className="bg-transparent outline-none"
+                      className="bg-transparent outline-hidden"
                       type="text"
                       placeholder="نام کوتاه"
                       validations={[
@@ -248,7 +245,7 @@ export default function Category() {
                   <div className="col-span-2">
                     <div
                       onClick={() => updateCategory(category._id)}
-                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       ویرایش
                     </div>
@@ -256,7 +253,7 @@ export default function Category() {
                   <div className="col-span-2">
                     <div
                       onClick={() => removeCategory(category._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       حذف
                     </div>

@@ -25,7 +25,7 @@ import {
 import Swal from "sweetalert2";
 import AuthContext from "../../context/authContext";
 import { GrUserAdmin } from "react-icons/gr";
-import { Card, Collapse } from "@material-tailwind/react";
+// import { Card, Collapse } from "@material-tailwind/react";
 
 export default function Landing({ info }) {
   const [dark, setDark] = useState(false);
@@ -258,7 +258,7 @@ export default function Landing({ info }) {
                 <li className="main-header__item flex-center relative">
                   <span className="cursor-pointer">
                     دوره های آموزشی
-                    <ul className="main-header__dropdown absolute top-24 -right-4 w-96 bg-gradient-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75 z-50">
+                    <ul className="main-header__dropdown absolute top-24 -right-4 w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75 z-50">
                       {allMenus.map((menu) => (
                         <li
                           className="header__item hover:bg-light-blue-800/60 rounded-l-sm rounded-r-2xl mx-4"
@@ -272,7 +272,7 @@ export default function Landing({ info }) {
                             {menu.submenus.length !== 0 && (
                               <>
                                 <HiChevronLeft className="mt-1 xl:mr-1" />
-                                <ul className="header__dropdown absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 bg-gradient-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
+                                <ul className="header__dropdown absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
                                   {menu.submenus.map((submenu) => (
                                     <li key={menu._id}>
                                       <Link
@@ -329,7 +329,7 @@ export default function Landing({ info }) {
                     onClick={toggleOpen}
                   >
                     <HiOutlineUser className="text-[2.75rem]" />
-                    <Collapse
+                    {/* <Collapse
                       className="absolute top-32 left-0 w-96 z-50"
                       open={openCollapse}
                     >
@@ -406,7 +406,7 @@ export default function Landing({ info }) {
                           <div>خروج</div>
                         </Button>
                       </Card>
-                    </Collapse>
+                    </Collapse> */}
                   </Link>
                 </>
               ) : (
@@ -454,7 +454,7 @@ export default function Landing({ info }) {
                 <Input
                   type="text"
                   id="search"
-                  className="w-full bg-transparent text-2xl xs:text-3xl outline-none"
+                  className="w-full bg-transparent text-2xl xs:text-3xl outline-hidden"
                   placeholder="چی دوست داری یاد بگیری ..."
                   validations={[requiredValidator()]}
                   onInputHandler={onInputHandler}
@@ -546,7 +546,7 @@ export default function Landing({ info }) {
         height="22"
         fill="none"
         viewBox="0 0 100 22"
-        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[130px] h-[28px] text-blue-gray-50 dark:text-darkColor dark:text-zinc-800 rotate-180 z-10"
+        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[130px] h-[28px] text-blue-gray-50 dark:text-darkColor rotate-180 z-10"
       >
         <path
           fill="currentColor"

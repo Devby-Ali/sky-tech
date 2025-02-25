@@ -91,7 +91,7 @@ export default function Footer() {
           <div className="flex items-center flex-wrap gap-y-8 gap-x-16 mt-16">
             <a
               href="tel:02191030926"
-              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
+              className="flex items-center grow md:grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
                 <HiOutlinePhone />
@@ -100,7 +100,7 @@ export default function Footer() {
             </a>
             <a
               href="mailto:info@skytech.ir"
-              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
+              className="flex items-center grow md:grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
                 <HiOutlineEnvelope />
@@ -109,7 +109,7 @@ export default function Footer() {
             </a>
             <a
               href="https://t.me/skytech_support"
-              className="flex items-center flex-grow md:flex-grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
+              className="flex items-center grow md:grow-0 gap-x-2.5 sm:gap-x-3 text-2xl sm:text-[1.7rem]"
             >
               <div className="text-3xl sm:text-4xl">
                 <FaTelegramPlane />
@@ -125,7 +125,7 @@ export default function Footer() {
                 <div className="flex items-center justify-between p-3 pr-4 bg-[#333c4c]/15 dark:bg-[#333c4c] rounded-md">
                   <Input
                     id="email"
-                    className="bg-transparent outline-none"
+                    className="bg-transparent outline-hidden"
                     type="email"
                     placeholder="آدرس ایمیل"
                     validations={[emailValidator()]}

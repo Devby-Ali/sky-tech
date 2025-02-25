@@ -66,7 +66,7 @@ export default function FilteredCourses({
           >
             <div>در حال پیش فروش</div>
             <input
-              className="outline-none w-6 h-6"
+              className="outline-hidden w-6 h-6"
               type="checkbox"
               onClick={() => {
                 closeDrawerFilter();
@@ -84,7 +84,7 @@ export default function FilteredCourses({
           >
             <div>دوره ها خریداری شده</div>
             <input
-              className="outline-none w-6 h-6"
+              className="outline-hidden w-6 h-6"
               type="checkbox"
               onClick={() => {
                 closeDrawerFilter();

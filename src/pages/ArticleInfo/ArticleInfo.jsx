@@ -110,7 +110,7 @@ export default function ArticleInfo() {
                   </span>
                 </div>
                 <div
-                  className="rounded-4xl !rounded-tr-none border border-gray-400 dark:border-white/30 mt-14 overflow-hidden mb-10 md:mb-12 tracking-wide"
+                  className="rounded-4xl rounded-tr-none! border border-gray-400 dark:border-white/30 mt-14 overflow-hidden mb-10 md:mb-12 tracking-wide"
                   id="toc-collapse"
                 >
                   <div className="flex items-center justify-between p-6 ">

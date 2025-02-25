@@ -78,7 +78,7 @@ export default function EditAccount() {
             <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
               <input
                 type="text"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
+                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
@@ -95,7 +95,7 @@ export default function EditAccount() {
             <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
               <input
                 type="text"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
+                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
               />
@@ -112,7 +112,7 @@ export default function EditAccount() {
             <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
               <input
                 type="email"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
+                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
@@ -130,7 +130,7 @@ export default function EditAccount() {
               <input
                 type="text"
                 id="phone"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
+                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
               />
@@ -147,7 +147,7 @@ export default function EditAccount() {
           <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
             <input
               type="password"
-              className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-none text-2xl"
+              className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
@@ -168,7 +168,7 @@ export default function EditAccount() {
             </div>
           </div>
 
-          <div className="attachment_item hidden items-center justify-between w-full sm:w-62 h-12 px-4 border border-green-500 text-green-500 bg-transparent cursor-pointer rounded">
+          <div className="attachment_item hidden items-center justify-between w-full sm:w-62 h-12 px-4 border border-green-500 text-green-500 bg-transparent cursor-pointer rounded-sm">
             <div className="size-5 shrink-0 cursor-pointer remove_attachment after_upload">
               <use href="#trash"></use>
             </div>

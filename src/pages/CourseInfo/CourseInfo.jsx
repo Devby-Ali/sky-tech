@@ -5,11 +5,11 @@ import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Button from "../../Components/Form/Button";
 import CourseDetailBox from "../../Components/CourseDetailBox/CourseDetailBox";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
-import {
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from "@material-tailwind/react";
+// import {
+//   Accordion,
+//   AccordionHeader,
+//   AccordionBody,
+// } from "@material-tailwind/react";
 import Footer from "./../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -110,7 +110,7 @@ export default function CourseInfo() {
       }),
     })
       .then((res) => res.json())
-      .then((result) => {
+      .then(() => {
         Swal.fire({
           title: "کامنت ثبت شد",
           icon: "success",
@@ -264,7 +264,7 @@ export default function CourseInfo() {
               },
             ]}
           />
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 rounded-3xl p-7 lg:p-0 bg-white dark:bg-darkBox lg:!bg-transparent border border-gray-100 dark:border-none lg:border-none">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 rounded-3xl p-7 lg:p-0 bg-white dark:bg-darkBox lg:bg-transparent! border border-gray-100 dark:border-none lg:border-none">
             <div className="flex flex-col lg:gap-56 justify-between order-2 lg:order-1 text-darkColor dark:text-white">
               <div>
                 <h1 className="font-EstedadBold text-4xl sm:text-5xl mb-7">
@@ -698,7 +698,7 @@ export default function CourseInfo() {
                     <p>پس همه چی حله…</p>
                   </div>
 
-                  <div className="absolute bottom-0 right-0 left-0 h-44 bg-gradient-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-70% to-white/0 dark:to-darkBox/0 to-100%"></div>
+                  <div className="absolute bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-70% to-white/0 dark:to-darkBox/0 to-100%"></div>
                 </div>
                 <Button
                   type="button"
@@ -725,7 +725,7 @@ export default function CourseInfo() {
                   </div>
                 </div>
                 <div className="space-y-4 md:space-y-5">
-                  <Accordion
+                  {/* <Accordion
                     open={open === 1}
                     icon={<Icon id={1} open={open} />}
                   >
@@ -753,8 +753,8 @@ export default function CourseInfo() {
                           {session.free === 1 ||
                           courseDetails.isUserRegisteredToThisCourse ? (
                             <>
-                              <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
-                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                              <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                                   {index + 1}
                                 </div>
                                 <Link
@@ -775,8 +775,8 @@ export default function CourseInfo() {
                             </>
                           ) : (
                             <>
-                              <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
-                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                              <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                                   {index + 1}
                                 </div>
                                 <span className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 ">
@@ -819,8 +819,8 @@ export default function CourseInfo() {
                     </AccordionHeader>
                     <AccordionBody className="divide-y divide-gray-600 -mt-1">
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
-                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                             1
                           </div>
                           <a
@@ -838,8 +838,8 @@ export default function CourseInfo() {
                         </div>
                       </div>
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
-                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                             1
                           </div>
                           <a
@@ -857,8 +857,8 @@ export default function CourseInfo() {
                         </div>
                       </div>
                       <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
-                        <div className="flex items-center flex-grow gap-x-3 md:gap-x-3.5 child:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded">
+                        <div className="flex items-center grow gap-x-3 md:gap-x-3.5 child:transition-colors">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-sm">
                             1
                           </div>
                           <a
@@ -876,7 +876,7 @@ export default function CourseInfo() {
                         </div>
                       </div>
                     </AccordionBody>
-                  </Accordion>
+                  </Accordion> */}
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
@@ -930,7 +930,7 @@ export default function CourseInfo() {
               {/* <!-- Students & Rating & Progress --> */}
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7">
                 <div className="flex gap-x-6">
-                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 flex-grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
+                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
                     <div className="text-6xl md:text-7xl text-lightishBlue-500">
                       <PiUsersThree />
                     </div>
@@ -941,7 +941,7 @@ export default function CourseInfo() {
                       <span className="block text-2xl opacity-70">دانشجو</span>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 flex-grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
+                  <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
                     <div className="text-5xl md:text-6xl text-amber-500">
                       <PiStarBold />
                     </div>

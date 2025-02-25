@@ -66,7 +66,7 @@ export default function TicketAnswer() {
             </div>
 
             {ticketInfo.answer !== null && (
-              <div className="w-full lg:w-1/2 bg-light-blue-100 dark:bg-[#333c4c] p-8 rounded text-white mr-auto">
+              <div className="w-full lg:w-1/2 bg-light-blue-100 dark:bg-[#333c4c] p-8 rounded-sm text-white mr-auto">
                 <div className="flex items-center gap-x-2 mb-5 md:mb-7 text-2xl md:text-[1.7rem] font-EstedadMedium">
                   <div className="w-2 h-6 rounded-full bg-green-500"></div>
                   پشتیبانی | Admin 
