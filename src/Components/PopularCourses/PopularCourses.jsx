@@ -20,6 +20,7 @@ export default function PopularCourses() {
   return (
     <div className="mb-48">
       <div className="container">
+      <div className="relative">
         <SectionHeader
           title="محبوب ترین دوره ها"
           desc="دوره های محبوب بر اساس امتیاز دانشجوها"
@@ -56,6 +57,8 @@ export default function PopularCourses() {
             </>
           ))}
         </Swiper>
+        <div className="hidden lg:block absolute left-0 top-0 -translate-x-1/3 -translate-y-6/10 size-75 bg-green-500 opacity-25 blur-[125px] -z-10 rounded-full"></div>
+      </div>
       </div>
     </div>
   );

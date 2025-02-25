@@ -8,7 +8,7 @@ import { IoCodeWorking } from "react-icons/io5";
 
 export default function AboutUs() {
   return (
-    <div className="container">
+    <div className="relative container">
       <SectionHeader
         title="ما چه کمکی بهتون میکنیم؟"
         desc="از اونجایی که آکادمی آموزشی اسکای تک یک آکادمی خصوصی هست"
@@ -36,6 +36,7 @@ export default function AboutUs() {
           icon={<IoCodeWorking className="text-green-700/80" />}
         />
       </div>
+      <div className="hidden lg:block absolute right-0 -top-40 translate-x-1/3 -translate-y-6/10 size-75 bg-red-500 opacity-25 blur-[125px] -z-10 rounded-full"></div>
     </div>
   );
 }

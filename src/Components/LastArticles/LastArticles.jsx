@@ -16,7 +16,7 @@ export default function LastArticles() {
 
   return (
     <section className="mb-48">
-      <div className="container">
+      <div className="container relative">
         <SectionHeader
           title="وبلاگ آموزشی SKY-Tech"
           desc="پیش به سوی ارتقای دانش"
@@ -32,6 +32,7 @@ export default function LastArticles() {
               <ArticleBox {...article} key={article._id} />
             ))}
         </div>
+        <div className="hidden lg:block absolute left-0 top-0 -translate-x-1/3 -translate-y-6/10 size-75 bg-amber-400 opacity-25 blur-[125px] -z-10 rounded-full"></div>
       </div>
     </section>
   );

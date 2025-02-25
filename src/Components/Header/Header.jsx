@@ -180,7 +180,7 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="md:fixed md:flex md:top-5 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-[95%] h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-linear-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[3px]">
+      <header className="md:fixed md:flex md:top-5 2xl:top-7 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-97/100 lg:w-94/100 h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-linear-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[3px]">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-12 py-4">
             <div

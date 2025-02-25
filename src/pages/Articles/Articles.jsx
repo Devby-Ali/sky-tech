@@ -30,8 +30,8 @@ export default function Articles() {
     <>
       {/* <Topbar /> */}
       <Header />
-      <div className="pt-[11.5rem]">
-        <div className="-mb-6">
+      <div className="pt-12 md:pt-46">
+        <div className="-mb-6 container">
           <SectionHeader title={"مقاله ها"} titleValue={`${articles.length} مقاله آموزشی`} />
         </div>
         <div className="container">

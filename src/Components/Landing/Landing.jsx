@@ -535,8 +535,6 @@ export default function Landing({ info }) {
               </span>
             </div>
           </div>
-          {/* <div className="hidden lg:block absolute -top-20 left-0 w-[250px] h-[250px] bg-purple-600 opacity-25 blur-[120px] rounded-full"></div>
-            <div className="hidden lg:block absolute -bottom-44 -right-17 w-[250px] h-[250px] bg-light-blue-600 opacity-25 blur-[120px] rounded-full"></div> */}
         </div>
       </div>
       <svg
@@ -546,7 +544,7 @@ export default function Landing({ info }) {
         height="22"
         fill="none"
         viewBox="0 0 100 22"
-        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[130px] h-[28px] text-blue-gray-50 dark:text-darkColor rotate-180 z-10"
+        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[150px] h-[36px] text-blue-gray-50 dark:text-darkColor rotate-180 z-10"
       >
         <path
           fill="currentColor"

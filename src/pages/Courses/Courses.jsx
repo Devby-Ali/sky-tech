@@ -141,7 +141,7 @@ export default function Courses() {
       {/* <Topbar /> */}
       <Header />
       <section className="pt-16 md:pt-52">
-        <div>
+        <div className="container">
           <SectionHeader
             title={"دوره ها"}
             titleValue={`${courses.length} دوره ی آموزشی`}
