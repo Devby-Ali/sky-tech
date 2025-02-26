@@ -14,6 +14,7 @@ import Footer from "./../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
+  HiChevronDown,
   HiOutlineAcademicCap,
   HiOutlineDocumentText,
   HiOutlineLockClosed,
@@ -30,18 +31,6 @@ import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
-
-function Icon({ id, open }) {
-  return (
-    <div
-      className={`${
-        id === open ? "rotate-180" : ""
-      } text-5xl text-darkColor dark:text-white transition-all`}
-    >
-      <GoTriangleDown />
-    </div>
-  );
-}
 
 export default function CourseInfo() {
   const [open, setOpen] = useState(0);
@@ -725,30 +714,43 @@ export default function CourseInfo() {
                   </div>
                 </div>
                 <div className="space-y-4 md:space-y-5">
-                  {/* <Accordion
-                    open={open === 1}
-                    icon={<Icon id={1} open={open} />}
-                  >
-                    <AccordionHeader
-                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-gray-200 dark:bg-[#333c4c]"
+                  
+                  <div open={open === 1}>
+                    <div
+                      className={`flex items-center justify-between cursor-pointer pr-6 pl-8 py-7 rounded-2xl border-none ${
+                        open === 1
+                          ? "rounded-b-none bg-light-blue-400 dark:bg-light-blue-800"
+                          : "bg-gray-200 dark:bg-[#333c4c]"
+                      }`}
                       onClick={() => handleOpen(1)}
                     >
                       <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
                         جلسات دوره
                       </span>
-                      <div className="flex items-center end gap-x-2.5 shrink-0">
+                      <div className="flex items-center gap-x-2.5 shrink-0">
                         <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white *:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
                         </div>
                       </div>
-                    </AccordionHeader>
-                    <AccordionBody className="divide-y divide-gray-600 -mt-1">
+                      <span
+                        className={`text-4xl transition-all ${
+                          open === 1 && "rotate-180"
+                        }`}
+                      >
+                        <HiChevronDown />
+                      </span>
+                    </div>
+                    <div
+                      className={`${
+                        open === 1 ? "block visible" : "hidden invisible"
+                      } divide-y divide-gray-600 -mt-1`}
+                    >
                       {sessions.map((session, index) => (
                         <div
                           key={session._id}
-                          className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
+                          className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
                         >
                           {session.free === 1 ||
                           courseDetails.isUserRegisteredToThisCourse ? (
@@ -795,30 +797,42 @@ export default function CourseInfo() {
                           )}
                         </div>
                       ))}
-                    </AccordionBody>
-                  </Accordion>
+                    </div>
+                  </div>
 
-                  <Accordion
-                    open={open === 2}
-                    icon={<Icon id={2} open={open} />}
-                  >
-                    <AccordionHeader
-                      className="flex items-center justify-between cursor-pointer pr-6 pl-2 py-7 rounded-2xl border-none bg-gray-200 dark:bg-[#333c4c]"
+                  <div open={open === 2}>
+                    <div
+                      className={`flex items-center justify-between cursor-pointer pr-6 pl-8 py-7 rounded-2xl border-none ${
+                        open === 2
+                          ? "rounded-b-none bg-light-blue-400 dark:bg-light-blue-800"
+                          : "bg-gray-200 dark:bg-[#333c4c]"
+                      }`}
                       onClick={() => handleOpen(2)}
                     >
                       <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
                         سرفصل ها
                       </span>
-                      <div className="flex items-center end gap-x-2.5 shrink-0">
+                      <div className="flex items-center gap-x-2.5 shrink-0">
                         <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white *:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
                         </div>
                       </div>
-                    </AccordionHeader>
-                    <AccordionBody className="divide-y divide-gray-600 -mt-1">
-                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                      <span
+                        className={`text-4xl transition-all ${
+                          open === 2 && "rotate-180"
+                        }`}
+                      >
+                        <HiChevronDown />
+                      </span>
+                    </div>
+                    <div
+                      className={`${
+                        open === 2 ? "block visible" : "hidden invisible"
+                      } divide-y divide-gray-600 -mt-1`}
+                    >
+                      <div className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                           <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
                             1
@@ -875,8 +889,8 @@ export default function CourseInfo() {
                           </div>
                         </div>
                       </div>
-                    </AccordionBody>
-                  </Accordion> */}
+                    </div>
+                  </div>
                 </div>
               </div>
               {/* <!-- Related Courses --> */}
