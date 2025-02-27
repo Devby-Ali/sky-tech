@@ -17,11 +17,6 @@ import {
 } from "react-icons/hi2";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { FaRegCircleCheck } from "react-icons/fa6";
-// import {
-//   Accordion,
-//   AccordionHeader,
-//   AccordionBody,
-// } from "@material-tailwind/react";
 
 export default function Session() {
   const { courseName, sessionID } = useParams();
@@ -81,7 +76,7 @@ export default function Session() {
 
           <div className="grid grid-cols-12 gap-y-6 gap-x-8 lg:gap-x-10 mt-10 lg:mt-12 text-darkColor dark:text-white">
             <div className="col-span-full order-last md:order-none md:col-span-7 xl:col-span-8">
-              <div className="hidden md:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mb-9 lg:mb-10">
+              <div className="hidden md:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10 mb-9 lg:mb-10">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-12 sm:mb-16 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <h3 className="font-EstedadBold text-[2rem] md:text-4xl tracking-wide">
@@ -90,23 +85,25 @@ export default function Session() {
                 </div>
 
                 <div className="flex gap-x-2 pb-7 sm:pb-8 mb-8 sm:mb-10 border-b border-b-neutral-200/80 dark:border-b-white/10">
-                  <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1.5 font-EstedadBold rounded-md">
+                  <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1.5 font-EstedadBold rounded-lg">
                     6
                   </div>
-                  <h4 className="text-3xl/10 sm:text-[1.9rem]">{session.title}</h4>
+                  <h4 className="text-3xl/10 sm:text-[1.9rem]">
+                    {session.title}
+                  </h4>
                 </div>
 
                 <div className="flex justify-between gap-6 flex-wrap">
                   <a
                     href="#lesson-qaa"
-                    className="w-full sm:w-60 sm:text-[1.7rem] dark:bg-[#333c4c] rounded-lg p-4 text-center"
+                    className="button-primary hover:button-primary-hover tracking-normal w-full sm:w-60 sm:text-[1.7rem] dark:bg-[#333c4c] p-4 text-center"
                   >
                     سوال دارم!
                   </a>
                   <div className="flex gap-y-3.5 gap-x-4 justify-end grow flex-wrap">
                     <a
                       href="/"
-                      className="w-full sm:w-60 sm:text-[1.7rem] bg-light-blue-700 rounded-lg p-4 text-center"
+                      className="button-primary hover:button-primary-hover tracking-normal w-full sm:w-60 sm:text-[1.7rem] p-4 text-center"
                     >
                       دانلود ویدیو
                     </a>
@@ -115,7 +112,7 @@ export default function Session() {
               </div>
 
               <div
-                className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10"
+                className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10"
                 id="lesson-qaa"
               >
                 <div className="flex items-center justify-between mb-6 sm:mb-7">
@@ -212,18 +209,9 @@ export default function Session() {
                             اگر فایل ضمیمه ای دارید لطفا آپلود کنید
                           </span>
                         </div>
-                        <div className="attachment_item hidden flex items-center justify-between gap-x-2 w-full sm:w-72 bg-green-50 dark:bg-green-500/10 text-light-blue-500 px-3.5 py-2.5 rounded-xl">
-                          {/* trash icon */}
-                          {/* close icon */}
-                          <div className="flex items-center gap-x-1.5">
-                            <span className="up_percent"></span>
-                            <span className="hidden"></span>
-                            <span className="max-w-34 truncate en-value file_name"></span>
-                          </div>
-                        </div>
                       </div>
                       <button
-                        className="w-full sm:w-40 sm:text-[1.7rem] mt-10 sm:mt-0 text-light-blue-700 border border-light-blue-700 rounded-lg p-4 text-center btn btn-primary btn-outline"
+                        className="button-primary hover:button-primary-hover tracking-normal w-full sm:w-40 sm:text-[1.7rem] mt-10 sm:mt-0 text-light-blue-700 border border-light-blue-700 rounded-lg p-4 text-center bg-transparent transition-all"
                         type="submit"
                         id="qa-submit-btn"
                       >
@@ -265,7 +253,7 @@ export default function Session() {
             </div>
 
             <aside className="col-span-full order-first md:order-none md:col-span-5 xl:col-span-4">
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 md:hidden">
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10 md:hidden">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-12 sm:mb-16 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
                   <h3 className="font-EstedadBold text-[2rem] md:text-5xl tracking-wide">
@@ -274,10 +262,12 @@ export default function Session() {
                 </div>
 
                 <div className="flex gap-x-2 pb-7 sm:pb-8 mb-8 sm:mb-10 border-b border-b-neutral-200/80 dark:border-b-white/10">
-                  <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1.5 font-EstedadBold rounded-md">
+                  <div className="inline-flex items-center shrink-0 h-10 bg-light-blue-100/70 text-light-blue-500 dark:bg-light-blue-300/15 text-2xl px-1.5 font-EstedadBold rounded-lg">
                     6
                   </div>
-                  <h4 className="text-3xl/10 sm:text-[2rem]">{session.title}</h4>
+                  <h4 className="text-3xl/10 sm:text-[2rem]">
+                    {session.title}
+                  </h4>
                 </div>
 
                 <div className="flex justify-between gap-6 flex-wrap">
@@ -298,29 +288,41 @@ export default function Session() {
                 </div>
               </div>
 
-              <div className="bg-light-blue-50 dark:bg-darkBox text-darkColor dark:text-white rounded-xl p-7 sm:p-10 mt-8 md:mt-0">
+              <div className="bg-light-blue-50 dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10 mt-8 md:mt-0">
                 <div className="flex items-center gap-x-4 mb-8 pb-5 border-b border-b-light-blue-200/60 dark:border-b-white/10 text-5xl">
                   <HiOutlineDocumentText />
                   <span className="font-EstedadMedium text-[2rem]">
                     سرفصل های دوره
                   </span>
                 </div>
-                <div className="space-y-6">
-                  {/* <Accordion open={alwaysOpen}>
-                    <AccordionHeader
-                      className={`flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white ${
-                        alwaysOpen ? "rounded-t-lg" : "rounded-lg"
-                      } p-7`}
+                <div className="*:mb-6 last:-mb-6">
+                  <div>
+                    <div
+                      className={`flex items-center border-none text-darkBox dark:text-white p-7 transition-colors ${
+                        alwaysOpen
+                          ? "rounded-t-lg bg-light-blue-700/70 dark:bg-light-blue-700"
+                          : "rounded-lg bg-white dark:bg-[#333c4c]"
+                      }`}
                       onClick={handleAlwaysOpen}
                     >
                       <div className="w-full flex items-center justify-between">
                         <span className="font-EstedadMedium font-normal text-[1.8rem]">
                           سرفصل ها
                         </span>
-                        <HiChevronDown />
+                        <span
+                          className={`text-4xl transition-transform ${
+                            alwaysOpen && "rotate-180"
+                          }`}
+                        >
+                          <HiChevronDown />
+                        </span>
                       </div>
-                    </AccordionHeader>
-                    <AccordionBody className="p-0">
+                    </div>
+                    <div
+                      className={`${
+                        alwaysOpen ? "block visible" : "hidden invisible"
+                      }`}
+                    >
                       <div className="bg-light-blue-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20 max-h-[530px] overflow-y-auto">
                         {sessions.map((session) => (
                           <>
@@ -342,24 +344,34 @@ export default function Session() {
                           </>
                         ))}
                       </div>
-                    </AccordionBody>
-                  </Accordion>
-                   
-                  <Accordion open={open === 1}>
-                    <AccordionHeader
-                      className={`flex items-center dark:bg-[#333c4c] border-none text-darkBox dark:text-white ${
-                        open === 0 ? "rounded-lg" : "rounded-t-lg"
-                      } p-7`}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div
+                      className={`flex items-center border-none text-darkBox dark:text-white p-7 transition-colors ${
+                        open === 1
+                          ? "rounded-t-lg bg-light-blue-700/70 dark:bg-light-blue-700"
+                          : "rounded-lg bg-white dark:bg-[#333c4c]"
+                      }`}
                       onClick={() => handleOpen(1)}
                     >
                       <div className="w-full flex items-center justify-between">
                         <span className="font-EstedadMedium font-normal text-[1.8rem]">
                           سرفصل ها
                         </span>
+                        <span
+                          className={`text-4xl transition-transform ${
+                            open === 1 && "rotate-180"
+                          }`}
+                        >
                         <HiChevronDown />
+                        </span>
                       </div>
-                    </AccordionHeader>
-                    <AccordionBody className="p-0">
+                    </div>
+                    <div                       className={`${
+                        open === 1 ? "block visible" : "hidden invisible"
+                      }`}>
                       <div className="bg-light-blue-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20">
                         <div className="lesson font-EstedadMedium mb-8 pt-6">
                           <a href="/" className="block line-clamp-2 mb-3">
@@ -375,8 +387,8 @@ export default function Session() {
                           </div>
                         </div>
                       </div>
-                    </AccordionBody>
-                  </Accordion> */}
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -454,7 +466,7 @@ export default function Session() {
                 <a
                   target="_blank"
                   href="/"
-                  className="block w-full sm:text-[1.7rem] bg-light-blue-700 rounded-lg p-4 text-center"
+                  className="button-primary hover:button-primary-hover tracking-normal block w-full sm:text-[1.7rem] p-4 text-center"
                 >
                   دانلود
                 </a>

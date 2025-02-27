@@ -5,11 +5,6 @@ import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Button from "../../Components/Form/Button";
 import CourseDetailBox from "../../Components/CourseDetailBox/CourseDetailBox";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
-// import {
-//   Accordion,
-//   AccordionHeader,
-//   AccordionBody,
-// } from "@material-tailwind/react";
 import Footer from "./../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -274,7 +269,7 @@ export default function CourseInfo() {
                     </div>
                     <Button
                       to={"/"}
-                      className="button-primary py-4 text-white lg:w-80"
+                      className="button-primary hover:button-primary-hover py-4 text-white lg:w-80"
                     >
                       <MdOutlineLaptopChromebook className="text-4xl" />
                       مشاهده دوره
@@ -283,8 +278,7 @@ export default function CourseInfo() {
                 ) : (
                   <div className="flex justify-center lg:items-center lg:justify-between gap-y-4 gap-x-14">
                     <Button
-                      id="register-in-course"
-                      className="button-primary h-[4.5rem] lg:h-20 lg:px-14 sm:text-3xl w-full sm:w-auto"
+                      className="button-primary hover:button-primary-hover h-[4.5rem] lg:h-20 lg:px-14 sm:text-3xl w-full sm:w-auto cursor-pointer"
                       onClick={() => registerInCourse(courseDetails)}
                     >
                       <div className="text-4xl sm:text-5xl">
@@ -691,7 +685,7 @@ export default function CourseInfo() {
                 </div>
                 <Button
                   type="button"
-                  className="button-primary text-white py-4 w-full sm:w-auto mx-auto mt-14"
+                  className="button-primary hover:button-primary-hover text-white py-4 w-full sm:w-auto mx-auto mt-14"
                 >
                   <span>مشاهده بیشتر مطلب</span>
                   <div className="text-5xl">
@@ -714,7 +708,6 @@ export default function CourseInfo() {
                   </div>
                 </div>
                 <div className="space-y-4 md:space-y-5">
-                  
                   <div open={open === 1}>
                     <div
                       className={`flex items-center justify-between cursor-pointer pr-6 pl-8 py-7 rounded-2xl border-none ${
@@ -984,13 +977,16 @@ export default function CourseInfo() {
                   width="90"
                   height="90"
                   src={courseTeacher.profile}
-                  alt="محمدامین سعیدی راد"
+                  alt="teache img"
                 />
                 <span className="block font-EstedadMedium text-2xl sm:text-3xl mb-8">
                   {courseTeacher.name} | مدرس دوره
                 </span>
                 <p className="mt-2"></p>
-                <Button to="#" className="button-primary mx-auto mt-4 w-72">
+                <Button
+                  to="#"
+                  className="button-primary hover:button-primary-hover mx-auto mt-4 w-77 py-3"
+                >
                   مشاهده پروفایل من
                 </Button>
               </div>

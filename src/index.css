@@ -218,22 +218,22 @@
 } */
 
 @utility button-primary {
-  background-color: #0277bde6;
+  background-color: #0277bd;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.7rem;
+  border-radius: 0.4rem;
   padding: 0 4rem;
   gap: 1rem;
   letter-spacing: -1px;
   color: #fff;
 }
 
-/* .button-primary:hover {
+@utility button-primary-hover {
   background-color: transparent;
-  box-shadow: 0 0 14px 3px #0277bde6 inset;
+  box-shadow: 0 0 14px 3px #0277bd inset;
   color: #039be5;
-} */
+}
 
 @utility shadowLightBlue {
   box-shadow: 3px 0 8px 1px #039be5;

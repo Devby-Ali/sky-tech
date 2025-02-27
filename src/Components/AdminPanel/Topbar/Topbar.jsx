@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-// import { Card, Collapse } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 import { GoTriangleDown } from "react-icons/go";
 import {
@@ -316,7 +315,7 @@ export default function Topbar() {
                   </div>
                 ) : (
                   <>
-                    {/* <Card className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                    <div className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
                       <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                         <span className="truncate hover:text-clip">
                           blablabl
@@ -349,7 +348,7 @@ export default function Topbar() {
                           دیدم
                         </a>
                       </div>
-                    </Card> */}
+                    </div>
                   </>
                 )}
               </div>
