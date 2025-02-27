@@ -248,35 +248,30 @@ export default function Landing({ info }) {
                 </svg>
               </Link>
 
-              <ul className="hidden md:flex gap-x-12 xl:gap-x-12 text-white text-[1.7rem] xl:text-[1.8rem] font-EstedadMedium dark:font-EstedadLight">
-                <li className="main-header__item flex-center relative">
-                  <Link to={"/"} className="flex-center">
-                    صفحه اصلی
-                  </Link>
-                </li>
-                <li className="main-header__item flex-center relative">
+              <ul className="hidden md:flex gap-x-12 xl:gap-x-12 text-white text-[1.7rem] xl:text-[1.8rem] font-EstedadLight">
+                <li className="main-header__item group/menu flex-center relative">
                   <span className="cursor-pointer">
                     دوره های آموزشی
-                    <ul className="main-header__dropdown absolute top-24 -right-4 w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75 z-50">
+                    <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover absolute top-24 -right-4 w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75 z-50">
                       {allMenus.map((menu) => (
                         <li
-                          className="header__item hover:bg-light-blue-800/60 rounded-l-sm rounded-r-2xl mx-4"
+                          className="header__item group/submenu hover:bg-light-blue-800/60 rounded-l-sm rounded-r-2xl mx-4"
                           key={menu._id}
                         >
                           <Link
                             to={`/category-info/${menu.href}/1`}
-                            className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] text-zinc-600 duration-200"
+                            className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] duration-200"
                           >
                             {menu.title}
                             {menu.submenus.length !== 0 && (
                               <>
                                 <HiChevronLeft className="mt-1 xl:mr-1" />
-                                <ul className="header__dropdown absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
+                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
                                   {menu.submenus.map((submenu) => (
                                     <li key={menu._id}>
                                       <Link
                                         to={submenu.href}
-                                        className="block px-8 py-2 text-[1.6rem] text-zinc-600 duration-200"
+                                        className="block px-8 py-2 text-[1.6rem] duration-200"
                                       >
                                         {submenu.title}
                                       </Link>

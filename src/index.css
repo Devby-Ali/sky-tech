@@ -94,22 +94,22 @@
   visibility: hidden;
 }
 
-/* .main-header__item:hover .main-header__dropdown {
+@utility  main-header__dropdown-hover {
   opacity: 1;
   visibility: visible;
   top: 7rem;
-} */
+}
 
 @utility header__dropdown {
   opacity: 0;
   visibility: hidden;
 }
 
-/* .header__item:hover .header__dropdown {
+@utility header__dropdown-hover {
   opacity: 1;
   visibility: visible;
   right: 23.6rem;
-} */
+}
 
 @utility courses-top-bar__selection-list {
   opacity: 0;
