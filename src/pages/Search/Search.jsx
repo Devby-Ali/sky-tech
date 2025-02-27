@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import { useParams } from "react-router-dom";
@@ -11,12 +11,14 @@ export default function Search() {
   const [articles, setArticles] = useState([]);
   const { value } = useParams();
 
-  fetch(`http://localhost:4000/v1/search/${value}`)
-    .then((res) => res.json())
-    .then((dataSearch) => {
-      setArticles(dataSearch.allResultArticles);
-      setCourses(dataSearch.allResultCourses);
-    });
+  useEffect(() => {
+    fetch(`http://localhost:4000/v1/search/${value}`)
+      .then((res) => res.json())
+      .then((dataSearch) => {
+        setArticles(dataSearch.allResultArticles);
+        setCourses(dataSearch.allResultCourses);
+      });
+  }, []);
 
   return (
     <>

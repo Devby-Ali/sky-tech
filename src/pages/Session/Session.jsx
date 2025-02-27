@@ -96,14 +96,14 @@ export default function Session() {
                 <div className="flex justify-between gap-6 flex-wrap">
                   <a
                     href="#lesson-qaa"
-                    className="button-primary hover:button-primary-hover tracking-normal w-full sm:w-60 sm:text-[1.7rem] dark:bg-[#333c4c] p-4 text-center"
+                    className="button-primary hover:  tracking-normal w-full sm:w-60 sm:text-[1.7rem] dark:bg-[#333c4c] p-4 text-center"
                   >
                     سوال دارم!
                   </a>
                   <div className="flex gap-y-3.5 gap-x-4 justify-end grow flex-wrap">
                     <a
                       href="/"
-                      className="button-primary hover:button-primary-hover tracking-normal w-full sm:w-60 sm:text-[1.7rem] p-4 text-center"
+                      className="button-primary hover:  tracking-normal w-full sm:w-60 sm:text-[1.7rem] p-4 text-center"
                     >
                       دانلود ویدیو
                     </a>
@@ -211,7 +211,7 @@ export default function Session() {
                         </div>
                       </div>
                       <button
-                        className="button-primary hover:button-primary-hover tracking-normal w-full sm:w-40 sm:text-[1.7rem] mt-10 sm:mt-0 text-light-blue-700 border border-light-blue-700 rounded-lg p-4 text-center bg-transparent transition-all"
+                        className="button-primary hover:  tracking-normal w-full sm:w-40 sm:text-[1.7rem] mt-10 sm:mt-0 text-light-blue-700 border border-light-blue-700 rounded-lg p-4 text-center bg-transparent transition-all"
                         type="submit"
                         id="qa-submit-btn"
                       >
@@ -365,13 +365,15 @@ export default function Session() {
                             open === 1 && "rotate-180"
                           }`}
                         >
-                        <HiChevronDown />
+                          <HiChevronDown />
                         </span>
                       </div>
                     </div>
-                    <div                       className={`${
+                    <div
+                      className={`${
                         open === 1 ? "block visible" : "hidden invisible"
-                      }`}>
+                      }`}
+                    >
                       <div className="bg-light-blue-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20">
                         <div className="lesson font-EstedadMedium mb-8 pt-6">
                           <a href="/" className="block line-clamp-2 mb-3">
@@ -466,7 +468,7 @@ export default function Session() {
                 <a
                   target="_blank"
                   href="/"
-                  className="button-primary hover:button-primary-hover tracking-normal block w-full sm:text-[1.7rem] p-4 text-center"
+                  className="button-primary hover:  tracking-normal block w-full sm:text-[1.7rem] p-4 text-center"
                 >
                   دانلود
                 </a>

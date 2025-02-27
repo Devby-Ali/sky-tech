@@ -269,7 +269,7 @@ export default function CourseInfo() {
                     </div>
                     <Button
                       to={"/"}
-                      className="button-primary hover:button-primary-hover py-4 text-white lg:w-80"
+                      className="button-primary hover:  py-4 text-white lg:w-80"
                     >
                       <MdOutlineLaptopChromebook className="text-4xl" />
                       مشاهده دوره
@@ -278,7 +278,7 @@ export default function CourseInfo() {
                 ) : (
                   <div className="flex justify-center lg:items-center lg:justify-between gap-y-4 gap-x-14">
                     <Button
-                      className="button-primary hover:button-primary-hover h-[4.5rem] lg:h-20 lg:px-14 sm:text-3xl w-full sm:w-auto cursor-pointer"
+                      className="button-primary hover:  h-[4.5rem] lg:h-20 lg:px-14 sm:text-3xl w-full sm:w-auto cursor-pointer"
                       onClick={() => registerInCourse(courseDetails)}
                     >
                       <div className="text-4xl sm:text-5xl">
@@ -685,7 +685,7 @@ export default function CourseInfo() {
                 </div>
                 <Button
                   type="button"
-                  className="button-primary hover:button-primary-hover text-white py-4 w-full sm:w-auto mx-auto mt-14"
+                  className="button-primary hover:  text-white py-4 w-full sm:w-auto mx-auto mt-14"
                 >
                   <span>مشاهده بیشتر مطلب</span>
                   <div className="text-5xl">
@@ -985,7 +985,7 @@ export default function CourseInfo() {
                 <p className="mt-2"></p>
                 <Button
                   to="#"
-                  className="button-primary hover:button-primary-hover mx-auto mt-4 w-77 py-3"
+                  className="button-primary hover:  mx-auto mt-4 w-77 py-3"
                 >
                   مشاهده پروفایل من
                 </Button>

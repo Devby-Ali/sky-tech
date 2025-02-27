@@ -71,7 +71,7 @@ export default function CourseBox(props) {
             <div className="text-3xl">
               <HiStar />
             </div> */}
-            {Array(5 - props.courseAverageScore)
+            {/* {Array(5 - props.courseAverageScore)
               .fill(0)
               .map((item) => (
                 <>
@@ -84,7 +84,7 @@ export default function CourseBox(props) {
                 <>
                   <HiStar />
                 </>
-              ))}
+              ))} */}
           </div>
         </div>
         <div className="flex items-end justify-between mt-3">

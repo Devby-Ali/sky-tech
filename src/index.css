@@ -75,7 +75,6 @@
 }
 
 /*--------------------------- Start Utility ------------------------------*/
-
 @utility container {
   @apply mx-auto px-4 2xl:px-16 xs:max-w-[480px] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px];
 }
@@ -94,7 +93,7 @@
   visibility: hidden;
 }
 
-@utility  main-header__dropdown-hover {
+@utility main-header__dropdown-hover {
   opacity: 1;
   visibility: visible;
   top: 7rem;
@@ -111,16 +110,6 @@
   right: 23.6rem;
 }
 
-@utility courses-top-bar__selection-list {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* .courses-top-bar__selection:hover .courses-top-bar__selection-list {
-  visibility: visible;
-  opacity: 1;
-} */
-
 @utility bg-landing {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(/images/landing/bg_landing1.jpg) no-repeat right bottom;
@@ -136,135 +125,112 @@
   background-color: #1e83f0;
 }
 
-@utility courses-top-bar__selection-item--active {
-  color: #039be5 !important;
-}
-
-@utility courses__pagination-link--active {
-  color: var(--white-color);
-  background-color: var(--primary-color);
-}
-
 @utility textDark {
   color: #111827;
 }
-
 /* -----------------------------End Utility-------------------------------- */
 
 /* -----------------------------Start Component----------------------------- */
+@layer components {
+  .overlay {
+    @apply invisible opacity-0 fixed inset-0 w-full h-full bg-black/40 transition-all backdrop-blur-[4px];
+  }
 
-@utility overlay {
-  @apply invisible opacity-0 fixed inset-0 w-full h-full bg-black/40 transition-all backdrop-blur-[4px];
+  .overlay--visible {
+    @apply visible opacity-100 z-10;
+  }
+
+  .breadcrumb {
+    display: flex;
+    height: 5.2rem;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 1rem;
+    @apply bg-blue-700/40 dark:bg-darkBox text-darkColor dark:text-white/80;
+  }
+
+  .breadcrumb__item {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-shrink: 0;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 4rem;
+  }
+
+  .breadcrumb__item::before {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    height: 4.3rem;
+    width: 7px;
+    transform: rotate(-35deg);
+    transform-origin: bottom;
+    @apply bg-blue-gray-50;
+  }
+
+  .breadcrumb__item::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 0;
+    height: 4.3rem;
+    width: 7px;
+    transform: rotate(35deg);
+    transform-origin: top;
+    @apply bg-blue-gray-50;
+  }
+
+  .button-primary {
+    background-color: #0277bd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.4rem;
+    padding: 0 4rem;
+    gap: 1rem;
+    letter-spacing: -1px;
+    color: #fff;
+  }
+
+  .button-primary:hover {
+    background-color: transparent;
+    box-shadow: 0 0 14px 3px #0277bd inset;
+    color: #039be5;
+  }
+
+  .shadowLightBlue {
+    box-shadow: 3px 0 8px 1px #039be5;
+  }
+
+  .sort-btn--active {
+    color: #ad7ffd;
+    border-top: 2px solid #ad7ffd;
+    border-bottom: 2px solid #ad7ffd;
+    padding: 1.6rem 0;
+  }
+
+  .active-menu {
+    position: relative;
+    color: #03a9f4;
+  }
+
+  .active-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -0.2rem;
+    background-color: #03a9f4;
+    width: 5px;
+    height: 100%;
+  }
 }
-
-@utility overlay--visible {
-  @apply visible opacity-100 z-10;
-}
-
-@utility breadcrumb {
-  display: flex;
-  height: 5.2rem;
-  align-items: center;
-  overflow-x: auto;
-  overflow-y: hidden;
-  border-radius: 1rem;
-  @apply bg-blue-700/40 dark:bg-darkBox text-darkColor dark:text-white/80;
-}
-
-/* .breadcrumb__item:first-child {
-    padding-right: 1.5rem;
-    padding-left: 0.5rem;
-  } */
-
-@utility breadcrumb__item {
-  position: relative;
-  display: flex;
-  height: 100%;
-  flex-shrink: 0;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 4rem;
-}
-
-/* .breadcrumb__item::before {
-  content: "";
-  position: absolute;
-  bottom: -7px;
-  left: 0;
-  height: 4.3rem;
-  width: 7px;
-  transform: rotate(-35deg);
-  transform-origin: bottom;
-  @apply bg-blue-gray-50 dark:bg-darkColor
-}
-
-.breadcrumb__item::after {
-  content: "";
-  position: absolute;
-  top: -7px;
-  left: 0;
-  height: 4.3rem;
-  width: 7px;
-  transform: rotate(35deg);
-  transform-origin: top;
-  @apply bg-blue-gray-50 dark:bg-darkColor
-}
-
-.breadcrumb__item:last-child::after {
-  display: none;
-}
-.breadcrumb__item:last-child::before {
-  display: none;
-} */
-
-@utility button-primary {
-  background-color: #0277bd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.4rem;
-  padding: 0 4rem;
-  gap: 1rem;
-  letter-spacing: -1px;
-  color: #fff;
-}
-
-@utility button-primary-hover {
-  background-color: transparent;
-  box-shadow: 0 0 14px 3px #0277bd inset;
-  color: #039be5;
-}
-
-@utility shadowLightBlue {
-  box-shadow: 3px 0 8px 1px #039be5;
-}
-
-@utility sort-btn--active {
-  color: #ad7ffd;
-  border-top: 2px solid #ad7ffd;
-  border-bottom: 2px solid #ad7ffd;
-  padding: 1.6rem 0;
-}
-
-@utility active-menu {
-  position: relative;
-  color: #03a9f4;
-}
-
-/* .active-menu::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -0.2rem;
-  background-color: #03a9f4;
-  width: 5px;
-  height: 100%;
-} */
-
 /* -------------------------------------End Component------------------------------------- */
 
 /* -------------------------------------Custom Theme------------------------------------- */
-
 @theme {
   --color-lightishBlue-50: #ebf1ff;
   --color-lightishBlue-100: #d6e2ff;
@@ -299,15 +265,12 @@
   --color-blue-gray-900: #263238;
   --color-darkColor: #111827;
   --color-darkBox: #242a38;
-
   --shadow-normal: 0px 1px 12px rgba(0, 0, 0, 0.07);
-
   --font-EstedadThin: "Estedad Thin", "sans-serif";
   --font-EstedadLight: "Estedad Light", "sans-serif";
   --font-EstedadMedium: "Estedad Medium", "sans-serif";
   --font-EstedadBold: "Estedad Bold", "sans-serif";
   --font-MikhakWoff2one: "Mikhak-woff2-1", "sans-serif";
   --font-Dirooz: "Dirooz", "sans-serif";
-
   --breakpoint-xs: 480px;
 }

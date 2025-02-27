@@ -22,7 +22,7 @@ export default function Index() {
     <>
     <Landing info={indexInfo} />
       <div className="absolute -z-10 opacity-40 dark:opacity-20">
-        <img src="/images/sky.png" alt="" />
+        <img src="/images/sky.png" alt="/" />
       </div>
       <LastCourses />
       <AboutUs />

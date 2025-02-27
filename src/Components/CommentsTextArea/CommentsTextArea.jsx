@@ -43,7 +43,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
 
         {/* <!-- New Comment Button --> */}
         <button
-          className="button-primary hover:button-primary-hover px-8 py-3 sm:py-4 cursor-pointer"
+          className="button-primary hover:  px-8 py-3 sm:py-4 cursor-pointer"
           type="button"
           onClick={() => textAreaHandler()}
         >
@@ -121,14 +121,14 @@ export default function CommentsTextArea({ comments, submitComment }) {
               </select>
               <div className="flex gap-x-2 *:cursor-pointer">
                 <button
-                  className="grow sm:grow-0 sm:w-36 button-primary hover:button-primary-hover button-outline py-2"
+                  className="grow sm:grow-0 sm:w-36 button-primary hover:  button-outline py-2"
                   id="comment-cancel-btn"
                   onClick={() => textAreaHandler()}
                 >
                   لغو
                 </button>
                 <button
-                  className="grow sm:grow-0 sm:w-36 button-primary hover:button-primary-hover py-2"
+                  className="grow sm:grow-0 sm:w-36 button-primary hover:  py-2"
                   onClick={() => submitComment(newCommentBody, commentScore)}
                 >
                   ارسال
@@ -251,7 +251,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
             <button
               data-id="78"
               type="button"
-              className="button-primary hover:button-primary-hover w-full sm:w-auto mt-10 mx-auto h-18"
+              className="button-primary hover:  w-full sm:w-auto mt-10 mx-auto h-18"
             >
               مشاهده بیشتر
               <div className="text-5xl">
