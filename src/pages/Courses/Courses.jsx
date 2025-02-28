@@ -140,17 +140,16 @@ export default function Courses() {
     <>
       {/* <Topbar /> */}
       <Header />
-      <section className="pt-16 md:pt-52">
+      <section className="pt-16 md:pt-52 2xl:pt-56">
         <div className="container">
           <SectionHeader
             title={"دوره ها"}
             titleValue={`${courses.length} دوره ی آموزشی`}
           />
-        </div>
-        <div className="container">
-          <section className="grid grid-cols-12 gap-y-5 md:gap-x-12 text-darkColor dark:text-white ">
+
+          <section className="grid grid-cols-12 gap-y-5 md:gap-x-12 text-darkColor dark:text-white -mt-6 lg:mt-0">
             {/* <!-- Sidebar --> */}
-            <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
+            <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky space-y-6">
               {/* <!-- SearchBox --> */}
               <form id="archive_filters" className="space-y-9">
                 <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8">

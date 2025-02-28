@@ -30,12 +30,11 @@ export default function Articles() {
     <>
       {/* <Topbar /> */}
       <Header />
-      <div className="pt-12 md:pt-46">
-        <div className="-mb-6 container">
-          <SectionHeader title={"مقاله ها"} titleValue={`${articles.length} مقاله آموزشی`} />
-        </div>
+      <div className="pt-16 md:pt-52 2xl:pt-60">
         <div className="container">
-          <section className="text-darkColor dark:text-white ">
+          <SectionHeader title={"مقاله ها"} titleValue={`${articles.length} مقاله آموزشی`} />
+
+          <section className="text-darkColor dark:text-white -mt-6">
             {/* <!-- Content --> */}
 
             {/* <!-- Sort & Filter in Mobile Size --> */}
@@ -112,7 +111,7 @@ export default function Articles() {
             {/* <!-- Show more Button --> */}
             <Pagination
               items={articles}
-              itemsCount={3}
+              itemsCount={4}
               pathName="/articles"
               setShownItems={setShownArticles}
             />

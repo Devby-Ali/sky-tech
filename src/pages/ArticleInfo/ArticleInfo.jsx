@@ -41,7 +41,7 @@ export default function ArticleInfo() {
   return (
     <>
       <Header />
-      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-10 lg:pt-60">
+      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-12 sm:pt-15 md:pt-50 2xl:pt-52">
         <div className="container">
           <Breadcrumb
             links={[
@@ -52,13 +52,13 @@ export default function ArticleInfo() {
               },
               {
                 id: 3,
-                title: "hi",
+                title: articleDetails.title,
                 to: "course-info/js-expert",
               },
             ]}
           />
 
-          <section className="grid grid-cols-1 lg:grid-cols-12 gap-x-7 gap-y-8">
+          <section className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-8">
             {/* <!-- Content --> */}
             <div className="col-span-full lg:col-span-8 xl:col-span-9">
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
@@ -99,9 +99,10 @@ export default function ArticleInfo() {
                 </div>
                 {/* <!-- thumbnail --> */}
                 <img
-                  src="/images/blog/article-1.jpg"
-                  className="aspect-video object-cover rounded-2xl"
-                  alt="زبان برنامه نویسی بازی counter Strike 2"
+                  src={`http://localhost:4000/courses/covers/${articleDetails.cover}`}
+                  className="block w-full h-full object-cover"
+                  alt="Article-Image"
+                  loading="lazy"
                 />
                 {/* category */}
                 <div className="opacity-40 mt-4">
@@ -193,7 +194,7 @@ export default function ArticleInfo() {
                       alt="برنامه نویسی را از چه سنی شروع کنیم"
                     />
                     <div>
-                      <a href="" className="font-EstedadMedium line-clamp-1">
+                      <a href="#" className="font-EstedadMedium line-clamp-1">
                         برنامه نویسی را از چه سنی شروع کنیم
                       </a>
                       <div className="flex items-center gap-x-2 mt-8 text-blue-gray-800/80 dark:text-white/50">
@@ -213,7 +214,7 @@ export default function ArticleInfo() {
                       alt="برنامه‌ نویسی به عنوان شغل دوم: مزایا و چالش‌ها"
                     />
                     <div>
-                      <a href="" className="font-EstedadMedium line-clamp-1">
+                      <a href="#" className="font-EstedadMedium line-clamp-1">
                         برنامه‌ نویسی به عنوان شغل دوم: مزایا و چالش‌ها
                       </a>
                       <div className="flex items-center gap-x-2 mt-8 text-blue-gray-800/80 dark:text-white/50">
@@ -233,7 +234,7 @@ export default function ArticleInfo() {
                       alt="فرمول طلایی تعادل بین کار و زندگی برای برنامه‌ نویسان: از استرس تا آرامش"
                     />
                     <div>
-                      <a href="" className="font-EstedadMedium line-clamp-1">
+                      <a href="#" className="font-EstedadMedium line-clamp-1">
                         فرمول طلایی تعادل بین کار و زندگی برای برنامه‌ نویسان:
                         از استرس تا آرامش
                       </a>
@@ -254,7 +255,7 @@ export default function ArticleInfo() {
                       alt="5 نکته مهم در انتخاب اولین زبان برنامه‌نویسی برای یادگیری"
                     />
                     <div>
-                      <a href="" className="font-EstedadMedium line-clamp-1">
+                      <a href="#" className="font-EstedadMedium line-clamp-1">
                         5 نکته مهم در انتخاب اولین زبان برنامه‌نویسی برای
                         یادگیری
                       </a>
@@ -270,42 +271,40 @@ export default function ArticleInfo() {
                   </div>
                 </div>
               </div>
-
-              {/* <!-- Sidebar --> */}
-              <aside className="col-span-full lg:col-span-4 xl:col-span-3 space-y-8">
-                {/* <!-- Course Short Link --> */}
-                <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
-                  <div className="flex items-center justify-between mb-8 pb-8 border-b border-b-gray-300 dark:border-b-white/10">
-                    <div className="flex items-center gap-x-3 font-EstedadMedium">
-                      <div className="text-5xl">
-                        <HiShare />
-                      </div>
-                      اشتراک گذاری مطلب
-                    </div>
-                    <button
-                      type="button"
-                      data-collapse="#shortlink-collapse"
-                      data-height="h-17"
-                    >
-                      <div className="text-4xl rotate-180">
-                        <HiChevronDown />
-                      </div>
-                    </button>
-                  </div>
-                  <div className="flex items-center justify-between gap-x-3 p-4 mt-8 bg-light-blue-300/10 text-light-blue-300 border border-dashed border-sky-500 rounded-lg">
-                    <button>
-                      <div className="text-4xl">
-                        <HiOutlineClipboardDocument />
-                      </div>
-                    </button>
-                    <span className="font-EstedadMedium text-lg w-64 text-ltr text-left truncate">
-                      skytech.ir/?p=5397
-                    </span>
-                  </div>
-                </div>
-                {/* <!--Related Products--> */}
-              </aside>
             </div>
+            {/* <!-- Sidebar --> */}
+            <aside className="col-span-full lg:col-span-4 xl:col-span-3 space-y-8">
+              {/* <!-- Course Short Link --> */}
+              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+                <div className="flex items-center justify-between mb-8 pb-8 border-b border-b-gray-300 dark:border-b-white/10">
+                  <div className="flex items-center gap-x-3 font-EstedadMedium">
+                    <div className="text-5xl">
+                      <HiShare />
+                    </div>
+                    اشتراک گذاری مطلب
+                  </div>
+                  <button
+                    type="button"
+                    data-collapse="#shortlink-collapse"
+                    data-height="h-17"
+                  >
+                    <div className="text-4xl rotate-180">
+                      <HiChevronDown />
+                    </div>
+                  </button>
+                </div>
+                <div className="flex items-center justify-between gap-x-3 p-4 mt-8 bg-light-blue-300/10 text-light-blue-300 border border-dashed border-sky-500 rounded-lg">
+                  <button>
+                    <div className="text-4xl">
+                      <HiOutlineClipboardDocument />
+                    </div>
+                  </button>
+                  <span className="font-EstedadMedium text-lg w-64 text-ltr text-left truncate">
+                    skytech.ir/?p=5397
+                  </span>
+                </div>
+              </div>
+            </aside>
           </section>
         </div>
       </main>

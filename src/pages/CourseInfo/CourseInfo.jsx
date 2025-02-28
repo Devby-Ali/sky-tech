@@ -232,7 +232,7 @@ export default function CourseInfo() {
     <>
       {/* <Topbar /> */}
       <Header />
-      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-14 lg:pt-52 2xl:pt-56">
+      <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-14 md:pt-52 2xl:pt-56">
         <div className="container">
           <Breadcrumb
             links={[
@@ -248,7 +248,7 @@ export default function CourseInfo() {
               },
             ]}
           />
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 rounded-3xl p-7 lg:p-0 bg-white dark:bg-darkBox lg:bg-transparent! border border-gray-100 dark:border-none lg:border-none">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 md:mt-15 rounded-3xl p-7 lg:p-0 bg-white dark:bg-darkBox lg:bg-transparent! border border-gray-100 dark:border-none lg:border-none">
             <div className="flex flex-col lg:gap-56 justify-between order-2 lg:order-1 text-darkColor dark:text-white">
               <div>
                 <h1 className="font-EstedadBold text-4xl sm:text-5xl mb-7">

@@ -5,9 +5,9 @@ import { HiOutlineHome } from "react-icons/hi2";
 export default function Breadcrumb({ links }) {
   return (
     <div className="breadcrumb">
-      <div className="breadcrumb__item before:breadcrumb__item-before after:breadcrumb__item-after dark:after:bg-darkColor dark:before:bg-darkColor -mr-6 pl-6">
-        <Link to={"/"}>
-          <HiOutlineHome className="text-4xl" />
+      <div className="breadcrumb__item before:breadcrumb__item-before after:breadcrumb__item-after dark:after:bg-darkColor dark:before:bg-darkColor -mr-10 pl-3">
+        <Link to={"/"} className="text-[2.5rem] xl:text-[2.7rem]">
+          <HiOutlineHome />
         </Link>
       </div>
       {links.map((link) => (

@@ -146,9 +146,7 @@ export default function Header() {
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
         <ul className="*:transition-all *:pr-2.5 space-y-1 my-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
-          <li className="text-light-blue-500 mx-3 py-3">
-            دسته بندی
-          </li>
+          <li className="text-light-blue-500 mx-3 py-3">دسته بندی</li>
           {allMenus.map((menu) => (
             <li key={menu._id}>
               <Link
@@ -180,9 +178,9 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="md:fixed md:flex md:top-5 2xl:top-7 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-97/100 lg:w-94/100 h-28 2xl:h-32 md:mx-auto md:rounded-2xl shadow-md bg-linear-to-tr from-light-blue-900/20 via-darkBox/30 to-light-blue-900/20 md:from-lightishBlue-400/10 md:via-darkBox/40 via-60% md:to-lightishBlue-400/10 backdrop-blur-[3px]">
+      <header className="md:fixed md:flex md:top-5 2xl:top-7 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-97/100 lg:w-94/100 h-30 2xl:h-32 md:mx-auto md:rounded-2xl bg-linear-to-l from-lightishBlue-400/10 from-0% via-transparent via-50% md:via-65% to-lightishBlue-400/10 to-100% backdrop-blur-[3px] shadow-md">
         <div className="w-full h-full">
-          <div className="h-full flex items-center justify-between px-12 py-4">
+          <div className="h-full flex items-center justify-between px-10 py-4">
             <div
               className="md:hidden flex-center p-4 text-lightishBlue-900 dark:text-white cursor-pointer text-5xl"
               onClick={navOpenHandler}
