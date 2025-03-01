@@ -115,35 +115,40 @@ export default function Landing({ info }) {
   return (
     <section className="relative bg-landing pb-28 xl:pb-24  2xl:pb-48 overflow-hidden mb-14 sm:mb-36 lg:mb-48">
       <div
-        className={`nav fixed top-0 bottom-0 w-[263px] min-h-screen px-9 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
-          navOpen ? "right-0" : "-right-[263px]"
+        className={`nav fixed top-0 bottom-0 w-100 min-h-screen px-9 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
+          navOpen ? "right-0" : "-right-100"
         }`}
       >
         <div className="flex items-center text-[1.7rem] justify-between gap-x-4 h-20 mb-3 text-darkColor dark:text-white px-1 pt-16 pb-14">
           {authContext.userInfos.name ? (
-            <span className="mr-3">{authContext.userInfos.name}</span>
+            <Link to="/my-account" className="mr-3 hover:text-sky-500">
+              {authContext.userInfos.name}
+            </Link>
           ) : (
             <Link
               to={"/login"}
-              className="text-3xl text-light-blue-600 dark:text-light-blue-400 mr-3"
+              className="text-3xl text-sky-600 dark:text-sky-400 mr-3"
             >
               ورود/ثبت نام
             </Link>
           )}
 
           <div
-            className="flex-center p-4 rounded-xl text-3xl cursor-pointer bg-blue-gray-50 dark:bg-white/5"
+            className="flex-center p-4 rounded-xl text-3xl cursor-pointer bg-stone-100 dark:bg-white/5"
             onClick={navOpenHandler}
           >
             <HiChevronRight />
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="*:transition-all px-3 *:pr-2.5 space-y-9 mt-8 mb-6 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="*:transition-all px-3 *:py-3 space-y-1.5 mt-5 mb-5 text-[1.4rem] text-darkColor dark:text-white border-b-darkBox/30">
+          <li>
+            <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">دسترسی سریع</span>
+          </li>
           {authContext.userInfos.role === "ADMIN" && (
-            <li>
+            <li className="hover:text-sky-500">
               <Link
-                className="flex items-center justify-between hover:text-light-blue-500"
+                className="flex items-center justify-between"
                 to="/p-admin"
               >
                 <span>پنل مدیریت</span>
@@ -151,63 +156,59 @@ export default function Landing({ info }) {
               </Link>
             </li>
           )}
-          <li>
+          <li className="hover:text-sky-500">
             <Link
-              className="flex items-center justify-between hover:text-light-blue-500"
-              to="/my-account"
-            >
-              <span>پیشخوان</span>
-              <HiChevronRight className="text-2xl rotate-180" />
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="flex items-center justify-between hover:text-light-blue-500"
+              className="flex items-center justify-between"
               to="/my-account/buyed"
             >
               <span>دوره های من</span>
               <HiChevronRight className="text-2xl rotate-180" />
             </Link>
           </li>
-          <li>
+          <li className="hover:text-sky-500">
             <Link
-              className="flex items-center justify-between hover:text-light-blue-500"
+              className="flex items-center justify-between"
               to="/my-account/tickets"
             >
               <span>تیکت های من</span>
               <HiChevronRight className="text-2xl rotate-180" />
             </Link>
           </li>
-          <li>
-            <Link
-              className="flex items-center justify-between hover:text-light-blue-500"
-              to="/my-account/edit-account"
-            >
-              <span>جزئیات حساب</span>
-              <HiChevronRight className="text-2xl rotate-180" />
-            </Link>
-          </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="*:transition-all px-3 *:pr-2.5 space-y-2 my-4 text-2xl text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="*:transition-all px-3 *:py-3 *:px-5 *:-mx-5 space-y-1.5 mb-5 mt-5 text-[1.4rem] text-darkColor dark:text-white border-b-darkBox/30">
+          <li>
+            <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">دسته بندی ها</span>
+          </li>
           {allMenus.map((menu) => (
-            <li key={menu._id}>
+            <li
+              key={menu._id}
+              className={`rounded-md hover:bg-sky-500/70 dark:hover:bg-sky-900 ${
+                categoryName["categoryName"] === menu.href &&
+                "bg-sky-500/50 dark:bg-sky-900/70"
+              }`}
+            >
               <Link
                 to={`/category-info/${menu.href}/1`}
-                className={`flex items-center justify-between py-3 -mx-5 px-5 rounded-md hover:bg-light-blue-400/80 dark:hover:bg-light-blue-900 ${
-                  categoryName["categoryName"] === menu.href &&
-                  "bg-light-blue-400/50 dark:bg-light-blue-900/70"
-                }`}
+                className={`flex items-center justify-between`}
               >
                 <span>{menu.title}</span>
                 <HiChevronRight className="text-2xl rotate-180" />
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              to="/articles/1"
+              className="py-3 -mx-5 px-5 w-full rounded-md hover:bg-sky-400/80 dark:hover:bg-sky-900"
+            >
+              <span className="w-full inline-block">مقالات</span>
+            </Link>
+          </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
         <div
-          className="px-4 py-6 toggle-theme text-darkColor dark:text-white text-2xl cursor-pointer"
+          className="px-2.5 py-6 toggle-theme text-darkColor dark:text-white text-[1.4rem] cursor-pointer"
           onClick={() => themeHandler()}
         >
           <span className="hidden dark:flex items-center gap-x-3">
@@ -234,7 +235,7 @@ export default function Landing({ info }) {
             <div className="flex gap-x-8 xl:gap-x-14">
               <Link
                 to={"/"}
-                className="text-light-blue-300 mb-1 2xl:mb-0 size-24 md:size-28"
+                className="text-sky-300 mb-1 2xl:mb-0 size-24 md:size-32 md:ml-5"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -252,10 +253,10 @@ export default function Landing({ info }) {
                 <li className="main-header__item group/menu flex-center relative">
                   <span className="cursor-pointer">
                     دوره های آموزشی
-                    <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover absolute top-24 -right-4 w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-light-blue-700 dark:border-light-blue-400 delay-75 z-50">
+                    <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover absolute top-24 -right-4 w-96 bg-linear-to-t from-darkBox/30 via-blue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-sky-700 dark:border-sky-400 delay-75 z-50">
                       {allMenus.map((menu) => (
                         <li
-                          className="header__item group/submenu hover:bg-light-blue-800/60 rounded-l-sm rounded-r-2xl mx-4"
+                          className="header__item group/submenu hover:bg-sky-800/60 rounded-l-sm rounded-r-2xl mx-4"
                           key={menu._id}
                         >
                           <Link
@@ -266,7 +267,7 @@ export default function Landing({ info }) {
                             {menu.submenus.length !== 0 && (
                               <>
                                 <HiChevronLeft className="mt-1 xl:mr-1" />
-                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-darkBox/30 via-lightishBlue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-light-blue-700 dark:border-light-blue-400 delay-150">
+                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-darkBox/30 via-blue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-sky-700 dark:border-sky-400 delay-150">
                                   {menu.submenus.map((submenu) => (
                                     <li key={menu._id}>
                                       <Link
@@ -334,7 +335,7 @@ export default function Landing({ info }) {
                         </span>
                         <ul className="*:transition-all *:pr-4 *:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
                           {authContext.userInfos.role === "ADMIN" && (
-                            <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                            <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                               <Link
                                 className="flex items-center gap-x-4"
                                 to="/p-admin"
@@ -346,7 +347,7 @@ export default function Landing({ info }) {
                               </Link>
                             </li>
                           )}
-                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                          <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
                               className="flex items-center gap-x-4"
                               to="/my-account"
@@ -357,7 +358,7 @@ export default function Landing({ info }) {
                               <span>پیشخوان</span>
                             </Link>
                           </li>
-                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                          <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
                               className="flex items-center gap-x-4"
                               to="/my-account/buyed"
@@ -368,7 +369,7 @@ export default function Landing({ info }) {
                               <span>دوره های من</span>
                             </Link>
                           </li>
-                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                          <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
                               className="flex items-center gap-x-4"
                               to="/my-account/tickets"
@@ -379,7 +380,7 @@ export default function Landing({ info }) {
                               <span>تیکت های من</span>
                             </Link>
                           </li>
-                          <li className="rounded-md hover:bg-light-blue-600 dark:hover:bg-light-blue-800 hover:text-white">
+                          <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
                               className="flex items-center gap-x-4"
                               to="/my-account/edit-account"
@@ -449,13 +450,13 @@ export default function Landing({ info }) {
                 <Input
                   type="text"
                   id="search"
-                  className="w-full placeholder-white/70 bg-transparent text-2xl xs:text-3xl outline-hidden"
+                  className="w-full placeholder-white/45 bg-transparent text-2xl xs:text-3xl outline-hidden"
                   placeholder="چی دوست داری یاد بگیری ..."
                   validations={[requiredValidator()]}
                   onInputHandler={onInputHandler}
                 />
                 <Button
-                  className="text-4xl sm:text-5xl text-white/60"
+                  className="text-4xl sm:text-5xl text-white/45"
                   type="submit"
                   onClick={search}
                 >
@@ -464,7 +465,7 @@ export default function Landing({ info }) {
               </form>
             </div>
           </div>
-          <div className="flex px-10 sm:px-20 md:px-0 max-w-[65rem] mx-auto justify-between items-center *:text-white/60">
+          <div className="flex px-10 sm:px-20 md:px-0 max-w-[65rem] mx-auto justify-between items-center *:text-white/45">
             <div className="flex-center flex-col">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -539,7 +540,7 @@ export default function Landing({ info }) {
         height="22"
         fill="none"
         viewBox="0 0 100 22"
-        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[150px] h-[36px] text-blue-gray-50 dark:text-darkColor rotate-180 z-10"
+        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[150px] h-[36px] text-stone-100 dark:text-darkColor rotate-180 z-10"
       >
         <path
           fill="currentColor"

@@ -42,7 +42,7 @@ export default function SendTicket() {
 
   const sendTicket = (event) => {
     event.preventDefault();
-    console.log(courseID)
+    console.log(courseID);
 
     const newTicketInfos = {
       departmentID,
@@ -78,14 +78,14 @@ export default function SendTicket() {
     <main className="pb-5 md:pb-8 mx-auto mt-8 md:mt-14 2xl:px-24">
       <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-xl mb-8">
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
-          <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-          <span className="text-light-blue-500 text-2xl md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
+          <span className="w-1 md:w-1.5 h-full bg-sky-600 rounded-r-full shadowLightBlue"></span>
+          <span className="text-sky-500 text-2xl md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
             ارسال تیکت جدید (3)
           </span>
         </div>
         <Link
           to="/my-account/ticket"
-          className="flex items-center gap-x-1 md:gap-x-2 text-light-blue-500 text-[1.4rem] md:text-[1.7rem] font-EstedadBold md:ml-6"
+          className="flex items-center gap-x-1 md:gap-x-2 text-sky-500 text-[1.4rem] md:text-[1.7rem] font-EstedadBold md:ml-6"
         >
           بازگشت به تیکت ها
           <div className="text-4xl">
@@ -103,7 +103,7 @@ export default function SendTicket() {
               className="w-full sm:w-1/2 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
               onChange={(event) => {
                 getDepartmentsSub(event.target.value);
-                setDepartmentID(event.target.value)
+                setDepartmentID(event.target.value);
               }}
             >
               <option>دپارتمان را انتخاب کنید:</option>
@@ -167,7 +167,7 @@ export default function SendTicket() {
 
           <div className="flex flex-wrap gap-6 items-center justify-between mt-8 md:pr-5">
             {/* <!-- Attach --> */}
-            <div className="attachments_btnwrap attachments_button flex items-center justify-between w-full sm:w-80 h-20 px-8 border border-light-blue-500 text-light-blue-500 bg-transparent cursor-pointer rounded-lg">
+            <div className="attachments_btnwrap attachments_button flex items-center justify-between w-full sm:w-80 h-20 px-8 border border-sky-500 text-sky-500 bg-transparent cursor-pointer rounded-lg">
               <span className="font-EstedadBold text-[1.7rem] select-none">
                 آپلود پیوست
               </span>
@@ -176,7 +176,10 @@ export default function SendTicket() {
               </div>
             </div>
 
-            <button onClick={sendTicket} className="bg-light-blue-800 text-3xl h-20 w-full sm:w-80 mr-auto rounded-lg">
+            <button
+              onClick={sendTicket}
+              className="bg-sky-800 text-3xl h-20 w-full sm:w-80 mr-auto rounded-lg"
+            >
               ارسال تیکت
             </button>
           </div>

@@ -34,8 +34,8 @@ export default function CommentsTextArea({ comments, submitComment }) {
       {/* <!-- Comment Head --> */}
       <div className="flex items-start justify-between mb-8">
         <div className="mt-2 sm:mt-0 flex items-center gap-x-3 relative">
-          <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-          <div className="hidden md:inline-block ml-1 text-light-blue-700 dark:text-light-blue-500 text-7xl">
+          <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
+          <div className="hidden md:inline-block ml-1 text-sky-700 dark:text-sky-500 text-7xl">
             <PiChats />
           </div>
           <div className="font-EstedadBold text-3xl md:text-4xl">نظرات</div>
@@ -59,7 +59,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
         className={
           openTextArea
             ? "hidden"
-            : " bg-light-blue-100 text-light-blue-600 dark:bg-light-blue-500/10 p-7 rounded-xl text-2xl/10 md:font-EstedadMedium mb-6"
+            : " bg-sky-100 text-sky-600 dark:bg-sky-500/10 p-7 rounded-xl text-2xl/10 md:font-EstedadMedium mb-6"
         }
       >
         دانشجوی عزیز؛ سوالات مرتبط به پشتیبانی دوره در قسمت نظرات تایید نخواهد
@@ -140,7 +140,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
           <div className="mb-8 sm:mb-5 text-3xl py-6 px-4 rounded-xl bg-amber-400/20 text-amber-700">
             لطفا ابتدا در سایت{" "}
             {
-              <Link className="text-light-blue-500" to={"/login"}>
+              <Link className="text-sky-500" to={"/login"}>
                 وارد
               </Link>
             }{" "}
@@ -163,13 +163,13 @@ export default function CommentsTextArea({ comments, submitComment }) {
                 <div id="comment-56773" className="p-8 md:p-5 rounded-xl">
                   <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
                     <div className="flex items-center gap-x-4">
-                      <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
-                        <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                      <div className="hidden border-2 border-sky-700 sm:flex-center w-20 h-20 rounded-full relative">
+                        <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-sky-700 rounded-full">
                           <div className="text-[1.4rem] mb-0.5 mr-0.5">
                             <RiGraduationCapFill />
                           </div>
                         </div>
-                        <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                        <div className="text-6xl text-sky-700 dark:text-sky-500">
                           <BiUserCircle />
                         </div>
                       </div>
@@ -192,9 +192,9 @@ export default function CommentsTextArea({ comments, submitComment }) {
                     </div>
                     <button
                       type="button"
-                      className="flex-center border border-light-blue-700 dark:border-light-blue-500 p-3 rounded-full"
+                      className="flex-center border border-sky-700 dark:border-sky-500 p-3 rounded-full"
                     >
-                      <div className="text-3xl text-light-blue-700 dark:text-light-blue-400">
+                      <div className="text-3xl text-sky-700 dark:text-sky-400">
                         <HiOutlineArrowUturnLeft />
                       </div>
                     </button>
@@ -211,13 +211,13 @@ export default function CommentsTextArea({ comments, submitComment }) {
                       >
                         <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-400/50 dark:border-white/10">
                           <div className="flex items-center gap-x-3.5">
-                            <div className="hidden border-2 border-light-blue-700 sm:flex-center w-20 h-20 rounded-full relative">
-                              <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-light-blue-700 rounded-full">
+                            <div className="hidden border-2 border-sky-700 sm:flex-center w-20 h-20 rounded-full relative">
+                              <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-sky-700 rounded-full">
                                 <div className="text-[1.4rem] mb-0.5 mr-0.5">
                                   <RiGraduationCapFill />
                                 </div>
                               </div>
-                              <div className="text-6xl text-light-blue-700 dark:text-light-blue-500">
+                              <div className="text-6xl text-sky-700 dark:text-sky-500">
                                 <BiUserCircle />
                               </div>
                             </div>

@@ -36,7 +36,7 @@ export default function SortedCourses({
               statusTitleChangeHandler(event);
             }}
             className={`flex items-center justify-between w-full pt-9 ${
-              status === "default" && "text-light-blue-600"
+              status === "default" && "text-sky-600"
             }`}
           >
             <div>همه دوره ها</div>
@@ -53,7 +53,7 @@ export default function SortedCourses({
               statusTitleChangeHandler(event);
             }}
             className={`flex items-center justify-between w-full pt-8 ${
-              status === "cheapest" && "text-light-blue-600"
+              status === "cheapest" && "text-sky-600"
             }`}
           >
             <div>ارزان ترین</div>
@@ -70,7 +70,7 @@ export default function SortedCourses({
               statusTitleChangeHandler(event);
             }}
             className={`flex items-center justify-between w-full pt-8 ${
-              status === "expensive" && "text-light-blue-600"
+              status === "expensive" && "text-sky-600"
             }`}
           >
             <div>گران ترین</div>
@@ -87,7 +87,7 @@ export default function SortedCourses({
               statusTitleChangeHandler(event);
             }}
             className={`flex items-center justify-between pt-8 w-full pb-12 ${
-              status === "last" && "text-light-blue-600"
+              status === "last" && "text-sky-600"
             }`}
           >
             <div>پرمخاطب ها</div>

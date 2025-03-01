@@ -53,7 +53,7 @@ export default function FilteredCourses({
             <div>فقط دوره های رایگان</div>
             <span
               className={`opacity-70 ${
-                statusFilter === "free" ? "text-light-blue-500" : "text-white"
+                statusFilter === "free" ? "text-sky-500" : "text-white"
               }`}
             >
               <FaSquare />
@@ -61,7 +61,7 @@ export default function FilteredCourses({
           </div>
           <Button
             className={`flex items-center justify-between w-full pt-8 ${
-              statusFilter === "preSale" && "text-light-blue-600"
+              statusFilter === "preSale" && "text-sky-600"
             }`}
           >
             <div>در حال پیش فروش</div>
@@ -79,7 +79,7 @@ export default function FilteredCourses({
           </Button>
           <Button
             className={`flex items-center justify-between pt-8 w-full pb-12 ${
-              statusFilter === "purchased" && "text-light-blue-600"
+              statusFilter === "purchased" && "text-sky-600"
             }`}
           >
             <div>دوره ها خریداری شده</div>

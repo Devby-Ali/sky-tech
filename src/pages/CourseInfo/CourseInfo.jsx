@@ -395,8 +395,8 @@ export default function CourseInfo() {
               {/* <!-- Description --> */}
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                  <span className="hidden md:inline-block text-light-blue-700 dark:text-light-blue-500 text-6xl">
+                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
+                  <span className="hidden md:inline-block text-sky-700 dark:text-sky-500 text-6xl">
                     <HiOutlineDocumentText />
                   </span>
                   <div className="font-EstedadBold text-3xl md:text-4xl">
@@ -696,8 +696,8 @@ export default function CourseInfo() {
               {/* <!-- Headlines --> */}
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                  <div className="hidden md:inline-block ml-1 text-light-blue-700 dark:text-light-blue-500 text-7xl">
+                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
+                  <div className="hidden md:inline-block ml-1 text-sky-700 dark:text-sky-500 text-7xl">
                     <HiOutlineAcademicCap />
                   </div>
                   <div
@@ -712,7 +712,7 @@ export default function CourseInfo() {
                     <div
                       className={`flex items-center justify-between cursor-pointer pr-6 pl-8 py-7 rounded-2xl border-none ${
                         open === 1
-                          ? "rounded-b-none bg-light-blue-400 dark:bg-light-blue-800"
+                          ? "rounded-b-none bg-sky-400 dark:bg-sky-800"
                           : "bg-gray-200 dark:bg-[#333c4c]"
                       }`}
                       onClick={() => handleOpen(1)}
@@ -743,23 +743,23 @@ export default function CourseInfo() {
                       {sessions.map((session, index) => (
                         <div
                           key={session._id}
-                          className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
+                          className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
                         >
                           {session.free === 1 ||
                           courseDetails.isUserRegisteredToThisCourse ? (
                             <>
                               <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                                   {index + 1}
                                 </div>
                                 <Link
                                   to={`/${courseName}/${session._id}`}
-                                  className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
+                                  className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-blue-400 "
                                 >
                                   {session.title}
                                 </Link>
                               </div>
-                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
+                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-blue-400 *:transition-colors">
                                 <span className="text-xl md:2xl">
                                   {session.time}
                                 </span>
@@ -771,14 +771,14 @@ export default function CourseInfo() {
                           ) : (
                             <>
                               <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
+                                <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                                   {index + 1}
                                 </div>
-                                <span className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 ">
+                                <span className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-blue-400 ">
                                   {session.title}
                                 </span>
                               </div>
-                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
+                              <div className="flex items-center gap-x-3 mr-auto group-hover:text-blue-400 *:transition-colors">
                                 <span className="text-xl md:2xl">
                                   {session.time}
                                 </span>
@@ -797,7 +797,7 @@ export default function CourseInfo() {
                     <div
                       className={`flex items-center justify-between cursor-pointer pr-6 pl-8 py-7 rounded-2xl border-none ${
                         open === 2
-                          ? "rounded-b-none bg-light-blue-400 dark:bg-light-blue-800"
+                          ? "rounded-b-none bg-sky-400 dark:bg-sky-800"
                           : "bg-gray-200 dark:bg-[#333c4c]"
                       }`}
                       onClick={() => handleOpen(2)}
@@ -825,57 +825,57 @@ export default function CourseInfo() {
                         open === 2 ? "block visible" : "hidden invisible"
                       } divide-y divide-gray-600 -mt-1`}
                     >
-                      <div className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                      <div className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                             1
                           </div>
                           <a
                             href=""
-                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
+                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-blue-400 "
                           >
                             ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-blue-400 *:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
                             <HiOutlinePlay />
                           </div>
                         </div>
                       </div>
-                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                             1
                           </div>
                           <a
                             href=""
-                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
+                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-blue-400 "
                           >
                             ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-blue-400 *:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
                             <HiOutlinePlay />
                           </div>
                         </div>
                       </div>
-                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-blue-gray-50 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
-                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-lightishBlue-400 group-hover:text-white rounded-xs">
+                          <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                             1
                           </div>
                           <a
                             href=""
-                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-lightishBlue-400 "
+                            className="inline-block mb-1 lg:max-w-3/4 text-xl md:text-2xl group-hover:text-blue-400 "
                           >
                             ویدیوی معرفی
                           </a>
                         </div>
-                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-lightishBlue-400 *:transition-colors">
+                        <div className="flex items-center gap-x-3 mr-auto group-hover:text-blue-400 *:transition-colors">
                           <span className="text-xl md:2xl">08:26 </span>
                           <div className="text-3xl">
                             <HiOutlinePlay />
@@ -890,8 +890,8 @@ export default function CourseInfo() {
               {relatedCourses.length !== 0 && (
                 <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-10 mt-12">
                   <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
-                    <span className="absolute -right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                    <span className="text-light-blue-700 dark:text-light-blue-500 mx-2 text-[3.4rem]">
+                    <span className="absolute -right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
+                    <span className="text-sky-700 dark:text-sky-500 mx-2 text-[3.4rem]">
                       <FaRegObjectGroup />
                     </span>
                     <div className="font-EstedadBold text-3xl md:text-4xl">
@@ -912,7 +912,7 @@ export default function CourseInfo() {
                             <span className="line-clamp-2">{course.name}</span>
                           </div>
                           <Button
-                            className="flex items-center justify-between sm:justify-normal text-light-blue-700 dark:text-light-blue-500 font-EstedadMedium text-xl"
+                            className="flex items-center justify-between sm:justify-normal text-sky-700 dark:text-sky-500 font-EstedadMedium text-xl"
                             to={`/course-info/${course.shortName}`}
                           >
                             مشاهده
@@ -940,7 +940,7 @@ export default function CourseInfo() {
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7">
                 <div className="flex gap-x-6">
                   <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
-                    <div className="text-6xl md:text-7xl text-lightishBlue-500">
+                    <div className="text-6xl md:text-7xl text-blue-500">
                       <PiUsersThree />
                     </div>
                     <div>

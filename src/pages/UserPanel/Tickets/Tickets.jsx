@@ -121,14 +121,14 @@ export default function Tickets() {
 
       <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-3.5 rounded-md mb-8">
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
-          <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-          <span className="text-light-blue-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
+          <span className="w-1 md:w-1.5 h-full bg-sky-600 rounded-r-full shadowLightBlue"></span>
+          <span className="text-sky-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
             تیکت های من ({tickets.length})
           </span>
         </div>
         <select
           id="filters"
-          className="bg-light-blue-50 dark:bg-[#333c4c] text-darkColor dark:text-white text-2xl md:text-[1.6rem] w-1/2 md:w-80 h-[3.1rem] md:h-20 pr-6 border-l-[14px] border-l-transparent rounded-sm"
+          className="bg-sky-50 dark:bg-[#333c4c] text-darkColor dark:text-white text-2xl md:text-[1.6rem] w-1/2 md:w-80 h-[3.1rem] md:h-20 pr-6 border-l-[14px] border-l-transparent rounded-sm"
         >
           <option value="">مرتب سازی بر اساس:</option>
           <option value="">منتظر پاسخ</option>

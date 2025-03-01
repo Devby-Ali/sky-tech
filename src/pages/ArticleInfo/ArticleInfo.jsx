@@ -64,7 +64,7 @@ export default function ArticleInfo() {
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 {/* <!-- head --> */}
                 <div className="mt-4 sm:mt-2 flex items-center gap-x-3 mb-10 relative border-b border-b-gray-300 dark:border-b-white/10 pb-10 sm:pb-12">
-                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
+                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
                   <h1 className="font-EstedadBold text-3xl md:text-4xl">
                     {articleDetails.title}
                   </h1>
@@ -178,8 +178,8 @@ export default function ArticleInfo() {
               {/* <!-- Related Blogs --> */}
               <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 relative pb-10 sm:pb-12">
-                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-                  <div className="hidden md:block text-6xl text-light-blue-700 dark:text-light-blue-600">
+                  <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
+                  <div className="hidden md:block text-6xl text-sky-700 dark:text-sky-600">
                     <HiBookOpen />
                   </div>
                   <h1 className="font-EstedadBold text-3xl md:text-4xl">
@@ -293,7 +293,7 @@ export default function ArticleInfo() {
                     </div>
                   </button>
                 </div>
-                <div className="flex items-center justify-between gap-x-3 p-4 mt-8 bg-light-blue-300/10 text-light-blue-300 border border-dashed border-sky-500 rounded-lg">
+                <div className="flex items-center justify-between gap-x-3 p-4 mt-8 bg-sky-300/10 text-sky-300 border border-dashed border-sky-500 rounded-lg">
                   <button>
                     <div className="text-4xl">
                       <HiOutlineClipboardDocument />

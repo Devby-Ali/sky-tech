@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
-import {
-  requiredValidator,
-  minValidator,
-} from "./../../../validators/rules";
+import { requiredValidator, minValidator } from "./../../../validators/rules";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm";
@@ -38,7 +35,6 @@ export default function Draft() {
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles/${shortName}`)
       .then((res) => res.json())
@@ -53,7 +49,6 @@ export default function Draft() {
         setCategories(allCategories);
       });
   }, []);
-
 
   const createArticle = (event) => {
     event.preventDefault();
@@ -89,7 +84,7 @@ export default function Draft() {
     <>
       <section className="flex-center overflow-hidden mt-12">
         <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-light-blue-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl z-10">
+          <div className="flex flex-col items-center text-darkColor dark:text-white bg-sky-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl z-10">
             <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
               افزودن مقاله جدید
             </span>
@@ -179,18 +174,18 @@ export default function Draft() {
                 </div>
               </div>
 
-                <Button
-                  className={`h-20 w-[51%] mt-4 rounded-lg ${
-                    formState.isFormValid
-                      ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
-                      : "bg-[#333c4c]/30"
-                  }`}
-                  type="submit"
-                  onClick={createArticle}
-                  disabled={!formState.isFormValid}
-                >
-                  <span className="mx-auto">انتشار</span>
-                </Button>
+              <Button
+                className={`h-20 w-[51%] mt-4 rounded-lg ${
+                  formState.isFormValid
+                    ? "bg-sky-600/40 hover:bg-sky-600/60"
+                    : "bg-[#333c4c]/30"
+                }`}
+                type="submit"
+                onClick={createArticle}
+                disabled={!formState.isFormValid}
+              >
+                <span className="mx-auto">انتشار</span>
+              </Button>
             </form>
           </div>
         </div>

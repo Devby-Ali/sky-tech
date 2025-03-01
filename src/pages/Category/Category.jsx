@@ -205,7 +205,7 @@ export default function Category() {
                         <span
                           className={`opacity-70 ${
                             statusFilter === "free"
-                              ? "text-light-blue-500"
+                              ? "text-sky-500"
                               : "text-white"
                           }`}
                         >

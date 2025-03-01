@@ -196,9 +196,7 @@ export default function Courses() {
                     </span>
                     <span
                       className={`opacity-70 ${
-                        statusFilter === "free"
-                          ? "text-light-blue-500"
-                          : "text-white"
+                        statusFilter === "free" ? "text-sky-500" : "text-white"
                       }`}
                     >
                       <FaSquare />

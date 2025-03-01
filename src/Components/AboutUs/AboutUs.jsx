@@ -28,7 +28,7 @@ export default function AboutUs() {
         <AboutUsBox
           title="سراغ حرفه ای ها رفتیم"
           desc="به جرعت میتونم بگم سخت گیرترین شرایط جذب مدرس داریم چون برامون مهمه محتوا خیلی ساده و روان بیان بشه که توی یادگیری به مشکل نخورید."
-          icon={<GiCutDiamond className="text-light-blue-600/80" />}
+          icon={<GiCutDiamond className="text-sky-600/80" />}
         />
         <AboutUsBox
           title="پروژه محور در راستای بازار کار"

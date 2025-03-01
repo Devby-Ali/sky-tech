@@ -112,7 +112,7 @@ export default function Contact() {
               <>
                 <div
                   key={contact.name}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-light-blue-400/80 dark:divide-[#333c4c] *:px-3"
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
                 >
                   <div className="col-span-1">{index + 1}</div>
 
@@ -125,7 +125,7 @@ export default function Contact() {
                   <div className="col-span-1 flex-center">
                     <div
                       onClick={() => showContactBody(contact.body)}
-                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-5 rounded-sm select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-sky-100/80 dark:bg-white/10 text-sky-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-5 rounded-sm select-none cursor-pointer"
                     >
                       مشاهده
                     </div>
@@ -133,7 +133,7 @@ export default function Contact() {
                   <div className="col-span-1">
                     <div
                       onClick={() => sendAnwserToUser(contact.email)}
-                      className="inline-flex items-center justify-center bg-light-blue-100/80 dark:bg-white/10 text-light-blue-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                      className="inline-flex items-center justify-center bg-sky-100/80 dark:bg-white/10 text-sky-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       پاسخ
                     </div>

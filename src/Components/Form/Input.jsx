@@ -49,8 +49,8 @@ export default function Input(props) {
       <input
         className={`${props.className} ${
           mainInput.isValid
-            ? "text-green-800 dark:text-green-400"
-            : "text-red-700 dark:text-red-300"
+            ? "text-emerald-600 dark:text-emerald-400"
+            : "text-red-600 dark:text-red-300"
         }`}
         type={props.type}
         placeholder={props.placeholder}

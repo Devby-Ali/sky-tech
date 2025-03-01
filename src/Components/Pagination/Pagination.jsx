@@ -28,16 +28,16 @@ export default function Pagination({
           .fill(0)
           .map((item, index) => (
             <>
-            <li className="courses__pagination-item">
-              <Link
-                to={`${pathName}/${index + 1}`}
-                className={`rounded-lg w-16 h-16 flex-center text-2xl mx-2 ${
-                  index + 1 === Number(page) ? "bg-light-blue-500" : null
-                } hover:bg-light-blue-400/70`}
-              >
-                {index + 1}
-              </Link>
-            </li>
+              <li className="courses__pagination-item">
+                <Link
+                  to={`${pathName}/${index + 1}`}
+                  className={`rounded-lg w-16 h-16 flex-center text-2xl mx-2 ${
+                    index + 1 === Number(page) ? "bg-sky-500" : null
+                  } hover:bg-sky-400/70`}
+                >
+                  {index + 1}
+                </Link>
+              </li>
             </>
           ))}
       </ul>

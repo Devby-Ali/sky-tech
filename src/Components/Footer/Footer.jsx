@@ -48,7 +48,7 @@ export default function Footer() {
       <div className="container">
         <div className="pb-8 mb-8 sm:pb-16 sm:mb-16 border-b border-b-gray-400">
           <div className="flex items-center justify-between">
-            <Link to={"/"} className="flex items-end text-light-blue-700">
+            <Link to={"/"} className="flex items-end text-sky-700">
               <div className="rotate-[40deg] mb-1 sm:mb-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -74,14 +74,14 @@ export default function Footer() {
             <div className="flex gap-x-4 sm:gap-x-5">
               <a
                 href="https://"
-                className="flex-center text-[2.6rem] text-darkColor bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 hover:bg-light-blue-500"
+                className="flex-center text-[2.6rem] text-darkColor bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 hover:bg-sky-500"
                 rel="nofollow"
               >
                 <FaInstagram />
               </a>
               <a
                 href="https://"
-                className="flex-center text-[2.6rem] text-darkBox bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 *:mt-0.5 *:mr-0.5 hover:bg-light-blue-500"
+                className="flex-center text-[2.6rem] text-darkBox bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 *:mt-0.5 *:mr-0.5 hover:bg-sky-500"
                 rel="nofollow"
               >
                 <FaTelegramPlane />
@@ -135,7 +135,7 @@ export default function Footer() {
                     type="submit"
                     className={` rounded-sm px-4 pb-0.5 transition-all cursor-pointer ${
                       formState.isFormValid
-                        ? "bg-light-blue-600/40 hover:bg-light-blue-600/60"
+                        ? "bg-sky-600/40 hover:bg-sky-600/60"
                         : "bg-white/10"
                     }`}
                     onClick={addNewEmail}
@@ -201,7 +201,7 @@ export default function Footer() {
           </span>
           <span>
             برنامه نویس و توسعه دهنده:{" "}
-            <span className="text-light-blue-500 font-EstedadBold px-2 tracking-wide">
+            <span className="text-sky-500 font-EstedadBold px-2 tracking-wide">
               DevbyAli@
             </span>
           </span>

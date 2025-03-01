@@ -63,8 +63,8 @@ export default function EditAccount() {
       <form id="edit-account-info" className="block mt-6 md:mt-10">
         <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-3.5 rounded-md mb-8">
           <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
-            <span className="w-1 md:w-1.5 h-full bg-light-blue-600 rounded-r-full shadowLightBlue"></span>
-            <span className="text-light-blue-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
+            <span className="w-1 md:w-1.5 h-full bg-sky-600 rounded-r-full shadowLightBlue"></span>
+            <span className="text-sky-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
               جزئیات حساب کاربری
             </span>
           </div>
@@ -184,7 +184,7 @@ export default function EditAccount() {
 
           <button
             onClick={editAccount}
-            className="h-20 bg-light-blue-600 dark:bg-light-blue-900 w-full text-white font-EstedadMedium sm:w-96 rounded-md"
+            className="h-20 bg-sky-600 dark:bg-sky-900 w-full text-white font-EstedadMedium sm:w-96 rounded-md"
           >
             ویرایش حساب کاربری
           </button>

@@ -56,7 +56,7 @@ export default function PresellCourses() {
             </>
           ))}
         </Swiper>
-        <div className="hidden lg:block absolute right-0 -top-10 translate-x-1/3 -translate-y-6/10 size-75 bg-light-blue-400 opacity-35 blur-[125px] -z-10 rounded-full"></div>
+        <div className="hidden lg:block absolute right-0 -top-10 translate-x-1/3 -translate-y-6/10 size-75 bg-sky-400 opacity-35 blur-[125px] -z-10 rounded-full"></div>
       </div>
     </div>
   );

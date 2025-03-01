@@ -115,37 +115,28 @@ export default function Topbar() {
       >
         <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white h-[90vh]">
           <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
-            <Link
-              to={"/"}
-              className="text-light-blue-600 dark:text-light-blue-500"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="55"
-                height="55"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
-                viewBox="0 0 24 24"
-              >
-                <path stroke="none" d="M0 0h24v24H0z"></path>
-                <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
-                <path d="m9 11 3 3 3-3"></path>
-              </svg>
+            <Link to={"/"} className="text-sky-600 dark:text-sky-500 size-24">
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z"></path>
+                  <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                  <path d="m9 11 3 3 3-3"></path>
+                </svg>
             </Link>
-            <div className="flex items-center gap-x-6 text-[2.75rem] text-blue-gray-500 dark:text-white">
+            <div className="flex items-center gap-x-6 text-[2.75rem] text-stone-1000 dark:text-white">
               <div
-                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-darkBox"
                 onClick={() => themeHandler()}
               >
                 <HiOutlineSun className="hidden dark:inline-block" />
                 <HiOutlineMoon className="inline-block dark:hidden" />
               </div>
               <div
-                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-blue-gray-50 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-darkBox"
                 onClick={navOpenHandler}
               >
                 <HiChevronRight />
@@ -155,7 +146,7 @@ export default function Topbar() {
           <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
 
           <div className="h-full flex flex-col justify-between">
-            <ul className="*:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-6 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
+            <ul className="*:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-5 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
               <li className={pageName["*"] === "" && "active-menu"}>
                 <Link
                   className="flex items-center justify-between"
@@ -271,7 +262,7 @@ export default function Topbar() {
         </div>
       </div>
 
-      <header className="w-full flex items-center h-[8rem] 2xl:h-36 dark:bg-linear-to-tr from-light-blue-800/5 via-light-blue-900/5 to-light-blue-900/5 backdrop-blur-[4px] shadow-lg">
+      <header className="w-full flex items-center h-[8rem] 2xl:h-36 bg-white dark:bg-sky-900/5 backdrop-blur-[4px] shadow">
         <div className="h-full w-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
           <div className="flex items-center gap-x-6 2xl:gap-x-8">
             <div
@@ -356,8 +347,7 @@ export default function Topbar() {
             <div className="hidden lg:block text-nowrap text-darkColor dark:text-white text-3xl mr-3">
               <h4>
                 {adminInfo.name} عزیز‚ به پنل مدیریت{" "}
-                <span className="text-light-blue-400 mx-1.5">Sky Tech</span> خوش
-                اومدی
+                <span className="text-sky-400 mx-1.5">Sky Tech</span> خوش اومدی
               </h4>
             </div>
           </div>
