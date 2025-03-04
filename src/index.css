@@ -91,23 +91,28 @@
 @utility main-header__dropdown {
   opacity: 0;
   visibility: hidden;
+  @apply absolute top-24 -right-4 w-96 bg-linear-to-t from-transparent via-sky-400/15 via-60% to-transparent backdrop-blur-[5px] text-white transition-all shadow-2xl rounded-4xl rounded-br-3xl py-4 border-b-5 border-r-5 border-sky-600 delay-75 z-50 *:first:rounded-tr-2xl *:first:hover:-ml-[10px] *:last:rounded-br-lg *:last:rounded-bl-2xl;
 }
 
 @utility main-header__dropdown-hover {
   opacity: 1;
   visibility: visible;
-  top: 7rem;
+  top: 7.25rem;
 }
 
 @utility header__dropdown {
   opacity: 0;
   visibility: hidden;
+  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/15 via-60% to-transparent backdrop-blur-[5px] text-white transition-all shadow-2xl rounded-4xl rounded-br-none py-4 border-t-5 border-l-5 border-sky-600 delay-150;
+}
+
+@utility main-header__dropdown-item {
+  @apply hover:pl-4 hover:bg-sky-500/10 hover:border-l-8 hover:font-EstedadMedium hover:-ml-3.5 border-sky-600 rounded-r-sm mx-4;
 }
 
 @utility header__dropdown-hover {
   opacity: 1;
   visibility: visible;
-  right: 23.6rem;
 }
 
 @utility bg-landing {
@@ -233,7 +238,7 @@
   --color-purpleHeart-800: #5f2bb8;
   --color-purpleHeart-900: #4b238f;
   --color-purpleHeart-950: #2d1461;
-  /* ---------------------------------------------------------------------- */ 
+  /* ---------------------------------------------------------------------- */
   --color-amber-50: #fcfaea;
   --color-amber-100: #f7ecb4;
   --color-amber-200: #f4e194;

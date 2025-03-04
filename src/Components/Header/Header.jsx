@@ -200,11 +200,11 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="md:fixed md:flex md:top-5 2xl:top-7 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-97/100 lg:w-94/100 h-30 2xl:h-32 md:mx-auto md:rounded-2xl bg-linear-to-l from-blue-400/10 from-0% via-transparent via-50% md:via-65% to-blue-400/10 to-100% backdrop-blur-[3px] shadow-md">
+      <header className="md:fixed md:flex md:top-5 2xl:top-7 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-97/100 lg:w-94/100 h-30 2xl:h-32 md:mx-auto md:rounded-2xl bg-linear-to-l from-sky-400/10 from-0% via-transparent via-50% md:via-65% to-sky-400/10 to-100% backdrop-blur-[3px] shadow-md">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-10 py-4">
             <div
-              className="md:hidden flex-center p-4 text-blue-900 dark:text-white cursor-pointer text-5xl"
+              className="md:hidden flex-center p-4 text-darkBox dark:text-white cursor-pointer text-5xl"
               onClick={navOpenHandler}
             >
               <HiBars3 />
@@ -213,7 +213,7 @@ export default function Header() {
             <div className="flex gap-x-6 xl:gap-x-14">
               <Link
                 to={"/"}
-                className="text-sky-700 dark:text-sky-400 mb-1 2xl:mb-0"
+                className="text-sky-600 dark:text-sky-400 mb-1 2xl:mb-0"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -229,14 +229,14 @@ export default function Header() {
                 </svg>
               </Link>
 
-              <ul className="hidden md:flex gap-x-7 xl:gap-x-12 text-blue-900 dark:text-white text-[1.7rem] xl:text-[1.8rem] font-EstedadMedium dark:font-EstedadLight">
+              <ul className="hidden md:flex gap-x-7 xl:gap-x-12 text-darkBox font dark:text-white text-[1.7rem] xl:text-[1.8rem]">
                 <li className="main-header__item group/menu flex-center relative">
                   <span className="cursor-pointer">
                     دوره های آموزشی
-                    <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover absolute top-24 right-0 w-96 b bg-linear-to-t from-darkBox/60 via-blue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-sky-700 dark:border-sky-400 delay-75">
+                    <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover">
                       {allMenus.map((menu) => (
                         <li
-                          className="header__item group/submenu hover:bg-teal-600/60 rounded-l-sm rounded-r-2xl mx-4"
+                          className="main-header__dropdown-item header__item group/submenu"
                           key={menu._id}
                         >
                           <Link
@@ -247,12 +247,12 @@ export default function Header() {
                             {menu.submenus.length !== 0 && (
                               <>
                                 <HiChevronLeft className="mt-1 xl:mr-1" />
-                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 b bg-linear-to-t from-darkBox/60 via-blue-400/20 via-60% to-transparent backdrop-blur-[5px] text-darkColor dark:text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-sky-700 dark:border-sky-400 delay-150">
+                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover">
                                   {menu.submenus.map((submenu) => (
                                     <li key={menu._id}>
                                       <Link
                                         to={submenu.href}
-                                        className="block px-8 py-2 text-[1.6rem] hover:text-emerald-500 duration-200"
+                                        className="block px-8 py-2 text-[1.6rem] hover:text-purpleHeart-400 duration-200"
                                       >
                                         {submenu.title}
                                       </Link>
@@ -278,7 +278,7 @@ export default function Header() {
               </ul>
             </div>
 
-            <div className="flex items-center text-blue-900 dark:text-white">
+            <div className="flex items-center text-darkBox font dark:text-white">
               <div
                 className="hidden md:flex-center p-4 text-[2.75rem] rounded-xl toggle-theme cursor-pointer"
                 onClick={() => themeHandler()}

@@ -12,6 +12,7 @@ import {
   HiChevronDown,
   HiChevronLeft,
   HiChevronRight,
+  HiMiniChevronLeft,
   HiOutlineArrowLeftEndOnRectangle,
   HiOutlineChatBubbleLeftEllipsis,
   HiOutlineFolder,
@@ -143,14 +144,13 @@ export default function Landing({ info }) {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
         <ul className="*:transition-all px-3 *:py-3 space-y-1.5 mt-5 mb-5 text-[1.4rem] text-darkColor dark:text-white border-b-darkBox/30">
           <li>
-            <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">دسترسی سریع</span>
+            <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">
+              دسترسی سریع
+            </span>
           </li>
           {authContext.userInfos.role === "ADMIN" && (
             <li className="hover:text-sky-500">
-              <Link
-                className="flex items-center justify-between"
-                to="/p-admin"
-              >
+              <Link className="flex items-center justify-between" to="/p-admin">
                 <span>پنل مدیریت</span>
                 <HiChevronRight className="text-2xl rotate-180" />
               </Link>
@@ -178,7 +178,9 @@ export default function Landing({ info }) {
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
         <ul className="*:transition-all px-3 *:py-3 *:px-5 *:-mx-5 space-y-1.5 mb-5 mt-5 text-[1.4rem] text-darkColor dark:text-white border-b-darkBox/30">
           <li>
-            <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">دسته بندی ها</span>
+            <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">
+              دسته بندی ها
+            </span>
           </li>
           {allMenus.map((menu) => (
             <li
@@ -235,7 +237,7 @@ export default function Landing({ info }) {
             <div className="flex gap-x-8 xl:gap-x-14">
               <Link
                 to={"/"}
-                className="text-sky-300 mb-1 2xl:mb-0 size-24 md:size-32 md:ml-5"
+                className="text-sky-400 mb-1 2xl:mb-0 size-24 md:size-32 md:ml-5"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -253,10 +255,10 @@ export default function Landing({ info }) {
                 <li className="main-header__item group/menu flex-center relative">
                   <span className="cursor-pointer">
                     دوره های آموزشی
-                    <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover absolute top-24 -right-4 w-96 bg-linear-to-t from-darkBox/30 via-blue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-b-4 border-r-4 border-sky-700 dark:border-sky-400 delay-75 z-50">
+                    <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover">
                       {allMenus.map((menu) => (
                         <li
-                          className="header__item group/submenu hover:bg-sky-800/60 rounded-l-sm rounded-r-2xl mx-4"
+                          className="main-header__dropdown-item header__item group/submenu"
                           key={menu._id}
                         >
                           <Link
@@ -266,10 +268,10 @@ export default function Landing({ info }) {
                             {menu.title}
                             {menu.submenus.length !== 0 && (
                               <>
-                                <HiChevronLeft className="mt-1 xl:mr-1" />
-                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover absolute top-0 right-[23.6rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-darkBox/30 via-blue-400/15 via-60% to-transparent backdrop-blur-[6px] text-white transition-all shadow-2xl rounded-4xl py-4 border-t-4 border-l-4 border-sky-700 dark:border-sky-400 delay-150">
+                                <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
+                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover">
                                   {menu.submenus.map((submenu) => (
-                                    <li key={menu._id}>
+                                    <li key={menu._id} className="hover:text-purpleHeart-400">
                                       <Link
                                         to={submenu.href}
                                         className="block px-8 py-2 text-[1.6rem] duration-200"
