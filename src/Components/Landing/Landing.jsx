@@ -12,6 +12,7 @@ import {
   HiChevronDown,
   HiChevronLeft,
   HiChevronRight,
+  HiMiniChevronDown,
   HiMiniChevronLeft,
   HiOutlineArrowLeftEndOnRectangle,
   HiOutlineChatBubbleLeftEllipsis,
@@ -542,15 +543,15 @@ export default function Landing({ info }) {
         height="22"
         fill="none"
         viewBox="0 0 100 22"
-        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[150px] h-[36px] text-stone-100 dark:text-darkColor rotate-180 z-10"
+        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[150px] h-[36px] text-stone-100 dark:text-slate-900 rotate-180 z-10"
       >
         <path
           fill="currentColor"
           d="M50 22C31 22 19 0 0 0h100C81.25 0 69 22 50 22"
         ></path>
       </svg>
-      <div className="absolute bottom-3 right-0 left-0 mx-auto translate-y-1/2 hidden lg:block h-12 w-12 text-5xl text-darkColor dark:text-white z-10">
-        <HiChevronDown />
+      <div className="absolute bottom-3 right-0 left-0 mx-auto translate-y-1/2 hidden lg:block size-16 text-6xl text-darkColor dark:text-purple-500 z-10">
+        <HiMiniChevronDown />
       </div>
 
       <div
