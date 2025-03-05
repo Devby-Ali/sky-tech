@@ -107,9 +107,9 @@ export default function Menus() {
   return (
     <>
       {showAddMenu && (
-        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-sm flex-center overflow-hidden z-50">
+        <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-xs flex-center overflow-hidden z-50">
           <div className="mx-auto flex flex-col items-center w-min">
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-blue-800/40 dark:bg-blue-900/30 backdrop-blur-sm px-20 py-14 rounded-xl">
+            <div className="flex flex-col items-center text-darkColor dark:text-white bg-sky-950/20 dark:bg-slate-950/40 backdrop-blur-xs px-20 py-14 rounded-xl">
               <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
                 افزودن منو جدید
                 <span

@@ -109,12 +109,12 @@ export default function Topbar() {
   return (
     <>
       <div
-        className={`nav fixed top-0 bottom-0 w-[240px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 md:hidden ${
+        className={`nav fixed top-0 bottom-0 w-[240px] min-h-screen px-7 bg-white dark:bg-slate-900 text-slate-900 overflow-y-auto transition-all z-50 md:hidden ${
           navOpen ? "right-0" : "-right-[240px]"
         }`}
       >
-        <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white h-[90vh]">
-          <div className="flex items-center justify-between  xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
+        <div className="sticky top-0 pt-1 transition-all text-slate-900 dark:text-white h-[90vh]">
+          <div className="flex items-center justify-between  xl:gap-x-14 text-slate-900 dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
             <Link to={"/"} className="text-sky-600 dark:text-sky-500 size-24">
             <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -129,14 +129,14 @@ export default function Topbar() {
             </Link>
             <div className="flex items-center gap-x-6 text-[2.75rem] text-stone-1000 dark:text-white">
               <div
-                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-slate-800"
                 onClick={() => themeHandler()}
               >
                 <HiOutlineSun className="hidden dark:inline-block" />
                 <HiOutlineMoon className="inline-block dark:hidden" />
               </div>
               <div
-                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-slate-800"
                 onClick={navOpenHandler}
               >
                 <HiChevronRight />
@@ -147,99 +147,99 @@ export default function Topbar() {
 
           <div className="h-full flex flex-col justify-between">
             <ul className="*:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-5 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
-              <li className={pageName["*"] === "" && "active-menu"}>
+              <li className={pageName["*"] === "" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="/p-admin"
                 >
                   <span>صفحه اصلی</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "courses" && "active-menu"}>
+              <li className={pageName["*"] === "courses" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="courses"
                 >
                   <span>دوره ها</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "sessions" && "active-menu"}>
+              <li className={pageName["*"] === "sessions" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="sessions"
                 >
                   <span>جلسات</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "menus" && "active-menu"}>
-                <Link className="flex items-center justify-between" to="menus">
+              <li className={pageName["*"] === "menus" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+                <Link className="flex items-center justify-between hover:text-purple-400" to="menus">
                   <span>منو ها</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "articles" && "active-menu"}>
+              <li className={pageName["*"] === "articles" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="articles"
                 >
                   <span>مقاله ها</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "users" && "active-menu"}>
-                <Link className="flex items-center justify-between" to="users">
+              <li className={pageName["*"] === "users" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+                <Link className="flex items-center justify-between hover:text-purple-400" to="users">
                   <span>کاربران</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "comments" && "active-menu"}>
+              <li className={pageName["*"] === "comments" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="comments"
                 >
                   <span>کامنت‌ها</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "tickets" && "active-menu"}>
+              <li className={pageName["*"] === "tickets" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="tickets"
                 >
                   <span>تیکت‌ها</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "offs" && "active-menu"}>
-                <Link className="flex items-center justify-between" to="offs">
+              <li className={pageName["*"] === "offs" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+                <Link className="flex items-center justify-between hover:text-purple-400" to="offs">
                   <span>کدهای تخفیف</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "discounts" && "active-menu"}>
+              <li className={pageName["*"] === "discounts" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="discounts"
                 >
                   <span>تخفیف همگانی</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "category" && "active-menu"}>
+              <li className={pageName["*"] === "category" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="category"
                 >
                   <span>دسته‌بندی‌ها</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "contacts" && "active-menu"}>
+              <li className={pageName["*"] === "contacts" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
                 <Link
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between hover:text-purple-400"
                   to="contacts"
                 >
                   <span>پیغام‌ها</span>
@@ -266,28 +266,28 @@ export default function Topbar() {
         <div className="h-full w-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
           <div className="flex items-center gap-x-6 2xl:gap-x-8">
             <div
-              className="md:hidden p-3 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white rounded-lg cursor-pointer text-4xl"
+              className="md:hidden p-3 bg-gray-300/40 dark:bg-white/10 text-slate-900 dark:text-white rounded-lg cursor-pointer text-4xl"
               onClick={navOpenHandler}
             >
               <HiBars3 />
             </div>
             <form
               action="#"
-              className="flex items-center justify-between text-2xl border w-[70%] border-gray-400 dark:border-white/10 bg-transparent py-2.5 p-4 rounded-md"
+              className="flex items-center justify-between text-2xl border w-[70%] border-stone-200 dark:border-white/10 bg-transparent py-2.5 p-4 rounded-md"
             >
               <input
                 type="text"
-                className="w-[70%] bg-transparent"
+                className="w-[70%] bg-transparent dark:placeholder-white/35 placeholder-slate-500"
                 placeholder="جستجو ..."
               />
-              <FaSearch className="text-3xl text-darkColor/70 dark:text-white/60 cursor-pointer" />
+              <FaSearch className="text-3xl text-slate-700/50 dark:text-white/40 cursor-pointer" />
             </form>
 
             <div
-              className={`relative flex items-center justify-center p-3 text-darkColor dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer ${
+              className={`relative flex items-center justify-center p-3 text-slate-900 dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer ${
                 openCollapseNotif
-                  ? "bg-white dark:bg-[#333c4c]"
-                  : "bg-gray-300/40 dark:bg-white/10"
+                  ? "bg-white shadow dark:bg-slate-700"
+                  : "bg-stone-100 dark:bg-slate-800"
               }`}
               onClick={toggleOpenNotif}
             >
@@ -298,16 +298,16 @@ export default function Topbar() {
                   openCollapseNotif ? "block visible" : "hidden invisible"
                 }`}
               >
-                {adminNotif.length === 0 ? (
-                  <div className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
+                {adminNotif.length === 1 ? (
+                  <div className="py-8 px-10 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-b-lg rounded-t-none">
                     <span className="text-2xl text-nowrap">
                       نوتیفی برای نمایش وجود ندارد
                     </span>
                   </div>
                 ) : (
                   <>
-                    <div className="py-2.5 px-4 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-b-lg rounded-t-none">
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                    <div className="py-2.5 px-4 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80 rounded-b-lg rounded-t-none">
+                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                         <span className="truncate hover:text-clip">
                           blablabl
                         </span>
@@ -315,7 +315,7 @@ export default function Topbar() {
                           دیدم
                         </a>
                       </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                         <span className="truncate hover:text-clip">
                           blablabl
                         </span>
@@ -323,7 +323,7 @@ export default function Topbar() {
                           دیدم
                         </a>
                       </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                         <span className="truncate hover:text-clip">
                           blablabl
                         </span>
@@ -331,7 +331,7 @@ export default function Topbar() {
                           دیدم
                         </a>
                       </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-darkBox/30 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
+                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
                         <span className="truncate hover:text-clip">
                           blablabl
                         </span>
@@ -344,7 +344,7 @@ export default function Topbar() {
                 )}
               </div>
             </div>
-            <div className="hidden lg:block text-nowrap text-darkColor dark:text-white text-3xl mr-3">
+            <div className="hidden lg:block text-nowrap text-slate-900 dark:text-white text-3xl mr-3">
               <h4>
                 {adminInfo.name} عزیز‚ به پنل مدیریت{" "}
                 <span className="text-sky-400 mx-1.5">Sky Tech</span> خوش اومدی
@@ -352,7 +352,7 @@ export default function Topbar() {
             </div>
           </div>
 
-          <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-gray-300/40 dark:bg-white/5 text-4xl text-darkColor dark:text-white">
+          <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-stone-100 dark:bg-slate-800 text-4xl text-slate-900 dark:text-white">
             <Link to="#" className="text-2xl">
               {adminInfo.name}
             </Link>
@@ -361,7 +361,7 @@ export default function Topbar() {
 
           <Link
             to="#"
-            className={`relative flex xs:hidden mr-6 items-center justify-center p-3 text-darkColor dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer z-50 ${
+            className={`relative flex xs:hidden mr-6 items-center justify-center p-3 text-slate-900 dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer z-50 ${
               openCollapseInfo
                 ? "bg-white dark:bg-[#333c4c]"
                 : "bg-gray-300/40 dark:bg-white/10"
@@ -374,7 +374,7 @@ export default function Topbar() {
                 openCollapseInfo ? "block visible" : "hidden invisible"
               }`}
             >
-              <div className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
+              <div className="py-8 px-10 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80">
                 <span className="text-2xl">{authContext.userInfos.name}</span>
               </div>
             </div>

@@ -56,7 +56,7 @@ export default function ArticleBox({
         <div className="flex justify-center mt-7">
           <Link
             to={`/article-info/${shortName}`}
-            className="flex items-center gap-x-1 text-3xl hover:text-purple-500 font-EstedadMedium transition-colors"
+            className="flex items-center gap-x-1 text-3xl text-sky-600 dark:text-sky-400 hover:text-purple-400 font-EstedadMedium transition-colors"
           >
             <span>مطالعه مقاله</span>
             <GoTriangleLeft />

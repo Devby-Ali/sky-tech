@@ -207,7 +207,7 @@
 
   .active-menu {
     position: relative;
-    color: oklch(0.685 0.169 237.323);
+    color: oklch(0.588 0.158 241.966);
   }
 
   .active-menu::before {

@@ -14,8 +14,8 @@ export default function SectionHeader({
       <div className="space-y-2 sm:space-y-3 sm:self-start mb-6 sm:mb-0">
         <div className="flex-center sm:justify-start gap-x-2.5">
           {/* <span className="hidden sm:inline-block w-8 h-8 bg-cyan-600 rounded-full mt-3"></span> */}
-          <span className="hidden sm:block w-[2px] h-16 bg-sky-500 rounded-r-full shadowLightBlue ml-2 mt-3"></span>
-          <h3 className="font-EstedadBold text-[2.4rem] sm:text-[2.5rem]">
+          <span className="hidden sm:block w-[3px] h-18 bg-sky-500 rounded-r-full shadowLightBlue -ml-2.5"></span>
+          <h3 className="font-EstedadBold bg-gradient-to-l from-sky-600/25 dark:from-sky-500/5 to-transparent text-[2.4rem] sm:text-[2.5rem] pr-4 py-1">
             {title}
           </h3>
         </div>
@@ -29,9 +29,9 @@ export default function SectionHeader({
         <div className="courses-header__left sm:self-end sm:ml-8">
           <Link
             to={`/${btnHref}`}
-            className="relative flex text-[1.6rem] tracking-tighter text-sky-700 dark:text-sky-500 hover:text-purple-500 group"
+            className="relative flex text-[1.6rem] tracking-tighter text-sky-700 dark:text-sky-500 hover:text-purple-400 group"
           >
-            <div className="font-Dirooz pb-1 pl-3 border-b-2 border-b-sky-700 dark:border-b-sky-500 group-hover:border-b-purple-500 transition-colors">
+            <div className="font-Dirooz pb-1 pl-3 border-b-2 border-b-sky-600 dark:border-b-sky-600 group-hover:border-b-purple-400/80 transition-colors">
               {btnTitle}
             </div>
             <HiArrowUpLeft className="absolute -left-[1.8rem] -bottom-1 text-4xl transition-colors" />
@@ -40,7 +40,7 @@ export default function SectionHeader({
       ) : null}
       {titleValue ? (
         <div className="courses-header__left">
-          <p className="sm:text-[1.7rem] text-[#64748b] font-EstedadBold -mt-8 sm:mt-0">
+          <p className="sm:text-[1.7rem] text-slate-500 font-EstedadMedium -mt-8 sm:mt-0">
             {titleValue}
           </p>
         </div>

@@ -57,7 +57,7 @@ export default function CourseBox(props) {
       <div className="px-6 pb-6">
         {/* <!-- Teacher & Rating --> */}
         <div className="flex justify-between gap-5 text-blue-gray-600 dark:text-white/70 text-xl pb-5 border-b border-b-gray-300 dark:border-b-white/10">
-          <div className="flex items-center gap-x-1 hover:text-purple-500 transition-colors">
+          <div className="flex items-center gap-x-1 hover:text-purple-400 transition-colors">
             <div className="text-3xl">
               <LiaUserSolid />
             </div>

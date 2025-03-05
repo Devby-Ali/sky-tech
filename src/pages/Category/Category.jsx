@@ -148,25 +148,24 @@ export default function Category() {
       <section className="pt-16 md:pt-52">
         {courses.length ? (
           <>
-            <div>
+            <div className="container">
               <SectionHeader
                 title={`دوره های ${categoryName}`}
                 titleValue={`${courses.length} دوره ی آموزشی`}
               />
-            </div>
-            <div className="container">
-              <section className="grid grid-cols-12 gap-y-5 md:gap-x-12 text-darkColor dark:text-white ">
+
+              <section className="grid grid-cols-12 gap-y-5 md:gap-x-12 text-slate-900 dark:text-white ">
                 {/* <!-- Sidebar --> */}
                 <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
                   {/* <!-- SearchBox --> */}
                   <form id="archive_filters" className="space-y-9">
-                    <div className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8">
-                      <div className="flex items-center gap-x-8 justify-between h-full text-[#64748b] dark:text-white text-[1.7rem]">
+                    <div className="h-[6.8rem] bg-white dark:bg-slate-800 rounded-xl p-7 md:px-8">
+                      <div className="flex items-center gap-x-8 justify-between h-full text-slate-400 dark:text-white text-[1.7rem]">
                         <input
                           type="text"
                           value={searchValue}
                           onChange={searchValueChangeHandler}
-                          className="tracking-tight py-2 placeholder-[#64748b] bg-transparent grow outli"
+                          className="tracking-tight py-2 placeholder-slate-400 bg-transparent grow outli"
                           placeholder="جستجو بین دوره ها"
                         />
                         <button type="submit">
@@ -178,7 +177,7 @@ export default function Category() {
                     </div>
                     {/* <!-- Toggle Box Container --> */}
                     <div
-                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      className="h-[6.8rem] bg-white dark:bg-slate-800 rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
                       onClick={() => {
                         setStatusFilter("default");
                       }}
@@ -193,7 +192,7 @@ export default function Category() {
                       </div>
                     </div>
                     <div
-                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      className="h-[6.8rem] bg-white dark:bg-slate-800 rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
                       onClick={() => {
                         setStatusFilter("free");
                       }}
@@ -214,7 +213,7 @@ export default function Category() {
                       </div>
                     </div>
                     <div
-                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      className="h-[6.8rem] bg-white dark:bg-slate-800 rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
                       onClick={() => {
                         setStatusFilter("preSale");
                       }}
@@ -237,7 +236,7 @@ export default function Category() {
                       </div>
                     </div>
                     <div
-                      className="h-[6.8rem] bg-white dark:bg-darkBox rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
+                      className="h-[6.8rem] bg-white dark:bg-slate-800 rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
                       onClick={(event) => {
                         setStatusFilter("purchased");
                         statusTitleChangeHandler(event);
@@ -268,7 +267,7 @@ export default function Category() {
                   <div className="flex md:hidden items-center gap-8 mb-14 mt-3">
                     <Button
                       onClick={openDrawerFilter}
-                      className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
+                      className="flex-center bg-white dark:bg-slate-800 py-5 gap-4 rounded-lg w-1/2"
                       id="filter-btn"
                     >
                       <div className="text-4xl shrink-0">
@@ -278,7 +277,7 @@ export default function Category() {
                     </Button>
                     <Button
                       onClick={openDrawerSort}
-                      className="flex-center bg-white dark:bg-darkBox py-5 gap-4 rounded-lg w-1/2"
+                      className="flex-center bg-white dark:bg-slate-800 py-5 gap-4 rounded-lg w-1/2"
                       id="sort-btn"
                     >
                       <div className="text-4xl shrink-0">
@@ -288,7 +287,7 @@ export default function Category() {
                     </Button>
                   </div>
                   {/* <!-- Course Sort --> */}
-                  <div className="hidden md:flex items-center gap-x-6 h-[6.3rem] bg-white dark:bg-darkBox shadow-normal dark:shadow-none rounded-xl px-7 md:px-8 mt-4 lg:mt-0 mb-16 lg:mb-11">
+                  <div className="hidden md:flex items-center gap-x-6 h-[6.3rem] bg-white dark:bg-slate-800 shadow-normal dark:shadow-none rounded-xl px-7 md:px-8 mt-4 lg:mt-0 mb-16 lg:mb-11">
                     <div className="flex items-center shrink-0 gap-x-2">
                       <div className="text-5xl">
                         <HiArrowsUpDown />
@@ -353,8 +352,8 @@ export default function Category() {
                       </div>
                     </>
                   ) : (
-                    <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
-                      <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+                    <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-slate-400 border-dashed">
+                      <p className="text-2xl md:text-3xl text-center text-slate-400 dark:text-white my-8 md:my-12">
                         دوره ای مطابق با جستجوی شما پیدا نشد!
                       </p>
                     </div>
@@ -372,8 +371,8 @@ export default function Category() {
           </>
         ) : (
           <div className="container">
-            <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-[#64748b] border-dashed">
-              <p className="text-2xl md:text-3xl text-center text-[#64748b] dark:text-white my-8 md:my-12">
+            <div className="archive_empty items-center justify-center flex-col px-7 py-8 md:py-20 rounded-2xl border border-slate-400 border-dashed">
+              <p className="text-2xl md:text-3xl text-center text-slate-400 dark:text-white my-8 md:my-12">
                 هنوز دوره ای به دسته‌بندی {categoryName} اضافه نشده
               </p>
             </div>
