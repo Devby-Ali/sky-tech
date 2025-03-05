@@ -20,6 +20,7 @@ export default function Search() {
       });
   }, []);
 
+
   return (
     <>
       <Header />

@@ -272,7 +272,7 @@ export default function Landing({ info }) {
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
                                 <ul className="header__dropdown group-hover/submenu:header__dropdown-hover">
                                   {menu.submenus.map((submenu) => (
-                                    <li key={menu._id} className="hover:text-purpleHeart-400">
+                                    <li key={menu._id}>
                                       <Link
                                         to={submenu.href}
                                         className="block px-8 py-2 text-[1.6rem] duration-200"
@@ -550,7 +550,7 @@ export default function Landing({ info }) {
           d="M50 22C31 22 19 0 0 0h100C81.25 0 69 22 50 22"
         ></path>
       </svg>
-      <div className="absolute bottom-3 right-0 left-0 mx-auto translate-y-1/2 hidden lg:block size-16 text-6xl text-darkColor dark:text-purple-500 z-10">
+      <div className="absolute bottom-3 right-0 left-0 mx-auto translate-y-1/2 hidden lg:block size-16 text-6xl text-purple-800 dark:text-purple-500 z-10">
         <HiMiniChevronDown />
       </div>
 

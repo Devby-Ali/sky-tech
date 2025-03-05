@@ -16,7 +16,7 @@ export default function Breadcrumb({ links }) {
             <Link
               key={link.id}
               to={`/${link.to}`}
-              className="flex items-center hover:text-sky-800 dark:hover:text-sky-500"
+              className="flex items-center hover:text-purple-500"
             >
               {link.title}
             </Link>

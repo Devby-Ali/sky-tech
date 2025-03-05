@@ -35,7 +35,7 @@ export default function CourseBox(props) {
         </Link>
         {/* <!-- Offer percent  --> */}
         {props.price && props.discount !== 0 ? (
-          <span className="absolute right-3 top-3 flex-center w-20 h-12 bg-sky-700 text-white font-EstedadBold text-2xl rounded-md">
+          <span className="absolute right-2.5 top-2.5 flex-center w-18 h-10 bg-sky-700/70 text-white font-EstedadBold text-2xl rounded-sm">
             {props.discount}%
           </span>
         ) : null}
@@ -57,7 +57,7 @@ export default function CourseBox(props) {
       <div className="px-6 pb-6">
         {/* <!-- Teacher & Rating --> */}
         <div className="flex justify-between gap-5 text-blue-gray-600 dark:text-white/70 text-xl pb-5 border-b border-b-gray-300 dark:border-b-white/10">
-          <div className="flex items-center gap-x-1 hover:text-purpleHeart-500 transition-colors">
+          <div className="flex items-center gap-x-1 hover:text-purple-500 transition-colors">
             <div className="text-3xl">
               <LiaUserSolid />
             </div>

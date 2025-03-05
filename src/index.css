@@ -91,7 +91,7 @@
 @utility main-header__dropdown {
   opacity: 0;
   visibility: hidden;
-  @apply absolute top-24 -right-4 w-96 bg-linear-to-t from-transparent via-sky-400/15 via-60% to-transparent backdrop-blur-[5px] text-white transition-all shadow-2xl rounded-4xl rounded-br-3xl py-4 border-b-5 border-r-5 border-sky-600 delay-75 z-50 *:first:rounded-tr-2xl *:first:hover:-ml-[10px] *:last:rounded-br-lg *:last:rounded-bl-2xl;
+  @apply absolute top-24 -right-4 w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[5px] text-white transition-all  rounded-4xl rounded-br-3xl py-4 border-b-5 border-r-5 border-sky-600 delay-75 z-50 *:first:rounded-tr-2xl *:first:hover:-ml-[10px] *:last:rounded-br-lg *:last:rounded-bl-2xl;
 }
 
 @utility main-header__dropdown-hover {
@@ -103,11 +103,11 @@
 @utility header__dropdown {
   opacity: 0;
   visibility: hidden;
-  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/15 via-60% to-transparent backdrop-blur-[5px] text-white transition-all shadow-2xl rounded-4xl rounded-br-none py-4 border-t-5 border-l-5 border-sky-600 delay-150;
+  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[5px] text-white transition-all  rounded-4xl rounded-br-none py-4 px-3 border-t-5 border-l-5 border-sky-600 delay-150 *:hover:text-purple-500 *:dark:hover:text-purple-400 
 }
 
 @utility main-header__dropdown-item {
-  @apply hover:pl-4 hover:bg-sky-500/10 hover:border-l-8 hover:font-EstedadMedium hover:-ml-3.5 border-sky-600 rounded-r-sm mx-4;
+  @apply hover:pl-4 hover:bg-sky-500/10 hover:text-purple-500 dark:hover:text-purple-400 hover:border-l-8 hover:font-EstedadMedium hover:-ml-3 border-sky-600 rounded-r-sm mx-4;
 }
 
 @utility header__dropdown-hover {
@@ -195,7 +195,7 @@
   }
 
   .shadowLightBlue {
-    box-shadow: 3px 0 8px 1px oklch(0.685 0.169 237.323);
+    box-shadow: 3px 0 8px 1.5px oklch(0.685 0.169 237.323);
   }
 
   .sort-btn--active {

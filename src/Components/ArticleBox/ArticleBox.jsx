@@ -43,7 +43,7 @@ export default function ArticleBox({
             <div className="text-3xl">
               <LiaUserSolid />
             </div>
-            <a href="">{creator.name}</a>
+            <a href="#">{creator.name}</a>
           </div>
           <div className="flex items-center gap-x-1">
             <div className="text-3xl">
@@ -56,7 +56,7 @@ export default function ArticleBox({
         <div className="flex justify-center mt-7">
           <Link
             to={`/article-info/${shortName}`}
-            className="flex items-center gap-x-1 text-3xl hover:text-sky-600 font-EstedadMedium transition-colors"
+            className="flex items-center gap-x-1 text-3xl hover:text-purple-500 font-EstedadMedium transition-colors"
           >
             <span>مطالعه مقاله</span>
             <GoTriangleLeft />
