@@ -225,9 +225,9 @@ export default function Landing({ info }) {
         </div>
       </div>
 
-      <header className="lg:container md:flex justify-between items-center w-full md:mx-auto mb-24 xl:mb-16 2xl:mb-36">
+      <header className="lg:container md:flex justify-between items-center w-full md:mx-auto mb-10 sm:mb-16 md:mb-24">
         <div className="w-full h-full">
-          <div className="h-full flex items-center justify-between px-12 py-4 md:py-8">
+          <div className="h-full flex items-center justify-between px-12 py-4">
             <div
               className="md:hidden flex-center p-4 text-white cursor-pointer text-5xl"
               onClick={navOpenHandler}
@@ -421,7 +421,7 @@ export default function Landing({ info }) {
         </div>
       </header>
       <div className="flex-center">
-        <div className="container space-y-16 md:space-y-20 xl:space-y-40 text-center text-white">
+        <div className="container space-y-13 sm:space-y-20 xl:space-y-30 text-center text-white">
           <div>
             <h2 className="text-3xl sm:text-5xl mb-6 sm:mb-20 font-EstedadBold font-bold">
               <Typewriter
