@@ -23,6 +23,7 @@ export default function LastCourses() {
             desc="سکوی پرتاپ شما به سمت موفقیت"
             btnTitle="تمامی دوره ها"
             btnHref="courses/1"
+            Page={"Index"}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">

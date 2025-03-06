@@ -23,6 +23,7 @@ export default function PresellCourses() {
         <SectionHeader
           title="دوره های در حال پیش فروش"
           desc="متن تستی برای توضیحات دوره های پیش فروش"
+          Page={"Index"}
         />
 
         <Swiper

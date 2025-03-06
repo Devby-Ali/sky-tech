@@ -6,6 +6,7 @@ import {
   HiBars3,
   HiChevronLeft,
   HiChevronRight,
+  HiMiniChevronLeft,
   HiOutlineArrowLeftEndOnRectangle,
   HiOutlineChatBubbleLeftEllipsis,
   HiOutlineFolder,
@@ -200,7 +201,7 @@ export default function Header() {
         </div>
       </div>
 
-      <header className="md:fixed md:flex md:top-5 2xl:top-7 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-97/100 lg:w-94/100 h-30 2xl:h-32 md:mx-auto md:rounded-2xl bg-linear-to-l from-sky-400/10 from-0% via-transparent via-50% md:via-65% to-sky-400/10 to-100% backdrop-blur-[3px] shadow-md">
+      <header className="md:fixed md:flex md:top-5 2xl:top-7 md:right-0 md:left-0 z-40 justify-between items-center w-full md:w-97/100 lg:w-94/100 h-30 2xl:h-32 md:mx-auto md:rounded-2xl bg-linear-to-l from-sky-400/15 dark:from-sky-400/5 from-0% via-transparent via-50% md:via-65% to-sky-400/15 dark:to-sky-400/5 to-100% backdrop-blur-[6px] shadow-md">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-10 py-4">
             <div
@@ -246,8 +247,8 @@ export default function Header() {
                             {menu.title}
                             {menu.submenus.length !== 0 && (
                               <>
-                                <HiChevronLeft className="mt-1 xl:mr-1" />
-                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover text-slate-900 dark:text-white font-EstedadLight">
+                                <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
+                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover text-slate-900 dark:text-white font-EstedadLight -mr-[.5px]">
                                   {menu.submenus.map((submenu) => (
                                     <li key={menu._id}>
                                       <Link

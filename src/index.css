@@ -91,7 +91,7 @@
 @utility main-header__dropdown {
   opacity: 0;
   visibility: hidden;
-  @apply absolute top-24 -right-4 w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[5px] text-white transition-all  rounded-4xl rounded-br-3xl py-4 border-b-5 border-r-5 border-sky-600 delay-75 z-50 *:first:rounded-tr-2xl *:first:hover:-ml-[10px] *:last:rounded-br-lg *:last:rounded-bl-2xl;
+  @apply absolute top-24 -right-4 w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[7px] text-white transition-all rounded-4xl rounded-br-3xl py-4 border-b-5 border-r-5 border-sky-600 delay-75 z-50 *:first:rounded-tr-2xl *:first:hover:-ml-[10px] *:last:rounded-br-lg *:last:rounded-bl-2xl;
 }
 
 @utility main-header__dropdown-hover {
@@ -103,7 +103,7 @@
 @utility header__dropdown {
   opacity: 0;
   visibility: hidden;
-  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[5px] text-white transition-all  rounded-4xl rounded-br-none py-4 px-3 border-t-5 border-l-5 border-sky-600 delay-150 *:hover:text-purple-500 *:dark:hover:text-purple-400 
+  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[7px] text-white transition-all  rounded-4xl rounded-br-none py-4 px-3 border-t-5 border-l-5 border-sky-600 delay-150 *:hover:text-purple-500 *:dark:hover:text-purple-400 
 }
 
 @utility main-header__dropdown-item {

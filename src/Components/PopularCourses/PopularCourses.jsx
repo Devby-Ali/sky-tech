@@ -24,6 +24,7 @@ export default function PopularCourses() {
         <SectionHeader
           title="محبوب ترین دوره ها"
           desc="دوره های محبوب بر اساس امتیاز دانشجوها"
+          Page={"Index"}
         />
 
         <Swiper

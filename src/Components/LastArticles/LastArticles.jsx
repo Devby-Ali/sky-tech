@@ -22,6 +22,7 @@ export default function LastArticles() {
           desc="پیش به سوی ارتقای دانش"
           btnTitle="مشاهده همه مقالات"
           btnHref="articles/1"
+          Page={"Index"}
         />
 
         <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">

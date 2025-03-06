@@ -115,7 +115,7 @@ export default function Landing({ info }) {
   };
 
   return (
-    <section className="relative bg-landing pb-28 xl:pb-24  2xl:pb-48 overflow-hidden mb-14 sm:mb-36 lg:mb-48">
+    <section className="relative bg-landing pb-28 xl:pb-24 2xl:pb-38 overflow-hidden mb-14 sm:mb-36 lg:mb-48 2xl:pt-2">
       <div
         className={`nav fixed top-0 bottom-0 w-100 min-h-screen px-9 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-100"
@@ -225,7 +225,7 @@ export default function Landing({ info }) {
         </div>
       </div>
 
-      <header className="lg:container md:flex justify-between items-center w-full md:mx-auto mb-10 sm:mb-16 md:mb-24">
+      <header className="lg:container md:flex justify-between items-center w-full md:mx-auto mb-10 sm:mb-16 md:mb-20 2xl:mb-28">
         <div className="w-full h-full">
           <div className="h-full flex items-center justify-between px-12 py-4">
             <div
@@ -267,7 +267,7 @@ export default function Landing({ info }) {
                             className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] duration-200"
                           >
                             {menu.title}
-                            {menu.submenus.length !== 0 && (
+                            {menu.submenus.length && (
                               <>
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
                                 <ul className="header__dropdown group-hover/submenu:header__dropdown-hover">
@@ -421,7 +421,7 @@ export default function Landing({ info }) {
         </div>
       </header>
       <div className="flex-center">
-        <div className="container space-y-13 sm:space-y-20 xl:space-y-30 text-center text-white">
+        <div className="container space-y-13 sm:space-y-20 xl:space-y-30 2xl:space-y-40 text-center text-white">
           <div>
             <h2 className="text-3xl sm:text-5xl mb-6 sm:mb-20 font-EstedadBold font-bold">
               <Typewriter
@@ -468,7 +468,7 @@ export default function Landing({ info }) {
               </form>
             </div>
           </div>
-          <div className="flex px-10 sm:px-20 md:px-0 max-w-[65rem] mx-auto justify-between items-center *:text-white/45">
+          <div className="flex px-10 sm:px-20 md:px-0 max-w-[65rem] mx-auto justify-between items-center *:text-white/45 md:mb-8">
             <div className="flex-center flex-col">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -484,7 +484,7 @@ export default function Landing({ info }) {
               </span>
             </div>
 
-            <div className="flex-center flex-col">
+            <div className="flex-center flex-col 2xl:mb-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="size-16 sm:size-24 lg:size-32"

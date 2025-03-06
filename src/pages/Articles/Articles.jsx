@@ -81,7 +81,7 @@ export default function Articles() {
                   className="sort-btn "
                   role="button"
                 >
-                  ارزان ترین
+                  جدیدترین
                 </a>
                 <a
                   href="javascript:setArchiveSort('expensive', 'گران ترین')"
@@ -89,7 +89,7 @@ export default function Articles() {
                   className="sort-btn "
                   role="button"
                 >
-                  گران ترین
+                  ویژه
                 </a>
                 <a
                   href="javascript:setArchiveSort('popular', 'پرمخاطب ها')"
