@@ -21,7 +21,7 @@ export default function SectionHeader({
             className={`font-EstedadBold ${
               Page
                 ? "sm:bg-gradient-to-l from-sky-600/25 dark:from-sky-500/5 to-transparent pr-4 py-1"
-                : "sm:border-b-1 sm:border-t-1 sm:border-r-1 sm:border-sky-500 pl-10 pr-9 pt-1.5 sm:pb-3 rounded-xl sm:bg-gradient-to-l from-sky-600/25 dark:from-sky-500/15 to-transparent"
+                : "sm:border-b-1 sm:border-t-1 sm:border-r-1 sm:border-sky-500/20 pl-10 pr-9 pt-1.5 sm:pb-3 rounded-xl sm:bg-gradient-to-l from-sky-600/25 dark:from-sky-500/15 to-transparent"
             } text-[2.4rem] sm:text-[2.5rem]`}
           >
             {title}

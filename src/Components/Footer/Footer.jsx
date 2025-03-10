@@ -46,7 +46,7 @@ export default function Footer() {
   return (
     <footer className="mt-40 bg-white dark:bg-slate-800 text-slate-800 dark:text-white/70 sm:mt-60 py-10 md:pt-16 pb-12 sm:pb-16">
       <div className="container">
-        <div className="pb-8 mb-8 sm:pb-16 sm:mb-16 border-b border-b-gray-400">
+        <div className="pb-8 mb-8 sm:pb-16 sm:mb-16 border-b border-b-slate-400/60">
           <div className="flex items-center justify-between">
             <Link to={"/"} className="flex items-end text-sky-500">
               <div className="rotate-[40deg] mb-1 sm:mb-2">
@@ -74,14 +74,14 @@ export default function Footer() {
             <div className="flex gap-x-4 sm:gap-x-5">
               <a
                 href="https://"
-                className="flex-center text-[2.6rem] text-white dark:text-slate-800 bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 hover:bg-sky-500"
+                className="flex-center text-[2.6rem] text-white dark:text-slate-800 bg-slate-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 hover:bg-sky-500"
                 rel="nofollow"
               >
                 <FaInstagram />
               </a>
               <a
                 href="https://"
-                className="flex-center text-[2.6rem] text-white dark:text-slate-800 bg-gray-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 *:mt-0.5 *:mr-0.5 hover:bg-sky-500"
+                className="flex-center text-[2.6rem] text-white dark:text-slate-800 bg-slate-400 p-1 rounded-full w-12 h-12 sm:w-16 sm:h-16 *:mt-0.5 *:mr-0.5 hover:bg-sky-500"
                 rel="nofollow"
               >
                 <FaTelegramPlane />
@@ -122,10 +122,10 @@ export default function Footer() {
                 عضو شوید!
               </span>
               <form action="#" className="flex flex-wrap">
-                <div className="flex items-center justify-between p-3 pr-4 bg-[#333c4c]/15 dark:bg-[#333c4c] rounded-md">
+                <div className="flex items-center justify-between p-3 pr-4 bg-slate-400/15 dark:bg-slate-700/70 rounded-md">
                   <Input
                     id="email"
-                    className="bg-transparent placeholder-white/70 outline-hidden"
+                    className="bg-transparent placeholder-slate-400 outline-hidden"
                     type="email"
                     placeholder="آدرس ایمیل"
                     validations={[emailValidator()]}
