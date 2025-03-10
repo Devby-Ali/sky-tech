@@ -74,9 +74,9 @@ export default function Session() {
             ></video>
           </div>
 
-          <div className="grid grid-cols-12 gap-y-6 gap-x-8 lg:gap-x-10 mt-10 lg:mt-12 text-darkColor dark:text-white">
+          <div className="grid grid-cols-12 gap-y-6 gap-x-8 lg:gap-x-10 mt-10 lg:mt-12 text-slate-900 dark:text-white">
             <div className="col-span-full order-last md:order-none md:col-span-7 xl:col-span-8">
-              <div className="hidden md:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10 mb-9 lg:mb-10">
+              <div className="hidden md:block bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg p-7 sm:p-10 mb-9 lg:mb-10">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-12 sm:mb-16 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
                   <h3 className="font-EstedadBold text-[2rem] md:text-4xl tracking-wide">
@@ -112,7 +112,7 @@ export default function Session() {
               </div>
 
               <div
-                className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10"
+                className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg p-7 sm:p-10"
                 id="lesson-qaa"
               >
                 <div className="flex items-center justify-between mb-6 sm:mb-7">
@@ -196,7 +196,7 @@ export default function Session() {
                       id="editor"
                       dir="rtl"
                       rows="6"
-                      className="w-full block p-8 md:p-9 bg-gray-100 dark:bg-[#333c4c] text-darkColor dark:text-white placeholder:text-stone-1000/70 font-EstedadMedium text-2xl rounded-lg"
+                      className="w-full block p-8 md:p-9 bg-gray-100 dark:bg-[#333c4c] text-slate-900 dark:text-white placeholder:text-stone-1000/70 font-EstedadMedium text-2xl rounded-lg"
                       placeholder="سوال خود را بپرسید ..."
                     ></textarea>
                     <div className="flex items-center justify-between flex-wrap gap-4.5 mt-8 sm:mt-10">
@@ -253,7 +253,7 @@ export default function Session() {
             </div>
 
             <aside className="col-span-full order-first md:order-none md:col-span-5 xl:col-span-4">
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10 md:hidden">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg p-7 sm:p-10 md:hidden">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-12 sm:mb-16 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
                   <h3 className="font-EstedadBold text-[2rem] md:text-5xl tracking-wide">
@@ -288,7 +288,7 @@ export default function Session() {
                 </div>
               </div>
 
-              <div className="bg-sky-50 dark:bg-darkBox text-darkColor dark:text-white rounded-lg p-7 sm:p-10 mt-8 md:mt-0">
+              <div className="bg-sky-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg p-7 sm:p-10 mt-8 md:mt-0">
                 <div className="flex items-center gap-x-4 mb-8 pb-5 border-b border-b-sky-200/60 dark:border-b-white/10 text-5xl">
                   <HiOutlineDocumentText />
                   <span className="font-EstedadMedium text-[2rem]">
@@ -298,7 +298,7 @@ export default function Session() {
                 <div className="*:mb-6 last:-mb-6">
                   <div>
                     <div
-                      className={`flex items-center border-none text-darkBox dark:text-white p-7 transition-colors ${
+                      className={`flex items-center border-none text-slate-800 dark:text-white p-7 transition-colors ${
                         alwaysOpen
                           ? "rounded-t-lg bg-sky-700/70 dark:bg-sky-700"
                           : "rounded-lg bg-white dark:bg-[#333c4c]"
@@ -323,7 +323,7 @@ export default function Session() {
                         alwaysOpen ? "block visible" : "hidden invisible"
                       }`}
                     >
-                      <div className="bg-sky-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20 max-h-[530px] overflow-y-auto">
+                      <div className="bg-sky-50 dark:bg-[#333c4c]/50 text-slate-800/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20 max-h-[530px] overflow-y-auto">
                         {sessions.map((session) => (
                           <>
                             <div className="lesson font-EstedadMedium mb-8 pt-6">
@@ -349,7 +349,7 @@ export default function Session() {
 
                   <div>
                     <div
-                      className={`flex items-center border-none text-darkBox dark:text-white p-7 transition-colors ${
+                      className={`flex items-center border-none text-slate-800 dark:text-white p-7 transition-colors ${
                         open === 1
                           ? "rounded-t-lg bg-sky-700/70 dark:bg-sky-700"
                           : "rounded-lg bg-white dark:bg-[#333c4c]"
@@ -374,7 +374,7 @@ export default function Session() {
                         open === 1 ? "block visible" : "hidden invisible"
                       }`}
                     >
-                      <div className="bg-sky-50 dark:bg-[#333c4c]/50 text-darkBox/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20">
+                      <div className="bg-sky-50 dark:bg-[#333c4c]/50 text-slate-800/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20">
                         <div className="lesson font-EstedadMedium mb-8 pt-6">
                           <a href="/" className="block line-clamp-2 mb-3">
                             معرفی Emmet
@@ -395,27 +395,27 @@ export default function Session() {
               </div>
 
               <div className="grid grid-cols-3 gap-4 mt-8 lg:mt-10">
-                <div className="flex flex-col items-center justify-center bg-white dark:bg-darkBox rounded-lg text-6xl py-8 text-sky-600">
+                <div className="flex flex-col items-center justify-center bg-white dark:bg-slate-800 rounded-lg text-6xl py-8 text-sky-600">
                   <HiOutlineInformationCircle />
-                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6 text-darkBox dark:text-white">
+                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6 text-slate-800 dark:text-white">
                     وضعیت دوره
                   </span>
                   <span className="text-gray-700 dark:text-gray-400 text-[1.4rem]">
                     تکمیل شده
                   </span>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-white dark:bg-darkBox rounded-lg text-6xl py-8 text-sky-600">
+                <div className="flex flex-col items-center justify-center bg-white dark:bg-slate-800 rounded-lg text-6xl py-8 text-sky-600">
                   <HiOutlineClock />
-                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6 text-darkBox dark:text-white">
+                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6 text-slate-800 dark:text-white">
                     زمان دوره
                   </span>
                   <span className="text-gray-700 dark:text-gray-400 text-[1.4rem]">
                     00:33
                   </span>
                 </div>
-                <div className="flex flex-col items-center justify-center bg-white dark:bg-darkBox rounded-lg text-6xl py-8 text-sky-600">
+                <div className="flex flex-col items-center justify-center bg-white dark:bg-slate-800 rounded-lg text-6xl py-8 text-sky-600">
                   <HiOutlineVideoCamera />
-                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6 text-darkBox dark:text-white">
+                  <span className="block font-EstedadMedium text-[1.7rem] mt-5 mb-6 text-slate-800 dark:text-white">
                     جلسات دوره
                   </span>
                   <span className="text-gray-700 dark:text-gray-400 text-[1.4rem]">
@@ -424,7 +424,7 @@ export default function Session() {
                 </div>
               </div>
 
-              <div className="text-2xl/10 bg-white dark:bg-darkBox p-8 sm:p-9 rounded-lg mt-8 lg:mt-10">
+              <div className="text-2xl/10 bg-white dark:bg-slate-800 p-8 sm:p-9 rounded-lg mt-8 lg:mt-10">
                 <p className="mb-8">
                   وقتی 70 درصد یک ویدیو را بصورت آنلاین تماشا میکنید، میزان
                   پیشرفت شما بصورت خودکار بروزرسانی میشود.
@@ -436,7 +436,7 @@ export default function Session() {
                 <progress className="w-full" value="23" max="100"></progress>
               </div>
 
-              <div className="bg-white dark:bg-darkBox p-8 sm:p-9 rounded-lg mt-8 lg:mt-10">
+              <div className="bg-white dark:bg-slate-800 p-8 sm:p-9 rounded-lg mt-8 lg:mt-10">
                 <img
                   src="/"
                   className="mx-auto rounded-full object-cover"
@@ -458,7 +458,7 @@ export default function Session() {
                 </a>
               </div>
 
-              <div className="bg-white dark:bg-darkBox p-8 sm:p-9 text-center rounded-lg mt-8 lg:mt-10">
+              <div className="bg-white dark:bg-slate-800 p-8 sm:p-9 text-center rounded-lg mt-8 lg:mt-10">
                 <div className="flex-center w-[90px] h-[90px] mx-auto bg-sky-50 dark:bg-sky-500/10 text-6xl text-sky-600 rounded-full">
                   <HiOutlineArrowDownTray />
                 </div>

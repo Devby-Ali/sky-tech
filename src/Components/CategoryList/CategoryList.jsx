@@ -23,7 +23,7 @@ export default function CoursesFilter() {
     <div>
       {!filterOpen ? (
         // Category Filter Close
-        <div className="hidden md:flex items-center justify-between h-[6.8rem] bg-white dark:bg-darkBox rounded-[1.2rem] p-7 md:px-8">
+        <div className="hidden md:flex items-center justify-between h-[6.8rem] bg-white dark:bg-slate-800 rounded-[1.2rem] p-7 md:px-8">
           <div className="flex items-center gap-x-4 font-EstedadMedium text-[1.7rem] select-none">
             <div className="text-[2.7rem]">
               <HiOutlineFolderOpen />
@@ -37,10 +37,10 @@ export default function CoursesFilter() {
       ) : (
         // Category Filter Open
         <div
-          className="bg-white dark:bg-darkBox rounded-[1.2rem] hidden md:block overflow-hidden"
+          className="bg-white dark:bg-slate-800 rounded-[1.2rem] hidden md:block overflow-hidden"
           id="category-collapse"
         >
-          <div className="hidden md:flex items-center justify-between h-[6.8rem] bg-white dark:bg-darkBox py-7 mx-8 border-b border-b-gray-300 dark:border-b-white/10">
+          <div className="hidden md:flex items-center justify-between h-[6.8rem] bg-white dark:bg-slate-800 py-7 mx-8 border-b border-b-gray-300 dark:border-b-white/10">
             <div className="flex items-center gap-x-4 font-EstedadMedium text-[1.7rem] select-none">
               <div className="text-[2.7rem]">
                 <HiOutlineFolderOpen />

@@ -39,10 +39,10 @@ export default function SectionHeader({
             to={`/${btnHref}`}
             className="relative flex text-[1.6rem] tracking-tighter text-sky-700 dark:text-sky-500 hover:text-purple-400 group"
           >
-            <div className="font-Dirooz pb-1 pl-3 border-b-2 border-b-sky-600 dark:border-b-sky-600 group-hover:border-b-purple-400/80 transition-colors">
+            <div className="font-Dirooz pb-1 pl-3 border-b-2 border-b-sky-600 dark:border-b-sky-600 group-hover:border-b-purple-400/80 transition-all">
               {btnTitle}
             </div>
-            <HiArrowUpLeft className="absolute -left-[1.8rem] -bottom-1 text-4xl transition-colors" />
+            <HiArrowUpLeft className="absolute -left-[1.8rem] -bottom-1 text-4xl transition-all" />
           </Link>
         </div>
       )}

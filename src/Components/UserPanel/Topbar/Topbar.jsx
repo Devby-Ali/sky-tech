@@ -96,34 +96,34 @@ export default function Topbar() {
   return (
     <>
       <div
-        className={`nav fixed top-0 bottom-0 w-[240px] min-h-screen px-7 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 md:hidden ${
+        className={`nav fixed top-0 bottom-0 w-[240px] min-h-screen px-7 bg-white dark:bg-slate-900 overflow-y-auto transition-all z-50 md:hidden ${
           navOpen ? "right-0" : "-right-[240px]"
         }`}
       >
-        <div className="sticky top-0 pt-1 transition-all text-darkColor dark:text-white h-[90vh]">
-          <div className="flex items-center justify-between xl:gap-x-14 text-darkColor dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
+        <div className="sticky top-0 pt-1 transition-all text-slate-900 dark:text-white h-[90vh]">
+          <div className="flex items-center justify-between xl:gap-x-14 text-slate-900 dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
             <Link to={"/"} className="text-sky-600 dark:text-sky-500 size-24">
-            <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z"></path>
-                  <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
-                  <path d="m9 11 3 3 3-3"></path>
-                </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                <path d="m9 11 3 3 3-3"></path>
+              </svg>
             </Link>
             <div className="flex items-center gap-x-6 text-[2.75rem] text-stone-1000 dark:text-white">
               <div
-                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-slate-800"
                 onClick={() => themeHandler()}
               >
                 <HiOutlineSun className="hidden dark:inline-block" />
                 <HiOutlineMoon className="inline-block dark:hidden" />
               </div>
               <div
-                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-darkBox"
+                className="flex-center p-2 rounded-lg toggle-theme cursor-pointer bg-stone-100 dark:bg-slate-800"
                 onClick={navOpenHandler}
               >
                 <HiChevronRight />
@@ -200,7 +200,7 @@ export default function Topbar() {
         <div className="h-full w-full flex items-center justify-between px-6 lg:px-12 xl:px-24 py-4">
           <div className="flex items-center gap-x-6 2xl:gap-x-8">
             <div
-              className="md:hidden p-3 bg-gray-300/40 dark:bg-white/10 text-darkColor dark:text-white rounded-lg cursor-pointer text-4xl"
+              className="md:hidden p-3 bg-gray-300/40 dark:bg-white/10 text-slate-900 dark:text-white rounded-lg cursor-pointer text-4xl"
               onClick={navOpenHandler}
             >
               <HiBars3 />
@@ -214,10 +214,10 @@ export default function Topbar() {
                 className="w-[70%] bg-transparent"
                 placeholder="جستجو ..."
               />
-              <FaSearch className="text-3xl text-darkColor/70 dark:text-white/60 cursor-pointer" />
+              <FaSearch className="text-3xl text-slate-900/70 dark:text-white/60 cursor-pointer" />
             </form>
 
-            <div className="hidden lg:block text-nowrap text-darkColor dark:text-white lg:text-3xl mr-3">
+            <div className="hidden lg:block text-nowrap text-slate-900 dark:text-white lg:text-3xl mr-3">
               <h4>
                 {userInfo} عزیز‚ به پنل کاربری{" "}
                 <span className="text-sky-400 mx-1.5">Sky Tech</span> خوش اومدی
@@ -225,7 +225,7 @@ export default function Topbar() {
             </div>
           </div>
 
-          <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-gray-300/40 dark:bg-white/5 text-4xl text-darkColor dark:text-white">
+          <div className="hidden xs:flex items-center gap-x-3 xl:px-6 p-3 xl:py-4  rounded-lg mr-4 bg-gray-300/40 dark:bg-white/5 text-4xl text-slate-900 dark:text-white">
             <Link to="#" className="text-2xl">
               {userInfo}
             </Link>
@@ -234,7 +234,7 @@ export default function Topbar() {
 
           <Link
             to="#"
-            className={`relative flex xs:hidden mr-6 items-center justify-center p-3 text-darkColor dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer ${
+            className={`relative flex xs:hidden mr-6 items-center justify-center p-3 text-slate-900 dark:text-white text-4xl rounded-lg transition-all duration-200 cursor-pointer ${
               openCollapseInfo
                 ? "bg-white dark:bg-[#333c4c]"
                 : "bg-gray-300/40 dark:bg-white/10"
@@ -247,7 +247,7 @@ export default function Topbar() {
                 openCollapseInfo ? "block visible" : "hidden invisible"
               }`}
             >
-              <div className="py-8 px-10 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80">
+              <div className="py-8 px-10 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80">
                 <span className="text-2xl">{userInfo}</span>
               </div>
             </div>

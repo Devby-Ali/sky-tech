@@ -248,8 +248,8 @@ export default function CourseInfo() {
               },
             ]}
           />
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 md:mt-15 rounded-3xl p-7 lg:p-0 bg-white dark:bg-darkBox lg:bg-transparent! border border-gray-100 dark:border-none lg:border-none">
-            <div className="flex flex-col lg:gap-56 justify-between order-2 lg:order-1 text-darkColor dark:text-white">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 md:mt-15 rounded-3xl p-7 lg:p-0 bg-white dark:bg-slate-800 lg:bg-transparent! border border-gray-100 dark:border-none lg:border-none">
+            <div className="flex flex-col lg:gap-56 justify-between order-2 lg:order-1 text-slate-900 dark:text-white">
               <div>
                 <h1 className="font-EstedadBold text-4xl sm:text-5xl mb-7">
                   {courseDetails.name}
@@ -393,7 +393,7 @@ export default function CourseInfo() {
                 />
               </div>
               {/* <!-- Description --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
                   <span className="hidden md:inline-block text-sky-700 dark:text-sky-500 text-6xl">
@@ -681,7 +681,7 @@ export default function CourseInfo() {
                     <p>پس همه چی حله…</p>
                   </div>
 
-                  <div className="absolute bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-70% to-white/0 dark:to-darkBox/0 to-100%"></div>
+                  <div className="absolute bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-slate-800 from-0% via-white/[55%] dark:via-slate-800/[55%] via-70% to-white/0 dark:to-slate-800/0 to-100%"></div>
                 </div>
                 <Button
                   type="button"
@@ -694,7 +694,7 @@ export default function CourseInfo() {
                 </Button>
               </div>
               {/* <!-- Headlines --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
                   <div className="hidden md:inline-block ml-1 text-sky-700 dark:text-sky-500 text-7xl">
@@ -717,11 +717,11 @@ export default function CourseInfo() {
                       }`}
                       onClick={() => handleOpen(1)}
                     >
-                      <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
+                      <span className="topic__title text-[1.6rem] text-slate-900 dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
                         جلسات دوره
                       </span>
                       <div className="flex items-center gap-x-2.5 shrink-0">
-                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white *:transition-colors">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-slate-900 dark:text-white *:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
@@ -743,7 +743,7 @@ export default function CourseInfo() {
                       {sessions.map((session, index) => (
                         <div
                           key={session._id}
-                          className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight"
+                          className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-slate-900 dark:text-white font-EstedadLight"
                         >
                           {session.free === 1 ||
                           courseDetails.isUserRegisteredToThisCourse ? (
@@ -802,11 +802,11 @@ export default function CourseInfo() {
                       }`}
                       onClick={() => handleOpen(2)}
                     >
-                      <span className="topic__title text-[1.6rem] text-darkColor dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
+                      <span className="topic__title text-[1.6rem] text-slate-900 dark:text-white inline-block font-EstedadLight lg:line-clamp-3">
                         سرفصل ها
                       </span>
                       <div className="flex items-center gap-x-2.5 shrink-0">
-                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-darkColor dark:text-white *:transition-colors">
+                        <div className="topic__time ltr-text hidden lg:flex items-center gap-x-1.5 text-xl font-EstedadThin -tracking-tighter text-slate-900 dark:text-white *:transition-colors">
                           <span>23 lesson</span>
                           <span className="topic__time-dot block size-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
                           <span>3h 39m </span>
@@ -825,7 +825,7 @@ export default function CourseInfo() {
                         open === 2 ? "block visible" : "hidden invisible"
                       } divide-y divide-gray-600 -mt-1`}
                     >
-                      <div className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                      <div className="flex last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-slate-900 dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                           <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                             1
@@ -844,7 +844,7 @@ export default function CourseInfo() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-slate-900 dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                           <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                             1
@@ -863,7 +863,7 @@ export default function CourseInfo() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-darkColor dark:text-white font-EstedadLight">
+                      <div className="flex first:rounded-t-2xl last:rounded-b-2xl items-center justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-7 py-8 group bg-stone-100 dark:bg-[#333c4c] text-slate-900 dark:text-white font-EstedadLight">
                         <div className="flex items-center grow gap-x-3 md:gap-x-3.5 *:transition-colors">
                           <div className="flex-center w-12 h-9 md:h-10 text-xl font-EstedadBold bg-white dark:bg-white/10 group-hover:bg-blue-400 group-hover:text-white rounded-xs">
                             1
@@ -888,7 +888,7 @@ export default function CourseInfo() {
               </div>
               {/* <!-- Related Courses --> */}
               {relatedCourses.length !== 0 && (
-                <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-10 mt-12">
+                <div className="hidden lg:block bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-3xl p-10 mt-12">
                   <div className="mt-2 sm:mt-0 flex items-center gap-x-3 mb-16 sm:mb-20 relative">
                     <span className="absolute -right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
                     <span className="text-sky-700 dark:text-sky-500 mx-2 text-[3.4rem]">
@@ -899,7 +899,7 @@ export default function CourseInfo() {
                     </div>
                   </div>
 
-                  <div className="space-y-4 md:space-y-5 text-darkColor dark:text-white">
+                  <div className="space-y-4 md:space-y-5 text-slate-900 dark:text-white">
                     {relatedCourses.map((course) => (
                       <>
                         <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
@@ -937,7 +937,7 @@ export default function CourseInfo() {
             {/* <!-- Aside --> */}
             <aside className="col-span-12 lg:col-span-4 space-y-12">
               {/* <!-- Students & Rating & Progress --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl p-7">
                 <div className="flex gap-x-6">
                   <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-3 gap-x-7 grow p-4 sm:p-6 bg-gray-200 dark:bg-[#333c4c] rounded-xl">
                     <div className="text-6xl md:text-7xl text-blue-500">
@@ -971,7 +971,7 @@ export default function CourseInfo() {
                 </div>
               </div>
               {/* <!-- Course Teacher --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl pt-10 px-7 pb-12 text-center">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl pt-10 px-7 pb-12 text-center">
                 <img
                   className="block mb-6 mx-auto object-cover rounded-full"
                   width="90"
@@ -991,7 +991,7 @@ export default function CourseInfo() {
                 </Button>
               </div>
               {/* <!-- Course Short Link --> */}
-              <div className="hidden lg:block bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-2xl p-7 text-center">
+              <div className="hidden lg:block bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl p-7 text-center">
                 <span className="font-EstedadMedium text-2xl">
                   لینک کوتاه آموزش
                 </span>

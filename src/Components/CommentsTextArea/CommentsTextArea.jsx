@@ -28,7 +28,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
 
   return (
     <div
-      className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12"
+      className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-3xl p-7 sm:p-10 mt-12"
       id="course-comments"
     >
       {/* <!-- Comment Head --> */}
@@ -207,7 +207,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
                     <div className="mt-4 space-y-4">
                       <div
                         id="comment-56733"
-                        className="p-7 md:p-5 bg-gray-300 dark:bg-darkBox rounded-xl"
+                        className="p-7 md:p-5 bg-gray-300 dark:bg-slate-800 rounded-xl"
                       >
                         <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-400/50 dark:border-white/10">
                           <div className="flex items-center gap-x-3.5">

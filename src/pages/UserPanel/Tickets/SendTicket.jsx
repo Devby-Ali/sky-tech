@@ -76,7 +76,7 @@ export default function SendTicket() {
 
   return (
     <main className="pb-5 md:pb-8 mx-auto mt-8 md:mt-14 2xl:px-24">
-      <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-xl mb-8">
+      <div className="flex items-center justify-between bg-white dark:bg-slate-800 h-20 md:h-28 pl-2.5 rounded-xl mb-8">
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
           <span className="w-1 md:w-1.5 h-full bg-sky-600 rounded-r-full shadowLightBlue"></span>
           <span className="text-sky-500 text-2xl md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
@@ -100,7 +100,7 @@ export default function SendTicket() {
             <select
               name="department"
               id="department"
-              className="w-full sm:w-1/2 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
+              className="w-full sm:w-1/2 h-13 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
               onChange={(event) => {
                 getDepartmentsSub(event.target.value);
                 setDepartmentID(event.target.value);
@@ -117,7 +117,7 @@ export default function SendTicket() {
             <select
               name="department"
               id="department"
-              className="w-full sm:w-1/2 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
+              className="w-full sm:w-1/2 h-13 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
               onChange={(event) => setTicketTypeID(event.target.value)}
             >
               <option>نوع تیکت را انتخاب کنید:</option>
@@ -133,7 +133,7 @@ export default function SendTicket() {
           <div className="flex flex-wrap sm:flex-nowrap gap-8 md:gap-9">
             <input
               type="text"
-              className="w-full sm:w-1/2 lg:w-full placeholder:text-darkBox/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-white dark:bg-darkBox text-2xl p-5 rounded-lg"
+              className="w-full sm:w-1/2 lg:w-full placeholder:text-slate-800/70 dark:placeholder:text-white/60 text-slate-900 dark:text-white bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg"
               placeholder="موضوع تیکت:"
               onChange={(event) => setTitle(event.target.value)}
               id="title"
@@ -143,7 +143,7 @@ export default function SendTicket() {
               <select
                 name="department"
                 id="department"
-                className="w-full sm:w-1/2 lg:w-1/3 h-13 text-darkBox/70 dark:text-white/60 bg-white dark:bg-darkBox text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
+                className="w-full sm:w-1/2 lg:w-1/3 h-13 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
                 onChange={(event) => setCourseID(event.target.value)}
               >
                 <option>دوره را انتخاب کنید:</option>
@@ -157,7 +157,7 @@ export default function SendTicket() {
           </div>
 
           <textarea
-            className="w-full min-h-72 placeholder:text-darkBox/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-white dark:bg-darkBox text-2xl p-5 rounded-lg"
+            className="w-full min-h-72 placeholder:text-slate-800/70 dark:placeholder:text-white/60 text-slate-900 dark:text-white bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg"
             placeholder="متن تیکت:"
             onChange={(event) => setBody(event.target.value)}
             id="text"

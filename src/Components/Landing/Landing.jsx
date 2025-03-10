@@ -117,11 +117,11 @@ export default function Landing({ info }) {
   return (
     <section className="relative bg-landing pb-28 xl:pb-24 2xl:pb-38 overflow-hidden mb-14 sm:mb-36 lg:mb-48 2xl:pt-2">
       <div
-        className={`nav fixed top-0 bottom-0 w-100 min-h-screen px-9 bg-white dark:bg-darkColor overflow-y-auto transition-all z-50 lg:hidden ${
+        className={`nav fixed top-0 bottom-0 w-100 min-h-screen px-9 bg-white dark:bg-slate-900 overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-100"
         }`}
       >
-        <div className="flex items-center text-[1.7rem] justify-between gap-x-4 h-20 mb-3 text-darkColor dark:text-white px-1 pt-16 pb-14">
+        <div className="flex items-center text-[1.7rem] justify-between gap-x-4 h-20 mb-3 text-slate-900 dark:text-white px-1 pt-16 pb-14">
           {authContext.userInfos.name ? (
             <Link to="/my-account" className="mr-3 hover:text-sky-500">
               {authContext.userInfos.name}
@@ -143,7 +143,7 @@ export default function Landing({ info }) {
           </div>
         </div>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="*:transition-all px-3 *:py-3 space-y-1.5 mt-5 mb-5 text-[1.4rem] text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="*:transition-all px-3 *:py-3 space-y-1.5 mt-5 mb-5 text-[1.4rem] text-slate-900 dark:text-white border-b-slate-800/30">
           <li>
             <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">
               دسترسی سریع
@@ -177,7 +177,7 @@ export default function Landing({ info }) {
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="*:transition-all px-3 *:py-3 *:px-5 *:-mx-5 space-y-1.5 mb-5 mt-5 text-[1.4rem] text-darkColor dark:text-white border-b-darkBox/30">
+        <ul className="*:transition-all px-3 *:py-3 *:px-5 *:-mx-5 space-y-1.5 mb-5 mt-5 text-[1.4rem] text-slate-900 dark:text-white border-b-slate-800/30">
           <li>
             <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">
               دسته بندی ها
@@ -211,7 +211,7 @@ export default function Landing({ info }) {
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
         <div
-          className="px-2.5 py-6 toggle-theme text-darkColor dark:text-white text-[1.4rem] cursor-pointer"
+          className="px-2.5 py-6 toggle-theme text-slate-900 dark:text-white text-[1.4rem] cursor-pointer"
           onClick={() => themeHandler()}
         >
           <span className="hidden dark:flex items-center gap-x-3">
@@ -332,11 +332,11 @@ export default function Landing({ info }) {
                         openCollapse ? "block visible" : "hidden invisible"
                       }`}
                     >
-                      <div className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-darkBox text-darkColor dark:text-white/80 rounded-lg">
-                        <span className="text-3xl inline-block w-full pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-darkBox/30">
+                      <div className="pt-8 pb-6 px-6 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80 rounded-lg">
+                        <span className="text-3xl inline-block w-full pr-4 pb-10 pt-3 border-b dark:border-b-white/15 border-b-slate-800/30">
                           {authContext.userInfos.name}
                         </span>
-                        <ul className="*:transition-all *:pr-4 *:py-4 py-4 border-b dark:border-b-white/15 border-b-darkBox/30">
+                        <ul className="*:transition-all *:pr-4 *:py-4 py-4 border-b dark:border-b-white/15 border-b-slate-800/30">
                           {authContext.userInfos.role === "ADMIN" && (
                             <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                               <Link
@@ -411,7 +411,7 @@ export default function Landing({ info }) {
               ) : (
                 <Link
                   to="/login"
-                  className="flex-center w-[4.5rem] h-[4.5rem] text-darkColor dark:text-white text-5xl rounded-lg mr-4 transition-all duration-200"
+                  className="flex-center w-[4.5rem] h-[4.5rem] text-slate-900 dark:text-white text-5xl rounded-lg mr-4 transition-all duration-200"
                 >
                   <HiOutlineArrowLeftEndOnRectangle />
                 </Link>
@@ -539,11 +539,11 @@ export default function Landing({ info }) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="curve-footer"
-        width="100"
-        height="22"
+        width="115"
+        height="30"
         fill="none"
         viewBox="0 0 100 22"
-        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block w-[150px] h-[36px] text-stone-100 dark:text-slate-900 rotate-180 z-10"
+        className="absolute -bottom-1 right-0 left-0 mx-auto hidden lg:inline-block text-stone-100 dark:text-slate-900 rotate-180 z-10"
       >
         <path
           fill="currentColor"

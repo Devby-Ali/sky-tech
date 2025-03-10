@@ -103,7 +103,7 @@
 @utility header__dropdown {
   opacity: 0;
   visibility: hidden;
-  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[7px] text-white transition-all  rounded-4xl rounded-br-none py-4 px-3 border-t-5 border-l-5 border-sky-600 delay-150 *:hover:text-purple-500 *:dark:hover:text-purple-400 
+  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[7px] text-white transition-all  rounded-4xl rounded-br-none py-4 px-3 border-t-5 border-l-5 border-sky-600 delay-150 *:hover:text-purple-500 *:dark:hover:text-purple-400;
 }
 
 @utility main-header__dropdown-item {
@@ -139,7 +139,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     border-radius: 1rem;
-    @apply bg-white dark:bg-darkBox text-darkColor dark:text-white/80;
+    @apply bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80;
   }
 
   .breadcrumb__item {
@@ -224,21 +224,6 @@
 
 /* ============================Custom Theme============================ */
 @theme {
-  --color-darkColor: #111827;
-  --color-darkBox: oklch(0.279 0.041 260.031);
-  /* ---------------------------------------------------------------------- */
-  --color-purpleHeart-50: #f5f4fe;
-  --color-purpleHeart-100: #eeeafd;
-  --color-purpleHeart-200: #ddd8fc;
-  --color-purpleHeart-300: #c5b9f9;
-  --color-purpleHeart-400: #a891f4;
-  --color-purpleHeart-500: #8b64ee;
-  --color-purpleHeart-600: #7b43e4;
-  --color-purpleHeart-700: #6c31d0;
-  --color-purpleHeart-800: #5f2bb8;
-  --color-purpleHeart-900: #4b238f;
-  --color-purpleHeart-950: #2d1461;
-  /* ---------------------------------------------------------------------- */
   --color-amber-50: #fcfaea;
   --color-amber-100: #f7ecb4;
   --color-amber-200: #f4e194;

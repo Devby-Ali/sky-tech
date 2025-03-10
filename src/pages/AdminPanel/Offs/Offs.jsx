@@ -126,12 +126,12 @@ export default function Offs() {
       {showCreateOff && (
         <section className="fixed left-0 right-0 md:right-[24rem] top-0 bottom-0 backdrop-blur-xs flex-center overflow-hidden z-50">
           <div className="mx-auto flex flex-col items-center w-min">
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-sky-950/20 dark:bg-slate-950/40 backdrop-blur-xs px-20 py-14 rounded-xl">
+            <div className="flex flex-col items-center text-slate-900 dark:text-white bg-sky-950/20 dark:bg-slate-950/40 backdrop-blur-xs px-20 py-14 rounded-xl">
               <span className="flex items-center justify-between w-full font-EstedadMedium text-4xl mb-20">
                 افزودن کد تخفیف
                 <span
                   onClick={showCreateOffHandler}
-                  className="rounded-full border border-darkColor dark:border-white p-0.5 text-4xl cursor-pointer"
+                  className="rounded-full border border-slate-900 dark:border-white p-0.5 text-4xl cursor-pointer"
                 >
                   <HiXMark />
                 </span>
@@ -169,17 +169,17 @@ export default function Offs() {
                 </div>
                 <div className="h-20 flex items-center px-8 bg-white dark:bg-[#333c4c] rounded-lg">
                   <div className="flex items-center gap-x-2">
-                    <label className="text-darkColor dark:text-white/70">
+                    <label className="text-slate-900 dark:text-white/70">
                       دوره
                     </label>
                     <select
-                      className="text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
+                      className="text-slate-900 dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
                       onChange={(event) => setOffCourse(event.target.value)}
                     >
                       <option value="-1">مدنظر را انتخاب کنید</option>
                       {courses.map((course) => (
                         <option
-                          className="text-darkColor text-[1.8rem]"
+                          className="text-slate-900 text-[1.8rem]"
                           value={course._id}
                           key={course._id}
                         >
@@ -215,7 +215,7 @@ export default function Offs() {
         eventHandler={showCreateOffHandler}
       >
         <div className="pb-2 md:pb-4 md:pr-5 overflow-x-auto">
-          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+          <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-slate-800 h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
             <div className="col-span-2">کد</div>
             <div className="col-span-1">درصد</div>
@@ -233,7 +233,7 @@ export default function Offs() {
               <>
                 <div
                   key={off._id}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
                 >
                   <div className="col-span-1">{index + 1}</div>
 

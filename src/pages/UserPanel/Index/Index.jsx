@@ -29,7 +29,7 @@ export default function Index() {
 
   return (
     <section className="">
-      <div className="flex items-center justify-between gap-y-10 gap-x-8 flex-wrap font-EstedadMedium bg-white dark:bg-darkBox px-8 py-10 sm:px-12 mt-16 md:mt-20 rounded-xl">
+      <div className="flex items-center justify-between gap-y-10 gap-x-8 flex-wrap font-EstedadMedium bg-white dark:bg-slate-800 px-8 py-10 sm:px-12 mt-16 md:mt-20 rounded-xl">
         <div className="flex items-center gap-x-6 w-96 col-span-3">
           <div className="w-24">
             <svg
@@ -59,7 +59,7 @@ export default function Index() {
             <span className="text-2xl sm:text-[1.6rem] text-gray-700 dark:text-gray-400">
               دوره های در حال یادگیری
             </span>
-            <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
+            <span className="text-2xl sm:text-[1.6rem] text-slate-900 dark:text-white">
               {authContext.userInfos.courses ? userCourses.length : 0}
             </span>
           </div>
@@ -108,7 +108,7 @@ export default function Index() {
             <span className="text-2xl sm:text-[1.6rem] text-gray-700 dark:text-gray-400">
               مجموع تیکت های من
             </span>
-            <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
+            <span className="text-2xl sm:text-[1.6rem] text-slate-900 dark:text-white">
               {ticketsCount}
             </span>
           </div>
@@ -194,7 +194,7 @@ export default function Index() {
             <span className="text-2xl sm:text-[1.6rem] text-gray-700 dark:text-gray-400">
               پرسش پاسخ های من
             </span>
-            <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
+            <span className="text-2xl sm:text-[1.6rem] text-slate-900 dark:text-white">
               {ticketsCount}
             </span>
           </div>
@@ -222,7 +222,7 @@ export default function Index() {
             <span className="text-2xl sm:text-[1.6rem] text-gray-700 dark:text-gray-400">
               موجودی کیف پول
             </span>
-            <span className="text-2xl sm:text-[1.6rem] text-darkColor dark:text-white">
+            <span className="text-2xl sm:text-[1.6rem] text-slate-900 dark:text-white">
               {ticketsCount},542,000&nbsp;
               <span className="slms-price_symbol">تومان</span>
             </span>

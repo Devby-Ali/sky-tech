@@ -23,7 +23,7 @@ export default function Pagination({
 
   return (
     <div className="my-12">
-      <ul className="flex-center text-darkColor dark:text-white">
+      <ul className="flex-center text-slate-900 dark:text-white">
         {Array(pagesCount)
           .fill(0)
           .map((item, index) => (

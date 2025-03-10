@@ -61,7 +61,7 @@ export default function EditAccount() {
   return (
     <main className="pb-5 md:pb-8 mx-auto mt-10 md:mt-14 2xl:px-24">
       <form id="edit-account-info" className="block mt-6 md:mt-10">
-        <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-3.5 rounded-md mb-8">
+        <div className="flex items-center justify-between bg-white dark:bg-slate-800 h-20 md:h-28 pl-3.5 rounded-md mb-8">
           <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
             <span className="w-1 md:w-1.5 h-full bg-sky-600 rounded-r-full shadowLightBlue"></span>
             <span className="text-sky-500 text-[1.7rem] md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
@@ -72,86 +72,86 @@ export default function EditAccount() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 md:gap-y-5 md:pr-5">
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
+            <label className="inline-block font-EstedadMedium text-slate-900 dark:text-white text-2xl mb-4">
               نام و نام خانوادگی
             </label>
-            <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
+            <div className="flex items-center bg-white dark:bg-slate-800 p-5 rounded-md">
               <input
                 type="text"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
+                className="w-full placeholder:text-slate-900/70 dark:placeholder:text-white/60 text-slate-900 dark:text-white bg-transparent outline-hidden text-2xl"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
-              <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
+              <div className="my-auto text-5xl text-slate-900/60 dark:text-white/60">
                 <HiOutlineUserCircle />
               </div>
             </div>
           </div>
 
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
+            <label className="inline-block font-EstedadMedium text-slate-900 dark:text-white text-2xl mb-4">
               نام کاربری
             </label>
-            <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
+            <div className="flex items-center bg-white dark:bg-slate-800 p-5 rounded-md">
               <input
                 type="text"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
+                className="w-full placeholder:text-slate-900/70 dark:placeholder:text-white/60 text-slate-900 dark:text-white bg-transparent outline-hidden text-2xl"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
               />
-              <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
+              <div className="my-auto text-5xl text-slate-900/60 dark:text-white/60">
                 <HiOutlineUser />
               </div>
             </div>
           </div>
 
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
+            <label className="inline-block font-EstedadMedium text-slate-900 dark:text-white text-2xl mb-4">
               ایمیل
             </label>
-            <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
+            <div className="flex items-center bg-white dark:bg-slate-800 p-5 rounded-md">
               <input
                 type="email"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
+                className="w-full placeholder:text-slate-900/70 dark:placeholder:text-white/60 text-slate-900 dark:text-white bg-transparent outline-hidden text-2xl"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
+              <div className="my-auto text-5xl text-slate-900/60 dark:text-white/60">
                 <HiOutlineEnvelope />
               </div>
             </div>
           </div>
 
           <div>
-            <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
+            <label className="inline-block font-EstedadMedium text-slate-900 dark:text-white text-2xl mb-4">
               شماره تلفن
             </label>
-            <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
+            <div className="flex items-center bg-white dark:bg-slate-800 p-5 rounded-md">
               <input
                 type="text"
                 id="phone"
-                className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
+                className="w-full placeholder:text-slate-900/70 dark:placeholder:text-white/60 text-slate-900 dark:text-white bg-transparent outline-hidden text-2xl"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
               />
-              <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
+              <div className="my-auto text-5xl text-slate-900/60 dark:text-white/60">
                 <HiOutlineDeviceTablet />
               </div>
             </div>
           </div>
         </div>
         <div className="md:pr-5 mt-7 md:mt-5 lg:mx-36">
-          <label className="inline-block font-EstedadMedium text-darkColor dark:text-white text-2xl mb-4">
+          <label className="inline-block font-EstedadMedium text-slate-900 dark:text-white text-2xl mb-4">
             رمز عبور جدید
           </label>
-          <div className="flex items-center bg-white dark:bg-darkBox p-5 rounded-md">
+          <div className="flex items-center bg-white dark:bg-slate-800 p-5 rounded-md">
             <input
               type="password"
-              className="w-full placeholder:text-darkColor/70 dark:placeholder:text-white/60 text-darkColor dark:text-white bg-transparent outline-hidden text-2xl"
+              className="w-full placeholder:text-slate-900/70 dark:placeholder:text-white/60 text-slate-900 dark:text-white bg-transparent outline-hidden text-2xl"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <div className="my-auto text-5xl text-darkColor/60 dark:text-white/60">
+            <div className="my-auto text-5xl text-slate-900/60 dark:text-white/60">
               <HiOutlineLockClosed />
             </div>
           </div>

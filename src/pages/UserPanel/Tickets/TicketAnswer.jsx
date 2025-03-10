@@ -27,7 +27,7 @@ export default function TicketAnswer() {
   return (
     <main className="pb-5 md:pb-8 mx-auto mt-6 md:mt-12 px-2 2xl:px-24">
       <section className="mt-10 md:mt-10">
-        <div className="bg-white dark:bg-darkBox p-9 rounded-md text-darkColor dark:text-white">
+        <div className="bg-white dark:bg-slate-800 p-9 rounded-md text-slate-900 dark:text-white">
           <div className="flex items-center justify-between gap-7 flex-wrap mb-9 pb-9 border-b border-b-neutral-200 dark:border-b-white/10">
             <span className="text-[1.7rem] sm:text-3xl font-EstedadMedium">
               وضعیت
@@ -56,7 +56,7 @@ export default function TicketAnswer() {
           </div>
 
           <div className="space-y-9 md:space-y-12 md:pt-2 mb-16 md:mb-25">
-            <div className="w-full lg:w-1/2 text-darkBox dark:text-white/90 bg-sky-50 dark:bg-[#333c4c] p-8 rounded-md">
+            <div className="w-full lg:w-1/2 text-slate-800 dark:text-white/90 bg-sky-50 dark:bg-[#333c4c] p-8 rounded-md">
               <p className="text-2xl md:text-[1.7rem]">{ticketInfo.ticket}</p>
 
               <div className="flex items-center justify-between text-xl text-[#333c4c] dark:text-white/60 mt-6 sm:mt-8 pt-6 sm:pt-7 border-t border-t-neutral-200 dark:border-t-white/10">

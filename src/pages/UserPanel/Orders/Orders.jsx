@@ -20,8 +20,8 @@ export default function Orders() {
 
   return (
     <main>
-      <section className="mt-16 md:mt-20 text-darkColor dark:text-white/95">
-        <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-sm mb-12">
+      <section className="mt-16 md:mt-20 text-slate-900 dark:text-white/95">
+        <div className="flex items-center justify-between bg-white dark:bg-slate-800 h-20 md:h-28 pl-2.5 rounded-sm mb-12">
           <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
             <span className="w-1 md:w-1.5 h-full bg-sky-600 rounded-r-full shadowLightBlue"></span>
             <span className="text-sky-500 text-2xl md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
@@ -32,7 +32,7 @@ export default function Orders() {
 
         {orders.length !== 0 ? (
           <div className="payment-table pb-2 md:pb-4 md:pr-5 overflow-x-auto">
-            <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-darkBox h-16 md:h-20 px-3 mb-6 rounded-xl">
+            <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-slate-800 h-16 md:h-20 px-3 mb-6 rounded-xl">
               <div className="col-span-1 text-nowrap">شماره پیگیری</div>
               <div className="col-span-3">شرح سفارش</div>
               <div className="col-span-2">تاریخ سفارش</div>
@@ -47,7 +47,7 @@ export default function Orders() {
             >
               {orders.map((order, index) => (
                 <>
-                  <div className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-darkBox h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3">
+                  <div className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3">
                     <div className="col-span-1">{index + 1}</div>
 
                     <div className="col-span-3">{order.course.name}</div>

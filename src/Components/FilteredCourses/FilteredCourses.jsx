@@ -21,7 +21,7 @@ export default function FilteredCourses({
           : "invisible -bottom-[36rem]"
       }`}
     >
-      <div className="text-darkColor dark:text-white bg-white dark:bg-darkBox rounded-t-4xl overflow-hidden">
+      <div className="text-slate-900 dark:text-white bg-white dark:bg-slate-800 rounded-t-4xl overflow-hidden">
         <div className="flex items-center justify-between bg-[#333c4c] p-8">
           <span className="font-EstedadBold text-[2rem]">فیلتر ها</span>
           <button className="">
@@ -30,7 +30,7 @@ export default function FilteredCourses({
             </div>
           </button>
         </div>
-        <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-darkBox/30 dark:divide-white/20">
+        <div className="text-[1.7rem] px-8 space-y-9 divide-y divide-slate-800/30 dark:divide-white/20">
           <div
             className="flex items-center justify-between w-full pt-8"
             onClick={() => {

@@ -84,7 +84,7 @@ export default function Draft() {
     <>
       <section className="flex-center overflow-hidden mt-12">
         <div className="mx-auto flex flex-col items-center w-min">
-          <div className="flex flex-col items-center text-darkColor dark:text-white bg-sky-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl z-10">
+          <div className="flex flex-col items-center text-slate-900 dark:text-white bg-sky-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl z-10">
             <span className="block font-EstedadMedium text-4xl mb-14 mt-4">
               افزودن مقاله جدید
             </span>
@@ -133,7 +133,7 @@ export default function Draft() {
               <div className="flex items-center gap-x-6">
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <div className="flex items-center gap-x-2 w-[19.1rem]">
-                    <label className="text-darkColor dark:text-white/70">
+                    <label className="text-slate-900 dark:text-white/70">
                       کاور
                     </label>
                     <input
@@ -149,11 +149,11 @@ export default function Draft() {
                 </div>
                 <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                   <div className="flex items-center gap-x-2">
-                    <label className="text-xl text-darkColor dark:text-white/70">
+                    <label className="text-xl text-slate-900 dark:text-white/70">
                       دسته‌بندی
                     </label>
                     <select
-                      className="text-xl text-darkColor dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
+                      className="text-xl text-slate-900 dark:text-white/70 dark:bg-white/10 rounded-md py-2.5 px-1"
                       onChange={(event) =>
                         setArticleCategory(event.target.value)
                       }
@@ -162,7 +162,7 @@ export default function Draft() {
                       {categories.map((category) => (
                         <>
                           <option
-                            className="text-darkColor text-[1.6rem]"
+                            className="text-slate-900 text-[1.6rem]"
                             value={category._id}
                           >
                             {category.title}

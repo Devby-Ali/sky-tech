@@ -146,7 +146,7 @@ export default function Register() {
                 <path d="m9 11 3 3 3-3"></path>
               </svg>
             </div>
-            <div className="flex flex-col items-center text-darkColor dark:text-white bg-sky-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
+            <div className="flex flex-col items-center text-slate-900 dark:text-white bg-sky-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
               <span className="block font-EstedadMedium text-4xl mb-9">
                 عضویت
               </span>
@@ -245,7 +245,7 @@ export default function Register() {
                 </Button>
               </form>
             </div>
-            <p className="mt-12 font-EstedadMedium text-center text-darkColor dark:text-white text-[1.6rem]">
+            <p className="mt-12 font-EstedadMedium text-center text-slate-900 dark:text-white text-[1.6rem]">
               با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمات{" "}
               <Button to={"/"} className="text-sky-700 dark:text-sky-400">
                 اسکای لرن

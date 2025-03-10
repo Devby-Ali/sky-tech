@@ -24,7 +24,7 @@ export default function Courses() {
 
   return (
     <main className="pb-5 md:pb-8 mx-auto mt-6 md:mt-12">
-      <div className="flex items-center justify-between bg-white dark:bg-darkBox h-20 md:h-28 pl-2.5 rounded-xl mb-8">
+      <div className="flex items-center justify-between bg-white dark:bg-slate-800 h-20 md:h-28 pl-2.5 rounded-xl mb-8">
         <div className="flex items-center gap-x-3 md:gap-x-6 h-full">
           <span className="w-1 md:w-1.5 h-full bg-sky-600 rounded-r-full shadowLightBlue"></span>
           <span className="text-sky-500 text-2xl md:text-3xl font-EstedadMedium md:font-EstedadBold select-none pr-4">
@@ -37,7 +37,7 @@ export default function Courses() {
         <section className="posts_wrap grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 sm:gap-11 px-6 md:p-1">
           {courses.map((course) => (
             <>
-              <div className="course flex flex-col bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-lg h-full">
+              <div className="course flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg h-full">
                 {/* <!-- Course Banner --> */}
                 <div className="relative h-[15rem] group">
                   <Link

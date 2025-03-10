@@ -61,7 +61,7 @@ export default function ArticleInfo() {
           <section className="grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-8">
             {/* <!-- Content --> */}
             <div className="col-span-full lg:col-span-8 xl:col-span-9">
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 {/* <!-- head --> */}
                 <div className="mt-4 sm:mt-2 flex items-center gap-x-3 mb-10 relative border-b border-b-gray-300 dark:border-b-white/10 pb-10 sm:pb-12">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
@@ -176,7 +176,7 @@ export default function ArticleInfo() {
                 ></div>
               </div>
               {/* <!-- Related Blogs --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 <div className="mt-2 sm:mt-0 flex items-center gap-x-3 relative pb-10 sm:pb-12">
                   <span className="absolute -right-8 sm:-right-11 block w-1 h-16 bg-sky-600 rounded-r-full shadowLightBlue"></span>
                   <div className="hidden md:block text-6xl text-sky-700 dark:text-sky-600">
@@ -275,7 +275,7 @@ export default function ArticleInfo() {
             {/* <!-- Sidebar --> */}
             <aside className="col-span-full lg:col-span-4 xl:col-span-3 space-y-8">
               {/* <!-- Course Short Link --> */}
-              <div className="bg-white dark:bg-darkBox text-darkColor dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
+              <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-3xl p-7 sm:p-10 mt-12">
                 <div className="flex items-center justify-between mb-8 pb-8 border-b border-b-gray-300 dark:border-b-white/10">
                   <div className="flex items-center gap-x-3 font-EstedadMedium">
                     <div className="text-5xl">

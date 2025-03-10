@@ -13,7 +13,7 @@ export default function ArticleBox({
   shortName,
 }) {
   return (
-    <div className="blog flex flex-col bg-white dark:bg-darkBox text-darkColor dark:text-white overflow-hidden rounded-lg">
+    <div className="blog flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white overflow-hidden rounded-lg">
       {/* <!-- Blog Banner --> */}
       <div className="blog__banner relative h-[182px] overflow-hidden">
         <Link to={`/article-info/${shortName}`}>
@@ -24,7 +24,7 @@ export default function ArticleBox({
             loading="lazy"
           />
         </Link>
-        <div className="absolute bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-darkBox from-0% via-white/[55%] dark:via-darkBox/[55%] via-40% to-white/0 dark:to-darkBox/0 to-100%"></div>
+        <div className="absolute bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-slate-800 from-0% via-white/[55%] dark:via-slate-800/[55%] via-40% to-white/0 dark:to-slate-800/0 to-100%"></div>
       </div>
       {/* <!-- Blog Title & Description --> */}
       <div className="grow px-7 py-6">
