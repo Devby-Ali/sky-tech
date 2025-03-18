@@ -539,7 +539,7 @@ export default function Landing({ info }) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="curve-footer"
-        width="115"
+        width="125"
         height="30"
         fill="none"
         viewBox="0 0 100 22"
