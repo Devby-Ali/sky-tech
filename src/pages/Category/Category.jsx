@@ -362,7 +362,7 @@ export default function Category() {
                   <Pagination
                     items={orderedCourses}
                     itemsCount={6}
-                    pathName="/courses"
+                    pathName={`/category-info/${categoryName}`}
                     setShownItems={setShownCourses}
                   />
                 </section>
