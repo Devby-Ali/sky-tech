@@ -56,10 +56,6 @@ export default function Footer() {
                   height="65"
                   fill="none"
                   stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="icon icon-tabler icons-tabler-outline icon-tabler-brand-my-oppo"
                   viewBox="0 0 24 24"
                 >
                   <path stroke="none" d="M0 0h24v24H0z"></path>
