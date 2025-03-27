@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./../../Components/Header/Header";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import ArticleBox from "../../Components/ArticleBox/ArticleBox";
@@ -66,38 +66,10 @@ export default function Articles() {
                 <span className="">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center gap-x-7 lg:gap-x-8 h-full">
-                <a
-                  href="javascript:setArchiveSort('default', 'همه دوره ها')"
-                  data-id="default"
-                  className="sort-btn sort-btn--active"
-                  role="button"
-                >
-                  همه مقاله ها
-                </a>
-                <a
-                  href="javascript:setArchiveSort('cheapest', 'ارزان ترین')"
-                  data-id="cheapest"
-                  className="sort-btn "
-                  role="button"
-                >
-                  جدیدترین
-                </a>
-                <a
-                  href="javascript:setArchiveSort('expensive', 'گران ترین')"
-                  data-id="expensive"
-                  className="sort-btn "
-                  role="button"
-                >
-                  ویژه
-                </a>
-                <a
-                  href="javascript:setArchiveSort('popular', 'پرمخاطب ها')"
-                  data-id="popular"
-                  className="sort-btn "
-                  role="button"
-                >
-                  پرمخاطب ها
-                </a>
+                <a href="#">همه مقاله ها</a>
+                <a href="#">جدیدترین</a>
+                <a href="#">ویژه</a>
+                <a href="#">پرمخاطب ها</a>
               </div>
             </div>
             {/* <!-- Course List --> */}

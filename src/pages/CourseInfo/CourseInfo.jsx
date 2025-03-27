@@ -901,27 +901,28 @@ export default function CourseInfo() {
 
                   <div className="space-y-4 md:space-y-5 text-slate-900 dark:text-white">
                     {relatedCourses.map((course) => (
-                      <>
-                        <div className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6">
-                          <div className="flex items-center gap-x-4 w-4/5">
-                            <img
-                              className="w-36 rounded-md aspect-video"
-                              src={`http://localhost:4000/courses/covers/${course.cover}`}
-                              alt="Course Cover"
-                            />
-                            <span className="line-clamp-2">{course.name}</span>
-                          </div>
-                          <Button
-                            className="flex items-center justify-between sm:justify-normal text-sky-700 dark:text-sky-500 font-EstedadMedium text-xl"
-                            to={`/course-info/${course.shortName}`}
-                          >
-                            مشاهده
-                            <div className="text-2xl mr-2">
-                              <BiSolidLeftArrow />
-                            </div>
-                          </Button>
+                      <div
+                        key={course._id}
+                        className="flex items-center justify-between flex-wrap bg-gray-200 dark:bg-[#333c4c] rounded-lg py-3.5 pr-3.5 pl-6"
+                      >
+                        <div className="flex items-center gap-x-4 w-4/5">
+                          <img
+                            className="w-36 rounded-md aspect-video"
+                            src={`http://localhost:4000/courses/covers/${course.cover}`}
+                            alt="Course Cover"
+                          />
+                          <span className="line-clamp-2">{course.name}</span>
                         </div>
-                      </>
+                        <Button
+                          className="flex items-center justify-between sm:justify-normal text-sky-700 dark:text-sky-500 font-EstedadMedium text-xl"
+                          to={`/course-info/${course.shortName}`}
+                        >
+                          مشاهده
+                          <div className="text-2xl mr-2">
+                            <BiSolidLeftArrow />
+                          </div>
+                        </Button>
+                      </div>
                     ))}
                   </div>
                 </div>

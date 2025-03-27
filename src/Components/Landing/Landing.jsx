@@ -191,22 +191,40 @@ export default function Landing({ info }) {
                 "bg-sky-500/50 dark:bg-sky-900/70"
               }`}
             >
-              <Link
-                to={`/category-info/${menu.href}/1`}
-                className={`flex items-center justify-between`}
-              >
-                <span>{menu.title}</span>
-                <HiChevronRight className="text-2xl rotate-180" />
-              </Link>
+              <div className="flex items-center justify-between">
+                <div
+                  className="flex-1 cursor-pointer"
+                  onClick={() => navigate(`/category-info/${menu.href}/1`)}
+                >
+                  <span>{menu.title}</span>
+                </div>
+                {menu.submenus.length > 0 && (
+                  <HiChevronRight className="text-2xl rotate-180" />
+                )}
+              </div>
+              {menu.submenus.length > 0 && (
+                <ul className="mt-2 space-y-1">
+                  {menu.submenus.map((submenu) => (
+                    <li key={`${menu._id}-${submenu._id}`}>
+                      <div
+                        className="block py-2 pr-4 text-[1.3rem] cursor-pointer"
+                        onClick={() => navigate(submenu.href)}
+                      >
+                        {submenu.title}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
           <li>
-            <Link
-              to="/articles/1"
-              className="py-3 -mx-5 px-5 w-full rounded-md hover:bg-sky-400/80 dark:hover:bg-sky-900"
+            <div
+              className="py-3 -mx-5 px-5 w-full rounded-md hover:bg-sky-400/80 dark:hover:bg-sky-900 cursor-pointer"
+              onClick={() => navigate("/articles/1")}
             >
               <span className="w-full inline-block">مقالات</span>
-            </Link>
+            </div>
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
@@ -254,7 +272,7 @@ export default function Landing({ info }) {
 
               <ul className="hidden md:flex gap-x-12 xl:gap-x-12 text-white text-[1.7rem] xl:text-[1.8rem] font-EstedadLight">
                 <li className="main-header__item group/menu flex-center relative">
-                  <span className="cursor-pointer">
+                  <div className="cursor-pointer">
                     دوره های آموزشی
                     <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover">
                       {allMenus.map((menu) => (
@@ -262,41 +280,53 @@ export default function Landing({ info }) {
                           className="main-header__dropdown-item header__item group/submenu"
                           key={menu._id}
                         >
-                          <Link
-                            to={`/category-info/${menu.href}/1`}
-                            className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] duration-200"
-                          >
-                            {menu.title}
-                            {menu.submenus.length && (
+                          <div className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] duration-200">
+                            <div
+                              className="flex-1 cursor-pointer"
+                              onClick={() =>
+                                navigate(`/category-info/${menu.href}/1`)
+                              }
+                            >
+                              {menu.title}
+                            </div>
+                            {menu.submenus.length > 0 && (
                               <>
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
-                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover">
+                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover text-slate-900 dark:text-white font-EstedadLight -mr-[.5px]">
                                   {menu.submenus.map((submenu) => (
-                                    <li key={menu._id}>
-                                      <Link
-                                        to={submenu.href}
-                                        className="block px-8 py-2 text-[1.6rem] duration-200"
+                                    <li key={`${menu._id}-${submenu._id}`}>
+                                      <div
+                                        className="block px-8 py-2 text-[1.6rem] duration-200 cursor-pointer"
+                                        onClick={() => navigate(submenu.href)}
                                       >
                                         {submenu.title}
-                                      </Link>
+                                      </div>
                                     </li>
                                   ))}
                                 </ul>
                               </>
                             )}
-                          </Link>
+                          </div>
                         </li>
                       ))}
                     </ul>
-                  </span>
+                  </div>
                 </li>
                 <li className="main-header__item flex-center relative">
-                  <Link to={"/courses/1"}>همه دوره ها</Link>
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => navigate("/courses/1")}
+                  >
+                    همه دوره ها
+                  </div>
                 </li>
                 <li className="main-header__item flex-center relative">
-                  <Link to={"/articles/1"} className="flex-center">
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => navigate("/articles/1")}
+                  >
                     مقالات
-                  </Link>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -319,9 +349,9 @@ export default function Landing({ info }) {
 
               {authContext.userInfos.name ? (
                 <>
-                  <Link
+                  <div
                     to="#"
-                    className={`relative hidden md:flex-center items-center justify-center p-4 rounded-xl transition-all duration-200 ${
+                    className={`relative hidden md:flex-center items-center justify-center p-4 rounded-xl mr-4 transition-all duration-200 ${
                       openCollapse && "z-40 bg-white/10 dark:bg-white/5"
                     }`}
                     onClick={toggleOpen}
@@ -340,8 +370,8 @@ export default function Landing({ info }) {
                           {authContext.userInfos.role === "ADMIN" && (
                             <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                               <Link
-                                className="flex items-center gap-x-4"
                                 to="/p-admin"
+                                className="flex items-center gap-x-4"
                               >
                                 <span className="text-4xl">
                                   <GrUserAdmin />
@@ -352,8 +382,8 @@ export default function Landing({ info }) {
                           )}
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineHome />
@@ -363,8 +393,8 @@ export default function Landing({ info }) {
                           </li>
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account/buyed"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineFolder />
@@ -374,8 +404,8 @@ export default function Landing({ info }) {
                           </li>
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account/tickets"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineChatBubbleLeftEllipsis />
@@ -385,8 +415,8 @@ export default function Landing({ info }) {
                           </li>
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account/edit-account"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineUser />
@@ -406,7 +436,7 @@ export default function Landing({ info }) {
                         </Button>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </>
               ) : (
                 <Link

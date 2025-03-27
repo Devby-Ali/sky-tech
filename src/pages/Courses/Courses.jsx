@@ -338,7 +338,7 @@ export default function Courses() {
                 <>
                   <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10 sm:gap-11">
                     {shownCourses.map((course) => (
-                      <CourseBox {...course} />
+                      <CourseBox key={course._id} {...course} />
                     ))}
                   </div>
                 </>

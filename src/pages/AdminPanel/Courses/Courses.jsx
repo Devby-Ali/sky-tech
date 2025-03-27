@@ -348,49 +348,47 @@ export default function Courses() {
             id="container_orders"
           >
             {courses.map((course, index) => (
-              <>
-                <div
-                  key={course.name}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-                >
-                  <div className="col-span-1">{index + 1}</div>
+              <div
+                key={course._id}
+                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+              >
+                <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-2">{course.name}</div>
+                <div className="col-span-2">{course.name}</div>
 
-                  <div className="col-span-1">
-                    {course.price === 0
-                      ? "رایگان"
-                      : course.price.toLocaleString()}
-                  </div>
+                <div className="col-span-1">
+                  {course.price === 0
+                    ? "رایگان"
+                    : course.price.toLocaleString()}
+                </div>
 
-                  <div className="col-span-2">
-                    {course.isComplete === 0 ? "در حال برگزاری" : "تکمیل شده"}
-                  </div>
+                <div className="col-span-2">
+                  {course.isComplete === 0 ? "در حال برگزاری" : "تکمیل شده"}
+                </div>
 
-                  <div className="col-span-2">{course.shortName}</div>
+                <div className="col-span-2">{course.shortName}</div>
 
-                  <div className="col-span-1 text-nowrap text-xl">
-                    {" "}
-                    {course.creator}
-                  </div>
+                <div className="col-span-1 text-nowrap text-xl">
+                  {" "}
+                  {course.creator}
+                </div>
 
-                  <div className="col-span-1"> {course.categoryID.name}</div>
+                <div className="col-span-1"> {course.categoryID.name}</div>
 
-                  <div className="col-span-1 flex-center">
-                    <div className="inline-flex items-center justify-center bg-amber-100/80 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none">
-                      ویرایش
-                    </div>
-                  </div>
-                  <div className="col-span-1">
-                    <div
-                      onClick={() => removeCourse(course._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                    >
-                      حذف
-                    </div>
+                <div className="col-span-1 flex-center">
+                  <div className="inline-flex items-center justify-center bg-amber-100/80 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none">
+                    ویرایش
                   </div>
                 </div>
-              </>
+                <div className="col-span-1">
+                  <div
+                    onClick={() => removeCourse(course._id)}
+                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                  >
+                    حذف
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>

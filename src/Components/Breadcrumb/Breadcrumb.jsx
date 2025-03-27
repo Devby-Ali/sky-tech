@@ -11,17 +11,16 @@ export default function Breadcrumb({ links }) {
         </Link>
       </div>
       {links.map((link) => (
-        <>
+        <React.Fragment key={link.id}>
           <div className="breadcrumb__item dark:after:bg-slate-900 dark:before:bg-slate-900 last:before:hidden last:after:hidden">
             <Link
-              key={link.id}
               to={`/${link.to}`}
               className="flex items-center hover:text-purple-400"
             >
               {link.title}
             </Link>
           </div>
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

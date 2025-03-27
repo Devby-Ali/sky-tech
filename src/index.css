@@ -45,6 +45,12 @@
 }
 
 @layer base {
+  :root {
+    direction: rtl;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+  }
+
   html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -53,7 +59,6 @@
   body {
     line-height: 1.6;
     font-size: 1.6rem;
-    direction: rtl;
     word-spacing: -0.15em;
   }
 

@@ -251,7 +251,7 @@ export default function Header() {
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
                                 <ul className="header__dropdown group-hover/submenu:header__dropdown-hover text-slate-900 dark:text-white font-EstedadLight -mr-[.5px]">
                                   {menu.submenus.map((submenu) => (
-                                    <li key={menu._id}>
+                                    <li key={`${menu._id}-${submenu._id}`}>
                                       <Link
                                         to={submenu.href}
                                         className="block px-8 py-2 text-[1.6rem] duration-200"
@@ -298,7 +298,7 @@ export default function Header() {
 
               {authContext.userInfos.name ? (
                 <>
-                  <Link
+                  <div
                     to="#"
                     className={`relative hidden md:flex-center items-center justify-center p-4 rounded-xl mr-4 transition-all duration-200 ${
                       openCollapse && "z-40 bg-white/10 dark:bg-white/5"
@@ -319,8 +319,8 @@ export default function Header() {
                           {authContext.userInfos.role === "ADMIN" && (
                             <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                               <Link
-                                className="flex items-center gap-x-4"
                                 to="/p-admin"
+                                className="flex items-center gap-x-4"
                               >
                                 <span className="text-4xl">
                                   <GrUserAdmin />
@@ -331,8 +331,8 @@ export default function Header() {
                           )}
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineHome />
@@ -342,8 +342,8 @@ export default function Header() {
                           </li>
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account/buyed"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineFolder />
@@ -353,8 +353,8 @@ export default function Header() {
                           </li>
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account/tickets"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineChatBubbleLeftEllipsis />
@@ -364,8 +364,8 @@ export default function Header() {
                           </li>
                           <li className="rounded-md hover:bg-sky-600 dark:hover:bg-sky-800 hover:text-white">
                             <Link
-                              className="flex items-center gap-x-4"
                               to="/my-account/edit-account"
+                              className="flex items-center gap-x-4"
                             >
                               <span className="text-4xl">
                                 <HiOutlineUser />
@@ -385,7 +385,7 @@ export default function Header() {
                         </Button>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </>
               ) : (
                 <Link

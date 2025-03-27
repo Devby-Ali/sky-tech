@@ -29,7 +29,7 @@ export default function PresellCourses() {
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
-          loop={true}
+          loop={false}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
@@ -50,11 +50,9 @@ export default function PresellCourses() {
           className="mySwiper"
         >
           {PresellCourses.map((course) => (
-            <>
-              <SwiperSlide key={course._id}>
-                <CourseBox {...course} isSlider={true} />
-              </SwiperSlide>
-            </>
+            <SwiperSlide key={course._id}>
+              <CourseBox {...course} isSlider={true} />
+            </SwiperSlide>
           ))}
         </Swiper>
         <div className="hidden lg:block absolute right-0 -top-10 translate-x-1/3 -translate-y-6/10 size-75 bg-sky-400 opacity-35 blur-[125px] -z-10 rounded-full"></div>

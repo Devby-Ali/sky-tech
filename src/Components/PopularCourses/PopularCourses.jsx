@@ -20,46 +20,44 @@ export default function PopularCourses() {
   return (
     <div className="mb-48">
       <div className="container">
-      <div className="relative">
-        <SectionHeader
-          title="محبوب ترین دوره ها"
-          desc="دوره های محبوب بر اساس امتیاز دانشجوها"
-          Page={"Index"}
-        />
+        <div className="relative">
+          <SectionHeader
+            title="محبوب ترین دوره ها"
+            desc="دوره های محبوب بر اساس امتیاز دانشجوها"
+            Page={"Index"}
+          />
 
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
-          loop={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 25,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-            1280: {
-              slidesPerView: 4,
-            },
-          }}
-          modules={[Autoplay]}
-          className="mySwiper"
-        >
-          {popularCourses.map((course) => (
-            <>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            loop={false}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 25,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+              1280: {
+                slidesPerView: 4,
+              },
+            }}
+            modules={[Autoplay]}
+            className="mySwiper"
+          >
+            {popularCourses.map((course) => (
               <SwiperSlide key={course._id}>
                 <CourseBox {...course} isSlider={true} />
               </SwiperSlide>
-            </>
-          ))}
-        </Swiper>
-        <div className="hidden lg:block absolute left-0 top-0 -translate-x-1/3 -translate-y-6/10 size-75 bg-green-500 opacity-25 blur-[125px] -z-10 rounded-full"></div>
-      </div>
+            ))}
+          </Swiper>
+          <div className="hidden lg:block absolute left-0 top-0 -translate-x-1/3 -translate-y-6/10 size-75 bg-green-500 opacity-25 blur-[125px] -z-10 rounded-full"></div>
+        </div>
       </div>
     </div>
   );
