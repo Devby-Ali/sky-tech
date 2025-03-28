@@ -6,6 +6,7 @@ import {
   HiBars3,
   HiChevronLeft,
   HiChevronRight,
+  HiMiniChevronDown,
   HiMiniChevronLeft,
   HiOutlineArrowLeftEndOnRectangle,
   HiOutlineChatBubbleLeftEllipsis,
@@ -27,6 +28,8 @@ export default function Header() {
   const [overlay, setOverlay] = useState(false);
 
   const [allMenus, setAllMenus] = useState([]);
+  const [showSubmenus, setshowSubmenus] = useState(false);
+  const [menuId, setMenuId] = useState(null);
 
   const navigate = useNavigate();
 
@@ -91,6 +94,16 @@ export default function Header() {
       });
   }, []);
 
+  const showSubmenusHandler = (menuID) => {
+    if (menuID === menuId) {
+      setshowSubmenus(false);
+      setMenuId(null);
+    } else {
+      setshowSubmenus(true);
+      setMenuId(menuID);
+    }
+  };
+
   return (
     <>
       <div
@@ -130,7 +143,7 @@ export default function Header() {
             <li className="hover:text-sky-500">
               <Link className="flex items-center justify-between" to="/p-admin">
                 <span>پنل مدیریت</span>
-                <HiChevronRight className="text-2xl rotate-180" />
+                <HiMiniChevronLeft className="text-4xl" />
               </Link>
             </li>
           )}
@@ -140,7 +153,7 @@ export default function Header() {
               to="/my-account/buyed"
             >
               <span>دوره های من</span>
-              <HiChevronRight className="text-2xl rotate-180" />
+              <HiMiniChevronLeft className="text-4xl" />
             </Link>
           </li>
           <li className="hover:text-sky-500">
@@ -149,41 +162,69 @@ export default function Header() {
               to="/my-account/tickets"
             >
               <span>تیکت های من</span>
-              <HiChevronRight className="text-2xl rotate-180" />
+              <HiMiniChevronLeft className="text-4xl" />
             </Link>
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
-        <ul className="*:transition-all px-3 *:py-3 *:px-5 *:-mx-5 space-y-1.5 mb-5 mt-5 text-[1.4rem] text-slate-900 dark:text-white border-b-slate-800/30">
-          <li>
+        <ul className="*:transition-all px-3 *:-mx-5 space-y-1.5 mb-5 mt-5 text-[1.4rem] text-slate-900 dark:text-white border-b-slate-800/30">
+          <li className="py-3 px-5">
             <span className="text-sky-600 dark:text-sky-500 font-EstedadMedium">
               دسته بندی ها
             </span>
           </li>
           {allMenus.map((menu) => (
-            <li
-              key={menu._id}
-              className={`rounded-md hover:bg-sky-500/70 dark:hover:bg-sky-900 ${
-                categoryName["categoryName"] === menu.href &&
-                "bg-sky-500/50 dark:bg-sky-900/70"
-              }`}
-            >
-              <Link
-                to={`/category-info/${menu.href}/1`}
-                className={`flex items-center justify-between`}
+            <li key={menu._id}>
+              <div
+                className={`flex items-center justify-between rounded-md py-3 px-5 hover:bg-sky-500/70 dark:hover:bg-sky-900 ${
+                  categoryName["categoryName"] === menu.href &&
+                  "bg-sky-500/50 dark:bg-sky-900/70"
+                }`}
               >
-                <span>{menu.title}</span>
-                <HiChevronRight className="text-2xl rotate-180" />
-              </Link>
+                <div
+                  className="flex-1"
+                  onClick={() => navigate(`/category-info/${menu.href}/1`)}
+                >
+                  <span className="cursor-pointer">{menu.title}</span>
+                </div>
+                {menu.submenus.length > 0 && (
+                  <span
+                    className="cursor-pointer text-4xl"
+                    onClick={() => showSubmenusHandler(menu._id)}
+                  >
+                    {showSubmenus && menuId === menu._id ? (
+                      <HiMiniChevronDown />
+                    ) : (
+                      <HiMiniChevronLeft />
+                    )}
+                  </span>
+                )}
+              </div>
+              {menu.submenus.length > 0 &&
+                showSubmenus &&
+                menuId === menu._id && (
+                  <ul className="mb-8 mt-4 dark:bg-white/5 bg-stone-100 rounded-xl p-3 space-y-1">
+                    {menu.submenus.map((submenu) => (
+                      <li key={`${menu._id}-${submenu._id}`}>
+                        <div
+                          className="block py-2 pr-4 text-[1.3rem] cursor-pointer"
+                          onClick={() => navigate(submenu.href)}
+                        >
+                          {submenu.title}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
             </li>
           ))}
           <li>
-            <Link
-              to="/articles/1"
-              className="py-3 -mx-5 px-5 w-full rounded-md hover:bg-sky-400/80 dark:hover:bg-sky-900"
+            <div
+              className="py-3 px-5 w-full rounded-md hover:bg-sky-400/80 dark:hover:bg-sky-900 cursor-pointer"
+              onClick={() => navigate("/articles/1")}
             >
               <span className="w-full inline-block">مقالات</span>
-            </Link>
+            </div>
           </li>
         </ul>
         <div className="w-full h-px bg-gray-300 dark:bg-white/10"></div>
