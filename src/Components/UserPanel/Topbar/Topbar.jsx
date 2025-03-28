@@ -144,13 +144,13 @@ export default function Topbar() {
                 </Link>
               </li>
               <li className={pageName["*"] === "orders" ? "active-menu" : ""}>
-                <Link className="flex items-center justify-between" to="orders">
+                <Link className="flex items-center justify-between" to="/my-account/orders">
                   <span>سفارش</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
               <li>
-                <Link className="flex items-center justify-between" to="#">
+                <Link className="flex items-center justify-between" to="/my-account/wallet">
                   <span>کیف پول من</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
@@ -162,14 +162,14 @@ export default function Topbar() {
               >
                 <Link
                   className="flex items-center justify-between"
-                  to="edit-account"
+                  to="/my-account/edit-account"
                 >
                   <span>جزئیات حساب کاربری</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
               <li className={pageName["*"] === "buyed" ? "active-menu" : ""}>
-                <Link className="flex items-center justify-between" to="buyed">
+                <Link className="flex items-center justify-between" to="/my-account/buyed">
                   <span>دوره های من</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
@@ -177,7 +177,7 @@ export default function Topbar() {
               <li className={pageName["*"] === "tickets" ? "active-menu" : ""}>
                 <Link
                   className="flex items-center justify-between"
-                  to="tickets"
+                  to="/my-account/tickets"
                 >
                   <span>تیکت های پشتیبانی</span>
                   <HiMiniChevronLeft className="text-5xl" />
