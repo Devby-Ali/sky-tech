@@ -98,7 +98,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="courses"
+                to="/p-admin/courses"
               >
                 <span>دوره ها</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -113,7 +113,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="sessions"
+                to="/p-admin/sessions"
               >
                 <span>جلسات</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -128,7 +128,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="menus"
+                to="/p-admin/menus"
               >
                 <span>منو ها</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -143,7 +143,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="articles"
+                to="/p-admin/articles"
               >
                 <span>مقاله ها</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -158,7 +158,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="users"
+                to="/p-admin/users"
               >
                 <span>کاربران</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -173,7 +173,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="comments"
+                to="/p-admin/comments"
               >
                 <span>کامنت‌ها</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -188,7 +188,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="tickets"
+                to="/p-admin/tickets"
               >
                 <span>تیکت‌ها</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -203,7 +203,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="offs"
+                to="/p-admin/offs"
               >
                 <span>کدهای تخفیف</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -218,7 +218,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="discounts"
+                to="/p-admin/discounts"
               >
                 <span>تخفیف همگانی</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -233,7 +233,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="category"
+                to="/p-admin/category"
               >
                 <span>دسته‌بندی‌ها</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -248,7 +248,7 @@ export default function Sidebar() {
             >
               <Link
                 className="flex items-center justify-between hover:text-purple-400"
-                to="contacts"
+                to="/p-admin/contacts"
               >
                 <span>پیغام‌ها</span>
                 <HiMiniChevronLeft className="text-5xl" />
