@@ -406,7 +406,7 @@ export default function CourseInfo() {
                 </div>
                 <div className="relative overflow-hidden">
                   <div className="course-content wp-content max-h-[800px] text-[1.6rem]/loose">
-                    <meta charset="utf8" />
+                    <meta charSet="utf8" />
                     <p>
                       تا حالا به این فکر کردید چرا توسعه تکنولوژی در سال های
                       اخیر انقدر سریع بوده؟ یکی از دلایل اون موضوع آموزش همین

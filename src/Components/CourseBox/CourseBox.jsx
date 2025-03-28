@@ -58,7 +58,7 @@ export default function CourseBox(props) {
             <div className="text-3xl">
               <LiaUserSolid />
             </div>
-            <Link to={`/user/${props.creator._id}`}>{props.creator.name}</Link>
+            <span>{props.creator}</span>
           </div>
           {/* <!-- Rating --> */}
           <div className="flex items-center gap-x-1 text-3xl opacity-65 text-amber-400">

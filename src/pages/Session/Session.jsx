@@ -188,10 +188,6 @@ export default function Session() {
                     </p>
                   </div>
                   <form id="submit-question">
-                    <input type="hidden" name="nonce" value="" />
-                    <input type="hidden" name="lesson_id" value="" />
-                    <input type="hidden" name="course_id" value="" />
-                    <input type="hidden" name="question_id" value="" />
                     <textarea
                       id="editor"
                       dir="rtl"
@@ -218,29 +214,6 @@ export default function Session() {
                         ارسال
                       </button>
                     </div>
-                  </form>
-                  <form id="attachments_form" className="hidden">
-                    <input type="hidden" className="api_url" value="/" />
-                    <input
-                      type="file"
-                      name="file"
-                      className="hidden"
-                      id="attachments_file"
-                    />
-                    <input type="hidden" name="action" value="POST" />
-                    <input
-                      type="hidden"
-                      name="key"
-                      value="eac614f85053e52907f310b5f0a8b75e"
-                    />
-                    <input type="hidden" name="valid" value="1736245749" />
-                    <input type="hidden" name="uid" value="42501" />
-                    <input
-                      type="hidden"
-                      name="exts"
-                      value="zip,rar,png,jpg,jpeg"
-                    />
-                    <input type="hidden" name="max" value="15" />
                   </form>
                 </div>
 
@@ -330,9 +303,9 @@ export default function Session() {
                             className="lesson font-EstedadMedium mb-8 pt-6"
                           >
                             <Link to={`/${courseName}/${session._id}`}>
-                              <a href="#" className="block line-clamp-2 mb-3">
+                              <span className="block line-clamp-2 mb-3">
                                 {session.title}
-                              </a>
+                              </span>
                               <div className="flex items-center justify-between mt-3 sm:mt-2">
                                 <div className="lesson__status text-4xl text-sky-600">
                                   <FaRegCircleCheck />
