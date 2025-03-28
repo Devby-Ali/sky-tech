@@ -325,23 +325,24 @@ export default function Session() {
                     >
                       <div className="bg-sky-50 dark:bg-[#333c4c]/50 text-slate-800/90 dark:text-white/50 rounded-b-lg text-[1.8rem] pt-2 pb-0.5 px-6 divide-y divide-white/20 max-h-[530px] overflow-y-auto">
                         {sessions.map((session) => (
-                          <>
-                            <div className="lesson font-EstedadMedium mb-8 pt-6">
-                              <Link to={`/${courseName}/${session._id}`}>
-                                <a href="#" className="block line-clamp-2 mb-3">
-                                  {session.title}
-                                </a>
-                                <div className="flex items-center justify-between mt-3 sm:mt-2">
-                                  <div className="lesson__status text-4xl text-sky-600">
-                                    <FaRegCircleCheck />
-                                  </div>
-                                  <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-sky-500 bg-transparent border border-sky-600 rounded-2xl">
-                                    {session.time}
-                                  </div>
+                          <div
+                            key={session._id}
+                            className="lesson font-EstedadMedium mb-8 pt-6"
+                          >
+                            <Link to={`/${courseName}/${session._id}`}>
+                              <a href="#" className="block line-clamp-2 mb-3">
+                                {session.title}
+                              </a>
+                              <div className="flex items-center justify-between mt-3 sm:mt-2">
+                                <div className="lesson__status text-4xl text-sky-600">
+                                  <FaRegCircleCheck />
                                 </div>
-                              </Link>
-                            </div>
-                          </>
+                                <div className="min-w-14 text-center text-2xl leading-none font-EstedadMedium pb-2 pt-3 w-28 text-sky-500 bg-transparent border border-sky-600 rounded-2xl">
+                                  {session.time}
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
                         ))}
                       </div>
                     </div>

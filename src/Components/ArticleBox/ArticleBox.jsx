@@ -1,24 +1,16 @@
-import React from "react";
-import { LiaUserSolid } from "react-icons/lia";
-import { CiCalendar } from "react-icons/ci";
-import { GoTriangleLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
+import { HiChevronLeft } from "react-icons/hi2";
+import { PiUserLight } from "react-icons/pi";
+import { HiOutlineCalendar } from "react-icons/hi";
 
-export default function ArticleBox({
-  title,
-  description,
-  cover,
-  createdAt,
-  creator,
-  shortName,
-}) {
+export default function ArticleBox(props) {
   return (
     <div className="blog flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white overflow-hidden rounded-lg">
       {/* <!-- Blog Banner --> */}
       <div className="blog__banner relative h-[182px] overflow-hidden">
-        <Link to={`/article-info/${shortName}`}>
+        <Link to={`/article-info/${props.shortName}`}>
           <img
-            src={`http://localhost:4000/courses/covers/${cover}`}
+            src={`http://localhost:4000/courses/covers/${props.cover}`}
             className="block w-full h-full object-cover"
             alt="Article-Image"
             loading="lazy"
@@ -30,10 +22,10 @@ export default function ArticleBox({
       <div className="grow px-7 py-6">
         {/* <!-- Blog Title --> */}
         <h3 className="font-EstedadMedium text-[1.7rem] line-clamp-2 mb-5">
-          <Link to={`/article-info/${shortName}`}>{title}</Link>
+          <Link to={`/article-info/${props.shortName}`}>{props.title}</Link>
         </h3>
         {/* <!-- Blog Description --> */}
-        <p className="text-2xl line-clamp-4 opacity-70">{description}</p>
+        <p className="text-2xl line-clamp-4 opacity-70">{props.description}</p>
       </div>
       {/* <!-- Blog Footer --> */}
       <div className="px-7 pb-8">
@@ -41,25 +33,25 @@ export default function ArticleBox({
         <div className="flex justify-between items-center text-blue-gray-700 dark:text-white/70 text-xl pb-6 border-b border-b-gray-400/70 dark:border-b-white/10">
           <div className="flex items-center gap-x-1">
             <div className="text-3xl">
-              <LiaUserSolid />
+              <PiUserLight />
             </div>
-            <a href="#">{creator.name}</a>
+            <Link to={`/user/${props.creator._id}`}>{props.creator.name}</Link>
           </div>
           <div className="flex items-center gap-x-1">
             <div className="text-3xl">
-              <CiCalendar />
+              <HiOutlineCalendar />
             </div>
-            <span>{createdAt.slice(0, 10)}</span>
+            <span>{props.createdAt.slice(0, 10)}</span>
           </div>
         </div>
         {/* <!-- Blog Link Address --> */}
         <div className="flex justify-center mt-7">
           <Link
-            to={`/article-info/${shortName}`}
+            to={`/article-info/${props.shortName}`}
             className="flex items-center gap-x-1 text-3xl text-sky-600 dark:text-sky-400 hover:text-purple-400 font-EstedadMedium transition-colors"
           >
             <span>مطالعه مقاله</span>
-            <GoTriangleLeft />
+            <HiChevronLeft />
           </Link>
         </div>
       </div>

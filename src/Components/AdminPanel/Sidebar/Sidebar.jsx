@@ -76,8 +76,9 @@ export default function Sidebar() {
           <ul className="*:transition-all *:pr-6 *:pl-3 *:py-1 2xl:*:py-2 *:my-5 2xl:child:my-9 my-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
             <li
               className={
-                pageName["*"] === "" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === ""
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -90,8 +91,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "courses" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "courses"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -104,8 +106,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "sessions" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "sessions"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -118,8 +121,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "menus" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "menus"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -132,8 +136,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "articles" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "articles"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -146,8 +151,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "users" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "users"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -160,8 +166,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "comments" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "comments"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -174,8 +181,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "tickets" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "tickets"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -188,8 +196,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "offs" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "offs"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -202,8 +211,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "discounts" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "discounts"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -216,8 +226,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "category" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "category"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link
@@ -230,8 +241,9 @@ export default function Sidebar() {
             </li>
             <li
               className={
-                pageName["*"] === "contacts" &&
-                "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                pageName["*"] === "contacts"
+                  ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                  : ""
               }
             >
               <Link

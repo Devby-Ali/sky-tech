@@ -230,33 +230,31 @@ export default function Offs() {
             id="container_orders"
           >
             {offs.map((off, index) => (
-              <>
-                <div
-                  key={off._id}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-                >
-                  <div className="col-span-1">{index + 1}</div>
+              <div
+                key={off._id}
+                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+              >
+                <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-2">{off.code}</div>
+                <div className="col-span-2">{off.code}</div>
 
-                  <div className="col-span-1">{off.percent}</div>
+                <div className="col-span-2">{off.percent}%</div>
 
-                  <div className="col-span-2">{off.max}</div>
+                <div className="col-span-2">{off.max}</div>
 
-                  <div className="col-span-2">{off.uses}</div>
+                <div className="col-span-2">{off.uses}</div>
 
-                  <div className="col-span-3">{off.creator}</div>
+                <div className="col-span-2">{off.creator}</div>
 
-                  <div className="col-span-1">
-                    <div
-                      onClick={() => removeOff(off._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                    >
-                      حذف
-                    </div>
+                <div className="col-span-1">
+                  <div
+                    onClick={() => removeOff(off._id)}
+                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                  >
+                    حذف
                   </div>
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>

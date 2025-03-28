@@ -240,14 +240,13 @@ export default function Articles() {
                       >
                         <option value={"-1"}>را انتخاب نمایید</option>
                         {categories.map((category) => (
-                          <>
-                            <option
-                              className="text-slate-900 text-[1.6rem]"
-                              value={category._id}
-                            >
-                              {category.title}
-                            </option>
-                          </>
+                          <option
+                            key={category._id}
+                            className="text-slate-900 text-[1.6rem]"
+                            value={category._id}
+                          >
+                            {category.title}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -307,48 +306,46 @@ export default function Articles() {
             id="container_orders"
           >
             {articles.map((article, index) => (
-              <>
-                <div
-                  key={article.title}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-                >
-                  <div className="col-span-1">{index + 1}</div>
+              <div
+                key={article._id}
+                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+              >
+                <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-3">{article.title}</div>
+                <div className="col-span-3">{article.title}</div>
 
-                  <div className="col-span-3">{article.shortName}</div>
+                <div className="col-span-3">{article.shortName}</div>
 
-                  <div className="col-span-2">{article.creator.name}</div>
+                <div className="col-span-2">{article.creator.name}</div>
 
-                  <div className="col-span-1">
-                    {article.publish === 1 ? "منتشر شده" : "پیش‌نویس"}
-                  </div>
+                <div className="col-span-1">
+                  {article.publish === 1 ? "منتشر شده" : "پیش‌نویس"}
+                </div>
 
-                  <div className="col-span-1">
-                    {article.publish === 1 ? (
-                      <div className="flex-center text-sky-600 dark:text-sky-100/90 text-6xl">
-                        <HiOutlineCheckCircle />
-                      </div>
-                    ) : (
-                      <Link
-                        to={`draft/${article.shortName}`}
-                        class="btn btn-primary edit-btn"
-                      >
-                        ادامه نوشتن
-                      </Link>
-                    )}
-                  </div>
-
-                  <div className="col-span-1">
-                    <div
-                      onClick={() => removeArticle(article._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                    >
-                      حذف
+                <div className="col-span-1">
+                  {article.publish === 1 ? (
+                    <div className="flex-center text-sky-600 dark:text-sky-100/90 text-6xl">
+                      <HiOutlineCheckCircle />
                     </div>
+                  ) : (
+                    <Link
+                      to={`draft/${article.shortName}`}
+                      class="btn btn-primary edit-btn"
+                    >
+                      ادامه نوشتن
+                    </Link>
+                  )}
+                </div>
+
+                <div className="col-span-1">
+                  <div
+                    onClick={() => removeArticle(article._id)}
+                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                  >
+                    حذف
                   </div>
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>

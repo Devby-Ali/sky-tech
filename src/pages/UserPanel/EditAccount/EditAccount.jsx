@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/authContext";
 import {
   HiOutlineArrowUpTray,
@@ -7,6 +7,8 @@ import {
   HiOutlineLockClosed,
   HiOutlineUser,
   HiOutlineUserCircle,
+  HiOutlineTrash,
+  HiOutlineXMark,
 } from "react-icons/hi2";
 import Swal from "sweetalert2";
 
@@ -170,10 +172,10 @@ export default function EditAccount() {
 
           <div className="attachment_item hidden items-center justify-between w-full sm:w-62 h-12 px-4 border border-green-500 text-green-500 bg-transparent cursor-pointer rounded-sm">
             <div className="size-5 shrink-0 cursor-pointer remove_attachment after_upload">
-              <use href="#trash"></use>
+              <HiOutlineTrash className="w-full h-full" />
             </div>
             <div className="size-5 shrink-0 cursor-pointer in_progress remove_attachment hidden">
-              <use href="#close"></use>
+              <HiOutlineXMark className="w-full h-full" />
             </div>
             <div className="flex items-center gap-x-1.5">
               <span className="up_percent"></span>

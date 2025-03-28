@@ -104,9 +104,8 @@ export default function CommentsTextArea({ comments, submitComment }) {
               className="w-full block p-7 md:p-4 bg-gray-200 dark:bg-[#333c4c] text-gray-900 dark:text-white placeholder:text-slate-500/70 font-EstedadMedium text-[1.4rem]/10 rounded-xl rounded-br-sm sm:rounded-xl"
               placeholder="نظر خود را بنویسید ..."
               onChange={onChangeHandler}
-            >
-              {newCommentBody}
-            </textarea>
+              value={newCommentBody}
+            />
             <div className="flex items-center justify-between mt-2 sm:mt-6">
               <select
                 className="bg-white dark:bg-[#333c4c] py-2 pr-6 rounded-lg text-2xl ml-2"
@@ -159,94 +158,95 @@ export default function CommentsTextArea({ comments, submitComment }) {
         ) : (
           <>
             {comments.map((comment) => (
-              <>
-                <div id="comment-56773" className="p-8 md:p-5 rounded-xl">
-                  <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
-                    <div className="flex items-center gap-x-4">
-                      <div className="hidden border-2 border-sky-700 sm:flex-center w-20 h-20 rounded-full relative">
-                        <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-sky-700 rounded-full">
-                          <div className="text-[1.4rem] mb-0.5 mr-0.5">
-                            <RiGraduationCapFill />
-                          </div>
-                        </div>
-                        <div className="text-6xl text-sky-700 dark:text-sky-500">
-                          <BiUserCircle />
+              <div
+                key={comment._id}
+                id="comment-56773"
+                className="p-8 md:p-5 rounded-xl"
+              >
+                <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-300 dark:border-white/10">
+                  <div className="flex items-center gap-x-4">
+                    <div className="hidden border-2 border-sky-700 sm:flex-center w-20 h-20 rounded-full relative">
+                      <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-sky-700 rounded-full">
+                        <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                          <RiGraduationCapFill />
                         </div>
                       </div>
-                      <div className="flex flex-col gap-3">
-                        <div className="flex items-center gap-x-2 ">
-                          <span className="inline-block max-w-40 truncate">
-                            {comment.creator.name}
-                          </span>
-                          <span className="font-EstedadThin">
-                            |
-                            {comment.creator.role === "ADMIN"
-                              ? " مدیر"
-                              : " دانشجو"}
-                          </span>
-                        </div>
-                        <span className="text-xl opacity-70">
-                          {comment.createdAt.slice(0, 10)}
+                      <div className="text-6xl text-sky-700 dark:text-sky-500">
+                        <BiUserCircle />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-x-2 ">
+                        <span className="inline-block max-w-40 truncate">
+                          {comment.creator.name}
+                        </span>
+                        <span className="font-EstedadThin">
+                          |
+                          {comment.creator.role === "ADMIN"
+                            ? " مدیر"
+                            : " دانشجو"}
                         </span>
                       </div>
+                      <span className="text-xl opacity-70">
+                        {comment.createdAt.slice(0, 10)}
+                      </span>
                     </div>
-                    <button
-                      type="button"
-                      className="flex-center border border-sky-700 dark:border-sky-500 p-3 rounded-full"
-                    >
-                      <div className="text-3xl text-sky-700 dark:text-sky-400">
-                        <HiOutlineArrowUturnLeft />
-                      </div>
-                    </button>
                   </div>
-                  <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
-                    {comment.body}
-                  </p>
-                  {/* <!-- Replies --> */}
-                  {comment.answerContent ? (
-                    <div className="mt-4 space-y-4">
-                      <div
-                        id="comment-56733"
-                        className="p-7 md:p-5 bg-gray-300 dark:bg-slate-800 rounded-xl"
-                      >
-                        <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-400/50 dark:border-white/10">
-                          <div className="flex items-center gap-x-3.5">
-                            <div className="hidden border-2 border-sky-700 sm:flex-center w-20 h-20 rounded-full relative">
-                              <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-sky-700 rounded-full">
-                                <div className="text-[1.4rem] mb-0.5 mr-0.5">
-                                  <RiGraduationCapFill />
-                                </div>
-                              </div>
-                              <div className="text-6xl text-sky-700 dark:text-sky-500">
-                                <BiUserCircle />
+                  <button
+                    type="button"
+                    className="flex-center border border-sky-700 dark:border-sky-500 p-3 rounded-full"
+                  >
+                    <div className="text-3xl text-sky-700 dark:text-sky-400">
+                      <HiOutlineArrowUturnLeft />
+                    </div>
+                  </button>
+                </div>
+                <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
+                  {comment.body}
+                </p>
+                {/* <!-- Replies --> */}
+                {comment.answerContent ? (
+                  <div className="mt-4 space-y-4">
+                    <div
+                      id="comment-56733"
+                      className="p-7 md:p-5 bg-gray-300 dark:bg-slate-800 rounded-xl"
+                    >
+                      <div className="flex items-center justify-between pb-6 mb-6 border-b border-b-gray-400/50 dark:border-white/10">
+                        <div className="flex items-center gap-x-3.5">
+                          <div className="hidden border-2 border-sky-700 sm:flex-center w-20 h-20 rounded-full relative">
+                            <div className="absolute -top-0.5 -right-0.5 flex-center w-8 h-8 bg-sky-700 rounded-full">
+                              <div className="text-[1.4rem] mb-0.5 mr-0.5">
+                                <RiGraduationCapFill />
                               </div>
                             </div>
-                            <div className="flex flex-col gap-3">
-                              <div className="flex items-center gap-x-1">
-                                <span className="inline-block max-w-40 truncate">
-                                  {comment.answerContent.creator.name}
-                                </span>
-                                <strong className="font-EstedadThin">
-                                  {comment.answerContent.creator.role ===
-                                  "ADMIN"
-                                    ? " مدیر"
-                                    : " دانشجو"}
-                                </strong>
-                              </div>
-                              <span className="text-xl opacity-70">
-                                {comment.answerContent.createdAt.slice(0, 10)}
-                              </span>
+                            <div className="text-6xl text-sky-700 dark:text-sky-500">
+                              <BiUserCircle />
                             </div>
                           </div>
+                          <div className="flex flex-col gap-3">
+                            <div className="flex items-center gap-x-1">
+                              <span className="inline-block max-w-40 truncate">
+                                {comment.answerContent.creator.name}
+                              </span>
+                              <strong className="font-EstedadThin">
+                                {comment.answerContent.creator.role === "ADMIN"
+                                  ? " مدیر"
+                                  : " دانشجو"}
+                              </strong>
+                            </div>
+                            <span className="text-xl opacity-70">
+                              {comment.answerContent.createdAt.slice(0, 10)}
+                            </span>
+                          </div>
                         </div>
-                        <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
-                          {comment.answerContent.body}
-                        </p>
                       </div>
+                      <p className="font-EstedadLight text-xl/10 sm:text-2xl/10 break-words">
+                        {comment.answerContent.body}
+                      </p>
                     </div>
-                  ) : null}
-                </div>
-              </>
+                  </div>
+                ) : null}
+              </div>
             ))}
             <button
               data-id="78"

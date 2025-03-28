@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CircleSpinner from "../CircleSpinner/CircleSpinner";
-import { FaStar } from "react-icons/fa";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { HiOutlineStar, HiStar } from "react-icons/hi2";
+import { HiStar } from "react-icons/hi2";
 
 export default function CourseBox(props) {
   const [isImgShow, setIsImgShow] = useState(false);
@@ -41,12 +40,10 @@ export default function CourseBox(props) {
         ) : null}
       </div>
       {/* <!-- Course Title & Description --> */}
-      <div className={`grow px-6 py-6 mb-6 ${props.isSlider && "h-48"}`}>
+      <div className={`grow px-6 py-6 mb-6 ${props.isSlider ? "h-48" : ""}`}>
         {/* <!-- Course Title --> */}
         <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2 mb-5">
-          <Link to={`/course-info/${props.shortName}`} href="">
-            {props.name}
-          </Link>
+          <Link to={`/course-info/${props.shortName}`}>{props.name}</Link>
         </h3>
         {/* <!-- Course Description --> */}
         <p className="text-2xl/10 line-clamp-2 opacity-70">
@@ -61,7 +58,7 @@ export default function CourseBox(props) {
             <div className="text-3xl">
               <LiaUserSolid />
             </div>
-            <a href="https:/">{props.creator}</a>
+            <Link to={`/user/${props.creator._id}`}>{props.creator.name}</Link>
           </div>
           {/* <!-- Rating --> */}
           <div className="flex items-center gap-x-1 text-3xl opacity-65 text-amber-400">
@@ -71,20 +68,6 @@ export default function CourseBox(props) {
             <div className="text-3xl">
               <HiStar />
             </div>
-            {/* {Array(5 - props.courseAverageScore)
-              .fill(0)
-              .map((item) => (
-                <>
-                  <HiOutlineStar />
-                </>
-              ))}
-            {Array(props.courseAverageScore)
-              .fill(0)
-              .map((item) => (
-                <>
-                  <HiStar />
-                </>
-              ))} */}
           </div>
         </div>
         <div className="flex items-end justify-between mt-3">
@@ -95,7 +78,6 @@ export default function CourseBox(props) {
             {props.registers}
           </span>
           {/* <!-- Price --> */}
-
           {props.price === 0 ? (
             <div>رایگان</div>
           ) : (

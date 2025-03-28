@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HiChevronDown, HiOutlineFolderOpen } from "react-icons/hi2";
 import Button from "../Form/Button";
 
@@ -62,15 +62,16 @@ export default function CoursesFilter() {
           </div>
           <div className="flex flex-col space-y-6 mx-8 my-8">
             {category.map((category) => (
-              <>
-                <Button to={`/category-info/${category.name}/1`} className="flex items-center gap-x-4">
-                  <input
-                    className="w-7 h-7 opacity-50"
-                    type="checkbox"
-                  />
-                  <span className="text-[1.7rem] select-none">{category.title}</span>
-                </Button>
-              </>
+              <Button
+                key={category._id}
+                to={`/category-info/${category.name}/1`}
+                className="flex items-center gap-x-4"
+              >
+                <input className="w-7 h-7 opacity-50" type="checkbox" />
+                <span className="text-[1.7rem] select-none">
+                  {category.title}
+                </span>
+              </Button>
             ))}
           </div>
         </div>

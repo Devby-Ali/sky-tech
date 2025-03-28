@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import Swal from "sweetalert2";
@@ -11,11 +11,8 @@ import {
 import { HiOutlineLogout } from "react-icons/hi";
 
 export default function Sidebar() {
-  const [dark, setDark] = useState(false);
-
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
-
   const pageName = useParams();
 
   const logoutUser = () => {
@@ -41,11 +38,9 @@ export default function Sidebar() {
 
   const themeHandler = () => {
     if (localStorage.theme === "dark") {
-      setDark(false);
       document.documentElement.classList.remove("dark");
       localStorage.theme = "light";
     } else {
-      setDark(true);
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }
@@ -84,7 +79,7 @@ export default function Sidebar() {
 
         <div className="h-full flex flex-col justify-between">
           <ul className="*:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
-            <li className={pageName["*"] === "" && "active-menu"}>
+            <li className={pageName["*"] === "" ? "active-menu" : ""}>
               <Link
                 className="flex items-center justify-between"
                 to="/my-account"
@@ -93,7 +88,7 @@ export default function Sidebar() {
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
-            <li className={pageName["*"] === "orders" && "active-menu"}>
+            <li className={pageName["*"] === "orders" ? "active-menu" : ""}>
               <Link className="flex items-center justify-between" to="orders">
                 <span>سفارش</span>
                 <HiMiniChevronLeft className="text-5xl" />
@@ -105,7 +100,9 @@ export default function Sidebar() {
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
-            <li className={pageName["*"] === "edit-account" && "active-menu"}>
+            <li
+              className={pageName["*"] === "edit-account" ? "active-menu" : ""}
+            >
               <Link
                 className="flex items-center justify-between"
                 to="edit-account"
@@ -114,13 +111,13 @@ export default function Sidebar() {
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
-            <li className={pageName["*"] === "buyed" && "active-menu"}>
+            <li className={pageName["*"] === "buyed" ? "active-menu" : ""}>
               <Link className="flex items-center justify-between" to="buyed">
                 <span>دوره های من</span>
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
-            <li className={pageName["*"] === "tickets" && "active-menu"}>
+            <li className={pageName["*"] === "tickets" ? "active-menu" : ""}>
               <Link className="flex items-center justify-between" to="tickets">
                 <span>تیکت های پشتیبانی</span>
                 <HiMiniChevronLeft className="text-5xl" />

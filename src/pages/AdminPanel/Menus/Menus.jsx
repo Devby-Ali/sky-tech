@@ -156,19 +156,18 @@ export default function Menus() {
                       >
                         منو اصلی
                       </option>
-                      {menus.map((menu) => (
-                        <>
-                          {!Boolean(menu.parent) && (
+                      {menus.map(
+                        (menu) =>
+                          !menu.parent && (
                             <option
+                              key={menu._id}
                               className="text-slate-900 text-[1.8rem]"
                               value={menu._id}
-                              key={menu._id}
                             >
                               {menu.title}
                             </option>
-                          )}
-                        </>
-                      ))}
+                          )
+                      )}
                     </select>
                   </div>
                 </div>
@@ -212,42 +211,40 @@ export default function Menus() {
             id="container_orders"
           >
             {menus.map((menu, index) => (
-              <>
-                <div
-                  key={menu.name}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-                >
-                  <div className="col-span-1">{index + 1}</div>
+              <div
+                key={menu._id}
+                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+              >
+                <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-4">{menu.title}</div>
+                <div className="col-span-4">{menu.title}</div>
 
-                  <div className="col-span-3">{menu.href}</div>
+                <div className="col-span-3">{menu.href}</div>
 
-                  <div className="col-span-2">
-                    {menu.parent ? (
-                      menu.parent.title
-                    ) : (
-                      <div className="flex-center text-sky-600 dark:text-sky-100/90 text-6xl">
-                        <HiOutlineCheckCircle />
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="col-span-1">
-                    <div className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded-sm select-none">
-                      ویرایش
+                <div className="col-span-2">
+                  {menu.parent ? (
+                    menu.parent.title
+                  ) : (
+                    <div className="flex-center text-sky-600 dark:text-sky-100/90 text-6xl">
+                      <HiOutlineCheckCircle />
                     </div>
-                  </div>
-                  <div className="col-span-1">
-                    <div
-                      onClick={() => removeMenu(menu._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded-sm select-none cursor-pointer"
-                    >
-                      حذف
-                    </div>
+                  )}
+                </div>
+
+                <div className="col-span-1">
+                  <div className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded-sm select-none">
+                    ویرایش
                   </div>
                 </div>
-              </>
+                <div className="col-span-1">
+                  <div
+                    onClick={() => removeMenu(menu._id)}
+                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded-sm select-none cursor-pointer"
+                  >
+                    حذف
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>

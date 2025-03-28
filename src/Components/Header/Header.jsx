@@ -233,7 +233,7 @@ export default function Header() {
 
               <ul className="hidden md:flex gap-x-7 xl:gap-x-12 text-slate-900 dark:text-white text-[1.7rem] xl:text-[1.8rem]">
                 <li className="main-header__item group/menu flex-center relative">
-                  <span className="cursor-pointer">
+                  <div className="cursor-pointer">
                     دوره های آموزشی
                     <ul className="main-header__dropdown group-hover/menu:main-header__dropdown-hover text-slate-900 dark:text-white">
                       {allMenus.map((menu) => (
@@ -241,11 +241,10 @@ export default function Header() {
                           className="main-header__dropdown-item header__item group/submenu"
                           key={menu._id}
                         >
-                          <Link
-                            to={`/category-info/${menu.href}/1`}
-                            className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] duration-200"
-                          >
-                            {menu.title}
+                          <div className="flex items-center justify-between py-2.5 px-4 text-[1.6rem] duration-200">
+                            <Link to={`/category-info/${menu.href}/1`}>
+                              {menu.title}
+                            </Link>
                             {menu.submenus.length !== 0 && (
                               <>
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
@@ -263,11 +262,11 @@ export default function Header() {
                                 </ul>
                               </>
                             )}
-                          </Link>
+                          </div>
                         </li>
                       ))}
                     </ul>
-                  </span>
+                  </div>
                 </li>
                 <li className="main-header__item flex-center relative">
                   <Link to={"/courses/1"}>همه دوره ها</Link>

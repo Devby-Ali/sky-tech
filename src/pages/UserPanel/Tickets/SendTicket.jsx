@@ -108,9 +108,9 @@ export default function SendTicket() {
             >
               <option>دپارتمان را انتخاب کنید:</option>
               {departments.map((department) => (
-                <>
-                  <option value={department._id}>{department.title}</option>
-                </>
+                <option key={department._id} value={department._id}>
+                  {department.title}
+                </option>
               ))}
             </select>
 
@@ -123,9 +123,9 @@ export default function SendTicket() {
               <option>نوع تیکت را انتخاب کنید:</option>
               {departmentsSubs.length &&
                 departmentsSubs.map((sub) => (
-                  <>
-                    <option value={sub._id}>{sub.title}</option>
-                  </>
+                  <option key={sub._id} value={sub._id}>
+                    {sub.title}
+                  </option>
                 ))}
             </select>
           </div>

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { GoTriangleDown } from "react-icons/go";
 import {
   HiBars3,
   HiChevronRight,
@@ -135,7 +134,7 @@ export default function Topbar() {
 
           <div className="h-full flex flex-col justify-between">
             <ul className="*:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-7 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
-              <li className={pageName["*"] === "" && "active-menu"}>
+              <li className={pageName["*"] === "" ? "active-menu" : ""}>
                 <Link
                   className="flex items-center justify-between"
                   to="/my-account"
@@ -144,7 +143,7 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "orders" && "active-menu"}>
+              <li className={pageName["*"] === "orders" ? "active-menu" : ""}>
                 <Link className="flex items-center justify-between" to="orders">
                   <span>سفارش</span>
                   <HiMiniChevronLeft className="text-5xl" />
@@ -156,7 +155,11 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "edit-account" && "active-menu"}>
+              <li
+                className={
+                  pageName["*"] === "edit-account" ? "active-menu" : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between"
                   to="edit-account"
@@ -165,13 +168,13 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "buyed" && "active-menu"}>
+              <li className={pageName["*"] === "buyed" ? "active-menu" : ""}>
                 <Link className="flex items-center justify-between" to="buyed">
                   <span>دوره های من</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "tickets" && "active-menu"}>
+              <li className={pageName["*"] === "tickets" ? "active-menu" : ""}>
                 <Link
                   className="flex items-center justify-between"
                   to="tickets"

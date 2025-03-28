@@ -140,42 +140,43 @@ export default function Tickets() {
 
       <div className="space-y-4 md:space-y-6 md:pr-5" id="container_tickets">
         {tickets.map((ticket) => (
-          <>
-            <div className="flex items-start lg:items-center justify-between flex-col lg:flex-row gap-y-6 bg-white dark:bg-slate-800 text-slate-900 dark:text-white p-5 md:py-9 md:px-7 rounded-md">
-              <Link
-                to={`answer/${ticket._id}`}
-                className="block lg:w-1/2 lg:truncate text-xl md:text-3xl"
-              >
-                {ticket.title}
-              </Link>
-              <div className="flex items-center justify-between lg:justify-start gap-x-3 md:gap-x-5 w-full lg:w-auto text-slate-500 dark:text-gray-400 text-lg md:text-2xl">
-                <span className="select-none">
-                  {" "}
-                  <span>{ticket.departmentSubID}</span>{" "}
-                  <span>
-                    {ticket.answer === 0 ? "پاسخ داده نشده" : "پاسخ داده شده"}
-                  </span>{" "}
-                </span>
-                <span className="select-none mr-auto lg:mr-0">
-                  {ticket.createdAt.slice(0, 10)}
-                </span>
+          <div
+            key={ticket._id}
+            className="flex items-start lg:items-center justify-between flex-col lg:flex-row gap-y-6 bg-white dark:bg-slate-800 text-slate-900 dark:text-white p-5 md:py-9 md:px-7 rounded-md"
+          >
+            <Link
+              to={`answer/${ticket._id}`}
+              className="block lg:w-1/2 lg:truncate text-xl md:text-3xl"
+            >
+              {ticket.title}
+            </Link>
+            <div className="flex items-center justify-between lg:justify-start gap-x-3 md:gap-x-5 w-full lg:w-auto text-slate-500 dark:text-gray-400 text-lg md:text-2xl">
+              <span className="select-none">
+                {" "}
+                <span>{ticket.departmentSubID}</span>{" "}
+                <span>
+                  {ticket.answer === 0 ? "پاسخ داده نشده" : "پاسخ داده شده"}
+                </span>{" "}
+              </span>
+              <span className="select-none mr-auto lg:mr-0">
+                {ticket.createdAt.slice(0, 10)}
+              </span>
 
-                {ticket.answer === 0 ? (
-                  <>
-                    <div className="text-3xl md:text-5xl text-amber-500">
-                      <HiOutlineMagnifyingGlassCircle />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className=" text-3xl md:text-5xl text-green-500">
-                      <HiOutlineCheckCircle />
-                    </div>
-                  </>
-                )}
-              </div>
+              {ticket.answer === 0 ? (
+                <>
+                  <div className="text-3xl md:text-5xl text-amber-500">
+                    <HiOutlineMagnifyingGlassCircle />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className=" text-3xl md:text-5xl text-green-500">
+                    <HiOutlineCheckCircle />
+                  </div>
+                </>
+              )}
             </div>
-          </>
+          </div>
         ))}
       </div>
     </main>

@@ -329,51 +329,49 @@ export default function Users() {
             id="container_orders"
           >
             {users.map((user, index) => (
-              <>
-                <div
-                  key={user.name}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-                >
-                  <div className="col-span-1">{index + 1}</div>
+              <div
+                key={user._id}
+                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+              >
+                <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-2">{user.name}</div>
+                <div className="col-span-2">{user.name}</div>
 
-                  <div className="col-span-2">{user.email}</div>
+                <div className="col-span-2">{user.email}</div>
 
-                  <div className="col-span-1">{user.username}</div>
+                <div className="col-span-1">{user.username}</div>
 
-                  <div className="col-span-2">{user.phone}</div>
+                <div className="col-span-2">{user.phone}</div>
 
-                  <div className="col-span-1">
-                    {user.role === "ADMIN" ? "مدیر" : "کاربر"}
-                  </div>
+                <div className="col-span-1">
+                  {user.role === "ADMIN" ? "مدیر" : "کاربر"}
+                </div>
 
-                  <div className="col-span-1 flex-center">
-                    <div
-                      onClick={() => changeRole(user._id)}
-                      className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded-sm select-none cursor-pointer"
-                    >
-                      تغییر‌سطح
-                    </div>
-                  </div>
-                  <div className="col-span-1">
-                    <div
-                      onClick={() => banUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                    >
-                      بن
-                    </div>
-                  </div>
-                  <div className="col-span-1">
-                    <div
-                      onClick={() => removeUser(user._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                    >
-                      حذف
-                    </div>
+                <div className="col-span-1 flex-center">
+                  <div
+                    onClick={() => changeRole(user._id)}
+                    className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded-sm select-none cursor-pointer"
+                  >
+                    تغییر‌سطح
                   </div>
                 </div>
-              </>
+                <div className="col-span-1">
+                  <div
+                    onClick={() => banUser(user._id)}
+                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                  >
+                    بن
+                  </div>
+                </div>
+                <div className="col-span-1">
+                  <div
+                    onClick={() => removeUser(user._id)}
+                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                  >
+                    حذف
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>

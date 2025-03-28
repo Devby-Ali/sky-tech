@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { GoTriangleDown } from "react-icons/go";
 import {
   HiBars3,
   HiChevronRight,
   HiMiniChevronLeft,
   HiOutlineBell,
   HiOutlineMoon,
-  HiOutlineShoppingBag,
   HiOutlineSun,
   HiOutlineUser,
 } from "react-icons/hi2";
@@ -19,7 +17,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 
 export default function Topbar() {
   const [adminInfo, setAdminInfo] = useState({});
-  const [adminNotif, setAdminNotif] = useState({});
+  const [adminNotif, setAdminNotif] = useState([]);
   const [navOpen, setNavOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [dark, setDark] = useState(false);
@@ -116,16 +114,16 @@ export default function Topbar() {
         <div className="sticky top-0 pt-1 transition-all text-slate-900 dark:text-white h-[90vh]">
           <div className="flex items-center justify-between  xl:gap-x-14 text-slate-900 dark:text-white mx-2 2xl:mx-3.5 my-[.7rem] 2xl:my-5">
             <Link to={"/"} className="text-sky-600 dark:text-sky-500 size-24">
-            <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z"></path>
-                  <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
-                  <path d="m9 11 3 3 3-3"></path>
-                </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke="none" d="M0 0h24v24H0z"></path>
+                <path d="M18.316 5H5.684L2.266 9.019a1.09 1.09 0 0 0 .019 1.447L11.999 21l9.715-10.49a1.09 1.09 0 0 0 .024-1.444z"></path>
+                <path d="m9 11 3 3 3-3"></path>
+              </svg>
             </Link>
             <div className="flex items-center gap-x-6 text-[2.75rem] text-stone-1000 dark:text-white">
               <div
@@ -147,7 +145,13 @@ export default function Topbar() {
 
           <div className="h-full flex flex-col justify-between">
             <ul className="*:transition-all *:pr-6 *:pl-3 *:py-[.3rem] *:my-5 2xl:child:my-9 mt-7 text-2xl 2xl:text-[1.7rem] font-EstedadMedium">
-              <li className={pageName["*"] === "" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === ""
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="/p-admin"
@@ -156,7 +160,13 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "courses" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "courses"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="courses"
@@ -165,7 +175,13 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "sessions" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "sessions"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="sessions"
@@ -174,13 +190,28 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "menus" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
-                <Link className="flex items-center justify-between hover:text-purple-400" to="menus">
+              <li
+                className={
+                  pageName["*"] === "menus"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
+                <Link
+                  className="flex items-center justify-between hover:text-purple-400"
+                  to="menus"
+                >
                   <span>منو ها</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "articles" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "articles"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="articles"
@@ -189,13 +220,28 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "users" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
-                <Link className="flex items-center justify-between hover:text-purple-400" to="users">
+              <li
+                className={
+                  pageName["*"] === "users"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
+                <Link
+                  className="flex items-center justify-between hover:text-purple-400"
+                  to="users"
+                >
                   <span>کاربران</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "comments" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "comments"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="comments"
@@ -204,7 +250,13 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "tickets" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "tickets"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="tickets"
@@ -213,13 +265,28 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "offs" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
-                <Link className="flex items-center justify-between hover:text-purple-400" to="offs">
+              <li
+                className={
+                  pageName["*"] === "offs"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
+                <Link
+                  className="flex items-center justify-between hover:text-purple-400"
+                  to="offs"
+                >
                   <span>کدهای تخفیف</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "discounts" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "discounts"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="discounts"
@@ -228,7 +295,13 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "category" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "category"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="category"
@@ -237,7 +310,13 @@ export default function Topbar() {
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
-              <li className={pageName["*"] === "contacts" && "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"}>
+              <li
+                className={
+                  pageName["*"] === "contacts"
+                    ? "active-menu bg-gradient-to-l from-sky-500/15 dark:from-sky-500/10 to-transparent"
+                    : ""
+                }
+              >
                 <Link
                   className="flex items-center justify-between hover:text-purple-400"
                   to="contacts"
@@ -307,38 +386,23 @@ export default function Topbar() {
                 ) : (
                   <>
                     <div className="py-2.5 px-4 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80 rounded-b-lg rounded-t-none">
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
-                      <div className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md">
-                        <span className="truncate hover:text-clip">
-                          blablabl
-                        </span>
-                        <a className="text-2xl" href="javascript:void(0)">
-                          دیدم
-                        </a>
-                      </div>
+                      {adminNotif.map((notification, index) => (
+                        <div
+                          key={notification._id || `notification-${index}`}
+                          className="flex items-center justify-between gap-x-12 text-3xl bg-stone-200 dark:bg-white/10 my-2 px-6 py-4 rounded-md"
+                        >
+                          <span className="truncate hover:text-clip">
+                            {notification.text}
+                          </span>
+                          <a
+                            className="text-2xl"
+                            href="javascript:void(0)"
+                            onClick={() => seeNotification(notification._id)}
+                          >
+                            دیدم
+                          </a>
+                        </div>
+                      ))}
                     </div>
                   </>
                 )}
