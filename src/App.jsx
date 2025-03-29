@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useRoutes } from "react-router-dom";
+import { useRoutes, useLocation } from "react-router-dom";
 import AuthContext from "./context/authContext";
 import routes from "./routes";
 
 export default function App() {
-  
+  const location = useLocation();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(false);
   const [userInfos, setUserInfos] = useState({});
@@ -34,12 +35,12 @@ export default function App() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData)
+          console.log(userData);
           setIsLoggedIn(true);
           setUserInfos(userData);
         });
     } else {
-      setIsLoggedIn(false)
+      setIsLoggedIn(false);
     }
   }, [login, logout]);
 
@@ -62,6 +63,11 @@ export default function App() {
       document.documentElement.classList.remove("dark");
     }
   }, []);
+
+  // اسکرول به بالای صفحه در هنگام تغییر مسیر
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <>

@@ -106,6 +106,7 @@ export default function Header() {
 
   return (
     <>
+      {/* sidebar */}
       <div
         className={`nav fixed top-0 bottom-0 w-100 min-h-screen px-9 bg-white dark:bg-slate-900 overflow-y-auto transition-all z-50 lg:hidden ${
           navOpen ? "right-0" : "-right-100"
@@ -203,7 +204,7 @@ export default function Header() {
               {menu.submenus.length > 0 &&
                 showSubmenus &&
                 menuId === menu._id && (
-                  <ul className="mb-8 mt-4 dark:bg-white/5 bg-stone-100 rounded-xl p-3 space-y-1">
+                  <ul className="my-4 dark:bg-white/5 bg-stone-100 rounded-xl p-3 space-y-1">
                     {menu.submenus.map((submenu) => (
                       <li key={`${menu._id}-${submenu._id}`}>
                         <div
