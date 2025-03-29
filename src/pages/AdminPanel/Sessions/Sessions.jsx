@@ -254,29 +254,27 @@ export default function Sessions() {
             id="container_orders"
           >
             {sessions.map((session, index) => (
-              <>
-                <div
-                  key={session._id}
-                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-                >
-                  <div className="col-span-1">{index + 1}</div>
+              <div
+                key={session._id}
+                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-lg divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+              >
+                <div className="col-span-1">{index + 1}</div>
 
-                  <div className="col-span-4">{session.course.name}</div>
+                <div className="col-span-4">{session.course.name}</div>
 
-                  <div className="col-span-4">{session.title}</div>
+                <div className="col-span-4">{session.title}</div>
 
-                  <div className="col-span-2">{session.time}</div>
+                <div className="col-span-2">{session.time}</div>
 
-                  <div className="col-span-1">
-                    <div
-                      onClick={() => removeSession(session._id)}
-                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                    >
-                      حذف
-                    </div>
+                <div className="col-span-1">
+                  <div
+                    onClick={() => removeSession(session._id)}
+                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                  >
+                    حذف
                   </div>
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>

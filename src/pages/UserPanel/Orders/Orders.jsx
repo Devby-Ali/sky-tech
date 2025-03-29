@@ -46,7 +46,7 @@ export default function Orders() {
               id="container_orders"
             >
               {orders.map((order, index) => (
-                <>
+                <React.Fragment key={order._id}>
                   <div className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3">
                     <div className="col-span-1">{index + 1}</div>
 
@@ -72,7 +72,7 @@ export default function Orders() {
                       </a>
                     </div>
                   </div>
-                </>
+                </React.Fragment>
               ))}
             </div>
           </div>

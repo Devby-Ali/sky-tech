@@ -44,17 +44,7 @@ export default function App() {
     }
   }, [login, logout]);
 
-  // useEffect(() => {
-  //   if (
-  //     localStorage.theme === "dark" ||
-  //     (!("theme" in localStorage) &&
-  //       window.matchMedia("(prefers-color-scheme: dark)").matches)
-  //   ) {
-  //     document.documentElement.classList.add("dark");
-  //   } else {
-  //     document.documentElement.classList.remove("dark");
-  //   }
-  // }, []);
+
 
   useEffect(() => {
     if (localStorage.theme === "dark") {
@@ -64,7 +54,7 @@ export default function App() {
     }
   }, []);
 
-  // اسکرول به بالای صفحه در هنگام تغییر مسیر
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);

@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
-import {
-  requiredValidator,
-  minValidator,
-  maxValidator,
-} from "./../../../validators/rules";
+import { minValidator } from "./../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import { HiMiniPlus, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
@@ -240,14 +236,14 @@ export default function Courses() {
                       >
                         <option value={"-1"}>را انتخاب نمایید</option>
                         {categories.map((category) => (
-                          <>
+                          <React.Fragment key={category._id}>
                             <option
                               className="text-slate-900 text-[1.6rem]"
                               value={category._id}
                             >
                               {category.title}
                             </option>
-                          </>
+                          </React.Fragment>
                         ))}
                       </select>
                     </div>

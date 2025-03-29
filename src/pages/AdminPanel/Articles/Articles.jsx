@@ -330,7 +330,7 @@ export default function Articles() {
                   ) : (
                     <Link
                       to={`draft/${article.shortName}`}
-                      class="btn btn-primary edit-btn"
+                      className="btn btn-primary edit-btn"
                     >
                       ادامه نوشتن
                     </Link>
