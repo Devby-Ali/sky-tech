@@ -2,7 +2,8 @@ import React from "react";
 
 import "./CircleSpinner.css";
 
-export default function CircleSpinner() {
+
+const CircleSpinner: React.FC = () => {
   return (
     <div className="loader">
       <svg className="circular" viewBox="25 25 50 50">
@@ -19,3 +20,6 @@ export default function CircleSpinner() {
     </div>
   );
 }
+
+
+export default CircleSpinner;

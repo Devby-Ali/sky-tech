@@ -3,6 +3,8 @@ import { useRoutes, useLocation } from "react-router-dom";
 import AuthContext from "./context/authContext";
 import routes from "./routes";
 
+
+
 export default function App() {
   const location = useLocation();
 
