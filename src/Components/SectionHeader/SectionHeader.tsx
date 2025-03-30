@@ -1,15 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HiArrowUpLeft, HiOutlineChevronLeft } from "react-icons/hi2";
+import { HiArrowUpLeft } from "react-icons/hi2";
 
-export default function SectionHeader({
+interface SectionHeaderProps {
+  title: string;
+  desc?: string;
+  titleValue?: string;
+  btnTitle?: string;
+  btnHref?: string;
+  Page?: React.ReactNode;
+}
+
+const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
   desc,
   titleValue,
   btnTitle,
   btnHref,
   Page,
-}) {
+}) => {
   return (
     <div className="flex-center sm:justify-between flex-wrap flex-col mb-14 sm:mb-20 sm:flex-row gap-x-4 gap-y-7 text-slate-900 dark:text-white">
       <div className="space-y-2 sm:space-y-3 sm:self-start mb-6 sm:mb-0">
@@ -56,3 +65,6 @@ export default function SectionHeader({
     </div>
   );
 }
+
+
+export default SectionHeader;
