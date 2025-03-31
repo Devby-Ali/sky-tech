@@ -1,7 +1,34 @@
-import React, { useEffect, useReducer } from "react";
+import React, { ChangeEvent, useEffect, useReducer } from "react";
 import validators from "../../validators/validator";
 
-const inputReducer = (state, action) => {
+interface InputState {
+  value: string;
+  isValid: boolean;
+}
+
+interface ValidationRule {
+  type: string;
+  value?: number | string;
+  message?: string;
+}
+
+type InputAction = {
+  type: "CHANGE";
+  value: string;
+  validations: ValidationRule[];
+};
+
+interface InputProps {
+  id: string;
+  element?: "input" | "textarea";
+  type?: "text" | "password" | "email" | "number" | "tel";
+  placeholder?: string;
+  className?: string;
+  validations?: ValidationRule[];
+  onInputHandler: (id: string, value: string, isValid: boolean) => void;
+}
+
+const inputReducer = (state: InputState, action: InputAction) => {
   switch (action.type) {
     case "CHANGE": {
       return {
@@ -16,7 +43,7 @@ const inputReducer = (state, action) => {
   }
 };
 
-export default function Input(props) {
+const Input: React.FC<InputProps> = (props) => {
   const [mainInput, dispatch] = useReducer(inputReducer, {
     value: "",
     isValid: false,
@@ -29,7 +56,9 @@ export default function Input(props) {
     onInputHandler(id, value, isValid);
   }, [value]);
 
-  const onChangeHandler = (event) => {
+  const onChangeHandler = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     dispatch({
       type: "CHANGE",
       value: event.target.value,
@@ -60,4 +89,6 @@ export default function Input(props) {
     );
 
   return <div>{element}</div>;
-}
+};
+
+export default Input;
