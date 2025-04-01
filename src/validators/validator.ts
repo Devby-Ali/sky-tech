@@ -1,8 +1,9 @@
 import rules from "./rules";
 import regex from "./regex";
+import ValidationRule from "./ValidationRule";
 
-const validators = (value, validations) => {
-  let validationResults = [];
+const validators = (value: string, validations: ValidationRule[]): boolean => {
+  const validationResults: boolean[] = [];
 
   for (const validator of validations) {
     if (validator.value === rules.requiredValue) {

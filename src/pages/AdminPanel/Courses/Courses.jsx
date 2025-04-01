@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
-import { minValidator } from "./../../../validators/rules";
+import { minValidator } from "../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import { HiMiniPlus, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";

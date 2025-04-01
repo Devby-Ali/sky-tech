@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
-import { requiredValidator, minValidator } from "./../../../validators/rules";
+import { requiredValidator, minValidator } from "../../../validators/rules";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm";

@@ -5,7 +5,7 @@ import {
   requiredValidator,
   minValidator,
   maxValidator,
-} from "./../../../validators/rules";
+} from "../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import Editor from "../../../Components/Form/Editor/Editor";
 import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";

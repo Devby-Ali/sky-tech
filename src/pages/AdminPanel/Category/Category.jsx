@@ -6,7 +6,7 @@ import {
   requiredValidator,
   minValidator,
   maxValidator,
-} from "./../../../validators/rules";
+} from "../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import Swal from "sweetalert2";
 import { HiPlus, HiXMark } from "react-icons/hi2";
