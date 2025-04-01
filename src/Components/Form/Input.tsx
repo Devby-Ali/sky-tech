@@ -18,7 +18,7 @@ type InputAction = {
   validations: ValidationRule[];
 };
 
-interface InputProps {
+type InputProps = {
   id: string;
   element?: "input" | "textarea";
   type?: "text" | "password" | "email" | "number" | "tel";

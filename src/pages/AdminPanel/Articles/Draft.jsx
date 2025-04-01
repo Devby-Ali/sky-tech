@@ -5,6 +5,7 @@ import { requiredValidator, minValidator } from "../../../validators/rules";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm";
+import Editor from "../../../Components/Form/Editor/Editor";
 
 export default function Draft() {
   const [draft, setDraft] = useState([]);
@@ -127,7 +128,7 @@ export default function Draft() {
               </div>
 
               <div className="flex items-center gap-x-6">
-                {/* <Editor value={draft.body} setValue={setArticleBody} /> */}
+                <Editor value={articleBody} setValue={setArticleBody} />
               </div>
 
               <div className="flex items-center gap-x-6">
