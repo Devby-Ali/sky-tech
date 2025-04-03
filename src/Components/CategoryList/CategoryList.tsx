@@ -2,21 +2,40 @@ import { useEffect, useState } from "react";
 import { HiChevronDown, HiOutlineFolderOpen } from "react-icons/hi2";
 import Button from "../Form/Button";
 
-export default function CoursesFilter() {
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [category, setCategory] = useState([]);
+type Category = {
+  _id: string;
+  name: string;
+  title: string;
+};
 
-  const filterOpenHandler = () => {
+type ApiResponse = Category[];
+
+const CoursesFilter: React.FC = () => {
+
+  const [filterOpen, setFilterOpen] = useState<boolean>(false);
+  const [category, setCategory] = useState<Category[]>([]);
+
+  const filterOpenHandler = (): void => {
     setFilterOpen(!filterOpen);
   };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/category`)
-      .then((res) => res.json())
-      .then((allCategory) => {
-        setCategory(allCategory);
-        console.log(allCategory);
-      });
+    const fetchCategories = async (): Promise<void> => {
+      try {
+        const response = await fetch(`http://localhost:4000/v1/category`);
+        const data: ApiResponse = await response.json();
+        setCategory(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error)
+      }
+    };
+    fetchCategories();
+    // fetch(`http://localhost:4000/v1/category`)
+    //   .then((res) => res.json())
+    //   .then((allCategory) => {
+    //     setCategory(allCategory);
+    //     console.log(allCategory);
+    //   });
   }, []);
 
   return (
@@ -79,3 +98,6 @@ export default function CoursesFilter() {
     </div>
   );
 }
+
+
+export default CoursesFilter;
