@@ -5,12 +5,25 @@ import { PiUsersThree } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { HiStar } from "react-icons/hi2";
 
-export default function CourseBox(props) {
-  const [isImgShow, setIsImgShow] = useState(false);
+interface CourseBoxProps {
+  name: string;
+  shortName: string;
+  cover: string;
+  description: string;
+  creator: string;
+  courseAverageScore: number;
+  registers: number;
+  price: number;
+  discount?: number;
+  isSlider?: boolean;
+}
 
-  const onImageLoaded = () => setIsImgShow(true);
+const CourseBox:React.FC<CourseBoxProps> = (props) => {
+  const [isImgShow, setIsImgShow] = useState<boolean>(false);
 
-  const onImageError = () => {
+  const onImageLoaded: () => void = () => setIsImgShow(true);
+
+  const onImageError: () => void = () => {
     // Codes
   };
 
@@ -62,12 +75,16 @@ export default function CourseBox(props) {
           </div>
           {/* <!-- Rating --> */}
           <div className="flex items-center gap-x-1 text-3xl opacity-65 text-amber-400">
-            <span className="font-EstedadMedium mt-1">
-              {props.courseAverageScore}
-            </span>
-            <div className="text-3xl">
-              <HiStar />
-            </div>
+            {props.courseAverageScore && (
+              <>
+                <span className="font-EstedadMedium mt-1">
+                  {props.courseAverageScore}
+                </span>
+                <div className="text-3xl">
+                  <HiStar />
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div className="flex items-end justify-between mt-3">
@@ -134,3 +151,5 @@ export default function CourseBox(props) {
     </div>
   );
 }
+
+export default CourseBox;

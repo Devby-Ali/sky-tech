@@ -3,7 +3,23 @@ import { HiChevronLeft } from "react-icons/hi2";
 import { PiUserLight } from "react-icons/pi";
 import { HiOutlineCalendar } from "react-icons/hi";
 
-export default function ArticleBox(props) {
+interface Creator {
+  _id: string;
+  name: string;
+  username: string;
+  profilePicture: string;
+}
+
+interface ArticleBoxProps {
+  title: string;
+  shortName: string;
+  cover: string;
+  description: string;
+  createdAt: string;
+  creator: Creator;
+}
+
+const ArticleBox:React.FC<ArticleBoxProps> = (props) => {
   return (
     <div className="blog flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white overflow-hidden rounded-lg">
       {/* <!-- Blog Banner --> */}
@@ -58,3 +74,6 @@ export default function ArticleBox(props) {
     </div>
   );
 }
+
+
+export default ArticleBox;
