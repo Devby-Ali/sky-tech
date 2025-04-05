@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import {
   HiBars3,
-  HiChevronLeft,
   HiChevronRight,
   HiMiniChevronDown,
   HiMiniChevronLeft,
@@ -21,15 +20,36 @@ import {
 import Button from "../Form/Button";
 import Swal from "sweetalert2";
 
-export default function Header() {
-  const [dark, setDark] = useState(false);
-  const [navOpen, setNavOpen] = useState(false);
-  const [openCollapse, setOpenCollapse] = useState(false);
-  const [overlay, setOverlay] = useState(false);
+interface Menu {
+  _id: string;
+  title: string;
+  href: string;
+  submenus: Menu[];
+}
 
-  const [allMenus, setAllMenus] = useState([]);
-  const [showSubmenus, setshowSubmenus] = useState(false);
-  const [menuId, setMenuId] = useState(null);
+interface UserInfo {
+  name: string;
+  username: string;
+  email: string;
+  role: string;
+}
+
+interface AuthContextType {
+  isLoggedIn: boolean;
+  token: string | false | null;
+  userInfos: UserInfo | null;
+  login: (userInfo: UserInfo, token: string) => void;
+  logout: () => void;
+}
+
+const Header: React.FC = () => {
+  const [dark, setDark] = useState<boolean>(false);
+  const [navOpen, setNavOpen] = useState<boolean>(false);
+  const [openCollapse, setOpenCollapse] = useState<boolean>(false);
+  const [overlay, setOverlay] = useState<boolean>(false);
+  const [allMenus, setAllMenus] = useState<Menu[]>([]);
+  const [showSubmenus, setshowSubmenus] = useState<boolean>(false);
+  const [menuId, setMenuId] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -56,7 +76,7 @@ export default function Header() {
     });
   };
 
-  const themeHandler = () => {
+  const themeHandler = (): void => {
     if (localStorage.theme === "dark") {
       setDark(false);
       document.documentElement.classList.remove("dark");
@@ -68,23 +88,23 @@ export default function Header() {
     }
   };
 
-  const toggleOpen = () => {
+  const toggleOpen: React.MouseEventHandler<HTMLDivElement> = (): void => {
     setOpenCollapse((cur) => !cur);
     setOverlay(!overlay);
   };
 
-  const overlayOnClick = () => {
+  const overlayOnClick: React.MouseEventHandler<HTMLDivElement> = (): void => {
     setNavOpen(false);
     setOpenCollapse(false);
     setOverlay(false);
   };
 
-  const navOpenHandler = () => {
+  const navOpenHandler: React.MouseEventHandler<HTMLDivElement> = (): void => {
     setNavOpen(!navOpen);
     setOverlay(!overlay);
   };
 
-  const authContext = useContext(AuthContext);
+  const authContext = useContext<AuthContextType>(AuthContext);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/menus`)
@@ -94,7 +114,7 @@ export default function Header() {
       });
   }, []);
 
-  const showSubmenusHandler = (menuID) => {
+  const showSubmenusHandler = (menuID: string): void => {
     if (menuID === menuId) {
       setshowSubmenus(false);
       setMenuId(null);
@@ -113,7 +133,7 @@ export default function Header() {
         }`}
       >
         <div className="flex items-center text-[1.7rem] justify-between gap-x-4 h-20 mb-3 text-slate-900 dark:text-white px-1 pt-16 pb-14">
-          {authContext.userInfos.name ? (
+          {authContext.userInfos?.name ? (
             <Link to="/my-account" className="mr-3 hover:text-sky-500">
               {authContext.userInfos.name}
             </Link>
@@ -140,7 +160,7 @@ export default function Header() {
               دسترسی سریع
             </span>
           </li>
-          {authContext.userInfos.role === "ADMIN" && (
+          {authContext.userInfos?.role === "ADMIN" && (
             <li className="hover:text-sky-500">
               <Link className="flex items-center justify-between" to="/p-admin">
                 <span>پنل مدیریت</span>
@@ -337,10 +357,9 @@ export default function Header() {
                 <HiOutlineShoppingBag />
               </Link>
 
-              {authContext.userInfos.name ? (
+              {authContext.userInfos?.name ? (
                 <>
                   <div
-                    to="#"
                     className={`relative hidden md:flex-center items-center justify-center p-4 rounded-xl mr-4 transition-all duration-200 ${
                       openCollapse && "z-40 bg-white/10 dark:bg-white/5"
                     }`}
@@ -446,4 +465,6 @@ export default function Header() {
       ></div>
     </>
   );
-}
+};
+
+export default Header;
