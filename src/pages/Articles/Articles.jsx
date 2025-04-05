@@ -24,7 +24,6 @@ export default function Articles() {
 
   return (
     <>
-      {/* <Topbar /> */}
       <Header />
       <div className="pt-16 md:pt-52 2xl:pt-60">
         <div className="container">

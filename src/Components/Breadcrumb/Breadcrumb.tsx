@@ -2,7 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineHome } from "react-icons/hi2";
 
-export default function Breadcrumb({ links }) {
+interface Link {
+  id: number;
+  title: string;
+  to: string;
+}
+
+interface BreadcrumbLinks {
+  links: Link[];
+}
+
+const Breadcrumb: React.FC<BreadcrumbLinks> = ({ links }) => {
   return (
     <div className="breadcrumb">
       <div className="breadcrumb__item before:breadcrumb__item-before after:breadcrumb__item-after dark:after:bg-slate-900 dark:before:bg-slate-900 -mr-10 pl-3">
@@ -25,3 +35,5 @@ export default function Breadcrumb({ links }) {
     </div>
   );
 }
+
+export default Breadcrumb;

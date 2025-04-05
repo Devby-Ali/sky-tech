@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Topbar from "./../../Components/Topbar/Topbar";
 import Header from "./../../Components/Header/Header";
 import Breadcrumb from "./../../Components/Breadcrumb/Breadcrumb";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import Topbar from "./../../Components/Topbar/Topbar";
 import Header from "./../../Components/Header/Header";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Button from "../../Components/Form/Button";
@@ -231,7 +230,6 @@ export default function CourseInfo() {
 
   return (
     <>
-      {/* <Topbar /> */}
       <Header />
       <main className="max-w-[1920px] mx-auto overflow-x-hidden pt-14 md:pt-52 2xl:pt-56">
         <div className="container">

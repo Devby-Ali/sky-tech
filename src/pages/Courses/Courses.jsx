@@ -9,10 +9,8 @@ import Footer from "./../../Components/Footer/Footer";
 import {
   HiArrowsUpDown,
   HiMagnifyingGlass,
-  HiOutlineCheckBadge,
   HiOutlineFunnel,
   HiOutlineTrash,
-  HiSquare3Stack3D,
 } from "react-icons/hi2";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
@@ -138,7 +136,6 @@ export default function Courses() {
 
   return (
     <>
-      {/* <Topbar /> */}
       <Header />
       <section className="pt-16 md:pt-52 2xl:pt-56">
         <div className="container">

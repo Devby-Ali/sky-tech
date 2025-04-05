@@ -7,12 +7,10 @@ import {
   requiredValidator,
   maxValidator,
   minValidator,
-  emailValidator,
 } from "../../validators/rules";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ReCAPTCHA from "react-google-recaptcha";
-// import Topbar from "../../Components/Topbar/Topbar";
 import { BiLockOpenAlt } from "react-icons/bi";
 
 export default function Login() {
@@ -97,10 +95,6 @@ export default function Login() {
   };
 
   return (
-    <>
-      {/* <Topbar /> */}
-      {/* <Header /> */}
-
       <section className="relative flex-center h-screen overflow-hidden">
         <div className="container">
           <div className="relative mx-auto flex flex-col items-center w-min">
@@ -220,7 +214,6 @@ export default function Login() {
         <div className="absolute top-0 -left-80 2xl:left-0 w-[340px] h-[340px] bg-yellow-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
         <div className="absolute bottom-0 -right-80 2xl:right-0 w-[340px] h-[340px] bg-sky-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
       </section>
-      {/* <Footer /> */}
-    </>
+
   );
 }
