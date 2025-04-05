@@ -1,16 +1,12 @@
 import React, { ChangeEvent, useEffect, useReducer } from "react";
 import validators from "../../validators/validator";
+import ValidationRule from "validators/ValidationRule";
 
 type InputState = {
   value: string;
   isValid: boolean;
 }
 
-type ValidationRule = {
-  type: string;
-  value?: number | string;
-  message?: string;
-}
 
 type InputAction = {
   type: "CHANGE";

@@ -9,8 +9,22 @@ import { useForm } from "../../hooks/useForm";
 import Swal from "sweetalert2";
 import Button from "../Form/Button";
 
-export default function Footer() {
-  const [formState, onInputHandler] = useForm(
+interface FormInput {
+  value: string;
+  isValid: boolean;
+}
+
+interface FormInputs {
+  [key: string]: FormInput;
+}
+
+interface FormState {
+  inputs: FormInputs;
+  isFormValid: boolean;
+}
+
+const Footer: React.FC = () => {
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       email: {
         value: "",
@@ -20,7 +34,7 @@ export default function Footer() {
     false
   );
 
-  const addNewEmail = (event) => {
+  const addNewEmail: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
     const newEmail = {
       email: formState.inputs.email.value,
@@ -205,4 +219,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
