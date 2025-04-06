@@ -5,8 +5,7 @@ import ValidationRule from "validators/ValidationRule";
 type InputState = {
   value: string;
   isValid: boolean;
-}
-
+};
 
 type InputAction = {
   type: "CHANGE";
@@ -22,7 +21,7 @@ type InputProps = {
   className?: string;
   validations?: ValidationRule[];
   onInputHandler: (id: string, value: string, isValid: boolean) => void;
-}
+};
 
 const inputReducer = (state: InputState, action: InputAction) => {
   switch (action.type) {
@@ -58,7 +57,7 @@ const Input: React.FC<InputProps> = (props) => {
     dispatch({
       type: "CHANGE",
       value: event.target.value,
-      validations: props.validations,
+      validations: props.validations || [],
     });
   };
 

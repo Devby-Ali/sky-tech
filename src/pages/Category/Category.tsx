@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Header from "./../../Components/Header/Header";
+import Header from "../../Components/Header/Header";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import Pagination from "../../Components/Pagination/Pagination";
-import Footer from "./../../Components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 import { FaSquare } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import {
@@ -16,19 +16,35 @@ import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
 
-export default function Category() {
-  const [courses, setCourses] = useState([]);
-  const [orderedCourses, setOrderedCourses] = useState([]);
-  const [shownCourses, setShownCourses] = useState([]);
-  const [status, setStatus] = useState("default");
-  const [statusTitle, setStatusTitle] = useState("همه دوره ها");
-  const [searchValue, setSearchValue] = useState("");
-  const [openSortCourses, setOpenSortCourses] = useState(false);
-  const [openFilteredCourses, setOpenFilteredCourses] = useState(false);
-  const [overlay, setOverlay] = useState(false);
-  const [statusFilter, setStatusFilter] = useState("default");
+interface Course {
+  _id: string;
+  name: string;
+  shortName: string;
+  cover: string;
+  description: string;
+  creator: string;
+  courseAverageScore: number;
+  registers: number;
+  price: number;
+  discount?: number;
+  isSlider?: boolean;
+}
+type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
-  const { categoryName } = useParams();
+const Category = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [orderedCourses, setOrderedCourses] = useState<Course[]>([]);
+  const [shownCourses, setShownCourses] = useState<Course[]>([]);
+  const [status, setStatus] = useState<string>("default");
+  const [statusTitle, setStatusTitle] = useState<string>("همه دوره ها");
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [openSortCourses, setOpenSortCourses] = useState<boolean>(false);
+  const [openFilteredCourses, setOpenFilteredCourses] =
+    useState<boolean>(false);
+  const [overlay, setOverlay] = useState<boolean>(false);
+  const [statusFilter, setStatusFilter] = useState<FilterStatus>("default");
+
+  const { categoryName } = useParams<{ categoryName: string }>();
 
   const openDrawerSort = () => {
     setOpenSortCourses(true);
@@ -100,7 +116,7 @@ export default function Category() {
         setOrderedCourses(courses);
       }
     }
-  }, [status]);
+  }, [status, courses]);
 
   useEffect(() => {
     switch (statusFilter) {
@@ -121,13 +137,17 @@ export default function Category() {
         setOrderedCourses(courses);
       }
     }
-  }, [statusFilter]);
+  }, [statusFilter, courses]);
 
-  const statusTitleChangeHandler = (event) => {
-    setStatusTitle(event.target.textContent);
+  const statusTitleChangeHandler = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setStatusTitle(event.currentTarget.textContent || "");
   };
 
-  const searchValueChangeHandler = (event) => {
+  const searchValueChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setSearchValue(event.target.value);
     const filtredCourses = courses.filter((course) =>
       course.name.includes(event.target.value)
@@ -230,9 +250,8 @@ export default function Category() {
                     </div>
                     <div
                       className="h-[6.8rem] bg-white dark:bg-slate-800 rounded-xl p-7 md:px-8 hidden md:block cursor-pointer"
-                      onClick={(event) => {
+                      onClick={() => {
                         setStatusFilter("purchased");
-                        statusTitleChangeHandler(event);
                       }}
                     >
                       <div className="flex items-center justify-between h-full">
@@ -398,4 +417,6 @@ export default function Category() {
       ></div>
     </>
   );
-}
+};
+
+export default Category;

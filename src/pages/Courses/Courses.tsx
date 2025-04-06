@@ -5,7 +5,7 @@ import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import CategoryList from "../../Components/CategoryList/CategoryList";
 import Pagination from "../../Components/Pagination/Pagination";
-import Footer from "./../../Components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 import {
   HiArrowsUpDown,
   HiMagnifyingGlass,
@@ -16,17 +16,34 @@ import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
 import { FaSquare } from "react-icons/fa";
 
-export default function Courses() {
-  const [courses, setCourses] = useState([]);
-  const [orderedCourses, setOrderedCourses] = useState([]);
-  const [shownCourses, setShownCourses] = useState([]);
-  const [status, setStatus] = useState("default");
-  const [statusFilter, setStatusFilter] = useState("default");
-  const [statusTitle, setStatusTitle] = useState("همه دوره ها");
-  const [searchValue, setSearchValue] = useState("");
-  const [openSortCourses, setOpenSortCourses] = useState(false);
-  const [openFilteredCourses, setOpenFilteredCourses] = useState(false);
-  const [overlay, setOverlay] = useState(false);
+interface Course {
+  _id: string;
+  name: string;
+  shortName: string;
+  cover: string;
+  description: string;
+  creator: string;
+  courseAverageScore: number;
+  registers: number;
+  price: number;
+  discount?: number;
+  isSlider?: boolean;
+}
+
+type FilterStatus = "default" | "free" | "preSale" | "purchased";
+
+const Courses: React.FC = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [orderedCourses, setOrderedCourses] = useState<Course[]>([]);
+  const [shownCourses, setShownCourses] = useState<Course[]>([]);
+  const [status, setStatus] = useState<string>("default");
+  const [statusFilter, setStatusFilter] = useState<FilterStatus>("default");
+  const [statusTitle, setStatusTitle] = useState<string>("همه دوره ها");
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [openSortCourses, setOpenSortCourses] = useState<boolean>(false);
+  const [openFilteredCourses, setOpenFilteredCourses] =
+    useState<boolean>(false);
+  const [overlay, setOverlay] = useState<boolean>(false);
 
   const openDrawerSort = () => {
     setOpenSortCourses(true);
@@ -61,7 +78,6 @@ export default function Courses() {
         setOrderedCourses(allCourses);
         setStatusTitle("همه دوره ها");
         setStatus("default");
-        console.log(allCourses);
       });
   }, []);
 
@@ -99,7 +115,7 @@ export default function Courses() {
         setOrderedCourses(courses);
       }
     }
-  }, [status]);
+  }, [status, courses]);
 
   useEffect(() => {
     switch (statusFilter) {
@@ -120,13 +136,17 @@ export default function Courses() {
         setOrderedCourses(courses);
       }
     }
-  }, [statusFilter]);
+  }, [statusFilter, courses]);
 
-  const statusTitleChangeHandler = (event) => {
-    setStatusTitle(event.target.textContent);
+  const statusTitleChangeHandler = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setStatusTitle(event.currentTarget.textContent || "");
   };
 
-  const searchValueChangeHandler = (event) => {
+  const searchValueChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setSearchValue(event.target.value);
     const filtredCourses = courses.filter((course) =>
       course.name.includes(event.target.value)
@@ -384,4 +404,6 @@ export default function Courses() {
       ></div>
     </>
   );
-}
+};
+
+export default Courses;

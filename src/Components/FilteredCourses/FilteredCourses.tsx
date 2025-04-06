@@ -1,18 +1,26 @@
 import React from "react";
 import {
-  HiOutlineCheckCircle,
   HiOutlineTrash,
   HiOutlineXCircle,
 } from "react-icons/hi2";
 import Button from "../Form/Button";
 import { FaSquare } from "react-icons/fa";
 
-export default function FilteredCourses({
+interface FilteredCoursesProps {
+  openFilteredCourses: boolean;
+  closeDrawerFilter: () => void;
+  setStatusFilter: (status: FilterStatus) => void;
+  statusFilter: FilterStatus;
+}
+
+type FilterStatus = "default" | "free" | "preSale" | "purchased";
+
+const FilteredCourses: React.FC<FilteredCoursesProps> = ({
   openFilteredCourses,
   closeDrawerFilter,
   setStatusFilter,
   statusFilter,
-}) {
+}) => {
   return (
     <div
       className={`fixed right-0 left-0 md:hidden transition-all z-50 ${
@@ -100,3 +108,6 @@ export default function FilteredCourses({
     </div>
   );
 }
+
+
+export default FilteredCourses;
