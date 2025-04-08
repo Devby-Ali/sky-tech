@@ -4,21 +4,11 @@ import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { HiStar } from "react-icons/hi2";
+import Course from "types/Courses.types";
 
-interface CourseBoxProps {
-  name: string;
-  shortName: string;
-  cover: string;
-  description: string;
-  creator: string;
-  courseAverageScore: number;
-  registers: number;
-  price: number;
-  discount?: number;
-  isSlider?: boolean;
-}
 
-const CourseBox:React.FC<CourseBoxProps> = (props) => {
+
+const CourseBox = ({name, shortName, creator, courseAverageScore, description, cover, price, discount, registers, isSlider}: Course) => {
   const [isImgShow, setIsImgShow] = useState<boolean>(false);
 
   const onImageLoaded: () => void = () => setIsImgShow(true);
@@ -33,34 +23,34 @@ const CourseBox:React.FC<CourseBoxProps> = (props) => {
       <div className="relative h-[17rem] group">
         <Link
           className="block w-full h-full rounded-t-lg overflow-hidden"
-          to={`/course-info/${props.shortName}`}
-          title={props.name}
+          to={`/course-info/${shortName}`}
+          title={name}
         >
           <img
             className="block w-full h-full object-cover"
-            src={`http://localhost:4000/courses/covers/${props.cover}`}
-            alt={props.name}
+            src={`http://localhost:4000/courses/covers/${cover}`}
+            alt={name}
             onLoad={onImageLoaded}
             onError={onImageError}
           />
           {!isImgShow && <CircleSpinner />}
         </Link>
         {/* <!-- Offer percent  --> */}
-        {props.price && props.discount !== 0 ? (
+        {price && discount !== 0 ? (
           <span className="absolute right-2.5 top-2.5 flex-center w-18 h-10 bg-sky-700/70 text-white font-EstedadBold text-2xl rounded-sm">
-            {props.discount}%
+            {discount}%
           </span>
         ) : null}
       </div>
       {/* <!-- Course Title & Description --> */}
-      <div className={`grow px-6 py-6 mb-6 ${props.isSlider ? "h-48" : ""}`}>
+      <div className={`grow px-6 py-6 mb-6 ${isSlider ? "h-48" : ""}`}>
         {/* <!-- Course Title --> */}
         <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2 mb-5">
-          <Link to={`/course-info/${props.shortName}`}>{props.name}</Link>
+          <Link to={`/course-info/${shortName}`}>{name}</Link>
         </h3>
         {/* <!-- Course Description --> */}
         <p className="text-2xl/10 line-clamp-2 opacity-70">
-          {props.description}
+          {description}
         </p>
       </div>
       {/* <!-- Course Footer --> */}
@@ -71,14 +61,14 @@ const CourseBox:React.FC<CourseBoxProps> = (props) => {
             <div className="text-3xl">
               <LiaUserSolid />
             </div>
-            <span>{props.creator}</span>
+            <span>{typeof(creator) === "string" && creator}</span>
           </div>
           {/* <!-- Rating --> */}
           <div className="flex items-center gap-x-1 text-3xl opacity-65 text-amber-400">
-            {props.courseAverageScore && (
+            {courseAverageScore && (
               <>
                 <span className="font-EstedadMedium mt-1">
-                  {props.courseAverageScore}
+                  {courseAverageScore}
                 </span>
                 <div className="text-3xl">
                   <HiStar />
@@ -92,22 +82,22 @@ const CourseBox:React.FC<CourseBoxProps> = (props) => {
             <div className="text-4xl">
               <PiUsersThree />
             </div>
-            {props.registers}
+            {registers}
           </span>
           {/* <!-- Price --> */}
-          {props.price === 0 ? (
+          {price === 0 ? (
             <div>رایگان</div>
           ) : (
             <div className="flex-center gap-x-3">
-              {props.discount ? (
+              {discount ? (
                 <>
                   <span className="text-xl text-blue-gray-600 dark:text-white/70 -mb-1.5 line-through">
-                    {props.price.toLocaleString()}
+                    {price.toLocaleString()}
                   </span>
                   <span className="flex gap-x-1 text-sky-600 dark:text-sky-400 font-EstedadMedium text-2xl">
                     {(
-                      props.price -
-                      (props.price * props.discount) / 100
+                      price -
+                      (price * discount) / 100
                     ).toLocaleString()}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +117,7 @@ const CourseBox:React.FC<CourseBoxProps> = (props) => {
                 </>
               ) : (
                 <span className="flex gap-x-1 text-sky-600 dark:text-sky-400 font-EstedadMedium text-2xl">
-                  {props.price.toLocaleString()}
+                  {price.toLocaleString()}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -150,6 +140,6 @@ const CourseBox:React.FC<CourseBoxProps> = (props) => {
       </div>
     </div>
   );
-}
+};
 
 export default CourseBox;

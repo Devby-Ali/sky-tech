@@ -15,12 +15,12 @@ interface FilteredCoursesProps {
 
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
-const FilteredCourses: React.FC<FilteredCoursesProps> = ({
+const FilteredCourses = ({
   openFilteredCourses,
   closeDrawerFilter,
   setStatusFilter,
   statusFilter,
-}) => {
+}: FilteredCoursesProps) => {
   return (
     <div
       className={`fixed right-0 left-0 md:hidden transition-all z-50 ${

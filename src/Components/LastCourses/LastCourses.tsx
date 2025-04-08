@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import CourseBox from "../CourseBox/CourseBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
+import Course from "types/Courses.types";
 
-export default function LastCourses() {
-  const [courses, setCourses] = useState([]);
+const LastCourses = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses`)
       .then((res) => res.json())
       .then((allCourses) => {
-        console.log(allCourses);
         setCourses(allCourses);
       });
   }, []);
@@ -39,4 +39,6 @@ export default function LastCourses() {
       </div>
     </>
   );
-}
+};
+
+export default LastCourses;

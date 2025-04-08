@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Header from "./../../Components/Header/Header";
+import Header from "../../Components/Header/Header";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Button from "../../Components/Form/Button";
 import CourseDetailBox from "../../Components/CourseDetailBox/CourseDetailBox";
 import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
-import Footer from "./../../Components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
@@ -27,7 +27,8 @@ import { GoTriangleDown } from "react-icons/go";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
 
-export default function CourseInfo() {
+
+const CourseInfo = () => {
   const [open, setOpen] = useState(0);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
@@ -76,6 +77,8 @@ export default function CourseInfo() {
         console.log(courseInfo);
       });
   }
+
+
 
   const submitComment = (newCommentBody, commentScore) => {
     const localStorageData = JSON.parse(localStorage.getItem("user"));
@@ -1009,4 +1012,6 @@ export default function CourseInfo() {
       <Footer />
     </>
   );
-}
+};
+
+export default CourseInfo;

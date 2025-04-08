@@ -9,26 +9,9 @@ import { RiGraduationCapFill } from "react-icons/ri";
 import AuthContext from "../../context/authContext";
 import { Link } from "react-router-dom";
 import { AuthContextType } from "../../types/AuthContext.types";
+import Comment from "types/Comments.types";
 
-interface CommentAnswer {
-  body: string;
-  creator: Creator;
-  createdAt: string;
-}
 
-interface Creator {
-  name: string;
-  role: "ADMIN" | "USER";
-}
-
-interface Comment {
-  _id?: string;
-  body: string;
-  score: string;
-  creator?: Creator;
-  createdAt?: string;
-  answerContent?: CommentAnswer;
-}
 
 interface CommentsTextAreaProps {
   comments: Comment[];

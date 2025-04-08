@@ -15,24 +15,11 @@ import {
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
 import { FaSquare } from "react-icons/fa";
-
-interface Course {
-  _id: string;
-  name: string;
-  shortName: string;
-  cover: string;
-  description: string;
-  creator: string;
-  courseAverageScore: number;
-  registers: number;
-  price: number;
-  discount?: number;
-  isSlider?: boolean;
-}
+import Course from "types/Courses.types";
 
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
-const Courses: React.FC = () => {
+const Courses = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [orderedCourses, setOrderedCourses] = useState<Course[]>([]);
   const [shownCourses, setShownCourses] = useState<Course[]>([]);
@@ -45,26 +32,26 @@ const Courses: React.FC = () => {
     useState<boolean>(false);
   const [overlay, setOverlay] = useState<boolean>(false);
 
-  const openDrawerSort = () => {
+  const openDrawerSort: () => void = () => {
     setOpenSortCourses(true);
     setOverlay(!overlay);
   };
-  const closeDrawerSort = () => {
+  const closeDrawerSort: () => void = () => {
     setOpenSortCourses(false);
     setOverlay(!overlay);
   };
 
-  const openDrawerFilter = () => {
+  const openDrawerFilter: () => void = () => {
     setOpenFilteredCourses(true);
     setOverlay(!overlay);
   };
 
-  const closeDrawerFilter = () => {
+  const closeDrawerFilter: () => void = () => {
     setOpenFilteredCourses(false);
     setOverlay(!overlay);
   };
 
-  const overlayOnClick = () => {
+  const overlayOnClick: () => void = () => {
     setOpenSortCourses(false);
     setOpenFilteredCourses(false);
     setOverlay(false);

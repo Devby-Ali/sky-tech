@@ -5,9 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
+import Course from "types/Courses.types";
 
-export default function PresellCourses() {
-  const [PresellCourses, setpresellCourses] = useState([]);
+const PresellCourses = () => {
+  const [PresellCourses, setpresellCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/presell`)
@@ -59,4 +60,6 @@ export default function PresellCourses() {
       </div>
     </div>
   );
-}
+};
+
+export default PresellCourses;

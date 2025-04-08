@@ -5,10 +5,12 @@ import { useParams } from "react-router-dom";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import ArticleBox from "../../Components/ArticleBox/ArticleBox";
+import Course from "types/Courses.types";
+import Article from "types/Atricles.types";
 
-export default function Search() {
-  const [courses, setCourses] = useState([]);
-  const [articles, setArticles] = useState([]);
+const Search = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const { value } = useParams();
 
   useEffect(() => {
@@ -18,8 +20,7 @@ export default function Search() {
         setArticles(dataSearch.allResultArticles);
         setCourses(dataSearch.allResultCourses);
       });
-  }, []);
-
+  }, [value]);
 
   return (
     <>
@@ -74,4 +75,6 @@ export default function Search() {
       <Footer />
     </>
   );
-}
+};
+
+export default Search;

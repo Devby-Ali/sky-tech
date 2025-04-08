@@ -5,9 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
+import Course from "types/Courses.types";
 
-export default function PopularCourses() {
-  const [popularCourses, setPopularCourses] = useState([]);
+const PopularCourses = () => {
+  const [popularCourses, setPopularCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/popular`)
@@ -61,4 +62,6 @@ export default function PopularCourses() {
       </div>
     </div>
   );
-}
+};
+
+export default PopularCourses;
