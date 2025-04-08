@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-export default function LandingCounter({ count }) {
-  const [courseCounter, setCourseCounter] = useState(0);
+export default function LandingCounter({ count }: {count: number}) {
+  const [courseCounter, setCourseCounter] = useState<number>(0);
 
   useEffect(() => {
-    let interval = setInterval(() => {
+    const interval = setInterval(() => {
       setCourseCounter((prevCount) => prevCount + 1);
     }, 1);
 
@@ -13,7 +13,7 @@ export default function LandingCounter({ count }) {
     }
 
     return () => clearInterval(interval);
-  }, [courseCounter]);
+  }, [courseCounter, count]);
 
   return <span className="font-EstedadBold font-bold mt-4 sm:mt-6 text-3xl sm:text-4xl">{courseCounter}</span>;
 }

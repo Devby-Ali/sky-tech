@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ArticleBox from "../ArticleBox/ArticleBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
+import Article from "types/Atricles.types";
 
-export default function LastArticles() {
-  const [articles, setArticles] = useState([]);
+const LastArticles = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles`)
       .then((res) => res.json())
       .then((allArticles) => {
-        console.log(allArticles);
         setArticles(allArticles);
       });
   }, []);
@@ -37,4 +37,6 @@ export default function LastArticles() {
       </div>
     </section>
   );
-}
+};
+
+export default LastArticles;

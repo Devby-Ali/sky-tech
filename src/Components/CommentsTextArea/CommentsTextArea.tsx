@@ -8,22 +8,57 @@ import { PiChatCenteredTextLight, PiChats } from "react-icons/pi";
 import { RiGraduationCapFill } from "react-icons/ri";
 import AuthContext from "../../context/authContext";
 import { Link } from "react-router-dom";
+import { AuthContextType } from "../../types/AuthContext.types";
 
-export default function CommentsTextArea({ comments, submitComment }) {
-  const [openTextArea, setOpenTextArea] = useState(false);
+interface CommentAnswer {
+  body: string;
+  creator: Creator;
+  createdAt: string;
+}
 
-  const textAreaHandler = () => {
+interface Creator {
+  name: string;
+  role: "ADMIN" | "USER";
+}
+
+interface Comment {
+  _id?: string;
+  body: string;
+  score: string;
+  creator?: Creator;
+  createdAt?: string;
+  answerContent?: CommentAnswer;
+}
+
+interface CommentsTextAreaProps {
+  comments: Comment[];
+  submitComment: (commentScore: string, newCommentBody:string) => void;
+}
+
+const CommentsTextArea: React.FC<CommentsTextAreaProps> = ({
+  comments,
+  submitComment,
+}) => {
+  const [openTextArea, setOpenTextArea] = useState<boolean>(false);
+  const [newCommentBody, setNewCommentBody] = useState<string>("");
+  const [commentScore, setCommentScore] = useState<string>("-1");
+
+  const authContext = useContext<AuthContextType>(AuthContext);
+
+  const textAreaHandler = (): void => {
     setOpenTextArea(!openTextArea);
-    console.log(openTextArea);
   };
 
-  const [newCommentBody, setNewCommentBody] = useState("");
-  const [commentScore, setCommentScore] = useState("-1");
-
-  const authContext = useContext(AuthContext);
-
-  const onChangeHandler = (event) => {
+  const onChangeHandler = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     setNewCommentBody(event.target.value);
+  };
+
+  const handleSubmit = (): void => {
+    if (!authContext.userInfos) return;
+
+    submitComment(newCommentBody, commentScore,);
   };
 
   return (
@@ -109,7 +144,9 @@ export default function CommentsTextArea({ comments, submitComment }) {
             <div className="flex items-center justify-between mt-2 sm:mt-6">
               <select
                 className="bg-white dark:bg-[#333c4c] py-2 pr-6 rounded-lg text-2xl ml-2"
-                onChange={(event) => setCommentScore(event.target.value)}
+                onChange={(event: React.ChangeEvent<HTMLSelectElement>) => 
+                  setCommentScore(event.target.value)
+                }
               >
                 <option value="-1">امتیاز شما</option>
                 <option value="5">عالی</option>
@@ -128,7 +165,7 @@ export default function CommentsTextArea({ comments, submitComment }) {
                 </button>
                 <button
                   className="grow sm:grow-0 sm:w-36 button-primary hover:  py-2"
-                  onClick={() => submitComment(newCommentBody, commentScore)}
+                  onClick={() => handleSubmit()}
                 >
                   ارسال
                 </button>
@@ -178,17 +215,17 @@ export default function CommentsTextArea({ comments, submitComment }) {
                     <div className="flex flex-col gap-3">
                       <div className="flex items-center gap-x-2 ">
                         <span className="inline-block max-w-40 truncate">
-                          {comment.creator.name}
+                          {comment.creator?.name}
                         </span>
                         <span className="font-EstedadThin">
                           |
-                          {comment.creator.role === "ADMIN"
+                          {comment.creator?.role === "ADMIN"
                             ? " مدیر"
                             : " دانشجو"}
                         </span>
                       </div>
                       <span className="text-xl opacity-70">
-                        {comment.createdAt.slice(0, 10)}
+                        {comment.createdAt?.slice(0, 10)}
                       </span>
                     </div>
                   </div>
@@ -264,4 +301,6 @@ export default function CommentsTextArea({ comments, submitComment }) {
       {/* <!-- Load more --> */}
     </div>
   );
-}
+};
+
+export default CommentsTextArea;

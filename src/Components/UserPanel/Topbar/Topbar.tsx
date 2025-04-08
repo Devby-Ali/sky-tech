@@ -4,7 +4,6 @@ import {
   HiBars3,
   HiChevronRight,
   HiMiniChevronLeft,
-  HiOutlineBell,
   HiOutlineMoon,
   HiOutlineSun,
   HiOutlineUser,
@@ -15,7 +14,7 @@ import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
 import { HiOutlineLogout } from "react-icons/hi";
 
-export default function Topbar() {
+const Topbar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [dark, setDark] = useState(false);
@@ -265,3 +264,5 @@ export default function Topbar() {
     </>
   );
 }
+
+export default Topbar;

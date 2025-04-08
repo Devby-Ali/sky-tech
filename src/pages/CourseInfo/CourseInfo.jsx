@@ -49,7 +49,6 @@ export default function CourseInfo() {
     fetch(`http://localhost:4000/v1/courses/related/${courseName}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setRelatedCourses(data);
       });
   }, []);
@@ -117,7 +116,6 @@ export default function CourseInfo() {
           price: course.price,
         }),
       }).then((res) => {
-        console.log(res);
         if (res.ok) {
           Swal.fire({
             title: "ثبت نام با موفقیت انجام شد",

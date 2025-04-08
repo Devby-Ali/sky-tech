@@ -8,9 +8,10 @@ import PresellCourses from "../../Components/PresellCourses/PresellCourses";
 import LastArticles from "../../Components/LastArticles/LastArticles";
 import Footer from "../../Components/Footer/Footer";
 import Landing from "../../Components/Landing/Landing";
+import { Info } from "types/Info.types";
 
-export default function Index() {
-  const [indexInfo, setIndexInfo] = useState({});
+const Index: React.FC = () => {
+  const [indexInfo, setIndexInfo] = useState<Info>({} as Info);
 
   useEffect(() => {
     fetch("http://localhost:4000/v1/infos/index")
@@ -20,7 +21,7 @@ export default function Index() {
 
   return (
     <>
-    <Landing info={indexInfo} />
+      <Landing info={indexInfo} />
       <div className="absolute -z-10 opacity-40 dark:opacity-20">
         <img src="/images/sky.png" alt="/" />
       </div>
@@ -32,4 +33,5 @@ export default function Index() {
       <Footer />
     </>
   );
-}
+};
+export default Index;

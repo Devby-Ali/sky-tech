@@ -2,31 +2,24 @@ import { Link } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi2";
 import { PiUserLight } from "react-icons/pi";
 import { HiOutlineCalendar } from "react-icons/hi";
+import Article from "types/Atricles.types";
 
-interface Creator {
-  _id: string;
-  name: string;
-  username: string;
-  profilePicture: string;
-}
 
-interface ArticleBoxProps {
-  title: string;
-  shortName: string;
-  cover: string;
-  description: string;
-  createdAt: string;
-  creator: Creator;
-}
-
-const ArticleBox:React.FC<ArticleBoxProps> = (props) => {
+const ArticleBox: React.FC<Article> = ({
+  title,
+  shortName,
+  cover,
+  description,
+  createdAt,
+  creator,
+}) => {
   return (
     <div className="blog flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white overflow-hidden rounded-lg">
       {/* <!-- Blog Banner --> */}
       <div className="blog__banner relative h-[182px] overflow-hidden">
-        <Link to={`/article-info/${props.shortName}`}>
+        <Link to={`/article-info/${shortName}`}>
           <img
-            src={`http://localhost:4000/courses/covers/${props.cover}`}
+            src={`http://localhost:4000/courses/covers/${cover}`}
             className="block w-full h-full object-cover"
             alt="Article-Image"
             loading="lazy"
@@ -38,10 +31,10 @@ const ArticleBox:React.FC<ArticleBoxProps> = (props) => {
       <div className="grow px-7 py-6">
         {/* <!-- Blog Title --> */}
         <h3 className="font-EstedadMedium text-[1.7rem] line-clamp-2 mb-5">
-          <Link to={`/article-info/${props.shortName}`}>{props.title}</Link>
+          <Link to={`/article-info/${shortName}`}>{title}</Link>
         </h3>
         {/* <!-- Blog Description --> */}
-        <p className="text-2xl line-clamp-4 opacity-70">{props.description}</p>
+        <p className="text-2xl line-clamp-4 opacity-70">{description}</p>
       </div>
       {/* <!-- Blog Footer --> */}
       <div className="px-7 pb-8">
@@ -51,19 +44,19 @@ const ArticleBox:React.FC<ArticleBoxProps> = (props) => {
             <div className="text-3xl">
               <PiUserLight />
             </div>
-            <Link to={`/user/${props.creator._id}`}>{props.creator.name}</Link>
+            <Link to={`/user/${creator._id}`}>{creator.name}</Link>
           </div>
           <div className="flex items-center gap-x-1">
             <div className="text-3xl">
               <HiOutlineCalendar />
             </div>
-            <span>{props.createdAt.slice(0, 10)}</span>
+            <span>{createdAt.slice(0, 10)}</span>
           </div>
         </div>
         {/* <!-- Blog Link Address --> */}
         <div className="flex justify-center mt-7">
           <Link
-            to={`/article-info/${props.shortName}`}
+            to={`/article-info/${shortName}`}
             className="flex items-center gap-x-1 text-3xl text-sky-600 dark:text-sky-400 hover:text-purple-400 font-EstedadMedium transition-colors"
           >
             <span>مطالعه مقاله</span>
@@ -73,7 +66,6 @@ const ArticleBox:React.FC<ArticleBoxProps> = (props) => {
       </div>
     </div>
   );
-}
-
+};
 
 export default ArticleBox;

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "./../../Components/Header/Header";
-import Breadcrumb from "./../../Components/Breadcrumb/Breadcrumb";
-import CommentsTextArea from "../../Components/CommentsTextArea/CommentsTextArea";
-import Footer from "./../../Components/Footer/Footer";
+import Header from "../../Components/Header/Header";
+import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
+import Footer from "../../Components/Footer/Footer";
 import { LiaUser } from "react-icons/lia";
 import {
   HiBars4,
@@ -16,13 +15,16 @@ import {
 } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
 import domPurify from "dompurify";
+import Article, { CatrgoryArticle, Creator } from "types/Atricles.types";
 
-export default function ArticleInfo() {
+const ArticleInfo: React.FC<Article> = () => {
   const { articleName } = useParams();
 
-  const [articleDetails, setArticleDetails] = useState({});
-  const [articleCategory, setArticleCategory] = useState({});
-  const [articleCreator, setArticleCreator] = useState({});
+  const [articleDetails, setArticleDetails] = useState<Article>({} as Article);
+  const [articleCategory, setArticleCategory] = useState<CatrgoryArticle>(
+    {} as CatrgoryArticle
+  );
+  const [articleCreator, setArticleCreator] = useState<Creator>({} as Creator);
   const [articleCreatedAt, setArticleCreatedAt] = useState("");
 
   useEffect(() => {
@@ -33,9 +35,8 @@ export default function ArticleInfo() {
         setArticleCategory(articleInfo.categoryID);
         setArticleCreator(articleInfo.creator);
         setArticleCreatedAt(articleInfo.createdAt);
-        console.log(articleInfo);
       });
-  }, []);
+  }, [articleName]);
 
   return (
     <>
@@ -200,7 +201,7 @@ export default function ArticleInfo() {
                         <div className="text-3xl">
                           <HiOutlineCalendar />
                         </div>
-                        <span className="font-EstedadMedium text-[1.35rem] mt-2.5 mt-2.5">
+                        <span className="font-EstedadMedium text-[1.35rem] mt-2.5">
                           1403/09/01
                         </span>
                       </div>
@@ -310,4 +311,6 @@ export default function ArticleInfo() {
       <Footer />
     </>
   );
-}
+};
+
+export default ArticleInfo;

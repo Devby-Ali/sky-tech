@@ -10,8 +10,9 @@ type Category = {
 
 type ApiResponse = Category[];
 
-const CoursesFilter: React.FC = () => {
+const API_URL = "http://localhost:4000/v1/category" as const;
 
+const CoursesFilter: React.FC = () => {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [category, setCategory] = useState<Category[]>([]);
 
@@ -22,20 +23,16 @@ const CoursesFilter: React.FC = () => {
   useEffect(() => {
     const fetchCategories = async (): Promise<void> => {
       try {
-        const response = await fetch(`http://localhost:4000/v1/category`);
+        const response = await fetch(API_URL);
         const data: ApiResponse = await response.json();
         setCategory(data);
-      } catch (error) {
-        console.error('Error fetching categories:', error)
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error("Error fetching categories:", error.message);
+        }
       }
     };
     fetchCategories();
-    // fetch(`http://localhost:4000/v1/category`)
-    //   .then((res) => res.json())
-    //   .then((allCategory) => {
-    //     setCategory(allCategory);
-    //     console.log(allCategory);
-    //   });
   }, []);
 
   return (
@@ -97,7 +94,6 @@ const CoursesFilter: React.FC = () => {
       )}
     </div>
   );
-}
-
+};
 
 export default CoursesFilter;

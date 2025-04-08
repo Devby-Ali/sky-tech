@@ -2,13 +2,27 @@ import React from "react";
 import { HiOutlineCheckCircle, HiOutlineXCircle } from "react-icons/hi2";
 import Button from "../Form/Button";
 
-export default function SortedCourses({
+type SortStatus = "default" | "cheapest" | "expensive" | "last";
+
+
+interface SortedCoursesProps {
+  openSortCourses: boolean;
+  closeDrawerSort: () => void;
+  setStatus: (status: SortStatus) => void;
+  status: SortStatus;
+  statusTitleChangeHandler: (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => void;
+}
+
+
+const SortedCourses = ({
   openSortCourses,
   closeDrawerSort,
   setStatus,
   status,
   statusTitleChangeHandler,
-}) {
+}: SortedCoursesProps) => {
   return (
     <div
       className={`fixed right-0 left-0 md:hidden transition-all z-50 ${
@@ -101,4 +115,6 @@ export default function SortedCourses({
       </div>
     </div>
   );
-}
+};
+
+export default SortedCourses;

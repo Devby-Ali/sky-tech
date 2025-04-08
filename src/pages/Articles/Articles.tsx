@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
-import Header from "./../../Components/Header/Header";
+import Header from "../../Components/Header/Header";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import ArticleBox from "../../Components/ArticleBox/ArticleBox";
 import Pagination from "../../Components/Pagination/Pagination";
-import Footer from "./../../Components/Footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 import { HiArrowsUpDown, HiOutlineFunnel } from "react-icons/hi2";
+import Article from "types/Atricles.types";
 
-export default function Articles() {
-  const [articles, setArticles] = useState([]);
+const Articles = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
 
-  const [shownArticles, setShownArticles] = useState([]);
+  const [shownArticles, setShownArticles] = useState<Article[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles`)
       .then((res) => res.json())
       .then((allArticles) => {
-        setArticles(allArticles.filter((article) => article.publish === 1));
+        setArticles(allArticles.filter((article: Article) => article.publish === 1));
       });
   }, []);
-
-  console.log(shownArticles);
-  console.log(articles);
 
   return (
     <>
@@ -91,4 +89,6 @@ export default function Articles() {
       <Footer />
     </>
   );
-}
+};
+
+export default Articles;

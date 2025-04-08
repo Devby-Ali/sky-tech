@@ -21,19 +21,20 @@ const Breadcrumb: React.FC<BreadcrumbLinks> = ({ links }) => {
         </Link>
       </div>
       {links.map((link) => (
-        <React.Fragment key={link.id}>
-          <div className="breadcrumb__item dark:after:bg-slate-900 dark:before:bg-slate-900 last:before:hidden last:after:hidden">
-            <Link
-              to={`/${link.to}`}
-              className="flex items-center hover:text-purple-400"
-            >
-              {link.title}
-            </Link>
-          </div>
-        </React.Fragment>
+        <div
+          key={link.id}
+          className="breadcrumb__item dark:after:bg-slate-900 dark:before:bg-slate-900 last:before:hidden last:after:hidden"
+        >
+          <Link
+            to={`/${link.to}`}
+            className="flex items-center hover:text-purple-400"
+          >
+            {link.title}
+          </Link>
+        </div>
       ))}
     </div>
   );
-}
+};
 
 export default Breadcrumb;

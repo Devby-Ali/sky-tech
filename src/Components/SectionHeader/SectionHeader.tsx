@@ -1,15 +1,9 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { HiArrowUpLeft } from "react-icons/hi2";
+import { SectionHeaderProps } from "../../types/SectionHeader.types";
 
-interface SectionHeaderProps {
-  title: string;
-  desc?: string;
-  titleValue?: string;
-  btnTitle?: string;
-  btnHref?: string;
-  Page?: React.ReactNode;
-}
+
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
