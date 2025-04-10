@@ -15,14 +15,14 @@ import {
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
 import { FaSquare } from "react-icons/fa";
-import Course from "types/Courses.types";
+import { CourseBoxProp } from "types/Courses.types";
 
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
 const Courses = (): React.JSX.Element => {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [orderedCourses, setOrderedCourses] = useState<Course[]>([]);
-  const [shownCourses, setShownCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<CourseBoxProp[]>([]);
+  const [orderedCourses, setOrderedCourses] = useState<CourseBoxProp[]>([]);
+  const [shownCourses, setShownCourses] = useState<CourseBoxProp[]>([]);
   const [status, setStatus] = useState<string>("default");
   const [statusFilter, setStatusFilter] = useState<FilterStatus>("default");
   const [statusTitle, setStatusTitle] = useState<string>("همه دوره ها");
@@ -65,6 +65,7 @@ const Courses = (): React.JSX.Element => {
         setOrderedCourses(allCourses);
         setStatusTitle("همه دوره ها");
         setStatus("default");
+        console.log(allCourses);
       });
   }, []);
 
@@ -94,7 +95,7 @@ const Courses = (): React.JSX.Element => {
         break;
       }
       case "last": {
-        const lastCourses = courses.filter((course) => course.registers !== 0);
+        const lastCourses = courses.filter((course) => course.isComplete === 0);
         setOrderedCourses(lastCourses);
         break;
       }

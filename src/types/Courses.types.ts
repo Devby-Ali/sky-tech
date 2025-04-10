@@ -1,49 +1,49 @@
 import Comment from "./Comments.types";
+import Creator from "./Creator.types";
+import Category from "./Category.types";
 
-interface CategoryID {
-    _id: string;
-    createdAt: string;
-    name: string;
-    title: string;
-    updatedAt: string;
-   }
-  
-   interface Creator {
-    name: string;
-    profile: string;
-   }
-  
-   interface Session {
-    _id: string;
-    course: string;
-    createdAt: string;
-    free: number;
-    time: string;
-    title: string;
-    updatedAt: string;
-    video: string;
-   }
+export interface Session {
+  _id: string;
+  course: string;
+  createdAt: string;
+  free: 0 | 1;
+  time: string;
+  title: string;
+  updatedAt: string;
+}
 
-  export default interface Course {
-    _id: string;
-    cover: string;
-    creator: Creator | string;
-    description: string;
-    discount: number;
-    name: string;
-    price: number;
-    shortName: string;
-    categoryID?: CategoryID;
-    comments?: Comment;
-    isUserRegisteredToThisCourse?: boolean;
-    courseStudentsCount?: number;
-    createdAt?: string;
-    isComplete?: number;
-    sessions?: Session[];
-    status?: string;
-    support?: string;
-    updatedAt?: string;
-    courseAverageScore?: number;
-    registers?: number;
-    isSlider?: boolean;
-  }
+export default interface Course {
+  _id: string;
+  categoryID: Category;
+  comments: Comment[];
+  courseStudentsCount: number;
+  cover: string;
+  createdAt: string;
+  creator: Creator;
+  description: string;
+  discount: number;
+  isComplete: number;
+  isUserRegisteredToThisCourse: boolean;
+  name: string;
+  price: number;
+  sessions: Session[];
+  shortName: string;
+  status: string;
+  support: string;
+  updatedAt: string;
+}
+
+export interface CourseBoxProp {
+  _id: string;
+  registers: number;
+  cover: string;
+  creator: Creator;
+  description: string;
+  discount: number;
+  name: string;
+  price: number;
+  shortName: string;
+  courseAverageScore: number;
+  isComplete: number;
+  isSlider?: boolean;
+}

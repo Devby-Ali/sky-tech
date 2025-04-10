@@ -5,10 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
-import Course from "types/Courses.types";
+import { CourseBoxProp } from "types/Courses.types";
 
 const PopularCourses = (): React.JSX.Element => {
-  const [popularCourses, setPopularCourses] = useState<Course[]>([]);
+  const [popularCourses, setPopularCourses] = useState<CourseBoxProp[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/popular`)

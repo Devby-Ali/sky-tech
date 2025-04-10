@@ -26,23 +26,32 @@ import { MdOutlineLaptopChromebook } from "react-icons/md";
 import { GoTriangleDown } from "react-icons/go";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
+import Comment from "types/Comments.types";
+import Creator from "types/Creator.types";
+import Course from "types/Courses.types";
+import { Session } from "types/Courses.types";
+import Category from "types/Category.types";
+
+
+
+type RelatedCourse = Omit<Course, "sessions" | "isUserRegisteredToThisCourse" | "courseStudentsCount" | "comments">
 
 
 const CourseInfo = (): React.JSX.Element => {
   const [open, setOpen] = useState(0);
-  const handleOpen = (value) => setOpen(open === value ? 0 : value);
+  const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
 
-  const [comments, setComments] = useState([]);
-  const [sessions, setSessions] = useState([]);
-  const [createdAt, setCreatedAt] = useState("");
-  const [updatedAt, setUpdatedAt] = useState("");
-  const [courseDetails, setCourseDetails] = useState({});
-  const [courseTeacher, setCourseTeacher] = useState({});
-  const [category, setCategory] = useState({});
-  const [price, setPrice] = useState("");
-  const [relatedCourses, setRelatedCourses] = useState([]);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [sessions, setSessions] = useState<Session[]>([]);
+  const [createdAt, setCreatedAt] = useState<string>("");
+  const [updatedAt, setUpdatedAt] = useState<string>("");
+  const [courseDetails, setCourseDetails] = useState<Course>({} as Course);
+  const [courseTeacher, setCourseTeacher] = useState<Creator>({} as Creator);
+  const [category, setCategory] = useState<Category>({} as Category);
+  const [price, setPrice] = useState<number>({} as number);
+  const [relatedCourses, setRelatedCourses] = useState<RelatedCourse[]>([]);
 
-  const { courseName } = useParams();
+  const { courseName } = useParams<{ courseName: string }>();
 
   useEffect(() => {
     getCourseDetails();
@@ -55,7 +64,7 @@ const CourseInfo = (): React.JSX.Element => {
   }, []);
 
   function getCourseDetails() {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")!) : null;
 
     fetch(`http://localhost:4000/v1/courses/${courseName}`, {
       headers: {
@@ -74,14 +83,12 @@ const CourseInfo = (): React.JSX.Element => {
         setCourseTeacher(courseInfo.creator);
         setCategory(courseInfo.categoryID);
         setPrice(courseInfo.price);
-        console.log(courseInfo);
+        console.log(courseInfo)
       });
   }
 
-
-
-  const submitComment = (newCommentBody, commentScore) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const submitComment = (newCommentBody: string, commentScore: string) => {
+    const localStorageData = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")!) : null;
 
     fetch(`http://localhost:4000/v1/comments`, {
       method: "POST",
@@ -105,13 +112,13 @@ const CourseInfo = (): React.JSX.Element => {
       });
   };
 
-  const registerInCourse = (course) => {
+  const registerInCourse = (course: Course) => {
     if (course.price === 0) {
       fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${
-            JSON.parse(localStorage.getItem("user")).token
+            JSON.parse(localStorage.getItem("user")!).token
           }`,
           "Content-Type": "application/json",
         },
@@ -137,14 +144,13 @@ const CourseInfo = (): React.JSX.Element => {
         showDenyButton: true,
         denyButtonText: "نه",
       }).then((code) => {
-        console.log(code);
         if (code.isConfirmed) {
           if (code.value === "") {
             fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
               method: "POST",
               headers: {
                 Authorization: `Bearer ${
-                  JSON.parse(localStorage.getItem("user")).token
+                  JSON.parse(localStorage.getItem("user")!).token
                 }`,
                 "Content-Type": "application/json",
               },
@@ -152,7 +158,6 @@ const CourseInfo = (): React.JSX.Element => {
                 price: course.price,
               }),
             }).then((res) => {
-              console.log(res);
               if (res.ok) {
                 Swal.fire({
                   title: "ثبت نام با موفقیت انجام شد",
@@ -168,7 +173,7 @@ const CourseInfo = (): React.JSX.Element => {
               method: "POST",
               headers: {
                 Authorization: `Bearer ${
-                  JSON.parse(localStorage.getItem("user")).token
+                  JSON.parse(localStorage.getItem("user")!).token
                 }`,
                 "Content-Type": "application/json",
               },
@@ -177,8 +182,6 @@ const CourseInfo = (): React.JSX.Element => {
               }),
             })
               .then((res) => {
-                console.log(res);
-
                 if (res.status == 404) {
                   Swal.fire({
                     title: "کد تخفیف معتبر نیست",
@@ -202,7 +205,7 @@ const CourseInfo = (): React.JSX.Element => {
                     method: "POST",
                     headers: {
                       Authorization: `Bearer ${
-                        JSON.parse(localStorage.getItem("user")).token
+                        JSON.parse(localStorage.getItem("user")!).token
                       }`,
                       "Content-Type": "application/json",
                     },
@@ -211,7 +214,6 @@ const CourseInfo = (): React.JSX.Element => {
                     }),
                   }
                 ).then((res) => {
-                  console.log(res);
                   if (res.ok) {
                     Swal.fire({
                       title: "ثبت نام با موفقیت انجام شد",
@@ -708,7 +710,7 @@ const CourseInfo = (): React.JSX.Element => {
                   </div>
                 </div>
                 <div className="space-y-4 md:space-y-5">
-                  <div open={open === 1}>
+                  <div>
                     <div
                       className={`flex items-center justify-between cursor-pointer pr-6 pl-8 py-7 rounded-2xl border-none ${
                         open === 1
@@ -793,7 +795,7 @@ const CourseInfo = (): React.JSX.Element => {
                     </div>
                   </div>
 
-                  <div open={open === 2}>
+                  <div>
                     <div
                       className={`flex items-center justify-between cursor-pointer pr-6 pl-8 py-7 rounded-2xl border-none ${
                         open === 2

@@ -4,11 +4,11 @@ import { LiaUserSolid } from "react-icons/lia";
 import { PiUsersThree } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { HiStar } from "react-icons/hi2";
-import Course from "types/Courses.types";
+import { CourseBoxProp } from "types/Courses.types";
 
 
 
-const CourseBox = ({name, shortName, creator, courseAverageScore, description, cover, price, discount, registers, isSlider}: Course): React.JSX.Element => {
+const CourseBox = ({name, shortName, creator, courseAverageScore, description, cover, price, discount, registers, isSlider}: CourseBoxProp): React.JSX.Element => {
   const [isImgShow, setIsImgShow] = useState<boolean>(false);
 
   const onImageLoaded: () => void = () => setIsImgShow(true);

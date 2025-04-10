@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CourseBox from "../CourseBox/CourseBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
-import Course from "types/Courses.types";
+import { CourseBoxProp } from "types/Courses.types";
 
 const LastCourses = (): React.JSX.Element => {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<CourseBoxProp[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses`)

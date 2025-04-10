@@ -15,7 +15,7 @@ import Comment from "types/Comments.types";
 
 interface CommentsTextAreaProps {
   comments: Comment[];
-  submitComment: (commentScore: string, newCommentBody:string) => void;
+  submitComment: (commentScore: string, newCommentBody: string) => void;
 }
 
 const CommentsTextArea = ({

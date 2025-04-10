@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import CourseBox from "../../Components/CourseBox/CourseBox";
 import ArticleBox from "../../Components/ArticleBox/ArticleBox";
-import Course from "types/Courses.types";
+import { CourseBoxProp } from "types/Courses.types";
 import Article from "types/Atricles.types";
 
 const Search = (): React.JSX.Element => {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<CourseBoxProp[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
   const { value } = useParams();
 
