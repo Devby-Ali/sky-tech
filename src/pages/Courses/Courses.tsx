@@ -19,7 +19,7 @@ import Course from "types/Courses.types";
 
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
-const Courses = () => {
+const Courses = (): React.JSX.Element => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [orderedCourses, setOrderedCourses] = useState<Course[]>([]);
   const [shownCourses, setShownCourses] = useState<Course[]>([]);

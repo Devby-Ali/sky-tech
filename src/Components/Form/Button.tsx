@@ -46,7 +46,7 @@ const isAnchorButton = (props: ButtonComponentProps): props is AnchorButtonProps
   return 'href' in props && typeof props.href === 'string';
 };
 
-const Button: React.FC<ButtonComponentProps> = (props) => {
+const Button = (props: ButtonComponentProps): React.JSX.Element => {
   if (isLinkButton(props)) {
     return (
       <Link to={props.to} className={props.className}>

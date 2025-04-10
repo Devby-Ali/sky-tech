@@ -8,7 +8,7 @@ import Course from "types/Courses.types";
 
 
 
-const CourseBox = ({name, shortName, creator, courseAverageScore, description, cover, price, discount, registers, isSlider}: Course) => {
+const CourseBox = ({name, shortName, creator, courseAverageScore, description, cover, price, discount, registers, isSlider}: Course): React.JSX.Element => {
   const [isImgShow, setIsImgShow] = useState<boolean>(false);
 
   const onImageLoaded: () => void = () => setIsImgShow(true);

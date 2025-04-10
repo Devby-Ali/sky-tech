@@ -28,7 +28,7 @@ import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
 
 
-const CourseInfo = () => {
+const CourseInfo = (): React.JSX.Element => {
   const [open, setOpen] = useState(0);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 

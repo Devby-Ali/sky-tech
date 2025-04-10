@@ -5,14 +5,14 @@ import { HiOutlineCalendar } from "react-icons/hi";
 import Article from "types/Atricles.types";
 
 
-const ArticleBox: React.FC<Article> = ({
+const ArticleBox = ({
   title,
   shortName,
   cover,
   description,
   createdAt,
   creator,
-}) => {
+}: Article): React.JSX.Element => {
   return (
     <div className="blog flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white overflow-hidden rounded-lg">
       {/* <!-- Blog Banner --> */}

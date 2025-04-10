@@ -36,7 +36,7 @@ interface AuthContextType {
   logout: () => void;
 }
 
-const Header: React.FC = () => {
+const Header = (): React.JSX.Element => {
   const [dark, setDark] = useState<boolean>(false);
   const [navOpen, setNavOpen] = useState<boolean>(false);
   const [openCollapse, setOpenCollapse] = useState<boolean>(false);

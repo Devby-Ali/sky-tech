@@ -3,7 +3,7 @@ import React from "react";
 import "./CircleSpinner.css";
 
 
-const CircleSpinner: React.FC = () => {
+const CircleSpinner = (): React.JSX.Element => {
   return (
     <div className="loader">
       <svg className="circular" viewBox="25 25 50 50">

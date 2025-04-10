@@ -7,7 +7,7 @@ import Footer from "../../Components/Footer/Footer";
 import { HiArrowsUpDown, HiOutlineFunnel } from "react-icons/hi2";
 import Article from "types/Atricles.types";
 
-const Articles = () => {
+const Articles = (): React.JSX.Element => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   const [shownArticles, setShownArticles] = useState<Article[]>([]);

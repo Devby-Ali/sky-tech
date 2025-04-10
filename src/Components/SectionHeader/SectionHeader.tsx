@@ -5,14 +5,14 @@ import { SectionHeaderProps } from "../../types/SectionHeader.types";
 
 
 
-const SectionHeader: React.FC<SectionHeaderProps> = ({
+const SectionHeader = ({
   title,
   desc,
   titleValue,
   btnTitle,
   btnHref,
   Page,
-}) => {
+}: SectionHeaderProps): React.JSX.Element => {
   return (
     <div className="flex-center sm:justify-between flex-wrap flex-col mb-14 sm:mb-20 sm:flex-row gap-x-4 gap-y-7 text-slate-900 dark:text-white">
       <div className="space-y-2 sm:space-y-3 sm:self-start mb-6 sm:mb-0">

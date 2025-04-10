@@ -18,10 +18,10 @@ interface CommentsTextAreaProps {
   submitComment: (commentScore: string, newCommentBody:string) => void;
 }
 
-const CommentsTextArea: React.FC<CommentsTextAreaProps> = ({
+const CommentsTextArea = ({
   comments,
   submitComment,
-}) => {
+}: CommentsTextAreaProps): React.JSX.Element => {
   const [openTextArea, setOpenTextArea] = useState<boolean>(false);
   const [newCommentBody, setNewCommentBody] = useState<string>("");
   const [commentScore, setCommentScore] = useState<string>("-1");

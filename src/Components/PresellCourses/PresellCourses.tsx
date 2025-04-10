@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
 import Course from "types/Courses.types";
 
-const PresellCourses = () => {
+const PresellCourses = (): React.JSX.Element => {
   const [PresellCourses, setpresellCourses] = useState<Course[]>([]);
 
   useEffect(() => {

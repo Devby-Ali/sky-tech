@@ -9,7 +9,7 @@ interface SortedCoursesProps {
   openSortCourses: boolean;
   closeDrawerSort: () => void;
   setStatus: (status: SortStatus) => void;
-  status: SortStatus;
+  status: SortStatus | string;
   statusTitleChangeHandler: (
     event: React.MouseEvent<HTMLButtonElement>
   ) => void;
@@ -22,7 +22,7 @@ const SortedCourses = ({
   setStatus,
   status,
   statusTitleChangeHandler,
-}: SortedCoursesProps) => {
+}: SortedCoursesProps): React.JSX.Element => {
   return (
     <div
       className={`fixed right-0 left-0 md:hidden transition-all z-50 ${

@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
 import Course from "types/Courses.types";
 
-const PopularCourses = () => {
+const PopularCourses = (): React.JSX.Element => {
   const [popularCourses, setPopularCourses] = useState<Course[]>([]);
 
   useEffect(() => {

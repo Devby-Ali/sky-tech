@@ -38,7 +38,7 @@ const inputReducer = (state: InputState, action: InputAction) => {
   }
 };
 
-const Input: React.FC<InputProps> = (props) => {
+const Input = (props:InputProps): React.JSX.Element => {
   const [mainInput, dispatch] = useReducer(inputReducer, {
     value: "",
     isValid: false,
@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = (props) => {
 
   useEffect(() => {
     onInputHandler(id, value, isValid);
-  }, [value]);
+  }, [id, value, isValid, onInputHandler]);
 
   const onChangeHandler = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

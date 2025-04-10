@@ -3,7 +3,7 @@ import ArticleBox from "../ArticleBox/ArticleBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import Article from "types/Atricles.types";
 
-const LastArticles = () => {
+const LastArticles = (): React.JSX.Element => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {

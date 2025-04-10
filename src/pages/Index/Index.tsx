@@ -1,6 +1,5 @@
 // import React, { useState } from "react";
-import React, { useEffect, useState } from "react";
-import Header from "../../Components/Header/Header";
+import { useEffect, useState } from "react";
 import LastCourses from "../../Components/LastCourses/LastCourses";
 import AboutUs from "../../Components/AboutUs/AboutUs";
 import PopularCourses from "../../Components/PopularCourses/PopularCourses";
@@ -10,7 +9,7 @@ import Footer from "../../Components/Footer/Footer";
 import Landing from "../../Components/Landing/Landing";
 import { Info } from "types/Info.types";
 
-const Index: React.FC = () => {
+const Index = (): React.JSX.Element => {
   const [indexInfo, setIndexInfo] = useState<Info>({} as Info);
 
   useEffect(() => {

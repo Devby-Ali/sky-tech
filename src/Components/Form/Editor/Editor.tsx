@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
-import { createEditor, Descendant, Element as SlateElement } from "slate";
-import { Slate, Editable, withReact, ReactEditor } from "slate-react";
+import { createEditor, Descendant, Element as  BaseElement } from "slate";
+import { Slate, Editable, withReact, RenderElementProps, RenderLeafProps } from "slate-react";
 
-type CustomElement = {
+type CustomElement = BaseElement & {
   type: "paragraph";
   children: CustomText[];
 };
@@ -16,14 +16,14 @@ type EditorProps = {
   setValue: (value: string) => void;
 };
 
-const initialValue: Descendant[] = [
+const initialValue: CustomElement[] = [
   {
     type: "paragraph",
     children: [{ text: "..." }],
   },
 ];
 
-const Editor: React.FC<EditorProps> = ({ value, setValue }) => {
+const Editor = ({ value, setValue }: EditorProps): React.JSX.Element => {
   const [editor] = useState(() => withReact(createEditor()));
 
   // تبدیل string به Descendant
@@ -36,8 +36,8 @@ const Editor: React.FC<EditorProps> = ({ value, setValue }) => {
   }, []);
 
   // تعریف renderElement برای custom elements
-  const renderElement = useCallback((props: any) => {
-    switch (props.element.type) {
+  const renderElement = useCallback((props: RenderElementProps) => {
+    switch ((props.element as CustomElement).type) {
       case "paragraph":
         return <p {...props.attributes}>{props.children}</p>;
       default:
@@ -46,7 +46,7 @@ const Editor: React.FC<EditorProps> = ({ value, setValue }) => {
   }, []);
 
   // تعریف renderLeaf برای custom text
-  const renderLeaf = useCallback((props: any) => {
+  const renderLeaf = useCallback((props: RenderLeafProps) => {
     return <span {...props.attributes}>{props.children}</span>;
   }, []);
 

@@ -12,7 +12,7 @@ interface BreadcrumbLinks {
   links: Link[];
 }
 
-const Breadcrumb: React.FC<BreadcrumbLinks> = ({ links }) => {
+const Breadcrumb = ({ links }: BreadcrumbLinks): React.JSX.Element => {
   return (
     <div className="breadcrumb">
       <div className="breadcrumb__item before:breadcrumb__item-before after:breadcrumb__item-after dark:after:bg-slate-900 dark:before:bg-slate-900 -mr-10 pl-3">

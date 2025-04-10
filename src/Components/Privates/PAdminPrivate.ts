@@ -31,7 +31,7 @@ const PAdminPrivate = ({ children }: PAdminPrivateProps) => {
     }
   }, [authContext.userInfos?.role, navigate]);
 
-  return <>{authContext.userInfos?.role === "ADMIN" && children}</>;
+  return authContext.userInfos?.role === "ADMIN" && children;
 };
 
 export default PAdminPrivate;

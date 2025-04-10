@@ -8,7 +8,7 @@ import ArticleBox from "../../Components/ArticleBox/ArticleBox";
 import Course from "types/Courses.types";
 import Article from "types/Atricles.types";
 
-const Search = () => {
+const Search = (): React.JSX.Element => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
   const { value } = useParams();

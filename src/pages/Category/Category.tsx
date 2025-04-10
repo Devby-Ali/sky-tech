@@ -15,23 +15,12 @@ import Button from "../../Components/Form/Button";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
+import Course from "types/Courses.types";
 
-interface Course {
-  _id: string;
-  name: string;
-  shortName: string;
-  cover: string;
-  description: string;
-  creator: string;
-  courseAverageScore: number;
-  registers: number;
-  price: number;
-  discount?: number;
-  isSlider?: boolean;
-}
+
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
-const Category = () => {
+const Category = (): React.JSX.Element => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [orderedCourses, setOrderedCourses] = useState<Course[]>([]);
   const [shownCourses, setShownCourses] = useState<Course[]>([]);

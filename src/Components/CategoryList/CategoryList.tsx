@@ -10,9 +10,9 @@ type Category = {
 
 type ApiResponse = Category[];
 
-const API_URL = "http://localhost:4000/v1/category" as const;
+const API_URL = "http://localhost:4000/v1/category";
 
-const CoursesFilter: React.FC = () => {
+const CoursesFilter = (): React.JSX.Element => {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
   const [category, setCategory] = useState<Category[]>([]);
 

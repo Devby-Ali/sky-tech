@@ -7,7 +7,7 @@ import { IoCodeWorking } from "react-icons/io5";
 import { SectionHeaderProps } from "types/SectionHeader.types";
 import { AboutUsBoxProps } from "types/AboutUs.types";
 
-const AboutUs: React.FC = () => {
+const AboutUs = (): React.JSX.Element => {
   const features: AboutUsBoxProps[] = [
     {
       title: "پشتیبانی دائمی",

@@ -20,7 +20,7 @@ const FilteredCourses = ({
   closeDrawerFilter,
   setStatusFilter,
   statusFilter,
-}: FilteredCoursesProps) => {
+}: FilteredCoursesProps): React.JSX.Element => {
   return (
     <div
       className={`fixed right-0 left-0 md:hidden transition-all z-50 ${

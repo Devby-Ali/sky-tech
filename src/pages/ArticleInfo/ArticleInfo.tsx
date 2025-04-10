@@ -17,7 +17,7 @@ import { useParams } from "react-router-dom";
 import domPurify from "dompurify";
 import Article, { CatrgoryArticle, Creator } from "types/Atricles.types";
 
-const ArticleInfo: React.FC<Article> = () => {
+const ArticleInfo = (): React.JSX.Element => {
   const { articleName } = useParams();
 
   const [articleDetails, setArticleDetails] = useState<Article>({} as Article);
@@ -25,7 +25,7 @@ const ArticleInfo: React.FC<Article> = () => {
     {} as CatrgoryArticle
   );
   const [articleCreator, setArticleCreator] = useState<Creator>({} as Creator);
-  const [articleCreatedAt, setArticleCreatedAt] = useState("");
+  const [articleCreatedAt, setArticleCreatedAt] = useState<string>("");
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles/${articleName}`)

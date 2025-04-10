@@ -23,7 +23,7 @@ interface FormState {
   isFormValid: boolean;
 }
 
-const Footer: React.FC = () => {
+const Footer = (): React.JSX.Element => {
   const [formState, onInputHandler] = useForm<FormState>(
     {
       email: {

@@ -1,6 +1,10 @@
 import { AboutUsBoxProps } from "../../types/AboutUs.types";
 
-const AboutUsBox: React.FC<AboutUsBoxProps> = ({ icon, title, desc }) => {
+const AboutUsBox = ({
+  icon,
+  title,
+  desc,
+}: AboutUsBoxProps): React.JSX.Element => {
   return (
     <div className="flex flex-col lg:flex-row items-center p-8 lg:p-10 gap-x-6 gap-y-8 text-slate-900 dark:text-white bg-white dark:bg-slate-800 rounded-lg">
       <div className="text-8xl">{icon}</div>

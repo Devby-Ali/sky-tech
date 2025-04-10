@@ -3,7 +3,7 @@ import CourseBox from "../CourseBox/CourseBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import Course from "types/Courses.types";
 
-const LastCourses = () => {
+const LastCourses = (): React.JSX.Element => {
   const [courses, setCourses] = useState<Course[]>([]);
 
   useEffect(() => {

@@ -31,7 +31,7 @@ import { AuthContextType } from "types/AuthContext.types";
 
 
 
-const Landing = ({ info }: { info: Info }) => {
+const Landing = ({ info }: { info: Info }): React.JSX.Element => {
   const [dark, setDark] = useState<boolean>(false);
   const [navOpen, setNavOpen] = useState<boolean>(false);
   const [openCollapse, setOpenCollapse] = useState<boolean>(false);
