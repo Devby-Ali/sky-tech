@@ -1,12 +1,20 @@
-import React from "react";
+import { ReactNode } from "react";
 
-export default function DataTable({
+interface DataTableProps {
+  children: ReactNode;
+  title: string;
+  btnTitle?: string;
+  icon?: ReactNode;
+  eventHandler?: () => void;
+}
+
+const DataTable = ({
   children,
   title,
   btnTitle,
   icon,
   eventHandler,
-}) {
+}: DataTableProps) => {
   return (
     <section className="mt-16 md:mt-20 text-slate-900 dark:text-white/95">
       <div className="flex items-center justify-between bg-white dark:bg-slate-800 h-20 md:h-28 pl-2.5 rounded-sm mb-12">
@@ -27,4 +35,5 @@ export default function DataTable({
       {children}
     </section>
   );
-}
+};
+export default DataTable;

@@ -2,38 +2,51 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 
-export default function Tickets() {
-  const [tickets, setTickets] = useState([]);
+interface Ticket {
+  _id: string;
+  answer: 0 | 1;
+  body: string;
+  course: null;
+  createdAt: string;
+  departmentID: string;
+  departmentSubID: string;
+  isAnswer: 0 | 1;
+  priority: 0 | 1;
+  title: string;
+  updatedAt: string;
+  user: string;
+}
+
+const Tickets = (): React.JSX.Element => {
+  const [tickets, setTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/tickets`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setTickets(data);
       });
   }, []);
 
-  const showTicketBody = (body) => {
+  const showTicketBody = (body: string) => {
     Swal.fire({
       title: body,
       confirmButtonText: "دیدم",
     });
   };
 
-  const setAnswerToTicket = (ticketID) => {
+  const setAnswerToTicket = (ticketID: string) => {
     Swal.fire({
       title: "پاسخ:",
       input: "textarea",
       confirmButtonText: "ثبت",
     }).then((result) => {
-      console.log(result);
       if (result.isConfirmed) {
         const ticketAnswerInfos = {
           ticketID,
@@ -44,7 +57,7 @@ export default function Tickets() {
           method: "POST",
           headers: {
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
             "Content-Type": "application/json",
           },
@@ -113,4 +126,6 @@ export default function Tickets() {
       </div>
     </DataTable>
   );
-}
+};
+
+export default Tickets;

@@ -10,6 +10,7 @@ export interface Session {
   time: string;
   title: string;
   updatedAt: string;
+  video?: string;
 }
 
 export default interface Course {

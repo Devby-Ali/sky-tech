@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
-import { requiredValidator, minValidator } from "../../../validators/rules";
+import { minValidator } from "../../../validators/rules";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm";
 import Editor from "../../../Components/Form/Editor/Editor";
+import { FormState } from "hooks/useForm.types";
+import Category from "types/Category.types";
+import Article from "types/Atricles.types";
 
-export default function Draft() {
-  const [draft, setDraft] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [articleCategory, setArticleCategory] = useState("-1");
-  const [articleCover, setArticleCover] = useState({});
-  const [articleBody, setArticleBody] = useState("محتوا");
+const Draft = (): React.JSX.Element => {
+  const [draft, setDraft] = useState<Article>({} as Article);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [articleCategory, setArticleCategory] = useState<string>("-1");
+  const [articleCover, setArticleCover] = useState<File>({} as File);
+  const [articleBody, setArticleBody] = useState<string>("محتوا");
 
-  const [formState, onInputHandler] = useForm(
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       title: {
         value: "",
@@ -42,19 +45,18 @@ export default function Draft() {
       .then((draft) => {
         setDraft(draft);
         setArticleCategory(draft.categoryID._id);
-        console.log(draft);
       });
     fetch(`http://localhost:4000/v1/category`)
       .then((res) => res.json())
       .then((allCategories) => {
         setCategories(allCategories);
       });
-  }, []);
+  }, [shortName]);
 
-  const createArticle = (event) => {
+  const createArticle = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const localStorageDate = JSON.parse(localStorage.getItem("user"));
-    let formData = new FormData();
+    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
+    const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("shortName", formState.inputs.shortName.value);
     formData.append("description", formState.inputs.description.value);
@@ -141,9 +143,9 @@ export default function Draft() {
                       type="file"
                       id="file"
                       className="w-full bg-white/10 rounded-md p-1"
-                      onChange={(event) => {
-                        console.log(event.target.files[0]);
+                      onChange={(event) => {if (event.target.files) {
                         setArticleCover(event.target.files[0]);
+                      }
                       }}
                     />
                   </div>
@@ -193,4 +195,6 @@ export default function Draft() {
       </section>
     </>
   );
-}
+};
+
+export default Draft;

@@ -6,13 +6,16 @@ import Button from "../../../Components/Form/Button";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { HiMiniPlus, HiOutlineCheckCircle, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
+import { FormState } from "hooks/useForm.types";
+import Menu from "types/Menu.types";
 
-export default function Menus() {
-  const [menus, setMenus] = useState([]);
-  const [menuParent, setMenuParent] = useState("-1");
-  const [showAddMenu, setShowAddMenu] = useState(false);
+const Menus = (): React.JSX.Element => {
+  
+  const [menus, setMenus] = useState<Menu[]>([]);
+  const [menuParent, setMenuParent] = useState<string>("-1");
+  const [showAddMenu, setShowAddMenu] = useState<boolean>(false);
 
-  const [formState, onInputHandler] = useForm(
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       title: {
         value: "",
@@ -36,7 +39,7 @@ export default function Menus() {
       .then((allMenus) => setMenus(allMenus));
   }
 
-  const removeMenu = (menuID) => {
+  const removeMenu = (menuID: string) => {
     Swal.fire({
       title: "از حذف منو مطمعنی؟",
       icon: "warning",
@@ -49,7 +52,7 @@ export default function Menus() {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
           },
         }).then((res) => {
@@ -71,7 +74,7 @@ export default function Menus() {
     setShowAddMenu(!showAddMenu);
   };
 
-  const createMenu = (event) => {
+  const createMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     const newMenuInfo = {
@@ -84,13 +87,12 @@ export default function Menus() {
       method: "POST",
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newMenuInfo),
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         Swal.fire({
           title: "منوی جدید ایجاد شد",
@@ -251,4 +253,6 @@ export default function Menus() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Menus;

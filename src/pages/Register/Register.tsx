@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import Input from "../../Components/Form/Input";
 import Button from "../../Components/Form/Button";
 import { useForm } from "../../hooks/useForm";
@@ -7,23 +7,36 @@ import {
   requiredValidator,
   maxValidator,
   minValidator,
+  emailValidator,
+  mobileNumberValidator,
 } from "../../validators/rules";
+import { HiOutlinePhone, HiOutlineUser } from "react-icons/hi2";
+import { FiMail } from "react-icons/fi";
+import { BiLockOpenAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import ReCAPTCHA from "react-google-recaptcha";
-import { BiLockOpenAlt } from "react-icons/bi";
 import { FormState } from "hooks/useForm.types";
 
-const Login = (): React.JSX.Element => {
+const Register = (): React.JSX.Element => {
   const navigate = useNavigate();
 
   const authContext = useContext(AuthContext);
 
-  const [isGoogleRecaptchaVerify, setIsGoogleRecaptchaVerify] = useState(false);
-
   const [formState, onInputHandler] = useForm<FormState>(
     {
+      name: {
+        value: "",
+        isValid: false,
+      },
       username: {
+        value: "",
+        isValid: false,
+      },
+      email: {
+        value: "",
+        isValid: false,
+      },
+      mobileNumber: {
         value: "",
         isValid: false,
       },
@@ -35,59 +48,65 @@ const Login = (): React.JSX.Element => {
     false
   );
 
-  const userLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
+
+  const registerUser = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    const userData = {
-      identifier: formState.inputs.username.value,
+    const newUserInfo = {
+      name: formState.inputs.name.value,
+      username: formState.inputs.username.value,
+      email: formState.inputs.email.value,
+      phone: formState.inputs.mobileNumber.value,
       password: formState.inputs.password.value,
+      confirmPassword: formState.inputs.password.value,
     };
 
-    fetch(`http://localhost:4000/v1/auth/login`, {
+    fetch(`http://localhost:4000/v1/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify(newUserInfo),
     })
       .then((res) => {
-        if (!res.ok) {
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
-        } else {
+        if (res.ok) {
           return res.json();
+        } else {
+          if (res.status === 409) {
+            Toast.fire({
+              icon: "error",
+              title: "این شماره تماس مسدود شده",
+              position: "top",
+              width: "35%",
+              padding: "2rem",
+              heightAuto: false,
+            });
+          }
         }
       })
       .then((result) => {
-        Swal.fire({
-          title: "با موفقیت لاگین شدید",
-          icon: "success",
-          confirmButtonText: "ورود به پنل",
-        }).then(() => {
-          navigate("/");
-        });
-        fetch(`http://localhost:4000/v1/auth/me`, {
-          headers: {
-            Authorization: `Bearer ${result.accessToken}`,
-          },
-        })
-          .then((res) => res.json())
-          .then((userData) => {
-            authContext.login(userData, result.accessToken);
+        if (result) {
+          Swal.fire({
+            title: "ثبت نام موفقیت آمیز",
+            icon: "success",
+            confirmButtonText: "ورود به پنل",
+          }).then(() => {
+            navigate("/");
           });
-      })
-      .catch(() => {
-        Swal.fire({
-          title: "نام کاربری یا رمز اشتباه است!",
-          icon: "error",
-          confirmButtonText: "تلاش دوباره",
-        });
+        }
+        authContext.login(result.user, result.accessToken);
       });
-  };
-
-  const onChangeHandler = () => {
-    setIsGoogleRecaptchaVerify(true);
   };
 
   return (
@@ -120,24 +139,39 @@ const Login = (): React.JSX.Element => {
           </div>
           <div className="flex flex-col items-center text-slate-900 dark:text-white bg-sky-500/20 dark:bg-[#2f3749]/40 backdrop-blur-[4px] px-10 pb-10 pt-8 rounded-3xl w-[33rem] sm:w-[37rem] lg:w-[40rem] z-10">
             <span className="block font-EstedadMedium text-4xl mb-9">
-              ورود | login
+              عضویت
             </span>
             <div className="flex-center text-[1.7rem] gap-x-2 mb-8">
-              <span>حساب کاربری ندارید؟</span>
+              <span>قبلا ثبت‌نام کرده‌اید؟ </span>
               <Button
                 className="font-EstedadBold text-sky-700 dark:text-sky-400"
-                to="/register"
+                to="/login"
               >
-                ثبت نام کنید
+                وارد شوید
               </Button>
             </div>
             <form action="#" className="w-full flex flex-col gap-y-8">
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <Input
+                  id="name"
+                  className="bg-transparent outline-hidden"
+                  type="text"
+                  placeholder="نام و نام خانوادگی"
+                  validations={[
+                    requiredValidator(),
+                    minValidator(3),
+                    maxValidator(20),
+                  ]}
+                  onInputHandler={onInputHandler}
+                />
+                <HiOutlineUser className="w-10 h-10 opacity-50" />
+              </div>
+              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                <Input
                   id="username"
                   className="bg-transparent outline-hidden"
                   type="text"
-                  placeholder="نام کاربری یا آدرس ایمیل"
+                  placeholder="نام کاربری"
                   validations={[
                     requiredValidator(),
                     minValidator(8),
@@ -146,6 +180,32 @@ const Login = (): React.JSX.Element => {
                   onInputHandler={onInputHandler}
                 />
                 <span className="text-[2rem] opacity-50">@</span>
+              </div>
+              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                <Input
+                  id="email"
+                  className="bg-transparent outline-hidden"
+                  type="email"
+                  placeholder="آدرس ایمیل"
+                  validations={[
+                    requiredValidator(),
+                    maxValidator(25),
+                    emailValidator(),
+                  ]}
+                  onInputHandler={onInputHandler}
+                />
+                <FiMail className="w-9 h-9 opacity-50" />
+              </div>
+              <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
+                <Input
+                  id="mobileNumber"
+                  className="bg-transparent outline-hidden text-right"
+                  type="tel"
+                  placeholder="شماره موبایل"
+                  validations={[requiredValidator(), mobileNumberValidator()]}
+                  onInputHandler={onInputHandler}
+                />
+                <HiOutlinePhone className="w-10 h-10 opacity-50" />
               </div>
               <div className="h-20 flex items-center justify-between px-4 bg-white dark:bg-[#333c4c] rounded-2xl">
                 <Input
@@ -162,37 +222,18 @@ const Login = (): React.JSX.Element => {
                 />
                 <BiLockOpenAlt className="w-10 h-10 opacity-50" />
               </div>
-              <div className="mt-2 opacity-40">
-                <ReCAPTCHA
-                  sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                  onChange={onChangeHandler}
-                />
-              </div>
               <Button
                 className={`h-20 rounded-4xl ${
-                  formState.isFormValid && isGoogleRecaptchaVerify
+                  formState.isFormValid
                     ? "bg-sky-600/40 hover:bg-sky-600/60"
                     : "bg-[#333c4c]/30"
                 }`}
                 type="submit"
-                onClick={userLogin}
-                disabled={!formState.isFormValid || !isGoogleRecaptchaVerify}
+                onClick={registerUser}
+                disabled={!formState.isFormValid}
               >
-                <span className="mx-auto">ورود</span>
+                <span className="mx-auto">ادامه</span>
               </Button>
-              <div className="flex justify-between items-center my-3 opacity-60">
-                <label className="flex items-center">
-                  <input className="ml-3" type="checkbox" />
-                  <span className="text-lg sm:text-xl lg:text-2xl">
-                    مرا به خاطر داشته باش
-                  </span>
-                </label>
-                <label className="">
-                  <Button className="text-lg sm:text-xl lg:text-2xl" href="#">
-                    رمز عبور را فراموش کرده اید؟
-                  </Button>
-                </label>
-              </div>
             </form>
           </div>
           <p className="mt-12 font-EstedadMedium text-center text-slate-900 dark:text-white text-[1.6rem]">
@@ -203,11 +244,11 @@ const Login = (): React.JSX.Element => {
             را پذیرفته اید.
           </p>
         </div>
+        <button onClick={() => navigate("/gjrdg")}>gjrdg</button>
       </div>
       <div className="absolute top-0 -left-80 2xl:left-0 w-[340px] h-[340px] bg-yellow-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
       <div className="absolute bottom-0 -right-80 2xl:right-0 w-[340px] h-[340px] bg-sky-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
     </section>
   );
 };
-
-export default Login;
+export default Register;

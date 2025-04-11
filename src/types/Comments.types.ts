@@ -23,4 +23,5 @@ export default interface Comment {
   isAnswer: 0 | 1;
   score: number;
   updatedAt: string;
+  course?: string;
 }

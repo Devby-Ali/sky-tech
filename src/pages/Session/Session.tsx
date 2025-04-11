@@ -17,17 +17,21 @@ import {
 } from "react-icons/hi2";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import { Session as OneSession } from "types/Courses.types";
 
-export default function Session() {
-  const { courseName, sessionID } = useParams();
-  const [session, setSession] = useState({});
-  const [sessions, setSessions] = useState([]);
+
+type Sessions = OneSession[]
+
+const Session = (): React.JSX.Element => {
+  const { courseName, sessionID } = useParams<{courseName: string, sessionID: string}>();
+  const [session, setSession] = useState<OneSession>({} as OneSession);
+  const [sessions, setSessions] = useState<Sessions>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/${courseName}/${sessionID}`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
@@ -35,15 +39,14 @@ export default function Session() {
       .then((data) => {
         setSession(data.session);
         setSessions(data.sessions);
-        console.log(data);
       });
-  }, []);
+  }, [courseName, sessionID]);
 
   const [open, setOpen] = React.useState(0);
   const [alwaysOpen, setAlwaysOpen] = React.useState(true);
 
   const handleAlwaysOpen = () => setAlwaysOpen((cur) => !cur);
-  const handleOpen = (value) => setOpen(open === value ? 0 : value);
+  const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
 
   return (
     <>
@@ -55,7 +58,7 @@ export default function Session() {
             links={[
               {
                 id: 2,
-                title: courseName,
+                title: courseName as string,
                 to: `course-info/${courseName}`,
               },
               {
@@ -191,7 +194,7 @@ export default function Session() {
                     <textarea
                       id="editor"
                       dir="rtl"
-                      rows="6"
+                      rows={6}
                       className="w-full block p-8 md:p-9 bg-gray-100 dark:bg-[#333c4c] text-slate-900 dark:text-white placeholder:text-stone-1000/70 font-EstedadMedium text-2xl rounded-lg"
                       placeholder="سوال خود را بپرسید ..."
                     ></textarea>
@@ -455,4 +458,5 @@ export default function Session() {
       <Footer />
     </>
   );
-}
+};
+export default Session;

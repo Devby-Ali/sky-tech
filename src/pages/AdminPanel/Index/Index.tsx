@@ -1,22 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import PAdminItem from "../../../Components/AdminPanel/PAdminItem/PAdminItem";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 
-export default function Index() {
-  const [infos, setInfos] = useState([]);
-  const [lastRegisteredUsers, setLastRegisteredUsers] = useState([]);
+interface Info {
+  title: string;
+  count: number;
+}
+
+interface LastUsers {
+  _id: string;
+  createdAt: string;
+  email: string;
+  name: string;
+  password: string;
+  phone: string;
+  role: "USER" | "ADMIN";
+  updatedAt: string;
+  username: string;
+}
+
+const Index = (): React.JSX.Element => {
+  const [infos, setInfos] = useState<Info[]>([]);
+  const [lastRegisteredUsers, setLastRegisteredUsers] = useState<LastUsers[]>(
+    []
+  );
 
   useEffect(() => {
     fetch("http://localhost:4000/v1/infos/p-admin", {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
       .then((res) => res.json())
       .then((pageInfo) => {
-        console.log(pageInfo);
         setInfos(pageInfo.infos);
         setLastRegisteredUsers(pageInfo.lastUsers);
       });
@@ -67,4 +85,6 @@ export default function Index() {
       </DataTable>
     </section>
   );
-}
+};
+
+export default Index;

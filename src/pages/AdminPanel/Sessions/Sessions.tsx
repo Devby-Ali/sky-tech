@@ -6,16 +6,34 @@ import Button from "../../../Components/Form/Button";
 import Swal from "sweetalert2";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { HiMiniPlus, HiXMark } from "react-icons/hi2";
+import Course from "types/Courses.types";
+import { FormState } from "hooks/useForm.types";
 
-export default function Sessions() {
-  const [courses, setCourses] = useState([]);
-  const [sessionCourse, setSessionCourse] = useState("-1");
-  const [sessionVideo, setSessionVideo] = useState({});
-  const [sessionFree, setSessionFree] = useState(null);
-  const [sessions, setSessions] = useState([]);
-  const [showAddSession, setShowAddSession] = useState(false);
+interface SessionCourse {
+  _id: string;
+  name: string;
+}
 
-  const [formState, onInputHandler] = useForm(
+interface Session {
+  _id: string;
+  course: SessionCourse;
+  createdAt: string;
+  free: 0 | 1;
+  time: string;
+  title: string;
+  updatedAt: string;
+  video?: string;
+}
+
+const Sessions = (): React.JSX.Element => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [sessionCourse, setSessionCourse] = useState<string>("-1");
+  const [sessionVideo, setSessionVideo] = useState<File>({} as File);
+  const [sessionFree, setSessionFree] = useState<string>({} as string);
+  const [sessions, setSessions] = useState<Session[]>([]);
+  const [showAddSession, setShowAddSession] = useState<boolean>(false);
+
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       title: {
         value: "",
@@ -35,7 +53,6 @@ export default function Sessions() {
     fetch("http://localhost:4000/v1/courses")
       .then((res) => res.json())
       .then((allCourses) => {
-        console.log(allCourses);
         setCourses(allCourses);
       });
   }, []);
@@ -45,7 +62,6 @@ export default function Sessions() {
       .then((res) => res.json())
       .then((allSessions) => {
         setSessions(allSessions);
-        console.log(allSessions);
       });
   }
 
@@ -53,12 +69,14 @@ export default function Sessions() {
     setShowAddSession(!showAddSession);
   };
 
-  const createSession = (event) => {
+  const createSession = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData: { token: string } = JSON.parse(
+      localStorage.getItem("user")!
+    );
 
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("time", formState.inputs.time.value);
     formData.append("video", sessionVideo);
@@ -84,8 +102,10 @@ export default function Sessions() {
     });
   };
 
-  const removeSession = (sessionID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const removeSession = (sessionID: string) => {
+    const localStorageData: { token: string } = JSON.parse(
+      localStorage.getItem("user")!
+    );
 
     Swal.fire({
       title: "از حذف جلسه مطمعنی؟",
@@ -212,7 +232,11 @@ export default function Sessions() {
                   <label>بارگذاری</label>
                   <input
                     type="file"
-                    onChange={(event) => setSessionVideo(event.target.files[0])}
+                    onChange={(event) => {
+                      if (event.target.files) {
+                        setSessionVideo(event.target.files[0]);
+                      }
+                    }}
                   />
                 </div>
 
@@ -281,4 +305,6 @@ export default function Sessions() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Sessions;

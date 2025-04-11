@@ -27,6 +27,7 @@ import AuthContext from "../../context/authContext";
 import { GrUserAdmin } from "react-icons/gr";
 import Menu from "types/Menu.types";
 import { AuthContextType } from "types/AuthContext.types";
+import { FormState } from "hooks/useForm.types";
 
 interface Info {
   coursesCount: number;
@@ -42,7 +43,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
   const [allMenus, setAllMenus] = useState<Menu[]>([]);
   const [showSubmenus, setshowSubmenus] = useState<boolean>(false);
   const [menuId, setMenuId] = useState<string | null>(null);
-  const [formState, onInputHandler] = useForm(
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       search: {
         value: "",

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
-export default function Discounts() {
-  const [discount, setDiscount] = useState("");
+const Discounts = (): React.JSX.Element => {
+  const [discount, setDiscount] = useState<string>("");
 
-  const setDiscounts = (event) => {
+  const setDiscounts = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const reqBody = {
       discount,
@@ -14,18 +14,17 @@ export default function Discounts() {
       method: "POST",
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(reqBody),
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         Swal.fire({
           title: "کمپین ایجاد شد",
           icon: "success",
-          buttons: "Ok",
+          timer: 2000,
         });
       }
     });
@@ -71,4 +70,6 @@ export default function Discounts() {
       </form>
     </section>
   );
-}
+};
+
+export default Discounts;

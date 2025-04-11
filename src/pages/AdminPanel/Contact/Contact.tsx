@@ -2,8 +2,19 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
 
-export default function Contact() {
-  const [contacts, setContacts] = useState([]);
+interface Contact {
+  _id: string;
+  answer: 0 | 1;
+  body: string;
+  createdAt: string;
+  email: string;
+  name: string;
+  phone: string;
+  updatedAt: string;
+}
+
+const Contact = (): React.JSX.Element => {
+  const [contacts, setContacts] = useState<Contact[]>([]);
 
   useEffect(() => {
     getAllContacnts();
@@ -13,27 +24,27 @@ export default function Contact() {
     fetch("http://localhost:4000/v1/contact")
       .then((res) => res.json())
       .then((allContacts) => {
-        console.log(allContacts);
         setContacts(allContacts);
       });
   }
 
-  const showContactBody = (body) => {
+  const showContactBody = (body: string) => {
     Swal.fire({
       title: body,
       confirmButtonText: "Ok",
     });
   };
 
-  const sendAnwserToUser = (contactEmail) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const sendAnwserToUser = (contactEmail: string) => {
+    const localStorageData: { token: string } = JSON.parse(
+      localStorage.getItem("user")!
+    );
     Swal.fire({
       title: "پاسخ:",
       input: "textarea",
       confirmButtonText: "ارسال ایمیل",
       showCancelButton: true,
     }).then((result) => {
-      console.log(result);
       if (result.isConfirmed) {
         const anwserInfo = {
           email: contactEmail,
@@ -49,19 +60,23 @@ export default function Contact() {
           body: JSON.stringify(anwserInfo),
         })
           .then((res) => {
-            console.log(res);
             if (res.ok) {
               getAllContacnts();
               return res.json();
             }
           })
-          .then((result) => console.log(result));
+          .then(() => {
+            Swal.fire({
+              title: "پاسخ ارسال شد",
+              confirmButtonText: "باشه",
+            })
+          });
       }
     });
   };
 
-  const removeContact = (contactID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const removeContact = (contactID: string) => {
+    const localStorageData: { token: string } = JSON.parse(localStorage.getItem("user")!);
     Swal.fire({
       title: "از حذف پیام مطمعنی؟",
       icon: "warning",
@@ -152,4 +167,6 @@ export default function Contact() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Contact;

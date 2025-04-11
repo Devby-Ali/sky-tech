@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import {
-  HiChevronLeft,
   HiMiniChevronLeft,
   HiOutlineMoon,
   HiOutlineSun,
@@ -10,13 +9,15 @@ import {
 import Swal from "sweetalert2";
 import AuthContext from "../../../context/authContext";
 import { HiOutlineLogout } from "react-icons/hi";
+import { AuthContextType } from "types/AuthContext.types";
 
-export default function Sidebar() {
-  const [dark, setDark] = useState(false);
-  const authContext = useContext(AuthContext);
+const Sidebar = (): React.JSX.Element => {
+  const [dark, setDark] = useState<boolean>(false);
+  const authContext = useContext<AuthContextType>(AuthContext);
   const navigate = useNavigate();
 
-  const pageName = useParams();
+  const pageName = useParams<{ "*": string }>();
+
 
   const logoutAdmin = () => {
     Swal.fire({
@@ -270,4 +271,5 @@ export default function Sidebar() {
       </div>
     </aside>
   );
-}
+};
+export default Sidebar;

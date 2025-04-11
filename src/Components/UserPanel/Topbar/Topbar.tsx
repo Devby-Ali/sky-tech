@@ -14,7 +14,7 @@ import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
 import { HiOutlineLogout } from "react-icons/hi";
 
-const Topbar = () => {
+const Topbar = (): React.JSX.Element => {
   const [navOpen, setNavOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [dark, setDark] = useState(false);
@@ -72,7 +72,7 @@ const Topbar = () => {
   };
 
   useEffect(() => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     if (localStorageData) {
       fetch(`http://localhost:4000/v1/auth/me`, {
         headers: {

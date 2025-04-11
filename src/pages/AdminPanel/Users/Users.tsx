@@ -19,12 +19,26 @@ import {
 } from "react-icons/hi2";
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
+import { FormState } from "hooks/useForm.types";
 
-export default function Users() {
-  const [users, setUsers] = useState([]);
-  const [showAddUser, setShowAddUser] = useState(false);
+interface User {
+  _id: string;
+  createdAt: string;
+  email: string;
+  name: string;
+  password: string;
+  phone: string;
+  profile: string;
+  role: "ADMIN" | "USER";
+  updatedAt: string;
+  username: string;
+}
 
-  const [formState, onInputHandler] = useForm(
+const Users = (): React.JSX.Element => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [showAddUser, setShowAddUser] = useState<boolean>(false);
+
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       name: {
         value: "",
@@ -55,7 +69,7 @@ export default function Users() {
   }, []);
 
   function getAllUsers() {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     fetch(`http://localhost:4000/v1/users`, {
       headers: {
         Authorization: `Bearer ${localStorageData.token}`,
@@ -63,13 +77,12 @@ export default function Users() {
     })
       .then((res) => res.json())
       .then((allUsers) => {
-        console.log(allUsers);
         setUsers(allUsers);
       });
   }
 
-  const removeUser = (userID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const removeUser = (userID: string) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     Swal.fire({
       title: "آیا از حذف مطمعنی؟",
       icon: "warning",
@@ -98,8 +111,8 @@ export default function Users() {
     });
   };
 
-  const banUser = (userID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const banUser = (userID: string) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     Swal.fire({
       title: "آیا از بن مطمعنی؟",
       icon: "warning",
@@ -130,7 +143,7 @@ export default function Users() {
     setShowAddUser(!showAddUser);
   };
 
-  const registerUser = (event) => {
+  const registerUser = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const newUserInfo = {
       name: formState.inputs.name.value,
@@ -149,7 +162,6 @@ export default function Users() {
       body: JSON.stringify(newUserInfo),
     })
       .then((res) => {
-        console.log(res);
         res.json();
       })
       .then(() => {
@@ -163,7 +175,7 @@ export default function Users() {
       });
   };
 
-  const changeRole = (userID) => {
+  const changeRole = (userID: string) => {
     Swal.fire({
       title: "ADMIN or USER",
       input: "text",
@@ -181,7 +193,7 @@ export default function Users() {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
             "Content-Type": "application/json",
           },
@@ -378,4 +390,6 @@ export default function Users() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Users;

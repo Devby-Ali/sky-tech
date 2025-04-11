@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
+import Comment from "types/Comments.types";
 
-export default function Comments() {
-  const [comments, setComments] = useState([]);
+const Comments = (): React.JSX.Element => {
+  const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
     getAllComments();
@@ -15,7 +16,7 @@ export default function Comments() {
       .then((allComments) => setComments(allComments));
   }
 
-  const removeComment = (commentID) => {
+  const removeComment = (commentID: string) => {
     Swal.fire({
       title: "از حذف کامنت مطمعنی؟",
       icon: "warning",
@@ -28,7 +29,7 @@ export default function Comments() {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
           },
         }).then((res) => {
@@ -44,15 +45,17 @@ export default function Comments() {
     });
   };
 
-  const showCommentBody = (commentBody) => {
+  const showCommentBody = (commentBody: string) => {
     Swal.fire({
       title: commentBody,
       confirmButtonText: "Ok",
     });
   };
 
-  const banUser = (userID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const banUser = (userID: string) => {
+    const localStorageData: { token: string } = JSON.parse(
+      localStorage.getItem("user")!
+    );
     Swal.fire({
       title: "از بن کاربر مطمعنی؟",
       icon: "warning",
@@ -79,7 +82,7 @@ export default function Comments() {
     });
   };
 
-  const acceptComment = (commentID) => {
+  const acceptComment = (commentID: string) => {
     Swal.fire({
       title: "از تایید کامنت مطمعنی؟",
       icon: "warning",
@@ -92,11 +95,10 @@ export default function Comments() {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
           },
         }).then((res) => {
-          console.log(res);
           if (res.ok) {
             Swal.fire({
               title: "کامنت تایید شد",
@@ -111,7 +113,7 @@ export default function Comments() {
     });
   };
 
-  const rejectComment = (commentID) => {
+  const rejectComment = (commentID: string) => {
     Swal.fire({
       title: "از رد کامنت مطمعنی؟",
       icon: "warning",
@@ -124,11 +126,10 @@ export default function Comments() {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
           },
         }).then((res) => {
-          console.log(res);
           if (res.ok) {
             Swal.fire({
               title: "کامنت رد شد",
@@ -143,7 +144,7 @@ export default function Comments() {
     });
   };
 
-  const answerToComment = (commentID) => {
+  const answerToComment = (commentID: string) => {
     Swal.fire({
       title: "پاسخ مورد نظر را وارد کنید",
       input: "text",
@@ -160,12 +161,11 @@ export default function Comments() {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
           },
           body: JSON.stringify(commentAnswer),
         }).then((res) => {
-          console.log(res);
           if (res.ok) {
             Swal.fire({
               title: "پاسخ مورد نظر با موفقیت ثبت شد",
@@ -290,4 +290,6 @@ export default function Comments() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Comments;

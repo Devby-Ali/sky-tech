@@ -2,26 +2,27 @@ import React, { useEffect, useState } from "react";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
 import {
-  requiredValidator,
   minValidator,
-  maxValidator,
 } from "../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import Editor from "../../../Components/Form/Editor/Editor";
-import DataTable from "./../../../Components/AdminPanel/DataTable/DataTable";
+import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { HiMiniPlus, HiOutlineCheckCircle, HiXMark } from "react-icons/hi2";
+import Article from "types/Atricles.types";
+import { FormState } from "hooks/useForm.types";
+import Category from "types/Category.types";
 
-export default function Articles() {
-  const [articles, setArticles] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [articleCategory, setArticleCategory] = useState("-1");
-  const [articleCover, setArticleCover] = useState({});
-  const [articleBody, setArticleBody] = useState("محتوا");
-  const [showAddArticle, setShowAddArticle] = useState(false);
+const Articles = (): React.JSX.Element => {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [articleCategory, setArticleCategory] = useState<string>("-1");
+  const [articleCover, setArticleCover] = useState<File>({} as File);
+  const [articleBody, setArticleBody] = useState<string>("محتوا");
+  const [showAddArticle, setShowAddArticle] = useState<boolean>(false);
 
-  const [formState, onInputHandler] = useForm(
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       title: {
         value: "",
@@ -52,13 +53,12 @@ export default function Articles() {
     fetch("http://localhost:4000/v1/articles")
       .then((res) => res.json())
       .then((allArticles) => {
-        console.log(allArticles);
         setArticles(allArticles);
       });
   }
 
-  const removeArticle = (articleID) => {
-    const localStorageDate = JSON.parse(localStorage.getItem("user"));
+  const removeArticle = (articleID: string) => {
+    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
     Swal.fire({
       title: "از حذف مقاله مطمعنی؟",
       icon: "warning",
@@ -91,10 +91,10 @@ export default function Articles() {
     setShowAddArticle(!showAddArticle);
   };
 
-  const createArticle = (event) => {
+  const createArticle = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const localStorageDate = JSON.parse(localStorage.getItem("user"));
-    let formData = new FormData();
+    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
+    const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("shortName", formState.inputs.shortName.value);
     formData.append("description", formState.inputs.description.value);
@@ -122,10 +122,10 @@ export default function Articles() {
     });
   };
 
-  const saveArticleAsDraft = (event) => {
+  const saveArticleAsDraft = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const localStorageDate = JSON.parse(localStorage.getItem("user"));
-    let formData = new FormData();
+    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
+    const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("shortName", formState.inputs.shortName.value);
     formData.append("description", formState.inputs.description.value);
@@ -221,8 +221,9 @@ export default function Articles() {
                         id="file"
                         className="w-full bg-white/10 rounded-md p-1"
                         onChange={(event) => {
-                          console.log(event.target.files[0]);
-                          setArticleCover(event.target.files[0]);
+                          if (event.target.files) {
+                            setArticleCover(event.target.files[0]);
+                          }
                         }}
                       />
                     </div>
@@ -352,4 +353,5 @@ export default function Articles() {
       </DataTable>
     </>
   );
-}
+};
+export default Articles;

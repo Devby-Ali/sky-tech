@@ -14,19 +14,47 @@ import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
 import Button from "../../Form/Button";
 import { HiOutlineLogout } from "react-icons/hi";
+import Course from "types/Courses.types";
+import { AuthContextType } from "types/AuthContext.types";
 
-export default function Topbar() {
-  const [adminInfo, setAdminInfo] = useState({});
-  const [adminNotif, setAdminNotif] = useState([]);
-  const [navOpen, setNavOpen] = useState(false);
-  const [overlay, setOverlay] = useState(false);
-  const [dark, setDark] = useState(false);
-  const [openCollapseNotif, setOpenCollapseNotif] = useState(false);
-  const [openCollapseInfo, setOpenCollapseInfo] = useState(false);
+type UserCourse = Omit<
+  Course,
+  | "comments"
+  | "courseStudentsCount"
+  | "isUserRegisteredToThisCourse"
+  | "sessions"
+>;
 
-  const authContext = useContext(AuthContext);
+interface Notification {
+  _id: string;
+  text: string;
+}
 
-  const pageName = useParams();
+interface UserData {
+  _id: string;
+  courses: UserCourse;
+  createdAt: "2025-04-08T11:24:37.705Z";
+  email: string;
+  name: string;
+  notifications: Notification[];
+  phone: string;
+  role: string;
+  updatedAt: string;
+  username: string;
+}
+
+const Topbar = (): React.JSX.Element => {
+  const [adminInfo, setAdminInfo] = useState<UserData>({} as UserData);
+  const [adminNotif, setAdminNotif] = useState<Notification[]>([]);
+  const [navOpen, setNavOpen] = useState<boolean>(false);
+  const [overlay, setOverlay] = useState<boolean>(false);
+  const [dark, setDark] = useState<boolean>(false);
+  const [openCollapseNotif, setOpenCollapseNotif] = useState<boolean>(false);
+  const [openCollapseInfo, setOpenCollapseInfo] = useState<boolean>(false);
+
+  const authContext = useContext<AuthContextType>(AuthContext);
+
+  const pageName = useParams<{ "*": string }>();
 
   const navigate = useNavigate();
 
@@ -66,7 +94,7 @@ export default function Topbar() {
   };
 
   useEffect(() => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     if (localStorageData) {
       fetch(`http://localhost:4000/v1/auth/me`, {
         headers: {
@@ -75,15 +103,14 @@ export default function Topbar() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData.notifications);
           setAdminInfo(userData);
           setAdminNotif(userData.notifications);
         });
     }
   }, []);
 
-  function seeNotification(notficationID) {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  function seeNotification(notficationID: string) {
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     fetch(`http://localhost:4000/v1/notifications/see/${notficationID}`, {
       method: "PUT",
       headers: {
@@ -91,9 +118,6 @@ export default function Topbar() {
       },
     })
       .then((res) => res.json())
-      .then((err) => {
-        console.log(err);
-      });
   }
 
   const toggleOpenNotif = () => {
@@ -377,13 +401,7 @@ export default function Topbar() {
                   openCollapseNotif ? "block visible" : "hidden invisible"
                 }`}
               >
-                {adminNotif.length === 1 ? (
-                  <div className="py-8 px-10 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-b-lg rounded-t-none">
-                    <span className="text-2xl text-nowrap">
-                      نوتیفی برای نمایش وجود ندارد
-                    </span>
-                  </div>
-                ) : (
+                {adminNotif.length ? (
                   <>
                     <div className="py-2.5 px-4 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80 rounded-b-lg rounded-t-none">
                       {adminNotif.map((notification, index) => (
@@ -405,6 +423,12 @@ export default function Topbar() {
                       ))}
                     </div>
                   </>
+                ) : (
+                  <div className="py-8 px-10 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-b-lg rounded-t-none">
+                    <span className="text-2xl text-nowrap">
+                      نوتیفی برای نمایش وجود ندارد
+                    </span>
+                  </div>
                 )}
               </div>
             </div>
@@ -439,7 +463,7 @@ export default function Topbar() {
               }`}
             >
               <div className="py-8 px-10 mx-auto bg-white dark:bg-slate-800 text-slate-900 dark:text-white/80">
-                <span className="text-2xl">{authContext.userInfos.name}</span>
+                <span className="text-2xl">{authContext.userInfos?.name}</span>
               </div>
             </div>
           </Link>
@@ -452,4 +476,6 @@ export default function Topbar() {
       ></div>
     </>
   );
-}
+};
+
+export default Topbar;

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import Swal from "sweetalert2";
@@ -10,7 +10,7 @@ import {
 } from "react-icons/hi2";
 import { HiOutlineLogout } from "react-icons/hi";
 
-export default function Sidebar() {
+const Sidebar = (): React.JSX.Element => {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
   const pageName = useParams();
@@ -89,13 +89,19 @@ export default function Sidebar() {
               </Link>
             </li>
             <li className={pageName["*"] === "orders" ? "active-menu" : ""}>
-              <Link className="flex items-center justify-between" to="/my-account/orders">
+              <Link
+                className="flex items-center justify-between"
+                to="/my-account/orders"
+              >
                 <span>سفارش</span>
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li>
-              <Link className="flex items-center justify-between" to="/my-account/wallet">
+              <Link
+                className="flex items-center justify-between"
+                to="/my-account/wallet"
+              >
                 <span>کیف پول من</span>
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
@@ -112,13 +118,19 @@ export default function Sidebar() {
               </Link>
             </li>
             <li className={pageName["*"] === "buyed" ? "active-menu" : ""}>
-              <Link className="flex items-center justify-between" to="/my-account/buyed">
+              <Link
+                className="flex items-center justify-between"
+                to="/my-account/buyed"
+              >
                 <span>دوره های من</span>
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
             </li>
             <li className={pageName["*"] === "tickets" ? "active-menu" : ""}>
-              <Link className="flex items-center justify-between" to="/my-account/tickets">
+              <Link
+                className="flex items-center justify-between"
+                to="/my-account/tickets"
+              >
                 <span>تیکت های پشتیبانی</span>
                 <HiMiniChevronLeft className="text-5xl" />
               </Link>
@@ -139,4 +151,6 @@ export default function Sidebar() {
       </div>
     </aside>
   );
-}
+};
+
+export default Sidebar;

@@ -6,16 +6,37 @@ import { minValidator } from "../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import { HiMiniPlus, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
+import { FormState } from "hooks/useForm.types";
+import Category from "types/Category.types";
 
-export default function Courses() {
-  const [courses, setCourses] = useState([]);
-  const [courseCategory, setCourseCategory] = useState("-1");
-  const [categories, setCategories] = useState([]);
-  const [courseStatus, setCourseStatus] = useState("start");
-  const [courseCover, setCourseCover] = useState({});
-  const [showAddCourse, setShowAddCourse] = useState(false);
+interface PAdminCourse {
+  _id: string;
+  categoryID: Category[];
+  courseAverageScore: number;
+  cover: string;
+  createdAt: string;
+  creator: string;
+  description: string;
+  discount: number;
+  isComplete: 0 | 1;
+  name: string;
+  price: number;
+  registers: number;
+  shortName: string;
+  status: string;
+  support: string;
+  updatedAt: string;
+}
 
-  const [formState, onInputHandler] = useForm(
+const Courses = (): React.JSX.Element => {
+  const [courses, setCourses] = useState<PAdminCourse[]>([]);
+  const [courseCategory, setCourseCategory] = useState<string>("-1");
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [courseStatus, setCourseStatus] = useState<string>("start");
+  const [courseCover, setCourseCover] = useState<File>({} as File);
+  const [showAddCourse, setShowAddCourse] = useState<boolean>(false);
+
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       name: {
         value: "",
@@ -51,7 +72,7 @@ export default function Courses() {
   }, []);
 
   function getAllCourses() {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     fetch("http://localhost:4000/v1/courses", {
       headers: {
         Authorization: `Bearer ${localStorageData.token}`,
@@ -59,7 +80,6 @@ export default function Courses() {
     })
       .then((res) => res.json())
       .then((allCourses) => {
-        console.log(allCourses);
         setCourses(allCourses);
       });
   }
@@ -68,8 +88,8 @@ export default function Courses() {
     setShowAddCourse(!showAddCourse);
   };
 
-  const removeCourse = (courseID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const removeCourse = (courseID: string) => {
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     Swal.fire({
       title: "از حذف دوره مطمعنی؟",
       icon: "warning",
@@ -104,14 +124,14 @@ export default function Courses() {
     });
   };
 
-  const selectCategory = (event) => {
+  const selectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCourseCategory(event.target.value);
   };
 
-  const addNewCourse = (event) => {
+  const addNewCourse = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
-    let formData = new FormData();
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
+    const formData = new FormData();
     formData.append("name", formState.inputs.name.value);
     formData.append("description", formState.inputs.description.value);
     formData.append("cover", courseCover);
@@ -133,7 +153,6 @@ export default function Courses() {
         },
         body: formData,
       }).then((res) => {
-        console.log(res);
         if (res.ok) {
           Swal.fire({
             title: "دوره جدید با موفقیت اضافه شد",
@@ -261,8 +280,9 @@ export default function Courses() {
                         id="file"
                         className="w-full bg-white/10 rounded-md p-1"
                         onChange={(event) => {
-                          console.log(event.target.files[0]);
-                          setCourseCover(event.target.files[0]);
+                          if (event.target.files) {
+                            setCourseCover(event.target.files[0]);
+                          }
                         }}
                       />
                     </div>
@@ -364,8 +384,7 @@ export default function Courses() {
 
                 <div className="col-span-2">{course.shortName}</div>
 
-                <div className="col-span-1 text-nowrap text-xl">
-                  {" "}
+                <div className="col-span-1 text-xl text-wrap">
                   {course.creator}
                 </div>
 
@@ -391,4 +410,6 @@ export default function Courses() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Courses;

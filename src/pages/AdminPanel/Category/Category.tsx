@@ -10,10 +10,15 @@ import {
 import { useForm } from "../../../hooks/useForm";
 import Swal from "sweetalert2";
 import { HiPlus, HiXMark } from "react-icons/hi2";
+import { FormState } from "hooks/useForm.types";
+import CategoryType from "types/Category.types";
 
-export default function Category() {
-  const [showCreateCategory, setShowCreateCategory] = useState(false);
-  const [formState, onInputHandler] = useForm(
+
+const Category = (): React.JSX.Element => {
+
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [showCreateCategory, setShowCreateCategory] = useState<boolean>(false);
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       title: {
         value: "",
@@ -27,7 +32,6 @@ export default function Category() {
     false
   );
 
-  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     getAllCategories();
@@ -37,7 +41,6 @@ export default function Category() {
     fetch(`http://localhost:4000/v1/category`)
       .then((res) => res.json())
       .then((allCategories) => {
-        console.log(allCategories);
         setCategories(allCategories);
       });
   }
@@ -46,9 +49,9 @@ export default function Category() {
     setShowCreateCategory(!showCreateCategory);
   };
 
-  const createNewCategory = (event) => {
+  const createNewCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
 
     const newCategoryInfo = {
       title: formState.inputs.title.value,
@@ -64,8 +67,7 @@ export default function Category() {
       body: JSON.stringify(newCategoryInfo),
     })
       .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      .then(() => {
         Swal.fire({
           title: "دسته بندی مورد نظر با موفقیت اضافه شد",
           icon: "success",
@@ -77,15 +79,15 @@ export default function Category() {
       });
   };
 
-  const removeCategory = (categoryID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const removeCategory = (categoryID: string): void => {
+    const localStorageData: { token: string } = JSON.parse(localStorage.getItem("user")!);
     Swal.fire({
       title: "از حذف دسته بندی مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then((result: { isConfirmed: boolean }) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:4000/v1/category/${categoryID}`, {
           method: "DELETE",
@@ -93,7 +95,7 @@ export default function Category() {
             Authorization: `Bearer ${localStorageData.token}`,
           },
         })
-          .then((res) => res.json())
+          .then((res: Response) => res.json())
           .then(() => {
             Swal.fire({
               title: "دسته بندی مورد نظر با موفقیت حذف شد",
@@ -107,8 +109,8 @@ export default function Category() {
     });
   };
 
-  const updateCategory = (categoryID) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+  const updateCategory = (categoryID: string) => {
+    const localStorageData: {token: string} = JSON.parse(localStorage.getItem("user")!);
     Swal.fire({
       title: "عنوان جدید دسته بندی را وارد نمایید",
       input: "text",
@@ -117,7 +119,6 @@ export default function Category() {
       showCancelButton: true,
     }).then((result) => {
       if (result.value.trim().length) {
-        console.log(result);
         fetch(`http://localhost:4000/v1/category/${categoryID}`, {
           method: "PUT",
           headers: {
@@ -130,8 +131,7 @@ export default function Category() {
           }),
         })
           .then((res) => res.json())
-          .then((result) => {
-            console.log(result);
+          .then(() => {
             Swal.fire({
               title: "دسته بندی مورد نظر با موفقیت ویرایش شد",
               icon: "success",
@@ -262,4 +262,6 @@ export default function Category() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Category;

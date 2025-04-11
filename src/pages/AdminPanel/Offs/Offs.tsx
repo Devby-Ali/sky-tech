@@ -6,13 +6,27 @@ import { minValidator, requiredValidator } from "../../../validators/rules";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
 import { HiPlus, HiXMark } from "react-icons/hi2";
+import { FormState } from "hooks/useForm.types";
+import Course from "types/Courses.types";
 
-export default function Offs() {
-  const [courses, setCourses] = useState([]);
-  const [offs, setOffs] = useState([]);
-  const [showCreateOff, setShowCreateOff] = useState(false);
-  const [offCourse, setOffCourse] = useState("-1");
-  const [formState, onInputHandler] = useForm(
+interface Offs {
+  _id: string;
+  code: string;
+  course: string;
+  createdAt: string;
+  creator: string;
+  max: number;
+  percent: string;
+  updatedAt: string;
+  uses: number;
+}
+
+const Offs = (): React.JSX.Element => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [offs, setOffs] = useState<Offs[]>([]);
+  const [showCreateOff, setShowCreateOff] = useState<boolean>(false);
+  const [offCourse, setOffCourse] = useState<string>("-1");
+  const [formState, onInputHandler] = useForm<FormState>(
     {
       code: {
         value: "",
@@ -42,7 +56,7 @@ export default function Offs() {
     fetch(`http://localhost:4000/v1/offs`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
@@ -56,7 +70,7 @@ export default function Offs() {
     setShowCreateOff(!showCreateOff);
   };
 
-  const createOff = (event) => {
+  const createOff = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     const newOffInfos = {
@@ -71,12 +85,11 @@ export default function Offs() {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
       body: JSON.stringify(newOffInfos),
     }).then((res) => {
-      console.log(res);
       if (res.ok) {
         Swal.fire({
           title: "کد تخفیف با موفقیت ایجاد شد",
@@ -90,7 +103,7 @@ export default function Offs() {
     });
   };
 
-  const removeOff = (offID) => {
+  const removeOff = (offID: string) => {
     Swal.fire({
       title: "از حذف کد تخفیف مطمعنی؟",
       icon: "warning",
@@ -103,7 +116,7 @@ export default function Offs() {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")).token
+              JSON.parse(localStorage.getItem("user")!).token
             }`,
           },
         }).then((res) => {
@@ -261,4 +274,6 @@ export default function Offs() {
       </DataTable>
     </>
   );
-}
+};
+
+export default Offs;

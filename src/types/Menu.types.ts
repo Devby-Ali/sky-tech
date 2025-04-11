@@ -2,5 +2,6 @@ export default interface Menu {
   _id: string;
   title: string;
   href: string;
-  submenus: Menu[];
+  submenus?: Menu[];
+  parent?: Menu;
 }

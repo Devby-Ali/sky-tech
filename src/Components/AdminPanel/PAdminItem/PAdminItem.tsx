@@ -2,7 +2,12 @@ import React from "react";
 import { HiBookOpen, HiUserPlus } from "react-icons/hi2";
 import { MdPlayLesson } from "react-icons/md";
 
-export default function PAdminItem({ title, count }) {
+interface PAdminItemProps {
+  title: string;
+  count: number;
+}
+
+const PAdminItem = ({ title, count }: PAdminItemProps): React.JSX.Element => {
   return (
     <div className="w-full h-96 flex justify-between flex-col bg-white dark:bg-slate-800 rounded-xl p-8 lg:p-12">
       <p className="text-4xl lg:text-[2.7rem]">{title}</p>
@@ -17,4 +22,6 @@ export default function PAdminItem({ title, count }) {
       <p className="text-3xl sm:text-xl md:text-3xl">{title} در یک ماه گذشته</p>
     </div>
   );
-}
+};
+
+export default PAdminItem;
