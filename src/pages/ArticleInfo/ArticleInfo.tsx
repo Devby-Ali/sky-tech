@@ -21,7 +21,7 @@ import Creator from "types/Creator.types";
 
 
 const ArticleInfo = (): React.JSX.Element => {
-  const { articleName } = useParams();
+  const { articleName } = useParams<{ articleName: string }>();
 
   const [articleDetails, setArticleDetails] = useState<Article>({} as Article);
   const [articleCategory, setArticleCategory] = useState<Category>(

@@ -5,7 +5,12 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { GiCutDiamond } from "react-icons/gi";
 import { IoCodeWorking } from "react-icons/io5";
 import { SectionHeaderProps } from "types/SectionHeader.types";
-import { AboutUsBoxProps } from "types/AboutUs.types";
+
+interface AboutUsBoxProps {
+  title: string;
+  desc: string;
+  icon: JSX.Element;
+}
 
 const AboutUs = (): React.JSX.Element => {
   const features: AboutUsBoxProps[] = [

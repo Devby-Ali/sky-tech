@@ -19,7 +19,7 @@ import {
 } from "react-icons/hi2";
 import Button from "../Form/Button";
 import Swal from "sweetalert2";
-import { Menu } from "types/Menu.types";
+import Menu from "types/Menu.types";
 
 interface UserInfo {
   name: string;

@@ -1,4 +1,8 @@
-import { AboutUsBoxProps } from "../../types/AboutUs.types";
+interface AboutUsBoxProps {
+  title: string;
+  desc: string;
+  icon: JSX.Element;
+}
 
 const AboutUsBox = ({
   icon,

@@ -25,11 +25,14 @@ import {
 import Swal from "sweetalert2";
 import AuthContext from "../../context/authContext";
 import { GrUserAdmin } from "react-icons/gr";
-import { Info } from "types/Info.types";
-import { Menu } from "types/Menu.types";
+import Menu from "types/Menu.types";
 import { AuthContextType } from "types/AuthContext.types";
 
-
+interface Info {
+  coursesCount: number;
+  totalTime: number;
+  usersCount: number;
+}
 
 const Landing = ({ info }: { info: Info }): React.JSX.Element => {
   const [dark, setDark] = useState<boolean>(false);

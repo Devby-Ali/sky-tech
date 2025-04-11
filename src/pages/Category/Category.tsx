@@ -15,15 +15,15 @@ import Button from "../../Components/Form/Button";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
-import Course from "types/Courses.types";
+import {CourseBoxProp} from "types/Courses.types";
 
 
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
 const Category = (): React.JSX.Element => {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [orderedCourses, setOrderedCourses] = useState<Course[]>([]);
-  const [shownCourses, setShownCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<CourseBoxProp[]>([]);
+  const [orderedCourses, setOrderedCourses] = useState<CourseBoxProp[]>([]);
+  const [shownCourses, setShownCourses] = useState<CourseBoxProp[]>([]);
   const [status, setStatus] = useState<string>("default");
   const [statusTitle, setStatusTitle] = useState<string>("همه دوره ها");
   const [searchValue, setSearchValue] = useState<string>("");
@@ -68,6 +68,7 @@ const Category = (): React.JSX.Element => {
         setOrderedCourses(allCourses);
         setStatusTitle("همه دوره ها");
         setStatus("default");
+        console.log(allCourses)
       });
   }, [categoryName]);
 
