@@ -15,14 +15,17 @@ import {
 } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
 import domPurify from "dompurify";
-import Article, { CatrgoryArticle, Creator } from "types/Atricles.types";
+import Article from "types/Atricles.types";
+import Category from "types/Category.types";
+import Creator from "types/Creator.types";
+
 
 const ArticleInfo = (): React.JSX.Element => {
   const { articleName } = useParams();
 
   const [articleDetails, setArticleDetails] = useState<Article>({} as Article);
-  const [articleCategory, setArticleCategory] = useState<CatrgoryArticle>(
-    {} as CatrgoryArticle
+  const [articleCategory, setArticleCategory] = useState<Category>(
+    {} as Category
   );
   const [articleCreator, setArticleCreator] = useState<Creator>({} as Creator);
   const [articleCreatedAt, setArticleCreatedAt] = useState<string>("");

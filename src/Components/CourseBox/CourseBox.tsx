@@ -6,9 +6,18 @@ import { Link } from "react-router-dom";
 import { HiStar } from "react-icons/hi2";
 import { CourseBoxProp } from "types/Courses.types";
 
-
-
-const CourseBox = ({name, shortName, creator, courseAverageScore, description, cover, price, discount, registers, isSlider}: CourseBoxProp): React.JSX.Element => {
+const CourseBox = ({
+  name,
+  shortName,
+  creator,
+  courseAverageScore,
+  description,
+  cover,
+  price,
+  discount,
+  registers,
+  isSlider,
+}: CourseBoxProp): React.JSX.Element => {
   const [isImgShow, setIsImgShow] = useState<boolean>(false);
 
   const onImageLoaded: () => void = () => setIsImgShow(true);
@@ -49,9 +58,7 @@ const CourseBox = ({name, shortName, creator, courseAverageScore, description, c
           <Link to={`/course-info/${shortName}`}>{name}</Link>
         </h3>
         {/* <!-- Course Description --> */}
-        <p className="text-2xl/10 line-clamp-2 opacity-70">
-          {description}
-        </p>
+        <p className="text-2xl/10 line-clamp-2 opacity-70">{description}</p>
       </div>
       {/* <!-- Course Footer --> */}
       <div className="px-6 pb-6">
@@ -61,7 +68,7 @@ const CourseBox = ({name, shortName, creator, courseAverageScore, description, c
             <div className="text-3xl">
               <LiaUserSolid />
             </div>
-            <span>{typeof(creator) === "string" && creator}</span>
+            <span>{typeof creator === "string" && creator}</span>
           </div>
           {/* <!-- Rating --> */}
           <div className="flex items-center gap-x-1 text-3xl opacity-65 text-amber-400">
@@ -95,10 +102,7 @@ const CourseBox = ({name, shortName, creator, courseAverageScore, description, c
                     {price.toLocaleString()}
                   </span>
                   <span className="flex gap-x-1 text-sky-600 dark:text-sky-400 font-EstedadMedium text-2xl">
-                    {(
-                      price -
-                      (price * discount) / 100
-                    ).toLocaleString()}
+                    {(price - (price * discount) / 100).toLocaleString()}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="25"

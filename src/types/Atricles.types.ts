@@ -1,27 +1,17 @@
-interface Creator {
-  _id: string;
-  name: string;
-  username?: string;
-  role: "ADMIN" | "USER";
-}
-
-interface CatrgoryArticle {
-  _id: string;
-  name: string;
-  title: string;
-}
+import Category from "./Category.types";
+import Creator from "./Creator.types";
 
 export default interface Article {
   _id: string;
-  title: string;
   body: string;
-  cover: string | File;
+  categoryID: Category
+  cover: string;
   createdAt: string;
-  creator: Creator;
+  creator: Creator
   description: string;
-  publish: number;
+  publish: number
   shortName: string;
-  categoryID?: CatrgoryArticle;
+  title: string;
+  updatedAt: string;
 }
 
-export type { CatrgoryArticle, Creator }

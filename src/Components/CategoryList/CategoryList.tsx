@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { HiChevronDown, HiOutlineFolderOpen } from "react-icons/hi2";
 import Button from "../Form/Button";
-
-type Category = {
-  _id: string;
-  name: string;
-  title: string;
-};
+import Category from "types/Category.types";
 
 type ApiResponse = Category[];
 
