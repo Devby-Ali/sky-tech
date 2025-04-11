@@ -83,7 +83,6 @@ const CourseInfo = (): React.JSX.Element => {
         setCourseTeacher(courseInfo.creator);
         setCategory(courseInfo.categoryID);
         setPrice(courseInfo.price);
-        console.log(courseInfo)
       });
   }
 

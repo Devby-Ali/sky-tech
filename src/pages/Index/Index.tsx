@@ -7,7 +7,12 @@ import PresellCourses from "../../Components/PresellCourses/PresellCourses";
 import LastArticles from "../../Components/LastArticles/LastArticles";
 import Footer from "../../Components/Footer/Footer";
 import Landing from "../../Components/Landing/Landing";
-import { Info } from "types/Info.types";
+
+interface Info {
+  coursesCount: number;
+  totalTime: number;
+  usersCount: number;
+}
 
 const Index = (): React.JSX.Element => {
   const [indexInfo, setIndexInfo] = useState<Info>({} as Info);

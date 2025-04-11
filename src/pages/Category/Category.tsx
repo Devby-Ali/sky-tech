@@ -68,7 +68,6 @@ const Category = (): React.JSX.Element => {
         setOrderedCourses(allCourses);
         setStatusTitle("همه دوره ها");
         setStatus("default");
-        console.log(allCourses)
       });
   }, [categoryName]);
 

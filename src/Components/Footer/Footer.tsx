@@ -8,20 +8,8 @@ import { emailValidator } from "../../validators/rules";
 import { useForm } from "../../hooks/useForm";
 import Swal from "sweetalert2";
 import Button from "../Form/Button";
+import { FormState } from "hooks/useForm.types";
 
-interface FormInput {
-  value: string;
-  isValid: boolean;
-}
-
-interface FormInputs {
-  [key: string]: FormInput;
-}
-
-interface FormState {
-  inputs: FormInputs;
-  isFormValid: boolean;
-}
 
 const Footer = (): React.JSX.Element => {
   const [formState, onInputHandler] = useForm<FormState>(
