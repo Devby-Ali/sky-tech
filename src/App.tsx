@@ -2,19 +2,19 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useRoutes, useLocation } from "react-router-dom";
 import AuthContext from "./context/authContext";
 import routes from "./routes";
+import { UserInfo } from "types/AuthContext.types";
 
 
-
-export default function App() {
+const App = () => {
   const location = useLocation();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState(false);
-  const [userInfos, setUserInfos] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [token, setToken] = useState<false | null | string>(false);
+  const [userInfos, setUserInfos] = useState<UserInfo>({} as UserInfo);
 
   const router = useRoutes(routes);
 
-  const login = useCallback((userInfos, token) => {
+  const login = useCallback((userInfos: UserInfo, token: false | null | string) => {
     setToken(token);
     setIsLoggedIn(true);
     setUserInfos(userInfos);
@@ -23,12 +23,12 @@ export default function App() {
 
   const logout = useCallback(() => {
     setToken(null);
-    setUserInfos({});
+    setUserInfos({} as UserInfo);
     localStorage.removeItem("user");
   }, []);
 
   useEffect(() => {
-    const localStorageData = JSON.parse(localStorage.getItem("user"));
+    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     if (localStorageData) {
       fetch(`http://localhost:4000/v1/auth/me`, {
         headers: {
@@ -37,7 +37,6 @@ export default function App() {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData);
           setIsLoggedIn(true);
           setUserInfos(userData);
         });
@@ -46,8 +45,6 @@ export default function App() {
     }
   }, [login, logout]);
 
-
-
   useEffect(() => {
     if (localStorage.theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -55,7 +52,6 @@ export default function App() {
       document.documentElement.classList.remove("dark");
     }
   }, []);
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -76,4 +72,6 @@ export default function App() {
       </AuthContext.Provider>
     </>
   );
-}
+};
+
+export default App;

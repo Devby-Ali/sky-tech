@@ -35,9 +35,7 @@ const CourseBox = ({ course }: UserCourse): React.JSX.Element => {
       <div className={`grow px-6 py-6`}>
         {/* <!-- Course Title --> */}
         <h3 className="font-EstedadMedium text-[1.75rem] line-clamp-2">
-          <Link to={`/course-info/${course.shortName}`}>
-            {course.name}
-          </Link>
+          <Link to={`/course-info/${course.shortName}`}>{course.name}</Link>
         </h3>
       </div>
       {/* <!-- Course Footer --> */}

@@ -6,19 +6,38 @@ import {
 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
-export default function Tickets() {
-  const [tickets, setTickets] = useState([]);
+interface Ticket {
+  _id: string;
+  answer: 0 | 1;
+  body: string;
+  course: string;
+  createdAt: string;
+  departmentID: "ارتباط با مدیریت" | "پشتیبانی" | "مشاوره" | "مالی";
+  departmentSubID:
+    | "پیشنهادات و انتقادات"
+    | "بخش مالی"
+    | "مشاوره رایگان در زمینه برنامه نویسی"
+    | "پشتیبانی دوره‌ها"
+    | "پشتیبانی سایت";
+  isAnswer: 0 | 1;
+  priority: number;
+  title: string;
+  updatedAt: string;
+  user: string;
+}
+
+const Tickets = (): React.JSX.Element => {
+  const [tickets, setTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/tickets/user`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((data) => setTickets(data));
@@ -133,8 +152,7 @@ export default function Tickets() {
           <option value="">مرتب سازی بر اساس:</option>
           <option value="">منتظر پاسخ</option>
           <option value="">پاسخ داده شده</option>
-          <option value="">جدیدترین</option>
-          <option value="">قدیمی ترین</option>
+          <option value="">همه تیکت ها</option>
         </select>
       </div>
 
@@ -181,4 +199,6 @@ export default function Tickets() {
       </div>
     </main>
   );
-}
+};
+
+export default Tickets;

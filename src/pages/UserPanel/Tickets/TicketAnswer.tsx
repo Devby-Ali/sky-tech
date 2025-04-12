@@ -3,26 +3,30 @@ import {
   HiOutlineCheckCircle,
   HiOutlineMagnifyingGlassCircle,
 } from "react-icons/hi2";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function TicketAnswer() {
-  const { id } = useParams();
-  const [ticketInfo, setTicketInfo] = useState({});
+interface TicketInfo {
+  answer: string | null;
+  ticket: string
+}
+
+const TicketAnswer = (): React.JSX.Element => {
+  const { id } = useParams<{ id: string }>();
+  const [ticketInfo, setTicketInfo] = useState<TicketInfo>({} as TicketInfo);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/tickets/answer/${id}`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setTicketInfo(data);
       });
-  }, []);
+  }, [id]);
 
   return (
     <main className="pb-5 md:pb-8 mx-auto mt-6 md:mt-12 px-2 2xl:px-24">
@@ -83,4 +87,5 @@ export default function TicketAnswer() {
       </section>
     </main>
   );
-}
+};
+export default TicketAnswer;

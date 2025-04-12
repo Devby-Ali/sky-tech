@@ -24,7 +24,6 @@ const Courses = (): React.JSX.Element => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCourses(data);
       });
   }, []);

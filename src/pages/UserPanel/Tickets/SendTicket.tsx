@@ -2,17 +2,47 @@ import React, { useEffect, useState } from "react";
 import { HiArrowUpTray, HiChevronLeft } from "react-icons/hi2";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { UserCourse } from "types/Courses.types";
 
-export default function SendTicket() {
-  const [departments, setDepartments] = useState([]);
-  const [departmentsSubs, setDepartmentsSubs] = useState([]);
-  const [courses, setCourses] = useState([]);
-  const [ticketTypeID, setTicketTypeID] = useState("");
-  const [departmentID, setDepartmentID] = useState("");
-  const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("1");
-  const [body, setBody] = useState("");
-  const [courseID, setCourseID] = useState("");
+interface Department {
+  _id: string;
+  createdAt: string;
+  title: "ارتباط با مدیریت" | "پشتیبانی" | "مشاوره" | "مالی";
+  updatedAt: string;
+}
+
+interface DepartmentsSubs {
+  _id: string;
+  createdAt: string;
+  parent: string;
+  title:
+    | "پیشنهادات و انتقادات"
+    | "بخش مالی"
+    | "مشاوره رایگان در زمینه برنامه نویسی"
+    | "پشتیبانی دوره‌ها"
+    | "پشتیبانی سایت";
+  updatedAt: string;
+}
+
+interface UserCourseTicket {
+  _id: string;
+  course: UserCourse;
+  createdAt: string;
+  price: number;
+  updatedAt: string;
+  user: string;
+}
+
+const SendTicket = (): React.JSX.Element => {
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [departmentsSubs, setDepartmentsSubs] = useState<DepartmentsSubs[]>([]);
+  const [courses, setCourses] = useState<UserCourseTicket[]>([]);
+  const [ticketTypeID, setTicketTypeID] = useState<string>("");
+  const [departmentID, setDepartmentID] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [priority, setPriority] = useState<string>("1");
+  const [body, setBody] = useState<string>("");
+  const [courseID, setCourseID] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -24,7 +54,7 @@ export default function SendTicket() {
     fetch(`http://localhost:4000/v1/users/courses/`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
@@ -34,15 +64,16 @@ export default function SendTicket() {
       });
   }, []);
 
-  const getDepartmentsSub = (departmentID) => {
+  const getDepartmentsSub = (departmentID: string) => {
     fetch(`http://localhost:4000/v1/tickets/departments-subs/${departmentID}`)
       .then((res) => res.json())
-      .then((subs) => setDepartmentsSubs(subs));
+      .then((subs) => {
+        setDepartmentsSubs(subs);
+      });
   };
 
-  const sendTicket = (event) => {
+  const sendTicket = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log(courseID);
 
     const newTicketInfos = {
       departmentID,
@@ -57,7 +88,7 @@ export default function SendTicket() {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
       body: JSON.stringify(newTicketInfos),
@@ -100,7 +131,7 @@ export default function SendTicket() {
             <select
               name="department"
               id="department"
-              className="w-full sm:w-1/2 h-13 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
+              className="w-full sm:w-1/2 h-19 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
               onChange={(event) => {
                 getDepartmentsSub(event.target.value);
                 setDepartmentID(event.target.value);
@@ -117,7 +148,7 @@ export default function SendTicket() {
             <select
               name="department"
               id="department"
-              className="w-full sm:w-1/2 h-13 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
+              className="w-full sm:w-1/2 h-19 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
               onChange={(event) => setTicketTypeID(event.target.value)}
             >
               <option>نوع تیکت را انتخاب کنید:</option>
@@ -143,7 +174,7 @@ export default function SendTicket() {
               <select
                 name="department"
                 id="department"
-                className="w-full sm:w-1/2 lg:w-1/3 h-13 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
+                className="w-full sm:w-1/2 lg:w-1/3 h-19 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
                 onChange={(event) => setCourseID(event.target.value)}
               >
                 <option>دوره را انتخاب کنید:</option>
@@ -162,7 +193,7 @@ export default function SendTicket() {
             onChange={(event) => setBody(event.target.value)}
             id="text"
             name="text"
-            required=""
+            required={true}
           ></textarea>
 
           <div className="flex flex-wrap gap-6 items-center justify-between mt-8 md:pr-5">
@@ -187,4 +218,6 @@ export default function SendTicket() {
       </section>
     </main>
   );
-}
+};
+
+export default SendTicket;

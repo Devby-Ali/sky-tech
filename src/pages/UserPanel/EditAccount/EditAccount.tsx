@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/authContext";
 import {
   HiOutlineArrowUpTray,
@@ -11,25 +11,26 @@ import {
   HiOutlineXMark,
 } from "react-icons/hi2";
 import Swal from "sweetalert2";
+import { AuthContextType } from "types/AuthContext.types";
 
-export default function EditAccount() {
-  const authContext = useContext(AuthContext);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const EditAccount = (): React.JSX.Element => {
+  const authContext = useContext<AuthContextType>(AuthContext);
+  const [name, setName] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   useEffect(() => {
-    setName(authContext.userInfos.name);
-    setPhone(authContext.userInfos.phone);
-    setUsername(authContext.userInfos.username);
-    setUsername(authContext.userInfos.username);
-    setEmail(authContext.userInfos.email);
-    console.log(authContext);
+    if (authContext.userInfos) {
+      setName(authContext.userInfos.name);
+      setPhone(authContext.userInfos.phone);
+      setUsername(authContext.userInfos.username);
+      setEmail(authContext.userInfos.email);
+    }
   }, [authContext]);
 
-  const editAccount = (event) => {
+  const editAccount = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     const userNewInfos = {
@@ -45,7 +46,7 @@ export default function EditAccount() {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
       body: JSON.stringify(userNewInfos),
@@ -194,4 +195,6 @@ export default function EditAccount() {
       </form>
     </main>
   );
-}
+};
+
+export default EditAccount;
