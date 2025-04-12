@@ -23,7 +23,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { BsClock } from "react-icons/bs";
 import { IoCalendarOutline } from "react-icons/io5";
 import { MdOutlineLaptopChromebook } from "react-icons/md";
-import { GoTriangleDown } from "react-icons/go";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { FaRegObjectGroup } from "react-icons/fa";
 import { BiSolidLeftArrow } from "react-icons/bi";
 import Comment from "types/Comments.types";
@@ -32,10 +32,13 @@ import Course from "types/Courses.types";
 import { Session } from "types/Courses.types";
 import Category from "types/Category.types";
 
-
-
-type RelatedCourse = Omit<Course, "sessions" | "isUserRegisteredToThisCourse" | "courseStudentsCount" | "comments">
-
+type RelatedCourse = Omit<
+  Course,
+  | "sessions"
+  | "isUserRegisteredToThisCourse"
+  | "courseStudentsCount"
+  | "comments"
+>;
 
 const CourseInfo = (): React.JSX.Element => {
   const [open, setOpen] = useState(0);
@@ -50,6 +53,7 @@ const CourseInfo = (): React.JSX.Element => {
   const [category, setCategory] = useState<Category>({} as Category);
   const [price, setPrice] = useState<number>({} as number);
   const [relatedCourses, setRelatedCourses] = useState<RelatedCourse[]>([]);
+  const [showDescription, setShowDescription] = useState<boolean>(false);
 
   const { courseName } = useParams<{ courseName: string }>();
 
@@ -64,7 +68,9 @@ const CourseInfo = (): React.JSX.Element => {
   }, []);
 
   function getCourseDetails() {
-    const localStorageData = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")!) : null;
+    const localStorageData = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user")!)
+      : null;
 
     fetch(`http://localhost:4000/v1/courses/${courseName}`, {
       headers: {
@@ -86,8 +92,14 @@ const CourseInfo = (): React.JSX.Element => {
       });
   }
 
+  const showDescriptionHandler = () => {
+    setShowDescription(!showDescription);
+  };
+
   const submitComment = (newCommentBody: string, commentScore: string) => {
-    const localStorageData = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")!) : null;
+    const localStorageData = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user")!)
+      : null;
 
     fetch(`http://localhost:4000/v1/comments`, {
       method: "POST",
@@ -250,21 +262,21 @@ const CourseInfo = (): React.JSX.Element => {
             ]}
           />
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-y-7 gap-x-6 sm:gap-x-7 lg:items-center xl:items-stretch mt-12 md:mt-15 rounded-3xl p-7 lg:p-0 bg-white dark:bg-slate-800 lg:bg-transparent! border border-gray-100 dark:border-none lg:border-none">
-            <div className="flex flex-col lg:gap-56 justify-between order-2 lg:order-1 text-slate-900 dark:text-white">
+            <div className="flex flex-col lg:h-full justify-between order-2 lg:order-1 text-slate-900 dark:text-white">
               <div>
                 <h1 className="font-EstedadBold text-4xl sm:text-5xl mb-7">
                   {courseDetails.name}
                 </h1>
-                <p className="text-[1.6rem]/relaxed sm:text-3xl line-clamp-4 sm:line-clamp-3 mb-12 lg:mb-0">
+                <p className="text-3xl/loose line-clamp-4 sm:line-clamp-3 mb-12 lg:mb-0">
                   {courseDetails.description}
                 </p>
               </div>
-              <div className="space-y-4 lg:space-y-8 lg:mt-4 lg:px-12">
+              <div className="space-y-4 lg:space-y-8 lg:px-12">
                 {courseDetails.isUserRegisteredToThisCourse === true ? (
                   <div className="flex justify-center lg:items-center lg:justify-between gap-y-4 gap-x-14">
                     <div className="flex items-center gap-x-2">
                       <LiaUserSolid className="text-6xl mb-1" />
-                      <p className="font-EstedadBold text-3xl">
+                      <p className="font-EstedadBold text-3xl lg:text-2xl xl:text-3xl">
                         شما دانشجوی دوره هستید
                       </p>
                     </div>
@@ -380,7 +392,7 @@ const CourseInfo = (): React.JSX.Element => {
                 <CourseDetailBox
                   icon={<PiUsersThree />}
                   title={"روش پشتیبانی"}
-                  text={`${courseDetails.support || "واتساپ"}`}
+                  text={courseDetails.support}
                 />
                 <CourseDetailBox
                   icon={<PiBriefcase />}
@@ -404,294 +416,47 @@ const CourseInfo = (): React.JSX.Element => {
                     توضیحات
                   </div>
                 </div>
+                <img
+                  src={`http://localhost:4000/courses/covers/${courseDetails.cover}`}
+                  className="block w-full max-h-[450px] object-cover rounded-2xl mb-8 sm:mb-12"
+                  alt="Course-Image"
+                  loading="lazy"
+                />
                 <div className="relative overflow-hidden">
-                  <div className="course-content wp-content max-h-[800px] text-[1.6rem]/loose">
-                    <meta charSet="utf8" />
-                    <p>
-                      تا حالا به این فکر کردید چرا توسعه تکنولوژی در سال های
-                      اخیر انقدر سریع بوده؟ یکی از دلایل اون موضوع آموزش همین
-                      دوره هست. یعنی <strong>NPM</strong>
-                    </p>
-                    <p>
-                      اینکه چرا و چطوری این تاثیرو گذاشته به مرور بررسی میکنیم
-                      ولی فعلا در همین حد بدونید که در گذشته به خاطر ساده تر
-                      بودن ساختار برنامه نویسی و پروژه ها، اضافه کردن کتابخانه
-                      ها به پروژه کار سختی نبود چون تعدادشون به اندازه الان نبود
-                      و مشکلی در این فرآیند احساس نمیشد.تا اینکه با گذشت زمان،
-                      هم تعداد کتابخانه ها به طور شگفت انگیزی زیاد شد و هم
-                      استفاده و رواج اونها در جهان به دلیل افزایش رقابت و تنوع
-                      سلیقه کاربران، بیشتر شد.
-                    </p>
-                    <p>
-                      از طرفی بعضی از کتابخانه ها به کتابخانه های دیگه ای وابسته
-                      بودن و قبلش باید اونهارو نصب میکردید و این مسئله باعث
-                      ایجاد سردرگمی و افزایش حجم پروژه میشد.
-                    </p>
-                    <p>
-                      مهندسان به این فکر افتادن که یک پلتفرم برای نصب و مدیریت
-                      کتابخانه ها، به روزرسانی، کنترل وابستگی و … نیاز هست تا
-                      این اتفاقات برای برنامه نویسان سراسر دنیا راحت تر کنترل
-                      بشه و نیازی به دخالت دستی برنامه نویس نباشه. این شد که{" "}
-                      <strong>NPM</strong> خلق شد!
-                    </p>
-                    <p>
-                      چند مورد از مزایا و <strong>کاربردهای NPM</strong> رو به
-                      طور خلاصه براتون لیست می کنیم:
-                    </p>
-                    <ol>
-                      <li>&nbsp;افزودن پکیج های مختلف به پروژه</li>
-                      <li>
-                        &nbsp;اجرا کردن پکیج ها بدون دانلود با استفاده از اجرای
-                        دستور در CLI (command line)
-                      </li>
-                      <li>&nbsp;کنترل آسان ورژن پروژه</li>
-                      <li>
-                        &nbsp;اشتراک گذاری پروژه و کدها با سایر برنامه نویسان
-                      </li>
-                      <li>&nbsp;بروزرسانی آسان تر و سریع تر کتابخانه ها</li>
-                    </ol>
-                    <p>
-                      از اونجایی که اسکای لرن تصمیم گرفته در کنار دوره های جامع
-                      خودش و برای جبران کوتاهی دانشجوها در انجام تمرینات منظم و
-                      تحقیق و مطالعه برای توسعه مهارتشون، یک دوره جداگانه رایگان
-                      برای آشنایی با <strong>NPM</strong>{" "}
-                      <strong>(Node Package Manager</strong> ) یا همون مدیر پکیج
-                      طراحی و تولید کنه تا دانشجوها خیلی بیشتر از قبل با نحوه
-                      مدیریت پکیج ها و کار با این پلتفرم بین المللی آشنا بشن.
-                    </p>
-                    <p>
-                      در ادامه سعی می کنیم پرتکرارترین سوالات و دغدغه های شمارو
-                      جواب بدیم تا با خیال راحت تری در این دوره ثبت نام کنید. پس
-                      تا انتها با ما همراه باشید.
-                    </p>
-                    <h2 id="h_1">
-                      <strong>
-                        چه زمانی باید از NPM استفاده کنیم؟ آیا ضروری هست؟
-                      </strong>
-                    </h2>
-                    <p>
-                      فقط در یک حالت هست که میتونید از<strong> NPM</strong>{" "}
-                      استفاده نکنید اون هم در صورتیه که تصمیم بگیرید صفر تا صد
-                      پروژه رو خودتون از اول کدنویسی کنید و هیچ نیازی به
-                      کتابخانه و ابزار کمکی از قبل آماده شده ندارید. البته این
-                      وضعیت با توجه به اهمیت سرعت کدنویسی و اتمام پروژه ها در
-                      دنیای امروز به ندرت پیش میاد و در حال حاضر اکثر برنامه
-                      نویسان مبتدی و حرفه ای از <strong>NPM</strong> استفاده
-                      میکنن.
-                    </p>
-                    <h2 id="h_2">تو این دوره قراره چی یاد بگیریم؟</h2>
-                    <p>قسمتی از سرفصل های آموزشی دوره به صورت خلاصه :</p>
-                    <h3>1 – آشنایی با مفاهیم پایه</h3>
-                    <p>
-                      درک مفاهیم اصلی مثل پکیج ها، وابستگی ها، ورژن ها و دستورات
-                      اصلی که میتونه به شما کمک کند تا اساسی ترین قسمت های{" "}
-                      <strong>NPM</strong> رو متوجه بشید و آمادگی بیشتری برای
-                      مراحل بعدی پیدا کنید.
-                    </p>
-                    <h3>2 – آموزش نصب Node.js</h3>
-                    <p>
-                      <strong>NPM</strong> به صورت تعاملی با Node.js کار میکنه
-                      که پلتفرم بک اند جاوا اسکریپت هست. بنابراین برای استفاده
-                      از <strong>NPM</strong> باید Node.js رو نصب کنید. بعد از
-                      نصب Node.js، <strong>NPM</strong> به طور خودکار به همراه
-                      اون نصب میشه.
-                    </p>
-                    <h3>
-                      3 – نحوه مدیریت پکیج ها و استفاده از دستورات اصلی (کامند
-                      ها)
-                    </h3>
-                    <p>
-                      یادگیری نحوه نصب، حذف و به روزرسانی پکیج ها به عنوان
-                      ابزارهای کلیدی در تسلط به <strong>NPM</strong> محسوب میشه
-                      و اون رو به بهترین شکل یاد می گیرید. دستورات مهمی مثل `npm
-                      install` برای نصب پکیج ها، `npm update` برای به روزرسانی
-                      پکیج ها، و `npm start` برای اجرای پروژه ها از جمله
-                      محتواهای این بخش هستن.
-                    </p>
-                    <h3>4 – پیاده سازی آموزش ها در قالب ایجاد یک پروژه جدید</h3>
-                    <p>
-                      با ایجاد یک پروژه جدید، می تونید نحوه ساختاردهی پروژه و
-                      مدیریت پکیج ها رو به صورت عملی تجربه کنید.
-                    </p>
-                    <h3>5 – نشر پکیج های شخصی</h3>
-                    <p>
-                      اگه قصد دارید پکیج های خودتون رو با دیگران به اشتراک
-                      بگذارید، باید یاد بگیرید چطور اونهارو در ریپازیتوری{" "}
-                      <strong>NPM</strong> منتشر کنید.
-                    </p>
-                    <h3>6 – استفاده از پکیج های خارجی</h3>
-                    <p>
-                      یادگیری نحوه جستجو، انتخاب و استفاده از پکیج هایی که توسط
-                      دیگران توسعه داده شدن، خیلی خیلی مهم هست و یاد می گیرید
-                      چطور از این ظرفیت های عالی برای پیشبرد کارتون استفاده
-                      کنید.
-                    </p>
-                    <h3>7 – مفاهیم پیشرفته</h3>
-                    <p>
-                      بعد از مسلط شدن به مفاهیم پایه، میتونید به موارد پیشرفته
-                      تر مثل تنظیمات پکیج، ایجاد اسکریپت ها، مدیریت اشتراک ها و
-                      مشارکت در پروژه های عمومی بپردازید.
-                    </p>
-                    <p>
-                      با پیگیری این مراحل و تمرین های عملی، تسلط به{" "}
-                      <strong>NPM</strong> رو زودتر و بهتر از تصورتون به دست
-                      میارید.
-                    </p>
-                    <h2 id="h_3">این دوره برای چه کسانی مناسب هست؟</h2>
-                    <p>
-                      یادگیری کار با <strong>NPM</strong> برای تمامی برنامه
-                      نویسان و توسعه دهنده هایی که با زبان برنامه نویسی جاوا
-                      اسکریپت (JavaScript) یا زبان هایی که از اکوسیستم Node.js
-                      پشتیبانی میکنن، سروکار دارن خیلی ضروری هست. از جمله :
-                    </p>
-                    <ol>
-                      <li>برنامه نویسان وب</li>
-                      <li>توسعه دهندگان Front-end و Back-end</li>
-                      <li>توسعه دهندگان Mobile</li>
-                      <li>توسعه دهندگان پلاگین و کتابخانه</li>
-                      <li>
-                        توسعه دهندگان پروژه های Open Source : افرادی که علاقه به
-                        مشارکت در پروژه های متن باز دارن و میخوان با توسعه دهنده
-                        های سراسر دنیا تبادل اطلاعات و تجربه داشته باشن.
-                      </li>
-                    </ol>
-                    <h2 id="h_4">
-                      چرا اسکای لرن بهترین گزینه برای یادگیری هست؟
-                    </h2>
-                    <p>
-                      حتما برای شما هم پیش اومده که گاهی فرصت ها و پروژه های
-                      بزرگ رو از دست میدید فقط به خاطر اینکه در ظاهر فکر میکنید
-                      آمادگی کار در اون سطح رو ندارید و هنوز سرعت و تسلط لازم
-                      برای پیاده سازی اونهارو بدست نیاوردید. یکی از دلایل میتونه
-                      عدم آشنایی شما با اکوسیستم اون زبان برنامه نویسی باشه. مثل
-                      فریم ورک ها، کتابخانه ها و …
-                    </p>
-                    <p>
-                      تفاوت اسکای لرن در همین هست که علاوه بر دوره های آموزشی
-                      اصلی، مجموعه ای از دوره های مکمل فوق العاده هم برای
-                      دانشجوهای خودش تدارک میبینه ( اکثرا رایگان! ) تا مطمئن بشه
-                      فاصله شون با تسلط کامل و کسب درآمدهای بالا فقط و فقط اراده
-                      و جدیت اون ها باشه نه مسائل فنی!
-                    </p>
-                    <p>
-                      این دوره با محتوای جذاب و مفید خودش میتونه به شما کمک کنه
-                      با سرعت و کیفیت بیشتری پروژه های خودتون رو به سرانجام
-                      برسونید.
-                    </p>
-                    <h2 id="h_5">بعد از اتمام دوره به چه نتیجه ای می رسیم؟</h2>
-                    <h3>1 – توانایی مدیریت کامل پکیج ها</h3>
-                    <p>
-                      با استفاده از <strong>NPM</strong>، میتونید به راحتی پکیج
-                      ها و کتابخانه های آماده رو در پروژه های خود نصب کنید و از
-                      اونها استفاده کنید. این کمک میکنه تا امکانات مختلفی رو
-                      بدون نیاز به نوشتن کدها از صفر، پیاده سازی کنید.
-                    </p>
-                    <h3>2 – بروزرسانی و مدیریت وابستگی ها</h3>
-                    <p>
-                      با یادگیری NPM میتونید به روزرسانی پکیج هارو به راحتی
-                      انجام داده و وابستگی های پروژه رو به روز نگه دارید. این
-                      اتفاق باعث میشه تا از نسخه های جدیدتر پکیج ها و امکانات
-                      بهتر آنها بهتر استفاده کنید و سردرگم نشید.
-                    </p>
-                    <h3>3 – کارایی و بهره وری</h3>
-                    <p>
-                      با استفاده از پکیج های آماده در <strong>NPM</strong>،
-                      میتونید توسعه رو سریع تر انجام داده و کارهای تکراری رو
-                      کمتر کنید. در واقع حوصله تون هیچوقت از نوشتن صفر تا صد کد
-                      برای هر چیز کوچیکی سر نخواهد رفت.
-                    </p>
-                    <h3>4 – جامعه بزرگ توسعه دهندگان</h3>
-                    <p>
-                      اکوسیستم <strong>NPM</strong> یک جامعه بزرگ و پویا از
-                      توسعه دهندگان داره که به شما کمک میکنه از تجربیات دیگران
-                      به راحتی استفاده کرده و با پروژه های مشابه در ارتباط
-                      باشید.
-                    </p>
-                    <h3>5 – نشر پکیج های شخصی</h3>
-                    <p>
-                      اگه دوست دارید پکیج های خودتون رو با دیگران به اشتراک
-                      بذارید، <strong>NPM</strong> به شما این امکان رو میده که
-                      پکیج های شخصی خودتون رو منتشر کنید و بازخورد و مشارکت
-                      دیگران رو در بهبود اونها، به دست بیارید.
-                    </p>
-                    <p>
-                      به طور کلی، یادگیری <strong>NPM</strong> به شما کمک میکنه
-                      تا توسعه سریع تر و منظم تری رو تجربه کنید. زمانی که شما در
-                      یک پروژه به صورتی تیمی کار میکنید یا زمانی که در یک شرکت
-                      استخدام شدید، اونجا حتما نیاز هست که با ابزارهای package
-                      manager &nbsp;کار کرده باشید تا مشکلی برای اجرا پروژه ها
-                      مدیریت پکیج ها نداشته باشید.
-                    </p>
-                    <p>
-                      شما بعد از دیدن این دوره توانایی کار با{" "}
-                      <strong>NPM</strong> رو به صورت کامل و حرفه ای خواهید داشت
-                      و میتونید به صورت تیمی با برنامه نویس های دیگه کار کنید.
-                    </p>
-                    <h2 id="h_6">
-                      این دوره پیش نیاز خاصی داره که باید قبلش بلد باشم؟
-                    </h2>
-                    <p>
-                      آشنایی و تسلط به زبان برنامه نویسی جاوا اسکریپت که پای
-                      ثابت پروژه های برنامه نویسی به خصوص تحت وب هست، مهمترین
-                      پیش نیاز ورود به این دوره محسوب میشه. چون تا وقتی به اون
-                      مسلط نباشید، دیدن این دوره هم کمکی به شما نخواهد کرد.
-                    </p>
-                    <p>
-                      حتما میدونید که یاد گرفتن پیش نیازی که اشاره شد، در اسکای
-                      لرن کاملا رایگان هست دیگه ؟؟؟!{" "}
-                      <Button href="">این هم لینک دوره ش…</Button>
-                    </p>
-                    <h2 id="h_7">وقتی این دوره رو دیدم قدم بعدیم چیه؟</h2>
-                    <p>
-                      شما بعد از دیدن دوره و تسلط به <strong>NPM</strong>{" "}
-                      میتونید در مورد تنظیمات پکیج های مختلف تحقیق کنید و یا
-                      پکیج های شخصی سازی خودتون رو در اختیار دیگران در هرجای
-                      دنیا بذارید. در کنار اینها میتونید به راحتی در پروژه های
-                      متن باز بین المللی یا داخلی هم مشارکت کنید و تجربیات
-                      خودتون رو به دیگران منتقل کنید یا از تجربیات ارزشمند اونها
-                      استفاده کنید.
-                    </p>
-                    <h2 id="h_8">در این دوره چه نوع پروژه هایی کار میکنیم ؟</h2>
-                    <p>
-                      در جلسه اخر این دوره یک پروژه کوچیک پیاده سازی میکنیم و در
-                      اون با نصب چندتا پکیج و استفاده از اونها در پروژه به صورت
-                      عملی یاد خواهید گرفت که در پروژه های واقعی چطور باید از{" "}
-                      <strong>npm</strong> &nbsp;استفاده کرد.
-                    </p>
-                    <h2 id="h_9">چه تضمینی هست که خوب و کامل یاد بگیرم؟</h2>
-                    <p>
-                      چندین دلیل هست که معمولا باعث عدم نتیجه گیری شما از هر
-                      دوره ای میشه :
-                    </p>
-                    <ol>
-                      <li>کیفیت پایین محتوای آموزشی و سبک و تسلط مدرس</li>
-                      <li>عدم اشتیاق و علاقه مندی کافی برای یادگیری</li>
-                      <li>نبود پشتیبانی در دسترس و قوی در طول آموزش</li>
-                      <li>
-                        عدم مرور و تمرین مطالب (انبار کردن اونها برای روز مبادا
-                        !)
-                      </li>
-                    </ol>
-                    <p>
-                      دو مورد اینها بر عهده شماست و دو مورد هم بر عهده اسکای
-                      لرن. ما به شما قول میدیم این آموزش رو با بالاترین کیفیت و
-                      موثرترین پشتیبانی در اختیار شما قرار بدیم. شما قول می دید
-                      که با علاقه و پشتکار تمام تمرینات رو انجام بدید تا به
-                      نتیجه برسید؟!
-                    </p>
-                    <p>پس همه چی حله…</p>
+                  <div
+                    className={`${
+                      showDescription ? "h-full" : "max-h-[350px]"
+                    } text-[1.6rem]/loose text-white/80`}
+                  >
+                    {courseDetails.description}
                   </div>
 
-                  <div className="absolute bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-slate-800 from-0% via-white/[55%] dark:via-slate-800/[55%] via-70% to-white/0 dark:to-slate-800/0 to-100%"></div>
+                  <div
+                    className={`${
+                      showDescription ? "hidden" : "absolute"
+                    } bottom-0 right-0 left-0 h-44 bg-linear-to-t from-white dark:from-slate-800 from-0% via-white/[55%] dark:via-slate-800/[55%] via-70% to-white/0 dark:to-slate-800/0 to-100%`}
+                  ></div>
                 </div>
                 <Button
                   type="button"
-                  className="button-primary hover:  text-white py-4 w-full sm:w-auto mx-auto mt-14"
+                  onClick={showDescriptionHandler}
+                  className="button-primary py-4 w-full sm:w-auto mx-auto mt-14"
                 >
-                  <span>مشاهده بیشتر مطلب</span>
-                  <div className="text-5xl">
-                    <GoTriangleDown />
-                  </div>
+                  {showDescription ? (
+                    <>
+                      <span>مشاهده کمتر مطلب</span>
+                      <div className="text-5xl">
+                        <GoTriangleUp />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <span>مشاهده بیشتر مطلب</span>
+                      <div className="text-5xl">
+                        <GoTriangleDown />
+                      </div>
+                    </>
+                  )}
                 </Button>
               </div>
               {/* <!-- Headlines --> */}
