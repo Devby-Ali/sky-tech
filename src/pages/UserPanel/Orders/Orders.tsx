@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { UserCourse } from "types/Courses.types";
 
-export default function Orders() {
-  const [orders, setOrders] = useState([]);
+interface Order {
+  _id: string;
+  course: UserCourse;
+  createdAt: string;
+  price: number;
+  updatedAt: string;
+  user: string;
+}
+
+const Orders = (): React.JSX.Element => {
+  const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/orders`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setOrders(data);
       });
   }, []);
@@ -84,4 +93,6 @@ export default function Orders() {
       </section>
     </main>
   );
-}
+};
+
+export default Orders;

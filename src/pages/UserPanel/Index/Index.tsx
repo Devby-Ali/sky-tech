@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/authContext";
+import { AuthContextType } from "types/AuthContext.types";
+import { UserCourse } from "types/Courses.types";
 
-export default function Index() {
-  const [ticketsCount, setTicketsCount] = useState(null);
+const Index = (): React.JSX.Element => {
+  const [ticketsCount, setTicketsCount] = useState<number>(0);
 
-  const authContext = useContext(AuthContext);
+  const authContext = useContext<AuthContextType>(AuthContext);
 
-  const [userCourses, setUserCourses] = useState([]);
+  const [userCourses, setUserCourses] = useState<UserCourse[]>([]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/tickets/user`, {
       headers: {
         Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")).token
+          JSON.parse(localStorage.getItem("user")!).token
         }`,
       },
     })
@@ -21,11 +23,13 @@ export default function Index() {
       })
       .then((data) => {
         setTicketsCount(data.length);
-        setUserCourses(authContext.userInfos.courses);
+        if (authContext.userInfos && authContext.userInfos.courses) {
+          setUserCourses(authContext.userInfos.courses);
+        } else {
+          setUserCourses([]);
+        }
       });
   }, [authContext]);
-
-  console.log(authContext);
 
   return (
     <section className="">
@@ -60,7 +64,7 @@ export default function Index() {
               دوره های در حال یادگیری
             </span>
             <span className="text-2xl sm:text-[1.6rem] text-slate-900 dark:text-white">
-              {authContext.userInfos.courses ? userCourses.length : 0}
+              {authContext.userInfos?.courses ? userCourses.length : 0}
             </span>
           </div>
         </div>
@@ -231,4 +235,5 @@ export default function Index() {
       </div>
     </section>
   );
-}
+};
+export default Index;

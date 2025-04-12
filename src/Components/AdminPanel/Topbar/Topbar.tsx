@@ -14,16 +14,8 @@ import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
 import Button from "../../Form/Button";
 import { HiOutlineLogout } from "react-icons/hi";
-import Course from "types/Courses.types";
+import { UserCourse } from "types/Courses.types";
 import { AuthContextType } from "types/AuthContext.types";
-
-type UserCourse = Omit<
-  Course,
-  | "comments"
-  | "courseStudentsCount"
-  | "isUserRegisteredToThisCourse"
-  | "sessions"
->;
 
 interface Notification {
   _id: string;
@@ -38,7 +30,7 @@ interface UserData {
   name: string;
   notifications: Notification[];
   phone: string;
-  role: string;
+  role: "ADMIN" | "USER";
   updatedAt: string;
   username: string;
 }
@@ -116,8 +108,7 @@ const Topbar = (): React.JSX.Element => {
       headers: {
         Authorization: `Bearer ${localStorageData.token}`,
       },
-    })
-      .then((res) => res.json())
+    }).then((res) => res.json());
   }
 
   const toggleOpenNotif = () => {

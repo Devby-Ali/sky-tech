@@ -48,3 +48,11 @@ export interface CourseBoxProp {
   isComplete: number;
   isSlider?: boolean;
 }
+
+export type UserCourse = Omit<
+  Course,
+  | "comments"
+  | "courseStudentsCount"
+  | "isUserRegisteredToThisCourse"
+  | "sessions"
+>;

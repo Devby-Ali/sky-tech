@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../../Components/UserPanel/Sidebar/Sidebar";
 import Topbar from "../../Components/UserPanel/Topbar/Topbar";
 
-export default function Index() {
+const Index = (): React.JSX.Element => {
   return (
     <div className="flex" id="content">
       <div className="hidden md:block min-h-screen bg-white dark:bg-sky-900/5">
@@ -18,4 +18,6 @@ export default function Index() {
       </section>
     </div>
   );
-}
+};
+
+export default Index;

@@ -13,17 +13,19 @@ import Button from "../../Form/Button";
 import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
 import { HiOutlineLogout } from "react-icons/hi";
+import { AuthContextType } from "types/AuthContext.types";
+
 
 const Topbar = (): React.JSX.Element => {
-  const [navOpen, setNavOpen] = useState(false);
-  const [overlay, setOverlay] = useState(false);
-  const [dark, setDark] = useState(false);
-  const [openCollapseInfo, setOpenCollapseInfo] = useState(false);
-  const [userInfo, setUserInfo] = useState("");
+  const [navOpen, setNavOpen] = useState<boolean>(false);
+  const [overlay, setOverlay] = useState<boolean>(false);
+  const [dark, setDark] = useState<boolean>(false);
+  const [openCollapseInfo, setOpenCollapseInfo] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useState<string>("");
 
-  const authContext = useContext(AuthContext);
+  const authContext = useContext<AuthContextType>(AuthContext);
 
-  const pageName = useParams();
+  const pageName = useParams<{ "*": string }>();
 
   const navigate = useNavigate();
 
@@ -81,7 +83,6 @@ const Topbar = (): React.JSX.Element => {
       })
         .then((res) => res.json())
         .then((userData) => {
-          console.log(userData);
           setUserInfo(userData.name);
         });
     }
