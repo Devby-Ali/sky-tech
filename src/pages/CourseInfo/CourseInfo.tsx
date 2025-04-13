@@ -31,6 +31,10 @@ import Creator from "types/Creator.types";
 import Course from "types/Courses.types";
 import { Session } from "types/Courses.types";
 import Category from "types/Category.types";
+import {
+  getCourseDetails,
+  getRelatedCourses,
+} from "../../Services/Axios/Requests/Courses";
 
 type RelatedCourse = Omit<
   Course,
@@ -58,39 +62,34 @@ const CourseInfo = (): React.JSX.Element => {
   const { courseName } = useParams<{ courseName: string }>();
 
   useEffect(() => {
-    getCourseDetails();
-
-    fetch(`http://localhost:4000/v1/courses/related/${courseName}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setRelatedCourses(data);
-      });
+    fetchCourseDetails();
+    fetchRelatedCourses();
   }, []);
 
-  function getCourseDetails() {
-    const localStorageData = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user")!)
-      : null;
+  const fetchRelatedCourses = async () => {
+    try {
+      const response = await getRelatedCourses(courseName as string);
+      setRelatedCourses(response);
+    } catch (error) {
+      console.error("Error fetching related course:", error);
+    }
+  };
 
-    fetch(`http://localhost:4000/v1/courses/${courseName}`, {
-      headers: {
-        Authorization: `Bearer ${
-          localStorageData === null ? null : localStorageData.token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((courseInfo) => {
-        setCourseDetails(courseInfo);
-        setComments(courseInfo.comments);
-        setSessions(courseInfo.sessions);
-        setCreatedAt(courseInfo.createdAt);
-        setUpdatedAt(courseInfo.updatedAt);
-        setCourseTeacher(courseInfo.creator);
-        setCategory(courseInfo.categoryID);
-        setPrice(courseInfo.price);
-      });
-  }
+  const fetchCourseDetails = async () => {
+    try {
+      const response = await getCourseDetails(courseName as string);
+      setCourseDetails(response);
+      setComments(response.comments);
+      setSessions(response.sessions);
+      setCreatedAt(response.createdAt);
+      setUpdatedAt(response.updatedAt);
+      setCourseTeacher(response.creator);
+      setCategory(response.categoryID);
+      setPrice(response.price);
+    } catch (error) {
+      console.error("Error fetching course details:", error);
+    }
+  };
 
   const showDescriptionHandler = () => {
     setShowDescription(!showDescription);
@@ -123,7 +122,7 @@ const CourseInfo = (): React.JSX.Element => {
       });
   };
 
-  const registerInCourse = (course: Course) => {
+  const registerInCourse = async (course: Course) => {
     if (course.price === 0) {
       fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
         method: "POST",
@@ -143,7 +142,7 @@ const CourseInfo = (): React.JSX.Element => {
             icon: "success",
             confirmButtonText: "Ok",
           }).then(() => {
-            getCourseDetails();
+            fetchCourseDetails();
           });
         }
       });
@@ -175,7 +174,7 @@ const CourseInfo = (): React.JSX.Element => {
                   icon: "success",
                   confirmButtonText: "Ok",
                 }).then(() => {
-                  getCourseDetails();
+                  fetchCourseDetails();
                 });
               }
             });
@@ -231,7 +230,7 @@ const CourseInfo = (): React.JSX.Element => {
                       icon: "success",
                       confirmButtonText: "Ok",
                     }).then(() => {
-                      getCourseDetails();
+                      fetchCourseDetails();
                     });
                   }
                 });
@@ -241,6 +240,8 @@ const CourseInfo = (): React.JSX.Element => {
       });
     }
   };
+
+  console.log(courseDetails)
 
   return (
     <>
