@@ -31,10 +31,7 @@ import Creator from "types/Creator.types";
 import Course from "types/Courses.types";
 import { Session } from "types/Courses.types";
 import Category from "types/Category.types";
-import {
-  getCourseDetails,
-  getRelatedCourses,
-} from "../../Services/Axios/Requests/Courses";
+import { fetchCourseDetails, registerCourse } from "../../Services/Axios/Requests/Courses";
 
 type RelatedCourse = Omit<
   Course,
@@ -62,34 +59,30 @@ const CourseInfo = (): React.JSX.Element => {
   const { courseName } = useParams<{ courseName: string }>();
 
   useEffect(() => {
-    fetchCourseDetails();
-    fetchRelatedCourses();
+    getCourseDetails();
+
+    fetch(`http://localhost:4000/v1/courses/related/${courseName}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setRelatedCourses(data);
+      });
   }, []);
 
-  const fetchRelatedCourses = async () => {
+  const getCourseDetails = async () => {
     try {
-      const response = await getRelatedCourses(courseName as string);
-      setRelatedCourses(response);
+      const res = await fetchCourseDetails(courseName as string)
+      setCourseDetails(res);
+      setComments(res.comments);
+      setSessions(res.sessions);
+      setCreatedAt(res.createdAt);
+      setUpdatedAt(res.updatedAt);
+      setCourseTeacher(res.creator);
+      setCategory(res.categoryID);
+      setPrice(res.price);
     } catch (error) {
-      console.error("Error fetching related course:", error);
+      console.error("Error fetching course details:", error)
     }
-  };
-
-  const fetchCourseDetails = async () => {
-    try {
-      const response = await getCourseDetails(courseName as string);
-      setCourseDetails(response);
-      setComments(response.comments);
-      setSessions(response.sessions);
-      setCreatedAt(response.createdAt);
-      setUpdatedAt(response.updatedAt);
-      setCourseTeacher(response.creator);
-      setCategory(response.categoryID);
-      setPrice(response.price);
-    } catch (error) {
-      console.error("Error fetching course details:", error);
-    }
-  };
+  }
 
   const showDescriptionHandler = () => {
     setShowDescription(!showDescription);
@@ -124,28 +117,38 @@ const CourseInfo = (): React.JSX.Element => {
 
   const registerInCourse = async (course: Course) => {
     if (course.price === 0) {
-      fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${
-            JSON.parse(localStorage.getItem("user")!).token
-          }`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          price: course.price,
-        }),
-      }).then((res) => {
-        if (res.ok) {
-          Swal.fire({
-            title: "ثبت نام با موفقیت انجام شد",
-            icon: "success",
-            confirmButtonText: "Ok",
-          }).then(() => {
-            fetchCourseDetails();
-          });
-        }
-      });
+      // fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+      //   method: "POST",
+      //   headers: {
+      //     Authorization: `Bearer ${
+      //       JSON.parse(localStorage.getItem("user")!).token
+      //     }`,
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     price: course.price,
+      //   }),
+      // }).then((res) => {
+      //   if (res.ok) {
+      //     Swal.fire({
+      //       title: "ثبت نام با موفقیت انجام شد",
+      //       icon: "success",
+      //       confirmButtonText: "Ok",
+      //     }).then(() => {
+      //       getCourseDetails();
+      //     });
+      //   }
+      // });
+      const res = await registerCourse(course)
+      if (res.statusText === "Created") {
+            Swal.fire({
+              title: "ثبت نام با موفقیت انجام شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getCourseDetails();
+            });
+          }
     } else {
       Swal.fire({
         title: "در صورت داشتن کد تخفیف وارد کنید:",
@@ -174,7 +177,7 @@ const CourseInfo = (): React.JSX.Element => {
                   icon: "success",
                   confirmButtonText: "Ok",
                 }).then(() => {
-                  fetchCourseDetails();
+                  getCourseDetails();
                 });
               }
             });
@@ -230,7 +233,7 @@ const CourseInfo = (): React.JSX.Element => {
                       icon: "success",
                       confirmButtonText: "Ok",
                     }).then(() => {
-                      fetchCourseDetails();
+                      getCourseDetails();
                     });
                   }
                 });
@@ -240,8 +243,6 @@ const CourseInfo = (): React.JSX.Element => {
       });
     }
   };
-
-  console.log(courseDetails)
 
   return (
     <>
