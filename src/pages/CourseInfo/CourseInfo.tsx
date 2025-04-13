@@ -430,7 +430,6 @@ const CourseInfo = (): React.JSX.Element => {
                   >
                     {courseDetails.description}
                   </div>
-
                   <div
                     className={`${
                       showDescription ? "hidden" : "absolute"

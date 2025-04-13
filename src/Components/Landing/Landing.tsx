@@ -208,7 +208,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
                 >
                   <span className="cursor-pointer">{menu.title}</span>
                 </div>
-                {menu.submenus.length > 0 && (
+                {menu.submenus && menu.submenus.length > 0 && (
                   <span
                     className="cursor-pointer text-4xl"
                     onClick={() => showSubmenusHandler(menu._id)}
@@ -225,7 +225,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
                 showSubmenus &&
                 menuId === menu._id && (
                   <ul className="my-4 dark:bg-white/5 bg-stone-100 rounded-xl p-3 space-y-1">
-                    {menu.submenus.map((submenu) => (
+                    {menu.submenus?.map((submenu) => (
                       <li key={`${menu._id}-${submenu._id}`}>
                         <div
                           className="block py-2 pr-4 text-[1.3rem] cursor-pointer"
@@ -313,8 +313,8 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
                             {menu.submenus.length > 0 && (
                               <>
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
-                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover text-slate-900 dark:text-white font-EstedadLight -mr-[.5px]">
-                                  {menu.submenus.map((submenu) => (
+                                <ul className="header__dropdown group-hover/submenu:header__dropdown-hover dark:text-white font-EstedadLight -mr-[.5px]">
+                                  {menu.submenus?.map((submenu) => (
                                     <li key={`${menu._id}-${submenu._id}`}>
                                       <div
                                         className="block px-8 py-2 text-[1.6rem] duration-200 cursor-pointer"

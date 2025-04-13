@@ -4,7 +4,15 @@ import { BiSupport } from "react-icons/bi";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { GiCutDiamond } from "react-icons/gi";
 import { IoCodeWorking } from "react-icons/io5";
-import { SectionHeaderProps } from "types/SectionHeader.types";
+
+interface SectionHeaderProps {
+  title: string;
+  desc?: string;
+  titleValue?: string;
+  btnTitle?: string;
+  btnHref?: string;
+  Page?: React.ReactNode;
+}
 
 interface AboutUsBoxProps {
   title: string;

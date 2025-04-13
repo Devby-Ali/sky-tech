@@ -20,21 +20,7 @@ import {
 import Button from "../Form/Button";
 import Swal from "sweetalert2";
 import Menu from "types/Menu.types";
-
-interface UserInfo {
-  name: string;
-  username: string;
-  email: string;
-  role: string;
-}
-
-interface AuthContextType {
-  isLoggedIn: boolean;
-  token: string | false | null;
-  userInfos: UserInfo | null;
-  login: (userInfo: UserInfo, token: string) => void;
-  logout: () => void;
-}
+import { AuthContextType } from "types/AuthContext.types";
 
 const Header = (): React.JSX.Element => {
   const [dark, setDark] = useState<boolean>(false);
@@ -99,6 +85,7 @@ const Header = (): React.JSX.Element => {
   };
 
   const authContext = useContext<AuthContextType>(AuthContext);
+
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/menus`)
@@ -219,7 +206,7 @@ const Header = (): React.JSX.Element => {
                 showSubmenus &&
                 menuId === menu._id && (
                   <ul className="my-4 dark:bg-white/5 bg-stone-100 rounded-xl p-3 space-y-1">
-                    {menu.submenus.map((submenu) => (
+                    {menu.submenus?.map((submenu) => (
                       <li key={`${menu._id}-${submenu._id}`}>
                         <div
                           className="block py-2 pr-4 text-[1.3rem] cursor-pointer"
@@ -301,11 +288,11 @@ const Header = (): React.JSX.Element => {
                             <Link to={`/category-info/${menu.href}/1`}>
                               {menu.title}
                             </Link>
-                            {menu.submenus.length !== 0 && (
+                            {menu.submenus?.length !== 0 && (
                               <>
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
                                 <ul className="header__dropdown group-hover/submenu:header__dropdown-hover text-slate-900 dark:text-white font-EstedadLight -mr-[.5px]">
-                                  {menu.submenus.map((submenu) => (
+                                  {menu.submenus?.map((submenu) => (
                                     <li key={`${menu._id}-${submenu._id}`}>
                                       <Link
                                         to={submenu.href}
