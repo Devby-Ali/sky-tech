@@ -231,10 +231,10 @@ const Offs = (): React.JSX.Element => {
           <div className="min-w-[840px] md:min-w-[900px] grid grid-cols-12 text-xl md:text-2xl font-EstedadMedium items-center text-center bg-white dark:bg-slate-800 h-16 md:h-20 px-3 mb-6 rounded-xl">
             <div className="col-span-1 text-nowrap">شناسه</div>
             <div className="col-span-2">کد</div>
-            <div className="col-span-1">درصد</div>
+            <div className="col-span-2">درصد</div>
             <div className="col-span-2">حداکثر استفاده</div>
             <div className="col-span-2">دفعات استفاده</div>
-            <div className="col-span-3">سازنده</div>
+            <div className="col-span-2">سازنده</div>
             <div className="col-span-1">حذف</div>
           </div>
 
@@ -242,7 +242,7 @@ const Offs = (): React.JSX.Element => {
             className="min-w-[840px] md:min-w-[900px] space-y-6"
             id="container_orders"
           >
-            {offs.map((off, index) => (
+            {offs.length &&  offs.map((off, index) => (
               <div
                 key={off._id}
                 className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"

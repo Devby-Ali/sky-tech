@@ -25,7 +25,6 @@ export const fetchCourseDetails = async (courseName: string) => {
 export const fetchRelatedCourses = async (courseName: string) => {
   try {
     const response = await axiosInstance.get(`/courses/related/${courseName}`);
-    console.log(response)
     return response.data;
   } catch (error) {
     handleError(error);
@@ -39,7 +38,6 @@ export const registerCourse = async (course: Course) => {
       `courses/${course._id}/register`,
       { price: course.price }
     );
-    console.log(response)
     return response;
   } catch (error) {
     handleError(error);

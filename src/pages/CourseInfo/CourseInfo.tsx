@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import Button from "../../Components/Form/Button";
@@ -31,7 +31,12 @@ import Creator from "types/Creator.types";
 import Course from "types/Courses.types";
 import { Session } from "types/Courses.types";
 import Category from "types/Category.types";
-import { fetchCourseDetails, registerCourse } from "../../Services/Axios/Requests/Courses";
+import {
+  fetchCourseDetails,
+  fetchRelatedCourses,
+  registerCourse,
+} from "../../Services/Axios/Requests/Courses";
+import { registerOffs } from "../../Services/Axios/Requests/Offs";
 
 type RelatedCourse = Omit<
   Course,
@@ -43,8 +48,6 @@ type RelatedCourse = Omit<
 
 const CourseInfo = (): React.JSX.Element => {
   const [open, setOpen] = useState(0);
-  const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
-
   const [comments, setComments] = useState<Comment[]>([]);
   const [sessions, setSessions] = useState<Session[]>([]);
   const [createdAt, setCreatedAt] = useState<string>("");
@@ -56,21 +59,17 @@ const CourseInfo = (): React.JSX.Element => {
   const [relatedCourses, setRelatedCourses] = useState<RelatedCourse[]>([]);
   const [showDescription, setShowDescription] = useState<boolean>(false);
 
+  const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
+
   const { courseName } = useParams<{ courseName: string }>();
 
-  useEffect(() => {
-    getCourseDetails();
+  const showDescriptionHandler = () => {
+    setShowDescription(!showDescription);
+  };
 
-    fetch(`http://localhost:4000/v1/courses/related/${courseName}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setRelatedCourses(data);
-      });
-  }, []);
-
-  const getCourseDetails = async () => {
+  const getCourseDetails = useCallback(async () => {
     try {
-      const res = await fetchCourseDetails(courseName as string)
+      const res = await fetchCourseDetails(courseName as string);
       setCourseDetails(res);
       setComments(res.comments);
       setSessions(res.sessions);
@@ -80,13 +79,24 @@ const CourseInfo = (): React.JSX.Element => {
       setCategory(res.categoryID);
       setPrice(res.price);
     } catch (error) {
-      console.error("Error fetching course details:", error)
+      console.error("Error fetching course details:", error);
     }
-  }
+  }, [courseName]);
 
-  const showDescriptionHandler = () => {
-    setShowDescription(!showDescription);
-  };
+  useEffect(() => {
+    getCourseDetails();
+
+    const getRelatedCourses = async () => {
+      try {
+        const res = await fetchRelatedCourses(courseName as string);
+        setRelatedCourses(res);
+      } catch (error) {
+        console.error("Error fetching related courses:", error);
+      }
+    };
+
+    getRelatedCourses();
+  }, [courseName, getCourseDetails]);
 
   const submitComment = (newCommentBody: string, commentScore: string) => {
     const localStorageData = localStorage.getItem("user")
@@ -117,38 +127,16 @@ const CourseInfo = (): React.JSX.Element => {
 
   const registerInCourse = async (course: Course) => {
     if (course.price === 0) {
-      // fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
-      //   method: "POST",
-      //   headers: {
-      //     Authorization: `Bearer ${
-      //       JSON.parse(localStorage.getItem("user")!).token
-      //     }`,
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     price: course.price,
-      //   }),
-      // }).then((res) => {
-      //   if (res.ok) {
-      //     Swal.fire({
-      //       title: "ثبت نام با موفقیت انجام شد",
-      //       icon: "success",
-      //       confirmButtonText: "Ok",
-      //     }).then(() => {
-      //       getCourseDetails();
-      //     });
-      //   }
-      // });
-      const res = await registerCourse(course)
+      const res = await registerCourse(course);
       if (res.statusText === "Created") {
-            Swal.fire({
-              title: "ثبت نام با موفقیت انجام شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getCourseDetails();
-            });
-          }
+        Swal.fire({
+          title: "ثبت نام با موفقیت انجام شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getCourseDetails();
+        });
+      }
     } else {
       Swal.fire({
         title: "در صورت داشتن کد تخفیف وارد کنید:",
@@ -156,88 +144,21 @@ const CourseInfo = (): React.JSX.Element => {
         confirmButtonText: "ثبت‌نام",
         showDenyButton: true,
         denyButtonText: "نه",
-      }).then((code) => {
+      }).then(async (code) => {
         if (code.isConfirmed) {
           if (code.value === "") {
-            fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${
-                  JSON.parse(localStorage.getItem("user")!).token
-                }`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                price: course.price,
-              }),
-            }).then((res) => {
-              if (res.ok) {
-                Swal.fire({
-                  title: "ثبت نام با موفقیت انجام شد",
-                  icon: "success",
-                  confirmButtonText: "Ok",
-                }).then(() => {
-                  getCourseDetails();
-                });
-              }
-            });
-          } else {
-            fetch(`http://localhost:4000/v1/offs/${code.value}`, {
-              method: "POST",
-              headers: {
-                Authorization: `Bearer ${
-                  JSON.parse(localStorage.getItem("user")!).token
-                }`,
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                course: course._id,
-              }),
-            })
-              .then((res) => {
-                if (res.status == 404) {
-                  Swal.fire({
-                    title: "کد تخفیف معتبر نیست",
-                    icon: "error",
-                    confirmButtonText: "Ok",
-                  });
-                } else if (res.status == 409) {
-                  Swal.fire({
-                    title: "کد تخفیف قبلا استفاده شده!",
-                    icon: "error",
-                    confirmButtonText: "Ok",
-                  });
-                } else {
-                  return res.json();
-                }
-              })
-              .then((code) => {
-                fetch(
-                  `http://localhost:4000/v1/courses/${course._id}/register`,
-                  {
-                    method: "POST",
-                    headers: {
-                      Authorization: `Bearer ${
-                        JSON.parse(localStorage.getItem("user")!).token
-                      }`,
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      price: course.price - (course.price * code.percent) / 100,
-                    }),
-                  }
-                ).then((res) => {
-                  if (res.ok) {
-                    Swal.fire({
-                      title: "ثبت نام با موفقیت انجام شد",
-                      icon: "success",
-                      confirmButtonText: "Ok",
-                    }).then(() => {
-                      getCourseDetails();
-                    });
-                  }
-                });
+            const res = await registerCourse(course);
+            if (res.statusText === "Created") {
+              Swal.fire({
+                title: "ثبت نام با موفقیت انجام شد",
+                icon: "success",
+                confirmButtonText: "Ok",
+              }).then(() => {
+                getCourseDetails();
               });
+            }
+          } else {
+            registerOffs(course, code.value, getCourseDetails);
           }
         }
       });

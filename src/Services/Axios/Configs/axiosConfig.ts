@@ -1,4 +1,5 @@
 import axios from "axios";
+import { handleError } from "../ErrorHandlers/ErrorHandler";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:4000/v1",
@@ -25,10 +26,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 403) {
-      console.error("Unauthorized! Redirecting to login...");
-      // Redirecting to login page
-    }
+    handleError(error)
     return Promise.reject(error);
   }
 );
