@@ -6,16 +6,21 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
 import { CourseBoxProp } from "types/Courses.types";
+import { fetchingCustomOfCourses } from "../../Services/Axios/Requests/Courses";
 
 const PopularCourses = (): React.JSX.Element => {
   const [popularCourses, setPopularCourses] = useState<CourseBoxProp[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses/popular`)
-      .then((res) => res.json())
-      .then((allPopular) => {
-        setPopularCourses(allPopular);
-      });
+    const getPopularCourses = async () => {
+      try {
+        const res = await fetchingCustomOfCourses("/courses/popular");
+        setPopularCourses(res);
+      } catch (error) {
+        console.error("Error fetching popular courses:", error);
+      }
+    };
+    getPopularCourses();
   }, []);
 
   return (

@@ -5,17 +5,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
-import {CourseBoxProp} from "types/Courses.types";
+import { CourseBoxProp } from "types/Courses.types";
+import { fetchingCustomOfCourses } from "../../Services/Axios/Requests/Courses";
 
 const PresellCourses = (): React.JSX.Element => {
   const [PresellCourses, setpresellCourses] = useState<CourseBoxProp[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses/presell`)
-      .then((res) => res.json())
-      .then((allpresell) => {
-        setpresellCourses(allpresell);
-      });
+    const getPresellCourses = async () => {
+      try {
+        const res = await fetchingCustomOfCourses("/courses/presell");
+        setpresellCourses(res);
+      } catch (error) {
+        console.error("Error fetching presell courses:", error);
+      }
+    };
+    getPresellCourses();
   }, []);
 
   return (

@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import CourseBox from "../CourseBox/CourseBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import { CourseBoxProp } from "types/Courses.types";
+import { fetchingCustomOfCourses } from "../../Services/Axios/Requests/Courses";
 
 const LastCourses = (): React.JSX.Element => {
   const [courses, setCourses] = useState<CourseBoxProp[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses`)
-      .then((res) => res.json())
-      .then((allCourses) => {
-        setCourses(allCourses);
-      });
+    const getCourses = async () => {
+      try {
+        const res = await fetchingCustomOfCourses("/courses");
+        setCourses(res);
+      } catch (error) {
+        console.error("Error fetching last courses:", error);
+      }
+    };
+    getCourses();
   }, []);
 
   return (
