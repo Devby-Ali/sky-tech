@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CourseBox from "../CourseBox/CourseBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import { CourseBoxProp } from "types/Courses.types";
-import { fetchingCustomOfCourses } from "../../Services/Axios/Requests/Courses";
+import { fetchAllCourses } from "../../Services/Axios/Requests/Courses";
 
 const LastCourses = (): React.JSX.Element => {
   const [courses, setCourses] = useState<CourseBoxProp[]>([]);
@@ -10,7 +10,7 @@ const LastCourses = (): React.JSX.Element => {
   useEffect(() => {
     const getCourses = async () => {
       try {
-        const res = await fetchingCustomOfCourses("/courses");
+        const res = await fetchAllCourses();
         setCourses(res);
       } catch (error) {
         console.error("Error fetching last courses:", error);

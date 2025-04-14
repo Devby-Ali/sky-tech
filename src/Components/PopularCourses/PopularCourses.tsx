@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
 import { CourseBoxProp } from "types/Courses.types";
-import { fetchingCustomOfCourses } from "../../Services/Axios/Requests/Courses";
+import { fetchCustomOfCourses } from "../../Services/Axios/Requests/Courses";
 
 const PopularCourses = (): React.JSX.Element => {
   const [popularCourses, setPopularCourses] = useState<CourseBoxProp[]>([]);
@@ -14,7 +14,7 @@ const PopularCourses = (): React.JSX.Element => {
   useEffect(() => {
     const getPopularCourses = async () => {
       try {
-        const res = await fetchingCustomOfCourses("/courses/popular");
+        const res = await fetchCustomOfCourses("popular");
         setPopularCourses(res);
       } catch (error) {
         console.error("Error fetching popular courses:", error);

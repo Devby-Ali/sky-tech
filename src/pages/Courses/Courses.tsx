@@ -16,7 +16,7 @@ import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
 import { FaSquare } from "react-icons/fa";
 import { CourseBoxProp } from "types/Courses.types";
-import { fetchingCustomOfCourses } from "../../Services/Axios/Requests/Courses";
+import { fetchAllCourses } from "../../Services/Axios/Requests/Courses";
 
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
@@ -61,7 +61,7 @@ const Courses = (): React.JSX.Element => {
   useEffect(() => {
     const getCourses = async () => {
       try {
-        const response = await fetchingCustomOfCourses("/courses");
+        const response = await fetchAllCourses();
         setCourses(response);
         setOrderedCourses(response);
         setStatusTitle("همه دوره ها");

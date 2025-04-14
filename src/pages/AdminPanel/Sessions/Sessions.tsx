@@ -8,6 +8,7 @@ import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import { HiMiniPlus, HiXMark } from "react-icons/hi2";
 import Course from "types/Courses.types";
 import { FormState } from "hooks/useForm.types";
+import { fetchAllCourses } from "../../../Services/Axios/Requests/Courses";
 
 interface SessionCourse {
   _id: string;
@@ -50,11 +51,15 @@ const Sessions = (): React.JSX.Element => {
   useEffect(() => {
     getAllSessions();
 
-    fetch("http://localhost:4000/v1/courses")
-      .then((res) => res.json())
-      .then((allCourses) => {
-        setCourses(allCourses);
-      });
+    const getCourses = async () => {
+      try {
+        const res = await fetchAllCourses();
+        setCourses(res);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+    getCourses();
   }, []);
 
   function getAllSessions() {

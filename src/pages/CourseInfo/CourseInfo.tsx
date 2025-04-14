@@ -31,7 +31,7 @@ import Creator from "types/Creator.types";
 import Course from "types/Courses.types";
 import { Session } from "types/Courses.types";
 import Category from "types/Category.types";
-import { fetchingCustomOfCourses } from "../../Services/Axios/Requests/Courses";
+import { fetchCustomOfCourses } from "../../Services/Axios/Requests/Courses";
 import {
   registerOffs,
   registerCourse,
@@ -68,7 +68,7 @@ const CourseInfo = (): React.JSX.Element => {
 
   const getCourseDetails = useCallback(async () => {
     try {
-      const res = await fetchingCustomOfCourses(`/courses/${courseName}`);
+      const res = await fetchCustomOfCourses(courseName);
       setCourseDetails(res);
       setComments(res.comments);
       setSessions(res.sessions);
@@ -87,9 +87,7 @@ const CourseInfo = (): React.JSX.Element => {
 
     const getRelatedCourses = async () => {
       try {
-        const res = await fetchingCustomOfCourses(
-          `/courses/related/${courseName}`
-        );
+        const res = await fetchCustomOfCourses(`related/${courseName}`);
         setRelatedCourses(res);
       } catch (error) {
         console.error("Error fetching related courses:", error);

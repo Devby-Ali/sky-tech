@@ -8,6 +8,7 @@ import { HiMiniPlus, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import { FormState } from "hooks/useForm.types";
 import Category from "types/Category.types";
+import { fetchAllCourses } from "../../../Services/Axios/Requests/Courses";
 
 interface PAdminCourse {
   _id: string;
@@ -72,16 +73,15 @@ const Courses = (): React.JSX.Element => {
   }, []);
 
   function getAllCourses() {
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
-    fetch("http://localhost:4000/v1/courses", {
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((allCourses) => {
-        setCourses(allCourses);
-      });
+    const getCourses = async () => {
+      try {
+        const res = await fetchAllCourses();
+        setCourses(res);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+    getCourses();
   }
 
   const addCourseHandler = () => {
