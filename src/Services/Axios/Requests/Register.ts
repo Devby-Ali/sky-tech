@@ -2,19 +2,33 @@ import Course from "types/Courses.types";
 import axiosInstance from "../Configs/axiosConfig";
 import { handleError } from "../ErrorHandlers/ErrorHandler";
 import Swal from "sweetalert2";
-import { registerCourse } from "./Courses";
 import axios from "axios";
+
+export const registerCourse = async (course: Course) => {
+  try {
+    const response = await axiosInstance.post(
+      `courses/${course._id}/register`,
+      { price: course.price }
+    );
+    return response;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
+};
 
 export const registerOffs = async (
   course: Course,
   code: string,
-  getCourseDetails: { (): Promise<void>; (): void; }
+  getCourseDetails: { (): Promise<void>; (): void }
 ) => {
   try {
-    await axiosInstance.post(`/offs/${code}`, {
+    const detailsCode = await axiosInstance.post(`/offs/${code}`, {
       course: course._id,
     });
-    const res = await registerCourse(course);
+    const res = await axiosInstance.post(`courses/${course._id}/register`, {
+      price: course.price - (course.price * detailsCode.data.percent) / 100,
+    });
     if (res.statusText === "Created") {
       Swal.fire({
         title: "ثبت نام با موفقیت انجام شد",
