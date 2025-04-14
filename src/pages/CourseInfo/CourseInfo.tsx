@@ -68,7 +68,7 @@ const CourseInfo = (): React.JSX.Element => {
 
   const getCourseDetails = useCallback(async () => {
     try {
-      const res = await fetchCustomOfCourses(courseName);
+      const res = await fetchCustomOfCourses(courseName as string);
       setCourseDetails(res);
       setComments(res.comments);
       setSessions(res.sessions);

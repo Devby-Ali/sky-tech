@@ -18,28 +18,29 @@ import {
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { Session as OneSession } from "types/Courses.types";
+import { fetchCustomOfCourses } from "../../Services/Axios/Requests/Courses";
 
-
-type Sessions = OneSession[]
+type Sessions = OneSession[];
 
 const Session = (): React.JSX.Element => {
-  const { courseName, sessionID } = useParams<{courseName: string, sessionID: string}>();
+  const { courseName, sessionID } = useParams<{
+    courseName: string;
+    sessionID: string;
+  }>();
   const [session, setSession] = useState<OneSession>({} as OneSession);
   const [sessions, setSessions] = useState<Sessions>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses/${courseName}/${sessionID}`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setSession(data.session);
-        setSessions(data.sessions);
-      });
+    const getSession = async () => {
+      try {
+        const res = await fetchCustomOfCourses(`${courseName}/${sessionID}`);
+        setSession(res.session);
+        setSessions(res.sessions);
+      } catch (error) {
+        console.error("Error fetching Session Courses:", error);
+      }
+    };
+    getSession();
   }, [courseName, sessionID]);
 
   const [open, setOpen] = React.useState(0);

@@ -8,7 +8,11 @@ import { HiMiniPlus, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import { FormState } from "hooks/useForm.types";
 import Category from "types/Category.types";
-import { fetchAllCourses } from "../../../Services/Axios/Requests/Courses";
+import {
+  fetchAllCourses,
+  fetchNewCourse,
+  removeCourse,
+} from "../../../Services/Axios/Requests/Courses";
 
 interface PAdminCourse {
   _id: string;
@@ -64,7 +68,7 @@ const Courses = (): React.JSX.Element => {
   );
 
   useEffect(() => {
-    getAllCourses();
+    getCourses();
     fetch(`http://localhost:4000/v1/category`)
       .then((res) => res.json())
       .then((allCategories) => {
@@ -72,24 +76,20 @@ const Courses = (): React.JSX.Element => {
       });
   }, []);
 
-  function getAllCourses() {
-    const getCourses = async () => {
-      try {
-        const res = await fetchAllCourses();
-        setCourses(res);
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-      }
-    };
-    getCourses();
-  }
+  const getCourses = async () => {
+    try {
+      const res = await fetchAllCourses();
+      setCourses(res);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+  };
 
   const addCourseHandler = () => {
     setShowAddCourse(!showAddCourse);
   };
 
-  const removeCourse = (courseID: string) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
+  const removeCourseHandler = (courseID: string) => {
     Swal.fire({
       title: "از حذف دوره مطمعنی؟",
       icon: "warning",
@@ -98,28 +98,29 @@ const Courses = (): React.JSX.Element => {
       denyButtonText: "نه",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/courses/${courseID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "دوره موردنظر با موفقیت حذف شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllCourses();
-            });
-          } else {
-            Swal.fire({
-              title: "حذف دوره با مشکل مواجه شد",
-              icon: "error",
-              confirmButtonText: "Ok",
-            });
+        const asyncFunc = async () => {
+          try {
+            const res = await removeCourse(courseID);
+            if (res.statusText === "OK") {
+              Swal.fire({
+                title: "دوره موردنظر با موفقیت حذف شد",
+                icon: "success",
+                confirmButtonText: "Ok",
+              }).then(() => {
+                getCourses();
+              });
+            } else {
+              Swal.fire({
+                title: "حذف دوره با مشکل مواجه شد",
+                icon: "error",
+                confirmButtonText: "Ok",
+              });
+            }
+          } catch (error) {
+            console.error("Error Remove Course:", error);
           }
-        });
+        };
+        asyncFunc();
       }
     });
   };
@@ -128,15 +129,15 @@ const Courses = (): React.JSX.Element => {
     setCourseCategory(event.target.value);
   };
 
-  const addNewCourse = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const addNewCourse = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
     const formData = new FormData();
     formData.append("name", formState.inputs.name.value);
     formData.append("description", formState.inputs.description.value);
     formData.append("cover", courseCover);
     formData.append("shortName", formState.inputs.shortName.value);
     formData.append("price", formState.inputs.price.value);
+    formData.append("support", formState.inputs.support.value);
     formData.append("status", courseStatus);
     formData.append("categoryID", courseCategory);
 
@@ -146,24 +147,21 @@ const Courses = (): React.JSX.Element => {
         icon: "warning",
       });
     } else {
-      fetch(`http://localhost:4000/v1/courses`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorageData.token}`,
-        },
-        body: formData,
-      }).then((res) => {
-        if (res.ok) {
+      try {
+        const res = await fetchNewCourse(formData);
+        if (res.statusText === "Created") {
           Swal.fire({
             title: "دوره جدید با موفقیت اضافه شد",
             icon: "success",
             confirmButtonText: "Ok",
           }).then(() => {
-            getAllCourses();
+            getCourses();
             setShowAddCourse(false);
           });
         }
-      });
+      } catch (error) {
+        console.error("Error Creating Course:", error);
+      }
     }
   };
 
@@ -397,7 +395,7 @@ const Courses = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => removeCourse(course._id)}
+                    onClick={() => removeCourseHandler(course._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     حذف

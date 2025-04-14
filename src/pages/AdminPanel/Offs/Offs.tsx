@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { HiPlus, HiXMark } from "react-icons/hi2";
 import { FormState } from "hooks/useForm.types";
 import Course from "types/Courses.types";
+import { fetchAllCourses } from "../../../Services/Axios/Requests/Courses";
 
 interface Offs {
   _id: string;
@@ -47,9 +48,16 @@ const Offs = (): React.JSX.Element => {
   useEffect(() => {
     getAllOffs();
 
-    fetch(`http://localhost:4000/v1/courses`)
-      .then((res) => res.json())
-      .then((allCourses) => setCourses(allCourses));
+    const getRelatedCourses = async () => {
+      try {
+        const res = await fetchAllCourses();
+        setCourses(res);
+      } catch (error) {
+        console.error("Error fetching related courses:", error);
+      }
+    };
+
+    getRelatedCourses();
   }, []);
 
   function getAllOffs() {
@@ -242,33 +250,34 @@ const Offs = (): React.JSX.Element => {
             className="min-w-[840px] md:min-w-[900px] space-y-6"
             id="container_orders"
           >
-            {offs.length &&  offs.map((off, index) => (
-              <div
-                key={off._id}
-                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-              >
-                <div className="col-span-1">{index + 1}</div>
+            {offs.length &&
+              offs.map((off, index) => (
+                <div
+                  key={off._id}
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+                >
+                  <div className="col-span-1">{index + 1}</div>
 
-                <div className="col-span-2">{off.code}</div>
+                  <div className="col-span-2">{off.code}</div>
 
-                <div className="col-span-2">{off.percent}%</div>
+                  <div className="col-span-2">{off.percent}%</div>
 
-                <div className="col-span-2">{off.max}</div>
+                  <div className="col-span-2">{off.max}</div>
 
-                <div className="col-span-2">{off.uses}</div>
+                  <div className="col-span-2">{off.uses}</div>
 
-                <div className="col-span-2">{off.creator}</div>
+                  <div className="col-span-2">{off.creator}</div>
 
-                <div className="col-span-1">
-                  <div
-                    onClick={() => removeOff(off._id)}
-                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                  >
-                    حذف
+                  <div className="col-span-1">
+                    <div
+                      onClick={() => removeOff(off._id)}
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                    >
+                      حذف
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </DataTable>

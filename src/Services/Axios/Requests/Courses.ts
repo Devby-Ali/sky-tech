@@ -20,3 +20,27 @@ export const fetchAllCourses = async () => {
     throw error;
   }
 };
+
+export const removeCourse = async (courseID: string) => {
+  try {
+    const respone = await axiosInstance.delete(`/courses/${courseID}`);
+    return respone;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
+};
+
+export const fetchNewCourse = async (formData: FormData) => {
+  try {
+    const respone = await axiosInstance.post("/courses", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return respone;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
+};

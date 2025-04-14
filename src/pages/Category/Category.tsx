@@ -15,8 +15,8 @@ import Button from "../../Components/Form/Button";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import SortedCourses from "../../Components/SortedCourses/SortedCourses";
 import FilteredCourses from "../../Components/FilteredCourses/FilteredCourses";
-import {CourseBoxProp} from "types/Courses.types";
-
+import { CourseBoxProp } from "types/Courses.types";
+import { fetchCustomOfCourses } from "../../Services/Axios/Requests/Courses";
 
 type FilterStatus = "default" | "free" | "preSale" | "purchased";
 
@@ -61,14 +61,18 @@ const Category = (): React.JSX.Element => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/courses/category/${categoryName}`)
-      .then((res) => res.json())
-      .then((allCourses) => {
-        setCourses(allCourses);
-        setOrderedCourses(allCourses);
+    const getCoursesCategory = async () => {
+      try {
+        const res = await fetchCustomOfCourses(`category/${categoryName}`);
+        setCourses(res);
+        setOrderedCourses(res);
         setStatusTitle("همه دوره ها");
         setStatus("default");
-      });
+      } catch (error) {
+        console.error("Error fetching Category courses:", error);
+      }
+    };
+    getCoursesCategory();
   }, [categoryName]);
 
   useEffect(() => {
