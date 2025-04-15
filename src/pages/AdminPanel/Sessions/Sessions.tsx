@@ -113,25 +113,22 @@ const Sessions = (): React.JSX.Element => {
       confirmButtonText: "آره",
       showDenyButton: true,
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const asyncFunc = async () => {
-          try {
-            const res = await removeSession(sessionID);
-            if (res.statusText) {
-              Swal.fire({
-                title: "جلسه مورد نظر با موفقیت حذف شد",
-                icon: "success",
-                cancelButtonText: "Ok",
-              }).then(() => {
-                getAllSessions();
-              });
-            }
-          } catch (error) {
-            console.error("Error Session Course:", error);
+        try {
+          const res = await removeSession(sessionID);
+          if (res.statusText) {
+            Swal.fire({
+              title: "جلسه مورد نظر با موفقیت حذف شد",
+              icon: "success",
+              cancelButtonText: "Ok",
+            }).then(() => {
+              getAllSessions();
+            });
           }
-        };
-        asyncFunc();
+        } catch (error) {
+          console.error("Error Session Course:", error);
+        }
       }
     });
   };

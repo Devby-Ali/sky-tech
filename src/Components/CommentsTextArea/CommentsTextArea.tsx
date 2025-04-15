@@ -107,8 +107,6 @@ const CommentsTextArea = ({
                 </span>
               </div>
             </div>
-            <input type="hidden" value="" id="comment-id" />
-            <input type="hidden" value="" id="comment-is-reply" />
             <div className="flex items-center gap-x-3 bg-red-500/20 text-white px-6 py-5 rounded-xl mb-5">
               <div className="shrink-0 text-red-400">
                 <BsExclamationTriangle className="w-10 h-10" />

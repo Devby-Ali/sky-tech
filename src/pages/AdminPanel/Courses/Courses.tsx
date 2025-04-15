@@ -96,9 +96,8 @@ const Courses = (): React.JSX.Element => {
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const asyncFunc = async () => {
           try {
             const res = await removeCourse(courseID);
             if (res.statusText === "OK") {
@@ -119,8 +118,6 @@ const Courses = (): React.JSX.Element => {
           } catch (error) {
             console.error("Error Remove Course:", error);
           }
-        };
-        asyncFunc();
       }
     });
   };
