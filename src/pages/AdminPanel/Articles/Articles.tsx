@@ -12,6 +12,12 @@ import Article from "types/Atricles.types";
 import { FormState } from "hooks/useForm.types";
 import Category from "types/Category.types";
 import { getAllCategories } from "../../../Services/Axios/Requests/Category";
+import {
+  createArticle,
+  draftArticle,
+  getAllArticles,
+  removeArticles,
+} from "../../../Services/Axios/Requests/Articles";
 
 const Articles = (): React.JSX.Element => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -40,11 +46,11 @@ const Articles = (): React.JSX.Element => {
   );
 
   useEffect(() => {
-    getAllArticles();
+    getAllArticlesHandler();
     getCategoriesHandler();
   }, []);
 
-  const getCategoriesHandler = async () => {
+  const getCategoriesHandler = async (): Promise<void> => {
     try {
       const res = await getAllCategories();
       setCategories(res);
@@ -53,39 +59,31 @@ const Articles = (): React.JSX.Element => {
     }
   };
 
-  function getAllArticles() {
-    fetch("http://localhost:4000/v1/articles")
-      .then((res) => res.json())
-      .then((allArticles) => {
-        setArticles(allArticles);
-      });
-  }
+  const getAllArticlesHandler = async (): Promise<void> => {
+    try {
+      const res = await getAllArticles();
+      setArticles(res);
+    } catch (error) {
+      console.error("Error fetching Articles:", error);
+    }
+  };
 
-  const removeArticle = (articleID: string) => {
-    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
+  const removeArticleHandler = (articleID: string) => {
     Swal.fire({
       title: "از حذف مقاله مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/articles/${articleID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorageDate.token}`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "مقاله مورد نظر با موفقیت حذف شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllArticles();
-            });
-          }
+        await removeArticles(articleID);
+        Swal.fire({
+          title: "مقاله مورد نظر با موفقیت حذف شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getAllArticlesHandler();
         });
       }
     });
@@ -95,9 +93,10 @@ const Articles = (): React.JSX.Element => {
     setShowAddArticle(!showAddArticle);
   };
 
-  const createArticle = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const createArticleHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
-    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
     const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("shortName", formState.inputs.shortName.value);
@@ -106,29 +105,21 @@ const Articles = (): React.JSX.Element => {
     formData.append("cover", articleCover);
     formData.append("body", articleBody);
 
-    fetch(`http://localhost:4000/v1/articles`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorageDate.token}`,
-      },
-      body: formData,
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "مقاله جدید منتشر شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getAllArticles();
-          setShowAddArticle(false);
-        });
-      }
+    await createArticle(formData);
+    Swal.fire({
+      title: "مقاله جدید منتشر شد",
+      icon: "success",
+      confirmButtonText: "Ok",
+    }).then(() => {
+      getAllArticlesHandler();
+      setShowAddArticle(false);
     });
   };
 
-  const saveArticleAsDraft = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const saveArticleAsDraft = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
-    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
     const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("shortName", formState.inputs.shortName.value);
@@ -137,23 +128,14 @@ const Articles = (): React.JSX.Element => {
     formData.append("cover", articleCover);
     formData.append("body", articleBody);
 
-    fetch(`http://localhost:4000/v1/articles/draft`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorageDate.token}`,
-      },
-      body: formData,
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "مقاله جدید پیش نویس شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getAllArticles();
-          setShowAddArticle(false);
-        });
-      }
+    await draftArticle(formData);
+    Swal.fire({
+      title: "مقاله جدید پیش نویس شد",
+      icon: "success",
+      confirmButtonText: "Ok",
+    }).then(() => {
+      getAllArticlesHandler();
+      setShowAddArticle(false);
     });
   };
 
@@ -265,7 +247,7 @@ const Articles = (): React.JSX.Element => {
                         : "bg-[#333c4c]/30"
                     }`}
                     type="submit"
-                    onClick={createArticle}
+                    onClick={createArticleHandler}
                     disabled={!formState.isFormValid}
                   >
                     <span className="mx-auto font-EstedadMedium">انتشار</span>
@@ -344,7 +326,7 @@ const Articles = (): React.JSX.Element => {
 
                 <div className="col-span-1">
                   <div
-                    onClick={() => removeArticle(article._id)}
+                    onClick={() => removeArticleHandler(article._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     حذف

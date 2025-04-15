@@ -10,6 +10,8 @@ import { FormState } from "hooks/useForm.types";
 import Category from "types/Category.types";
 import Article from "types/Atricles.types";
 import { getAllCategories } from "../../../Services/Axios/Requests/Category";
+import { getDraftArticleInfo } from "../../../Services/Axios/Requests/Articles";
+import { createArticle } from "../../../Services/Axios/Requests/Articles";
 
 const Draft = (): React.JSX.Element => {
   const [draft, setDraft] = useState<Article>({} as Article);
@@ -36,20 +38,20 @@ const Draft = (): React.JSX.Element => {
     false
   );
 
-  const { shortName } = useParams();
+  const { shortName } = useParams<{ shortName: string }>();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/articles/${shortName}`)
-      .then((res) => res.json())
-      .then((draft) => {
-        setDraft(draft);
-        setArticleCategory(draft.categoryID._id);
-      });
-
+    getdraftArticleInfoHandler();
     getCategoriesHandler();
   }, [shortName]);
+
+  const getdraftArticleInfoHandler = async () => {
+    const draft = await getDraftArticleInfo(shortName as string);
+    setDraft(draft);
+    setArticleCategory(draft.categoryID._id);
+  };
 
   const getCategoriesHandler = async () => {
     try {
@@ -60,9 +62,8 @@ const Draft = (): React.JSX.Element => {
     }
   };
 
-  const createArticle = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const createArticleHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const localStorageDate = JSON.parse(localStorage.getItem("user")!);
     const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("shortName", formState.inputs.shortName.value);
@@ -71,22 +72,13 @@ const Draft = (): React.JSX.Element => {
     formData.append("cover", articleCover);
     formData.append("body", articleBody);
 
-    fetch(`http://localhost:4000/v1/articles`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorageDate.token}`,
-      },
-      body: formData,
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "مقاله جدید منتشر شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          navigate("/p-admin/articles");
-        });
-      }
+    await createArticle(formData);
+    Swal.fire({
+      title: "مقاله جدید منتشر شد",
+      icon: "success",
+      confirmButtonText: "Ok",
+    }).then(() => {
+      navigate("/p-admin/articles");
     });
   };
 
@@ -192,7 +184,7 @@ const Draft = (): React.JSX.Element => {
                     : "bg-[#333c4c]/30"
                 }`}
                 type="submit"
-                onClick={createArticle}
+                onClick={createArticleHandler}
                 disabled={!formState.isFormValid}
               >
                 <span className="mx-auto">انتشار</span>

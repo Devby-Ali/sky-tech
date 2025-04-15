@@ -1,6 +1,6 @@
 import Course from "types/Courses.types";
 import axiosInstance from "../Configs/axiosConfig";
-import { handleError } from "../ErrorHandlers/ErrorHandler";
+import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ export const registerCourse = async (course: Course) => {
     );
     return response;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
@@ -52,6 +52,6 @@ export const registerOffs = async (
         confirmButtonText: "Ok",
       });
     }
-    handleError(error);
+    errorHandler(error);
   }
 };

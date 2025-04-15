@@ -6,6 +6,7 @@ import Pagination from "../../Components/Pagination/Pagination";
 import Footer from "../../Components/Footer/Footer";
 import { HiArrowsUpDown, HiOutlineFunnel } from "react-icons/hi2";
 import Article from "types/Atricles.types";
+import { getAllArticles } from "../../Services/Axios/Requests/Articles";
 
 const Articles = (): React.JSX.Element => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -13,11 +14,15 @@ const Articles = (): React.JSX.Element => {
   const [shownArticles, setShownArticles] = useState<Article[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/articles`)
-      .then((res) => res.json())
-      .then((allArticles) => {
-        setArticles(allArticles.filter((article: Article) => article.publish === 1));
-      });
+    const getAllArticlesHandler = async () => {
+      try {
+        const res = await getAllArticles();
+        setArticles(res);
+      } catch (error) {
+        console.error("Error fetching Articles:", error);
+      }
+    };
+    getAllArticlesHandler();
   }, []);
 
   return (

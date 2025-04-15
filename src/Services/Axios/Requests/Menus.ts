@@ -1,12 +1,12 @@
 import axiosInstance from "../Configs/axiosConfig";
-import { handleError } from "../ErrorHandlers/ErrorHandler";
+import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const getMenus = async () => {
   try {
     const response = await axiosInstance.get("/menus");
     return response.data;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
@@ -16,7 +16,7 @@ export const getAllMenus = async () => {
     const response = await axiosInstance.get("/menus/all");
     return response.data;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
@@ -26,7 +26,7 @@ export const removeMenu = async (menuID: string) => {
     const respone = await axiosInstance.delete(`/menus/${menuID}`);
     return respone;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
@@ -36,7 +36,7 @@ export const createMenu = async (newMenuInfo: object) => {
     const respone = await axiosInstance.post("/menus", newMenuInfo);
     return respone;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };

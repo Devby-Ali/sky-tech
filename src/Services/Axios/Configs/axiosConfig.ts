@@ -1,5 +1,5 @@
 import axios from "axios";
-import { handleError } from "../ErrorHandlers/ErrorHandler";
+import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:4000/v1",
@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use(
     if (localStorageData) {
       config.headers.Authorization = `Bearer ${localStorageData.token}`;
     }
-    console.log(config)
+    console.log(config);
     return config;
   },
   (error) => {
@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    handleError(error)
+    errorHandler(error);
     return Promise.reject(error);
   }
 );

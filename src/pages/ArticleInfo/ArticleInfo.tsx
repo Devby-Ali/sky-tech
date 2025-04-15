@@ -18,7 +18,7 @@ import domPurify from "dompurify";
 import Article from "types/Atricles.types";
 import Category from "types/Category.types";
 import Creator from "types/Creator.types";
-
+import { getArticleInfo } from "../../Services/Axios/Requests/Articles";
 
 const ArticleInfo = (): React.JSX.Element => {
   const { articleName } = useParams<{ articleName: string }>();
@@ -31,14 +31,18 @@ const ArticleInfo = (): React.JSX.Element => {
   const [articleCreatedAt, setArticleCreatedAt] = useState<string>("");
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/articles/${articleName}`)
-      .then((res) => res.json())
-      .then((articleInfo) => {
+    const getAtricleDatails = async () => {
+      try {
+        const articleInfo = await getArticleInfo(articleName as string);
         setArticleDetails(articleInfo);
         setArticleCategory(articleInfo.categoryID);
         setArticleCreator(articleInfo.creator);
         setArticleCreatedAt(articleInfo.createdAt);
-      });
+      } catch (error) {
+        console.error("Error fetching Article Details:", error);
+      }
+    };
+    getAtricleDatails();
   }, [articleName]);
 
   return (

@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import ArticleBox from "../ArticleBox/ArticleBox";
 import SectionHeader from "../SectionHeader/SectionHeader";
 import Article from "types/Atricles.types";
+import { getAllArticles } from "../../Services/Axios/Requests/Articles";
 
 const LastArticles = (): React.JSX.Element => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/articles`)
-      .then((res) => res.json())
-      .then((allArticles) => {
-        setArticles(allArticles);
-      });
+    const getAllArticlesHandler = async () => {
+      try {
+        const res = await getAllArticles();
+        setArticles(res);
+      } catch (error) {
+        console.error("Error fetching Articles:", error);
+      }
+    };
+    getAllArticlesHandler();
   }, []);
 
   return (

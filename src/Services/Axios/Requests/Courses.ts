@@ -1,12 +1,12 @@
 import axiosInstance from "../Configs/axiosConfig";
-import { handleError } from "../ErrorHandlers/ErrorHandler";
+import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const fetchCustomOfCourses = async (customCourse: string) => {
   try {
     const response = await axiosInstance.get(`/courses/${customCourse}`);
     return response.data;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
@@ -16,7 +16,7 @@ export const fetchAllCourses = async () => {
     const response = await axiosInstance.get("/courses");
     return response.data;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
@@ -26,7 +26,7 @@ export const removeCourse = async (courseID: string) => {
     const respone = await axiosInstance.delete(`/courses/${courseID}`);
     return respone;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
@@ -40,32 +40,40 @@ export const fetchNewCourse = async (formData: FormData) => {
     });
     return respone;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
 
-
-export const fetchNewSession = async (sessionCourse: string, formData: FormData) => {
+export const fetchNewSession = async (
+  sessionCourse: string,
+  formData: FormData
+) => {
   try {
-    const respone = await axiosInstance.post(`/courses/${sessionCourse}/sessions`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const respone = await axiosInstance.post(
+      `/courses/${sessionCourse}/sessions`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     return respone;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
 
 export const removeSession = async (sessionID: string) => {
   try {
-    const respone = await axiosInstance.delete(`/courses/sessions/${sessionID}`);
+    const respone = await axiosInstance.delete(
+      `/courses/sessions/${sessionID}`
+    );
     return respone;
   } catch (error) {
-    handleError(error);
+    errorHandler(error);
     throw error;
   }
 };
