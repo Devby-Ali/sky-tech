@@ -44,3 +44,28 @@ export const fetchNewCourse = async (formData: FormData) => {
     throw error;
   }
 };
+
+
+export const fetchNewSession = async (sessionCourse: string, formData: FormData) => {
+  try {
+    const respone = await axiosInstance.post(`/courses/${sessionCourse}/sessions`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return respone;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
+};
+
+export const removeSession = async (sessionID: string) => {
+  try {
+    const respone = await axiosInstance.delete(`/courses/sessions/${sessionID}`);
+    return respone;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
+};

@@ -11,6 +11,8 @@ import { FormState } from "hooks/useForm.types";
 import {
   fetchAllCourses,
   fetchCustomOfCourses,
+  fetchNewSession,
+  removeSession,
 } from "../../../Services/Axios/Requests/Courses";
 
 interface SessionCourse {
@@ -78,12 +80,8 @@ const Sessions = (): React.JSX.Element => {
     setShowAddSession(!showAddSession);
   };
 
-  const createSession = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const createSession = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
-    const localStorageData: { token: string } = JSON.parse(
-      localStorage.getItem("user")!
-    );
 
     const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
@@ -91,14 +89,9 @@ const Sessions = (): React.JSX.Element => {
     formData.append("video", sessionVideo);
     formData.append("free", sessionFree);
 
-    fetch(`http://localhost:4000/v1/courses/${sessionCourse}/sessions`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-      body: formData,
-    }).then((res) => {
-      if (res.ok) {
+    try {
+      const res = await fetchNewSession(sessionCourse, formData);
+      if (res.statusText === "Created") {
         Swal.fire({
           title: "جلسه مورد نظر با موفقیت اضافه شد",
           icon: "success",
@@ -108,14 +101,12 @@ const Sessions = (): React.JSX.Element => {
           setShowAddSession(false);
         });
       }
-    });
+    } catch (error) {
+      console.error("Error Create Session Course:", error);
+    }
   };
 
-  const removeSession = (sessionID: string) => {
-    const localStorageData: { token: string } = JSON.parse(
-      localStorage.getItem("user")!
-    );
-
+  const removeSessionHandler = (sessionID: string) => {
     Swal.fire({
       title: "از حذف جلسه مطمعنی؟",
       icon: "warning",
@@ -124,22 +115,23 @@ const Sessions = (): React.JSX.Element => {
       denyButtonText: "نه",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/courses/sessions/${sessionID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "جلسه مورد نظر با موفقیت حذف شد",
-              icon: "success",
-              cancelButtonText: "Ok",
-            }).then(() => {
-              getAllSessions();
-            });
+        const asyncFunc = async () => {
+          try {
+            const res = await removeSession(sessionID);
+            if (res.statusText) {
+              Swal.fire({
+                title: "جلسه مورد نظر با موفقیت حذف شد",
+                icon: "success",
+                cancelButtonText: "Ok",
+              }).then(() => {
+                getAllSessions();
+              });
+            }
+          } catch (error) {
+            console.error("Error Session Course:", error);
           }
-        });
+        };
+        asyncFunc();
       }
     });
   };
@@ -301,7 +293,7 @@ const Sessions = (): React.JSX.Element => {
 
                 <div className="col-span-1">
                   <div
-                    onClick={() => removeSession(session._id)}
+                    onClick={() => removeSessionHandler(session._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     حذف
