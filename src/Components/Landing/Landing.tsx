@@ -5,7 +5,7 @@ import LandingCounter from "../LandingCounter/LandingCounter";
 import Input from "../Form/Input";
 import { useForm } from "../../hooks/useForm";
 import Button from "../Form/Button";
-import { Link, NavigateFunction, useNavigate} from "react-router-dom";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { requiredValidator } from "../../validators/rules";
 import {
   HiBars3,
@@ -28,6 +28,7 @@ import { GrUserAdmin } from "react-icons/gr";
 import Menu from "types/Menu.types";
 import { AuthContextType } from "types/AuthContext.types";
 import { FormState } from "hooks/useForm.types";
+import { getMenus } from "../../Services/Axios/Requests/Menus";
 
 interface Info {
   coursesCount: number;
@@ -52,6 +53,10 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
     },
     false
   );
+
+  useEffect(() => {
+    getMenusHandler();
+  }, []);
 
   const logoutUser = () => {
     Swal.fire({
@@ -104,13 +109,14 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
 
   const authContext = useContext<AuthContextType>(AuthContext);
 
-  useEffect(() => {
-    fetch(`http://localhost:4000/v1/menus`)
-      .then((res) => res.json())
-      .then((menus) => {
-        setAllMenus(menus);
-      });
-  }, []);
+  const getMenusHandler = async () => {
+    try {
+      const res = await getMenus();
+      setAllMenus(res);
+    } catch (error) {
+      console.error("Error fetching Menus:", error);
+    }
+  };
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -310,7 +316,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
                             >
                               {menu.title}
                             </div>
-                            {menu.submenus.length > 0 && (
+                            {(menu.submenus ?? []).length > 0 && (
                               <>
                                 <HiMiniChevronLeft className="mt-1 text-4xl xl:mr-1" />
                                 <ul className="header__dropdown group-hover/submenu:header__dropdown-hover dark:text-white font-EstedadLight -mr-[.5px]">

@@ -64,17 +64,16 @@ const Category = (): React.JSX.Element => {
     };
 
     try {
-      const res = await createNewCategory(newCategoryInfo);
-      if (res.statusText === "Created") {
-        Swal.fire({
-          title: "دسته بندی مورد نظر با موفقیت اضافه شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getCategoriesHandler();
-          setShowCreateCategory(false);
-        });
-      }
+      await createNewCategory(newCategoryInfo);
+
+      Swal.fire({
+        title: "دسته بندی مورد نظر با موفقیت اضافه شد",
+        icon: "success",
+        confirmButtonText: "Ok",
+      }).then(() => {
+        getCategoriesHandler();
+        setShowCreateCategory(false);
+      });
     } catch (error) {
       console.error("Error Creating Category:", error);
     }
@@ -93,16 +92,14 @@ const Category = (): React.JSX.Element => {
     }).then(async (result: { isConfirmed: boolean }) => {
       if (result.isConfirmed) {
         try {
-          const res = await removeCategory(categoryID);
-          if (res.statusText === "OK") {
-            Swal.fire({
-              title: "دسته بندی مورد نظر با موفقیت حذف شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getCategoriesHandler();
-            });
-          }
+          await removeCategory(categoryID);
+          Swal.fire({
+            title: "دسته بندی مورد نظر با موفقیت حذف شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            getCategoriesHandler();
+          });
         } catch (error) {
           console.error("Error remove Category:", error);
         }
@@ -138,16 +135,14 @@ const Category = (): React.JSX.Element => {
       if (result.isConfirmed && result.value) {
         const { title, name } = result.value;
         try {
-          const res = await updateCategory(categoryID, { title, name });
-          if (res.statusText === "OK") {
-            Swal.fire({
-              title: "دسته بندی مورد نظر با موفقیت ویرایش شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getCategoriesHandler();
-            });
-          }
+          await updateCategory(categoryID, { title, name });
+          Swal.fire({
+            title: "دسته بندی مورد نظر با موفقیت ویرایش شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            getCategoriesHandler();
+          });
         } catch (error) {
           console.error("Error Update Category", error);
         }

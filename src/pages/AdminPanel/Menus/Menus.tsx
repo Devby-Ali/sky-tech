@@ -8,9 +8,13 @@ import { HiMiniPlus, HiOutlineCheckCircle, HiXMark } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import { FormState } from "hooks/useForm.types";
 import Menu from "types/Menu.types";
+import {
+  createMenu,
+  getMenus,
+  removeMenu,
+} from "../../../Services/Axios/Requests/Menus";
 
 const Menus = (): React.JSX.Element => {
-  
   const [menus, setMenus] = useState<Menu[]>([]);
   const [menuParent, setMenuParent] = useState<string>("-1");
   const [showAddMenu, setShowAddMenu] = useState<boolean>(false);
@@ -30,41 +34,34 @@ const Menus = (): React.JSX.Element => {
   );
 
   useEffect(() => {
-    getAllMenus();
+    getAllMenusHandler();
   }, []);
 
-  function getAllMenus() {
-    fetch("http://localhost:4000/v1/menus/all")
-      .then((res) => res.json())
-      .then((allMenus) => setMenus(allMenus));
-  }
+  const getAllMenusHandler = async () => {
+    try {
+      const res = await getMenus();
+      setMenus(res);
+    } catch (error) {
+      console.error("Error fetching All Menus:", error);
+    }
+  };
 
-  const removeMenu = (menuID: string) => {
+  const removeMenuHandler = (menuID: string) => {
     Swal.fire({
       title: "از حذف منو مطمعنی؟",
       icon: "warning",
       confirmButtonText: "آره",
       showDenyButton: true,
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/menus/${menuID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "منوی مورد نظر با موفقیت حذف شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllMenus();
-            });
-          }
+        await removeMenu(menuID);
+        Swal.fire({
+          title: "منوی مورد نظر با موفقیت حذف شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getAllMenusHandler();
         });
       }
     });
@@ -74,7 +71,9 @@ const Menus = (): React.JSX.Element => {
     setShowAddMenu(!showAddMenu);
   };
 
-  const createMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const createMenuHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
 
     const newMenuInfo = {
@@ -83,27 +82,19 @@ const Menus = (): React.JSX.Element => {
       parent: menuParent === "-1" ? undefined : menuParent,
     };
 
-    fetch(`http://localhost:4000/v1/menus`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newMenuInfo),
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "منوی جدید ایجاد شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getAllMenus();
-          setShowAddMenu(false);
-        });
-      }
-    });
+    try {
+      await createMenu(newMenuInfo);
+      Swal.fire({
+        title: "منوی جدید ایجاد شد",
+        icon: "success",
+        confirmButtonText: "Ok",
+      }).then(() => {
+        getAllMenusHandler();
+        setShowAddMenu(false);
+      });
+    } catch (error) {
+      console.error("Error Creating Menu:", error);
+    }
   };
 
   return (
@@ -181,7 +172,7 @@ const Menus = (): React.JSX.Element => {
                       : "bg-[#333c4c]/30"
                   }`}
                   type="submit"
-                  onClick={createMenu}
+                  onClick={createMenuHandler}
                   disabled={!formState.isFormValid}
                 >
                   <span className="mx-auto font-EstedadMedium">افزودن</span>
@@ -240,7 +231,7 @@ const Menus = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => removeMenu(menu._id)}
+                    onClick={() => removeMenuHandler(menu._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 md:px-8 rounded-sm select-none cursor-pointer"
                   >
                     حذف

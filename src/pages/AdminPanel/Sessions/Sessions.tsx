@@ -90,17 +90,15 @@ const Sessions = (): React.JSX.Element => {
     formData.append("free", sessionFree);
 
     try {
-      const res = await fetchNewSession(sessionCourse, formData);
-      if (res.statusText === "Created") {
-        Swal.fire({
-          title: "جلسه مورد نظر با موفقیت اضافه شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getAllSessions();
-          setShowAddSession(false);
-        });
-      }
+      await fetchNewSession(sessionCourse, formData);
+      Swal.fire({
+        title: "جلسه مورد نظر با موفقیت اضافه شد",
+        icon: "success",
+        confirmButtonText: "Ok",
+      }).then(() => {
+        getAllSessions();
+        setShowAddSession(false);
+      });
     } catch (error) {
       console.error("Error Create Session Course:", error);
     }
@@ -116,16 +114,14 @@ const Sessions = (): React.JSX.Element => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await removeSession(sessionID);
-          if (res.statusText) {
-            Swal.fire({
-              title: "جلسه مورد نظر با موفقیت حذف شد",
-              icon: "success",
-              cancelButtonText: "Ok",
-            }).then(() => {
-              getAllSessions();
-            });
-          }
+          await removeSession(sessionID);
+          Swal.fire({
+            title: "جلسه مورد نظر با موفقیت حذف شد",
+            icon: "success",
+            cancelButtonText: "Ok",
+          }).then(() => {
+            getAllSessions();
+          });
         } catch (error) {
           console.error("Error Session Course:", error);
         }

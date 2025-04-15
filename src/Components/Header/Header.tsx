@@ -21,6 +21,7 @@ import Button from "../Form/Button";
 import Swal from "sweetalert2";
 import Menu from "types/Menu.types";
 import { AuthContextType } from "types/AuthContext.types";
+import { getMenus } from "../../Services/Axios/Requests/Menus";
 
 const Header = (): React.JSX.Element => {
   const [dark, setDark] = useState<boolean>(false);
@@ -86,13 +87,16 @@ const Header = (): React.JSX.Element => {
 
   const authContext = useContext<AuthContextType>(AuthContext);
 
-
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/menus`)
-      .then((res) => res.json())
-      .then((menus) => {
-        setAllMenus(menus);
-      });
+    const getMenusHandler = async () => {
+      try {
+        const res = await getMenus();
+        setAllMenus(res);
+      } catch (error) {
+        console.error("Error fetching Menus:", error);
+      }
+    };
+    getMenusHandler();
   }, []);
 
   const showSubmenusHandler = (menuID: string): void => {

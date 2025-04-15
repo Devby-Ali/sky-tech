@@ -151,17 +151,15 @@ const Courses = (): React.JSX.Element => {
       });
     } else {
       try {
-        const res = await fetchNewCourse(formData);
-        if (res.statusText === "Created") {
-          Swal.fire({
-            title: "دوره جدید با موفقیت اضافه شد",
-            icon: "success",
-            confirmButtonText: "Ok",
-          }).then(() => {
-            getCourses();
-            setShowAddCourse(false);
-          });
-        }
+        await fetchNewCourse(formData);
+        Swal.fire({
+          title: "دوره جدید با موفقیت اضافه شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getCourses();
+          setShowAddCourse(false);
+        });
       } catch (error) {
         console.error("Error Creating Course:", error);
       }

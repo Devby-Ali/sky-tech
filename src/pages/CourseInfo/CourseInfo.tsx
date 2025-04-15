@@ -126,16 +126,14 @@ const CourseInfo = (): React.JSX.Element => {
 
   const registerInCourse = async (course: Course) => {
     if (course.price === 0) {
-      const res = await registerCourse(course);
-      if (res.statusText === "Created") {
-        Swal.fire({
-          title: "ثبت نام با موفقیت انجام شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getCourseDetails();
-        });
-      }
+      await registerCourse(course);
+      Swal.fire({
+        title: "ثبت نام با موفقیت انجام شد",
+        icon: "success",
+        confirmButtonText: "Ok",
+      }).then(() => {
+        getCourseDetails();
+      });
     } else {
       Swal.fire({
         title: "در صورت داشتن کد تخفیف وارد کنید:",
@@ -146,16 +144,14 @@ const CourseInfo = (): React.JSX.Element => {
       }).then(async (code) => {
         if (code.isConfirmed) {
           if (code.value === "") {
-            const res = await registerCourse(course);
-            if (res.statusText === "Created") {
-              Swal.fire({
-                title: "ثبت نام با موفقیت انجام شد",
-                icon: "success",
-                confirmButtonText: "Ok",
-              }).then(() => {
-                getCourseDetails();
-              });
-            }
+            await registerCourse(course);
+            Swal.fire({
+              title: "ثبت نام با موفقیت انجام شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getCourseDetails();
+            });
           } else {
             registerOffs(course, code.value, getCourseDetails);
           }
