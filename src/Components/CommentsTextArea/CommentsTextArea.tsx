@@ -10,8 +10,7 @@ import AuthContext from "../../context/authContext";
 import { Link } from "react-router-dom";
 import { AuthContextType } from "../../types/AuthContext.types";
 import Comment from "types/Comments.types";
-
-
+import Swal from "sweetalert2";
 
 interface CommentsTextAreaProps {
   comments: Comment[];
@@ -41,7 +40,23 @@ const CommentsTextArea = ({
   const handleSubmit = (): void => {
     if (!authContext.userInfos) return;
 
-    submitComment(newCommentBody, commentScore,);
+    if (!newCommentBody.trim().length) {
+      Swal.fire({
+        title: "متن کامنت خالیه!",
+        icon: "warning",
+        confirmButtonText: "فهمیدم",
+      });
+    } else if (commentScore === "-1") {
+      Swal.fire({
+        title: "هنوز امتیاز رو مشخص نکردی!",
+        icon: "warning",
+        confirmButtonText: "فهمیدم",
+      });
+    } else {
+      submitComment(newCommentBody, commentScore);
+      setNewCommentBody("");
+      setOpenTextArea(false);
+    }
   };
 
   return (
@@ -125,7 +140,7 @@ const CommentsTextArea = ({
             <div className="flex items-center justify-between mt-2 sm:mt-6">
               <select
                 className="bg-white dark:bg-[#333c4c] py-2 pr-6 rounded-lg text-2xl ml-2"
-                onChange={(event: React.ChangeEvent<HTMLSelectElement>) => 
+                onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
                   setCommentScore(event.target.value)
                 }
               >

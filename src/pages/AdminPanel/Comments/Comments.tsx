@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
 import Comment from "types/Comments.types";
+import {
+  acceptComment,
+  answerToComment,
+  getComments,
+  removeComment,
+} from "../../../Services/Axios/Requests/Comments";
 
 const Comments = (): React.JSX.Element => {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -10,37 +16,34 @@ const Comments = (): React.JSX.Element => {
     getAllComments();
   }, []);
 
-  function getAllComments() {
-    fetch("http://localhost:4000/v1/comments")
-      .then((res) => res.json())
-      .then((allComments) => setComments(allComments));
-  }
+  const getAllComments = async () => {
+    try {
+      const allComments = await getComments();
+      setComments(allComments);
+    } catch (error) {
+      console.error("Error fetching Comments:", error);
+    }
+  };
 
-  const removeComment = (commentID: string) => {
+  const removeCommentHandler = (commentID: string) => {
     Swal.fire({
       title: "از حذف کامنت مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/comments/${commentID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کامنت حذف شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => getAllComments());
-          }
-        });
+        try {
+          await removeComment(commentID);
+          Swal.fire({
+            title: "کامنت حذف شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => getAllComments());
+        } catch (error) {
+          console.error("Error remove comment:", error);
+        }
       }
     });
   };
@@ -82,100 +85,80 @@ const Comments = (): React.JSX.Element => {
     });
   };
 
-  const acceptComment = (commentID: string) => {
+  const acceptCommentHandler = (commentID: string) => {
     Swal.fire({
       title: "از تایید کامنت مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/comments/accept/${commentID}`, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کامنت تایید شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllComments();
-            });
-          }
-        });
+        try {
+          await acceptComment(commentID);
+          Swal.fire({
+            title: "کامنت تایید شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            getAllComments();
+          });
+        } catch (error) {
+          console.error("Error accept comment:", error);
+        }
       }
     });
   };
 
-  const rejectComment = (commentID: string) => {
+  const rejectCommentHandler = (commentID: string) => {
     Swal.fire({
       title: "از رد کامنت مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/comments/reject/${commentID}`, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کامنت رد شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllComments();
-            });
-          }
-        });
+        try {
+          await removeComment(commentID);
+          Swal.fire({
+            title: "کامنت رد شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            getAllComments();
+          });
+        } catch (error) {
+          console.error("Error reject comment:", error);
+        }
       }
     });
   };
 
-  const answerToComment = (commentID: string) => {
+  const answerToCommentHandler = (commentID: string) => {
     Swal.fire({
       title: "پاسخ مورد نظر را وارد کنید",
       input: "text",
       confirmButtonText: "ثبت پاسخ",
       showCancelButton: true,
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         const commentAnswer = {
           body: result.value,
         };
 
-        fetch(`http://localhost:4000/v1/comments/answer/${commentID}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-          },
-          body: JSON.stringify(commentAnswer),
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "پاسخ مورد نظر با موفقیت ثبت شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllComments();
-            });
-          }
-        });
+        try {
+          await answerToComment(commentID, commentAnswer);
+          Swal.fire({
+            title: "پاسخ مورد نظر با موفقیت ثبت شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => {
+            getAllComments();
+          });
+        } catch (error) {
+          console.error("Error answer to comment:", error);
+        }
       }
     });
   };
@@ -241,7 +224,7 @@ const Comments = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => answerToComment(comment._id)}
+                    onClick={() => answerToCommentHandler(comment._id)}
                     className="inline-flex items-center justify-center bg-sky-100/80 dark:bg-white/10 text-sky-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 rounded-sm select-none cursor-pointer"
                   >
                     پاسخ
@@ -250,7 +233,7 @@ const Comments = (): React.JSX.Element => {
                 {comment.answer === 1 ? (
                   <div className="col-span-1">
                     <div
-                      onClick={() => rejectComment(comment._id)}
+                      onClick={() => rejectCommentHandler(comment._id)}
                       className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-11 rounded-sm select-none cursor-pointer"
                     >
                       رد
@@ -259,7 +242,7 @@ const Comments = (): React.JSX.Element => {
                 ) : (
                   <div className="col-span-1">
                     <div
-                      onClick={() => acceptComment(comment._id)}
+                      onClick={() => acceptCommentHandler(comment._id)}
                       className="inline-flex items-center justify-center bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded-sm select-none cursor-pointer"
                     >
                       تایید
@@ -277,7 +260,7 @@ const Comments = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => removeComment(comment._id)}
+                    onClick={() => removeCommentHandler(comment._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded-sm select-none cursor-pointer"
                   >
                     حذف

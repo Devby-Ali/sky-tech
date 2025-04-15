@@ -36,6 +36,7 @@ import {
   registerOffs,
   registerCourse,
 } from "../../Services/Axios/Requests/Register";
+import { submitComment } from "../../Services/Axios/Requests/Comments";
 
 type RelatedCourse = Omit<
   Course,
@@ -97,31 +98,26 @@ const CourseInfo = (): React.JSX.Element => {
     getRelatedCourses();
   }, [courseName, getCourseDetails]);
 
-  const submitComment = (newCommentBody: string, commentScore: string) => {
+  const submitCommentHandler = async (
+    newCommentBody: string,
+    commentScore: string
+  ) => {
     const localStorageData = localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user")!)
       : null;
 
-    fetch(`http://localhost:4000/v1/comments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-      body: JSON.stringify({
-        body: newCommentBody,
-        courseShortName: courseName,
-        score: commentScore,
-      }),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        Swal.fire({
-          title: "کامنت ثبت شد",
-          icon: "success",
-          confirmButtonText: "تایید",
-        });
-      });
+    const commentBody = {
+      body: newCommentBody,
+      courseShortName: courseName,
+      score: commentScore,
+    };
+
+    await submitComment(commentBody);
+    Swal.fire({
+      title: "کامنت ثبت شد",
+      icon: "success",
+      confirmButtonText: "تایید",
+    });
   };
 
   const registerInCourse = async (course: Course) => {
@@ -614,7 +610,7 @@ const CourseInfo = (): React.JSX.Element => {
               {/* <!-- Comments --> */}
               <CommentsTextArea
                 comments={comments}
-                submitComment={submitComment}
+                submitComment={submitCommentHandler}
               />
             </div>
 
