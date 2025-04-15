@@ -12,6 +12,7 @@ import {
 } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import { AuthContextType } from "types/AuthContext.types";
+import { editAccount } from "../../../Services/Axios/Requests/Users";
 
 const EditAccount = (): React.JSX.Element => {
   const authContext = useContext<AuthContextType>(AuthContext);
@@ -30,7 +31,9 @@ const EditAccount = (): React.JSX.Element => {
     }
   }, [authContext]);
 
-  const editAccount = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const editAccountHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
 
     const userNewInfos = {
@@ -41,24 +44,16 @@ const EditAccount = (): React.JSX.Element => {
       phone,
     };
 
-    fetch(`http://localhost:4000/v1/users/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-      body: JSON.stringify(userNewInfos),
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "اطلاعات اکانت شما ویرایش شد",
-          icon: "success",
-          confirmButtonText: "باشه",
-        });
-      }
-    });
+    try {
+      await editAccount(userNewInfos);
+      Swal.fire({
+        title: "اطلاعات اکانت شما ویرایش شد",
+        icon: "success",
+        confirmButtonText: "باشه",
+      });
+    } catch (error) {
+      console.error("Error edit account:", error);
+    }
   };
 
   return (
@@ -186,7 +181,7 @@ const EditAccount = (): React.JSX.Element => {
           </div>
 
           <button
-            onClick={editAccount}
+            onClick={editAccountHandler}
             className="h-20 bg-sky-600 dark:bg-sky-900 w-full text-white font-EstedadMedium sm:w-96 rounded-md"
           >
             ویرایش حساب کاربری

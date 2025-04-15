@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HiArrowUpTray, HiChevronLeft } from "react-icons/hi2";
 import { Link, useNavigate } from "react-router-dom";
+import { getUserCourses } from "../../../Services/Axios/Requests/Users";
 import Swal from "sweetalert2";
 import { UserCourse } from "types/Courses.types";
 
@@ -51,18 +52,17 @@ const SendTicket = (): React.JSX.Element => {
       .then((res) => res.json())
       .then((data) => setDepartments(data));
 
-    fetch(`http://localhost:4000/v1/users/courses/`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setCourses(data);
-      });
+    userCoursesHandler();
   }, []);
+
+  const userCoursesHandler = async () => {
+    try {
+      const userCourses = await getUserCourses();
+      setCourses(userCourses);
+    } catch (error) {
+      console.error("Error fetching user courses:", error);
+    }
+  };
 
   const getDepartmentsSub = (departmentID: string) => {
     fetch(`http://localhost:4000/v1/tickets/departments-subs/${departmentID}`)

@@ -20,6 +20,12 @@ import {
 import { FiMail } from "react-icons/fi";
 import { BiLockOpenAlt } from "react-icons/bi";
 import { FormState } from "hooks/useForm.types";
+import {
+  banUser,
+  changeRole,
+  getUsers,
+  removeUser,
+} from "../../../Services/Axios/Requests/Users";
 
 interface User {
   _id: string;
@@ -68,73 +74,59 @@ const Users = (): React.JSX.Element => {
     getAllUsers();
   }, []);
 
-  function getAllUsers() {
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
-    fetch(`http://localhost:4000/v1/users`, {
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((allUsers) => {
-        setUsers(allUsers);
-      });
-  }
+  const getAllUsers = async () => {
+    try {
+      const allUsers = await getUsers();
+      setUsers(allUsers);
+    } catch (error) {
+      console.error("Error fetching Users:", error);
+    }
+  };
 
-  const removeUser = (userID: string) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
+  const removeUserHandler = (userID: string) => {
     Swal.fire({
       title: "آیا از حذف مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/users/${userID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کاربر با موفقیت حذف شد",
-              icon: "success",
-              confirmButtonText: "اوکی",
-            }).then(() => {
-              getAllUsers();
-            });
-          }
-        });
+        try {
+          await removeUser(userID);
+          Swal.fire({
+            title: "کاربر با موفقیت حذف شد",
+            icon: "success",
+            confirmButtonText: "اوکی",
+          }).then(() => {
+            getAllUsers();
+          });
+        } catch (error) {
+          console.error("Error remove user:", error);
+        }
       }
     });
   };
 
-  const banUser = (userID: string) => {
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
+  const banUserHandler = (userID: string) => {
     Swal.fire({
-      title: "آیا از بن مطمعنی؟",
+      title: "از بن کاربر مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/users/ban/${userID}`, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کاربر با موفقیت بن شد",
-              icon: "success",
-              confirmButtonText: "اوکی",
-            });
-          }
-        });
+        try {
+          await banUser(userID);
+          Swal.fire({
+            title: "کاربر با موفقیت بن شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        } catch (error) {
+          console.error("Error ban user:", error);
+        }
       }
     });
   };
@@ -175,39 +167,31 @@ const Users = (): React.JSX.Element => {
       });
   };
 
-  const changeRole = (userID: string) => {
+  const changeRoleHandler = (userID: string) => {
     Swal.fire({
       title: "ADMIN or USER",
       input: "text",
       confirmButtonText: "تغییر‌سطح",
       showDenyButton: true,
       denyButtonText: "بیخیال",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         const reqBodyInfos = {
           role: result.value,
           id: userID,
         };
 
-        fetch(`http://localhost:4000/v1/users/role`, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(reqBodyInfos),
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کاربر مورد نظر تغییر یافت",
-              icon: "success",
-              confirmButtonText: "Ok",
-            });
-            getAllUsers();
-          }
-        });
+        try {
+          await changeRole(reqBodyInfos);
+          Swal.fire({
+            title: "کاربر مورد نظر تغییر یافت",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          getAllUsers();
+        } catch (error) {
+          console.error("Error change role:", error);
+        }
       }
     });
   };
@@ -361,7 +345,7 @@ const Users = (): React.JSX.Element => {
 
                 <div className="col-span-1 flex-center">
                   <div
-                    onClick={() => changeRole(user._id)}
+                    onClick={() => changeRoleHandler(user._id)}
                     className="inline-flex items-center justify-center bg-amber-100/60 dark:bg-amber-500/10 text-amber-900 dark:text-amber-300 font-EstedadMedium text-xl md:text-2xl py-2 px-3.5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     تغییر‌سطح
@@ -369,7 +353,7 @@ const Users = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => banUser(user._id)}
+                    onClick={() => banUserHandler(user._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     بن
@@ -377,7 +361,7 @@ const Users = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => removeUser(user._id)}
+                    onClick={() => removeUserHandler(user._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     حذف

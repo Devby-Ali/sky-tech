@@ -8,6 +8,7 @@ import {
   getComments,
   removeComment,
 } from "../../../Services/Axios/Requests/Comments";
+import { banUser } from "../../../Services/Axios/Requests/Users";
 
 const Comments = (): React.JSX.Element => {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -55,32 +56,25 @@ const Comments = (): React.JSX.Element => {
     });
   };
 
-  const banUser = (userID: string) => {
-    const localStorageData: { token: string } = JSON.parse(
-      localStorage.getItem("user")!
-    );
+  const banUserHandler = (userID: string) => {
     Swal.fire({
       title: "از بن کاربر مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/users/ban/${userID}`, {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کاربر با موفقیت بن شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => getAllComments());
-          }
-        });
+        try {
+          await banUser(userID);
+          Swal.fire({
+            title: "کاربر با موفقیت بن شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          }).then(() => getAllComments());
+        } catch (error) {
+          console.error("Error ban user:", error);
+        }
       }
     });
   };
@@ -252,7 +246,7 @@ const Comments = (): React.JSX.Element => {
 
                 <div className="col-span-1">
                   <div
-                    onClick={() => banUser(comment.creator._id)}
+                    onClick={() => banUserHandler(comment.creator._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-100 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-8 rounded-sm select-none cursor-pointer"
                   >
                     بن

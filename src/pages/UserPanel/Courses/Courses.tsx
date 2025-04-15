@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { UserCourse as Course } from "types/Courses.types";
 import CourseBox from "../../../Components/UserPanel/CourseBox/CourseBox";
+import { getUserCourses } from "../../../Services/Axios/Requests/Users";
 
 interface UserCourse {
   _id: string;
@@ -15,18 +16,17 @@ const Courses = (): React.JSX.Element => {
   const [courses, setCourses] = useState<UserCourse[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/users/courses/`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setCourses(data);
-      });
+    userCoursesHandler();
   }, []);
+
+  const userCoursesHandler = async () => {
+    try {
+      const userCourses = await getUserCourses();
+      setCourses(userCourses);
+    } catch (error) {
+      console.error("Error fetching user courses:", error);
+    }
+  };
 
   return (
     <main className="pb-5 md:pb-8 mx-auto mt-6 md:mt-12">

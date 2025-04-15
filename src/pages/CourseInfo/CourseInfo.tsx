@@ -102,22 +102,22 @@ const CourseInfo = (): React.JSX.Element => {
     newCommentBody: string,
     commentScore: string
   ) => {
-    const localStorageData = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user")!)
-      : null;
-
     const commentBody = {
       body: newCommentBody,
       courseShortName: courseName,
       score: commentScore,
     };
-
-    await submitComment(commentBody);
-    Swal.fire({
-      title: "کامنت ثبت شد",
-      icon: "success",
-      confirmButtonText: "تایید",
-    });
+    
+    try {
+      await submitComment(commentBody);
+      Swal.fire({
+        title: "کامنت ثبت شد",
+        icon: "success",
+        confirmButtonText: "تایید",
+      });
+    } catch (error) {
+      console.error("Error submit Comment:", error);
+    }
   };
 
   const registerInCourse = async (course: Course) => {
