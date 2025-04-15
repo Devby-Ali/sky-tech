@@ -9,6 +9,7 @@ import Editor from "../../../Components/Form/Editor/Editor";
 import { FormState } from "hooks/useForm.types";
 import Category from "types/Category.types";
 import Article from "types/Atricles.types";
+import { getAllCategories } from "../../../Services/Axios/Requests/Category";
 
 const Draft = (): React.JSX.Element => {
   const [draft, setDraft] = useState<Article>({} as Article);
@@ -46,12 +47,18 @@ const Draft = (): React.JSX.Element => {
         setDraft(draft);
         setArticleCategory(draft.categoryID._id);
       });
-    fetch(`http://localhost:4000/v1/category`)
-      .then((res) => res.json())
-      .then((allCategories) => {
-        setCategories(allCategories);
-      });
+
+    getCategoriesHandler();
   }, [shortName]);
+
+  const getCategoriesHandler = async () => {
+    try {
+      const res = await getAllCategories();
+      setCategories(res);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
 
   const createArticle = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -143,9 +150,10 @@ const Draft = (): React.JSX.Element => {
                       type="file"
                       id="file"
                       className="w-full bg-white/10 rounded-md p-1"
-                      onChange={(event) => {if (event.target.files) {
-                        setArticleCover(event.target.files[0]);
-                      }
+                      onChange={(event) => {
+                        if (event.target.files) {
+                          setArticleCover(event.target.files[0]);
+                        }
                       }}
                     />
                   </div>

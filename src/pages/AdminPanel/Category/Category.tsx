@@ -12,7 +12,12 @@ import Swal from "sweetalert2";
 import { HiPlus, HiXMark } from "react-icons/hi2";
 import { FormState } from "hooks/useForm.types";
 import CategoryType from "types/Category.types";
-import { updateCategory } from "../../../Services/Axios/Requests/Category";
+import {
+  getAllCategories,
+  removeCategory,
+  updateCategory,
+} from "../../../Services/Axios/Requests/Category";
+import { createNewCategory } from "../../../Services/Axios/Requests/Category";
 
 const Category = (): React.JSX.Element => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -32,52 +37,50 @@ const Category = (): React.JSX.Element => {
   );
 
   useEffect(() => {
-    getAllCategories();
+    getCategoriesHandler();
   }, []);
 
-  function getAllCategories() {
-    fetch(`http://localhost:4000/v1/category`)
-      .then((res) => res.json())
-      .then((allCategories) => {
-        setCategories(allCategories);
-      });
-  }
+  const getCategoriesHandler = async (): Promise<void> => {
+    try {
+      const res = await getAllCategories();
+      setCategories(res);
+    } catch (error) {
+      console.error("Error fetching Catrgory:", error);
+    }
+  };
 
   const showCreateCategoryHandler = () => {
     setShowCreateCategory(!showCreateCategory);
   };
 
-  const createNewCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const createNewCategoryHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
 
     const newCategoryInfo = {
       title: formState.inputs.title.value,
       name: formState.inputs.shortname.value,
     };
 
-    fetch("http://localhost:4000/v1/category", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-      body: JSON.stringify(newCategoryInfo),
-    })
-      .then((res) => res.json())
-      .then(() => {
+    try {
+      const res = await createNewCategory(newCategoryInfo);
+      if (res.statusText === "Created") {
         Swal.fire({
           title: "دسته بندی مورد نظر با موفقیت اضافه شد",
           icon: "success",
           confirmButtonText: "Ok",
         }).then(() => {
-          getAllCategories();
+          getCategoriesHandler();
           setShowCreateCategory(false);
         });
-      });
+      }
+    } catch (error) {
+      console.error("Error Creating Category:", error);
+    }
   };
 
-  const removeCategory = (categoryID: string): void => {
+  const removeCategoryHandler = (categoryID: string): void => {
     const localStorageData: { token: string } = JSON.parse(
       localStorage.getItem("user")!
     );
@@ -87,30 +90,27 @@ const Category = (): React.JSX.Element => {
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result: { isConfirmed: boolean }) => {
+    }).then(async (result: { isConfirmed: boolean }) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/category/${categoryID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-        })
-          .then((res: Response) => res.json())
-          .then(() => {
+        try {
+          const res = await removeCategory(categoryID);
+          if (res.statusText === "OK") {
             Swal.fire({
               title: "دسته بندی مورد نظر با موفقیت حذف شد",
               icon: "success",
               confirmButtonText: "Ok",
             }).then(() => {
-              getAllCategories();
+              getCategoriesHandler();
             });
-          });
+          }
+        } catch (error) {
+          console.error("Error remove Category:", error);
+        }
       }
     });
   };
 
   const updateCategoryHandler = async (categoryID: string) => {
-    
     Swal.fire({
       title: "عنوان و نام کوتاه جدید دسته بندی را وارد نمایید",
       html: `
@@ -145,7 +145,7 @@ const Category = (): React.JSX.Element => {
               icon: "success",
               confirmButtonText: "Ok",
             }).then(() => {
-              getAllCategories();
+              getCategoriesHandler();
             });
           }
         } catch (error) {
@@ -212,7 +212,7 @@ const Category = (): React.JSX.Element => {
                       : "bg-[#333c4c]/30"
                   }`}
                   type="submit"
-                  onClick={createNewCategory}
+                  onClick={createNewCategoryHandler}
                   disabled={!formState.isFormValid}
                 >
                   <span className="mx-auto font-EstedadMedium">افزودن</span>
@@ -242,32 +242,33 @@ const Category = (): React.JSX.Element => {
             className="min-w-[840px] md:min-w-[900px] space-y-6"
             id="container_orders"
           >
-            {categories.map((category, index) => (
-              <div
-                key={category._id}
-                className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
-              >
-                <div className="col-span-1">{index + 1}</div>
-                <div className="col-span-5">{category.title}</div>
-                <div className="col-span-4">{category.name}</div>
-                <div className="col-span-1">
-                  <div
-                    onClick={() => updateCategoryHandler(category._id)}
-                    className="inline-flex items-center justify-center bg-sky-100/80 dark:bg-white/10 text-sky-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                  >
-                    ویرایش
+            {categories.length &&
+              categories.map((category, index) => (
+                <div
+                  key={category._id}
+                  className="grid grid-cols-12 items-center text-xl md:text-2xl text-center bg-white dark:bg-slate-800 h-16 md:h-20 rounded-xl divide-x divide-x-reverse divide-sky-400/80 dark:divide-[#333c4c] *:px-3"
+                >
+                  <div className="col-span-1">{index + 1}</div>
+                  <div className="col-span-5">{category.title}</div>
+                  <div className="col-span-4">{category.name}</div>
+                  <div className="col-span-1">
+                    <div
+                      onClick={() => updateCategoryHandler(category._id)}
+                      className="inline-flex items-center justify-center bg-sky-100/80 dark:bg-white/10 text-sky-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                    >
+                      ویرایش
+                    </div>
+                  </div>
+                  <div className="col-span-1">
+                    <div
+                      onClick={() => removeCategoryHandler(category._id)}
+                      className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
+                    >
+                      حذف
+                    </div>
                   </div>
                 </div>
-                <div className="col-span-1">
-                  <div
-                    onClick={() => removeCategory(category._id)}
-                    className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
-                  >
-                    حذف
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </DataTable>

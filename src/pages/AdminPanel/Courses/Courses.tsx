@@ -13,6 +13,7 @@ import {
   fetchNewCourse,
   removeCourse,
 } from "../../../Services/Axios/Requests/Courses";
+import { getAllCategories } from "../../../Services/Axios/Requests/Category";
 
 interface PAdminCourse {
   _id: string;
@@ -69,12 +70,17 @@ const Courses = (): React.JSX.Element => {
 
   useEffect(() => {
     getCourses();
-    fetch(`http://localhost:4000/v1/category`)
-      .then((res) => res.json())
-      .then((allCategories) => {
-        setCategories(allCategories);
-      });
+    getCategoriesHandler();
   }, []);
+
+  const getCategoriesHandler = async () => {
+    try {
+      const res = await getAllCategories();
+      setCategories(res);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
 
   const getCourses = async () => {
     try {
@@ -98,26 +104,26 @@ const Courses = (): React.JSX.Element => {
       denyButtonText: "نه",
     }).then(async (result) => {
       if (result.isConfirmed) {
-          try {
-            const res = await removeCourse(courseID);
-            if (res.statusText === "OK") {
-              Swal.fire({
-                title: "دوره موردنظر با موفقیت حذف شد",
-                icon: "success",
-                confirmButtonText: "Ok",
-              }).then(() => {
-                getCourses();
-              });
-            } else {
-              Swal.fire({
-                title: "حذف دوره با مشکل مواجه شد",
-                icon: "error",
-                confirmButtonText: "Ok",
-              });
-            }
-          } catch (error) {
-            console.error("Error Remove Course:", error);
+        try {
+          const res = await removeCourse(courseID);
+          if (res.statusText === "OK") {
+            Swal.fire({
+              title: "دوره موردنظر با موفقیت حذف شد",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              getCourses();
+            });
+          } else {
+            Swal.fire({
+              title: "حذف دوره با مشکل مواجه شد",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
           }
+        } catch (error) {
+          console.error("Error Remove Course:", error);
+        }
       }
     });
   };

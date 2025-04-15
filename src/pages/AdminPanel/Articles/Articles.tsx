@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
-import {
-  minValidator,
-} from "../../../validators/rules";
+import { minValidator } from "../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
 import Editor from "../../../Components/Form/Editor/Editor";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
@@ -13,6 +11,7 @@ import { HiMiniPlus, HiOutlineCheckCircle, HiXMark } from "react-icons/hi2";
 import Article from "types/Atricles.types";
 import { FormState } from "hooks/useForm.types";
 import Category from "types/Category.types";
+import { getAllCategories } from "../../../Services/Axios/Requests/Category";
 
 const Articles = (): React.JSX.Element => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -42,12 +41,17 @@ const Articles = (): React.JSX.Element => {
 
   useEffect(() => {
     getAllArticles();
-    fetch(`http://localhost:4000/v1/category`)
-      .then((res) => res.json())
-      .then((allCategories) => {
-        setCategories(allCategories);
-      });
+    getCategoriesHandler();
   }, []);
+
+  const getCategoriesHandler = async () => {
+    try {
+      const res = await getAllCategories();
+      setCategories(res);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
 
   function getAllArticles() {
     fetch("http://localhost:4000/v1/articles")

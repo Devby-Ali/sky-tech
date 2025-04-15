@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { HiChevronDown, HiOutlineFolderOpen } from "react-icons/hi2";
 import Button from "../Form/Button";
 import Category from "types/Category.types";
+import { getAllCategories } from "../../Services/Axios/Requests/Category";
 
 type ApiResponse = Category[];
-
-const API_URL = "http://localhost:4000/v1/category";
 
 const CoursesFilter = (): React.JSX.Element => {
   const [filterOpen, setFilterOpen] = useState<boolean>(false);
@@ -16,18 +15,15 @@ const CoursesFilter = (): React.JSX.Element => {
   };
 
   useEffect(() => {
-    const fetchCategories = async (): Promise<void> => {
+    const getCategoriesHandler = async (): Promise<void> => {
       try {
-        const response = await fetch(API_URL);
-        const data: ApiResponse = await response.json();
-        setCategory(data);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          console.error("Error fetching categories:", error.message);
-        }
+        const res: ApiResponse = await getAllCategories();
+        setCategory(res);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
       }
     };
-    fetchCategories();
+    getCategoriesHandler();
   }, []);
 
   return (
