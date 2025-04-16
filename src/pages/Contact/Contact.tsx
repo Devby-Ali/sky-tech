@@ -16,6 +16,7 @@ import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FormState } from "hooks/useForm.types";
+import { addNewContact } from "../../Services/Axios/Requests/Contact";
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -42,7 +43,9 @@ const Contact = () => {
     false
   );
 
-  const addNewContact = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const addNewContactHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
 
     const newContact = {
@@ -52,24 +55,18 @@ const Contact = () => {
       body: formState.inputs.body.value,
     };
 
-    fetch(`http://localhost:4000/v1/contact`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newContact),
-    }).then((res) => {
-      res.json();
-      if (res.ok) {
-        Swal.fire({
-          title: "پیام شما با موفقیت به مدیران سایت ارسال شد",
-          icon: "success",
-          confirmButtonText: "ورود به پنل",
-        }).then(() => {
-          navigate("/");
-        });
-      }
-    });
+    try {
+      await addNewContact(newContact);
+      Swal.fire({
+        title: "پیام شما با موفقیت به مدیران سایت ارسال شد",
+        icon: "success",
+        confirmButtonText: "ورود به پنل",
+      }).then(() => {
+        navigate("/");
+      });
+    } catch (error) {
+      console.error("Error send contact:", error);
+    }
   };
 
   return (
@@ -174,7 +171,7 @@ const Contact = () => {
                       : "bg-[#333c4c]/30"
                   }`}
                   type="submit"
-                  onClick={addNewContact}
+                  onClick={addNewContactHandler}
                   disabled={!formState.isFormValid}
                 >
                   <span className="mx-auto">ارسال</span>

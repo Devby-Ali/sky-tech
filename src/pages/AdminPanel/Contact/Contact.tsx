@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
+import {
+  getContact,
+  sendAnwserToUser,
+  removeContact,
+} from "../../../Services/Axios/Requests/Contact";
 
 interface Contact {
   _id: string;
@@ -20,13 +25,14 @@ const Contact = (): React.JSX.Element => {
     getAllContacnts();
   }, []);
 
-  function getAllContacnts() {
-    fetch("http://localhost:4000/v1/contact")
-      .then((res) => res.json())
-      .then((allContacts) => {
-        setContacts(allContacts);
-      });
-  }
+  const getAllContacnts = async () => {
+    try {
+      const res = await getContact();
+      setContacts(res);
+    } catch (error) {
+      console.error("Error fetching contact", error);
+    }
+  };
 
   const showContactBody = (body: string) => {
     Swal.fire({
@@ -35,7 +41,7 @@ const Contact = (): React.JSX.Element => {
     });
   };
 
-  const sendAnwserToUser = (contactEmail: string) => {
+  const sendAnwser = (contactEmail: string) => {
     const localStorageData: { token: string } = JSON.parse(
       localStorage.getItem("user")!
     );
@@ -44,63 +50,50 @@ const Contact = (): React.JSX.Element => {
       input: "textarea",
       confirmButtonText: "ارسال ایمیل",
       showCancelButton: true,
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         const anwserInfo = {
           email: contactEmail,
           answer: result.value,
         };
 
-        fetch("http://localhost:4000/v1/contact/answer", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-          body: JSON.stringify(anwserInfo),
-        })
-          .then((res) => {
-            if (res.ok) {
-              getAllContacnts();
-              return res.json();
-            }
-          })
-          .then(() => {
-            Swal.fire({
-              title: "پاسخ ارسال شد",
-              confirmButtonText: "باشه",
-            })
+        try {
+          await sendAnwserToUser(anwserInfo);
+          getAllContacnts();
+          Swal.fire({
+            title: "پاسخ ارسال شد",
+            confirmButtonText: "باشه",
           });
+        } catch (error) {
+          console.error("Error send answer to user:", error);
+        }
       }
     });
   };
 
-  const removeContact = (contactID: string) => {
-    const localStorageData: { token: string } = JSON.parse(localStorage.getItem("user")!);
+  const removeContactHandler = (contactID: string) => {
+    const localStorageData: { token: string } = JSON.parse(
+      localStorage.getItem("user")!
+    );
     Swal.fire({
       title: "از حذف پیام مطمعنی؟",
       icon: "warning",
       showDenyButton: true,
       confirmButtonText: "آره",
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/contact/${contactID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorageData.token}`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "پیغام مورد نظر با موفقیت حذف شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllContacnts();
-            });
-          }
-        });
+        try {
+          await removeContact(contactID);
+          Swal.fire({
+            title: "پیغام مورد نظر با موفقیت حذف شد",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          getAllContacnts();
+        } catch (error) {
+          console.error("Error remove contact:", error);
+        }
       }
     });
   };
@@ -146,7 +139,7 @@ const Contact = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => sendAnwserToUser(contact.email)}
+                    onClick={() => sendAnwser(contact.email)}
                     className="inline-flex items-center justify-center bg-sky-100/80 dark:bg-white/10 text-sky-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     پاسخ
@@ -154,7 +147,7 @@ const Contact = (): React.JSX.Element => {
                 </div>
                 <div className="col-span-1">
                   <div
-                    onClick={() => removeContact(contact._id)}
+                    onClick={() => removeContactHandler(contact._id)}
                     className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                   >
                     حذف
