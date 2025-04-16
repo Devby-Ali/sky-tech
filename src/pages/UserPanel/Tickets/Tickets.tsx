@@ -5,6 +5,7 @@ import {
   HiOutlinePlusCircle,
 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { getUserTickets } from "../../../Services/Axios/Requests/Tickets";
 
 interface Ticket {
   _id: string;
@@ -30,17 +31,15 @@ const Tickets = (): React.JSX.Element => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/tickets/user`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => setTickets(data));
+    const getUserTicketsHandler = async () => {
+      try {
+        const res = await getUserTickets();
+        setTickets(res);
+      } catch (error) {
+        console.error("Error fetching user tickets:", error);
+      }
+    };
+    getUserTicketsHandler();
   }, []);
 
   return (

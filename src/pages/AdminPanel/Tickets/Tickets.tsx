@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+import {
+  getUsersTickets,
+  setAnswerToTicket,
+} from "../../../Services/Axios/Requests/Tickets";
 
 interface Ticket {
   _id: string;
@@ -20,18 +24,17 @@ interface Ticket {
 const Tickets = (): React.JSX.Element => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
 
+  const getUsersTicketsHandler = async () => {
+    try {
+      const res = await getUsersTickets();
+      setTickets(res);
+    } catch (error) {
+      console.error("Error fetching Tickets:", error);
+    }
+  };
+
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/tickets`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTickets(data);
-      });
+    getUsersTicketsHandler();
   }, []);
 
   const showTicketBody = (body: string) => {
@@ -41,36 +44,28 @@ const Tickets = (): React.JSX.Element => {
     });
   };
 
-  const setAnswerToTicket = (ticketID: string) => {
+  const AnswerTicketHandler = (ticketID: string) => {
     Swal.fire({
       title: "پاسخ:",
       input: "textarea",
       confirmButtonText: "ثبت",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         const ticketAnswerInfos = {
           ticketID,
           body: result.value,
         };
 
-        fetch(`http://localhost:4000/v1/tickets/answer`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(ticketAnswerInfos),
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "پاسخ مورد نظر با موفقیت ثبت شد",
-              icon: "success",
-              confirmButtonText: "ok",
-            });
-          }
-        });
+        try {
+          await setAnswerToTicket(ticketAnswerInfos);
+          Swal.fire({
+            title: "پاسخ مورد نظر با موفقیت ثبت شد",
+            icon: "success",
+            confirmButtonText: "ok",
+          });
+        } catch (error) {
+          console.error("Error set answer to ticket:", error);
+        }
       }
     });
   };
@@ -114,7 +109,7 @@ const Tickets = (): React.JSX.Element => {
               </div>
               <div className="col-span-1">
                 <div
-                  onClick={() => setAnswerToTicket(ticket._id)}
+                  onClick={() => AnswerTicketHandler(ticket._id)}
                   className="inline-flex items-center justify-center bg-sky-100/80 dark:bg-white/10 text-sky-800 dark:text-white/70 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                 >
                   پاسخ

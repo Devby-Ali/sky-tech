@@ -4,28 +4,28 @@ import {
   HiOutlineMagnifyingGlassCircle,
 } from "react-icons/hi2";
 import { useParams } from "react-router-dom";
+import { getTicketAnswer } from "../../../Services/Axios/Requests/Tickets";
 
 interface TicketInfo {
   answer: string | null;
-  ticket: string
+  ticket: string;
 }
 
 const TicketAnswer = (): React.JSX.Element => {
   const { id } = useParams<{ id: string }>();
   const [ticketInfo, setTicketInfo] = useState<TicketInfo>({} as TicketInfo);
-
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/tickets/answer/${id}`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTicketInfo(data);
-      });
+    const getTicketAnswerHandler = async (id: string) => {
+      try {
+        const res = await getTicketAnswer(id);
+        setTicketInfo(res);
+      } catch (error) {
+        console.error("Error fetching tickets answer:", error);
+      }
+    };
+    if (id) {
+      getTicketAnswerHandler(id);
+    }
   }, [id]);
 
   return (
@@ -71,7 +71,7 @@ const TicketAnswer = (): React.JSX.Element => {
 
             {ticketInfo.answer !== null && (
               <div className="w-full lg:w-1/2 bg-sky-100 dark:bg-[#333c4c] p-8 rounded-sm text-white mr-auto">
-                <div className="flex items-center gap-x-2 mb-5 md:mb-7 text-2xl md:text-[1.7rem] font-EstedadMedium">
+                <div className="flex items-center gap-x-5 mb-5 md:mb-7 text-2xl md:text-[1.7rem] font-EstedadMedium">
                   <div className="w-2 h-6 rounded-full bg-green-500"></div>
                   پشتیبانی | Admin
                 </div>

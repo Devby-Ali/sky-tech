@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../context/authContext";
 import { AuthContextType } from "types/AuthContext.types";
 import { UserCourse } from "types/Courses.types";
+import { getUserTickets } from "../../../Services/Axios/Requests/Tickets";
 
 const Index = (): React.JSX.Element => {
   const [ticketsCount, setTicketsCount] = useState<number>(0);
@@ -11,24 +12,20 @@ const Index = (): React.JSX.Element => {
   const [userCourses, setUserCourses] = useState<UserCourse[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/tickets/user`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setTicketsCount(data.length);
+    const getTicketsHandler = async () => {
+      try {
+        const res = await getUserTickets();
+        setTicketsCount(res.length);
         if (authContext.userInfos && authContext.userInfos.courses) {
           setUserCourses(authContext.userInfos.courses);
         } else {
           setUserCourses([]);
         }
-      });
+      } catch (error) {
+        console.error("Error get user tickets:", error);
+      }
+    };
+    getTicketsHandler();
   }, [authContext]);
 
   return (
