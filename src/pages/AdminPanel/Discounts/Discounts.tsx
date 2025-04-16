@@ -1,32 +1,21 @@
 import React, { useState } from "react";
+import { createDiscount } from "../../../Services/Axios/Requests/Offs";
 import Swal from "sweetalert2";
 
 const Discounts = (): React.JSX.Element => {
   const [discount, setDiscount] = useState<string>("");
 
-  const setDiscounts = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const setDiscountsHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const reqBody = {
       discount,
     };
 
-    fetch(`http://localhost:4000/v1/offs/all`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(reqBody),
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "کمپین ایجاد شد",
-          icon: "success",
-          timer: 2000,
-        });
-      }
+    await createDiscount(reqBody)
+    Swal.fire({
+      title: "کمپین ایجاد شد",
+      icon: "success",
+      timer: 2000,
     });
   };
 
@@ -61,7 +50,7 @@ const Discounts = (): React.JSX.Element => {
 
         <div className="flex flex-wrap items-center justify-center mt-12">
           <button
-            onClick={setDiscounts}
+            onClick={setDiscountsHandler}
             className="h-20 bg-sky-600 dark:bg-sky-900 w-full text-white font-EstedadMedium rounded-md"
           >
             اعمال تخفیف

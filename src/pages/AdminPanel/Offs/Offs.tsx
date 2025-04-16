@@ -9,6 +9,11 @@ import { HiPlus, HiXMark } from "react-icons/hi2";
 import { FormState } from "hooks/useForm.types";
 import Course from "types/Courses.types";
 import { fetchAllCourses } from "../../../Services/Axios/Requests/Courses";
+import {
+  createOff,
+  getOffs,
+  removeOff,
+} from "../../../Services/Axios/Requests/Offs";
 
 interface Offs {
   _id: string;
@@ -60,25 +65,22 @@ const Offs = (): React.JSX.Element => {
     getRelatedCourses();
   }, []);
 
-  function getAllOffs() {
-    fetch(`http://localhost:4000/v1/offs`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((allOffs) => {
-        setOffs(allOffs);
-      });
-  }
+  const getAllOffs = async (): Promise<void> => {
+    try {
+      const offs = await getOffs();
+      setOffs(offs);
+    } catch (error) {
+      console.error("Eroor fetching offs:", error);
+    }
+  };
 
   const showCreateOffHandler = () => {
     setShowCreateOff(!showCreateOff);
   };
 
-  const createOff = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const createOffHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
 
     const newOffInfos = {
@@ -88,55 +90,37 @@ const Offs = (): React.JSX.Element => {
       max: formState.inputs.max.value,
     };
 
-    fetch(`http://localhost:4000/v1/offs`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-      body: JSON.stringify(newOffInfos),
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "کد تخفیف با موفقیت ایجاد شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          getAllOffs();
-          setShowCreateOff(false);
-        });
-      }
-    });
+    try {
+      await createOff(newOffInfos);
+      Swal.fire({
+        title: "کد تخفیف با موفقیت ایجاد شد",
+        icon: "success",
+        confirmButtonText: "Ok",
+      }).then(() => {
+        getAllOffs();
+        setShowCreateOff(false);
+      });
+    } catch (error) {
+      console.error("Error create offs:", error);
+    }
   };
 
-  const removeOff = (offID: string) => {
+  const removeOffHandler = (offID: string) => {
     Swal.fire({
       title: "از حذف کد تخفیف مطمعنی؟",
       icon: "warning",
       confirmButtonText: "آره",
       showDenyButton: true,
       denyButtonText: "نه",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/v1/offs/${offID}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${
-              JSON.parse(localStorage.getItem("user")!).token
-            }`,
-          },
-        }).then((res) => {
-          if (res.ok) {
-            Swal.fire({
-              title: "کد تخفیف حذف شد",
-              icon: "success",
-              confirmButtonText: "Ok",
-            }).then(() => {
-              getAllOffs();
-            });
-          }
+        await removeOff(offID);
+        Swal.fire({
+          title: "کد تخفیف حذف شد",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(() => {
+          getAllOffs();
         });
       }
     });
@@ -218,7 +202,7 @@ const Offs = (): React.JSX.Element => {
                       : "bg-[#333c4c]/30"
                   }`}
                   type="submit"
-                  onClick={createOff}
+                  onClick={createOffHandler}
                   disabled={!formState.isFormValid}
                 >
                   <span className="mx-auto font-EstedadMedium">افزودن</span>
@@ -270,7 +254,7 @@ const Offs = (): React.JSX.Element => {
 
                   <div className="col-span-1">
                     <div
-                      onClick={() => removeOff(off._id)}
+                      onClick={() => removeOffHandler(off._id)}
                       className="inline-flex items-center justify-center bg-red-100 dark:bg-red-500/10 text-red-500 dark:text-red-200 font-EstedadMedium text-xl md:text-2xl py-2 px-5 xl:px-6 rounded-sm select-none cursor-pointer"
                     >
                       حذف

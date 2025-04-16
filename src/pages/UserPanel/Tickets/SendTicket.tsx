@@ -175,7 +175,10 @@ const SendTicket = (): React.JSX.Element => {
                 name="department"
                 id="department"
                 className="w-full sm:w-1/2 lg:w-1/3 h-19 text-slate-800/70 dark:text-white/60 bg-white dark:bg-slate-800 text-2xl p-5 rounded-lg border-l-[14px] border-l-transparent"
-                onChange={(event) => setCourseID(event.target.value)}
+                onChange={(event) => {
+                  setCourseID(event.target.value)
+                  console.log(event.target.value)
+                }}
               >
                 <option>دوره را انتخاب کنید:</option>
                 {courses.map((course) => (

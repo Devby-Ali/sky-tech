@@ -24,7 +24,6 @@ export const createOff = async (newOffInfos: object) => {
 export const createDiscount = async (reqBody: object) => {
     try {
         const response = await axiosInstance.post("/offs/all", reqBody)
-        console.log(response)
         return response
     } catch (error) {
         errorHandler(error)
