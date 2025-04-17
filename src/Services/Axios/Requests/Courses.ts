@@ -3,8 +3,8 @@ import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const fetchCustomOfCourses = async (customCourse: string) => {
   try {
-    const response = await axiosInstance.get(`/courses/${customCourse}`);
-    return response.data;
+    const res = await axiosInstance.get(`/courses/${customCourse}`);
+    return res.data;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -13,8 +13,8 @@ export const fetchCustomOfCourses = async (customCourse: string) => {
 
 export const fetchAllCourses = async () => {
   try {
-    const response = await axiosInstance.get("/courses");
-    return response.data;
+    const res = await axiosInstance.get("/courses");
+    return res.data;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -23,8 +23,8 @@ export const fetchAllCourses = async () => {
 
 export const removeCourse = async (courseID: string) => {
   try {
-    const respone = await axiosInstance.delete(`/courses/${courseID}`);
-    return respone;
+    const res = await axiosInstance.delete(`/courses/${courseID}`);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -33,12 +33,12 @@ export const removeCourse = async (courseID: string) => {
 
 export const fetchNewCourse = async (formData: FormData) => {
   try {
-    const respone = await axiosInstance.post("/courses", formData, {
+    const res = await axiosInstance.post("/courses", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    return respone;
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -50,7 +50,7 @@ export const fetchNewSession = async (
   formData: FormData
 ) => {
   try {
-    const respone = await axiosInstance.post(
+    const res = await axiosInstance.post(
       `/courses/${sessionCourse}/sessions`,
       formData,
       {
@@ -59,7 +59,7 @@ export const fetchNewSession = async (
         },
       }
     );
-    return respone;
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -68,10 +68,10 @@ export const fetchNewSession = async (
 
 export const removeSession = async (sessionID: string) => {
   try {
-    const respone = await axiosInstance.delete(
+    const res = await axiosInstance.delete(
       `/courses/sessions/${sessionID}`
     );
-    return respone;
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;

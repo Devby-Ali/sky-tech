@@ -6,11 +6,11 @@ import axios from "axios";
 
 export const registerCourse = async (course: Course) => {
   try {
-    const response = await axiosInstance.post(
+    const res = await axiosInstance.post(
       `courses/${course._id}/register`,
       { price: course.price }
     );
-    return response;
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;

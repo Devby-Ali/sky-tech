@@ -4,9 +4,8 @@ import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const addNewEmail = async (newEmail: object) => {
     try {
-        const response = await axiosInstance.post("/newsletters", newEmail)
-        console.log(response)
-        return response
+        const res = await axiosInstance.post("/newsletters", newEmail)
+        return res
     } catch (error) {
         errorHandler(error)
         throw error

@@ -3,8 +3,8 @@ import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const getUsers = async () => {
   try {
-    const response = await axiosInstance.get("/users");
-    return response.data;
+    const res = await axiosInstance.get("/users");
+    return res.data;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -13,8 +13,8 @@ export const getUsers = async () => {
 
 export const getUserCourses = async () => {
   try {
-    const response = await axiosInstance.get(`/users/courses`);
-    return response.data;
+    const res = await axiosInstance.get(`/users/courses`);
+    return res.data;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -23,8 +23,8 @@ export const getUserCourses = async () => {
 
 export const banUser = async (userID: string) => {
   try {
-    const response = await axiosInstance.put(`/users/ban/${userID}`);
-    return response;
+    const res = await axiosInstance.put(`/users/ban/${userID}`);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -33,8 +33,8 @@ export const banUser = async (userID: string) => {
 
 export const changeRole = async (reqBodyInfos: object) => {
   try {
-    const response = await axiosInstance.put("/users/role", reqBodyInfos);
-    return response;
+    const res = await axiosInstance.put("/users/role", reqBodyInfos);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -43,8 +43,8 @@ export const changeRole = async (reqBodyInfos: object) => {
 
 export const removeUser = async (userID: string) => {
   try {
-    const response = await axiosInstance.delete(`/users/${userID}`);
-    return response;
+    const res = await axiosInstance.delete(`/users/${userID}`);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -53,8 +53,8 @@ export const removeUser = async (userID: string) => {
 
 export const editAccount = async (userNewInfos: object) => {
   try {
-    const response = await axiosInstance.put("/users", userNewInfos);
-    return response;
+    const res = await axiosInstance.put("/users", userNewInfos);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;

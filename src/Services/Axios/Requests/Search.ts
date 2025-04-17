@@ -5,8 +5,8 @@ import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const getSearchInfo = async (value: string) => {
     try {
-      const response = await axiosInstance.get(`/search/${value}`);
-      return response.data
+      const res = await axiosInstance.get(`/search/${value}`);
+      return res.data
     } catch (error) {
       errorHandler(error);
       throw error;

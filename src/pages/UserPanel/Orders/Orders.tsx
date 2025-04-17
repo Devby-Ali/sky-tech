@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getOrders } from "../../../Services/Axios/Requests/Orders";
 import { UserCourse } from "types/Courses.types";
 
 interface Order {
@@ -14,17 +15,15 @@ const Orders = (): React.JSX.Element => {
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/orders`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setOrders(data);
-      });
+    const getOrdersHandler = async () => {
+      try {
+        const res = await getOrders();
+        setOrders(res);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+    getOrdersHandler();
   }, []);
 
   return (

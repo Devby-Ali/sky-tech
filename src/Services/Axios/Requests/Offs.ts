@@ -3,8 +3,8 @@ import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const getOffs = async () => {
   try {
-    const response = await axiosInstance.get("/offs");
-    return response.data;
+    const res = await axiosInstance.get("/offs");
+    return res.data;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -13,8 +13,8 @@ export const getOffs = async () => {
 
 export const createOff = async (newOffInfos: object) => {
   try {
-    const response = await axiosInstance.post("/offs", newOffInfos);
-    return response;
+    const res = await axiosInstance.post("/offs", newOffInfos);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -23,8 +23,8 @@ export const createOff = async (newOffInfos: object) => {
 
 export const createDiscount = async (reqBody: object) => {
     try {
-        const response = await axiosInstance.post("/offs/all", reqBody)
-        return response
+        const res = await axiosInstance.post("/offs/all", reqBody)
+        return res
     } catch (error) {
         errorHandler(error)
         throw error
@@ -33,8 +33,8 @@ export const createDiscount = async (reqBody: object) => {
 
 export const removeOff = async (offID: string) => {
     try {
-        const response = await axiosInstance.delete(`/offs/${offID}`)
-        return response
+        const res = await axiosInstance.delete(`/offs/${offID}`)
+        return res
     } catch (error) {
         errorHandler(error)
         throw error

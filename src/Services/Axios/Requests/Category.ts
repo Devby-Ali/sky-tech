@@ -3,8 +3,8 @@ import { errorHandler } from "../ErrorHandlers/ErrorHandler";
 
 export const getAllCategories = async () => {
   try {
-    const response = await axiosInstance.get("/category");
-    return response.data;
+    const res = await axiosInstance.get("/category");
+    return res.data;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -13,8 +13,8 @@ export const getAllCategories = async () => {
 
 export const createNewCategory = async (newCategoryInfo: object) => {
   try {
-    const response = await axiosInstance.post("/category", newCategoryInfo);
-    return response;
+    const res = await axiosInstance.post("/category", newCategoryInfo);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -23,8 +23,8 @@ export const createNewCategory = async (newCategoryInfo: object) => {
 
 export const updateCategory = async (categoryID: string, data: object) => {
   try {
-    const response = await axiosInstance.put(`/category/${categoryID}`, data);
-    return response;
+    const res = await axiosInstance.put(`/category/${categoryID}`, data);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
@@ -33,8 +33,8 @@ export const updateCategory = async (categoryID: string, data: object) => {
 
 export const removeCategory = async (categoryID: string) => {
   try {
-    const response = await axiosInstance.delete(`/category/${categoryID}`);
-    return response;
+    const res = await axiosInstance.delete(`/category/${categoryID}`);
+    return res;
   } catch (error) {
     errorHandler(error);
     throw error;
