@@ -9,7 +9,7 @@ import { useForm } from "../../hooks/useForm";
 import Swal from "sweetalert2";
 import Button from "../Form/Button";
 import { FormState } from "hooks/useForm.types";
-
+import { addNewEmail } from "../../Services/Axios/Requests/Newsletters";
 
 const Footer = (): React.JSX.Element => {
   const [formState, onInputHandler] = useForm<FormState>(
@@ -22,27 +22,24 @@ const Footer = (): React.JSX.Element => {
     false
   );
 
-  const addNewEmail: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+  const addNewEmailHandler: React.MouseEventHandler<HTMLButtonElement> = async (
+    event
+  ) => {
     event.preventDefault();
     const newEmail = {
       email: formState.inputs.email.value,
     };
 
-    fetch("http://localhost:4000/v1/newsletters", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newEmail),
-    }).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          title: "ایمیل شما با موفقیت در خبرنامه ثبت شد",
-          icon: "success",
-          confirmButtonText: "تایید",
-        });
-      }
-    });
+    try {
+      await addNewEmail(newEmail);
+      Swal.fire({
+        title: "ایمیل شما با موفقیت در خبرنامه ثبت شد",
+        icon: "success",
+        confirmButtonText: "تایید",
+      });
+    } catch (error) {
+      console.error("Error add new email in newsletters:", error);
+    }
   };
 
   return (
@@ -136,7 +133,7 @@ const Footer = (): React.JSX.Element => {
                         ? "bg-sky-600/40 hover:bg-sky-600/60"
                         : "bg-white/10"
                     }`}
-                    onClick={addNewEmail}
+                    onClick={addNewEmailHandler}
                     disabled={!formState.isFormValid}
                   >
                     تایید
