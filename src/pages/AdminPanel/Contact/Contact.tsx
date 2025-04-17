@@ -42,9 +42,6 @@ const Contact = (): React.JSX.Element => {
   };
 
   const sendAnwser = (contactEmail: string) => {
-    const localStorageData: { token: string } = JSON.parse(
-      localStorage.getItem("user")!
-    );
     Swal.fire({
       title: "پاسخ:",
       input: "textarea",

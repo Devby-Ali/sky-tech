@@ -24,7 +24,16 @@ export const addNewContact = async (newContact: object) => {
 export const removeContact = async (contactID: string) => {
   try {
     const res = await axiosInstance.delete(`/contact/${contactID}`);
-    console.log(res);
+    return res;
+  } catch (error) {
+    errorHandler(error);
+    throw error;
+  }
+};
+
+export const sendAnwserToUser = async (anwserInfo: object) => {
+  try {
+    const res = await axiosInstance.post("/contact/answer", anwserInfo);
     return res;
   } catch (error) {
     errorHandler(error);

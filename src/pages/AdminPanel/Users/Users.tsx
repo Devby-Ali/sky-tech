@@ -26,6 +26,7 @@ import {
   getUsers,
   removeUser,
 } from "../../../Services/Axios/Requests/Users";
+import { registerUser } from "../../../Services/Axios/Requests/Auth";
 
 interface User {
   _id: string;
@@ -135,7 +136,9 @@ const Users = (): React.JSX.Element => {
     setShowAddUser(!showAddUser);
   };
 
-  const registerUser = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const registerUserHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
     const newUserInfo = {
       name: formState.inputs.name.value,
@@ -146,25 +149,18 @@ const Users = (): React.JSX.Element => {
       confirmPassword: formState.inputs.password.value,
     };
 
-    fetch(`http://localhost:4000/v1/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUserInfo),
-    })
-      .then((res) => {
-        res.json();
-      })
-      .then(() => {
-        Swal.fire({
-          title: "کاربر مورد نظر با موفقیت ثبت نام شد",
-          icon: "success",
-          confirmButtonText: "Ok",
-        });
-        getAllUsers();
-        setShowAddUser(false);
+    try {
+      await registerUser(newUserInfo);
+      Swal.fire({
+        title: "کاربر مورد نظر با موفقیت ثبت نام شد",
+        icon: "success",
+        confirmButtonText: "Ok",
       });
+      getAllUsers();
+      setShowAddUser(false);
+    } catch (error) {
+      console.error("Error register user:", error);
+    }
   };
 
   const changeRoleHandler = (userID: string) => {
@@ -290,7 +286,7 @@ const Users = (): React.JSX.Element => {
                       : "bg-[#333c4c]/30"
                   }`}
                   type="submit"
-                  onClick={registerUser}
+                  onClick={registerUserHandler}
                   disabled={!formState.isFormValid}
                 >
                   <span className="mx-auto font-EstedadMedium">ادامه</span>

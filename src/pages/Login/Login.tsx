@@ -13,6 +13,10 @@ import Swal from "sweetalert2";
 import ReCAPTCHA from "react-google-recaptcha";
 import { BiLockOpenAlt } from "react-icons/bi";
 import { FormState } from "hooks/useForm.types";
+import {
+  getUserInfosLogin,
+  loginUser,
+} from "../../Services/Axios/Requests/Auth";
 
 const Login = (): React.JSX.Element => {
   const navigate = useNavigate();
@@ -35,7 +39,9 @@ const Login = (): React.JSX.Element => {
     false
   );
 
-  const userLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const userLoginHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
 
     const userData = {
@@ -43,47 +49,33 @@ const Login = (): React.JSX.Element => {
       password: formState.inputs.password.value,
     };
 
-    fetch(`http://localhost:4000/v1/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
-        } else {
-          return res.json();
-        }
-      })
-      .then((result) => {
-        Swal.fire({
-          title: "با موفقیت لاگین شدید",
-          icon: "success",
-          confirmButtonText: "ورود به پنل",
-        }).then(() => {
-          navigate("/");
-        });
-        fetch(`http://localhost:4000/v1/auth/me`, {
-          headers: {
-            Authorization: `Bearer ${result.accessToken}`,
-          },
-        })
-          .then((res) => res.json())
-          .then((userData) => {
-            authContext.login(userData, result.accessToken);
-          });
-      })
-      .catch(() => {
-        Swal.fire({
-          title: "نام کاربری یا رمز اشتباه است!",
-          icon: "error",
-          confirmButtonText: "تلاش دوباره",
-        });
+    try {
+
+      const accessToken = await loginUser(userData);
+      Swal.fire({
+        title: "با موفقیت لاگین شدید",
+        icon: "success",
+        confirmButtonText: "ورود به پنل",
+      }).then(() => {
+        navigate("/");
       });
+      try {
+        const res = await getUserInfosLogin(accessToken);
+        authContext.login(res, accessToken);
+      } catch (error) {
+        console.error("Error Auth Me (getUserInfos):", error);
+      }
+
+    } catch (error) {
+
+      console.error("Error login user:", error);
+      Swal.fire({
+        title: "نام کاربری یا رمز اشتباه است!",
+        icon: "error",
+        confirmButtonText: "تلاش دوباره",
+      });
+      
+    }
   };
 
   const onChangeHandler = () => {
@@ -175,7 +167,7 @@ const Login = (): React.JSX.Element => {
                     : "bg-[#333c4c]/30"
                 }`}
                 type="submit"
-                onClick={userLogin}
+                onClick={userLoginHandler}
                 disabled={!formState.isFormValid || !isGoogleRecaptchaVerify}
               >
                 <span className="mx-auto">ورود</span>

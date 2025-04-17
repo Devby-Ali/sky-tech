@@ -16,6 +16,7 @@ import { BiLockOpenAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FormState } from "hooks/useForm.types";
+import { registerUser } from "../../Services/Axios/Requests/Auth";
 
 const Register = (): React.JSX.Element => {
   const navigate = useNavigate();
@@ -48,19 +49,9 @@ const Register = (): React.JSX.Element => {
     false
   );
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.onmouseenter = Swal.stopTimer;
-      toast.onmouseleave = Swal.resumeTimer;
-    },
-  });
-
-  const registerUser = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const registerUserHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
 
     const newUserInfo = {
@@ -72,41 +63,20 @@ const Register = (): React.JSX.Element => {
       confirmPassword: formState.inputs.password.value,
     };
 
-    fetch(`http://localhost:4000/v1/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUserInfo),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          if (res.status === 409) {
-            Toast.fire({
-              icon: "error",
-              title: "این شماره تماس مسدود شده",
-              position: "top",
-              width: "35%",
-              padding: "2rem",
-              heightAuto: false,
-            });
-          }
-        }
-      })
-      .then((result) => {
-        if (result) {
-          Swal.fire({
-            title: "ثبت نام موفقیت آمیز",
-            icon: "success",
-            confirmButtonText: "ورود به پنل",
-          }).then(() => {
-            navigate("/");
-          });
-        }
-        authContext.login(result.user, result.accessToken);
+    try {
+      const res = await registerUser(newUserInfo);
+
+      Swal.fire({
+        title: "ثبت نام موفقیت آمیز",
+        icon: "success",
+        confirmButtonText: "ورود به پنل",
+      }).then(() => {
+        navigate("/");
       });
+      authContext.login(res.data.user, res.data.accessToken);
+    } catch (error) {
+      console.error("Error register user:", error);
+    }
   };
 
   return (
@@ -229,7 +199,7 @@ const Register = (): React.JSX.Element => {
                     : "bg-[#333c4c]/30"
                 }`}
                 type="submit"
-                onClick={registerUser}
+                onClick={registerUserHandler}
                 disabled={!formState.isFormValid}
               >
                 <span className="mx-auto">ادامه</span>
@@ -244,7 +214,6 @@ const Register = (): React.JSX.Element => {
             را پذیرفته اید.
           </p>
         </div>
-       
       </div>
       <div className="absolute top-0 -left-80 2xl:left-0 w-[340px] h-[340px] bg-yellow-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>
       <div className="absolute bottom-0 -right-80 2xl:right-0 w-[340px] h-[340px] bg-sky-500 opacity-30 dark:opacity-15 blur-[120px] rounded-full"></div>

@@ -16,6 +16,7 @@ import Button from "../../Form/Button";
 import { HiOutlineLogout } from "react-icons/hi";
 import { UserCourse } from "types/Courses.types";
 import { AuthContextType } from "types/AuthContext.types";
+import { getUserInfos } from "../../../Services/Axios/Requests/Auth";
 
 interface Notification {
   _id: string;
@@ -88,16 +89,16 @@ const Topbar = (): React.JSX.Element => {
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem("user")!);
     if (localStorageData) {
-      fetch(`http://localhost:4000/v1/auth/me`, {
-        headers: {
-          Authorization: `Bearer ${localStorageData.token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((userData) => {
-          setAdminInfo(userData);
-          setAdminNotif(userData.notifications);
-        });
+      const userInfosHandler = async () => {
+        try {
+          const res = await getUserInfos();
+          setAdminInfo(res);
+          setAdminNotif(res.notifications);
+        } catch (error) {
+          console.error("Error Auth Me (getUserInfos):", error);
+        }
+      };
+      userInfosHandler();
     }
   }, []);
 

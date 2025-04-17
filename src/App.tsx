@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useRoutes, useLocation } from "react-router-dom";
 import AuthContext from "./context/authContext";
 import routes from "./routes";
-import { UserInfo } from "types/AuthContext.types";
-
+import { UserInfo } from "./types/AuthContext.types";
+import { getUserInfos } from "./Services/Axios/Requests/Auth";
 
 const App = () => {
   const location = useLocation();
@@ -14,12 +14,15 @@ const App = () => {
 
   const router = useRoutes(routes);
 
-  const login = useCallback((userInfos: UserInfo, token: false | null | string) => {
-    setToken(token);
-    setIsLoggedIn(true);
-    setUserInfos(userInfos);
-    localStorage.setItem("user", JSON.stringify({ token }));
-  }, []);
+  const login = useCallback(
+    (userInfos: UserInfo, token: false | null | string) => {
+      setToken(token);
+      setIsLoggedIn(true);
+      setUserInfos(userInfos);
+      localStorage.setItem("user", JSON.stringify({ token }));
+    },
+    []
+  );
 
   const logout = useCallback(() => {
     setToken(null);
@@ -30,16 +33,16 @@ const App = () => {
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem("user")!);
     if (localStorageData) {
-      fetch(`http://localhost:4000/v1/auth/me`, {
-        headers: {
-          Authorization: `Bearer ${localStorageData.token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((userData) => {
+      const userInfosHandler = async () => {
+        try {
+          const res = await getUserInfos();
           setIsLoggedIn(true);
-          setUserInfos(userData);
-        });
+          setUserInfos(res);
+        } catch (error) {
+          console.error("Error Auth Me (getUserInfos):", error);
+        }
+      };
+      userInfosHandler();
     } else {
       setIsLoggedIn(false);
     }

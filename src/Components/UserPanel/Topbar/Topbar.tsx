@@ -14,7 +14,7 @@ import AuthContext from "../../../context/authContext";
 import Swal from "sweetalert2";
 import { HiOutlineLogout } from "react-icons/hi";
 import { AuthContextType } from "types/AuthContext.types";
-
+import { getUserInfos } from "../../../Services/Axios/Requests/Auth";
 
 const Topbar = (): React.JSX.Element => {
   const [navOpen, setNavOpen] = useState<boolean>(false);
@@ -76,15 +76,15 @@ const Topbar = (): React.JSX.Element => {
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem("user")!);
     if (localStorageData) {
-      fetch(`http://localhost:4000/v1/auth/me`, {
-        headers: {
-          Authorization: `Bearer ${localStorageData.token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((userData) => {
-          setUserInfo(userData.name);
-        });
+      const userInfosHandler = async () => {
+        try {
+          const res = await getUserInfos();
+          setUserInfo(res.name);
+        } catch (error) {
+          console.error("Error Auth Me (getUserInfos):", error);
+        }
+      };
+      userInfosHandler();
     }
   }, []);
 
@@ -144,13 +144,19 @@ const Topbar = (): React.JSX.Element => {
                 </Link>
               </li>
               <li className={pageName["*"] === "orders" ? "active-menu" : ""}>
-                <Link className="flex items-center justify-between" to="/my-account/orders">
+                <Link
+                  className="flex items-center justify-between"
+                  to="/my-account/orders"
+                >
                   <span>سفارش</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
               </li>
               <li>
-                <Link className="flex items-center justify-between" to="/my-account/wallet">
+                <Link
+                  className="flex items-center justify-between"
+                  to="/my-account/wallet"
+                >
                   <span>کیف پول من</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
@@ -169,7 +175,10 @@ const Topbar = (): React.JSX.Element => {
                 </Link>
               </li>
               <li className={pageName["*"] === "buyed" ? "active-menu" : ""}>
-                <Link className="flex items-center justify-between" to="/my-account/buyed">
+                <Link
+                  className="flex items-center justify-between"
+                  to="/my-account/buyed"
+                >
                   <span>دوره های من</span>
                   <HiMiniChevronLeft className="text-5xl" />
                 </Link>
@@ -264,6 +273,6 @@ const Topbar = (): React.JSX.Element => {
       ></div>
     </>
   );
-}
+};
 
 export default Topbar;
