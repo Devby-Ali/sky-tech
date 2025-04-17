@@ -17,6 +17,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { UserCourse } from "types/Courses.types";
 import { AuthContextType } from "types/AuthContext.types";
 import { getUserInfos } from "../../../Services/Axios/Requests/Auth";
+import { seeNotification } from "../../../Services/Axios/Requests/Notification";
 
 interface Notification {
   _id: string;
@@ -102,14 +103,13 @@ const Topbar = (): React.JSX.Element => {
     }
   }, []);
 
-  function seeNotification(notficationID: string) {
-    const localStorageData = JSON.parse(localStorage.getItem("user")!);
-    fetch(`http://localhost:4000/v1/notifications/see/${notficationID}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${localStorageData.token}`,
-      },
-    }).then((res) => res.json());
+  const seeNotificationHandler = async (notficationID: string) => {
+    try {
+      await seeNotification(notficationID)
+    } catch (error) {
+      console.error("Error see notification:", error);
+      
+    }
   }
 
   const toggleOpenNotif = () => {
@@ -407,7 +407,7 @@ const Topbar = (): React.JSX.Element => {
                           <a
                             className="text-2xl"
                             href="javascript:void(0)"
-                            onClick={() => seeNotification(notification._id)}
+                            onClick={() => seeNotificationHandler(notification._id)}
                           >
                             دیدم
                           </a>
