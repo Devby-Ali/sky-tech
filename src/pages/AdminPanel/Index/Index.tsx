@@ -1,6 +1,7 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PAdminItem from "../../../Components/AdminPanel/PAdminItem/PAdminItem";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
+import { getPanelAdminInfos } from "../../../Services/Axios/Requests/Infos";
 
 interface Info {
   title: string;
@@ -26,18 +27,16 @@ const Index = (): React.JSX.Element => {
   );
 
   useEffect(() => {
-    fetch("http://localhost:4000/v1/infos/p-admin", {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem("user")!).token
-        }`,
-      },
-    })
-      .then((res) => res.json())
-      .then((pageInfo) => {
-        setInfos(pageInfo.infos);
-        setLastRegisteredUsers(pageInfo.lastUsers);
-      });
+    const getInfosHandler = async () => {
+      try {
+        const res = await getPanelAdminInfos();
+        setInfos(res.infos);
+        setLastRegisteredUsers(res.lastUsers);
+      } catch (error) {
+        console.error("Error fetching panel admin infos:", error);
+      }
+    };
+    getInfosHandler();
   }, []);
 
   return (

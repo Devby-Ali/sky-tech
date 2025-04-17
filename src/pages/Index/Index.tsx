@@ -7,6 +7,7 @@ import PresellCourses from "../../Components/PresellCourses/PresellCourses";
 import LastArticles from "../../Components/LastArticles/LastArticles";
 import Footer from "../../Components/Footer/Footer";
 import Landing from "../../Components/Landing/Landing";
+import { getIndexPageInfos } from "../../Services/Axios/Requests/Infos";
 
 interface Info {
   coursesCount: number;
@@ -18,9 +19,15 @@ const Index = (): React.JSX.Element => {
   const [indexInfo, setIndexInfo] = useState<Info>({} as Info);
 
   useEffect(() => {
-    fetch("http://localhost:4000/v1/infos/index")
-      .then((res) => res.json())
-      .then((allInfos) => setIndexInfo(allInfos));
+        const getInfosHandler = async () => {
+          try {
+            const res = await getIndexPageInfos();
+            setIndexInfo(res)
+          } catch (error) {
+            console.error("Error fetching index page infos:", error);
+          }
+        };
+        getInfosHandler();
   }, []);
 
   return (
