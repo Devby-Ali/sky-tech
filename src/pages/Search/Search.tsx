@@ -7,19 +7,24 @@ import CourseBox from "../../Components/CourseBox/CourseBox";
 import ArticleBox from "../../Components/ArticleBox/ArticleBox";
 import { CourseBoxProp } from "types/Courses.types";
 import Article from "types/Atricles.types";
+import { getSearchInfo } from "../../Services/Axios/Requests/Search";
 
 const Search = (): React.JSX.Element => {
   const [courses, setCourses] = useState<CourseBoxProp[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
-  const { value } = useParams();
+  const { value } = useParams<{ value: string }>();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/search/${value}`)
-      .then((res) => res.json())
-      .then((dataSearch) => {
-        setArticles(dataSearch.allResultArticles);
-        setCourses(dataSearch.allResultCourses);
-      });
+    const serachInfoHandler = async (value: string) => {
+      try {
+        const res = await getSearchInfo(value);
+        setArticles(res.allResultArticles);
+        setCourses(res.allResultCourses);
+      } catch (error) {
+        console.error("Error fetching search result:", error);
+      }
+    };
+    serachInfoHandler(value as string);
   }, [value]);
 
   return (
