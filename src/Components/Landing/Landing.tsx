@@ -469,7 +469,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
               ) : (
                 <Link
                   to="/login"
-                  className="flex-center w-[4.5rem] h-[4.5rem] text-slate-900 dark:text-white text-5xl rounded-lg mr-4 transition-all duration-200"
+                  className="flex-center w-[4.5rem] h-[4.5rem] text-white dark:text-white text-5xl rounded-lg mr-4 transition-all duration-200"
                 >
                   <HiOutlineArrowLeftEndOnRectangle />
                 </Link>
