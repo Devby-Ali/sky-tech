@@ -122,8 +122,12 @@
 }
 
 @utility bg-landing {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/images/landing/bg_landing1.jpg) no-repeat right bottom;
+  background-size: cover;
+}
+@utility bg-landing-light {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/images/landing/bg_landing3.png) no-repeat right bottom;
   background-size: cover;
 }
 /* ============================End Utility============================ */

@@ -138,7 +138,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
   };
 
   return (
-    <section className="relative bg-landing pb-28 xl:pb-24 2xl:pb-38 overflow-hidden mb-14 sm:mb-36 lg:mb-48 2xl:pt-2">
+    <section className="relative bg-landing-light dark:bg-landing pb-28 xl:pb-24 2xl:pb-38 overflow-hidden mb-14 sm:mb-36 lg:mb-48 2xl:pt-2">
       {/* sidebar */}
       <div
         className={`nav fixed top-0 bottom-0 w-100 min-h-screen px-9 bg-white dark:bg-slate-900 overflow-y-auto transition-all z-50 lg:hidden ${
@@ -498,7 +498,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
                 }}
               />
             </h2>
-            <h3 className="text-xl/relaxed xs:text-2xl sm:text-3xl px-10 xs:px-0">
+            <h3 className="text-xl/relaxed font-EstedadMedium xs:text-2xl sm:text-4xl px-10 xs:px-0">
               با اسکای آکادمی، برنامه نویسی تخصصی رو به صورت حرفه ای یاد بگیر .
             </h3>
           </div>
@@ -586,7 +586,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
                   </g>
                 </g>
               </svg>
-              <LandingCounter count={1480} />
+              <LandingCounter count={580} />
               <span className="text-xl sm:text-2xl font-EstedadBold mt-2 sm:mt-4">
                 دقیقه آموزش تولید کردیم
               </span>
