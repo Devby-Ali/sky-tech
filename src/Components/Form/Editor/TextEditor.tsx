@@ -17,7 +17,7 @@ const RichTextEditor = ({ onSave }) => {
   });
 
   const addImage = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const url = prompt("آدرس تصویر را وارد کنید");
     if (url) {
       editor.chain().focus().setImage({ src: url }).run();
@@ -25,7 +25,7 @@ const RichTextEditor = ({ onSave }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     onSave({ content });
   };
 
@@ -35,27 +35,45 @@ const RichTextEditor = ({ onSave }) => {
 
   return (
     <div className="editor-container flex flex-col gap-y-8">
-
-      <div className="toolbar *:bg-white/15 flex gap-x-4 *:px-4 *:rounded-md">
+      <div className="toolbar *:bg-white/15 flex flex-center gap-x-4 *:px-4 *:rounded-md *:cursor-pointer">
         <button
           onClick={(e) => {
-            e.preventDefault()
-            editor.chain().focus().toggleBold().run()
+            e.preventDefault();
+            editor.chain().focus().toggleBold().run();
           }}
           className={editor.isActive("bold") ? "active" : ""}
         >
           Bold
         </button>
         <button onClick={() => addImage(event)}>تصویر</button>
-        <button onClick={() => editor.chain().focus().toggleCode().run()}>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().toggleCode().run();
+          }}
+        >
           کد
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.chain().focus().insertContent("</br>").run();
+          }}
+        >
+          enter
         </button>
         {/* اضافه کردن دکمههای بیشتر */}
       </div>
 
-      <EditorContent editor={editor} className="editor-content bg-white/15 max-w-180 rounded-md *:h-95 overflow-y-scroll" />
+      <EditorContent
+        editor={editor}
+        className="editor-content max-w-[723px] bg-white/15 rounded-md *:h-95 overflow-y-scroll"
+      />
 
-      <button onClick={() => handleSubmit(event)} className="submit-button bg-white/15 rounded-md py-3">
+      <button
+        onClick={() => handleSubmit(event)}
+        className="button-primary rounded-md py-3 cursor-pointer "
+      >
         ذخیره مقاله
       </button>
     </div>

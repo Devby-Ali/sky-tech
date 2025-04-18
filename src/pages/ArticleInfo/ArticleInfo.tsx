@@ -13,12 +13,15 @@ import {
   HiOutlineClipboardDocument,
   HiShare,
 } from "react-icons/hi2";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import domPurify from "dompurify";
 import Article from "types/Atricles.types";
 import Category from "types/Category.types";
 import Creator from "types/Creator.types";
-import { getArticleInfo } from "../../Services/Axios/Requests/Articles";
+import {
+  getAllArticles,
+  getArticleInfo,
+} from "../../Services/Axios/Requests/Articles";
 
 const ArticleInfo = (): React.JSX.Element => {
   const { articleName } = useParams<{ articleName: string }>();
@@ -29,7 +32,20 @@ const ArticleInfo = (): React.JSX.Element => {
   );
   const [articleCreator, setArticleCreator] = useState<Creator>({} as Creator);
   const [articleCreatedAt, setArticleCreatedAt] = useState<string>("");
+  const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
   const [showSubTitle, setShowSubTitle] = useState<boolean>(false);
+
+  const getAllArticlesHandler = React.useCallback(async () => {
+    try {
+      const res = await getAllArticles();
+      const allRelatedArticles = await res.filter(
+        (article: Article) => article._id !== articleDetails._id
+      );
+      setRelatedArticles(allRelatedArticles);
+    } catch (error) {
+      console.error("Error related fetching Articles:", error);
+    }
+  }, [articleDetails._id]);
 
   useEffect(() => {
     const getAtricleDatails = async () => {
@@ -39,16 +55,19 @@ const ArticleInfo = (): React.JSX.Element => {
         setArticleCategory(articleInfo.categoryID);
         setArticleCreator(articleInfo.creator);
         setArticleCreatedAt(articleInfo.createdAt);
+        getAllArticlesHandler();
       } catch (error) {
         console.error("Error fetching Article Details:", error);
       }
     };
     getAtricleDatails();
-  }, [articleName]);
+  }, [articleName, getAllArticlesHandler]);
 
   const subTitleHandle = () => {
-    setShowSubTitle(!showSubTitle)
-  }
+    setShowSubTitle(!showSubTitle);
+  };
+
+  console.log(relatedArticles);
 
   return (
     <>
@@ -117,8 +136,9 @@ const ArticleInfo = (): React.JSX.Element => {
                   loading="lazy"
                 />
                 {/* category */}
-                <div className="opacity-40 mt-4">
-                  <span className="text-[1.35rem] sm:text-2xl mt-2">
+                <div className="mt-8">
+                  دسته‌بندی:
+                  <span className=" mr-4 text-[1.35rem] sm:text-2xl mt-2 bg-sky-600/20 rounded-md px-3 py-1.5">
                     {articleCategory.title}
                   </span>
                 </div>
@@ -136,15 +156,23 @@ const ArticleInfo = (): React.JSX.Element => {
                       </span>
                     </div>
                     <div
-                    onClick={subTitleHandle}
+                      onClick={subTitleHandle}
                       className="flex-center bg-neutral-300 dark:bg-slate-500 p-5 size-6 md:size-7 rounded-full cursor-pointer"
                     >
-                      <div className={`text-4xl md:text-[2.4rem] ${!showSubTitle && "rotate-180"}`}>
+                      <div
+                        className={`text-4xl md:text-[2.4rem] ${
+                          !showSubTitle && "rotate-180"
+                        }`}
+                      >
                         <HiChevronDown />
                       </div>
                     </div>
                   </div>
-                  <div className={`${showSubTitle ? "hidden" : "flex"} flex-col gap-2.5 border-t border-gray-400 dark:border-white/30 px-6 py-8`}>
+                  <div
+                    className={`${
+                      showSubTitle ? "hidden" : "flex"
+                    } flex-col gap-2.5 border-t border-gray-400 dark:border-white/30 px-6 py-8`}
+                  >
                     <a
                       href="#h_1"
                       className="text-[1.35rem] md:text-[1.7rem] leading-10"
@@ -198,88 +226,35 @@ const ArticleInfo = (): React.JSX.Element => {
                   </h1>
                 </div>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                  <div className="flex items-center gap-x-4 bg-gray-100 dark:bg-[#333c4c] p-6 rounded-2xl">
-                    <img
-                      src="/images/blog/2.jpg"
-                      className="h-32 rounded-xl"
-                      alt="برنامه نویسی را از چه سنی شروع کنیم"
-                    />
-                    <div>
-                      <a href="#" className="font-EstedadMedium line-clamp-1">
-                        برنامه نویسی را از چه سنی شروع کنیم
-                      </a>
-                      <div className="flex items-center gap-x-2 mt-8 text-blue-gray-800/80 dark:text-white/50">
-                        <div className="text-3xl">
-                          <HiOutlineCalendar />
+                  {relatedArticles.slice(0, 4).map((article) => (
+                    <>
+                      <div className="flex items-center gap-x-4 bg-gray-100 dark:bg-[#333c4c] p-6 rounded-2xl">
+                        <img
+                          src={`http://localhost:4000/courses/covers/${article.cover}`}
+                          className="h-32 rounded-xl"
+                          alt="Article-Image"
+                          loading="lazy"
+                        />
+                        <div>
+                          <Link
+                            className="font-EstedadMedium line-clamp-1"
+                            to={`/article-info/${article.shortName}`}
+                          >
+                            {article.title}
+                          </Link>
+
+                          <div className="flex items-center gap-x-2 mt-8 text-blue-gray-800/80 dark:text-white/50">
+                            <div className="text-3xl">
+                              <HiOutlineCalendar />
+                            </div>
+                            <span className="font-EstedadMedium text-[1.35rem] mt-2.5">
+                              {articleCategory.createdAt.slice(0, 10)}
+                            </span>
+                          </div>
                         </div>
-                        <span className="font-EstedadMedium text-[1.35rem] mt-2.5">
-                          1403/09/01
-                        </span>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-x-4 bg-gray-100 dark:bg-[#333c4c] p-6 rounded-2xl">
-                    <img
-                      src="/images/blog/3.jpeg"
-                      className="h-32 rounded-xl"
-                      alt="برنامه‌ نویسی به عنوان شغل دوم: مزایا و چالش‌ها"
-                    />
-                    <div>
-                      <a href="#" className="font-EstedadMedium line-clamp-1">
-                        برنامه‌ نویسی به عنوان شغل دوم: مزایا و چالش‌ها
-                      </a>
-                      <div className="flex items-center gap-x-2 mt-8 text-blue-gray-800/80 dark:text-white/50">
-                        <div className="text-3xl">
-                          <HiOutlineCalendar />
-                        </div>
-                        <span className="font-EstedadMedium text-[1.35rem] mt-2.5">
-                          1403/08/21
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-x-4 bg-gray-100 dark:bg-[#333c4c] p-6 rounded-2xl">
-                    <img
-                      src="/images/blog/2.jpg"
-                      className="h-32 rounded-xl"
-                      alt="فرمول طلایی تعادل بین کار و زندگی برای برنامه‌ نویسان: از استرس تا آرامش"
-                    />
-                    <div>
-                      <a href="#" className="font-EstedadMedium line-clamp-1">
-                        فرمول طلایی تعادل بین کار و زندگی برای برنامه‌ نویسان:
-                        از استرس تا آرامش
-                      </a>
-                      <div className="flex items-center gap-x-2 mt-8 text-blue-gray-800/80 dark:text-white/50">
-                        <div className="text-3xl">
-                          <HiOutlineCalendar />
-                        </div>
-                        <span className="font-EstedadMedium text-[1.35rem] mt-2.5">
-                          1403/08/18
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-x-4 bg-gray-100 dark:bg-[#333c4c] p-6 rounded-2xl">
-                    <img
-                      src="/images/blog/3.jpeg"
-                      className="h-32 rounded-xl"
-                      alt="5 نکته مهم در انتخاب اولین زبان برنامه‌نویسی برای یادگیری"
-                    />
-                    <div>
-                      <a href="#" className="font-EstedadMedium line-clamp-1">
-                        5 نکته مهم در انتخاب اولین زبان برنامه‌نویسی برای
-                        یادگیری
-                      </a>
-                      <div className="flex items-center gap-x-2 mt-8 text-blue-gray-800/80 dark:text-white/50">
-                        <div className="text-3xl">
-                          <HiOutlineCalendar />
-                        </div>
-                        <span className="font-EstedadMedium text-[1.35rem] mt-2.5">
-                          1403/08/17
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    </>
+                  ))}
                 </div>
               </div>
             </div>

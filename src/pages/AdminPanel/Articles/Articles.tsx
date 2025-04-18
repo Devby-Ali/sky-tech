@@ -45,11 +45,7 @@ const Articles = (): React.JSX.Element => {
     false
   );
 
-  const handleSave = (article) => {
-    // ارسال به API
-    console.log('مقاله ذخیره شد:', {
-      content: article.content
-    })
+  const handleSave = (article: { content: string }) => {
     setArticleBody(article.content)
   }
 
@@ -209,7 +205,7 @@ const Articles = (): React.JSX.Element => {
                   </div>
                 </div>
 
-                <div>
+                <div className="w-full">
                 <RichTextEditor onSave={handleSave} />
                 </div>
 
@@ -260,7 +256,7 @@ const Articles = (): React.JSX.Element => {
                   <Button
                     className={`h-20 w-full mt-4 rounded-lg ${
                       formState.isFormValid
-                        ? "bg-sky-600/40 hover:bg-sky-600/60"
+                        ? "bg-sky-600/40 hover:bg-sky-600/60 cursor-pointer"
                         : "bg-[#333c4c]/30"
                     }`}
                     type="submit"
@@ -272,7 +268,7 @@ const Articles = (): React.JSX.Element => {
                   <Button
                     className={`h-20 w-full mt-4 rounded-lg ${
                       formState.isFormValid
-                        ? "bg-sky-600/40 hover:bg-sky-600/60"
+                        ? "bg-sky-600/40 hover:bg-sky-600/60 cursor-pointer"
                         : "bg-[#333c4c]/30"
                     }`}
                     type="submit"
