@@ -5,7 +5,7 @@ import { minValidator } from "../../../validators/rules";
 import Swal from "sweetalert2";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "../../../hooks/useForm";
-import Editor from "../../../Components/Form/Editor/Editor";
+import Editor from "../../../Components/Form/Editor/TextEditor";
 import { FormState } from "hooks/useForm.types";
 import Category from "types/Category.types";
 import Article from "types/Atricles.types";
@@ -62,7 +62,9 @@ const Draft = (): React.JSX.Element => {
     }
   };
 
-  const createArticleHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const createArticleHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", formState.inputs.title.value);

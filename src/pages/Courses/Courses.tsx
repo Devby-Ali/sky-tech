@@ -362,7 +362,7 @@ const Courses = (): React.JSX.Element => {
               {/* <!-- Show more Button --> */}
               <Pagination
                 items={orderedCourses}
-                itemsCount={6}
+                itemsCount={9}
                 pathName="/courses"
                 setShownItems={setShownCourses}
               />

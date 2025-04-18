@@ -3,7 +3,7 @@ import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
 import { minValidator } from "../../../validators/rules";
 import { useForm } from "../../../hooks/useForm";
-import Editor from "../../../Components/Form/Editor/Editor";
+import RichTextEditor from "../../../Components/Form/Editor/TextEditor";
 import DataTable from "../../../Components/AdminPanel/DataTable/DataTable";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -44,6 +44,14 @@ const Articles = (): React.JSX.Element => {
     },
     false
   );
+
+  const handleSave = (article) => {
+    // ارسال به API
+    console.log('مقاله ذخیره شد:', {
+      content: article.content
+    })
+    setArticleBody(article.content)
+  }
 
   useEffect(() => {
     getAllArticlesHandler();
@@ -105,15 +113,24 @@ const Articles = (): React.JSX.Element => {
     formData.append("cover", articleCover);
     formData.append("body", articleBody);
 
-    await createArticle(formData);
-    Swal.fire({
-      title: "مقاله جدید منتشر شد",
-      icon: "success",
-      confirmButtonText: "Ok",
-    }).then(() => {
-      getAllArticlesHandler();
-      setShowAddArticle(false);
-    });
+    try {
+      await createArticle(formData);
+      Swal.fire({
+        title: "مقاله جدید منتشر شد",
+        icon: "success",
+        confirmButtonText: "Ok",
+      }).then(() => {
+        getAllArticlesHandler();
+        setShowAddArticle(false);
+      });
+    } catch (error) {
+      console.error("Error creating article:", error);
+      Swal.fire({
+        title: "خطا در ایجاد مقاله",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
   };
 
   const saveArticleAsDraft = async (
@@ -192,8 +209,8 @@ const Articles = (): React.JSX.Element => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-x-6">
-                  <Editor value={articleBody} setValue={setArticleBody} />
+                <div>
+                <RichTextEditor onSave={handleSave} />
                 </div>
 
                 <div className="flex flex-col lg:flex-row items-center gap-x-6 gap-y-8 w-full">

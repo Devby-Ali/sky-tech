@@ -4,6 +4,14 @@ const LandingCounter = ({ count }: { count: number }): React.JSX.Element => {
   const [courseCounter, setCourseCounter] = useState<number>(0);
 
   useEffect(() => {
+    const counterHandler = async () => {
+      try {
+      } catch (error) {
+        console.error("Error landing counter infos:", error);
+      }
+    };
+    counterHandler();
+
     const interval = setInterval(() => {
       setCourseCounter((prevCount) => prevCount + 1);
     }, 1);

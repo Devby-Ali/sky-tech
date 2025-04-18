@@ -103,12 +103,13 @@
   opacity: 1;
   visibility: visible;
   top: 7.25rem;
+  /* @apply h-[28rem]; */
 }
 
 @utility header__dropdown {
   opacity: 0;
   visibility: hidden;
-  @apply absolute top-0 right-[23.5rem] h-[27.9rem] overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[7px] text-white transition-all  rounded-4xl rounded-br-none py-4 px-3 border-t-5 border-l-5 border-sky-600 delay-150 *:hover:text-purple-500 *:dark:hover:text-purple-400;
+  @apply absolute top-0 right-[23.5rem] h-full overflow-y-auto w-96 bg-linear-to-t from-transparent via-sky-400/25 via-50% to-transparent backdrop-blur-[7px] text-white transition-all  rounded-4xl rounded-br-none py-4 px-3 border-t-5 border-l-5 border-sky-600 delay-150 *:hover:text-purple-500 *:dark:hover:text-purple-400;
 }
 
 @utility main-header__dropdown-item {
@@ -196,7 +197,7 @@
   }
 
   .button-primary:hover {
-   background-color: rgba(57, 149, 255, 0.096)
+    background-color: rgba(57, 149, 255, 0.096);
   }
 
   .shadowLightBlue {

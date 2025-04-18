@@ -29,6 +29,7 @@ const ArticleInfo = (): React.JSX.Element => {
   );
   const [articleCreator, setArticleCreator] = useState<Creator>({} as Creator);
   const [articleCreatedAt, setArticleCreatedAt] = useState<string>("");
+  const [showSubTitle, setShowSubTitle] = useState<boolean>(false);
 
   useEffect(() => {
     const getAtricleDatails = async () => {
@@ -44,6 +45,10 @@ const ArticleInfo = (): React.JSX.Element => {
     };
     getAtricleDatails();
   }, [articleName]);
+
+  const subTitleHandle = () => {
+    setShowSubTitle(!showSubTitle)
+  }
 
   return (
     <>
@@ -130,17 +135,16 @@ const ArticleInfo = (): React.JSX.Element => {
                         سرفصل های این مقاله:
                       </span>
                     </div>
-                    <button
-                      className="flex-center bg-neutral-300 dark:bg-slate-500  size-6 md:size-7 rounded-full"
-                      data-collapse="#toc-collapse"
-                      data-height="h-16 md:h-17"
+                    <div
+                    onClick={subTitleHandle}
+                      className="flex-center bg-neutral-300 dark:bg-slate-500 p-5 size-6 md:size-7 rounded-full cursor-pointer"
                     >
-                      <div className="text-4xl md:text-[2.4rem]">
+                      <div className={`text-4xl md:text-[2.4rem] ${!showSubTitle && "rotate-180"}`}>
                         <HiChevronDown />
                       </div>
-                    </button>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-2.5 border-t border-gray-400 dark:border-white/30 px-6 py-8">
+                  <div className={`${showSubTitle ? "hidden" : "flex"} flex-col gap-2.5 border-t border-gray-400 dark:border-white/30 px-6 py-8`}>
                     <a
                       href="#h_1"
                       className="text-[1.35rem] md:text-[1.7rem] leading-10"
@@ -176,7 +180,7 @@ const ArticleInfo = (): React.JSX.Element => {
                 </div>
                 {/*					<!-- Full Description --> */}
                 <div
-                  className="tracking-wider text-blue-gray-900/95 dark:text-white/70 leading-[2.6rem] overflow-auto"
+                  className="tracking-wide text-[1.6rem]/loose text-slate-900/90 dark:text-white/80 overflow-auto"
                   dangerouslySetInnerHTML={{
                     __html: domPurify.sanitize(articleDetails.body),
                   }}

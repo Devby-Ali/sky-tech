@@ -340,7 +340,7 @@ const CourseInfo = (): React.JSX.Element => {
                   <div
                     className={`${
                       showDescription ? "h-full" : "max-h-[350px]"
-                    } text-[1.6rem]/loose text-white/80`}
+                    } tracking-wide text-[1.6rem]/loose text-slate-900/90 dark:text-white/80`}
                   >
                     {courseDetails.description}
                   </div>
