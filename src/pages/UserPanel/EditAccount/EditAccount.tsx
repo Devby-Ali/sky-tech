@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../../../context/authContext";
+import AuthContext from "../../../contexts/authContext";
 import {
   HiOutlineArrowUpTray,
   HiOutlineDeviceTablet,

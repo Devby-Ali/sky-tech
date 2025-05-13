@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Input from "../../Components/Form/Input";
 import Button from "../../Components/Form/Button";
 import { useForm } from "../../hooks/useForm";
-import AuthContext from "../../context/authContext";
+import AuthContext from "../../contexts/authContext";
 import {
   requiredValidator,
   maxValidator,

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import AuthContext from "../../context/authContext";
+import AuthContext from "../../contexts/authContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import {

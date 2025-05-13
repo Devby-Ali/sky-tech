@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
 import Swal from "sweetalert2";
-import AuthContext from "../../../context/authContext";
+import AuthContext from "../../../contexts/authContext";
 import {
   HiMiniChevronLeft,
   HiOutlineMoon,

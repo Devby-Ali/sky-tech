@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../../../context/authContext";
+import AuthContext from "../../../contexts/authContext";
 import { AuthContextType } from "types/AuthContext.types";
 import { UserCourse } from "types/Courses.types";
 import { getUserTickets } from "../../../Services/Axios/Requests/Tickets";

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRoutes, useLocation } from "react-router-dom";
-import AuthContext from "./context/authContext";
+import AuthContext from "./contexts/authContext";
 import routes from "./routes";
 import { UserInfo } from "./types/AuthContext.types";
 import { getUserInfos } from "./Services/Axios/Requests/Auth";

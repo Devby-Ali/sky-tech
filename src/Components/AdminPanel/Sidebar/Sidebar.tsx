@@ -7,7 +7,7 @@ import {
   HiOutlineSun,
 } from "react-icons/hi2";
 import Swal from "sweetalert2";
-import AuthContext from "../../../context/authContext";
+import AuthContext from "../../../contexts/authContext";
 import { HiOutlineLogout } from "react-icons/hi";
 import { AuthContextType } from "types/AuthContext.types";
 
@@ -17,7 +17,6 @@ const Sidebar = (): React.JSX.Element => {
   const navigate = useNavigate();
 
   const pageName = useParams<{ "*": string }>();
-
 
   const logoutAdmin = () => {
     Swal.fire({

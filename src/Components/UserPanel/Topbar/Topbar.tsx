@@ -10,7 +10,7 @@ import {
 } from "react-icons/hi2";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../Form/Button";
-import AuthContext from "../../../context/authContext";
+import AuthContext from "../../../contexts/authContext";
 import Swal from "sweetalert2";
 import { HiOutlineLogout } from "react-icons/hi";
 import { AuthContextType } from "types/AuthContext.types";

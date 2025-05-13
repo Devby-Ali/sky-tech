@@ -23,7 +23,7 @@ import {
   HiPower,
 } from "react-icons/hi2";
 import Swal from "sweetalert2";
-import AuthContext from "../../context/authContext";
+import AuthContext from "../../contexts/authContext";
 import { GrUserAdmin } from "react-icons/gr";
 import Menu from "types/Menu.types";
 import { AuthContextType } from "types/AuthContext.types";
@@ -53,7 +53,7 @@ const Landing = ({ info }: { info: Info }): React.JSX.Element => {
     },
     false
   );
-  
+
   useEffect(() => {
     getMenusHandler();
   }, [info]);

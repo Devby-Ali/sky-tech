@@ -10,7 +10,7 @@ import {
   HiOutlineUser,
 } from "react-icons/hi2";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import AuthContext from "../../../context/authContext";
+import AuthContext from "../../../contexts/authContext";
 import Swal from "sweetalert2";
 import Button from "../../Form/Button";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -105,12 +105,11 @@ const Topbar = (): React.JSX.Element => {
 
   const seeNotificationHandler = async (notficationID: string) => {
     try {
-      await seeNotification(notficationID)
+      await seeNotification(notficationID);
     } catch (error) {
       console.error("Error see notification:", error);
-      
     }
-  }
+  };
 
   const toggleOpenNotif = () => {
     setOpenCollapseNotif((cur) => !cur);
@@ -407,7 +406,9 @@ const Topbar = (): React.JSX.Element => {
                           <a
                             className="text-2xl"
                             href="javascript:void(0)"
-                            onClick={() => seeNotificationHandler(notification._id)}
+                            onClick={() =>
+                              seeNotificationHandler(notification._id)
+                            }
                           >
                             دیدم
                           </a>

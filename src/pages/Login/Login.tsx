@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Input from "../../Components/Form/Input";
 import Button from "../../Components/Form/Button";
 import { useForm } from "../../hooks/useForm";
-import AuthContext from "../../context/authContext";
+import AuthContext from "../../contexts/authContext";
 import {
   requiredValidator,
   maxValidator,
@@ -50,7 +50,6 @@ const Login = (): React.JSX.Element => {
     };
 
     try {
-
       const accessToken = await loginUser(userData);
       Swal.fire({
         title: "با موفقیت لاگین شدید",
@@ -65,16 +64,13 @@ const Login = (): React.JSX.Element => {
       } catch (error) {
         console.error("Error Auth Me (getUserInfos):", error);
       }
-
     } catch (error) {
-
       console.error("Error login user:", error);
       Swal.fire({
         title: "نام کاربری یا رمز اشتباه است!",
         icon: "error",
         confirmButtonText: "تلاش دوباره",
       });
-      
     }
   };
 

@@ -6,7 +6,7 @@ import { HiOutlineArrowUturnLeft } from "react-icons/hi2";
 import { LiaUserSolid } from "react-icons/lia";
 import { PiChatCenteredTextLight, PiChats } from "react-icons/pi";
 import { RiGraduationCapFill } from "react-icons/ri";
-import AuthContext from "../../context/authContext";
+import AuthContext from "../../contexts/authContext";
 import { Link } from "react-router-dom";
 import { AuthContextType } from "../../types/AuthContext.types";
 import Comment from "types/Comments.types";

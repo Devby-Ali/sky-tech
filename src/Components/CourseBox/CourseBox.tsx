@@ -85,7 +85,7 @@ const CourseBox = ({
           </div>
         </div>
         <div className="flex items-end justify-between mt-3">
-          <span className="flex items-center gap-x-2 text-blue-gray-600 dark:text-white/70 text-xl">
+          <span className="flex items-center gap-x-2 text-slate-600 dark:text-white/70 text-xl">
             <div className="text-4xl">
               <PiUsersThree />
             </div>
