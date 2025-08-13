@@ -14,7 +14,7 @@ const ArticleBox = ({
   creator,
 }: Article): React.JSX.Element => {
   return (
-    <div className="blog flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white overflow-hidden rounded-lg">
+    <article className="blog flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white overflow-hidden rounded-lg">
       {/* <!-- Blog Banner --> */}
       <div className="blog__banner relative h-[182px] overflow-hidden">
         <Link to={`/article-info/${shortName}`}>
@@ -46,7 +46,7 @@ const ArticleBox = ({
             </div>
             <Link to={`/user/${creator._id}`}>{creator.name}</Link>
           </div>
-          <div className="flex items-center gap-x-1">
+          <div className="flex items-center gap-x-2">
             <div className="text-3xl">
               <HiOutlineCalendar />
             </div>
@@ -64,7 +64,7 @@ const ArticleBox = ({
           </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

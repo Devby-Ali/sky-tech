@@ -8,7 +8,7 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 
 export default [
   { ignores: ["dist"] },
-  // تنظیمات برای فایل‌های JavaScript
+  // Setting for JavaScript file
   {
     files: ["**/*.{js,jsx}"],
     languageOptions: {
@@ -20,7 +20,7 @@ export default [
         sourceType: "module",
       },
     },
-    settings: { react: { version: "18.3" } },
+    settings: { react: { version: "detect" } },
     plugins: {
       react,
       "react-hooks": reactHooks,
@@ -38,7 +38,7 @@ export default [
       ],
     },
   },
-  // تنظیمات برای فایل‌های TypeScript
+  // Setting for TypeScript file
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -66,7 +66,7 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
-      // قوانین تایپ‌اسکریپت
+      // typeScript rules
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-unused-vars": [
@@ -76,7 +76,7 @@ export default [
           varsIgnorePattern: "^_",
         },
       ],
-      // قوانین React
+      // React rules
       "react/prop-types": "off",
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
@@ -85,13 +85,13 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
-      // قوانین عمومی
+      // public rules
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "prefer-const": "error",
       "no-unused-vars": "off",
     },
   },
-  // تنظیمات ویژه برای فایل‌های تعریف تایپ
+  // special config
   {
     files: ["**/*.d.ts"],
     rules: {
