@@ -20,8 +20,8 @@ const LastArticles = (): React.JSX.Element => {
   }, []);
 
   return (
-    <section className="mb-48">
-      <div className="container relative">
+    <section className="container relative mb-48">
+     
         <SectionHeader
           title="وبلاگ آموزشی SKY-Tech"
           desc="پیش به سوی ارتقای دانش"
@@ -39,7 +39,7 @@ const LastArticles = (): React.JSX.Element => {
             ))}
         </div>
         <div className="hidden lg:block absolute left-0 top-0 -translate-x-1/3 -translate-y-6/10 size-75 bg-amber-400 opacity-25 blur-[125px] -z-10 rounded-full"></div>
-      </div>
+     
     </section>
   );
 };

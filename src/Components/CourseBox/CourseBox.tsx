@@ -27,7 +27,7 @@ const CourseBox = ({
   };
 
   return (
-    <div className="course flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg h-full">
+    <article className="course flex flex-col bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg h-full">
       {/* <!-- Course Banner --> */}
       <div className="relative h-[17rem] group">
         <Link
@@ -142,7 +142,7 @@ const CourseBox = ({
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
